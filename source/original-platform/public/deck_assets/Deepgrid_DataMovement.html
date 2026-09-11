@@ -1,0 +1,4566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DGrid Semi &mdash; The Data Movement Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --panel: #131826;
+    --panel-2: #1a2030;
+    --ink: #e8edf5;
+    --dim: #6b7388;
+    --accent: #3ba3ff;
+    --hot: #ff5440;
+    --warm: #ffb340;
+    --cool: #34c285;
+    --cube: #b450c8;
+    --line: #1f2738;
+  }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ STICKY TOP NAV ============ */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 14, 26, 0.92);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topnav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    justify-content: space-between;
+  }
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .brand-mark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .brand-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dim);
+  }
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    text-decoration: none;
+    color: var(--dim);
+    padding: 7px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    border-radius: 5px;
+    transition: all 0.15s;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .nav-link:hover { color: var(--ink); background: rgba(255,255,255,0.04); }
+  .nav-link.active { color: var(--accent); background: rgba(59,163,255,0.08); }
+  .nav-link-num {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 10px;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 60px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 22px;
+  }
+  .hero h1 em {
+    color: var(--cube);
+    font-style: normal;
+  }
+  .hero p {
+    font-size: 18px;
+    color: var(--dim);
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  /* ============ TABLE OF CONTENTS GRID ============ */
+  .toc {
+    max-width: 1200px;
+    margin: 30px auto 80px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 980px) { .toc { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .toc { grid-template-columns: 1fr; } }
+
+  .toc-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .toc-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .toc-card .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .toc-card .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-top: -4px;
+  }
+  .toc-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .toc-card p {
+    font-size: 12.5px;
+    color: var(--dim);
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .toc-card .read {
+    margin-top: auto;
+    padding-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  /* ============ SECTION ============ */
+  .section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 24px;
+    scroll-margin-top: 80px;
+  }
+  .section + .section {
+    border-top: 1px solid var(--line);
+  }
+
+  .section-header {
+    margin-bottom: 26px;
+    text-align: center;
+  }
+  .section-num {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .section-num .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin: 0 12px 2px;
+    vertical-align: middle;
+  }
+  .section h2 {
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .section h2 em {
+    color: var(--cube);
+    font-style: normal;
+  }
+  .section .lede {
+    font-size: 16px;
+    color: var(--dim);
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ============ IFRAME WRAPPER ============ */
+  .frame-wrap {
+    margin-top: 30px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    position: relative;
+  }
+  .frame-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 14px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+    z-index: 1;
+  }
+  .frame-wrap iframe {
+    width: 100%;
+    border: 0;
+    background: var(--bg);
+    display: block;
+  }
+  .frame-wrap iframe.tall { height: 1900px; }
+  .frame-wrap iframe.medium { height: 1700px; }
+  .frame-wrap iframe.short { height: 1500px; }
+
+  /* Loading placeholder (shown until iframe rendered) */
+  .frame-loading {
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    color: var(--dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  .frame-loading-dot {
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.85); }
+    50%      { opacity: 1;   transform: scale(1.15); }
+  }
+
+  /* ============ INTER-SECTION CONNECTOR ============ */
+  .bridge {
+    max-width: 760px;
+    margin: 50px auto 30px;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .bridge-arrow {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 22px;
+    margin-bottom: 14px;
+    animation: bobbing 2.4s ease-in-out infinite;
+  }
+  @keyframes bobbing {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(6px); }
+  }
+  .bridge p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--dim);
+    font-style: italic;
+    line-height: 1.55;
+  }
+  .bridge p strong {
+    color: var(--ink);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    margin-top: 80px;
+    padding: 40px 24px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  footer .footer-brand {
+    color: var(--ink);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+  }
+  footer .footer-meta {
+    color: var(--dim);
+    font-size: 10px;
+    margin-top: 6px;
+  }
+
+  /* ============ FULLSCREEN BUTTON ============ */
+  .frame-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: rgba(0,0,0,0.3);
+    border-bottom: 1px solid var(--line);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--dim);
+  }
+  .fs-btn {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--dim);
+    padding: 5px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }
+  .fs-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ STICKY TOP NAV ============ -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="brand">
+      <span class="brand-mark">DGrid Semi</span>
+      <span class="brand-title">The Data Movement Story</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="#top"><span>&uarr; Top</span></a>
+      <a class="nav-link" href="#problem"><span class="nav-link-num">01</span><span>Problem</span></a>
+      <a class="nav-link" href="#landscape"><span class="nav-link-num">02</span><span>Landscape</span></a>
+      <a class="nav-link" href="#roadmap"><span class="nav-link-num">03</span><span>Roadmap</span></a>
+      <a class="nav-link" href="#destination"><span class="nav-link-num">04</span><span>Destination</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<div id="top"></div>
+<header class="hero">
+  <div class="eyebrow">DGrid Semi &middot; SoC1.1 &rarr; SoC2 &middot; The Architecture Story</div>
+  <h1>Four scenes on <em>data movement</em> &mdash; from today&rsquo;s bottleneck to <em>34.4 TOPS</em></h1>
+  <p>Most AI accelerator pitches show speedup numbers and call it a story. This page shows the actual architecture changes &mdash; in motion &mdash; that turn a 2&nbsp;fps FPGA into a 12+ fps custom ASIC. Scroll to walk through the four animations, or jump via the nav above.</p>
+</header>
+
+<!-- ============ TABLE OF CONTENTS ============ -->
+<div class="toc">
+  <a class="toc-card" href="#problem">
+    <div class="num">01</div>
+    <div class="label">The bottleneck today</div>
+    <h3>Why <em>per-PCORE DMA</em> changes everything</h3>
+    <p>Single DP &rarr; per-PCORE DMA. The basic problem and its fix, in one screen.</p>
+    <div class="read">&rarr; 90 sec</div>
+  </a>
+  <a class="toc-card" href="#landscape">
+    <div class="num">02</div>
+    <div class="label">Industry context</div>
+    <h3>The <em>memory spectrum</em> &mdash; and where DGrid lands</h3>
+    <p>Where DGrid sits among Hailo, Mobileye, NVIDIA Orin, and Tesla Dojo.</p>
+    <div class="read">&rarr; 2 min</div>
+  </a>
+  <a class="toc-card" href="#roadmap">
+    <div class="num">03</div>
+    <div class="label">The roadmap math</div>
+    <h3>Flat to <em>cube</em> &mdash; and why the cube starves alone</h3>
+    <p>Flat 8&times;8 matrix vs 8&times;8&times;8 cube. The SoC1.2 to SoC2 leap.</p>
+    <div class="read">&rarr; 3 min</div>
+  </a>
+  <a class="toc-card" href="#destination">
+    <div class="num">04</div>
+    <div class="label">The destination</div>
+    <h3>SoC2 in motion &mdash; <em>56 cubes, 56 LDMAs, 8 banks</em></h3>
+    <p>56 cubes, 56 LDMAs, 8 banks. Toggle &ldquo;hot bank&rdquo; to see contention.</p>
+    <div class="read">&rarr; 3 min</div>
+  </a>
+</div>
+
+<section class="section" id="problem">
+  <div class="section-header">
+    <div class="section-num">01<span class="dot"></span>The bottleneck today</div>
+    <h2>Why <em>per-PCORE DMA</em> changes everything</h2>
+    <p class="lede">DGrid SoC1.1 has 8 PCOREs queueing on a single DP engine. Watch the cost: most of the chip sits idle while one core eats. Then watch what happens when each core gets its own kitchen.</p>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-toolbar">
+      <span>SECTION 01 &middot; INTERACTIVE &middot; click the play / pause / speed buttons inside</span>
+      <button class="fs-btn" onclick="openFullscreen('frame-problem')">&uarr; Open standalone</button>
+    </div>
+    <iframe id="frame-problem" class="short" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;Why Per-PCORE DMA — DGrid Semi&lt;/title&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --panel: #131826;
+    --ink: #e8edf5;
+    --dim: #6b7388;
+    --accent: #3ba3ff;
+    --hot: #ff5440;
+    --warm: #ffb340;
+    --cool: #34c285;
+    --line: #1f2738;
+    --pcore-idle: #2a3045;
+    --pcore-active: #34c285;
+    --pcore-waiting: #ffb340;
+    --dp: #ff5440;
+    --dma: #3ba3ff;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: &#x27;Inter&#x27;, system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 30px 80px;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  header .eyebrow {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  header h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  header h1 .em { color: var(--accent); }
+  header p.sub {
+    color: var(--dim);
+    font-size: 17px;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* CONTROLS */
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0 36px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    background: var(--panel);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 12px 22px;
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-radius: 6px;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary {
+    background: var(--accent);
+    color: #0a0e1a;
+    font-weight: 700;
+    border-color: var(--accent);
+  }
+  .btn.primary:hover { background: #5cb5ff; border-color: #5cb5ff; }
+  .speed-display {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    color: var(--dim);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* SCENE GRID */
+  .scenes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 900px) {
+    .scenes { grid-template-columns: 1fr; }
+  }
+
+  .scene {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scene-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    gap: 12px;
+  }
+  .scene-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .scene-header h2 .tag {
+    display: inline-block;
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .scene.left  .tag { background: rgba(255,84,64,0.15);  color: var(--hot); }
+  .scene.right .tag { background: rgba(52,194,133,0.15); color: var(--cool); }
+  .scene-header .stat {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px;
+    color: var(--dim);
+    text-align: right;
+    line-height: 1.4;
+  }
+  .scene-header .stat .big {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .scene.left  .stat .big { color: var(--hot); }
+  .scene.right .stat .big { color: var(--cool); }
+
+  /* SVG STAGE */
+  .stage {
+    width: 100%;
+    aspect-ratio: 1.3 / 1;
+    background: rgba(255,255,255,0.015);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  /* COMPUTE BAR (per-pcore utilization) */
+  .util-bars {
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+  }
+  .util-bars-title {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .util-row {
+    display: grid;
+    grid-template-columns: 36px 1fr 50px;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  .util-label {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px;
+    color: var(--dim);
+  }
+  .util-track {
+    height: 6px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .util-fill {
+    height: 100%;
+    background: var(--cool);
+    border-radius: 3px;
+    transition: width 0.12s linear;
+    width: 0%;
+  }
+  .util-pct {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px;
+    text-align: right;
+    color: var(--ink);
+  }
+
+  /* THE STORY (below scenes) */
+  .story {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 800px) {
+    .story { grid-template-columns: 1fr; }
+  }
+  .story-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px;
+  }
+  .story-card .num {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .story-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .story-card p {
+    color: var(--dim);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .story-card p strong { color: var(--ink); }
+
+  /* THE PUNCHLINE */
+  .punchline {
+    margin-top: 50px;
+    padding: 36px 36px;
+    background: linear-gradient(135deg, rgba(59,163,255,0.08) 0%, rgba(52,194,133,0.06) 100%);
+    border: 1px solid rgba(59,163,255,0.2);
+    border-radius: 14px;
+    text-align: center;
+  }
+  .punchline .label {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .punchline .big {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .punchline .big em {
+    color: var(--cool);
+    font-style: normal;
+  }
+  .punchline .small {
+    color: var(--dim);
+    font-size: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* footer */
+  footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--dim);
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;page&quot;&gt;
+
+&lt;header&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;DGrid Semi · Architecture&lt;/div&gt;
+  &lt;h1&gt;Why &lt;span class=&quot;em&quot;&gt;per-PCORE DMA&lt;/span&gt; changes everything&lt;/h1&gt;
+  &lt;p class=&quot;sub&quot;&gt;Today, eight PCOREs share one data engine. Seven wait while one eats.&lt;br&gt;Watch the difference.&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;div class=&quot;controls&quot;&gt;
+  &lt;button class=&quot;btn primary&quot; id=&quot;btnPlay&quot;&gt;▶ Play&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnPause&quot;&gt;⏸ Pause&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnReset&quot;&gt;↺ Reset&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnSpeed&quot;&gt;Speed: 1×&lt;/button&gt;
+  &lt;span class=&quot;speed-display&quot; id=&quot;cycleCount&quot;&gt;cycle 0&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;scenes&quot;&gt;
+
+  &lt;!-- SCENE 1: TODAY --&gt;
+  &lt;div class=&quot;scene left&quot;&gt;
+    &lt;div class=&quot;scene-header&quot;&gt;
+      &lt;h2&gt;Today&lt;span class=&quot;tag&quot;&gt;single DP engine&lt;/span&gt;&lt;/h2&gt;
+      &lt;div class=&quot;stat&quot;&gt;
+        &lt;span class=&quot;big&quot; id=&quot;leftFps&quot;&gt;2.1&lt;/span&gt;
+        fps YOLO
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stageLeft&quot; viewBox=&quot;0 0 520 400&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;util-bars&quot;&gt;
+      &lt;div class=&quot;util-bars-title&quot;&gt;PCORE compute utilization&lt;/div&gt;
+      &lt;div id=&quot;leftBars&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- SCENE 2: PER-PCORE DMA --&gt;
+  &lt;div class=&quot;scene right&quot;&gt;
+    &lt;div class=&quot;scene-header&quot;&gt;
+      &lt;h2&gt;Per-PCORE DMA&lt;span class=&quot;tag&quot;&gt;8 local engines&lt;/span&gt;&lt;/h2&gt;
+      &lt;div class=&quot;stat&quot;&gt;
+        &lt;span class=&quot;big&quot; id=&quot;rightFps&quot;&gt;11.7&lt;/span&gt;
+        fps YOLO (target)
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stageRight&quot; viewBox=&quot;0 0 520 400&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;util-bars&quot;&gt;
+      &lt;div class=&quot;util-bars-title&quot;&gt;PCORE compute utilization&lt;/div&gt;
+      &lt;div id=&quot;rightBars&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;!-- The 3-card narrative --&gt;
+&lt;div class=&quot;story&quot;&gt;
+  &lt;div class=&quot;story-card&quot;&gt;
+    &lt;div class=&quot;num&quot;&gt;01 — THE PROBLEM&lt;/div&gt;
+    &lt;h3&gt;Hungry compute, narrow pipe&lt;/h3&gt;
+    &lt;p&gt;The DP engine fetches one descriptor at a time, generates one address per cycle. &lt;strong&gt;8 PCOREs queue for one engine.&lt;/strong&gt; When PCORE 0 is loading, PCORE 1 through 7 wait. ~35 cycles of fixed setup × 8 turns = serial overhead.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;story-card&quot;&gt;
+    &lt;div class=&quot;num&quot;&gt;02 — THE FIX&lt;/div&gt;
+    &lt;h3&gt;Eight kitchens, one pantry&lt;/h3&gt;
+    &lt;p&gt;Each PCORE gets its own small DMA — 16-entry descriptor table, 3-level address generator, FIFO. They all pull from a shared SRAM L2 in parallel. &lt;strong&gt;SRAM banks become the bottleneck instead of dispatch.&lt;/strong&gt; Bandwidth scales 4-8×.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;story-card&quot;&gt;
+    &lt;div class=&quot;num&quot;&gt;03 — THE COST&lt;/div&gt;
+    &lt;h3&gt;Architecture, not magic&lt;/h3&gt;
+    &lt;p&gt;Each LDMA ~600 LUT × 8 = 4,800 LUT extra. Plus arbitration logic, plus firmware compiler changes. &lt;strong&gt;16-24 weeks of focused RTL work&lt;/strong&gt; — too much for SoC1.2, right-sized for SoC1.3 hybrid or SoC2 (28nm ASIC).&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- The punchline --&gt;
+&lt;div class=&quot;punchline&quot;&gt;
+  &lt;div class=&quot;label&quot;&gt;Bottom line&lt;/div&gt;
+  &lt;div class=&quot;big&quot;&gt;YOLO frame: 470 ms today → &lt;em&gt;~85 ms&lt;/em&gt; with per-PCORE DMA.&lt;/div&gt;
+  &lt;div class=&quot;small&quot;&gt;Same silicon process, same MAC count. Just stop making compute wait for data. The architectural ceiling lifts from 2 fps to 12 fps — without adding a single multiplier.&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;footer&gt;
+  DGrid Semi · paper-design phase · simulation TBD by Srikar (week 6)
+&lt;/footer&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+// ============================================================
+//   ANIMATION ENGINE — both scenes share the same clock
+// ============================================================
+
+const SVG = &quot;http://www.w3.org/2000/svg&quot;;
+const PCORE_COUNT = 8;
+
+// ---------- SCENE BUILDERS ----------
+
+function el(tag, attrs={}, parent=null) {
+  const e = document.createElementNS(SVG, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+// Layout: PCOREs in 2x4 grid on right side, DDR on top-left, SRAM in middle, DP/LDMA in middle
+function buildScene(svg, type) {
+  svg.innerHTML = &#x27;&#x27;;
+
+  const W = 520, H = 400;
+
+  // === DDR (top, full width) ===
+  const ddr = el(&#x27;g&#x27;, { id: type+&#x27;-ddr&#x27; }, svg);
+  el(&#x27;rect&#x27;, { x: 30, y: 16, width: 460, height: 38, rx: 6,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#2a3a52&#x27;, &#x27;stroke-width&#x27;: 1 }, ddr);
+  el(&#x27;text&#x27;, { x: 260, y: 40, &#x27;text-anchor&#x27;:&#x27;middle&#x27;, fill: &#x27;#9ca8c2&#x27;,
+    &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 13, &#x27;font-weight&#x27;: 600 }, ddr).textContent = &#x27;DDR3 — 256 MB · 1.33 GB/s&#x27;;
+
+  // === PCORE grid (right side, 2x4 = 8 pcores) ===
+  const pcoreX = 320, pcoreY = 100;
+  const pcoreW = 75, pcoreH = 56;
+  const gap = 8;
+
+  const pcoreEls = [];
+  for (let i=0; i&lt;PCORE_COUNT; i++) {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const x = pcoreX + col * (pcoreW + gap);
+    const y = pcoreY + row * (pcoreH + gap);
+
+    const g = el(&#x27;g&#x27;, { id: `${type}-pcore-${i}`, transform: `translate(${x},${y})` }, svg);
+    const rect = el(&#x27;rect&#x27;, { width: pcoreW, height: pcoreH, rx: 5,
+      fill: &#x27;#1f2638&#x27;, stroke: &#x27;#34c285&#x27;, &#x27;stroke-width&#x27;: 1.5,
+      &#x27;stroke-opacity&#x27;: 0.3, class: &#x27;pcore-body&#x27; }, g);
+    rect.style.transition = &#x27;fill 0.2s, stroke-opacity 0.2s&#x27;;
+    el(&#x27;text&#x27;, { x: pcoreW/2, y: 22, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;,
+      &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;:700 }, g).textContent = `PCORE ${i}`;
+    const stateText = el(&#x27;text&#x27;, { x: pcoreW/2, y: 40, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9,
+      class: &#x27;pcore-state&#x27; }, g);
+    stateText.textContent = &#x27;idle&#x27;;
+
+    // small &quot;fill bar&quot; inside the pcore showing how much VM is loaded
+    const fillBg = el(&#x27;rect&#x27;, { x: 8, y: 46, width: pcoreW-16, height: 4,
+      rx: 2, fill: &#x27;#0a0e1a&#x27; }, g);
+    const fillFg = el(&#x27;rect&#x27;, { x: 8, y: 46, width: 0, height: 4,
+      rx: 2, fill: &#x27;#34c285&#x27;, class: &#x27;pcore-fill&#x27; }, g);
+
+    pcoreEls.push({ g, rect, stateText, fillFg, x: x + pcoreW/2, y: y + pcoreH/2,
+                    leftEdgeX: x, fillFgEl: fillFg });
+  }
+
+  // === SRAM in center ===
+  const sramX = 130, sramY = 240, sramW = 120, sramH = 50;
+  const sram = el(&#x27;g&#x27;, { id: type+&#x27;-sram&#x27; }, svg);
+  el(&#x27;rect&#x27;, { x: sramX, y: sramY, width: sramW, height: sramH, rx: 6,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 1, &#x27;stroke-opacity&#x27;: 0.4 }, sram);
+  el(&#x27;text&#x27;, { x: sramX + sramW/2, y: sramY + 22, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 11, &#x27;font-weight&#x27;:600 }, sram).textContent = &#x27;SRAM L2&#x27;;
+  el(&#x27;text&#x27;, { x: sramX + sramW/2, y: sramY + 38, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, sram).textContent = &#x27;32 KB · 2 banks&#x27;;
+
+  // === Engine(s) ===
+  if (type === &#x27;left&#x27;) {
+    // Single DP engine — bottleneck
+    const dpX = 130, dpY = 130, dpW = 120, dpH = 70;
+    const dp = el(&#x27;g&#x27;, { id: &#x27;left-dp&#x27; }, svg);
+    el(&#x27;rect&#x27;, { x: dpX, y: dpY, width: dpW, height: dpH, rx: 6,
+      fill: &#x27;#2a1518&#x27;, stroke: &#x27;#ff5440&#x27;, &#x27;stroke-width&#x27;: 2 }, dp);
+    el(&#x27;text&#x27;, { x: dpX + dpW/2, y: dpY + 24, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#ff8472&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 12, &#x27;font-weight&#x27;:700 }, dp).textContent = &#x27;DP ENGINE&#x27;;
+    el(&#x27;text&#x27;, { x: dpX + dpW/2, y: dpY + 42, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#7a4a4a&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, dp).textContent = &#x27;1 fetch · 1 addr/cyc&#x27;;
+    const queueLabel = el(&#x27;text&#x27;, { x: dpX + dpW/2, y: dpY + 58, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#ff5440&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;:600,
+      id: &#x27;left-queue&#x27; }, dp);
+    queueLabel.textContent = &#x27;serving: —&#x27;;
+
+    // Connection: DDR → DP
+    el(&#x27;line&#x27;, { x1: 260, y1: 54, x2: dpX + dpW/2, y2: dpY,
+      stroke: &#x27;#2a3a52&#x27;, &#x27;stroke-width&#x27;: 1.5, &#x27;stroke-dasharray&#x27;:&#x27;3,3&#x27; }, svg);
+    // Connection: DP → SRAM
+    el(&#x27;line&#x27;, { x1: dpX + dpW/2, y1: dpY + dpH, x2: sramX + sramW/2, y2: sramY,
+      stroke: &#x27;#2a3a52&#x27;, &#x27;stroke-width&#x27;: 1.5, &#x27;stroke-dasharray&#x27;:&#x27;3,3&#x27; }, svg);
+    // Connection: DP → PCORES (the bottleneck — single line fanning out)
+    for (let i=0; i&lt;PCORE_COUNT; i++) {
+      const p = pcoreEls[i];
+      el(&#x27;line&#x27;, { x1: dpX + dpW, y1: dpY + dpH/2, x2: p.leftEdgeX, y2: p.y,
+        stroke: &#x27;#2a1d1d&#x27;, &#x27;stroke-width&#x27;: 0.8, &#x27;stroke-opacity&#x27;: 0.5,
+        id: `left-line-to-${i}` }, svg);
+    }
+
+    return { type, pcoreEls, dpX: dpX + dpW, dpY: dpY + dpH/2, queueLabel };
+
+  } else {
+    // 8 LDMA engines, one per pcore
+    const ldmaEls = [];
+    for (let i=0; i&lt;PCORE_COUNT; i++) {
+      const p = pcoreEls[i];
+      const lx = p.leftEdgeX - 32, ly = p.y - 10, lw = 24, lh = 20;
+      const ldma = el(&#x27;g&#x27;, { id: `right-ldma-${i}` }, svg);
+      el(&#x27;rect&#x27;, { x: lx, y: ly, width: lw, height: lh, rx: 3,
+        fill: &#x27;#0d2438&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 1.5 }, ldma);
+      el(&#x27;text&#x27;, { x: lx + lw/2, y: ly + 13, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+        fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8, &#x27;font-weight&#x27;:700 }, ldma).textContent = &#x27;LDMA&#x27;;
+
+      // each LDMA connects to SRAM
+      el(&#x27;line&#x27;, { x1: lx, y1: ly + lh/2, x2: sramX + sramW, y2: sramY + sramH/2,
+        stroke: &#x27;#0d2438&#x27;, &#x27;stroke-width&#x27;: 0.7, &#x27;stroke-opacity&#x27;: 0.6 }, svg);
+
+      ldmaEls.push({ g: ldma, x: lx + lw/2, y: ly + lh/2, edgeX: lx, edgeY: ly + lh/2 });
+    }
+
+    // global DP engine (DDR &lt;-&gt; SRAM only) — small, secondary
+    const gX = 130, gY = 130, gW = 120, gH = 50;
+    const gdp = el(&#x27;g&#x27;, { id: &#x27;right-gdp&#x27; }, svg);
+    el(&#x27;rect&#x27;, { x: gX, y: gY, width: gW, height: gH, rx: 6,
+      fill: &#x27;#1c2536&#x27;, stroke: &#x27;#5a6788&#x27;, &#x27;stroke-width&#x27;: 1 }, gdp);
+    el(&#x27;text&#x27;, { x: gX + gW/2, y: gY + 22, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#7a8aa8&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 11, &#x27;font-weight&#x27;:600 }, gdp).textContent = &#x27;Global DP&#x27;;
+    el(&#x27;text&#x27;, { x: gX + gW/2, y: gY + 38, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8 }, gdp).textContent = &#x27;DDR ⇄ SRAM only&#x27;;
+
+    // DDR → Global DP → SRAM
+    el(&#x27;line&#x27;, { x1: 260, y1: 54, x2: gX + gW/2, y2: gY,
+      stroke: &#x27;#2a3a52&#x27;, &#x27;stroke-width&#x27;: 1.5, &#x27;stroke-dasharray&#x27;:&#x27;3,3&#x27; }, svg);
+    el(&#x27;line&#x27;, { x1: gX + gW/2, y1: gY + gH, x2: sramX + sramW/2, y2: sramY,
+      stroke: &#x27;#2a3a52&#x27;, &#x27;stroke-width&#x27;: 1.5, &#x27;stroke-dasharray&#x27;:&#x27;3,3&#x27; }, svg);
+
+    return { type, pcoreEls, ldmaEls, sramRight: sramX + sramW, sramY: sramY + sramH/2 };
+  }
+}
+
+// ============================================================
+// ANIMATION STATE
+// ============================================================
+
+const left  = buildScene(document.getElementById(&#x27;stageLeft&#x27;),  &#x27;left&#x27;);
+const right = buildScene(document.getElementById(&#x27;stageRight&#x27;), &#x27;right&#x27;);
+
+// per-pcore state: { vmFill: 0..1, computing: bool, computeRemaining, busyCycles, totalCycles }
+function makeState() {
+  return Array.from({length: PCORE_COUNT}, () =&gt; ({
+    vmFill: 0, computing: false, computeRemaining: 0,
+    busyCycles: 0, totalCycles: 0,
+  }));
+}
+const leftState  = makeState();
+const rightState = makeState();
+
+// LEFT: serves one pcore at a time. State machine.
+const leftServer = {
+  current: -1,         // pcore being loaded
+  loadProgress: 0,     // 0..1
+  loadDuration: 35,    // cycles to fill VM (model: 35 cyc dispatch + load time)
+  setupRemaining: 0,
+  queue: [],           // pcores waiting
+  state: &#x27;idle&#x27;,       // &#x27;idle&#x27;, &#x27;setup&#x27;, &#x27;loading&#x27;
+};
+
+// RIGHT: each LDMA loads its own pcore in parallel
+const rightServers = Array.from({length: PCORE_COUNT}, () =&gt; ({
+  loadProgress: 0,
+  loadDuration: 18,    // faster because no 35-cyc dispatch overhead
+  setupRemaining: 0,
+  state: &#x27;idle&#x27;,
+}));
+
+// constants
+const COMPUTE_DURATION_LEFT  = 30;  // cycles a pcore computes once VM full
+const COMPUTE_DURATION_RIGHT = 30;  // same — compute time is the SAME, only data delivery differs
+
+// build util bar UI
+function buildBars(parentId, side) {
+  const parent = document.getElementById(parentId);
+  parent.innerHTML = &#x27;&#x27;;
+  const rows = [];
+  for (let i=0; i&lt;PCORE_COUNT; i++) {
+    const row = document.createElement(&#x27;div&#x27;);
+    row.className = &#x27;util-row&#x27;;
+    row.innerHTML = `
+      &lt;div class=&quot;util-label&quot;&gt;P${i}&lt;/div&gt;
+      &lt;div class=&quot;util-track&quot;&gt;&lt;div class=&quot;util-fill&quot; id=&quot;${side}-bar-${i}&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;util-pct&quot; id=&quot;${side}-pct-${i}&quot;&gt;0%&lt;/div&gt;`;
+    parent.appendChild(row);
+    rows.push({
+      fill: document.getElementById(`${side}-bar-${i}`),
+      pct: document.getElementById(`${side}-pct-${i}`),
+    });
+  }
+  return rows;
+}
+const leftBars  = buildBars(&#x27;leftBars&#x27;,  &#x27;left&#x27;);
+const rightBars = buildBars(&#x27;rightBars&#x27;, &#x27;right&#x27;);
+
+// data packet visualizations (for animation feel)
+const stageLeft  = document.getElementById(&#x27;stageLeft&#x27;);
+const stageRight = document.getElementById(&#x27;stageRight&#x27;);
+
+function spawnPacket(svg, x1, y1, x2, y2, color, duration=600) {
+  const c = el(&#x27;circle&#x27;, { cx: x1, cy: y1, r: 3.5,
+    fill: color, opacity: 0.95 }, svg);
+  const start = performance.now();
+  function step(t) {
+    const dt = (t - start) / duration;
+    if (dt &gt;= 1) { c.remove(); return; }
+    const x = x1 + (x2-x1)*dt;
+    const y = y1 + (y2-y1)*dt;
+    c.setAttribute(&#x27;cx&#x27;, x);
+    c.setAttribute(&#x27;cy&#x27;, y);
+    c.setAttribute(&#x27;opacity&#x27;, 0.95 * (1 - dt*0.3));
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ============================================================
+// MAIN TICK
+// ============================================================
+
+let cycle = 0;
+let running = false;
+let speedMult = 1;
+let lastT = 0;
+const baseTickMs = 60;  // ms per simulated cycle at 1×
+
+const cycleLabel = document.getElementById(&#x27;cycleCount&#x27;);
+const leftFpsEl  = document.getElementById(&#x27;leftFps&#x27;);
+const rightFpsEl = document.getElementById(&#x27;rightFps&#x27;);
+
+function updatePcoreVisual(scene, pcoreEl, st) {
+  // color the pcore by state
+  const r = pcoreEl.rect;
+  if (st.computing) {
+    r.setAttribute(&#x27;fill&#x27;, &#x27;#1f3a2c&#x27;);
+    r.setAttribute(&#x27;stroke&#x27;, &#x27;#34c285&#x27;);
+    r.setAttribute(&#x27;stroke-opacity&#x27;, 1);
+    pcoreEl.stateText.textContent = &#x27;compute&#x27;;
+    pcoreEl.stateText.setAttribute(&#x27;fill&#x27;, &#x27;#34c285&#x27;);
+  } else if (st.vmFill &gt;= 1) {
+    r.setAttribute(&#x27;fill&#x27;, &#x27;#1f2638&#x27;);
+    r.setAttribute(&#x27;stroke&#x27;, &#x27;#34c285&#x27;);
+    r.setAttribute(&#x27;stroke-opacity&#x27;, 0.6);
+    pcoreEl.stateText.textContent = &#x27;ready&#x27;;
+    pcoreEl.stateText.setAttribute(&#x27;fill&#x27;, &#x27;#9ca8c2&#x27;);
+  } else if (st.vmFill &gt; 0) {
+    r.setAttribute(&#x27;fill&#x27;, &#x27;#2a2618&#x27;);
+    r.setAttribute(&#x27;stroke&#x27;, &#x27;#ffb340&#x27;);
+    r.setAttribute(&#x27;stroke-opacity&#x27;, 0.7);
+    pcoreEl.stateText.textContent = &#x27;loading&#x27;;
+    pcoreEl.stateText.setAttribute(&#x27;fill&#x27;, &#x27;#ffb340&#x27;);
+  } else {
+    r.setAttribute(&#x27;fill&#x27;, &#x27;#1f2638&#x27;);
+    r.setAttribute(&#x27;stroke&#x27;, &#x27;#34c285&#x27;);
+    r.setAttribute(&#x27;stroke-opacity&#x27;, 0.25);
+    pcoreEl.stateText.textContent = &#x27;waiting&#x27;;
+    pcoreEl.stateText.setAttribute(&#x27;fill&#x27;, &#x27;#5a6788&#x27;);
+  }
+  // inside-pcore VM fill bar
+  pcoreEl.fillFgEl.setAttribute(&#x27;width&#x27;, Math.max(0, (75-16) * st.vmFill));
+}
+
+function tickLeft() {
+  // Find pcores that are idle and need data, queue them
+  for (let i=0; i&lt;PCORE_COUNT; i++) {
+    if (!leftState[i].computing &amp;&amp; leftState[i].vmFill === 0 &amp;&amp;
+        !leftServer.queue.includes(i) &amp;&amp; leftServer.current !== i) {
+      leftServer.queue.push(i);
+    }
+  }
+
+  // Server state machine
+  if (leftServer.state === &#x27;idle&#x27; &amp;&amp; leftServer.queue.length &gt; 0) {
+    leftServer.current = leftServer.queue.shift();
+    leftServer.setupRemaining = 6;  // setup overhead
+    leftServer.loadProgress = 0;
+    leftServer.state = &#x27;setup&#x27;;
+  } else if (leftServer.state === &#x27;setup&#x27;) {
+    leftServer.setupRemaining--;
+    if (leftServer.setupRemaining &lt;= 0) leftServer.state = &#x27;loading&#x27;;
+  } else if (leftServer.state === &#x27;loading&#x27;) {
+    leftServer.loadProgress += 1 / leftServer.loadDuration;
+    leftState[leftServer.current].vmFill = Math.min(1, leftServer.loadProgress);
+    // emit packets occasionally
+    if (cycle % 4 === 0) {
+      const target = left.pcoreEls[leftServer.current];
+      spawnPacket(stageLeft, left.dpX, left.dpY, target.leftEdgeX, target.y, &#x27;#ff5440&#x27;, 500);
+    }
+    if (leftServer.loadProgress &gt;= 1) {
+      leftState[leftServer.current].vmFill = 1;
+      leftServer.state = &#x27;idle&#x27;;
+      leftServer.current = -1;
+    }
+  }
+
+  // Update queue label
+  if (left.queueLabel) {
+    if (leftServer.state === &#x27;setup&#x27; || leftServer.state === &#x27;loading&#x27;) {
+      const wait = leftServer.queue.length;
+      left.queueLabel.textContent = `serving P${leftServer.current} · ${wait} waiting`;
+    } else {
+      left.queueLabel.textContent = `serving: —`;
+    }
+  }
+
+  // Pcores: if vmFull, start computing. while computing, drain VM, count busy cycles.
+  for (let i=0; i&lt;PCORE_COUNT; i++) {
+    const st = leftState[i];
+    st.totalCycles++;
+    if (!st.computing &amp;&amp; st.vmFill &gt;= 1) {
+      st.computing = true;
+      st.computeRemaining = COMPUTE_DURATION_LEFT;
+    }
+    if (st.computing) {
+      st.busyCycles++;
+      st.computeRemaining--;
+      if (st.computeRemaining &lt;= 0) {
+        st.computing = false;
+        st.vmFill = 0;  // need new data
+      }
+    }
+    updatePcoreVisual(left, left.pcoreEls[i], st);
+    // util bars
+    const pct = st.totalCycles &gt; 0 ? Math.round(100 * st.busyCycles / st.totalCycles) : 0;
+    leftBars[i].fill.style.width = pct + &#x27;%&#x27;;
+    leftBars[i].fill.style.background = pct &gt; 50 ? &#x27;#34c285&#x27; : pct &gt; 20 ? &#x27;#ffb340&#x27; : &#x27;#ff5440&#x27;;
+    leftBars[i].pct.textContent = pct + &#x27;%&#x27;;
+  }
+}
+
+function tickRight() {
+  for (let i=0; i&lt;PCORE_COUNT; i++) {
+    const sv = rightServers[i];
+    const st = rightState[i];
+
+    // start a load if idle and pcore is hungry
+    if (sv.state === &#x27;idle&#x27; &amp;&amp; !st.computing &amp;&amp; st.vmFill === 0) {
+      sv.setupRemaining = 2;  // tiny setup, no global queue
+      sv.loadProgress = 0;
+      sv.state = &#x27;setup&#x27;;
+    } else if (sv.state === &#x27;setup&#x27;) {
+      sv.setupRemaining--;
+      if (sv.setupRemaining &lt;= 0) sv.state = &#x27;loading&#x27;;
+    } else if (sv.state === &#x27;loading&#x27;) {
+      sv.loadProgress += 1 / sv.loadDuration;
+      st.vmFill = Math.min(1, sv.loadProgress);
+      // emit packets
+      if (cycle % 5 === 0) {
+        const target = right.pcoreEls[i];
+        spawnPacket(stageRight, right.sramRight, right.sramY,
+          target.leftEdgeX, target.y, &#x27;#3ba3ff&#x27;, 380);
+      }
+      if (sv.loadProgress &gt;= 1) {
+        st.vmFill = 1;
+        sv.state = &#x27;idle&#x27;;
+      }
+    }
+  }
+
+  for (let i=0; i&lt;PCORE_COUNT; i++) {
+    const st = rightState[i];
+    st.totalCycles++;
+    if (!st.computing &amp;&amp; st.vmFill &gt;= 1) {
+      st.computing = true;
+      st.computeRemaining = COMPUTE_DURATION_RIGHT;
+    }
+    if (st.computing) {
+      st.busyCycles++;
+      st.computeRemaining--;
+      if (st.computeRemaining &lt;= 0) {
+        st.computing = false;
+        st.vmFill = 0;
+      }
+    }
+    updatePcoreVisual(right, right.pcoreEls[i], st);
+    const pct = st.totalCycles &gt; 0 ? Math.round(100 * st.busyCycles / st.totalCycles) : 0;
+    rightBars[i].fill.style.width = pct + &#x27;%&#x27;;
+    rightBars[i].fill.style.background = pct &gt; 50 ? &#x27;#34c285&#x27; : pct &gt; 20 ? &#x27;#ffb340&#x27; : &#x27;#ff5440&#x27;;
+    rightBars[i].pct.textContent = pct + &#x27;%&#x27;;
+  }
+}
+
+function tick() {
+  cycle++;
+  cycleLabel.textContent = `cycle ${cycle}`;
+  tickLeft();
+  tickRight();
+}
+
+function loop(t) {
+  if (!running) return;
+  if (t - lastT &gt;= baseTickMs / speedMult) {
+    tick();
+    lastT = t;
+  }
+  requestAnimationFrame(loop);
+}
+
+// ============================================================
+// CONTROLS
+// ============================================================
+
+document.getElementById(&#x27;btnPlay&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  if (running) return;
+  running = true;
+  lastT = performance.now();
+  requestAnimationFrame(loop);
+});
+document.getElementById(&#x27;btnPause&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  running = false;
+});
+document.getElementById(&#x27;btnReset&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  running = false;
+  cycle = 0;
+  cycleLabel.textContent = &#x27;cycle 0&#x27;;
+  for (let i=0; i&lt;PCORE_COUNT; i++) {
+    leftState[i]  = { vmFill: 0, computing: false, computeRemaining: 0, busyCycles: 0, totalCycles: 0 };
+    rightState[i] = { vmFill: 0, computing: false, computeRemaining: 0, busyCycles: 0, totalCycles: 0 };
+    rightServers[i].state = &#x27;idle&#x27;;
+    rightServers[i].loadProgress = 0;
+    leftBars[i].fill.style.width = &#x27;0%&#x27;;
+    leftBars[i].pct.textContent = &#x27;0%&#x27;;
+    rightBars[i].fill.style.width = &#x27;0%&#x27;;
+    rightBars[i].pct.textContent = &#x27;0%&#x27;;
+    updatePcoreVisual(left,  left.pcoreEls[i],  leftState[i]);
+    updatePcoreVisual(right, right.pcoreEls[i], rightState[i]);
+  }
+  leftServer.state = &#x27;idle&#x27;;
+  leftServer.queue = [];
+  leftServer.current = -1;
+  if (left.queueLabel) left.queueLabel.textContent = &#x27;serving: —&#x27;;
+});
+const speeds = [0.5, 1, 2, 4];
+let speedIdx = 1;
+document.getElementById(&#x27;btnSpeed&#x27;).addEventListener(&#x27;click&#x27;, (e) =&gt; {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  speedMult = speeds[speedIdx];
+  e.target.textContent = `Speed: ${speedMult}×`;
+});
+
+// auto-start
+setTimeout(() =&gt; {
+  document.getElementById(&#x27;btnPlay&#x27;).click();
+}, 600);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" title="Why <em>per-PCORE DMA</em> changes everything"></iframe>
+  </div>
+</section>
+
+<div class="bridge">
+  <div class="bridge-arrow">&darr;</div>
+  <p><strong>That&rsquo;s the immediate problem inside DGrid. Now zoom out.</strong> How does this compare to other AI silicon? Where does the per-PCORE DMA decision place DGrid on the industry map?</p>
+</div>
+
+<section class="section" id="landscape">
+  <div class="section-header">
+    <div class="section-num">02<span class="dot"></span>Industry context</div>
+    <h2>The <em>memory spectrum</em> &mdash; and where DGrid lands</h2>
+    <p class="lede">Six AI chips, six approaches to data movement. From DGrid&rsquo;s shared-DMA today to Tesla Dojo&rsquo;s all-SRAM extreme. Per-PCORE DMA is the proven middle ground used by Hailo, Mobileye, and NVIDIA.</p>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-toolbar">
+      <span>SECTION 02 &middot; INTERACTIVE &middot; click the play / pause / speed buttons inside</span>
+      <button class="fs-btn" onclick="openFullscreen('frame-landscape')">&uarr; Open standalone</button>
+    </div>
+    <iframe id="frame-landscape" class="tall" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;The Memory Spectrum — How DGrid Compares&lt;/title&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --panel: #131826;
+    --ink: #e8edf5;
+    --dim: #6b7388;
+    --accent: #3ba3ff;
+    --hot: #ff5440;
+    --warm: #ffb340;
+    --cool: #34c285;
+    --line: #1f2738;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: &#x27;Inter&#x27;, system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page { max-width: 1300px; margin: 0 auto; padding: 50px 24px 80px; }
+
+  /* HEADER */
+  header { text-align: center; margin-bottom: 36px; }
+  header .eyebrow {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px; letter-spacing: 0.25em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  header h1 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.05; margin-bottom: 14px;
+  }
+  header h1 .em { color: var(--accent); }
+  header p.sub {
+    color: var(--dim); font-size: 16px;
+    max-width: 720px; margin: 0 auto; line-height: 1.55;
+  }
+
+  /* SPECTRUM RIBBON */
+  .spectrum {
+    margin: 30px auto 24px;
+    max-width: 1100px;
+    height: 50px;
+    position: relative;
+    background: linear-gradient(90deg,
+      rgba(255,84,64,0.12) 0%,
+      rgba(255,179,64,0.10) 25%,
+      rgba(59,163,255,0.10) 50%,
+      rgba(52,194,133,0.12) 75%,
+      rgba(180,80,200,0.14) 100%);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .spectrum-label-l, .spectrum-label-r {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: var(--dim); text-transform: uppercase;
+    padding: 0 14px;
+  }
+  .spectrum-label-l { left: 0; }
+  .spectrum-label-r { right: 0; }
+  .spectrum-label-c {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: var(--dim); text-transform: uppercase;
+  }
+  .spectrum-marks {
+    position: absolute;
+    top: -10px;
+    left: 0; right: 0;
+    height: 70px;
+  }
+  .mark {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  .mark .dot {
+    width: 12px; height: 12px;
+    background: var(--ink);
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  .mark .name {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px;
+    color: var(--ink);
+    margin-top: 4px;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .mark.dgrid .dot { background: var(--hot); border-color: var(--bg); }
+  .mark.dgrid-fut .dot { background: var(--cool); border-color: var(--bg); }
+  .mark.mobileye .dot { background: var(--warm); }
+  .mark.orin .dot { background: var(--accent); }
+  .mark.hailo .dot { background: #b450c8; }
+  .mark.dojo .dot { background: #c8508c; }
+
+  /* CONTROLS */
+  .controls {
+    display: flex; justify-content: center; align-items: center;
+    gap: 14px; margin: 50px 0 30px; flex-wrap: wrap;
+  }
+  .btn {
+    background: var(--panel); color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 10px 18px;
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 12px; letter-spacing: 0.05em;
+    cursor: pointer; transition: all 0.15s;
+    border-radius: 6px;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary {
+    background: var(--accent); color: #0a0e1a;
+    font-weight: 700; border-color: var(--accent);
+  }
+  .speed-display {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    color: var(--dim); font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  /* GRID OF SCENES */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+
+  .scene {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+    position: relative;
+    display: flex; flex-direction: column;
+  }
+  .scene-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 8px; gap: 8px;
+  }
+  .scene-name {
+    font-size: 16px; font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .scene-tag {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .scene[data-id=&quot;dgrid-now&quot;] { border-left: 3px solid var(--hot); }
+  .scene[data-id=&quot;dgrid-now&quot;] .scene-tag { background: rgba(255,84,64,0.15); color: var(--hot); }
+  .scene[data-id=&quot;dgrid-fut&quot;] { border-left: 3px solid var(--cool); }
+  .scene[data-id=&quot;dgrid-fut&quot;] .scene-tag { background: rgba(52,194,133,0.15); color: var(--cool); }
+  .scene[data-id=&quot;mobileye&quot;]  { border-left: 3px solid var(--warm); }
+  .scene[data-id=&quot;mobileye&quot;] .scene-tag { background: rgba(255,179,64,0.15); color: var(--warm); }
+  .scene[data-id=&quot;orin&quot;]      { border-left: 3px solid var(--accent); }
+  .scene[data-id=&quot;orin&quot;] .scene-tag { background: rgba(59,163,255,0.15); color: var(--accent); }
+  .scene[data-id=&quot;hailo&quot;]     { border-left: 3px solid #b450c8; }
+  .scene[data-id=&quot;hailo&quot;] .scene-tag { background: rgba(180,80,200,0.15); color: #b450c8; }
+  .scene[data-id=&quot;dojo&quot;]      { border-left: 3px solid #c8508c; }
+  .scene[data-id=&quot;dojo&quot;] .scene-tag { background: rgba(200,80,140,0.15); color: #c8508c; }
+
+  .scene-meta {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px; color: var(--dim);
+    margin-bottom: 10px; line-height: 1.5;
+  }
+
+  .stage {
+    width: 100%;
+    aspect-ratio: 1.4 / 1;
+    background: rgba(255,255,255,0.015);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .scene-caption {
+    margin-top: 12px;
+    font-size: 12px; color: var(--dim);
+    line-height: 1.5;
+  }
+  .scene-caption strong { color: var(--ink); }
+
+  /* TAKEAWAY */
+  .takeaway {
+    margin-top: 40px;
+    padding: 32px;
+    background: linear-gradient(135deg,
+      rgba(52,194,133,0.05) 0%,
+      rgba(59,163,255,0.06) 100%);
+    border: 1px solid rgba(59,163,255,0.18);
+    border-radius: 14px;
+  }
+  .takeaway h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .takeaway h2 em { color: var(--cool); font-style: normal; }
+  .takeaway p {
+    color: var(--dim);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .takeaway p strong { color: var(--ink); }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    margin-top: 30px;
+    padding: 16px 20px;
+    background: rgba(255,179,64,0.05);
+    border-left: 3px solid var(--warm);
+    border-radius: 6px;
+    font-size: 12.5px;
+    color: var(--dim);
+    line-height: 1.55;
+  }
+  .disclaimer strong { color: var(--warm); }
+
+  footer {
+    margin-top: 50px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--dim);
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;page&quot;&gt;
+
+&lt;header&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;DGrid Semi · Architecture&lt;/div&gt;
+  &lt;h1&gt;The &lt;span class=&quot;em&quot;&gt;memory spectrum&lt;/span&gt; — and where DGrid lands&lt;/h1&gt;
+  &lt;p class=&quot;sub&quot;&gt;Six AI chips. Six approaches to the data-movement problem. From DGrid&#x27;s shared-DMA today to Tesla Dojo&#x27;s all-SRAM extreme. Per-PCORE DMA is the proven middle ground.&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;!-- SPECTRUM RIBBON --&gt;
+&lt;div class=&quot;spectrum&quot;&gt;
+  &lt;div class=&quot;spectrum-label-l&quot;&gt;SHARED MEMORY&lt;/div&gt;
+  &lt;div class=&quot;spectrum-label-c&quot;&gt;PER-CORE DMA&lt;/div&gt;
+  &lt;div class=&quot;spectrum-label-r&quot;&gt;ALL LOCAL SRAM&lt;/div&gt;
+  &lt;div class=&quot;spectrum-marks&quot;&gt;
+    &lt;div class=&quot;mark dgrid&quot;     style=&quot;left: 8%;&quot;&gt;&lt;div class=&quot;dot&quot;&gt;&lt;/div&gt;&lt;div class=&quot;name&quot;&gt;DGrid today&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;mark mobileye&quot;  style=&quot;left: 22%;&quot;&gt;&lt;div class=&quot;dot&quot;&gt;&lt;/div&gt;&lt;div class=&quot;name&quot;&gt;EyeQ&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;mark orin&quot;      style=&quot;left: 36%;&quot;&gt;&lt;div class=&quot;dot&quot;&gt;&lt;/div&gt;&lt;div class=&quot;name&quot;&gt;Orin&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;mark dgrid-fut&quot; style=&quot;left: 52%;&quot;&gt;&lt;div class=&quot;dot&quot;&gt;&lt;/div&gt;&lt;div class=&quot;name&quot;&gt;DGrid LDMA&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;mark hailo&quot;     style=&quot;left: 72%;&quot;&gt;&lt;div class=&quot;dot&quot;&gt;&lt;/div&gt;&lt;div class=&quot;name&quot;&gt;Hailo-8&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;mark dojo&quot;      style=&quot;left: 92%;&quot;&gt;&lt;div class=&quot;dot&quot;&gt;&lt;/div&gt;&lt;div class=&quot;name&quot;&gt;Dojo D1&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;controls&quot;&gt;
+  &lt;button class=&quot;btn primary&quot; id=&quot;btnPlay&quot;&gt;▶ Play all&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnPause&quot;&gt;⏸ Pause&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnReset&quot;&gt;↺ Reset&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnSpeed&quot;&gt;Speed: 1×&lt;/button&gt;
+  &lt;span class=&quot;speed-display&quot; id=&quot;cycleCount&quot;&gt;cycle 0&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- GRID OF 6 SCENES --&gt;
+&lt;div class=&quot;grid&quot;&gt;
+
+  &lt;div class=&quot;scene&quot; data-id=&quot;dgrid-now&quot;&gt;
+    &lt;div class=&quot;scene-head&quot;&gt;
+      &lt;div class=&quot;scene-name&quot;&gt;DGrid SoC1.1 today&lt;/div&gt;
+      &lt;div class=&quot;scene-tag&quot;&gt;single DP&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scene-meta&quot;&gt;8 PCOREs · 1 DP engine · 7A100T FPGA · ~205 GMAC/s&lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stage-dgrid-now&quot; viewBox=&quot;0 0 360 260&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;scene-caption&quot;&gt;All cores queue on &lt;strong&gt;one DMA engine&lt;/strong&gt;. 7 wait while 1 eats. Today&#x27;s bottleneck.&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;scene&quot; data-id=&quot;mobileye&quot;&gt;
+    &lt;div class=&quot;scene-head&quot;&gt;
+      &lt;div class=&quot;scene-name&quot;&gt;Mobileye EyeQ&lt;/div&gt;
+      &lt;div class=&quot;scene-tag&quot;&gt;VLIW + accel&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scene-meta&quot;&gt;Multiple VLIW cores + accelerators · ~35 TOPS · 7nm&lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stage-mobileye&quot; viewBox=&quot;0 0 360 260&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;scene-caption&quot;&gt;VLIW cores share an L2 with &lt;strong&gt;multi-channel DMA&lt;/strong&gt;. Better than single-engine but still memory-shared.&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;scene&quot; data-id=&quot;orin&quot;&gt;
+    &lt;div class=&quot;scene-head&quot;&gt;
+      &lt;div class=&quot;scene-name&quot;&gt;NVIDIA Orin AGX&lt;/div&gt;
+      &lt;div class=&quot;scene-tag&quot;&gt;GPU + DLA&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scene-meta&quot;&gt;2048 CUDA cores + DLA · ~275 TOPS · 8nm · 60W&lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stage-orin&quot; viewBox=&quot;0 0 360 260&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;scene-caption&quot;&gt;SMs have &lt;strong&gt;per-SM shared memory&lt;/strong&gt;. Brute-force throughput via massive parallelism — high power.&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;scene&quot; data-id=&quot;dgrid-fut&quot;&gt;
+    &lt;div class=&quot;scene-head&quot;&gt;
+      &lt;div class=&quot;scene-name&quot;&gt;DGrid SoC1.3 / SoC2&lt;/div&gt;
+      &lt;div class=&quot;scene-tag&quot;&gt;per-PCORE LDMA&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scene-meta&quot;&gt;8-56 PCOREs · LDMA per core · shared SRAM L2&lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stage-dgrid-fut&quot; viewBox=&quot;0 0 360 260&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;scene-caption&quot;&gt;Each PCORE owns its DMA. &lt;strong&gt;All 8 read in parallel&lt;/strong&gt; from shared SRAM. The proven middle ground.&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;scene&quot; data-id=&quot;hailo&quot;&gt;
+    &lt;div class=&quot;scene-head&quot;&gt;
+      &lt;div class=&quot;scene-name&quot;&gt;Hailo-8&lt;/div&gt;
+      &lt;div class=&quot;scene-tag&quot;&gt;dataflow&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scene-meta&quot;&gt;Distributed memory fabric · ~26 TOPS · 16nm · 2.5W&lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stage-hailo&quot; viewBox=&quot;0 0 360 260&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;scene-caption&quot;&gt;Compiler maps each NN layer to &lt;strong&gt;memory + compute blocks&lt;/strong&gt;, no DRAM needed. Extreme efficiency, narrow workload range.&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;scene&quot; data-id=&quot;dojo&quot;&gt;
+    &lt;div class=&quot;scene-head&quot;&gt;
+      &lt;div class=&quot;scene-name&quot;&gt;Tesla Dojo D1&lt;/div&gt;
+      &lt;div class=&quot;scene-tag&quot;&gt;all-SRAM&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scene-meta&quot;&gt;354 cores × 1.25 MB SRAM · 362 TFLOPS BF16 · 7nm · 400W&lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stage-dojo&quot; viewBox=&quot;0 0 360 260&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;scene-caption&quot;&gt;Each core has its &lt;strong&gt;own private SRAM&lt;/strong&gt;, no DRAM at all on-chip. Cores explicitly send data to neighbors. Most extreme; project disbanded 2025.&lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;!-- TAKEAWAY --&gt;
+&lt;div class=&quot;takeaway&quot;&gt;
+  &lt;h2&gt;The proven middle ground is &lt;em&gt;per-core DMA with shared L2&lt;/em&gt;&lt;/h2&gt;
+  &lt;p&gt;&lt;strong&gt;DGrid today (left of spectrum)&lt;/strong&gt; is where most academic prototypes start: one DMA engine, simple to verify, hits a wall fast.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Tesla Dojo (right of spectrum)&lt;/strong&gt; is the opposite extreme: each core gets its own SRAM, no DRAM at all. It works for one workload (vision training) at one scale (datacenter), with one customer (Tesla). Project was disbanded August 2025 after struggling to find general applicability.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Mobileye, NVIDIA, and Hailo all sit between these poles.&lt;/strong&gt; They use per-core or per-cluster DMA against shared memory — exactly what DGrid&#x27;s per-PCORE LDMA proposal would deliver. This is the architecture that ships in cars, security cameras, and edge devices today.&lt;/p&gt;
+  &lt;p style=&quot;color: var(--ink); font-size: 16px; margin-top: 16px; font-weight: 600;&quot;&gt;DGrid&#x27;s roadmap from SoC1.2 → SoC1.3 → SoC2 traces this exact arc. Not radical. Not novel. &lt;em style=&quot;color: var(--cool); font-style: normal;&quot;&gt;Proven.&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;disclaimer&quot;&gt;
+  &lt;strong&gt;About the numbers.&lt;/strong&gt;
+  Performance figures from public sources (vendor whitepapers, IEEE/Wikipedia) and represent peak compute, not application throughput. Power figures are rough. Memory architectures are simplified for animation — actual chip designs include cache coherence protocols, banked memories, and IO subsystems not shown. Animation rates are illustrative; absolute speeds between scenes are not to scale across vendors. Use this as a conceptual map, not a benchmark.
+&lt;/div&gt;
+
+&lt;footer&gt;
+  DGrid Semi · architecture comparison · Apr 2026 · sources: Wikipedia, IEEE Hot Chips 34, Hailo product brief, NVIDIA whitepaper, Mobileye briefings
+&lt;/footer&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+const SVG = &quot;http://www.w3.org/2000/svg&quot;;
+function el(tag, attrs={}, parent=null) {
+  const e = document.createElementNS(SVG, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+// ============================================================
+// SCENE BUILDERS
+// ============================================================
+
+// Each scene returns { tick(cycle), reset() }
+
+// ---------- DGrid today (single DP, 8 cores queue) ----------
+function buildDGridNow(svg) {
+  svg.innerHTML = &#x27;&#x27;;
+  const W = 360, H = 260;
+
+  // DDR
+  el(&#x27;rect&#x27;, { x: 12, y: 12, width: W-24, height: 24, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#2a3a52&#x27; }, svg);
+  el(&#x27;text&#x27;, { x: W/2, y: 28, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;: 600 }, svg).textContent = &#x27;DDR&#x27;;
+
+  // Single DP engine
+  const dpx=140, dpy=90, dpw=80, dph=42;
+  el(&#x27;rect&#x27;, { x: dpx, y: dpy, width: dpw, height: dph, rx: 4,
+    fill: &#x27;#2a1518&#x27;, stroke: &#x27;#ff5440&#x27;, &#x27;stroke-width&#x27;: 2 }, svg);
+  el(&#x27;text&#x27;, { x: dpx+dpw/2, y: dpy+18, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#ff8472&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;:700 }, svg).textContent = &#x27;DP ENGINE&#x27;;
+  el(&#x27;text&#x27;, { x: dpx+dpw/2, y: dpy+32, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#7a4a4a&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8 }, svg).textContent = &#x27;1 fetch&#x27;;
+
+  // 8 PCOREs in 2 columns
+  const pcores = [];
+  const px = 270, pgap = 4, pw = 60, ph = 22;
+  for (let i=0; i&lt;8; i++) {
+    const col = i%2, row = Math.floor(i/2);
+    const x = px + col*0 - col*0;
+    const y = 70 + row*(ph + pgap);
+    const cx = (i%2 === 0) ? 245 : 305;
+    const r = el(&#x27;rect&#x27;, { x: cx-25, y: y, width: 50, height: ph, rx: 3,
+      fill: &#x27;#1f2638&#x27;, stroke: &#x27;#34c285&#x27;, &#x27;stroke-width&#x27;: 1, &#x27;stroke-opacity&#x27;: 0.3 }, svg);
+    el(&#x27;text&#x27;, { x: cx, y: y+15, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;,
+      &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;:600 }, svg).textContent = `P${i}`;
+    pcores.push({ rect: r, cx: cx, cy: y+ph/2, edgeX: cx-25 });
+  }
+
+  // Connection lines DP → pcores (faded)
+  for (const p of pcores) {
+    el(&#x27;line&#x27;, { x1: dpx+dpw, y1: dpy+dph/2, x2: p.edgeX, y2: p.cy,
+      stroke: &#x27;#2a1d1d&#x27;, &#x27;stroke-width&#x27;: 0.7, &#x27;stroke-opacity&#x27;: 0.5 }, svg);
+  }
+
+  // SRAM
+  el(&#x27;rect&#x27;, { x: 30, y: 200, width: 90, height: 30, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-opacity&#x27;:0.4 }, svg);
+  el(&#x27;text&#x27;, { x: 75, y: 220, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10 }, svg).textContent = &#x27;SRAM L2&#x27;;
+
+  // State
+  const state = { current: -1, queue: [], progress: 0, dur: 30,
+                  busy: Array(8).fill(0), total: Array(8).fill(0) };
+
+  function tick(cycle) {
+    // schedule
+    if (state.current === -1) {
+      // pick next idle pcore
+      for (let i=0; i&lt;8; i++) {
+        if (state.busy[i] === 0 &amp;&amp; !state.queue.includes(i)) state.queue.push(i);
+      }
+      if (state.queue.length &gt; 0) {
+        state.current = state.queue.shift();
+        state.progress = 0;
+      }
+    } else {
+      state.progress++;
+      if (state.progress &gt;= state.dur) {
+        // pcore now full, set busy for compute
+        state.busy[state.current] = 25;  // compute duration
+        state.current = -1;
+      }
+    }
+
+    // compute drain
+    for (let i=0; i&lt;8; i++) {
+      state.total[i]++;
+      if (state.busy[i] &gt; 0) state.busy[i]--;
+    }
+
+    // emit packet
+    if (state.current !== -1 &amp;&amp; cycle % 3 === 0) {
+      const p = pcores[state.current];
+      spawnPacket(svg, dpx+dpw, dpy+dph/2, p.edgeX, p.cy, &#x27;#ff5440&#x27;, 400);
+    }
+
+    // visual update
+    for (let i=0; i&lt;8; i++) {
+      const r = pcores[i].rect;
+      if (state.busy[i] &gt; 5) { r.setAttribute(&#x27;fill&#x27;, &#x27;#1f3a2c&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 1); }
+      else if (i === state.current) { r.setAttribute(&#x27;fill&#x27;, &#x27;#2a2618&#x27;); r.setAttribute(&#x27;stroke&#x27;, &#x27;#ffb340&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 0.8); }
+      else { r.setAttribute(&#x27;fill&#x27;, &#x27;#1f2638&#x27;); r.setAttribute(&#x27;stroke&#x27;, &#x27;#34c285&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 0.25); }
+    }
+  }
+
+  function reset() {
+    state.current = -1; state.queue = []; state.progress = 0;
+    state.busy.fill(0); state.total.fill(0);
+  }
+
+  return { tick, reset };
+}
+
+// ---------- DGrid future (8 LDMA, parallel) ----------
+function buildDGridFut(svg) {
+  svg.innerHTML = &#x27;&#x27;;
+  const W = 360, H = 260;
+
+  // DDR
+  el(&#x27;rect&#x27;, { x: 12, y: 12, width: W-24, height: 24, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#2a3a52&#x27; }, svg);
+  el(&#x27;text&#x27;, { x: W/2, y: 28, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;: 600 }, svg).textContent = &#x27;DDR&#x27;;
+
+  // Global DP (small, secondary)
+  el(&#x27;rect&#x27;, { x: 30, y: 60, width: 80, height: 32, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#5a6788&#x27; }, svg);
+  el(&#x27;text&#x27;, { x: 70, y: 80, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#7a8aa8&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;:600 }, svg).textContent = &#x27;Global DP&#x27;;
+
+  // SRAM L2
+  el(&#x27;rect&#x27;, { x: 30, y: 110, width: 80, height: 36, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 1.5 }, svg);
+  el(&#x27;text&#x27;, { x: 70, y: 125, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;:600 }, svg).textContent = &#x27;SRAM L2&#x27;;
+  el(&#x27;text&#x27;, { x: 70, y: 138, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8 }, svg).textContent = &#x27;shared&#x27;;
+
+  // 8 LDMA + PCORE pairs
+  const pcores = [];
+  const ldmas = [];
+  for (let i=0; i&lt;8; i++) {
+    const col = i%2, row = Math.floor(i/2);
+    const cx = (col === 0) ? 200 : 295;
+    const y = 60 + row*40;
+    // LDMA
+    el(&#x27;rect&#x27;, { x: cx-58, y: y+5, width: 22, height: 16, rx: 2,
+      fill: &#x27;#0d2438&#x27;, stroke: &#x27;#3ba3ff&#x27; }, svg);
+    el(&#x27;text&#x27;, { x: cx-47, y: y+16, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 7, &#x27;font-weight&#x27;:700 }, svg).textContent = &#x27;LDMA&#x27;;
+    // PCORE
+    const r = el(&#x27;rect&#x27;, { x: cx-25, y: y, width: 50, height: 26, rx: 3,
+      fill: &#x27;#1f2638&#x27;, stroke: &#x27;#34c285&#x27;, &#x27;stroke-width&#x27;: 1.5, &#x27;stroke-opacity&#x27;: 0.6 }, svg);
+    el(&#x27;text&#x27;, { x: cx, y: y+16, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;,
+      &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;:600 }, svg).textContent = `P${i}`;
+
+    // line LDMA → SRAM
+    el(&#x27;line&#x27;, { x1: 110, y1: 128, x2: cx-58, y2: y+13,
+      stroke: &#x27;#0d2438&#x27;, &#x27;stroke-width&#x27;: 0.7 }, svg);
+
+    pcores.push({ rect: r, cx: cx, cy: y+13, edgeX: cx-25 });
+    ldmas.push({ x: cx-47, y: y+13 });
+  }
+
+  const state = {
+    progress: Array(8).fill(0),
+    busy: Array(8).fill(0),
+    state: Array(8).fill(0),  // 0=idle, 1=loading, 2=computing
+    dur: 18,
+  };
+
+  function tick(cycle) {
+    for (let i=0; i&lt;8; i++) {
+      if (state.state[i] === 0 &amp;&amp; state.busy[i] === 0) {
+        state.state[i] = 1; state.progress[i] = 0;
+      }
+      if (state.state[i] === 1) {
+        state.progress[i]++;
+        if (state.progress[i] &gt;= state.dur) {
+          state.state[i] = 2;
+          state.busy[i] = 25;
+        }
+      }
+      if (state.state[i] === 2) {
+        state.busy[i]--;
+        if (state.busy[i] &lt;= 0) state.state[i] = 0;
+      }
+    }
+
+    if (cycle % 3 === 0) {
+      for (let i=0; i&lt;8; i++) {
+        if (state.state[i] === 1) {
+          const p = pcores[i];
+          spawnPacket(svg, 110, 128, p.edgeX, p.cy, &#x27;#3ba3ff&#x27;, 350);
+        }
+      }
+    }
+
+    for (let i=0; i&lt;8; i++) {
+      const r = pcores[i].rect;
+      if (state.state[i] === 2) { r.setAttribute(&#x27;fill&#x27;, &#x27;#1f3a2c&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 1); }
+      else if (state.state[i] === 1) { r.setAttribute(&#x27;fill&#x27;, &#x27;#2a2618&#x27;); r.setAttribute(&#x27;stroke&#x27;, &#x27;#ffb340&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 0.8); }
+      else { r.setAttribute(&#x27;fill&#x27;, &#x27;#1f2638&#x27;); r.setAttribute(&#x27;stroke&#x27;, &#x27;#34c285&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 0.4); }
+    }
+  }
+
+  function reset() {
+    state.progress.fill(0); state.busy.fill(0); state.state.fill(0);
+  }
+
+  return { tick, reset };
+}
+
+// ---------- Mobileye (multi-channel DMA, shared L2) ----------
+function buildMobileye(svg) {
+  svg.innerHTML = &#x27;&#x27;;
+  const W = 360, H = 260;
+  el(&#x27;rect&#x27;, { x: 12, y: 12, width: W-24, height: 24, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#2a3a52&#x27; }, svg);
+  el(&#x27;text&#x27;, { x: W/2, y: 28, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;: 600 }, svg).textContent = &#x27;DDR&#x27;;
+
+  // 4-channel DMA in middle
+  el(&#x27;rect&#x27;, { x: 130, y: 50, width: 100, height: 30, rx: 4,
+    fill: &#x27;#2a2010&#x27;, stroke: &#x27;#ffb340&#x27;, &#x27;stroke-width&#x27;: 1.5 }, svg);
+  el(&#x27;text&#x27;, { x: 180, y: 67, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#ffb340&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;:700 }, svg).textContent = &#x27;DMA × 4 ch&#x27;;
+
+  // Shared L2
+  el(&#x27;rect&#x27;, { x: 100, y: 100, width: 160, height: 26, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-opacity&#x27;:0.4 }, svg);
+  el(&#x27;text&#x27;, { x: 180, y: 117, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, svg).textContent = &#x27;L2 shared&#x27;;
+
+  // 4 VLIW cores + 4 accelerators
+  const cores = [];
+  const labels = [&#x27;VLIW0&#x27;,&#x27;VLIW1&#x27;,&#x27;VLIW2&#x27;,&#x27;VLIW3&#x27;,&#x27;XNN0&#x27;,&#x27;XNN1&#x27;,&#x27;XNN2&#x27;,&#x27;XNN3&#x27;];
+  const colors = [&#x27;#34c285&#x27;,&#x27;#34c285&#x27;,&#x27;#34c285&#x27;,&#x27;#34c285&#x27;,&#x27;#ffb340&#x27;,&#x27;#ffb340&#x27;,&#x27;#ffb340&#x27;,&#x27;#ffb340&#x27;];
+  for (let i=0; i&lt;8; i++) {
+    const col = i%4, row = Math.floor(i/4);
+    const x = 25 + col*80, y = 145 + row*42;
+    const r = el(&#x27;rect&#x27;, { x, y, width: 70, height: 32, rx: 3,
+      fill: &#x27;#1f2638&#x27;, stroke: colors[i], &#x27;stroke-width&#x27;: 1, &#x27;stroke-opacity&#x27;: 0.4 }, svg);
+    el(&#x27;text&#x27;, { x: x+35, y: y+19, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;:600 }, svg).textContent = labels[i];
+    cores.push({ rect: r, cx: x+35, cy: y+16, color: colors[i] });
+  }
+
+  const state = {
+    progress: Array(8).fill(0),
+    busy: Array(8).fill(0),
+    state: Array(8).fill(0),
+    dur: 22, // 4 channels = ~half the latency of single DP, but still some serialization
+    chBusy: 0,
+  };
+
+  function tick(cycle) {
+    for (let i=0; i&lt;8; i++) {
+      if (state.state[i] === 0 &amp;&amp; state.busy[i] === 0) {
+        // Need a channel — only 4 simultaneous loads
+        if (state.chBusy &lt; 4) {
+          state.state[i] = 1; state.progress[i] = 0;
+          state.chBusy++;
+        }
+      }
+      if (state.state[i] === 1) {
+        state.progress[i]++;
+        if (state.progress[i] &gt;= state.dur) {
+          state.state[i] = 2;
+          state.busy[i] = 22;
+          state.chBusy--;
+        }
+      }
+      if (state.state[i] === 2) {
+        state.busy[i]--;
+        if (state.busy[i] &lt;= 0) state.state[i] = 0;
+      }
+    }
+
+    if (cycle % 3 === 0) {
+      for (let i=0; i&lt;8; i++) {
+        if (state.state[i] === 1) {
+          const p = cores[i];
+          spawnPacket(svg, 180, 113, p.cx, p.cy, &#x27;#ffb340&#x27;, 380);
+        }
+      }
+    }
+
+    for (let i=0; i&lt;8; i++) {
+      const r = cores[i].rect;
+      if (state.state[i] === 2) { r.setAttribute(&#x27;fill&#x27;, &#x27;#1f3a2c&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 1); }
+      else if (state.state[i] === 1) { r.setAttribute(&#x27;fill&#x27;, &#x27;#2a2618&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 0.8); }
+      else { r.setAttribute(&#x27;fill&#x27;, &#x27;#1f2638&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 0.35); }
+    }
+  }
+
+  function reset() {
+    state.progress.fill(0); state.busy.fill(0); state.state.fill(0);
+    state.chBusy = 0;
+  }
+
+  return { tick, reset };
+}
+
+// ---------- Orin (GPU SMs + DLA) ----------
+function buildOrin(svg) {
+  svg.innerHTML = &#x27;&#x27;;
+  el(&#x27;rect&#x27;, { x: 12, y: 12, width: 336, height: 24, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#2a3a52&#x27; }, svg);
+  el(&#x27;text&#x27;, { x: 180, y: 28, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;: 600 }, svg).textContent = &#x27;LPDDR5 (DRAM)&#x27;;
+
+  // L2 cache
+  el(&#x27;rect&#x27;, { x: 30, y: 50, width: 300, height: 22, rx: 4,
+    fill: &#x27;#0d2438&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-opacity&#x27;:0.5 }, svg);
+  el(&#x27;text&#x27;, { x: 180, y: 65, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;:600 }, svg).textContent = &#x27;Unified L2 cache&#x27;;
+
+  // 16 small SMs (representing the GPU)
+  const cores = [];
+  for (let i=0; i&lt;16; i++) {
+    const col = i%8, row = Math.floor(i/8);
+    const x = 25 + col*40, y = 90 + row*30;
+    const r = el(&#x27;rect&#x27;, { x, y, width: 32, height: 22, rx: 2,
+      fill: &#x27;#0d2438&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 1, &#x27;stroke-opacity&#x27;: 0.4 }, svg);
+    el(&#x27;text&#x27;, { x: x+16, y: y+15, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8, &#x27;font-weight&#x27;:600 }, svg).textContent = `SM${i}`;
+    cores.push({ rect: r, cx: x+16, cy: y+11 });
+  }
+
+  // 2 DLAs
+  for (let i=0; i&lt;2; i++) {
+    const x = 70 + i*150, y = 165;
+    const r = el(&#x27;rect&#x27;, { x, y, width: 110, height: 30, rx: 3,
+      fill: &#x27;#1f2638&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-opacity&#x27;:0.6 }, svg);
+    el(&#x27;text&#x27;, { x: x+55, y: y+19, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;:700 }, svg).textContent = `DLA${i}`;
+    cores.push({ rect: r, cx: x+55, cy: y+15 });
+  }
+
+  // Caption text
+  el(&#x27;text&#x27;, { x: 180, y: 220, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-style&#x27;: &#x27;italic&#x27; }, svg).textContent = &#x27;~2048 CUDA cores · simplified to 16 SMs + 2 DLA&#x27;;
+
+  const state = {
+    busy: Array(18).fill(0),
+    progress: Array(18).fill(0),
+    state: Array(18).fill(0),
+    dur: 14,  // GPU-style: short load (cache hit), deep parallelism
+  };
+
+  function tick(cycle) {
+    for (let i=0; i&lt;18; i++) {
+      if (state.state[i] === 0 &amp;&amp; state.busy[i] === 0) {
+        state.state[i] = 1; state.progress[i] = 0;
+      }
+      if (state.state[i] === 1) {
+        state.progress[i]++;
+        if (state.progress[i] &gt;= state.dur) {
+          state.state[i] = 2;
+          state.busy[i] = 18;
+        }
+      }
+      if (state.state[i] === 2) {
+        state.busy[i]--;
+        if (state.busy[i] &lt;= 0) state.state[i] = 0;
+      }
+    }
+
+    if (cycle % 4 === 0) {
+      for (let i=0; i&lt;Math.min(18, 18); i++) {
+        if (state.state[i] === 1) {
+          const p = cores[i];
+          spawnPacket(svg, 180, 60, p.cx, p.cy, &#x27;#3ba3ff&#x27;, 280);
+        }
+      }
+    }
+
+    for (let i=0; i&lt;18; i++) {
+      const r = cores[i].rect;
+      if (state.state[i] === 2) { r.setAttribute(&#x27;fill&#x27;, &#x27;#1f3a2c&#x27;); r.setAttribute(&#x27;stroke&#x27;, &#x27;#34c285&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 1); }
+      else if (state.state[i] === 1) { r.setAttribute(&#x27;fill&#x27;, &#x27;#2a2618&#x27;); r.setAttribute(&#x27;stroke&#x27;, &#x27;#ffb340&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 0.8); }
+      else { r.setAttribute(&#x27;fill&#x27;, &#x27;#0d2438&#x27;); r.setAttribute(&#x27;stroke&#x27;, &#x27;#3ba3ff&#x27;); r.setAttribute(&#x27;stroke-opacity&#x27;, 0.35); }
+    }
+  }
+
+  function reset() {
+    state.busy.fill(0); state.progress.fill(0); state.state.fill(0);
+  }
+
+  return { tick, reset };
+}
+
+// ---------- Hailo (dataflow — pipelined) ----------
+function buildHailo(svg) {
+  svg.innerHTML = &#x27;&#x27;;
+  el(&#x27;rect&#x27;, { x: 12, y: 12, width: 336, height: 22, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#2a3a52&#x27; }, svg);
+  el(&#x27;text&#x27;, { x: 180, y: 27, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;: 600 }, svg).textContent = &#x27;Camera input (no DRAM!)&#x27;;
+
+  // 5-stage pipeline of memory-control-compute blocks
+  const stages = [];
+  const stageNames = [&#x27;Layer1&#x27;,&#x27;Layer2&#x27;,&#x27;Layer3&#x27;,&#x27;Layer4&#x27;,&#x27;Layer5&#x27;];
+  for (let i=0; i&lt;5; i++) {
+    const x = 30 + i*64, y = 80;
+    const r = el(&#x27;rect&#x27;, { x, y, width: 56, height: 100, rx: 4,
+      fill: &#x27;#1f1929&#x27;, stroke: &#x27;#b450c8&#x27;, &#x27;stroke-width&#x27;: 1.5 }, svg);
+    // sub-blocks: M (memory), C (control), X (compute)
+    el(&#x27;rect&#x27;, { x: x+5, y: y+8, width: 46, height: 22, rx: 2,
+      fill: &#x27;#3a1f3a&#x27;, stroke: &#x27;#b450c8&#x27;, &#x27;stroke-opacity&#x27;:0.5 }, svg);
+    el(&#x27;text&#x27;, { x: x+28, y: y+22, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#d090e0&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8 }, svg).textContent = &#x27;MEM&#x27;;
+    el(&#x27;rect&#x27;, { x: x+5, y: y+34, width: 46, height: 22, rx: 2,
+      fill: &#x27;#1f2a3a&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-opacity&#x27;:0.5 }, svg);
+    el(&#x27;text&#x27;, { x: x+28, y: y+48, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#7ac0e8&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8 }, svg).textContent = &#x27;CTRL&#x27;;
+    const cr = el(&#x27;rect&#x27;, { x: x+5, y: y+60, width: 46, height: 32, rx: 2,
+      fill: &#x27;#1f2a18&#x27;, stroke: &#x27;#34c285&#x27;, &#x27;stroke-opacity&#x27;:0.5 }, svg);
+    el(&#x27;text&#x27;, { x: x+28, y: y+78, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#a0e0b8&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8 }, svg).textContent = &#x27;COMP&#x27;;
+    el(&#x27;text&#x27;, { x: x+28, y: y-3, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#b450c8&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8, &#x27;font-weight&#x27;:600 }, svg).textContent = stageNames[i];
+    stages.push({ rect: r, computeRect: cr, cx: x+28, cy: y+50, x1: x, x2: x+56 });
+  }
+
+  // arrows between stages
+  for (let i=0; i&lt;4; i++) {
+    el(&#x27;path&#x27;, {
+      d: `M${stages[i].x2} ${stages[i].cy} L${stages[i+1].x1} ${stages[i+1].cy}`,
+      stroke: &#x27;#b450c8&#x27;, &#x27;stroke-width&#x27;: 1.5, fill: &#x27;none&#x27;,
+      &#x27;marker-end&#x27;: &#x27;url(#arrowH)&#x27;,
+    }, svg);
+  }
+  // arrow defs
+  const defs = el(&#x27;defs&#x27;, {}, svg);
+  const marker = el(&#x27;marker&#x27;, { id: &#x27;arrowH&#x27;, viewBox: &#x27;0 0 10 10&#x27;,
+    refX: 8, refY: 5, markerWidth: 6, markerHeight: 6, orient: &#x27;auto&#x27; }, defs);
+  el(&#x27;path&#x27;, { d: &#x27;M 0 0 L 10 5 L 0 10 z&#x27;, fill: &#x27;#b450c8&#x27; }, marker);
+
+  el(&#x27;text&#x27;, { x: 180, y: 210, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-style&#x27;:&#x27;italic&#x27; }, svg).textContent = &#x27;compiler maps NN layers spatially&#x27;;
+  el(&#x27;text&#x27;, { x: 180, y: 224, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-style&#x27;:&#x27;italic&#x27; }, svg).textContent = &#x27;no DMA, no DRAM&#x27;;
+
+  const state = { activeStage: -1, packets: 0 };
+
+  function tick(cycle) {
+    // pipeline marches: every cycle advance one stage
+    state.activeStage = (cycle / 6 | 0) % 5;
+
+    // emit a packet flowing through pipeline
+    if (cycle % 12 === 0) {
+      // start a packet at left
+      const startX = 30, startY = 130;
+      const c = el(&#x27;circle&#x27;, { cx: startX, cy: startY, r: 3.5,
+        fill: &#x27;#b450c8&#x27;, opacity: 0.9 }, svg);
+      const start = performance.now();
+      const totalDuration = 2400;
+      function step(t) {
+        const dt = (t - start) / totalDuration;
+        if (dt &gt;= 1) { c.remove(); return; }
+        const x = 30 + dt * (5*64);
+        c.setAttribute(&#x27;cx&#x27;, x);
+        c.setAttribute(&#x27;opacity&#x27;, 0.9 * (1 - dt*0.4));
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // highlight current active stage&#x27;s compute block
+    for (let i=0; i&lt;5; i++) {
+      const r = stages[i].computeRect;
+      if (i === state.activeStage) {
+        r.setAttribute(&#x27;fill&#x27;, &#x27;#1f3a2c&#x27;);
+        r.setAttribute(&#x27;stroke-opacity&#x27;, 1);
+      } else {
+        r.setAttribute(&#x27;fill&#x27;, &#x27;#1f2a18&#x27;);
+        r.setAttribute(&#x27;stroke-opacity&#x27;, 0.5);
+      }
+    }
+  }
+
+  function reset() {
+    state.activeStage = -1;
+  }
+
+  return { tick, reset };
+}
+
+// ---------- Dojo (354 cores, all SRAM) ----------
+function buildDojo(svg) {
+  svg.innerHTML = &#x27;&#x27;;
+  el(&#x27;rect&#x27;, { x: 12, y: 12, width: 336, height: 22, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#5a6788&#x27; }, svg);
+  el(&#x27;text&#x27;, { x: 180, y: 27, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#7a8aa8&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-style&#x27;:&#x27;italic&#x27; }, svg).textContent = &#x27;(no DRAM on chip)&#x27;;
+
+  // Grid of cores 18 x 12 = 216 representing 354
+  const cores = [];
+  const gridW = 18, gridH = 11;
+  const cellW = (336-30) / gridW;  // ~17 each
+  const cellH = (260-50-30) / gridH;
+  const startX = 18, startY = 50;
+  for (let r=0; r&lt;gridH; r++) {
+    for (let c=0; c&lt;gridW; c++) {
+      const x = startX + c*cellW;
+      const y = startY + r*cellH;
+      const rect = el(&#x27;rect&#x27;, { x: x+0.5, y: y+0.5, width: cellW-1.5, height: cellH-1.5,
+        fill: &#x27;#1f1c2a&#x27;, stroke: &#x27;#c8508c&#x27;, &#x27;stroke-width&#x27;: 0.4, &#x27;stroke-opacity&#x27;: 0.4 }, svg);
+      cores.push({ rect, cx: x+cellW/2, cy: y+cellH/2 });
+    }
+  }
+
+  el(&#x27;text&#x27;, { x: 180, y: 251, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-style&#x27;:&#x27;italic&#x27; }, svg).textContent = &#x27;354 cores × 1.25 MB SRAM each — neighbors send data via mesh&#x27;;
+
+  const N = cores.length;
+  const state = {
+    busy: new Float32Array(N),
+    phase: new Float32Array(N).map(() =&gt; Math.random() * 30),
+  };
+
+  function tick(cycle) {
+    // each core has its own private timing — randomly compute
+    for (let i=0; i&lt;N; i++) {
+      state.phase[i] = (state.phase[i] + 1) % 40;
+      const r = cores[i].rect;
+      if (state.phase[i] &lt; 25) {
+        // computing
+        r.setAttribute(&#x27;fill&#x27;, &#x27;#1f3a2c&#x27;);
+        r.setAttribute(&#x27;stroke&#x27;, &#x27;#34c285&#x27;);
+        r.setAttribute(&#x27;stroke-opacity&#x27;, 0.6);
+      } else {
+        // brief idle / data exchange
+        r.setAttribute(&#x27;fill&#x27;, &#x27;#3a1f2c&#x27;);
+        r.setAttribute(&#x27;stroke&#x27;, &#x27;#c8508c&#x27;);
+        r.setAttribute(&#x27;stroke-opacity&#x27;, 0.6);
+      }
+    }
+
+    // emit some neighbor-to-neighbor data packets occasionally
+    if (cycle % 4 === 0) {
+      for (let p=0; p&lt;3; p++) {
+        const i = (Math.random() * N) | 0;
+        const dx = (Math.random() &lt; 0.5) ? -1 : 1;
+        const dy = (Math.random() &lt; 0.5) ? 0 : (Math.random() &lt; 0.5) ? -1 : 1;
+        const j = i + dx + dy*gridW;
+        if (j &gt;= 0 &amp;&amp; j &lt; N) {
+          spawnPacket(svg, cores[i].cx, cores[i].cy, cores[j].cx, cores[j].cy, &#x27;#c8508c&#x27;, 200);
+        }
+      }
+    }
+  }
+
+  function reset() {
+    for (let i=0; i&lt;N; i++) state.phase[i] = Math.random() * 30;
+  }
+
+  return { tick, reset };
+}
+
+// ============================================================
+// PACKET ANIMATION
+// ============================================================
+
+function spawnPacket(svg, x1, y1, x2, y2, color, duration=400) {
+  const c = el(&#x27;circle&#x27;, { cx: x1, cy: y1, r: 2.5,
+    fill: color, opacity: 0.9 }, svg);
+  const start = performance.now();
+  function step(t) {
+    const dt = (t - start) / duration;
+    if (dt &gt;= 1) { c.remove(); return; }
+    const x = x1 + (x2-x1)*dt;
+    const y = y1 + (y2-y1)*dt;
+    c.setAttribute(&#x27;cx&#x27;, x);
+    c.setAttribute(&#x27;cy&#x27;, y);
+    c.setAttribute(&#x27;opacity&#x27;, 0.9 * (1 - dt*0.3));
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ============================================================
+// BUILD ALL SCENES
+// ============================================================
+
+const scenes = {
+  &#x27;dgrid-now&#x27;: buildDGridNow(document.getElementById(&#x27;stage-dgrid-now&#x27;)),
+  &#x27;dgrid-fut&#x27;: buildDGridFut(document.getElementById(&#x27;stage-dgrid-fut&#x27;)),
+  &#x27;mobileye&#x27;:  buildMobileye(document.getElementById(&#x27;stage-mobileye&#x27;)),
+  &#x27;orin&#x27;:      buildOrin(document.getElementById(&#x27;stage-orin&#x27;)),
+  &#x27;hailo&#x27;:     buildHailo(document.getElementById(&#x27;stage-hailo&#x27;)),
+  &#x27;dojo&#x27;:      buildDojo(document.getElementById(&#x27;stage-dojo&#x27;)),
+};
+
+// ============================================================
+// CLOCK
+// ============================================================
+
+let cycle = 0, running = false, speedMult = 1, lastT = 0;
+const baseTickMs = 60;
+const cycleLabel = document.getElementById(&#x27;cycleCount&#x27;);
+
+function tickAll() {
+  cycle++;
+  cycleLabel.textContent = `cycle ${cycle}`;
+  for (const k in scenes) scenes[k].tick(cycle);
+}
+
+function loop(t) {
+  if (!running) return;
+  if (t - lastT &gt;= baseTickMs / speedMult) { tickAll(); lastT = t; }
+  requestAnimationFrame(loop);
+}
+
+document.getElementById(&#x27;btnPlay&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  if (running) return;
+  running = true; lastT = performance.now();
+  requestAnimationFrame(loop);
+});
+document.getElementById(&#x27;btnPause&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; { running = false; });
+document.getElementById(&#x27;btnReset&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  running = false; cycle = 0;
+  cycleLabel.textContent = &#x27;cycle 0&#x27;;
+  for (const k in scenes) scenes[k].reset();
+});
+const speeds = [0.5, 1, 2, 4];
+let speedIdx = 1;
+document.getElementById(&#x27;btnSpeed&#x27;).addEventListener(&#x27;click&#x27;, (e) =&gt; {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  speedMult = speeds[speedIdx];
+  e.target.textContent = `Speed: ${speedMult}×`;
+});
+
+setTimeout(() =&gt; document.getElementById(&#x27;btnPlay&#x27;).click(), 600);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" title="The <em>memory spectrum</em> &mdash; and where DGrid lands"></iframe>
+  </div>
+</section>
+
+<div class="bridge">
+  <div class="bridge-arrow">&darr;</div>
+  <p><strong>Per-PCORE DMA isn&rsquo;t novel &mdash; it&rsquo;s the proven middle ground.</strong> But the real reason DGrid needs it is the cube. SoC2&rsquo;s 8&times;8&times;8 matrix unit produces 8&times; the data appetite. Watch why the cube starves without LDMA.</p>
+</div>
+
+<section class="section" id="roadmap">
+  <div class="section-header">
+    <div class="section-num">03<span class="dot"></span>The roadmap math</div>
+    <h2>Flat to <em>cube</em> &mdash; and why the cube starves alone</h2>
+    <p class="lede">SoC1.2 ships an 8&times;8 matrix unit on FPGA. SoC2 ships an 8&times;8&times;8 cube on 28&nbsp;nm ASIC. The cube is 8&times; the compute &mdash; but only if memory keeps up. Three coupled decisions.</p>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-toolbar">
+      <span>SECTION 03 &middot; INTERACTIVE &middot; click the play / pause / speed buttons inside</span>
+      <button class="fs-btn" onclick="openFullscreen('frame-roadmap')">&uarr; Open standalone</button>
+    </div>
+    <iframe id="frame-roadmap" class="tall" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;Flat vs Cube — Why SoC2 Needs Per-PCORE DMA&lt;/title&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --panel: #131826;
+    --ink: #e8edf5;
+    --dim: #6b7388;
+    --accent: #3ba3ff;
+    --hot: #ff5440;
+    --warm: #ffb340;
+    --cool: #34c285;
+    --cube: #b450c8;
+    --line: #1f2738;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: &#x27;Inter&#x27;, system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page { max-width: 1280px; margin: 0 auto; padding: 50px 24px 80px; }
+
+  /* MASTHEAD */
+  header { text-align: center; margin-bottom: 30px; }
+  header .eyebrow {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px; letter-spacing: 0.25em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  header h1 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.05; margin-bottom: 14px;
+  }
+  header h1 .em { color: var(--cube); }
+  header p.sub {
+    color: var(--dim); font-size: 16px;
+    max-width: 760px; margin: 0 auto; line-height: 1.55;
+  }
+
+  /* CHAPTER MARKER */
+  .chapter {
+    margin: 60px 0 24px;
+    text-align: center;
+    position: relative;
+  }
+  .chapter::before, .chapter::after {
+    content: &#x27;&#x27;;
+    position: absolute;
+    top: 50%; height: 1px;
+    background: var(--line);
+    width: 30%;
+  }
+  .chapter::before { left: 0; }
+  .chapter::after { right: 0; }
+  .chapter-num {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    background: var(--bg);
+    padding: 0 18px;
+    position: relative;
+    display: inline-block;
+  }
+  .chapter h2 {
+    font-size: 26px; font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 12px; line-height: 1.2;
+  }
+  .chapter h2 em { color: var(--cube); font-style: normal; }
+  .chapter p {
+    color: var(--dim); font-size: 14.5px;
+    margin-top: 8px;
+    max-width: 680px; margin-left: auto; margin-right: auto;
+    line-height: 1.55;
+  }
+
+  /* CONTROLS */
+  .controls {
+    display: flex; justify-content: center; align-items: center;
+    gap: 12px; margin: 22px 0 30px; flex-wrap: wrap;
+  }
+  .btn {
+    background: var(--panel); color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 10px 18px;
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 12px; letter-spacing: 0.05em;
+    cursor: pointer; transition: all 0.15s;
+    border-radius: 6px;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary {
+    background: var(--accent); color: #0a0e1a;
+    font-weight: 700; border-color: var(--accent);
+  }
+  .clock {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    color: var(--dim); font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  /* TWO-SCENE GRID */
+  .scenes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 920px) { .scenes { grid-template-columns: 1fr; } }
+
+  .scene {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px;
+    position: relative;
+    display: flex; flex-direction: column;
+  }
+  .scene-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 8px; gap: 12px;
+  }
+  .scene-name {
+    font-size: 20px; font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .scene-name .sub {
+    font-size: 13px; color: var(--dim);
+    font-weight: 500;
+    margin-left: 6px;
+  }
+  .scene-tag {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .scene[data-id=&quot;flat&quot;] { border-left: 3px solid var(--cool); }
+  .scene[data-id=&quot;flat&quot;] .scene-tag { background: rgba(52,194,133,0.15); color: var(--cool); }
+  .scene[data-id=&quot;cube&quot;] { border-left: 3px solid var(--cube); }
+  .scene[data-id=&quot;cube&quot;] .scene-tag { background: rgba(180,80,200,0.15); color: var(--cube); }
+  .scene[data-id=&quot;starved&quot;] { border-left: 3px solid var(--hot); }
+  .scene[data-id=&quot;starved&quot;] .scene-tag { background: rgba(255,84,64,0.15); color: var(--hot); }
+  .scene[data-id=&quot;fed&quot;] { border-left: 3px solid var(--accent); }
+  .scene[data-id=&quot;fed&quot;] .scene-tag { background: rgba(59,163,255,0.15); color: var(--accent); }
+
+  .scene-meta {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px; color: var(--dim);
+    margin-bottom: 14px; line-height: 1.5;
+  }
+
+  .stage {
+    width: 100%;
+    aspect-ratio: 1.25 / 1;
+    background: rgba(255,255,255,0.012);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* METER ROW */
+  .meters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .meter {
+    background: rgba(255,255,255,0.025);
+    padding: 10px 12px;
+    border-radius: 6px;
+  }
+  .meter-label {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 6px;
+  }
+  .meter-value {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .meter-unit {
+    font-size: 10px; color: var(--dim);
+    margin-left: 4px;
+  }
+  .meter.hot .meter-value { color: var(--hot); }
+  .meter.cool .meter-value { color: var(--cool); }
+  .meter.cube .meter-value { color: var(--cube); }
+  .meter.accent .meter-value { color: var(--accent); }
+
+  /* PUNCHLINE between sections */
+  .punch {
+    margin: 24px 0;
+    padding: 22px 28px;
+    background: linear-gradient(135deg,
+      rgba(180,80,200,0.07) 0%,
+      rgba(59,163,255,0.06) 100%);
+    border: 1px solid rgba(180,80,200,0.2);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .punch h3 {
+    font-size: 18px; font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .punch h3 em { color: var(--cube); font-style: normal; }
+  .punch p {
+    color: var(--dim); font-size: 14px;
+    line-height: 1.55;
+    max-width: 620px; margin: 0 auto;
+  }
+
+  /* FINAL TAKEAWAY */
+  .takeaway {
+    margin-top: 50px;
+    padding: 32px;
+    background: linear-gradient(135deg,
+      rgba(52,194,133,0.05) 0%,
+      rgba(59,163,255,0.06) 100%);
+    border: 1px solid rgba(59,163,255,0.18);
+    border-radius: 14px;
+  }
+  .takeaway h2 {
+    font-size: 22px; font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .takeaway h2 em { color: var(--accent); font-style: normal; }
+  .takeaway p {
+    color: var(--dim); font-size: 14.5px;
+    line-height: 1.6; margin-bottom: 10px;
+  }
+  .takeaway p strong { color: var(--ink); }
+  .takeaway .three-up {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 22px;
+  }
+  @media (max-width: 800px) { .takeaway .three-up { grid-template-columns: 1fr; } }
+  .takeaway .three-up .item {
+    padding: 16px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+  .takeaway .three-up .item .num {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px; letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .takeaway .three-up .item h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .takeaway .three-up .item p {
+    font-size: 12.5px;
+    color: var(--dim);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  footer {
+    margin-top: 50px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--dim);
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;page&quot;&gt;
+
+&lt;header&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;DGrid Semi · Compute Shape&lt;/div&gt;
+  &lt;h1&gt;Flat to &lt;span class=&quot;em&quot;&gt;cube&lt;/span&gt; — and why the cube starves alone&lt;/h1&gt;
+  &lt;p class=&quot;sub&quot;&gt;SoC1.2&#x27;s 8×8 matrix unit is the right tool today. SoC2&#x27;s 8×8×8 cube is 8× the compute — and 8× the appetite. Watch how the cube changes the conversation.&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;div class=&quot;controls&quot;&gt;
+  &lt;button class=&quot;btn primary&quot; id=&quot;btnPlay&quot;&gt;▶ Play all&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnPause&quot;&gt;⏸ Pause&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnReset&quot;&gt;↺ Reset&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnSpeed&quot;&gt;Speed: 1×&lt;/button&gt;
+  &lt;span class=&quot;clock&quot; id=&quot;cycleCount&quot;&gt;cycle 0&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- ============ CHAPTER A ============ --&gt;
+&lt;div class=&quot;chapter&quot;&gt;
+  &lt;span class=&quot;chapter-num&quot;&gt;Chapter A&lt;/span&gt;
+  &lt;h2&gt;From &lt;em&gt;flat&lt;/em&gt; to &lt;em&gt;cube&lt;/em&gt; — same workload, 8× faster&lt;/h2&gt;
+  &lt;p&gt;Both units compute the same K=8 reduction. The 8×8 matrix unit (SoC1.2) needs 8 cycles to consume K. The 8×8×8 cube (SoC2) consumes K in one cycle by stacking 8 multiply layers. Same answer, different geometry.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;scenes&quot;&gt;
+
+  &lt;!-- SoC1.2 — 8×8 flat matrix unit --&gt;
+  &lt;div class=&quot;scene&quot; data-id=&quot;flat&quot;&gt;
+    &lt;div class=&quot;scene-head&quot;&gt;
+      &lt;div class=&quot;scene-name&quot;&gt;8×8 matrix unit&lt;span class=&quot;sub&quot;&gt;SoC1.2 · per PCORE&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;scene-tag&quot;&gt;flat · 64 MAC/cycle&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scene-meta&quot;&gt;8×8 weight stationary · K iterations in software · 64 MACs × 8 PCOREs = 512 total&lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stageFlat&quot; viewBox=&quot;0 0 480 380&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;meters&quot;&gt;
+      &lt;div class=&quot;meter cool&quot;&gt;
+        &lt;div class=&quot;meter-label&quot;&gt;K iteration&lt;/div&gt;
+        &lt;div class=&quot;meter-value&quot; id=&quot;flatK&quot;&gt;0&lt;span class=&quot;meter-unit&quot;&gt;/ 8&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;meter cool&quot;&gt;
+        &lt;div class=&quot;meter-label&quot;&gt;tile complete&lt;/div&gt;
+        &lt;div class=&quot;meter-value&quot; id=&quot;flatTiles&quot;&gt;0&lt;span class=&quot;meter-unit&quot;&gt;tiles&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- SoC2 — 8×8×8 cube --&gt;
+  &lt;div class=&quot;scene&quot; data-id=&quot;cube&quot;&gt;
+    &lt;div class=&quot;scene-head&quot;&gt;
+      &lt;div class=&quot;scene-name&quot;&gt;8×8×8 cube&lt;span class=&quot;sub&quot;&gt;SoC2 · per PCORE&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;scene-tag&quot;&gt;cube · 512 MAC/cycle&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scene-meta&quot;&gt;8×8×8 systolic · K = hardware depth · 512 MACs × 56 PCOREs = 28,672 total&lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stageCube&quot; viewBox=&quot;0 0 480 380&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;meters&quot;&gt;
+      &lt;div class=&quot;meter cube&quot;&gt;
+        &lt;div class=&quot;meter-label&quot;&gt;K iteration&lt;/div&gt;
+        &lt;div class=&quot;meter-value&quot; id=&quot;cubeK&quot;&gt;0&lt;span class=&quot;meter-unit&quot;&gt;/ 1 (HW depth)&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;meter cube&quot;&gt;
+        &lt;div class=&quot;meter-label&quot;&gt;tile complete&lt;/div&gt;
+        &lt;div class=&quot;meter-value&quot; id=&quot;cubeTiles&quot;&gt;0&lt;span class=&quot;meter-unit&quot;&gt;tiles&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;!-- Bridge punchline --&gt;
+&lt;div class=&quot;punch&quot;&gt;
+  &lt;h3&gt;Same arithmetic, &lt;em&gt;different geometry&lt;/em&gt;&lt;/h3&gt;
+  &lt;p&gt;The 8×8 unit reuses 64 weights across 8 cycles of streamed activations. The 8×8×8 cube embeds K=8 directly in silicon — every layer of weights and every K-slice of activations meet at the same cycle. &lt;strong style=&quot;color: var(--ink);&quot;&gt;8× the parallel reductions, 8× the bandwidth needed.&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- ============ CHAPTER B ============ --&gt;
+&lt;div class=&quot;chapter&quot;&gt;
+  &lt;span class=&quot;chapter-num&quot;&gt;Chapter B&lt;/span&gt;
+  &lt;h2&gt;The cube alone is not enough — it needs &lt;em&gt;per-PCORE DMA&lt;/em&gt;&lt;/h2&gt;
+  &lt;p&gt;A cube can do 512 MACs per cycle. But only if data arrives at 512 bytes/cycle. The same 56 cubes fed by SoC1.x&#x27;s single global DP would starve. Each cube would compute ~12% of cycles, the rest waiting. Watch what happens.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;scenes&quot;&gt;
+
+  &lt;!-- 56 cubes starved (single DP) --&gt;
+  &lt;div class=&quot;scene&quot; data-id=&quot;starved&quot;&gt;
+    &lt;div class=&quot;scene-head&quot;&gt;
+      &lt;div class=&quot;scene-name&quot;&gt;56 cubes · single DP&lt;span class=&quot;sub&quot;&gt;naive scaling&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;scene-tag&quot;&gt;starved · ~12% util&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scene-meta&quot;&gt;SoC2 cube count, SoC1.x memory model. Each cube waits ~7 cycles per 1 cycle compute.&lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stageStarved&quot; viewBox=&quot;0 0 480 380&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;meters&quot;&gt;
+      &lt;div class=&quot;meter hot&quot;&gt;
+        &lt;div class=&quot;meter-label&quot;&gt;avg utilization&lt;/div&gt;
+        &lt;div class=&quot;meter-value&quot; id=&quot;starvedUtil&quot;&gt;0&lt;span class=&quot;meter-unit&quot;&gt;%&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;meter hot&quot;&gt;
+        &lt;div class=&quot;meter-label&quot;&gt;effective TOPS&lt;/div&gt;
+        &lt;div class=&quot;meter-value&quot; id=&quot;starvedTops&quot;&gt;0&lt;span class=&quot;meter-unit&quot;&gt;TOPS&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 56 cubes fed by 56 LDMAs --&gt;
+  &lt;div class=&quot;scene&quot; data-id=&quot;fed&quot;&gt;
+    &lt;div class=&quot;scene-head&quot;&gt;
+      &lt;div class=&quot;scene-name&quot;&gt;56 cubes · 56 LDMAs&lt;span class=&quot;sub&quot;&gt;SoC2 architecture&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;scene-tag&quot;&gt;fed · ~85% util&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;scene-meta&quot;&gt;Per-PCORE LDMA against banked SRAM. Cubes stay fed. Bandwidth scales with cube count.&lt;/div&gt;
+    &lt;svg class=&quot;stage&quot; id=&quot;stageFed&quot; viewBox=&quot;0 0 480 380&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+    &lt;div class=&quot;meters&quot;&gt;
+      &lt;div class=&quot;meter accent&quot;&gt;
+        &lt;div class=&quot;meter-label&quot;&gt;avg utilization&lt;/div&gt;
+        &lt;div class=&quot;meter-value&quot; id=&quot;fedUtil&quot;&gt;0&lt;span class=&quot;meter-unit&quot;&gt;%&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;meter accent&quot;&gt;
+        &lt;div class=&quot;meter-label&quot;&gt;effective TOPS&lt;/div&gt;
+        &lt;div class=&quot;meter-value&quot; id=&quot;fedTops&quot;&gt;0&lt;span class=&quot;meter-unit&quot;&gt;TOPS&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;!-- TAKEAWAY --&gt;
+&lt;div class=&quot;takeaway&quot;&gt;
+  &lt;h2&gt;What this means for the SoC roadmap — &lt;em&gt;three coupled decisions&lt;/em&gt;&lt;/h2&gt;
+  &lt;p&gt;The leap from SoC1.2 to SoC2 isn&#x27;t just &quot;more silicon.&quot; Three things move together — and they have to, because each enables the next.&lt;/p&gt;
+  &lt;div class=&quot;three-up&quot;&gt;
+    &lt;div class=&quot;item&quot;&gt;
+      &lt;div class=&quot;num&quot;&gt;01 — COMPUTE&lt;/div&gt;
+      &lt;h4&gt;Flat → Cube&lt;/h4&gt;
+      &lt;p&gt;8×8 (64 MACs) at SoC1.2. 8×8×8 (512 MACs) at SoC2. K becomes hardware depth, not iteration count.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;
+      &lt;div class=&quot;num&quot;&gt;02 — MEMORY&lt;/div&gt;
+      &lt;h4&gt;Shared DP → per-PCORE LDMA&lt;/h4&gt;
+      &lt;p&gt;Single global engine cannot feed 56 cubes. Each cube needs its own DMA against banked L2.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;item&quot;&gt;
+      &lt;div class=&quot;num&quot;&gt;03 — SILICON&lt;/div&gt;
+      &lt;h4&gt;FPGA → 28nm ASIC&lt;/h4&gt;
+      &lt;p&gt;The cube + LDMA combination doesn&#x27;t fit on FPGA. Custom 28nm gives the area, power, and clock for 600 MHz.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p style=&quot;color: var(--ink); font-size: 16px; margin-top: 24px; font-weight: 600;&quot;&gt;
+    SoC1.2 ships the flat matrix on FPGA — proves the geometry. SoC1.3 prototypes per-PCORE LDMA on 1-2 cores — proves the memory architecture. &lt;em style=&quot;color: var(--accent); font-style: normal;&quot;&gt;SoC2 fuses both into the cube on 28nm&lt;/em&gt; — proves the production chip. Each step de-risks the next.
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;footer&gt;
+  DGrid Semi · Apr 2026 · 8×8 from v5 doc · 8×8×8 from SoC2 spec (&quot;CUBE_DEPTH=8&quot;) · simulation rates illustrative · per-PCORE DMA proposal pending Srikar&#x27;s testbench data
+&lt;/footer&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+const SVG = &quot;http://www.w3.org/2000/svg&quot;;
+function el(tag, attrs={}, parent=null) {
+  const e = document.createElementNS(SVG, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+// =============================================================
+// CHAPTER A — Flat 8x8 vs Cube 8x8x8
+// =============================================================
+
+// FLAT: 8x8 matrix; weights stationary, activations stream from left, K iterations
+function buildFlat(svg) {
+  svg.innerHTML = &#x27;&#x27;;
+  const W = 480, H = 380;
+
+  // Title arrows
+  el(&#x27;text&#x27;, { x: 110, y: 25, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-style&#x27;: &#x27;italic&#x27; }, svg).textContent = &#x27;Activation stream (K times)&#x27;;
+  el(&#x27;text&#x27;, { x: 380, y: 25, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-style&#x27;: &#x27;italic&#x27; }, svg).textContent = &#x27;Output (8×8 partial sums)&#x27;;
+
+  // The 8x8 grid in middle
+  const gridX = 160, gridY = 90, cell = 22;
+  const cells = [];
+  for (let r=0; r&lt;8; r++) {
+    for (let c=0; c&lt;8; c++) {
+      const x = gridX + c*cell, y = gridY + r*cell;
+      const rect = el(&#x27;rect&#x27;, { x, y, width: cell-1, height: cell-1,
+        fill: &#x27;#1f2638&#x27;, stroke: &#x27;#34c285&#x27;, &#x27;stroke-width&#x27;: 1, &#x27;stroke-opacity&#x27;: 0.3 }, svg);
+      cells.push({ rect, r, c, x: x+cell/2, y: y+cell/2 });
+    }
+  }
+  // Border around grid
+  el(&#x27;rect&#x27;, { x: gridX-3, y: gridY-3, width: 8*cell+5, height: 8*cell+5,
+    fill: &#x27;none&#x27;, stroke: &#x27;#34c285&#x27;, &#x27;stroke-width&#x27;: 1.5, &#x27;stroke-opacity&#x27;: 0.5,
+    rx: 4 }, svg);
+  // Label
+  el(&#x27;text&#x27;, { x: gridX + 4*cell, y: gridY + 8*cell + 22, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#34c285&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 11, &#x27;font-weight&#x27;: 600 }, svg).textContent = &#x27;8×8 weight matrix (resident)&#x27;;
+  el(&#x27;text&#x27;, { x: gridX + 4*cell, y: gridY + 8*cell + 38, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-style&#x27;:&#x27;italic&#x27; }, svg).textContent = &#x27;64 MACs · weights stay · activations stream K=8 times&#x27;;
+
+  // Activation column on left (showing 8 rows that stream in)
+  const actX = 60, actY = gridY, actW = 70;
+  for (let r=0; r&lt;8; r++) {
+    el(&#x27;rect&#x27;, { x: actX, y: actY + r*cell, width: actW, height: cell-1,
+      fill: &#x27;#0d2438&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 0.7, &#x27;stroke-opacity&#x27;: 0.3 }, svg);
+  }
+  // Activation label
+  el(&#x27;text&#x27;, { x: actX + actW/2, y: actY - 6, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, svg).textContent = &#x27;A[k][r]&#x27;;
+
+  // K iteration counter prominently
+  el(&#x27;rect&#x27;, { x: actX, y: actY + 8*cell + 14, width: actW, height: 30,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 1, rx: 4 }, svg);
+  const kIterText = el(&#x27;text&#x27;, { x: actX + actW/2, y: actY + 8*cell + 33, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 14, &#x27;font-weight&#x27;:700,
+    id: &#x27;flat-k-text&#x27; }, svg);
+  kIterText.textContent = &#x27;K=0/8&#x27;;
+
+  // Output accumulator on right
+  const outX = 360, outY = gridY;
+  for (let r=0; r&lt;8; r++) {
+    el(&#x27;rect&#x27;, { x: outX, y: outY + r*cell, width: cell, height: cell-1,
+      fill: &#x27;#1f1f2a&#x27;, stroke: &#x27;#ffb340&#x27;, &#x27;stroke-width&#x27;: 0.7, &#x27;stroke-opacity&#x27;: 0.2 }, svg);
+  }
+  el(&#x27;text&#x27;, { x: outX + cell/2, y: outY - 6, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#ffb340&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, svg).textContent = &#x27;C[r]&#x27;;
+
+  // State
+  const state = {
+    k: 0,
+    tile: 0,
+    cycleInTile: 0,
+    cellsActive: 0,
+  };
+
+  function tick(cycle) {
+    // Each &quot;cycle&quot; of animation represents one K iteration
+    // Animate: every 14 ticks, advance K by 1
+    if (cycle % 12 === 0) {
+      state.k++;
+      if (state.k &gt; 8) {
+        state.k = 1;
+        state.tile++;
+      }
+    }
+
+    // Highlight cells: at K=k, all 64 cells fire simultaneously (this is the parallel-MAC step)
+    // We&#x27;ll pulse them every K iteration
+    const inFiring = (cycle % 12) &lt; 4;
+    for (let i=0; i&lt;64; i++) {
+      const c = cells[i];
+      if (inFiring &amp;&amp; state.k &gt; 0) {
+        c.rect.setAttribute(&#x27;fill&#x27;, &#x27;#1f3a2c&#x27;);
+        c.rect.setAttribute(&#x27;stroke-opacity&#x27;, 1);
+      } else {
+        c.rect.setAttribute(&#x27;fill&#x27;, &#x27;#1f2638&#x27;);
+        c.rect.setAttribute(&#x27;stroke-opacity&#x27;, 0.4);
+      }
+    }
+
+    // emit activation packets streaming in (one row at a time, advancing per K)
+    if (cycle % 4 === 0 &amp;&amp; state.k &gt; 0) {
+      const r = (cycle / 4) % 8;
+      spawnPacket(svg, actX + actW, actY + r*cell + cell/2,
+        gridX, actY + r*cell + cell/2, &#x27;#3ba3ff&#x27;, 250);
+    }
+
+    // emit output packets (when k cycles complete, output emerges)
+    if (cycle % 12 === 11 &amp;&amp; state.k === 8) {
+      for (let r=0; r&lt;8; r++) {
+        spawnPacket(svg, gridX + 8*cell, gridY + r*cell + cell/2,
+          outX, outY + r*cell + cell/2, &#x27;#ffb340&#x27;, 200);
+      }
+    }
+
+    // Update displays
+    document.getElementById(&#x27;flatK&#x27;).innerHTML = `${state.k}&lt;span class=&quot;meter-unit&quot;&gt;/ 8&lt;/span&gt;`;
+    document.getElementById(&#x27;flatTiles&#x27;).innerHTML = `${state.tile}&lt;span class=&quot;meter-unit&quot;&gt;tiles&lt;/span&gt;`;
+    kIterText.textContent = `K=${state.k}/8`;
+  }
+
+  function reset() {
+    state.k = 0; state.tile = 0; state.cycleInTile = 0;
+  }
+
+  return { tick, reset };
+}
+
+// CUBE: 8x8x8 — 8 stacked layers, all firing simultaneously
+function buildCube(svg) {
+  svg.innerHTML = &#x27;&#x27;;
+  const W = 480, H = 380;
+
+  el(&#x27;text&#x27;, { x: 110, y: 25, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-style&#x27;: &#x27;italic&#x27; }, svg).textContent = &#x27;Activation slab (all K)&#x27;;
+  el(&#x27;text&#x27;, { x: 380, y: 25, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-style&#x27;: &#x27;italic&#x27; }, svg).textContent = &#x27;Output (8×8)&#x27;;
+
+  // Draw isometric cube — 8 layers stacked
+  const cubeX = 220, cubeY = 100;
+  const cell = 16;          // smaller cells because 3D
+  const offsetPerLayer = 7; // isometric offset
+
+  // Layers from back to front (so front layer renders on top)
+  const layers = [];
+  for (let layer = 7; layer &gt;= 0; layer--) {
+    const layerData = { cells: [], idx: layer };
+    const dx = -layer * offsetPerLayer;
+    const dy = -layer * offsetPerLayer * 0.6;
+    for (let r=0; r&lt;8; r++) {
+      for (let c=0; c&lt;8; c++) {
+        const x = cubeX + dx + c*cell;
+        const y = cubeY + dy + r*cell;
+        const rect = el(&#x27;rect&#x27;, { x, y, width: cell-0.5, height: cell-0.5,
+          fill: &#x27;#2a1a3a&#x27;, stroke: &#x27;#b450c8&#x27;, &#x27;stroke-width&#x27;: 0.5,
+          &#x27;stroke-opacity&#x27;: 0.3 + (7-layer)*0.05,
+          &#x27;fill-opacity&#x27;: 0.85 }, svg);
+        layerData.cells.push({ rect, r, c });
+      }
+    }
+    layers.push(layerData);
+  }
+  // Reorder: we want layers[0] = front (k=0), layers[7] = back (k=7)
+  // We rendered back-first so back is behind. Layer index in `layers` is reverse order.
+  // Convert: layers[0..7] in render-order (back to front). To address by k=0..7 (front to back),
+  // we use layers[7-k]. Let&#x27;s just keep both directions handy.
+  const byK = layers.slice().reverse();  // byK[0] is the front-most layer (k=0)
+
+  // Cube outline (isometric box)
+  const px = [
+    cubeX, cubeX + 8*cell, cubeX + 8*cell, cubeX,
+    cubeX - 7*offsetPerLayer, cubeX + 8*cell - 7*offsetPerLayer,
+    cubeX + 8*cell - 7*offsetPerLayer, cubeX - 7*offsetPerLayer
+  ];
+  const py = [
+    cubeY, cubeY, cubeY + 8*cell, cubeY + 8*cell,
+    cubeY - 7*offsetPerLayer*0.6, cubeY - 7*offsetPerLayer*0.6,
+    cubeY + 8*cell - 7*offsetPerLayer*0.6, cubeY + 8*cell - 7*offsetPerLayer*0.6
+  ];
+  // edges of the cube
+  const edges = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+  for (const [a,b] of edges) {
+    el(&#x27;line&#x27;, { x1: px[a], y1: py[a], x2: px[b], y2: py[b],
+      stroke: &#x27;#b450c8&#x27;, &#x27;stroke-width&#x27;: 1, &#x27;stroke-opacity&#x27;: 0.4 }, svg);
+  }
+
+  // Label
+  el(&#x27;text&#x27;, { x: cubeX + 4*cell - 3.5*offsetPerLayer, y: cubeY + 8*cell + 32, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#b450c8&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 11, &#x27;font-weight&#x27;: 600 }, svg).textContent = &#x27;8×8×8 cube · 512 MACs&#x27;;
+  el(&#x27;text&#x27;, { x: cubeX + 4*cell - 3.5*offsetPerLayer, y: cubeY + 8*cell + 48, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-style&#x27;:&#x27;italic&#x27; }, svg).textContent = &#x27;all K layers fire simultaneously · 1 cycle = 1 K-step done&#x27;;
+
+  // Activation slab on left — the &quot;K thickness&quot; of activations
+  const actX = 60, actY = cubeY, actW = 80;
+  // slab as 8 rows × thin layers
+  for (let layer = 7; layer &gt;= 0; layer--) {
+    const dx = -layer * 5;
+    const dy = -layer * 3;
+    for (let r=0; r&lt;8; r++) {
+      el(&#x27;rect&#x27;, { x: actX + dx, y: actY + r*cell + dy,
+        width: actW, height: cell-0.5,
+        fill: &#x27;#0d2438&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 0.4,
+        &#x27;stroke-opacity&#x27;: 0.4 + layer*0.04,
+        &#x27;fill-opacity&#x27;: 0.85 }, svg);
+    }
+  }
+  el(&#x27;text&#x27;, { x: actX + actW/2 - 12, y: actY - 6, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, svg).textContent = &#x27;A[k=0..7]&#x27;;
+
+  // Output column on right
+  const outX = 380, outY = cubeY;
+  for (let r=0; r&lt;8; r++) {
+    el(&#x27;rect&#x27;, { x: outX, y: outY + r*cell, width: cell, height: cell-0.5,
+      fill: &#x27;#1f1f2a&#x27;, stroke: &#x27;#ffb340&#x27;, &#x27;stroke-width&#x27;: 0.7, &#x27;stroke-opacity&#x27;: 0.2 }, svg);
+  }
+  el(&#x27;text&#x27;, { x: outX + cell/2, y: outY - 6, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#ffb340&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, svg).textContent = &#x27;C[r]&#x27;;
+
+  const state = { tile: 0 };
+
+  function tick(cycle) {
+    // Cube fires every cycle — every cell in every layer is active
+    const inFiring = (cycle % 12) &lt; 4;
+
+    // Advance tile every 12 cycles (same wall-clock as flat does ONE k-step)
+    if (cycle % 12 === 0 &amp;&amp; cycle &gt; 0) state.tile++;
+
+    // Highlight all cells in all layers when firing
+    for (const layer of layers) {
+      for (const c of layer.cells) {
+        if (inFiring) {
+          c.rect.setAttribute(&#x27;fill&#x27;, &#x27;#3a1f5a&#x27;);
+          c.rect.setAttribute(&#x27;stroke-opacity&#x27;, 0.9);
+          c.rect.setAttribute(&#x27;fill-opacity&#x27;, 0.95);
+        } else {
+          c.rect.setAttribute(&#x27;fill&#x27;, &#x27;#2a1a3a&#x27;);
+          c.rect.setAttribute(&#x27;stroke-opacity&#x27;, 0.3 + (7-layer.idx)*0.05);
+          c.rect.setAttribute(&#x27;fill-opacity&#x27;, 0.85);
+        }
+      }
+    }
+
+    // Activation packets — stream the WHOLE slab in one cycle (vs flat: one row)
+    if (cycle % 6 === 0) {
+      for (let r=0; r&lt;8; r++) {
+        spawnPacket(svg, actX + actW - 5, actY + r*cell + cell/2,
+          cubeX, actY + r*cell + cell/2, &#x27;#3ba3ff&#x27;, 200);
+      }
+    }
+
+    // Output packets — every cycle (cube produces a tile per cycle in steady state)
+    if (cycle % 6 === 3) {
+      for (let r=0; r&lt;8; r++) {
+        spawnPacket(svg, cubeX + 8*cell - 3*offsetPerLayer,
+          cubeY + r*cell + cell/2 - 1.8*offsetPerLayer,
+          outX, outY + r*cell + cell/2, &#x27;#ffb340&#x27;, 180);
+      }
+    }
+
+    document.getElementById(&#x27;cubeK&#x27;).innerHTML = `1&lt;span class=&quot;meter-unit&quot;&gt;/ 1 (HW depth)&lt;/span&gt;`;
+    document.getElementById(&#x27;cubeTiles&#x27;).innerHTML = `${state.tile}&lt;span class=&quot;meter-unit&quot;&gt;tiles&lt;/span&gt;`;
+  }
+
+  function reset() {
+    state.tile = 0;
+  }
+
+  return { tick, reset };
+}
+
+// =============================================================
+// CHAPTER B — 56 cubes starved vs 56 cubes fed
+// =============================================================
+
+// STARVED: 56 cubes, single DP. Each cube ~12% utilization.
+function buildStarved(svg) {
+  svg.innerHTML = &#x27;&#x27;;
+  const W = 480, H = 380;
+
+  // DDR top
+  el(&#x27;rect&#x27;, { x: 12, y: 12, width: W-24, height: 22, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#2a3a52&#x27; }, svg);
+  el(&#x27;text&#x27;, { x: W/2, y: 27, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;: 600 }, svg).textContent = &#x27;DDR / SRAM&#x27;;
+
+  // Single DP engine
+  el(&#x27;rect&#x27;, { x: 200, y: 50, width: 80, height: 28, rx: 4,
+    fill: &#x27;#2a1518&#x27;, stroke: &#x27;#ff5440&#x27;, &#x27;stroke-width&#x27;: 2 }, svg);
+  el(&#x27;text&#x27;, { x: 240, y: 67, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#ff8472&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;:700 }, svg).textContent = &#x27;1× DP&#x27;;
+
+  // Lines from DP to all cubes (faded)
+  const cubes = [];
+  // 7 rows × 8 columns = 56 cubes
+  const cubeSize = 18;
+  const startX = 30, startY = 100;
+  const gapX = (W - 60) / 8;
+  const gapY = 36;
+
+  for (let i=0; i&lt;56; i++) {
+    const col = i % 8, row = Math.floor(i / 8);
+    const x = startX + col * gapX;
+    const y = startY + row * gapY;
+    const rect = el(&#x27;rect&#x27;, { x, y, width: cubeSize, height: cubeSize, rx: 2,
+      fill: &#x27;#1f1929&#x27;, stroke: &#x27;#b450c8&#x27;, &#x27;stroke-width&#x27;: 0.7, &#x27;stroke-opacity&#x27;: 0.4 }, svg);
+    cubes.push({ rect, x: x+cubeSize/2, y: y+cubeSize/2, edgeY: y });
+
+    // faint connector to DP
+    el(&#x27;line&#x27;, { x1: 240, y1: 78, x2: x+cubeSize/2, y2: y,
+      stroke: &#x27;#2a1d1d&#x27;, &#x27;stroke-width&#x27;: 0.3, &#x27;stroke-opacity&#x27;: 0.3 }, svg);
+  }
+
+  // Caption
+  el(&#x27;text&#x27;, { x: W/2, y: H-12, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-style&#x27;:&#x27;italic&#x27; }, svg).textContent = &#x27;56 cubes wait their turn — 1 cycle compute, 7 cycles wait&#x27;;
+
+  const state = {
+    current: -1,
+    busy: new Float32Array(56),     // remaining busy cycles (compute)
+    served: new Float32Array(56),   // total cycles each got data
+    progress: 0,
+    serveDuration: 6, // setup + load = 6 cycles per cube
+    computeDuration: 1, // cube computes in 1 cycle
+    totalCycles: 0,
+    aggregateBusy: 0,
+  };
+
+  function tick(cycle) {
+    state.totalCycles++;
+    // serve next cube
+    if (state.current === -1) {
+      // pick next cube that&#x27;s not busy
+      for (let i=0; i&lt;56; i++) {
+        if (state.busy[i] === 0) {
+          state.current = i;
+          state.progress = 0;
+          break;
+        }
+      }
+    } else {
+      state.progress++;
+      if (state.progress &gt;= state.serveDuration) {
+        state.busy[state.current] = state.computeDuration;
+        state.served[state.current]++;
+        state.current = -1;
+      }
+    }
+
+    // drain compute
+    let busyCount = 0;
+    for (let i=0; i&lt;56; i++) {
+      if (state.busy[i] &gt; 0) {
+        state.busy[i]--;
+        busyCount++;
+      }
+    }
+    state.aggregateBusy += busyCount;
+
+    // emit packet
+    if (state.current !== -1 &amp;&amp; cycle % 2 === 0) {
+      const c = cubes[state.current];
+      spawnPacket(svg, 240, 78, c.x, c.edgeY, &#x27;#ff5440&#x27;, 220);
+    }
+
+    // visual
+    for (let i=0; i&lt;56; i++) {
+      const c = cubes[i];
+      if (state.busy[i] &gt; 0) {
+        c.rect.setAttribute(&#x27;fill&#x27;, &#x27;#3a1f5a&#x27;);
+        c.rect.setAttribute(&#x27;stroke-opacity&#x27;, 0.9);
+      } else if (i === state.current) {
+        c.rect.setAttribute(&#x27;fill&#x27;, &#x27;#3a2418&#x27;);
+        c.rect.setAttribute(&#x27;stroke&#x27;, &#x27;#ffb340&#x27;);
+        c.rect.setAttribute(&#x27;stroke-opacity&#x27;, 0.7);
+      } else {
+        c.rect.setAttribute(&#x27;fill&#x27;, &#x27;#1f1929&#x27;);
+        c.rect.setAttribute(&#x27;stroke&#x27;, &#x27;#b450c8&#x27;);
+        c.rect.setAttribute(&#x27;stroke-opacity&#x27;, 0.3);
+      }
+    }
+
+    // update meters
+    const avgUtil = state.totalCycles &gt; 0
+      ? Math.round(100 * state.aggregateBusy / (56 * state.totalCycles))
+      : 0;
+    document.getElementById(&#x27;starvedUtil&#x27;).innerHTML = `${avgUtil}&lt;span class=&quot;meter-unit&quot;&gt;%&lt;/span&gt;`;
+    // Effective TOPS: 28,672 MACs × 600 MHz × util / 1e12 × 2 (MAC=2 ops)
+    const peakTOPS = 28672 * 600e6 * 2 / 1e12;
+    const effTOPS = peakTOPS * avgUtil / 100;
+    document.getElementById(&#x27;starvedTops&#x27;).innerHTML = `${effTOPS.toFixed(1)}&lt;span class=&quot;meter-unit&quot;&gt;TOPS&lt;/span&gt;`;
+  }
+
+  function reset() {
+    state.current = -1;
+    state.busy.fill(0);
+    state.served.fill(0);
+    state.progress = 0;
+    state.totalCycles = 0;
+    state.aggregateBusy = 0;
+  }
+
+  return { tick, reset };
+}
+
+// FED: 56 cubes, each with own LDMA against banked SRAM. ~85% util.
+function buildFed(svg) {
+  svg.innerHTML = &#x27;&#x27;;
+  const W = 480, H = 380;
+
+  // DDR top — but smaller, less prominent
+  el(&#x27;rect&#x27;, { x: 12, y: 12, width: W-24, height: 18, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#2a3a52&#x27; }, svg);
+  el(&#x27;text&#x27;, { x: W/2, y: 25, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#7a8aa8&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, svg).textContent = &#x27;DDR (occasional)&#x27;;
+
+  // Banked SRAM L2 across the top (representing parallel banks)
+  for (let b=0; b&lt;8; b++) {
+    const x = 30 + b*(W-60)/8;
+    const w = (W-60)/8 - 4;
+    el(&#x27;rect&#x27;, { x, y: 42, width: w, height: 22, rx: 3,
+      fill: &#x27;#0d2438&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 1, &#x27;stroke-opacity&#x27;: 0.6 }, svg);
+    el(&#x27;text&#x27;, { x: x+w/2, y: 57, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;: 600 }, svg).textContent = `B${b}`;
+  }
+  el(&#x27;text&#x27;, { x: 12, y: 56, &#x27;text-anchor&#x27;:&#x27;start&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, svg).textContent = &#x27;L2:&#x27;;
+
+  // 56 LDMA + cube pairs
+  const cubes = [];
+  const cubeSize = 18;
+  const startX = 30, startY = 95;
+  const gapX = (W - 60) / 8;
+  const gapY = 38;
+
+  for (let i=0; i&lt;56; i++) {
+    const col = i % 8, row = Math.floor(i / 8);
+    const x = startX + col * gapX;
+    const y = startY + row * gapY;
+
+    // small LDMA
+    el(&#x27;rect&#x27;, { x: x-3, y: y-7, width: 6, height: 6, rx: 1,
+      fill: &#x27;#0d2438&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 0.6 }, svg);
+
+    // cube
+    const rect = el(&#x27;rect&#x27;, { x, y, width: cubeSize, height: cubeSize, rx: 2,
+      fill: &#x27;#1f1929&#x27;, stroke: &#x27;#b450c8&#x27;, &#x27;stroke-width&#x27;: 0.7, &#x27;stroke-opacity&#x27;: 0.4 }, svg);
+    cubes.push({ rect, x: x+cubeSize/2, y: y+cubeSize/2, ldmaY: y-4, bank: col });
+
+    // faint line LDMA → bank above
+    const bankX = 30 + col*gapX + ((W-60)/8 - 4)/2;
+    el(&#x27;line&#x27;, { x1: x, y1: y-4, x2: bankX, y2: 64,
+      stroke: &#x27;#0d2438&#x27;, &#x27;stroke-width&#x27;: 0.4, &#x27;stroke-opacity&#x27;: 0.6 }, svg);
+  }
+
+  // Caption
+  el(&#x27;text&#x27;, { x: W/2, y: H-12, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-style&#x27;:&#x27;italic&#x27; }, svg).textContent = &#x27;56 LDMAs · 8-bank SRAM · 7 cubes per bank, parallel access&#x27;;
+
+  const state = {
+    busy: new Float32Array(56),
+    progress: new Float32Array(56),
+    state: new Int8Array(56),  // 0=idle, 1=loading, 2=computing
+    bankBusy: new Int8Array(8),
+    loadDur: 3,
+    computeDur: 6,
+    totalCycles: 0,
+    aggregateBusy: 0,
+  };
+
+  function tick(cycle) {
+    state.totalCycles++;
+    state.bankBusy.fill(0);
+
+    for (let i=0; i&lt;56; i++) {
+      const c = cubes[i];
+      if (state.state[i] === 0) {
+        // idle, want to load
+        if (state.bankBusy[c.bank] &lt; 1) {  // 1 access per bank per cycle, simple model
+          state.state[i] = 1;
+          state.progress[i] = 0;
+          state.bankBusy[c.bank]++;
+        }
+      } else if (state.state[i] === 1) {
+        if (state.bankBusy[c.bank] &lt; 1) {
+          state.bankBusy[c.bank]++;
+        }
+        state.progress[i]++;
+        if (state.progress[i] &gt;= state.loadDur) {
+          state.state[i] = 2;
+          state.busy[i] = state.computeDur;
+        }
+      } else if (state.state[i] === 2) {
+        state.busy[i]--;
+        state.aggregateBusy++;
+        if (state.busy[i] &lt;= 0) state.state[i] = 0;
+      }
+    }
+
+    // emit packets
+    if (cycle % 2 === 0) {
+      for (let i=0; i&lt;56; i++) {
+        if (state.state[i] === 1) {
+          const c = cubes[i];
+          const bankX = 30 + c.bank*((W-60)/8) + ((W-60)/8-4)/2;
+          spawnPacket(svg, bankX, 64, c.x, c.ldmaY, &#x27;#3ba3ff&#x27;, 180);
+        }
+      }
+    }
+
+    // visual
+    for (let i=0; i&lt;56; i++) {
+      const c = cubes[i];
+      if (state.state[i] === 2) {
+        c.rect.setAttribute(&#x27;fill&#x27;, &#x27;#3a1f5a&#x27;);
+        c.rect.setAttribute(&#x27;stroke-opacity&#x27;, 0.95);
+      } else if (state.state[i] === 1) {
+        c.rect.setAttribute(&#x27;fill&#x27;, &#x27;#2a2618&#x27;);
+        c.rect.setAttribute(&#x27;stroke&#x27;, &#x27;#ffb340&#x27;);
+        c.rect.setAttribute(&#x27;stroke-opacity&#x27;, 0.7);
+      } else {
+        c.rect.setAttribute(&#x27;fill&#x27;, &#x27;#1f1929&#x27;);
+        c.rect.setAttribute(&#x27;stroke&#x27;, &#x27;#b450c8&#x27;);
+        c.rect.setAttribute(&#x27;stroke-opacity&#x27;, 0.4);
+      }
+    }
+
+    // meters
+    const avgUtil = state.totalCycles &gt; 0
+      ? Math.round(100 * state.aggregateBusy / (56 * state.totalCycles))
+      : 0;
+    document.getElementById(&#x27;fedUtil&#x27;).innerHTML = `${avgUtil}&lt;span class=&quot;meter-unit&quot;&gt;%&lt;/span&gt;`;
+    const peakTOPS = 28672 * 600e6 * 2 / 1e12;
+    const effTOPS = peakTOPS * avgUtil / 100;
+    document.getElementById(&#x27;fedTops&#x27;).innerHTML = `${effTOPS.toFixed(1)}&lt;span class=&quot;meter-unit&quot;&gt;TOPS&lt;/span&gt;`;
+  }
+
+  function reset() {
+    state.busy.fill(0);
+    state.progress.fill(0);
+    state.state.fill(0);
+    state.bankBusy.fill(0);
+    state.totalCycles = 0;
+    state.aggregateBusy = 0;
+  }
+
+  return { tick, reset };
+}
+
+// =============================================================
+// PACKET ANIMATION
+// =============================================================
+
+function spawnPacket(svg, x1, y1, x2, y2, color, duration=300) {
+  const c = el(&#x27;circle&#x27;, { cx: x1, cy: y1, r: 2.5,
+    fill: color, opacity: 0.9 }, svg);
+  const start = performance.now();
+  function step(t) {
+    const dt = (t - start) / duration;
+    if (dt &gt;= 1) { c.remove(); return; }
+    const x = x1 + (x2-x1)*dt;
+    const y = y1 + (y2-y1)*dt;
+    c.setAttribute(&#x27;cx&#x27;, x);
+    c.setAttribute(&#x27;cy&#x27;, y);
+    c.setAttribute(&#x27;opacity&#x27;, 0.9 * (1 - dt*0.3));
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// =============================================================
+// BUILD ALL SCENES
+// =============================================================
+
+const scenes = {
+  flat:    buildFlat(document.getElementById(&#x27;stageFlat&#x27;)),
+  cube:    buildCube(document.getElementById(&#x27;stageCube&#x27;)),
+  starved: buildStarved(document.getElementById(&#x27;stageStarved&#x27;)),
+  fed:     buildFed(document.getElementById(&#x27;stageFed&#x27;)),
+};
+
+// =============================================================
+// CLOCK
+// =============================================================
+
+let cycle = 0, running = false, speedMult = 1, lastT = 0;
+const baseTickMs = 60;
+const cycleLabel = document.getElementById(&#x27;cycleCount&#x27;);
+
+function tickAll() {
+  cycle++;
+  cycleLabel.textContent = `cycle ${cycle}`;
+  for (const k in scenes) scenes[k].tick(cycle);
+}
+
+function loop(t) {
+  if (!running) return;
+  if (t - lastT &gt;= baseTickMs / speedMult) { tickAll(); lastT = t; }
+  requestAnimationFrame(loop);
+}
+
+document.getElementById(&#x27;btnPlay&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  if (running) return;
+  running = true; lastT = performance.now();
+  requestAnimationFrame(loop);
+});
+document.getElementById(&#x27;btnPause&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; { running = false; });
+document.getElementById(&#x27;btnReset&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  running = false; cycle = 0;
+  cycleLabel.textContent = &#x27;cycle 0&#x27;;
+  for (const k in scenes) scenes[k].reset();
+});
+const speeds = [0.5, 1, 2, 4];
+let speedIdx = 1;
+document.getElementById(&#x27;btnSpeed&#x27;).addEventListener(&#x27;click&#x27;, (e) =&gt; {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  speedMult = speeds[speedIdx];
+  e.target.textContent = `Speed: ${speedMult}×`;
+});
+
+setTimeout(() =&gt; document.getElementById(&#x27;btnPlay&#x27;).click(), 600);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" title="Flat to <em>cube</em> &mdash; and why the cube starves alone"></iframe>
+  </div>
+</section>
+
+<div class="bridge">
+  <div class="bridge-arrow">&darr;</div>
+  <p><strong>Three things move together &mdash; compute, memory, silicon. They have to.</strong> And here&rsquo;s what the destination actually looks like: 56 cubes, 56 LDMAs, 8 banks of shared L2. In motion. With a deliberate failure mode you can trigger.</p>
+</div>
+
+<section class="section" id="destination">
+  <div class="section-header">
+    <div class="section-num">04<span class="dot"></span>The destination</div>
+    <h2>SoC2 in motion &mdash; <em>56 cubes, 56 LDMAs, 8 banks</em></h2>
+    <p class="lede">28,672 MACs at 600&nbsp;MHz hits 34.4 TOPS only if memory keeps up. Toggle the &ldquo;hot bank&rdquo; button to see what happens when firmware addressing fails. The architecture is necessary &mdash; not sufficient.</p>
+  </div>
+  <div class="frame-wrap">
+    <div class="frame-toolbar">
+      <span>SECTION 04 &middot; INTERACTIVE &middot; click the play / pause / speed buttons inside</span>
+      <button class="fs-btn" onclick="openFullscreen('frame-destination')">&uarr; Open standalone</button>
+    </div>
+    <iframe id="frame-destination" class="medium" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;SoC2 — 56 Cubes, 56 LDMAs, 8-Bank SRAM&lt;/title&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --panel: #131826;
+    --panel-2: #1a2030;
+    --ink: #e8edf5;
+    --dim: #6b7388;
+    --accent: #3ba3ff;
+    --hot: #ff5440;
+    --warm: #ffb340;
+    --cool: #34c285;
+    --cube: #b450c8;
+    --line: #1f2738;
+    --bank-0: #3ba3ff;
+    --bank-1: #34c285;
+    --bank-2: #ffb340;
+    --bank-3: #b450c8;
+    --bank-4: #ff7a8a;
+    --bank-5: #5cd6e0;
+    --bank-6: #c8b450;
+    --bank-7: #a070ff;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: &#x27;Inter&#x27;, system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page { max-width: 1400px; margin: 0 auto; padding: 40px 20px 60px; }
+
+  /* MASTHEAD */
+  header { text-align: center; margin-bottom: 24px; }
+  header .eyebrow {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px; letter-spacing: 0.25em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  header h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.05; margin-bottom: 12px;
+  }
+  header h1 .em { color: var(--cube); }
+  header p.sub {
+    color: var(--dim); font-size: 15px;
+    max-width: 760px; margin: 0 auto; line-height: 1.55;
+  }
+
+  /* SPEC STRIP */
+  .spec-strip {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 24px 0 28px;
+    flex-wrap: wrap;
+    padding: 14px 20px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .spec-strip .item {
+    text-align: center;
+    padding: 0 12px;
+    border-right: 1px solid var(--line);
+  }
+  .spec-strip .item:last-child { border-right: none; }
+  .spec-strip .label {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 4px;
+  }
+  .spec-strip .value {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .spec-strip .value.cube { color: var(--cube); }
+  .spec-strip .value.accent { color: var(--accent); }
+  .spec-strip .value.cool { color: var(--cool); }
+
+  /* CONTROLS */
+  .controls {
+    display: flex; justify-content: center; align-items: center;
+    gap: 12px; margin-bottom: 22px; flex-wrap: wrap;
+  }
+  .btn {
+    background: var(--panel); color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 10px 18px;
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 12px; letter-spacing: 0.05em;
+    cursor: pointer; transition: all 0.15s;
+    border-radius: 6px;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary {
+    background: var(--accent); color: #0a0e1a;
+    font-weight: 700; border-color: var(--accent);
+  }
+  .clock {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    color: var(--dim); font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  /* MAIN STAGE — full-width, the centerpiece */
+  .main-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 22px;
+  }
+
+  .stage-main {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* DETAIL ROW: zoomed LDMA + meters */
+  .detail-row {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+  @media (max-width: 900px) {
+    .detail-row { grid-template-columns: 1fr; }
+  }
+
+  .ldma-detail {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--cube);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .ldma-detail h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .ldma-detail .sub {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-bottom: 12px;
+  }
+  .ldma-detail svg {
+    width: 100%;
+    aspect-ratio: 1.2 / 1;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+
+  .meters-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .meters-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .meters-card .sub {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-bottom: 16px;
+  }
+
+  /* Big number meters */
+  .meter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .big-meter {
+    background: rgba(0,0,0,0.3);
+    border-radius: 6px;
+    padding: 12px;
+    border-left: 3px solid var(--accent);
+  }
+  .big-meter.cube { border-left-color: var(--cube); }
+  .big-meter.cool { border-left-color: var(--cool); }
+  .big-meter.warm { border-left-color: var(--warm); }
+  .big-meter .lbl {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 6px;
+  }
+  .big-meter .val {
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .big-meter .unit {
+    font-size: 11px;
+    color: var(--dim);
+    margin-left: 4px;
+  }
+
+  /* Per-bank bandwidth meter */
+  .bank-meters {
+    display: grid;
+    grid-template-columns: 60px 1fr 50px;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 4px;
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 10px;
+  }
+  .bank-meters .name { color: var(--ink); font-weight: 600; }
+  .bank-meters .track {
+    height: 8px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bank-meters .fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.12s linear;
+  }
+  .bank-meters .pct {
+    text-align: right;
+    color: var(--dim);
+  }
+
+  /* LEGEND */
+  .legend {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px;
+    color: var(--dim);
+  }
+  .legend-swatch {
+    width: 14px; height: 14px;
+    border: 1.5px solid;
+    border-radius: 3px;
+  }
+  .legend-cube { background: #3a1f5a; border-color: var(--cube); }
+  .legend-loading { background: #2a2618; border-color: var(--warm); }
+  .legend-idle { background: #1f1929; border-color: rgba(180,80,200,0.4); }
+  .legend-stalled { background: #2a1518; border-color: var(--hot); }
+
+  /* TAKEAWAY */
+  .takeaway {
+    margin-top: 30px;
+    padding: 26px;
+    background: linear-gradient(135deg,
+      rgba(180,80,200,0.06) 0%,
+      rgba(59,163,255,0.06) 100%);
+    border: 1px solid rgba(180,80,200,0.2);
+    border-radius: 12px;
+  }
+  .takeaway h2 {
+    font-size: 20px; font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .takeaway h2 em { color: var(--cube); font-style: normal; }
+  .takeaway p {
+    color: var(--dim); font-size: 14px;
+    line-height: 1.6; margin-bottom: 8px;
+  }
+  .takeaway p strong { color: var(--ink); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--dim);
+    font-family: &#x27;JetBrains Mono&#x27;, monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;page&quot;&gt;
+
+&lt;header&gt;
+  &lt;div class=&quot;eyebrow&quot;&gt;DGrid Semi · SoC2 · Per-PCORE DMA Architecture&lt;/div&gt;
+  &lt;h1&gt;56 cubes &amp;middot; 56 LDMAs &amp;middot; 8-bank &lt;span class=&quot;em&quot;&gt;shared L2&lt;/span&gt;&lt;/h1&gt;
+  &lt;p class=&quot;sub&quot;&gt;28,672 MACs at 600&amp;nbsp;MHz hits 34.4&amp;nbsp;TOPS only if memory keeps up. Watch how per-PCORE DMA against banked SRAM lets the cubes actually run.&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;!-- SPEC STRIP --&gt;
+&lt;div class=&quot;spec-strip&quot;&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;PCOREs&lt;/div&gt;
+    &lt;div class=&quot;value cube&quot;&gt;56&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;Cube shape&lt;/div&gt;
+    &lt;div class=&quot;value cube&quot;&gt;8×8×8&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;MACs / PCORE&lt;/div&gt;
+    &lt;div class=&quot;value&quot;&gt;512&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;Total MACs&lt;/div&gt;
+    &lt;div class=&quot;value cube&quot;&gt;28,672&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;Clock&lt;/div&gt;
+    &lt;div class=&quot;value&quot;&gt;600 MHz&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;Peak&lt;/div&gt;
+    &lt;div class=&quot;value accent&quot;&gt;34.4 TOPS&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;L2 banks&lt;/div&gt;
+    &lt;div class=&quot;value&quot;&gt;8&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;
+    &lt;div class=&quot;label&quot;&gt;Process&lt;/div&gt;
+    &lt;div class=&quot;value cool&quot;&gt;28nm&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- CONTROLS --&gt;
+&lt;div class=&quot;controls&quot;&gt;
+  &lt;button class=&quot;btn primary&quot; id=&quot;btnPlay&quot;&gt;▶ Play&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnPause&quot;&gt;⏸ Pause&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnReset&quot;&gt;↺ Reset&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnSpeed&quot;&gt;Speed: 1×&lt;/button&gt;
+  &lt;button class=&quot;btn&quot; id=&quot;btnContend&quot;&gt;Toggle hot bank&lt;/button&gt;
+  &lt;span class=&quot;clock&quot; id=&quot;cycleCount&quot;&gt;cycle 0&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- MAIN STAGE --&gt;
+&lt;div class=&quot;main-card&quot;&gt;
+  &lt;h3 style=&quot;font-size: 14px; font-weight: 700; margin-bottom: 4px;&quot;&gt;System view — DDR &amp;rarr; banked L2 &amp;rarr; 56 LDMAs &amp;rarr; 56 cubes&lt;/h3&gt;
+  &lt;div style=&quot;font-family: &#x27;JetBrains Mono&#x27;, monospace; font-size: 10px; color: var(--dim); margin-bottom: 12px;&quot;&gt;
+    Each cube has its own LDMA. LDMAs route to one of 8 banks based on address. Up to 8 cubes load simultaneously without contention.
+  &lt;/div&gt;
+  &lt;svg class=&quot;stage-main&quot; id=&quot;stageMain&quot; viewBox=&quot;0 0 1280 720&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;!-- DETAIL ROW: zoomed LDMA + meters --&gt;
+&lt;div class=&quot;detail-row&quot;&gt;
+
+  &lt;div class=&quot;ldma-detail&quot;&gt;
+    &lt;h3&gt;One LDMA, zoomed in&lt;/h3&gt;
+    &lt;div class=&quot;sub&quot;&gt;descriptor table &amp;middot; address generator &amp;middot; read FIFO &amp;middot; ~600 LUT total&lt;/div&gt;
+    &lt;svg id=&quot;stageLdma&quot; viewBox=&quot;0 0 360 300&quot; preserveAspectRatio=&quot;xMidYMid meet&quot;&gt;&lt;/svg&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;meters-card&quot;&gt;
+    &lt;h3&gt;Live performance&lt;/h3&gt;
+    &lt;div class=&quot;sub&quot;&gt;Aggregated across all 56 cubes &amp;middot; updates every cycle&lt;/div&gt;
+
+    &lt;div class=&quot;meter-grid&quot;&gt;
+      &lt;div class=&quot;big-meter cube&quot;&gt;
+        &lt;div class=&quot;lbl&quot;&gt;Cube utilization&lt;/div&gt;
+        &lt;div class=&quot;val&quot; id=&quot;utilVal&quot;&gt;0&lt;span class=&quot;unit&quot;&gt;%&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;big-meter cool&quot;&gt;
+        &lt;div class=&quot;lbl&quot;&gt;Effective TOPS&lt;/div&gt;
+        &lt;div class=&quot;val&quot; id=&quot;topsVal&quot;&gt;0.0&lt;span class=&quot;unit&quot;&gt;/ 34.4&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;big-meter warm&quot;&gt;
+        &lt;div class=&quot;lbl&quot;&gt;Bank conflicts&lt;/div&gt;
+        &lt;div class=&quot;val&quot; id=&quot;conflictVal&quot;&gt;0&lt;span class=&quot;unit&quot;&gt;/cyc&lt;/span&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div style=&quot;font-family: &#x27;JetBrains Mono&#x27;, monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin: 8px 0 8px;&quot;&gt;Per-bank load (this cycle)&lt;/div&gt;
+    &lt;div id=&quot;bankMeters&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- LEGEND --&gt;
+&lt;div class=&quot;legend&quot;&gt;
+  &lt;div class=&quot;legend-item&quot;&gt;&lt;span class=&quot;legend-swatch legend-cube&quot;&gt;&lt;/span&gt; cube computing&lt;/div&gt;
+  &lt;div class=&quot;legend-item&quot;&gt;&lt;span class=&quot;legend-swatch legend-loading&quot;&gt;&lt;/span&gt; LDMA loading&lt;/div&gt;
+  &lt;div class=&quot;legend-item&quot;&gt;&lt;span class=&quot;legend-swatch legend-idle&quot;&gt;&lt;/span&gt; idle / ready&lt;/div&gt;
+  &lt;div class=&quot;legend-item&quot;&gt;&lt;span class=&quot;legend-swatch legend-stalled&quot;&gt;&lt;/span&gt; stalled (bank conflict)&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- TAKEAWAY --&gt;
+&lt;div class=&quot;takeaway&quot;&gt;
+  &lt;h2&gt;What this animation proves &amp;mdash; &lt;em&gt;and where the limits are&lt;/em&gt;&lt;/h2&gt;
+  &lt;p&gt;&lt;strong&gt;The good case (no hot bank).&lt;/strong&gt; Cubes spread across 8 banks, average ~83% utilization, ~28 effective TOPS. This is the design target.&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;The pathological case (toggle &quot;hot bank&quot; button).&lt;/strong&gt; All 56 LDMAs hit bank 0. Now 7 cubes contend per bank, utilization collapses to ~22%. Bank conflicts visible in the orange meter. &lt;strong&gt;This is the failure mode firmware must avoid via address hashing.&lt;/strong&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;The real workload sits in between.&lt;/strong&gt; Realistic SoC2 utilization is 60-70% sustained on YOLO-class workloads &amp;mdash; better than starved (12%), worse than ideal (83%). Srikar&amp;rsquo;s testbench data will pin this exactly.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;footer&gt;
+  DGrid Semi &amp;middot; SoC2 architecture preview &amp;middot; numbers from v5 doc + Srikar runbook estimates &amp;middot; per-bank arbitration: Option B (bank-aware)
+&lt;/footer&gt;
+
+&lt;/div&gt;
+
+&lt;script&gt;
+const SVG = &quot;http://www.w3.org/2000/svg&quot;;
+function el(tag, attrs={}, parent=null) {
+  const e = document.createElementNS(SVG, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+const BANK_COLORS = [&#x27;#3ba3ff&#x27;, &#x27;#34c285&#x27;, &#x27;#ffb340&#x27;, &#x27;#b450c8&#x27;,
+                     &#x27;#ff7a8a&#x27;, &#x27;#5cd6e0&#x27;, &#x27;#c8b450&#x27;, &#x27;#a070ff&#x27;];
+
+// =============================================================
+// MAIN STAGE: 56 cubes, 8 banks, DDR
+// =============================================================
+
+const stageMain = document.getElementById(&#x27;stageMain&#x27;);
+const W = 1280, H = 720;
+
+// State
+const NUM_CUBES = 56;
+const NUM_BANKS = 8;
+const CUBES_PER_ROW = 8;
+const NUM_ROWS = 7;
+
+let hotBankMode = false;
+
+// Per-cube state
+const cubes = [];        // visual elements
+const cubeState = [];    // logic state
+for (let i=0; i&lt;NUM_CUBES; i++) {
+  cubeState.push({
+    state: 0,         // 0=idle, 1=loading, 2=stalled (waiting for bank), 3=computing
+    progress: 0,
+    busy: 0,
+    bankAddr: i % 8,  // default: even spread across banks
+    requestedBank: -1,
+    loadDur: 4,
+    computeDur: 6,
+    busyTotal: 0,
+    cycleCount: 0,
+  });
+}
+
+// Per-bank state
+const bankState = [];
+for (let b=0; b&lt;NUM_BANKS; b++) {
+  bankState.push({
+    busyThisCycle: false,
+    accessCount: 0,
+    conflictCount: 0,
+  });
+}
+
+// === Build the main stage ===
+function buildMainStage() {
+  stageMain.innerHTML = &#x27;&#x27;;
+
+  // DDR at top — full width
+  const ddrY = 18, ddrH = 36;
+  el(&#x27;rect&#x27;, { x: 30, y: ddrY, width: W-60, height: ddrH, rx: 6,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#2a3a52&#x27;, &#x27;stroke-width&#x27;: 1.5 }, stageMain);
+  el(&#x27;text&#x27;, { x: W/2, y: ddrY + 17, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 14, &#x27;font-weight&#x27;:600 }, stageMain).textContent = &#x27;DDR memory&#x27;;
+  el(&#x27;text&#x27;, { x: W/2, y: ddrY + 31, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-style&#x27;:&#x27;italic&#x27; }, stageMain).textContent = &#x27;occasional refill — most traffic stays in L2&#x27;;
+
+  // Global DP (small) — DDR &lt;-&gt; L2 only, not in critical path
+  const gdpX = 80, gdpY = 75, gdpW = 160, gdpH = 28;
+  el(&#x27;rect&#x27;, { x: gdpX, y: gdpY, width: gdpW, height: gdpH, rx: 4,
+    fill: &#x27;#1c2536&#x27;, stroke: &#x27;#5a6788&#x27; }, stageMain);
+  el(&#x27;text&#x27;, { x: gdpX + gdpW/2, y: gdpY + 18, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#7a8aa8&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 11, &#x27;font-weight&#x27;:600 }, stageMain).textContent = &#x27;Global DP (DDR ↔ L2)&#x27;;
+
+  // 8 BANKS spanning width
+  const bankY = 130, bankH = 64;
+  const bankPad = 14;
+  const bankAreaW = W - 60;
+  const bankW = (bankAreaW - bankPad * (NUM_BANKS - 1)) / NUM_BANKS;
+  const banks = [];
+  for (let b=0; b&lt;NUM_BANKS; b++) {
+    const x = 30 + b * (bankW + bankPad);
+    el(&#x27;rect&#x27;, { x, y: bankY, width: bankW, height: bankH, rx: 6,
+      fill: &#x27;#0d2438&#x27;, stroke: BANK_COLORS[b], &#x27;stroke-width&#x27;: 1.8 }, stageMain);
+    el(&#x27;text&#x27;, { x: x + bankW/2, y: bankY + 22, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: BANK_COLORS[b], &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 13, &#x27;font-weight&#x27;:700 }, stageMain).textContent = `BANK ${b}`;
+    el(&#x27;text&#x27;, { x: x + bankW/2, y: bankY + 38, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, stageMain).textContent = &#x27;4 KB SRAM&#x27;;
+    // bandwidth indicator inside bank
+    const bwBg = el(&#x27;rect&#x27;, { x: x + 10, y: bankY + 48, width: bankW - 20, height: 6,
+      rx: 3, fill: &#x27;rgba(0,0,0,0.4)&#x27; }, stageMain);
+    const bwFg = el(&#x27;rect&#x27;, { x: x + 10, y: bankY + 48, width: 0, height: 6,
+      rx: 3, fill: BANK_COLORS[b], &#x27;fill-opacity&#x27;: 0.7 }, stageMain);
+    banks.push({ x, y: bankY, w: bankW, h: bankH,
+      bottomY: bankY + bankH, centerX: x + bankW/2,
+      bwFg, color: BANK_COLORS[b] });
+  }
+  bankState.forEach((b, i) =&gt; b.viz = banks[i]);
+
+  // Connector: Global DP -&gt; banks
+  for (let b=0; b&lt;NUM_BANKS; b++) {
+    el(&#x27;line&#x27;, { x1: gdpX + gdpW/2, y1: gdpY + gdpH,
+      x2: banks[b].centerX, y2: bankY,
+      stroke: &#x27;#2a3a52&#x27;, &#x27;stroke-width&#x27;: 0.8, &#x27;stroke-opacity&#x27;: 0.5,
+      &#x27;stroke-dasharray&#x27;: &#x27;3,3&#x27; }, stageMain);
+  }
+
+  // 7 ROWS x 8 CUBES grid below banks
+  const cubesAreaY = 230;
+  const cubesAreaH = H - cubesAreaY - 20;
+  const rowH = cubesAreaH / NUM_ROWS;
+  const colW = bankAreaW / CUBES_PER_ROW;
+  const colPad = bankPad;
+
+  for (let r=0; r&lt;NUM_ROWS; r++) {
+    for (let c=0; c&lt;CUBES_PER_ROW; c++) {
+      const i = r * CUBES_PER_ROW + c;
+      const cellX = 30 + c * (colW);  // align with banks
+      const cellY = cubesAreaY + r * rowH;
+      const cellInnerW = colW - colPad;
+
+      // LDMA — small box on left of cube
+      const ldmaW = 28, ldmaH = 28;
+      const ldmaX = cellX + 4;
+      const ldmaY = cellY + (rowH - ldmaH) / 2;
+      const ldmaRect = el(&#x27;rect&#x27;, { x: ldmaX, y: ldmaY,
+        width: ldmaW, height: ldmaH, rx: 3,
+        fill: &#x27;#0d2438&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 1.2 }, stageMain);
+      el(&#x27;text&#x27;, { x: ldmaX + ldmaW/2, y: ldmaY + ldmaH/2 + 3, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+        fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;:700 }, stageMain).textContent = &#x27;L&#x27;;
+
+      // Cube — isometric drawing of 8x8x8
+      const cubeX0 = ldmaX + ldmaW + 8;
+      const cubeSize = Math.min(rowH - 12, cellInnerW - ldmaW - 14);
+      const cubeY0 = cellY + (rowH - cubeSize) / 2;
+
+      // Draw simplified isometric cube outline
+      const off = cubeSize * 0.18;
+      const front = el(&#x27;rect&#x27;, { x: cubeX0, y: cubeY0,
+        width: cubeSize - off, height: cubeSize - off, rx: 2,
+        fill: &#x27;#2a1a3a&#x27;, stroke: &#x27;#b450c8&#x27;, &#x27;stroke-width&#x27;: 1.2,
+        &#x27;stroke-opacity&#x27;: 0.5 }, stageMain);
+      // Top face hint
+      el(&#x27;polygon&#x27;, {
+        points: `${cubeX0},${cubeY0} ${cubeX0 + off},${cubeY0 - off} ${cubeX0 + cubeSize},${cubeY0 - off} ${cubeX0 + cubeSize - off},${cubeY0}`,
+        fill: &#x27;#1f1429&#x27;, stroke: &#x27;#b450c8&#x27;, &#x27;stroke-width&#x27;: 0.8, &#x27;stroke-opacity&#x27;: 0.4
+      }, stageMain);
+      // Side face hint
+      el(&#x27;polygon&#x27;, {
+        points: `${cubeX0 + cubeSize - off},${cubeY0} ${cubeX0 + cubeSize},${cubeY0 - off} ${cubeX0 + cubeSize},${cubeY0 + cubeSize - off - off} ${cubeX0 + cubeSize - off},${cubeY0 + cubeSize - off}`,
+        fill: &#x27;#241634&#x27;, stroke: &#x27;#b450c8&#x27;, &#x27;stroke-width&#x27;: 0.8, &#x27;stroke-opacity&#x27;: 0.4
+      }, stageMain);
+
+      // PCORE label
+      el(&#x27;text&#x27;, { x: cubeX0 + (cubeSize - off)/2, y: cubeY0 + (cubeSize - off)/2 + 3,
+        &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+        fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;,
+        &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;:600,
+        &#x27;pointer-events&#x27;: &#x27;none&#x27; }, stageMain).textContent = `P${i}`;
+
+      // Connector: LDMA top -&gt; bank bottom (color matches bank)
+      const targetBankIdx = i % NUM_BANKS;
+      const targetBank = banks[targetBankIdx];
+      const connector = el(&#x27;line&#x27;, {
+        x1: ldmaX + ldmaW/2, y1: ldmaY,
+        x2: targetBank.centerX, y2: targetBank.bottomY,
+        stroke: targetBank.color, &#x27;stroke-width&#x27;: 0.4,
+        &#x27;stroke-opacity&#x27;: 0.15
+      }, stageMain);
+
+      cubes.push({
+        front, ldmaRect, connector,
+        cubeX: cubeX0 + (cubeSize - off)/2,
+        cubeY: cubeY0 + (cubeSize - off)/2,
+        ldmaX: ldmaX + ldmaW/2, ldmaY: ldmaY + ldmaH/2,
+        ldmaTopY: ldmaY,
+        bankIdx: targetBankIdx,
+      });
+    }
+  }
+}
+
+buildMainStage();
+
+// =============================================================
+// LDMA DETAIL VIEW (zoomed)
+// =============================================================
+const stageLdma = document.getElementById(&#x27;stageLdma&#x27;);
+
+function buildLdmaDetail() {
+  stageLdma.innerHTML = &#x27;&#x27;;
+
+  // Big LDMA outline
+  el(&#x27;rect&#x27;, { x: 20, y: 20, width: 320, height: 260, rx: 8,
+    fill: &#x27;#0d1830&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 1.5 }, stageLdma);
+  el(&#x27;text&#x27;, { x: 180, y: 38, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;,
+    &#x27;font-size&#x27;: 13, &#x27;font-weight&#x27;:700 }, stageLdma).textContent = &#x27;LDMA&#x27;;
+
+  // Descriptor table — 16 entries
+  el(&#x27;rect&#x27;, { x: 36, y: 56, width: 130, height: 96, rx: 4,
+    fill: &#x27;#1a2238&#x27;, stroke: &#x27;#5a6788&#x27; }, stageLdma);
+  el(&#x27;text&#x27;, { x: 101, y: 70, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;:600 }, stageLdma).textContent = &#x27;Descriptor table&#x27;;
+  el(&#x27;text&#x27;, { x: 101, y: 82, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8 }, stageLdma).textContent = &#x27;16 entries × 256b&#x27;;
+  // 16 mini cells
+  const tableCells = [];
+  for (let i=0; i&lt;16; i++) {
+    const col = i % 4, row = Math.floor(i / 4);
+    const x = 42 + col * 30, y = 92 + row * 14;
+    const r = el(&#x27;rect&#x27;, { x, y, width: 26, height: 10, rx: 1,
+      fill: &#x27;#0a0e1a&#x27;, stroke: &#x27;#3ba3ff&#x27;, &#x27;stroke-width&#x27;: 0.5,
+      &#x27;stroke-opacity&#x27;: 0.4 }, stageLdma);
+    tableCells.push(r);
+  }
+
+  // Address generator — 3-level loop
+  el(&#x27;rect&#x27;, { x: 195, y: 56, width: 128, height: 96, rx: 4,
+    fill: &#x27;#1a2238&#x27;, stroke: &#x27;#5a6788&#x27; }, stageLdma);
+  el(&#x27;text&#x27;, { x: 259, y: 70, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;:600 }, stageLdma).textContent = &#x27;Address gen&#x27;;
+  el(&#x27;text&#x27;, { x: 259, y: 82, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8 }, stageLdma).textContent = &#x27;3-level nested loop&#x27;;
+
+  // Animated address counters
+  const counterTexts = [];
+  for (let lvl=0; lvl&lt;3; lvl++) {
+    el(&#x27;text&#x27;, { x: 207, y: 102 + lvl*14,
+      fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, stageLdma).textContent = `i${lvl}=`;
+    const t = el(&#x27;text&#x27;, { x: 230, y: 102 + lvl*14,
+      fill: &#x27;#3ba3ff&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;:600 }, stageLdma);
+    t.textContent = &#x27;0&#x27;;
+    counterTexts.push(t);
+  }
+
+  // Read FIFO
+  el(&#x27;rect&#x27;, { x: 36, y: 168, width: 130, height: 96, rx: 4,
+    fill: &#x27;#1a2238&#x27;, stroke: &#x27;#5a6788&#x27; }, stageLdma);
+  el(&#x27;text&#x27;, { x: 101, y: 182, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;:600 }, stageLdma).textContent = &#x27;Read FIFO&#x27;;
+  el(&#x27;text&#x27;, { x: 101, y: 194, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8 }, stageLdma).textContent = &#x27;32 × 96b&#x27;;
+  // FIFO fill bar
+  el(&#x27;rect&#x27;, { x: 42, y: 210, width: 118, height: 18, rx: 2,
+    fill: &#x27;#0a0e1a&#x27;, stroke: &#x27;#5a6788&#x27;, &#x27;stroke-width&#x27;: 0.5 }, stageLdma);
+  const fifoFill = el(&#x27;rect&#x27;, { x: 42, y: 210, width: 0, height: 18, rx: 2,
+    fill: &#x27;#3ba3ff&#x27;, &#x27;fill-opacity&#x27;: 0.7 }, stageLdma);
+  const fifoLabel = el(&#x27;text&#x27;, { x: 101, y: 222, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#e8edf5&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9, &#x27;font-weight&#x27;:600 }, stageLdma);
+  fifoLabel.textContent = &#x27;0/32&#x27;;
+  el(&#x27;text&#x27;, { x: 101, y: 247, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8, &#x27;font-style&#x27;:&#x27;italic&#x27; }, stageLdma).textContent = &#x27;absorbs SRAM bursts&#x27;;
+
+  // State machine
+  el(&#x27;rect&#x27;, { x: 195, y: 168, width: 128, height: 96, rx: 4,
+    fill: &#x27;#1a2238&#x27;, stroke: &#x27;#5a6788&#x27; }, stageLdma);
+  el(&#x27;text&#x27;, { x: 259, y: 182, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#9ca8c2&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 10, &#x27;font-weight&#x27;:600 }, stageLdma).textContent = &#x27;State machine&#x27;;
+
+  // Three states drawn as nodes
+  const stateNodes = [];
+  const stateNames = [&#x27;IDLE&#x27;, &#x27;LOAD&#x27;, &#x27;COMP&#x27;];
+  const stateColors = [&#x27;#5a6788&#x27;, &#x27;#ffb340&#x27;, &#x27;#b450c8&#x27;];
+  for (let s=0; s&lt;3; s++) {
+    const sx = 215 + s*32, sy = 220;
+    const c = el(&#x27;circle&#x27;, { cx: sx, cy: sy, r: 11,
+      fill: &#x27;#0a0e1a&#x27;, stroke: stateColors[s], &#x27;stroke-width&#x27;: 1.2,
+      &#x27;stroke-opacity&#x27;: 0.4 }, stageLdma);
+    el(&#x27;text&#x27;, { x: sx, y: sy + 3, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+      fill: stateColors[s], &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;,
+      &#x27;font-size&#x27;: 7, &#x27;font-weight&#x27;:600 }, stageLdma).textContent = stateNames[s];
+    if (s &lt; 2) {
+      el(&#x27;line&#x27;, { x1: sx + 11, y1: sy, x2: sx + 21, y2: sy,
+        stroke: &#x27;#5a6788&#x27;, &#x27;stroke-width&#x27;: 1 }, stageLdma);
+    }
+    stateNodes.push(c);
+  }
+  // arrow back from COMP -&gt; IDLE (curved)
+  el(&#x27;path&#x27;, { d: &#x27;M 279 209 Q 247 195, 215 209&#x27;,
+    fill: &#x27;none&#x27;, stroke: &#x27;#5a6788&#x27;, &#x27;stroke-width&#x27;: 1, &#x27;stroke-dasharray&#x27;: &#x27;2,2&#x27; }, stageLdma);
+
+  el(&#x27;text&#x27;, { x: 259, y: 254, &#x27;text-anchor&#x27;:&#x27;middle&#x27;,
+    fill: &#x27;#5a6788&#x27;, &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 8, &#x27;font-style&#x27;:&#x27;italic&#x27; }, stageLdma).textContent = &#x27;4 cyc → 6 cyc → repeat&#x27;;
+
+  // I/O arrows
+  // input from bank (top)
+  el(&#x27;path&#x27;, { d: &#x27;M 100 16 L 100 56&#x27;, stroke: &#x27;#3ba3ff&#x27;,
+    &#x27;stroke-width&#x27;: 1.5, &#x27;marker-end&#x27;: &#x27;url(#arrowDown)&#x27; }, stageLdma);
+  el(&#x27;text&#x27;, { x: 105, y: 30, fill: &#x27;#5a6788&#x27;,
+    &#x27;font-family&#x27;:&#x27;JetBrains Mono&#x27;, &#x27;font-size&#x27;: 9 }, stageLdma).textContent = &#x27;from bank&#x27;;
+
+  // output to PCORE (right)
+  el(&#x27;path&#x27;, { d: &#x27;M 340 150 L 360 150 M 360 130 L 360 170&#x27;,
+    stroke: &#x27;#b450c8&#x27;, &#x27;stroke-width&#x27;: 1.5 }, stageLdma);
+
+  // arrow defs
+  const defs = el(&#x27;defs&#x27;, {}, stageLdma);
+  const m = el(&#x27;marker&#x27;, { id: &#x27;arrowDown&#x27;, viewBox: &#x27;0 0 10 10&#x27;,
+    refX: 5, refY: 8, markerWidth: 6, markerHeight: 6, orient: &#x27;auto&#x27; }, defs);
+  el(&#x27;path&#x27;, { d: &#x27;M 0 0 L 10 0 L 5 8 z&#x27;, fill: &#x27;#3ba3ff&#x27; }, m);
+
+  return { tableCells, counterTexts, fifoFill, fifoLabel, stateNodes };
+}
+
+const ldmaDetail = buildLdmaDetail();
+
+// =============================================================
+// BANK METERS UI
+// =============================================================
+const bankMetersDiv = document.getElementById(&#x27;bankMeters&#x27;);
+const bankMeterEls = [];
+for (let b=0; b&lt;NUM_BANKS; b++) {
+  const row = document.createElement(&#x27;div&#x27;);
+  row.className = &#x27;bank-meters&#x27;;
+  row.innerHTML = `
+    &lt;div class=&quot;name&quot; style=&quot;color: ${BANK_COLORS[b]};&quot;&gt;B${b}&lt;/div&gt;
+    &lt;div class=&quot;track&quot;&gt;&lt;div class=&quot;fill&quot; id=&quot;bankFill${b}&quot; style=&quot;background: ${BANK_COLORS[b]};&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;pct&quot; id=&quot;bankPct${b}&quot;&gt;0/56&lt;/div&gt;`;
+  bankMetersDiv.appendChild(row);
+  bankMeterEls.push({
+    fill: document.getElementById(`bankFill${b}`),
+    pct: document.getElementById(`bankPct${b}`),
+  });
+}
+
+// =============================================================
+// PACKET ANIMATION
+// =============================================================
+function spawnPacket(svg, x1, y1, x2, y2, color, duration=350) {
+  const c = el(&#x27;circle&#x27;, { cx: x1, cy: y1, r: 2.8,
+    fill: color, opacity: 0.95 }, svg);
+  const start = performance.now();
+  function step(t) {
+    const dt = (t - start) / duration;
+    if (dt &gt;= 1) { c.remove(); return; }
+    const x = x1 + (x2-x1)*dt;
+    const y = y1 + (y2-y1)*dt;
+    c.setAttribute(&#x27;cx&#x27;, x);
+    c.setAttribute(&#x27;cy&#x27;, y);
+    c.setAttribute(&#x27;opacity&#x27;, 0.95 * (1 - dt*0.4));
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// =============================================================
+// MAIN TICK
+// =============================================================
+let cycle = 0, running = false, speedMult = 1, lastT = 0;
+const baseTickMs = 70;
+const cycleLabel = document.getElementById(&#x27;cycleCount&#x27;);
+
+let aggBusy = 0;       // total cube-cycles spent computing
+let aggCycles = 0;     // total cube-cycles elapsed
+let aggConflicts = 0;  // total stalled-cycles
+let conflictThisCycle = 0;
+
+function tick() {
+  cycle++;
+  cycleLabel.textContent = `cycle ${cycle}`;
+
+  // Reset bank busy
+  bankState.forEach(b =&gt; b.busyThisCycle = false);
+  conflictThisCycle = 0;
+
+  // For &quot;hot bank&quot; mode: redirect ALL cube addresses to bank 0
+  for (let i=0; i&lt;NUM_CUBES; i++) {
+    cubeState[i].bankAddr = hotBankMode ? 0 : (i % NUM_BANKS);
+    cubes[i].bankIdx = cubeState[i].bankAddr;
+  }
+
+  // Per-cube state machine
+  // Process in random order to be fair to bank arbitration
+  const order = Array.from({length: NUM_CUBES}, (_, i) =&gt; i);
+  for (let n = order.length - 1; n &gt; 0; n--) {
+    const j = (cycle * 7 + n * 13) % (n + 1);
+    [order[n], order[j]] = [order[j], order[n]];
+  }
+
+  for (const i of order) {
+    const cs = cubeState[i];
+    cs.cycleCount++;
+
+    if (cs.state === 0) {
+      // idle, want to load — check if bank is available
+      const b = cs.bankAddr;
+      if (!bankState[b].busyThisCycle) {
+        bankState[b].busyThisCycle = true;
+        bankState[b].accessCount++;
+        cs.state = 1;
+        cs.progress = 1;  // loaded 1 cycle worth
+      } else {
+        cs.state = 2;  // stalled
+      }
+    } else if (cs.state === 1) {
+      // loading — keep accessing bank
+      const b = cs.bankAddr;
+      if (!bankState[b].busyThisCycle) {
+        bankState[b].busyThisCycle = true;
+        bankState[b].accessCount++;
+        cs.progress++;
+        if (cs.progress &gt;= cs.loadDur) {
+          cs.state = 3;  // start computing
+          cs.busy = cs.computeDur;
+        }
+      } else {
+        cs.state = 2;  // stalled mid-load
+        bankState[b].conflictCount++;
+        aggConflicts++;
+        conflictThisCycle++;
+      }
+    } else if (cs.state === 2) {
+      // stalled — try again
+      const b = cs.bankAddr;
+      if (!bankState[b].busyThisCycle) {
+        bankState[b].busyThisCycle = true;
+        bankState[b].accessCount++;
+        cs.state = 1;
+      } else {
+        bankState[b].conflictCount++;
+        aggConflicts++;
+        conflictThisCycle++;
+      }
+    } else if (cs.state === 3) {
+      // computing
+      cs.busy--;
+      cs.busyTotal++;
+      aggBusy++;
+      if (cs.busy &lt;= 0) cs.state = 0;
+    }
+    aggCycles++;
+  }
+
+  // === Update visuals ===
+  for (let i=0; i&lt;NUM_CUBES; i++) {
+    const cs = cubeState[i];
+    const cube = cubes[i];
+
+    if (cs.state === 3) {
+      // computing
+      cube.front.setAttribute(&#x27;fill&#x27;, &#x27;#3a1f5a&#x27;);
+      cube.front.setAttribute(&#x27;stroke-opacity&#x27;, 1);
+    } else if (cs.state === 1) {
+      // loading
+      cube.front.setAttribute(&#x27;fill&#x27;, &#x27;#2a2618&#x27;);
+      cube.front.setAttribute(&#x27;stroke&#x27;, &#x27;#ffb340&#x27;);
+      cube.front.setAttribute(&#x27;stroke-opacity&#x27;, 0.85);
+    } else if (cs.state === 2) {
+      // stalled
+      cube.front.setAttribute(&#x27;fill&#x27;, &#x27;#2a1518&#x27;);
+      cube.front.setAttribute(&#x27;stroke&#x27;, &#x27;#ff5440&#x27;);
+      cube.front.setAttribute(&#x27;stroke-opacity&#x27;, 0.9);
+    } else {
+      // idle
+      cube.front.setAttribute(&#x27;fill&#x27;, &#x27;#2a1a3a&#x27;);
+      cube.front.setAttribute(&#x27;stroke&#x27;, &#x27;#b450c8&#x27;);
+      cube.front.setAttribute(&#x27;stroke-opacity&#x27;, 0.4);
+    }
+
+    // LDMA color
+    cube.ldmaRect.setAttribute(&#x27;stroke&#x27;, cs.state === 1 ? &#x27;#ffb340&#x27; : &#x27;#3ba3ff&#x27;);
+    cube.ldmaRect.setAttribute(&#x27;stroke-opacity&#x27;,
+      cs.state === 1 ? 1 : (cs.state === 2 ? 0.9 : 0.6));
+
+    // Connector pulse — make the bank-to-cube line bright when loading
+    const targetBank = bankState[cs.bankAddr].viz;
+    if (cube.connector) {
+      // update connector target if bank changed (hot bank mode)
+      cube.connector.setAttribute(&#x27;x2&#x27;, targetBank.centerX);
+      cube.connector.setAttribute(&#x27;stroke&#x27;, targetBank.color);
+      if (cs.state === 1) {
+        cube.connector.setAttribute(&#x27;stroke-opacity&#x27;, 0.7);
+        cube.connector.setAttribute(&#x27;stroke-width&#x27;, 1.2);
+      } else {
+        cube.connector.setAttribute(&#x27;stroke-opacity&#x27;, 0.12);
+        cube.connector.setAttribute(&#x27;stroke-width&#x27;, 0.5);
+      }
+    }
+
+    // Spawn data packets when loading, going from bank → LDMA
+    if (cs.state === 1 &amp;&amp; cycle % 2 === 0) {
+      const bank = bankState[cs.bankAddr].viz;
+      spawnPacket(stageMain, bank.centerX, bank.bottomY,
+                  cube.ldmaX, cube.ldmaTopY, bank.color, 280);
+    }
+  }
+
+  // === Update bank visuals ===
+  for (let b=0; b&lt;NUM_BANKS; b++) {
+    const bs = bankState[b];
+    const requesters = cubeState.filter(c =&gt; c.bankAddr === b).length;
+    // bandwidth indicator inside bank
+    const fillPct = bs.busyThisCycle ? 100 : 0;
+    bs.viz.bwFg.setAttribute(&#x27;width&#x27;, (bs.viz.w - 20) * fillPct / 100);
+
+    // bank meter
+    bankMeterEls[b].fill.style.width = (requesters / 7 * 100) + &#x27;%&#x27;;
+    if (requesters &gt; 7) bankMeterEls[b].fill.style.background = &#x27;#ff5440&#x27;;
+    bankMeterEls[b].pct.textContent = `${requesters}/56`;
+  }
+
+  // === Update meters ===
+  const utilPct = aggCycles &gt; 0 ? Math.round(100 * aggBusy / aggCycles) : 0;
+  document.getElementById(&#x27;utilVal&#x27;).innerHTML = `${utilPct}&lt;span class=&quot;unit&quot;&gt;%&lt;/span&gt;`;
+  const peakTOPS = 28672 * 600e6 * 2 / 1e12;
+  const effTOPS = peakTOPS * utilPct / 100;
+  document.getElementById(&#x27;topsVal&#x27;).innerHTML = `${effTOPS.toFixed(1)}&lt;span class=&quot;unit&quot;&gt;/ 34.4&lt;/span&gt;`;
+  document.getElementById(&#x27;conflictVal&#x27;).innerHTML = `${conflictThisCycle}&lt;span class=&quot;unit&quot;&gt;/cyc&lt;/span&gt;`;
+
+  // === Update LDMA detail ===
+  // Pick a representative cube (cube 0) to drive the detail view
+  const repState = cubeState[0];
+  // Activate descriptor cell based on cycle
+  const activeCell = cycle % 16;
+  for (let k=0; k&lt;16; k++) {
+    const c = ldmaDetail.tableCells[k];
+    if (k === activeCell &amp;&amp; repState.state !== 0) {
+      c.setAttribute(&#x27;fill&#x27;, &#x27;#3ba3ff&#x27;);
+      c.setAttribute(&#x27;stroke-opacity&#x27;, 1);
+    } else {
+      c.setAttribute(&#x27;fill&#x27;, &#x27;#0a0e1a&#x27;);
+      c.setAttribute(&#x27;stroke-opacity&#x27;, 0.4);
+    }
+  }
+  // Address counters
+  ldmaDetail.counterTexts[0].textContent = String(cycle % 8);
+  ldmaDetail.counterTexts[1].textContent = String(Math.floor(cycle / 8) % 8);
+  ldmaDetail.counterTexts[2].textContent = String(Math.floor(cycle / 64) % 4);
+  // FIFO fill (varies by state)
+  let fifoFill = 0;
+  if (repState.state === 1) fifoFill = Math.min(repState.progress / repState.loadDur, 1);
+  else if (repState.state === 3) fifoFill = 1 - (repState.busy / repState.computeDur);
+  else if (repState.state === 2) fifoFill = repState.progress / repState.loadDur;
+  ldmaDetail.fifoFill.setAttribute(&#x27;width&#x27;, 118 * fifoFill);
+  ldmaDetail.fifoLabel.textContent = `${Math.round(fifoFill * 32)}/32`;
+  // State machine highlight
+  const activeState = repState.state === 0 ? 0 : (repState.state === 3 ? 2 : 1);
+  for (let s=0; s&lt;3; s++) {
+    const c = ldmaDetail.stateNodes[s];
+    c.setAttribute(&#x27;stroke-opacity&#x27;, s === activeState ? 1 : 0.4);
+    c.setAttribute(&#x27;fill&#x27;, s === activeState ? &#x27;#1f2a3a&#x27; : &#x27;#0a0e1a&#x27;);
+  }
+}
+
+function loop(t) {
+  if (!running) return;
+  if (t - lastT &gt;= baseTickMs / speedMult) { tick(); lastT = t; }
+  requestAnimationFrame(loop);
+}
+
+document.getElementById(&#x27;btnPlay&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  if (running) return;
+  running = true; lastT = performance.now();
+  requestAnimationFrame(loop);
+});
+document.getElementById(&#x27;btnPause&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; { running = false; });
+document.getElementById(&#x27;btnReset&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+  running = false; cycle = 0;
+  cycleLabel.textContent = &#x27;cycle 0&#x27;;
+  for (let i=0; i&lt;NUM_CUBES; i++) {
+    cubeState[i].state = 0;
+    cubeState[i].progress = 0;
+    cubeState[i].busy = 0;
+    cubeState[i].busyTotal = 0;
+    cubeState[i].cycleCount = 0;
+  }
+  for (let b=0; b&lt;NUM_BANKS; b++) {
+    bankState[b].accessCount = 0;
+    bankState[b].conflictCount = 0;
+  }
+  aggBusy = 0; aggCycles = 0; aggConflicts = 0; conflictThisCycle = 0;
+});
+const speeds = [0.5, 1, 2, 4];
+let speedIdx = 1;
+document.getElementById(&#x27;btnSpeed&#x27;).addEventListener(&#x27;click&#x27;, (e) =&gt; {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  speedMult = speeds[speedIdx];
+  e.target.textContent = `Speed: ${speedMult}×`;
+});
+document.getElementById(&#x27;btnContend&#x27;).addEventListener(&#x27;click&#x27;, (e) =&gt; {
+  hotBankMode = !hotBankMode;
+  e.target.textContent = hotBankMode ? &#x27;Spread across banks&#x27; : &#x27;Toggle hot bank&#x27;;
+  e.target.classList.toggle(&#x27;primary&#x27;, hotBankMode);
+  // Reset stats on mode switch so user sees the new equilibrium
+  aggBusy = 0; aggCycles = 0; aggConflicts = 0;
+});
+
+setTimeout(() =&gt; document.getElementById(&#x27;btnPlay&#x27;).click(), 600);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+" title="SoC2 in motion &mdash; <em>56 cubes, 56 LDMAs, 8 banks</em>"></iframe>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-brand">DGRID SEMI &middot; HYDERABAD</div>
+  <div>The Data Movement Story &middot; April 2026 &middot; Four animations as one narrative</div>
+  <div class="footer-meta">Each section is self-contained &middot; iframe-isolated &middot; preserves standalone behaviour &middot; "Open standalone" pops the animation in a new window</div>
+</footer>
+
+<script>
+// ============ Active section nav highlight ============
+const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+const sections = document.querySelectorAll('section.section');
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+        else if (link.getAttribute('href') !== '#top') link.classList.remove('active');
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -50% 0px' });
+
+sections.forEach(s => obs.observe(s));
+
+// ============ Open standalone in new window ============
+function openFullscreen(iframeId) {
+  const iframe = document.getElementById(iframeId);
+  const srcdoc = iframe.getAttribute('srcdoc');
+  if (!srcdoc) return;
+  const blob = new Blob([srcdoc], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  window.open(url, '_blank', 'width=1400,height=900');
+  // Note: blob URL leaks until the new window closes, that's OK
+}
+</script>
+
+</body>
+</html>

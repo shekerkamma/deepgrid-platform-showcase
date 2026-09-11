@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flat vs Cube — Why SoC2 Needs Per-PCORE DMA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --panel: #131826;
+    --ink: #e8edf5;
+    --dim: #6b7388;
+    --accent: #3ba3ff;
+    --hot: #ff5440;
+    --warm: #ffb340;
+    --cool: #34c285;
+    --cube: #b450c8;
+    --line: #1f2738;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page { max-width: 1280px; margin: 0 auto; padding: 50px 24px 80px; }
+
+  /* MASTHEAD */
+  header { text-align: center; margin-bottom: 30px; }
+  header .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.25em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  header h1 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.05; margin-bottom: 14px;
+  }
+  header h1 .em { color: var(--cube); }
+  header p.sub {
+    color: var(--dim); font-size: 16px;
+    max-width: 760px; margin: 0 auto; line-height: 1.55;
+  }
+
+  /* CHAPTER MARKER */
+  .chapter {
+    margin: 60px 0 24px;
+    text-align: center;
+    position: relative;
+  }
+  .chapter::before, .chapter::after {
+    content: '';
+    position: absolute;
+    top: 50%; height: 1px;
+    background: var(--line);
+    width: 30%;
+  }
+  .chapter::before { left: 0; }
+  .chapter::after { right: 0; }
+  .chapter-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    background: var(--bg);
+    padding: 0 18px;
+    position: relative;
+    display: inline-block;
+  }
+  .chapter h2 {
+    font-size: 26px; font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-top: 12px; line-height: 1.2;
+  }
+  .chapter h2 em { color: var(--cube); font-style: normal; }
+  .chapter p {
+    color: var(--dim); font-size: 14.5px;
+    margin-top: 8px;
+    max-width: 680px; margin-left: auto; margin-right: auto;
+    line-height: 1.55;
+  }
+
+  /* CONTROLS */
+  .controls {
+    display: flex; justify-content: center; align-items: center;
+    gap: 12px; margin: 22px 0 30px; flex-wrap: wrap;
+  }
+  .btn {
+    background: var(--panel); color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 10px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.05em;
+    cursor: pointer; transition: all 0.15s;
+    border-radius: 6px;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary {
+    background: var(--accent); color: #0a0e1a;
+    font-weight: 700; border-color: var(--accent);
+  }
+  .clock {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--dim); font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  /* TWO-SCENE GRID */
+  .scenes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 920px) { .scenes { grid-template-columns: 1fr; } }
+
+  .scene {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px;
+    position: relative;
+    display: flex; flex-direction: column;
+  }
+  .scene-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 8px; gap: 12px;
+  }
+  .scene-name {
+    font-size: 20px; font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .scene-name .sub {
+    font-size: 13px; color: var(--dim);
+    font-weight: 500;
+    margin-left: 6px;
+  }
+  .scene-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .scene[data-id="flat"] { border-left: 3px solid var(--cool); }
+  .scene[data-id="flat"] .scene-tag { background: rgba(52,194,133,0.15); color: var(--cool); }
+  .scene[data-id="cube"] { border-left: 3px solid var(--cube); }
+  .scene[data-id="cube"] .scene-tag { background: rgba(180,80,200,0.15); color: var(--cube); }
+  .scene[data-id="starved"] { border-left: 3px solid var(--hot); }
+  .scene[data-id="starved"] .scene-tag { background: rgba(255,84,64,0.15); color: var(--hot); }
+  .scene[data-id="fed"] { border-left: 3px solid var(--accent); }
+  .scene[data-id="fed"] .scene-tag { background: rgba(59,163,255,0.15); color: var(--accent); }
+
+  .scene-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--dim);
+    margin-bottom: 14px; line-height: 1.5;
+  }
+
+  .stage {
+    width: 100%;
+    aspect-ratio: 1.25 / 1;
+    background: rgba(255,255,255,0.012);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* METER ROW */
+  .meters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .meter {
+    background: rgba(255,255,255,0.025);
+    padding: 10px 12px;
+    border-radius: 6px;
+  }
+  .meter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 6px;
+  }
+  .meter-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .meter-unit {
+    font-size: 10px; color: var(--dim);
+    margin-left: 4px;
+  }
+  .meter.hot .meter-value { color: var(--hot); }
+  .meter.cool .meter-value { color: var(--cool); }
+  .meter.cube .meter-value { color: var(--cube); }
+  .meter.accent .meter-value { color: var(--accent); }
+
+  /* PUNCHLINE between sections */
+  .punch {
+    margin: 24px 0;
+    padding: 22px 28px;
+    background: linear-gradient(135deg,
+      rgba(180,80,200,0.07) 0%,
+      rgba(59,163,255,0.06) 100%);
+    border: 1px solid rgba(180,80,200,0.2);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .punch h3 {
+    font-size: 18px; font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .punch h3 em { color: var(--cube); font-style: normal; }
+  .punch p {
+    color: var(--dim); font-size: 14px;
+    line-height: 1.55;
+    max-width: 620px; margin: 0 auto;
+  }
+
+  /* FINAL TAKEAWAY */
+  .takeaway {
+    margin-top: 50px;
+    padding: 32px;
+    background: linear-gradient(135deg,
+      rgba(52,194,133,0.05) 0%,
+      rgba(59,163,255,0.06) 100%);
+    border: 1px solid rgba(59,163,255,0.18);
+    border-radius: 14px;
+  }
+  .takeaway h2 {
+    font-size: 22px; font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .takeaway h2 em { color: var(--accent); font-style: normal; }
+  .takeaway p {
+    color: var(--dim); font-size: 14.5px;
+    line-height: 1.6; margin-bottom: 10px;
+  }
+  .takeaway p strong { color: var(--ink); }
+  .takeaway .three-up {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 22px;
+  }
+  @media (max-width: 800px) { .takeaway .three-up { grid-template-columns: 1fr; } }
+  .takeaway .three-up .item {
+    padding: 16px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+  .takeaway .three-up .item .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .takeaway .three-up .item h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .takeaway .three-up .item p {
+    font-size: 12.5px;
+    color: var(--dim);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  footer {
+    margin-top: 50px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="eyebrow">DGrid Semi · Compute Shape</div>
+  <h1>Flat to <span class="em">cube</span> — and why the cube starves alone</h1>
+  <p class="sub">SoC1.2's 8×8 matrix unit is the right tool today. SoC2's 8×8×8 cube is 8× the compute — and 8× the appetite. Watch how the cube changes the conversation.</p>
+</header>
+
+<div class="controls">
+  <button class="btn primary" id="btnPlay">▶ Play all</button>
+  <button class="btn" id="btnPause">⏸ Pause</button>
+  <button class="btn" id="btnReset">↺ Reset</button>
+  <button class="btn" id="btnSpeed">Speed: 1×</button>
+  <span class="clock" id="cycleCount">cycle 0</span>
+</div>
+
+<!-- ============ CHAPTER A ============ -->
+<div class="chapter">
+  <span class="chapter-num">Chapter A</span>
+  <h2>From <em>flat</em> to <em>cube</em> — same workload, 8× faster</h2>
+  <p>Both units compute the same K=8 reduction. The 8×8 matrix unit (SoC1.2) needs 8 cycles to consume K. The 8×8×8 cube (SoC2) consumes K in one cycle by stacking 8 multiply layers. Same answer, different geometry.</p>
+</div>
+
+<div class="scenes">
+
+  <!-- SoC1.2 — 8×8 flat matrix unit -->
+  <div class="scene" data-id="flat">
+    <div class="scene-head">
+      <div class="scene-name">8×8 matrix unit<span class="sub">SoC1.2 · per PCORE</span></div>
+      <div class="scene-tag">flat · 64 MAC/cycle</div>
+    </div>
+    <div class="scene-meta">8×8 weight stationary · K iterations in software · 64 MACs × 8 PCOREs = 512 total</div>
+    <svg class="stage" id="stageFlat" viewBox="0 0 480 380" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="meters">
+      <div class="meter cool">
+        <div class="meter-label">K iteration</div>
+        <div class="meter-value" id="flatK">0<span class="meter-unit">/ 8</span></div>
+      </div>
+      <div class="meter cool">
+        <div class="meter-label">tile complete</div>
+        <div class="meter-value" id="flatTiles">0<span class="meter-unit">tiles</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SoC2 — 8×8×8 cube -->
+  <div class="scene" data-id="cube">
+    <div class="scene-head">
+      <div class="scene-name">8×8×8 cube<span class="sub">SoC2 · per PCORE</span></div>
+      <div class="scene-tag">cube · 512 MAC/cycle</div>
+    </div>
+    <div class="scene-meta">8×8×8 systolic · K = hardware depth · 512 MACs × 56 PCOREs = 28,672 total</div>
+    <svg class="stage" id="stageCube" viewBox="0 0 480 380" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="meters">
+      <div class="meter cube">
+        <div class="meter-label">K iteration</div>
+        <div class="meter-value" id="cubeK">0<span class="meter-unit">/ 1 (HW depth)</span></div>
+      </div>
+      <div class="meter cube">
+        <div class="meter-label">tile complete</div>
+        <div class="meter-value" id="cubeTiles">0<span class="meter-unit">tiles</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Bridge punchline -->
+<div class="punch">
+  <h3>Same arithmetic, <em>different geometry</em></h3>
+  <p>The 8×8 unit reuses 64 weights across 8 cycles of streamed activations. The 8×8×8 cube embeds K=8 directly in silicon — every layer of weights and every K-slice of activations meet at the same cycle. <strong style="color: var(--ink);">8× the parallel reductions, 8× the bandwidth needed.</strong></p>
+</div>
+
+<!-- ============ CHAPTER B ============ -->
+<div class="chapter">
+  <span class="chapter-num">Chapter B</span>
+  <h2>The cube alone is not enough — it needs <em>per-PCORE DMA</em></h2>
+  <p>A cube can do 512 MACs per cycle. But only if data arrives at 512 bytes/cycle. The same 56 cubes fed by SoC1.x's single global DP would starve. Each cube would compute ~12% of cycles, the rest waiting. Watch what happens.</p>
+</div>
+
+<div class="scenes">
+
+  <!-- 56 cubes starved (single DP) -->
+  <div class="scene" data-id="starved">
+    <div class="scene-head">
+      <div class="scene-name">56 cubes · single DP<span class="sub">naive scaling</span></div>
+      <div class="scene-tag">starved · ~12% util</div>
+    </div>
+    <div class="scene-meta">SoC2 cube count, SoC1.x memory model. Each cube waits ~7 cycles per 1 cycle compute.</div>
+    <svg class="stage" id="stageStarved" viewBox="0 0 480 380" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="meters">
+      <div class="meter hot">
+        <div class="meter-label">avg utilization</div>
+        <div class="meter-value" id="starvedUtil">0<span class="meter-unit">%</span></div>
+      </div>
+      <div class="meter hot">
+        <div class="meter-label">effective TOPS</div>
+        <div class="meter-value" id="starvedTops">0<span class="meter-unit">TOPS</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 56 cubes fed by 56 LDMAs -->
+  <div class="scene" data-id="fed">
+    <div class="scene-head">
+      <div class="scene-name">56 cubes · 56 LDMAs<span class="sub">SoC2 architecture</span></div>
+      <div class="scene-tag">fed · ~85% util</div>
+    </div>
+    <div class="scene-meta">Per-PCORE LDMA against banked SRAM. Cubes stay fed. Bandwidth scales with cube count.</div>
+    <svg class="stage" id="stageFed" viewBox="0 0 480 380" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="meters">
+      <div class="meter accent">
+        <div class="meter-label">avg utilization</div>
+        <div class="meter-value" id="fedUtil">0<span class="meter-unit">%</span></div>
+      </div>
+      <div class="meter accent">
+        <div class="meter-label">effective TOPS</div>
+        <div class="meter-value" id="fedTops">0<span class="meter-unit">TOPS</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAKEAWAY -->
+<div class="takeaway">
+  <h2>What this means for the SoC roadmap — <em>three coupled decisions</em></h2>
+  <p>The leap from SoC1.2 to SoC2 isn't just "more silicon." Three things move together — and they have to, because each enables the next.</p>
+  <div class="three-up">
+    <div class="item">
+      <div class="num">01 — COMPUTE</div>
+      <h4>Flat → Cube</h4>
+      <p>8×8 (64 MACs) at SoC1.2. 8×8×8 (512 MACs) at SoC2. K becomes hardware depth, not iteration count.</p>
+    </div>
+    <div class="item">
+      <div class="num">02 — MEMORY</div>
+      <h4>Shared DP → per-PCORE LDMA</h4>
+      <p>Single global engine cannot feed 56 cubes. Each cube needs its own DMA against banked L2.</p>
+    </div>
+    <div class="item">
+      <div class="num">03 — SILICON</div>
+      <h4>FPGA → 28nm ASIC</h4>
+      <p>The cube + LDMA combination doesn't fit on FPGA. Custom 28nm gives the area, power, and clock for 600 MHz.</p>
+    </div>
+  </div>
+  <p style="color: var(--ink); font-size: 16px; margin-top: 24px; font-weight: 600;">
+    SoC1.2 ships the flat matrix on FPGA — proves the geometry. SoC1.3 prototypes per-PCORE LDMA on 1-2 cores — proves the memory architecture. <em style="color: var(--accent); font-style: normal;">SoC2 fuses both into the cube on 28nm</em> — proves the production chip. Each step de-risks the next.
+  </p>
+</div>
+
+<footer>
+  DGrid Semi · Apr 2026 · 8×8 from v5 doc · 8×8×8 from SoC2 spec ("CUBE_DEPTH=8") · simulation rates illustrative · per-PCORE DMA proposal pending Srikar's testbench data
+</footer>
+
+</div>
+
+<script>
+const SVG = "http://www.w3.org/2000/svg";
+function el(tag, attrs={}, parent=null) {
+  const e = document.createElementNS(SVG, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+// =============================================================
+// CHAPTER A — Flat 8x8 vs Cube 8x8x8
+// =============================================================
+
+// FLAT: 8x8 matrix; weights stationary, activations stream from left, K iterations
+function buildFlat(svg) {
+  svg.innerHTML = '';
+  const W = 480, H = 380;
+
+  // Title arrows
+  el('text', { x: 110, y: 25, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-style': 'italic' }, svg).textContent = 'Activation stream (K times)';
+  el('text', { x: 380, y: 25, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-style': 'italic' }, svg).textContent = 'Output (8×8 partial sums)';
+
+  // The 8x8 grid in middle
+  const gridX = 160, gridY = 90, cell = 22;
+  const cells = [];
+  for (let r=0; r<8; r++) {
+    for (let c=0; c<8; c++) {
+      const x = gridX + c*cell, y = gridY + r*cell;
+      const rect = el('rect', { x, y, width: cell-1, height: cell-1,
+        fill: '#1f2638', stroke: '#34c285', 'stroke-width': 1, 'stroke-opacity': 0.3 }, svg);
+      cells.push({ rect, r, c, x: x+cell/2, y: y+cell/2 });
+    }
+  }
+  // Border around grid
+  el('rect', { x: gridX-3, y: gridY-3, width: 8*cell+5, height: 8*cell+5,
+    fill: 'none', stroke: '#34c285', 'stroke-width': 1.5, 'stroke-opacity': 0.5,
+    rx: 4 }, svg);
+  // Label
+  el('text', { x: gridX + 4*cell, y: gridY + 8*cell + 22, 'text-anchor':'middle',
+    fill: '#34c285', 'font-family':'JetBrains Mono', 'font-size': 11, 'font-weight': 600 }, svg).textContent = '8×8 weight matrix (resident)';
+  el('text', { x: gridX + 4*cell, y: gridY + 8*cell + 38, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-style':'italic' }, svg).textContent = '64 MACs · weights stay · activations stream K=8 times';
+
+  // Activation column on left (showing 8 rows that stream in)
+  const actX = 60, actY = gridY, actW = 70;
+  for (let r=0; r<8; r++) {
+    el('rect', { x: actX, y: actY + r*cell, width: actW, height: cell-1,
+      fill: '#0d2438', stroke: '#3ba3ff', 'stroke-width': 0.7, 'stroke-opacity': 0.3 }, svg);
+  }
+  // Activation label
+  el('text', { x: actX + actW/2, y: actY - 6, 'text-anchor':'middle',
+    fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 9 }, svg).textContent = 'A[k][r]';
+
+  // K iteration counter prominently
+  el('rect', { x: actX, y: actY + 8*cell + 14, width: actW, height: 30,
+    fill: '#1c2536', stroke: '#3ba3ff', 'stroke-width': 1, rx: 4 }, svg);
+  const kIterText = el('text', { x: actX + actW/2, y: actY + 8*cell + 33, 'text-anchor':'middle',
+    fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 14, 'font-weight':700,
+    id: 'flat-k-text' }, svg);
+  kIterText.textContent = 'K=0/8';
+
+  // Output accumulator on right
+  const outX = 360, outY = gridY;
+  for (let r=0; r<8; r++) {
+    el('rect', { x: outX, y: outY + r*cell, width: cell, height: cell-1,
+      fill: '#1f1f2a', stroke: '#ffb340', 'stroke-width': 0.7, 'stroke-opacity': 0.2 }, svg);
+  }
+  el('text', { x: outX + cell/2, y: outY - 6, 'text-anchor':'middle',
+    fill: '#ffb340', 'font-family':'JetBrains Mono', 'font-size': 9 }, svg).textContent = 'C[r]';
+
+  // State
+  const state = {
+    k: 0,
+    tile: 0,
+    cycleInTile: 0,
+    cellsActive: 0,
+  };
+
+  function tick(cycle) {
+    // Each "cycle" of animation represents one K iteration
+    // Animate: every 14 ticks, advance K by 1
+    if (cycle % 12 === 0) {
+      state.k++;
+      if (state.k > 8) {
+        state.k = 1;
+        state.tile++;
+      }
+    }
+
+    // Highlight cells: at K=k, all 64 cells fire simultaneously (this is the parallel-MAC step)
+    // We'll pulse them every K iteration
+    const inFiring = (cycle % 12) < 4;
+    for (let i=0; i<64; i++) {
+      const c = cells[i];
+      if (inFiring && state.k > 0) {
+        c.rect.setAttribute('fill', '#1f3a2c');
+        c.rect.setAttribute('stroke-opacity', 1);
+      } else {
+        c.rect.setAttribute('fill', '#1f2638');
+        c.rect.setAttribute('stroke-opacity', 0.4);
+      }
+    }
+
+    // emit activation packets streaming in (one row at a time, advancing per K)
+    if (cycle % 4 === 0 && state.k > 0) {
+      const r = (cycle / 4) % 8;
+      spawnPacket(svg, actX + actW, actY + r*cell + cell/2,
+        gridX, actY + r*cell + cell/2, '#3ba3ff', 250);
+    }
+
+    // emit output packets (when k cycles complete, output emerges)
+    if (cycle % 12 === 11 && state.k === 8) {
+      for (let r=0; r<8; r++) {
+        spawnPacket(svg, gridX + 8*cell, gridY + r*cell + cell/2,
+          outX, outY + r*cell + cell/2, '#ffb340', 200);
+      }
+    }
+
+    // Update displays
+    document.getElementById('flatK').innerHTML = `${state.k}<span class="meter-unit">/ 8</span>`;
+    document.getElementById('flatTiles').innerHTML = `${state.tile}<span class="meter-unit">tiles</span>`;
+    kIterText.textContent = `K=${state.k}/8`;
+  }
+
+  function reset() {
+    state.k = 0; state.tile = 0; state.cycleInTile = 0;
+  }
+
+  return { tick, reset };
+}
+
+// CUBE: 8x8x8 — 8 stacked layers, all firing simultaneously
+function buildCube(svg) {
+  svg.innerHTML = '';
+  const W = 480, H = 380;
+
+  el('text', { x: 110, y: 25, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-style': 'italic' }, svg).textContent = 'Activation slab (all K)';
+  el('text', { x: 380, y: 25, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-style': 'italic' }, svg).textContent = 'Output (8×8)';
+
+  // Draw isometric cube — 8 layers stacked
+  const cubeX = 220, cubeY = 100;
+  const cell = 16;          // smaller cells because 3D
+  const offsetPerLayer = 7; // isometric offset
+
+  // Layers from back to front (so front layer renders on top)
+  const layers = [];
+  for (let layer = 7; layer >= 0; layer--) {
+    const layerData = { cells: [], idx: layer };
+    const dx = -layer * offsetPerLayer;
+    const dy = -layer * offsetPerLayer * 0.6;
+    for (let r=0; r<8; r++) {
+      for (let c=0; c<8; c++) {
+        const x = cubeX + dx + c*cell;
+        const y = cubeY + dy + r*cell;
+        const rect = el('rect', { x, y, width: cell-0.5, height: cell-0.5,
+          fill: '#2a1a3a', stroke: '#b450c8', 'stroke-width': 0.5,
+          'stroke-opacity': 0.3 + (7-layer)*0.05,
+          'fill-opacity': 0.85 }, svg);
+        layerData.cells.push({ rect, r, c });
+      }
+    }
+    layers.push(layerData);
+  }
+  // Reorder: we want layers[0] = front (k=0), layers[7] = back (k=7)
+  // We rendered back-first so back is behind. Layer index in `layers` is reverse order.
+  // Convert: layers[0..7] in render-order (back to front). To address by k=0..7 (front to back),
+  // we use layers[7-k]. Let's just keep both directions handy.
+  const byK = layers.slice().reverse();  // byK[0] is the front-most layer (k=0)
+
+  // Cube outline (isometric box)
+  const px = [
+    cubeX, cubeX + 8*cell, cubeX + 8*cell, cubeX,
+    cubeX - 7*offsetPerLayer, cubeX + 8*cell - 7*offsetPerLayer,
+    cubeX + 8*cell - 7*offsetPerLayer, cubeX - 7*offsetPerLayer
+  ];
+  const py = [
+    cubeY, cubeY, cubeY + 8*cell, cubeY + 8*cell,
+    cubeY - 7*offsetPerLayer*0.6, cubeY - 7*offsetPerLayer*0.6,
+    cubeY + 8*cell - 7*offsetPerLayer*0.6, cubeY + 8*cell - 7*offsetPerLayer*0.6
+  ];
+  // edges of the cube
+  const edges = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+  for (const [a,b] of edges) {
+    el('line', { x1: px[a], y1: py[a], x2: px[b], y2: py[b],
+      stroke: '#b450c8', 'stroke-width': 1, 'stroke-opacity': 0.4 }, svg);
+  }
+
+  // Label
+  el('text', { x: cubeX + 4*cell - 3.5*offsetPerLayer, y: cubeY + 8*cell + 32, 'text-anchor':'middle',
+    fill: '#b450c8', 'font-family':'JetBrains Mono', 'font-size': 11, 'font-weight': 600 }, svg).textContent = '8×8×8 cube · 512 MACs';
+  el('text', { x: cubeX + 4*cell - 3.5*offsetPerLayer, y: cubeY + 8*cell + 48, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-style':'italic' }, svg).textContent = 'all K layers fire simultaneously · 1 cycle = 1 K-step done';
+
+  // Activation slab on left — the "K thickness" of activations
+  const actX = 60, actY = cubeY, actW = 80;
+  // slab as 8 rows × thin layers
+  for (let layer = 7; layer >= 0; layer--) {
+    const dx = -layer * 5;
+    const dy = -layer * 3;
+    for (let r=0; r<8; r++) {
+      el('rect', { x: actX + dx, y: actY + r*cell + dy,
+        width: actW, height: cell-0.5,
+        fill: '#0d2438', stroke: '#3ba3ff', 'stroke-width': 0.4,
+        'stroke-opacity': 0.4 + layer*0.04,
+        'fill-opacity': 0.85 }, svg);
+    }
+  }
+  el('text', { x: actX + actW/2 - 12, y: actY - 6, 'text-anchor':'middle',
+    fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 9 }, svg).textContent = 'A[k=0..7]';
+
+  // Output column on right
+  const outX = 380, outY = cubeY;
+  for (let r=0; r<8; r++) {
+    el('rect', { x: outX, y: outY + r*cell, width: cell, height: cell-0.5,
+      fill: '#1f1f2a', stroke: '#ffb340', 'stroke-width': 0.7, 'stroke-opacity': 0.2 }, svg);
+  }
+  el('text', { x: outX + cell/2, y: outY - 6, 'text-anchor':'middle',
+    fill: '#ffb340', 'font-family':'JetBrains Mono', 'font-size': 9 }, svg).textContent = 'C[r]';
+
+  const state = { tile: 0 };
+
+  function tick(cycle) {
+    // Cube fires every cycle — every cell in every layer is active
+    const inFiring = (cycle % 12) < 4;
+
+    // Advance tile every 12 cycles (same wall-clock as flat does ONE k-step)
+    if (cycle % 12 === 0 && cycle > 0) state.tile++;
+
+    // Highlight all cells in all layers when firing
+    for (const layer of layers) {
+      for (const c of layer.cells) {
+        if (inFiring) {
+          c.rect.setAttribute('fill', '#3a1f5a');
+          c.rect.setAttribute('stroke-opacity', 0.9);
+          c.rect.setAttribute('fill-opacity', 0.95);
+        } else {
+          c.rect.setAttribute('fill', '#2a1a3a');
+          c.rect.setAttribute('stroke-opacity', 0.3 + (7-layer.idx)*0.05);
+          c.rect.setAttribute('fill-opacity', 0.85);
+        }
+      }
+    }
+
+    // Activation packets — stream the WHOLE slab in one cycle (vs flat: one row)
+    if (cycle % 6 === 0) {
+      for (let r=0; r<8; r++) {
+        spawnPacket(svg, actX + actW - 5, actY + r*cell + cell/2,
+          cubeX, actY + r*cell + cell/2, '#3ba3ff', 200);
+      }
+    }
+
+    // Output packets — every cycle (cube produces a tile per cycle in steady state)
+    if (cycle % 6 === 3) {
+      for (let r=0; r<8; r++) {
+        spawnPacket(svg, cubeX + 8*cell - 3*offsetPerLayer,
+          cubeY + r*cell + cell/2 - 1.8*offsetPerLayer,
+          outX, outY + r*cell + cell/2, '#ffb340', 180);
+      }
+    }
+
+    document.getElementById('cubeK').innerHTML = `1<span class="meter-unit">/ 1 (HW depth)</span>`;
+    document.getElementById('cubeTiles').innerHTML = `${state.tile}<span class="meter-unit">tiles</span>`;
+  }
+
+  function reset() {
+    state.tile = 0;
+  }
+
+  return { tick, reset };
+}
+
+// =============================================================
+// CHAPTER B — 56 cubes starved vs 56 cubes fed
+// =============================================================
+
+// STARVED: 56 cubes, single DP. Each cube ~12% utilization.
+function buildStarved(svg) {
+  svg.innerHTML = '';
+  const W = 480, H = 380;
+
+  // DDR top
+  el('rect', { x: 12, y: 12, width: W-24, height: 22, rx: 4,
+    fill: '#1c2536', stroke: '#2a3a52' }, svg);
+  el('text', { x: W/2, y: 27, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight': 600 }, svg).textContent = 'DDR / SRAM';
+
+  // Single DP engine
+  el('rect', { x: 200, y: 50, width: 80, height: 28, rx: 4,
+    fill: '#2a1518', stroke: '#ff5440', 'stroke-width': 2 }, svg);
+  el('text', { x: 240, y: 67, 'text-anchor':'middle',
+    fill: '#ff8472', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight':700 }, svg).textContent = '1× DP';
+
+  // Lines from DP to all cubes (faded)
+  const cubes = [];
+  // 7 rows × 8 columns = 56 cubes
+  const cubeSize = 18;
+  const startX = 30, startY = 100;
+  const gapX = (W - 60) / 8;
+  const gapY = 36;
+
+  for (let i=0; i<56; i++) {
+    const col = i % 8, row = Math.floor(i / 8);
+    const x = startX + col * gapX;
+    const y = startY + row * gapY;
+    const rect = el('rect', { x, y, width: cubeSize, height: cubeSize, rx: 2,
+      fill: '#1f1929', stroke: '#b450c8', 'stroke-width': 0.7, 'stroke-opacity': 0.4 }, svg);
+    cubes.push({ rect, x: x+cubeSize/2, y: y+cubeSize/2, edgeY: y });
+
+    // faint connector to DP
+    el('line', { x1: 240, y1: 78, x2: x+cubeSize/2, y2: y,
+      stroke: '#2a1d1d', 'stroke-width': 0.3, 'stroke-opacity': 0.3 }, svg);
+  }
+
+  // Caption
+  el('text', { x: W/2, y: H-12, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-style':'italic' }, svg).textContent = '56 cubes wait their turn — 1 cycle compute, 7 cycles wait';
+
+  const state = {
+    current: -1,
+    busy: new Float32Array(56),     // remaining busy cycles (compute)
+    served: new Float32Array(56),   // total cycles each got data
+    progress: 0,
+    serveDuration: 6, // setup + load = 6 cycles per cube
+    computeDuration: 1, // cube computes in 1 cycle
+    totalCycles: 0,
+    aggregateBusy: 0,
+  };
+
+  function tick(cycle) {
+    state.totalCycles++;
+    // serve next cube
+    if (state.current === -1) {
+      // pick next cube that's not busy
+      for (let i=0; i<56; i++) {
+        if (state.busy[i] === 0) {
+          state.current = i;
+          state.progress = 0;
+          break;
+        }
+      }
+    } else {
+      state.progress++;
+      if (state.progress >= state.serveDuration) {
+        state.busy[state.current] = state.computeDuration;
+        state.served[state.current]++;
+        state.current = -1;
+      }
+    }
+
+    // drain compute
+    let busyCount = 0;
+    for (let i=0; i<56; i++) {
+      if (state.busy[i] > 0) {
+        state.busy[i]--;
+        busyCount++;
+      }
+    }
+    state.aggregateBusy += busyCount;
+
+    // emit packet
+    if (state.current !== -1 && cycle % 2 === 0) {
+      const c = cubes[state.current];
+      spawnPacket(svg, 240, 78, c.x, c.edgeY, '#ff5440', 220);
+    }
+
+    // visual
+    for (let i=0; i<56; i++) {
+      const c = cubes[i];
+      if (state.busy[i] > 0) {
+        c.rect.setAttribute('fill', '#3a1f5a');
+        c.rect.setAttribute('stroke-opacity', 0.9);
+      } else if (i === state.current) {
+        c.rect.setAttribute('fill', '#3a2418');
+        c.rect.setAttribute('stroke', '#ffb340');
+        c.rect.setAttribute('stroke-opacity', 0.7);
+      } else {
+        c.rect.setAttribute('fill', '#1f1929');
+        c.rect.setAttribute('stroke', '#b450c8');
+        c.rect.setAttribute('stroke-opacity', 0.3);
+      }
+    }
+
+    // update meters
+    const avgUtil = state.totalCycles > 0
+      ? Math.round(100 * state.aggregateBusy / (56 * state.totalCycles))
+      : 0;
+    document.getElementById('starvedUtil').innerHTML = `${avgUtil}<span class="meter-unit">%</span>`;
+    // Effective TOPS: 28,672 MACs × 600 MHz × util / 1e12 × 2 (MAC=2 ops)
+    const peakTOPS = 28672 * 600e6 * 2 / 1e12;
+    const effTOPS = peakTOPS * avgUtil / 100;
+    document.getElementById('starvedTops').innerHTML = `${effTOPS.toFixed(1)}<span class="meter-unit">TOPS</span>`;
+  }
+
+  function reset() {
+    state.current = -1;
+    state.busy.fill(0);
+    state.served.fill(0);
+    state.progress = 0;
+    state.totalCycles = 0;
+    state.aggregateBusy = 0;
+  }
+
+  return { tick, reset };
+}
+
+// FED: 56 cubes, each with own LDMA against banked SRAM. ~85% util.
+function buildFed(svg) {
+  svg.innerHTML = '';
+  const W = 480, H = 380;
+
+  // DDR top — but smaller, less prominent
+  el('rect', { x: 12, y: 12, width: W-24, height: 18, rx: 4,
+    fill: '#1c2536', stroke: '#2a3a52' }, svg);
+  el('text', { x: W/2, y: 25, 'text-anchor':'middle',
+    fill: '#7a8aa8', 'font-family':'JetBrains Mono', 'font-size': 9 }, svg).textContent = 'DDR (occasional)';
+
+  // Banked SRAM L2 across the top (representing parallel banks)
+  for (let b=0; b<8; b++) {
+    const x = 30 + b*(W-60)/8;
+    const w = (W-60)/8 - 4;
+    el('rect', { x, y: 42, width: w, height: 22, rx: 3,
+      fill: '#0d2438', stroke: '#3ba3ff', 'stroke-width': 1, 'stroke-opacity': 0.6 }, svg);
+    el('text', { x: x+w/2, y: 57, 'text-anchor':'middle',
+      fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-weight': 600 }, svg).textContent = `B${b}`;
+  }
+  el('text', { x: 12, y: 56, 'text-anchor':'start',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9 }, svg).textContent = 'L2:';
+
+  // 56 LDMA + cube pairs
+  const cubes = [];
+  const cubeSize = 18;
+  const startX = 30, startY = 95;
+  const gapX = (W - 60) / 8;
+  const gapY = 38;
+
+  for (let i=0; i<56; i++) {
+    const col = i % 8, row = Math.floor(i / 8);
+    const x = startX + col * gapX;
+    const y = startY + row * gapY;
+
+    // small LDMA
+    el('rect', { x: x-3, y: y-7, width: 6, height: 6, rx: 1,
+      fill: '#0d2438', stroke: '#3ba3ff', 'stroke-width': 0.6 }, svg);
+
+    // cube
+    const rect = el('rect', { x, y, width: cubeSize, height: cubeSize, rx: 2,
+      fill: '#1f1929', stroke: '#b450c8', 'stroke-width': 0.7, 'stroke-opacity': 0.4 }, svg);
+    cubes.push({ rect, x: x+cubeSize/2, y: y+cubeSize/2, ldmaY: y-4, bank: col });
+
+    // faint line LDMA → bank above
+    const bankX = 30 + col*gapX + ((W-60)/8 - 4)/2;
+    el('line', { x1: x, y1: y-4, x2: bankX, y2: 64,
+      stroke: '#0d2438', 'stroke-width': 0.4, 'stroke-opacity': 0.6 }, svg);
+  }
+
+  // Caption
+  el('text', { x: W/2, y: H-12, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-style':'italic' }, svg).textContent = '56 LDMAs · 8-bank SRAM · 7 cubes per bank, parallel access';
+
+  const state = {
+    busy: new Float32Array(56),
+    progress: new Float32Array(56),
+    state: new Int8Array(56),  // 0=idle, 1=loading, 2=computing
+    bankBusy: new Int8Array(8),
+    loadDur: 3,
+    computeDur: 6,
+    totalCycles: 0,
+    aggregateBusy: 0,
+  };
+
+  function tick(cycle) {
+    state.totalCycles++;
+    state.bankBusy.fill(0);
+
+    for (let i=0; i<56; i++) {
+      const c = cubes[i];
+      if (state.state[i] === 0) {
+        // idle, want to load
+        if (state.bankBusy[c.bank] < 1) {  // 1 access per bank per cycle, simple model
+          state.state[i] = 1;
+          state.progress[i] = 0;
+          state.bankBusy[c.bank]++;
+        }
+      } else if (state.state[i] === 1) {
+        if (state.bankBusy[c.bank] < 1) {
+          state.bankBusy[c.bank]++;
+        }
+        state.progress[i]++;
+        if (state.progress[i] >= state.loadDur) {
+          state.state[i] = 2;
+          state.busy[i] = state.computeDur;
+        }
+      } else if (state.state[i] === 2) {
+        state.busy[i]--;
+        state.aggregateBusy++;
+        if (state.busy[i] <= 0) state.state[i] = 0;
+      }
+    }
+
+    // emit packets
+    if (cycle % 2 === 0) {
+      for (let i=0; i<56; i++) {
+        if (state.state[i] === 1) {
+          const c = cubes[i];
+          const bankX = 30 + c.bank*((W-60)/8) + ((W-60)/8-4)/2;
+          spawnPacket(svg, bankX, 64, c.x, c.ldmaY, '#3ba3ff', 180);
+        }
+      }
+    }
+
+    // visual
+    for (let i=0; i<56; i++) {
+      const c = cubes[i];
+      if (state.state[i] === 2) {
+        c.rect.setAttribute('fill', '#3a1f5a');
+        c.rect.setAttribute('stroke-opacity', 0.95);
+      } else if (state.state[i] === 1) {
+        c.rect.setAttribute('fill', '#2a2618');
+        c.rect.setAttribute('stroke', '#ffb340');
+        c.rect.setAttribute('stroke-opacity', 0.7);
+      } else {
+        c.rect.setAttribute('fill', '#1f1929');
+        c.rect.setAttribute('stroke', '#b450c8');
+        c.rect.setAttribute('stroke-opacity', 0.4);
+      }
+    }
+
+    // meters
+    const avgUtil = state.totalCycles > 0
+      ? Math.round(100 * state.aggregateBusy / (56 * state.totalCycles))
+      : 0;
+    document.getElementById('fedUtil').innerHTML = `${avgUtil}<span class="meter-unit">%</span>`;
+    const peakTOPS = 28672 * 600e6 * 2 / 1e12;
+    const effTOPS = peakTOPS * avgUtil / 100;
+    document.getElementById('fedTops').innerHTML = `${effTOPS.toFixed(1)}<span class="meter-unit">TOPS</span>`;
+  }
+
+  function reset() {
+    state.busy.fill(0);
+    state.progress.fill(0);
+    state.state.fill(0);
+    state.bankBusy.fill(0);
+    state.totalCycles = 0;
+    state.aggregateBusy = 0;
+  }
+
+  return { tick, reset };
+}
+
+// =============================================================
+// PACKET ANIMATION
+// =============================================================
+
+function spawnPacket(svg, x1, y1, x2, y2, color, duration=300) {
+  const c = el('circle', { cx: x1, cy: y1, r: 2.5,
+    fill: color, opacity: 0.9 }, svg);
+  const start = performance.now();
+  function step(t) {
+    const dt = (t - start) / duration;
+    if (dt >= 1) { c.remove(); return; }
+    const x = x1 + (x2-x1)*dt;
+    const y = y1 + (y2-y1)*dt;
+    c.setAttribute('cx', x);
+    c.setAttribute('cy', y);
+    c.setAttribute('opacity', 0.9 * (1 - dt*0.3));
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// =============================================================
+// BUILD ALL SCENES
+// =============================================================
+
+const scenes = {
+  flat:    buildFlat(document.getElementById('stageFlat')),
+  cube:    buildCube(document.getElementById('stageCube')),
+  starved: buildStarved(document.getElementById('stageStarved')),
+  fed:     buildFed(document.getElementById('stageFed')),
+};
+
+// =============================================================
+// CLOCK
+// =============================================================
+
+let cycle = 0, running = false, speedMult = 1, lastT = 0;
+const baseTickMs = 60;
+const cycleLabel = document.getElementById('cycleCount');
+
+function tickAll() {
+  cycle++;
+  cycleLabel.textContent = `cycle ${cycle}`;
+  for (const k in scenes) scenes[k].tick(cycle);
+}
+
+function loop(t) {
+  if (!running) return;
+  if (t - lastT >= baseTickMs / speedMult) { tickAll(); lastT = t; }
+  requestAnimationFrame(loop);
+}
+
+document.getElementById('btnPlay').addEventListener('click', () => {
+  if (running) return;
+  running = true; lastT = performance.now();
+  requestAnimationFrame(loop);
+});
+document.getElementById('btnPause').addEventListener('click', () => { running = false; });
+document.getElementById('btnReset').addEventListener('click', () => {
+  running = false; cycle = 0;
+  cycleLabel.textContent = 'cycle 0';
+  for (const k in scenes) scenes[k].reset();
+});
+const speeds = [0.5, 1, 2, 4];
+let speedIdx = 1;
+document.getElementById('btnSpeed').addEventListener('click', (e) => {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  speedMult = speeds[speedIdx];
+  e.target.textContent = `Speed: ${speedMult}×`;
+});
+
+setTimeout(() => document.getElementById('btnPlay').click(), 600);
+</script>
+</body>
+</html>

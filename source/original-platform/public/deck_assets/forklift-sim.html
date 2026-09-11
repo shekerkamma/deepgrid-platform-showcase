@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepgrid · Autonomous Forklift — Dark-Store Sim</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0e12; --panel:rgba(12,16,22,.86); --line:rgba(120,170,255,.22);
+    --ink:#e3ecfb; --dim:#8394b0; --acc:#56b0ff; --acc2:#7c5cff;
+    --ok:#34d399; --warn:#fbbf24; --danger:#f87171; --amber:#ff8f3f;
+    --mono:'IBM Plex Mono',monospace; --disp:'Space Grotesk',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--mono)}
+  #scene{position:fixed;inset:0}
+  .hud{position:fixed;z-index:10;pointer-events:none}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;backdrop-filter:blur(8px)}
+
+  #hdr{top:12px;left:12px;padding:9px 13px;display:flex;align-items:center;gap:12px}
+  #brandLogo{height:26px;width:auto;display:block;flex:0 0 auto}
+  #hdr .logo{font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.04em;
+    background:linear-gradient(90deg,#6ea8ff,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+  #hdr .sub{font-size:9.5px;color:var(--dim);letter-spacing:.13em;text-transform:uppercase}
+  #stateBadge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;border:1px solid var(--ok);color:var(--ok);letter-spacing:.06em}
+
+  /* confidential markings */
+  #confBadge{bottom:14px;left:50%;transform:translateX(-50%);z-index:30;pointer-events:none;
+    font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:#e7b84b;
+    background:rgba(40,30,5,.5);border:1px solid rgba(231,184,75,.4);border-radius:5px;padding:4px 14px;
+    display:flex;align-items:center;gap:8px;white-space:nowrap}
+  #confBadge .cprt{color:rgba(255,255,255,.5);letter-spacing:.1em}
+  #confWatermark{position:fixed;inset:0;z-index:2;pointer-events:none;display:flex;
+    align-items:center;justify-content:center;overflow:hidden;
+    font-family:var(--mono);font-size:6vw;letter-spacing:.3em;color:rgba(255,255,255,.04);
+    transform:rotate(-26deg);white-space:nowrap;font-weight:700}
+
+  #task{top:12px;left:50%;transform:translateX(-50%);display:flex;overflow:hidden;padding:0;max-width:92vw;pointer-events:auto}
+  #task button{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--dim);
+    background:transparent;border:0;border-right:1px solid var(--line);padding:9px 13px;cursor:pointer;white-space:nowrap}
+  #task button:last-child{border-right:0}
+  #task button.on{color:#fff;background:rgba(86,176,255,.18)}
+  #task button:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+  #bDraw{color:#a78bfa !important}
+  #bDraw.on{color:#fff !important;background:rgba(124,92,250,.28) !important}
+
+  /* map editor — left-side vertical panel */
+  #editbar{display:none;z-index:18;top:60px;left:12px;width:212px;flex-direction:column;gap:7px;
+    padding:13px 14px;pointer-events:auto;background:#0e1420;border:1px solid rgba(124,92,250,.45);backdrop-filter:none;
+    max-height:calc(100vh - 80px);overflow-y:auto}
+  #editbar.on{display:flex}
+  #editbar h3{font-family:var(--disp);font-size:12.5px;font-weight:700;letter-spacing:.06em;color:#c9b8ff;margin-bottom:2px}
+  #editbar .ehint{font-size:9.5px;color:#8a93a3;letter-spacing:.02em;line-height:1.45;margin-bottom:4px}
+  #editbar #eStopCount{font-size:10px;color:#b9a3ff;letter-spacing:.04em;margin-bottom:4px}
+  #editbar button{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:#e8ebf0;text-align:left;
+    background:rgba(124,92,250,.18);border:1px solid rgba(124,92,250,.55);border-radius:7px;padding:9px 11px;cursor:pointer}
+  #editbar button:hover{border-color:var(--acc2);background:rgba(124,92,250,.3);color:#fff}
+  #editbar button.on{background:rgba(124,92,250,.4);color:#fff}
+  #editbar #eRun{background:rgba(52,211,153,.3);border-color:rgba(52,211,153,.7);color:#d6ffec;font-weight:700;font-size:11.5px}
+  #editbar #eRun:hover{background:rgba(52,211,153,.45)}
+  #editbar .eDiv{font-size:8.5px;letter-spacing:.16em;color:#8a93a3;text-transform:uppercase;
+    margin:8px 0 4px;padding-bottom:3px;border-bottom:1px solid rgba(124,92,250,.35)}
+  #editbar #eSave{background:rgba(86,176,255,.3);border-color:rgba(86,176,255,.7);color:#dcebff;font-weight:600}
+  #editbar #eSave:hover{background:rgba(86,176,255,.45)}
+  #editbar #eSavedList{display:flex;flex-direction:column;gap:4px;margin-bottom:2px;max-height:120px;overflow-y:auto}
+  #editbar .eEmpty{font-size:9.5px;color:#8a93a3;font-style:italic;padding:2px 0}
+  #editbar .eSaved{display:flex;align-items:center;gap:4px;font-size:10px}
+  #editbar .eSaved button{flex:1;text-align:left;padding:6px 9px;background:rgba(124,92,250,.15);border-color:rgba(124,92,250,.45);color:#e8ebf0}
+  #editbar .eSaved .eDel{flex:0 0 auto;padding:6px 8px;background:rgba(248,113,113,.2);border-color:rgba(248,113,113,.55);color:#ffc9c9}
+  #editbar .ePreset{color:#a78bfa}
+  #editbar .eMeta{color:#8a93a3;font-size:9px}
+  #editbar #ePalette{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:4px}
+  #editbar .ePal{font-size:9.5px;padding:7px 6px;background:rgba(124,92,250,.12);border:1px solid rgba(124,92,250,.4);
+    border-radius:6px;color:#cdd3dd;text-align:center;cursor:pointer}
+  #editbar .ePal:hover{border-color:var(--acc2);color:#fff}
+  #editbar .ePal.on{background:rgba(124,92,250,.45);border-color:#a78bfa;color:#fff;font-weight:600}
+  #editbar .ePal[data-place="waypoint"].on{background:rgba(52,211,153,.4);border-color:#34d399}
+  #editbar .eObsCount{font-size:9.5px;color:#b9a3ff;letter-spacing:.03em;margin-bottom:2px}
+
+  /* 2D floorplan overlay */
+  #planWrap{display:none;position:fixed;inset:0;z-index:15;background:rgba(6,9,14,.86);pointer-events:auto;
+    align-items:center;justify-content:center;padding:20px 20px 20px 240px}
+  #planWrap.on{display:flex}
+  #plan{background:#0c1118;border:1px solid var(--line);border-radius:10px;cursor:crosshair;
+    max-width:100%;max-height:100%;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+
+  #ctrl{top:12px;right:12px;display:flex;gap:7px;pointer-events:auto;flex-wrap:wrap;justify-content:flex-end}
+  #ctrl button{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink);
+    background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 11px;cursor:pointer}
+  #ctrl button:hover{border-color:var(--acc);color:#fff}
+  #ctrl button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+  #ctrl button.on{border-color:var(--acc);color:#bcd6ff;background:rgba(86,176,255,.12)}
+  #bSettings{font-size:14px;padding:7px 10px}
+
+  /* settings panel */
+  #settings{display:none;z-index:20;top:56px;right:12px;width:260px;padding:13px 14px;pointer-events:auto;max-height:84vh;overflow-y:auto;background:rgba(9,12,18,.97)}
+  #settings.on{display:block}
+  #settings .sHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  #settings h3{font-family:var(--disp);font-size:13px;font-weight:700;letter-spacing:.08em;color:#fff}
+  #settings #sClose{background:none;border:0;color:var(--dim);font-size:14px;cursor:pointer;padding:2px 6px}
+  #settings #sClose:hover{color:#fff}
+  #settings .sSection{font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;
+    margin:12px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+  #settings .sRow{display:flex;align-items:center;gap:8px;font-size:10.5px;color:var(--ink);margin:7px 0}
+  #settings .sRow span{flex:0 0 78px;color:var(--dim)}
+  #settings .sRow b{flex:0 0 52px;text-align:right;color:#bcd6ff;font-weight:500}
+  #settings .sRow input[type=range]{flex:1;accent-color:var(--acc);height:3px}
+  #settings .sRow select{flex:1;background:rgba(86,176,255,.08);color:var(--ink);border:1px solid var(--line);
+    border-radius:6px;padding:5px 7px;font-family:var(--mono);font-size:10.5px}
+  #settings .sToggle{display:flex;align-items:center;gap:8px;font-size:10.5px;color:var(--ink);margin:7px 0;cursor:pointer}
+  #settings .sToggle input{accent-color:var(--acc);width:15px;height:15px}
+
+  #cluster{bottom:12px;left:12px;padding:11px 15px;min-width:212px}
+  #spd{font-family:var(--disp);font-size:38px;font-weight:700;line-height:1;color:#fff}
+  #spd small{font-size:12px;color:var(--dim);font-weight:500}
+  .row{display:flex;justify-content:space-between;font-size:10px;color:var(--dim);margin-top:5px;letter-spacing:.04em}
+  .row b{color:var(--ink);font-weight:500}
+  #zoneBar{height:5px;border-radius:3px;margin-top:9px;background:rgba(255,255,255,.08);overflow:hidden}
+  #zoneFill{height:100%;width:0%;transition:width .15s,background .2s}
+
+  #bevWrap{right:12px;bottom:calc(46vh + 22px);width:300px;padding:8px}
+  #bevWrap h3{font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:5px;text-align:center}
+  #bev{display:block;width:100%;border-radius:6px;background:#06080c}
+
+  #percept{bottom:12px;right:12px;width:300px;max-height:44vh;display:flex;flex-direction:column;overflow:hidden}
+  #percept h3{font-size:10px;letter-spacing:.15em;color:var(--dim);text-transform:uppercase;padding:9px 12px 6px;border-bottom:1px solid var(--line)}
+  #targets{padding:6px 12px;font-size:11px;min-height:46px}
+  .tgt{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
+  .tgt:last-child{border-bottom:0}
+  .tgt .cls{color:var(--ink)} .tgt .rng{color:var(--dim)}
+  .tgt.warn .cls,.tgt.warn .rng{color:var(--warn)}
+  .tgt.danger .cls,.tgt.danger .rng{color:var(--danger);font-weight:600}
+  #log{padding:6px 12px 10px;font-size:10.5px;color:var(--dim);overflow-y:auto;border-top:1px solid var(--line)}
+  #log div{padding:2px 0}
+  #log .t{color:#54719c;margin-right:6px}
+  #log .ev-warn{color:var(--warn)} #log .ev-danger{color:var(--danger)} #log .ev-ok{color:var(--ok)}
+
+  #alert{top:62px;left:50%;transform:translateX(-50%);padding:9px 24px;border-radius:10px;
+    font-family:var(--disp);font-weight:700;font-size:16px;letter-spacing:.08em;display:none;text-align:center}
+  #alert.warn{display:block;background:rgba(120,82,7,.85);border:1px solid var(--warn);color:#ffe1a1}
+  #alert.danger{display:block;background:rgba(127,29,29,.9);border:1px solid var(--danger);color:#ffd1d1;animation:blink .5s steps(2) infinite}
+  #alert.amber{display:block;background:rgba(124,62,12,.85);border:1px solid var(--amber);color:#ffd9b8}
+  @keyframes blink{50%{opacity:.55}}
+
+  /* manual override button — appears only when the truck is stuck */
+  #overrideBtn{position:fixed;z-index:31;top:108px;left:50%;transform:translateX(-50%);display:none;
+    font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.06em;cursor:pointer;
+    padding:11px 22px;border-radius:10px;color:#04210f;background:#34d399;border:1px solid #6ee7b7;
+    box-shadow:0 6px 22px rgba(52,211,153,.4);pointer-events:auto;-webkit-tap-highlight-color:transparent}
+  #overrideBtn:hover{background:#43e0a6}
+  #overrideBtn.show{display:block}
+
+  .det{position:fixed;z-index:9;pointer-events:none;transform:translate(-50%,-100%);
+    font-size:10px;letter-spacing:.04em;padding:2px 7px;border-radius:4px;white-space:nowrap;
+    background:rgba(8,12,20,.86);border:1px solid var(--ok);color:var(--ok)}
+  .det.warn{border-color:var(--warn);color:var(--warn)}
+  .det.danger{border-color:var(--danger);color:var(--danger)}
+
+  /* on-vehicle audible/visual alert mock */
+  #beacon{bottom:12px;right:324px;width:54px;height:54px;border-radius:50%;
+    border:2px solid var(--line);background:var(--panel);display:flex;align-items:center;justify-content:center;
+    font-size:8px;color:var(--dim);text-align:center;letter-spacing:.04em}
+  #beacon.on{box-shadow:0 0 22px 4px var(--amber);border-color:var(--amber);color:#ffd9b8}
+  #beacon.stop{box-shadow:0 0 22px 4px var(--danger);border-color:var(--danger);color:#ffd1d1}
+
+  @media (max-width:1040px){ #beacon{right:auto;left:12px;bottom:96px} }
+  @media (max-width:900px){ #bevWrap{display:none} }
+  @media (max-width:760px){
+    #hdr{top:8px;left:8px;padding:6px 10px;gap:8px} #hdr .sub{display:none} #hdr .logo{display:none}
+    #brandLogo{height:20px}
+    #confBadge{top:auto;bottom:calc(108px + env(safe-area-inset-bottom));font-size:8px;padding:3px 10px;gap:6px}
+    #stateBadge{font-size:9.5px;padding:2px 8px}
+    #cluster{top:8px;right:8px;left:auto;bottom:auto;min-width:0;padding:6px 12px}
+    #spd{font-size:22px} #cluster .row,#zoneBar{display:none}
+    #percept{display:none} #beacon{display:none}
+    #alert{top:50px;font-size:12px;padding:7px 12px;max-width:94vw;text-align:center}
+    #overrideBtn{top:92px;font-size:12px;padding:10px 16px}
+
+    /* scenario tabs: top, full width, scrollable */
+    #task{top:auto;bottom:calc(56px + env(safe-area-inset-bottom));left:6px;right:6px;transform:none;max-width:none;
+      overflow-x:auto;border-radius:10px}
+    #task button{flex:1 0 auto;padding:11px 8px;font-size:9.5px;white-space:nowrap;min-height:42px}
+
+    /* control bar: bottom row, big tappable */
+    #ctrl{top:auto;bottom:calc(6px + env(safe-area-inset-bottom));left:6px;right:6px;flex-wrap:nowrap;gap:5px}
+    #ctrl button{flex:1;padding:13px 0;font-size:10px;min-height:46px}
+    #bSettings{flex:0 0 46px}
+
+    /* settings: full-screen sheet from bottom */
+    #settings{top:auto;bottom:0;left:0;right:0;width:auto;max-height:82vh;border-radius:16px 16px 0 0;padding:16px 16px calc(20px + env(safe-area-inset-bottom))}
+    #settings .sRow{margin:11px 0;font-size:12px} #settings .sRow span{flex:0 0 88px}
+    #settings .sRow input[type=range]{height:24px} #settings .sRow select{padding:9px 8px;font-size:12px;min-height:40px}
+    #settings .sToggle{margin:11px 0;font-size:12px} #settings .sToggle input{width:20px;height:20px}
+    #settings #sClose{font-size:20px;padding:4px 10px}
+
+    /* MAP EDITOR: bottom sheet that does NOT cover the floorplan */
+    #editbar{top:auto;bottom:calc(6px + env(safe-area-inset-bottom));left:6px;right:6px;width:auto;
+      max-height:38vh;overflow-y:auto;border-radius:14px;z-index:18}
+    #editbar h3{font-size:13px} #editbar .ehint{font-size:10px}
+    #editbar button{padding:12px 11px;font-size:11px;min-height:44px}
+    #editbar #ePalette{grid-template-columns:1fr 1fr 1fr}
+    #editbar .ePal{padding:10px 4px;font-size:10px;min-height:42px}
+    #editbar .eSaved button{min-height:38px}
+
+    /* floorplan: fill screen above the editor sheet, no desktop left-padding */
+    #planWrap{padding:8px 8px calc(40vh + 12px) 8px;align-items:flex-start}
+    #plan{margin:0 auto}
+  }
+  /* touch ergonomics */
+  @media (pointer:coarse){
+    button{-webkit-tap-highlight-color:transparent}
+    #plan{touch-action:none}
+    .hud,.panel{-webkit-user-select:none;user-select:none}
+  }
+  @media (prefers-reduced-motion: reduce){ #alert.danger{animation:none} }
+</style>
+</head>
+<body>
+<div id="scene"></div>
+
+<div class="hud panel" id="hdr">
+  <img id="brandLogo" src="data:image/png;base64,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" alt="Deepgrid Semi">
+  <div>
+    <div class="logo">AMR FORKLIFT</div>
+    <div class="sub">Unitree L1 LiDAR + Camera · Dark-Store Autonomy</div>
+  </div>
+  <span id="stateBadge">IDLE</span>
+</div>
+
+<div class="hud" id="confBadge">CONFIDENTIAL<span class="cprt">© Deepgrid 2026</span></div>
+<div id="confWatermark">CONFIDENTIAL · DEEPGRID SEMI</div>
+
+<div class="hud panel" id="task">
+  <button data-t="putaway" class="on">INBOUND PUT-AWAY</button>
+  <button data-t="pick">PICK RUN</button>
+  <button data-t="peak">PEAK-HOUR FLOOR</button>
+  <button id="bDraw">✎ DRAW MAP</button>
+</div>
+
+<!-- map editor: left-side vertical panel -->
+<div class="hud panel" id="editbar">
+  <h3>MAP EDITOR</h3>
+  <p class="ehint">Click the floorplan to set waypoints A → B → C, or load a ◆ preset route below. Routes auto-snap to aisles.</p>
+  <div id="eStopCount">0 waypoints</div>
+  <button id="eUndo">↶ UNDO LAST</button>
+  <button id="eClear">✕ CLEAR ALL</button>
+  <button id="eLoop" class="on">⟳ LOOP ROUTE</button>
+
+  <div class="eDiv">PLACE ON MAP</div>
+  <div id="ePalette">
+    <button class="ePal on" data-place="waypoint">📍 Waypoint</button>
+    <button class="ePal" data-place="worker">🚶 Worker</button>
+    <button class="ePal" data-place="hivis">🦺 Hi-vis Worker</button>
+    <button class="ePal" data-place="amr">🤖 Peer AMR</button>
+    <button class="ePal" data-place="trolley">🛒 Trolley</button>
+    <button class="ePal" data-place="spill">💧 Spill (static)</button>
+    <button class="ePal" data-place="pallet">📦 Pallet (static)</button>
+  </div>
+  <div id="eObsCount" class="eObsCount">No obstacles placed</div>
+
+  <button id="eRun">▶ RUN ROUTE</button>
+  <div class="eDiv">SAVED MAPS</div>
+  <div id="eSavedList"><span class="eEmpty">No saved maps yet</span></div>
+  <button id="eSave">💾 SAVE THIS MAP</button>
+  <button id="eImport">📂 IMPORT FILE…</button>
+  <button id="eExit">DONE / CANCEL</button>
+  <input id="eFile" type="file" accept="application/json" style="display:none">
+</div>
+
+<!-- 2D floorplan overlay (shown only in draw mode) -->
+<div class="hud" id="planWrap">
+  <canvas id="plan"></canvas>
+</div>
+
+<div class="hud" id="ctrl">
+  <button id="bCam">CAM: CHASE</button>
+  <button id="bPause">PAUSE</button>
+  <button id="bExt">EXT: OFF</button>
+  <button id="bSettings" title="Settings">⚙</button>
+</div>
+
+<!-- settings panel (gear) -->
+<div class="hud panel" id="settings">
+  <div class="sHead"><h3>SETTINGS</h3><button id="sClose">✕</button></div>
+
+  <div class="sSection">SPEED</div>
+  <label class="sRow"><span>Max speed</span><input id="sSpeed" type="range" min="0.4" max="2.5" step="0.1" value="1.5"><b id="sSpeedV">1.5 m/s</b></label>
+
+  <div class="sSection">SENSORS</div>
+  <label class="sToggle"><input id="sLidar" type="checkbox" checked> LiDAR point cloud (Unitree L1)</label>
+  <label class="sRow"><span>LiDAR range</span><input id="sLidarR" type="range" min="10" max="40" step="2" value="24"><b id="sLidarRV">24 m</b></label>
+  <label class="sRow"><span>LiDAR rate</span><input id="sLidarHz" type="range" min="2" max="10" step="1" value="5"><b id="sLidarHzV">5 Hz</b></label>
+  <label class="sToggle"><input id="sFusion" type="checkbox" checked> Sensor-fusion BEV (cam + lidar)</label>
+  <label class="sRow"><span>Camera FOV</span><input id="sCamFov" type="range" min="40" max="90" step="5" value="57"><b id="sCamFovV">57°</b></label>
+  <label class="sToggle"><input id="sZones" type="checkbox" checked> Safety zone ring-fence</label>
+
+  <div class="sSection">ALERTS</div>
+  <label class="sRow"><span>Alert mode</span>
+    <select id="sHornMode">
+      <option value="both" selected>Honk + Voice</option>
+      <option value="honk">Honk only</option>
+      <option value="voice">Voice only</option>
+      <option value="off">Silent</option>
+    </select></label>
+  <label class="sRow"><span>Honk on-time</span><input id="sHornOn" type="range" min="0.5" max="4" step="0.5" value="2"><b id="sHornOnV">2.0 s</b></label>
+  <label class="sRow"><span>Honk gap</span><input id="sHornGap" type="range" min="0.4" max="3" step="0.2" value="1.2"><b id="sHornGapV">1.2 s</b></label>
+
+  <div class="sSection">RECOVERY</div>
+  <label class="sRow"><span>Auto-reroute if stuck</span>
+    <select id="sStuckTimeout">
+      <option value="0">Off</option>
+      <option value="60">After 1 min</option>
+      <option value="180" selected>After 3 min</option>
+      <option value="300">After 5 min</option>
+    </select></label>
+
+  <div class="sSection">VIEW</div>
+  <label class="sRow"><span>Camera</span>
+    <select id="sCamMode"><option value="0">Chase</option><option value="1">Top-down</option><option value="2">Fork-cam</option></select></label>
+</div>
+
+<div class="hud panel" id="cluster">
+  <div id="spd">0.0 <small>m/s</small></div>
+  <div class="row"><span>TASK</span><b id="taskTxt">PUT-AWAY</b></div>
+  <div class="row"><span>WAYPOINT</span><b id="wpTxt">—</b></div>
+  <div class="row"><span>FORK</span><b id="forkTxt">0.05 m · empty</b></div>
+  <div class="row"><span>NEAREST</span><b id="nearTxt">—</b></div>
+  <div class="row"><span>PLANT</span><b>1.6 t · trike · v≤1.5 m/s</b></div>
+  <div id="zoneBar"><div id="zoneFill"></div></div>
+</div>
+
+<div class="hud panel" id="bevWrap">
+  <h3>BEV · Sensor Fusion (cam + lidar)</h3>
+  <canvas id="bev" width="250" height="330"></canvas>
+</div>
+
+<div class="hud panel" id="percept">
+  <h3>Perception · L1 LiDAR + camera fusion</h3>
+  <div id="targets"><div class="tgt"><span class="cls">Floor clear</span></div></div>
+  <div id="log"></div>
+</div>
+
+<div class="hud panel" id="beacon">SIG<br>BEACON</div>
+<div class="hud" id="alert"></div>
+<button id="overrideBtn">⤳ OVERRIDE — FORCE REROUTE</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+'use strict';
+/* ============================================================
+   DEEPGRID AUTONOMOUS FORKLIFT — Indian dark-store / warehouse
+   (e.g. a quick-commerce fulfilment floor: Swiggy Instamart-style)
+   - Tricycle (rear-steer) plant + force longitudinal model
+   - Unitree L1-style LiDAR: dome FOV, rotating sample, ray vs AABB
+   - AMR safety field: STOP / SLOW / WARN zones speed-scaled
+   - Aisle-graph waypoint navigation + pallet pick/place
+   - Worker / PPT-trolley / spill / another AMR as dynamic hazards
+   - EXT WebSocket bridge: drive it from a Python model (HiPAD etc.)
+   ============================================================ */
+const W=()=>innerWidth,H=()=>innerHeight,rnd=(a,b)=>a+Math.random()*(b-a);
+const clamp=THREE.MathUtils.clamp;
+var EXT=null;   // forward-declared so boot-time log() can safely reference it; assigned below
+
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});
+renderer.setSize(W(),H());renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+document.getElementById('scene').appendChild(renderer.domElement);
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x0c0f14);
+scene.fog=new THREE.Fog(0x0c0f14,28,80);
+const camera=new THREE.PerspectiveCamera(60,W()/H(),.1,400);
+
+/* warehouse lighting: cool ambient + ceiling high-bays */
+scene.add(new THREE.HemisphereLight(0xc4d4ee,0x202830,.65));
+const key=new THREE.DirectionalLight(0xdfe8ff,.5);key.position.set(20,40,12);
+key.castShadow=true;key.shadow.mapSize.set(2048,2048);
+Object.assign(key.shadow.camera,{left:-50,right:50,top:50,bottom:-50,far:140});
+scene.add(key);
+
+const M=(c,r=.85,m=0)=>new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:m});
+const EM=(c,e,r=.5)=>{const m=new THREE.MeshStandardMaterial({color:c,roughness:r,emissive:e});return m;};
+const box=(w,h,d,mat)=>{const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);o.castShadow=true;o.receiveShadow=true;return o;};
+const cyl=(rt,rb,h,mat,s=14)=>{const o=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,s),mat);o.castShadow=true;return o;};
+function makeLabel(txt,fg,scale=1){
+  const c=document.createElement('canvas');c.width=256;c.height=64;
+  const x=c.getContext('2d');x.fillStyle=fg;x.font='bold 38px "Space Grotesk",sans-serif';
+  x.textAlign='center';x.textBaseline='middle';x.fillText(txt,128,34);
+  return new THREE.Mesh(new THREE.PlaneGeometry(scale,scale*.25),
+    new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true}));
+}
+
+/* ============================================================
+   FLOOR + WAREHOUSE SHELL
+   ============================================================ */
+const FLOOR_W=46, FLOOR_L=70;
+const floorMat=M(0x2b2f36,.92);
+const floor=new THREE.Mesh(new THREE.PlaneGeometry(FLOOR_W,FLOOR_L),floorMat);
+floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
+/* epoxy sheen seams */
+for(let i=-FLOOR_L/2;i<=FLOOR_L/2;i+=6){
+  const ln=new THREE.Mesh(new THREE.PlaneGeometry(FLOOR_W,.04),M(0x3a3f47,.8));
+  ln.rotation.x=-Math.PI/2;ln.position.set(0,.005,i);scene.add(ln);
+}
+/* walls */
+const wallMat=M(0x3b4049,.95);
+function wall(w,h,d,x,y,z){const o=box(w,h,d,wallMat);o.position.set(x,y,z);scene.add(o);}
+wall(FLOOR_W,8,.4,0,4,-FLOOR_L/2); wall(FLOOR_W,8,.4,0,4,FLOOR_L/2);
+wall(.4,8,FLOOR_L,-FLOOR_W/2,4,0); wall(.4,8,FLOOR_L,FLOOR_W/2,4,0);
+/* ceiling trusses + high-bay lights */
+for(let z=-FLOOR_L/2+6;z<FLOOR_L/2;z+=10){
+  const tr=box(FLOOR_W,.3,.3,M(0x4a505a,.7));tr.position.set(0,7.6,z);scene.add(tr);
+  for(let x=-14;x<=14;x+=14){
+    const lp=box(1.4,.18,.5,EM(0xeef4ff,0x222a33));lp.position.set(x,7.4,z);scene.add(lp);
+    const pl=new THREE.PointLight(0xdce8ff,.32,26);pl.position.set(x,7.2,z);scene.add(pl);
+  }
+}
+
+/* dock doors on the front wall (inbound) */
+for(let i=0;i<3;i++){
+  const door=box(5,5.4,.2,M(0x20242b,.8));door.position.set(-14+i*14,2.7,-FLOOR_L/2+.25);scene.add(door);
+  const lbl=makeLabel('DOCK '+(i+1),'#7fa0c8',3.4);lbl.position.set(-14+i*14,5.7,-FLOOR_L/2+.4);scene.add(lbl);
+}
+
+/* ============================================================
+   RACKING — aisles define the navigable graph
+   Layout: aisles run along Z; ego corridors are the gaps at x = AISLE_X
+   ============================================================ */
+const RACK_H=6.2;
+const aisleXs=[-15,-7.5,0,7.5,15];     // centre of drivable aisles
+const rackBankX=[-11.25,-3.75,3.75,11.25]; // rack rows sit between aisles
+const AISLE_HALF=2.55;                  // drivable half-width from an aisle centreline to the rack face
+const CROSS_Z=[-FLOOR_L/2+4, 0, FLOOR_L/2-4];   // front, mid, rear cross-aisles (rack-free bands)
+const racks=[];
+function buildRackRow(cx){
+  const g=new THREE.Group();
+  const uprightMat=M(0xc15b27,.7), beamMat=M(0xf2a51c,.6);
+  const rows=Math.floor(FLOOR_L/2.4);
+  const GAP=2.6;   // half-width of clear cross-aisle bands (racks omitted near each CROSS_Z)
+  for(let i=0;i<rows;i++){
+    const z=-FLOOR_L/2+3+i*2.4;
+    // leave a clear gap wherever a cross-aisle runs, so routes can change lanes
+    if(CROSS_Z.some(cz=>Math.abs(z-cz)<GAP))continue;
+    [-.55,.55].forEach(s=>{const u=box(.12,RACK_H,.12,uprightMat);u.position.set(cx+s*1.0,RACK_H/2,z);g.add(u);});
+    [1.5,3.0,4.5].forEach(by=>{const b=box(2.2,.1,.12,beamMat);b.position.set(cx,by,z);g.add(b);});
+    // pallets with cartons on some levels
+    [0.95,2.55,4.05].forEach((py,li)=>{
+      if(Math.random()<.78){
+        const pal=box(1.9,.14,1.0,M(0x8a6a3c,.9));pal.position.set(cx,py+.07,z);g.add(pal);
+        const ch=rnd(.5,.95);const cn=box(1.6,ch,.85,M([0xb8946a,0xc7a880,0xa9855c][li%3],.95));
+        cn.position.set(cx,py+.14+ch/2,z);g.add(cn);
+        // SKU label
+        if(li===0&&Math.random()<.5){const sk=makeLabel('SKU·'+Math.floor(rnd(100,999)),'#1a1a1a',1.4);
+          sk.position.set(cx+(cx>0?-.96:.96),py+.5,z);sk.rotation.y=cx>0?-Math.PI/2:Math.PI/2;g.add(sk);}
+      }
+    });
+  }
+  scene.add(g);racks.push({cx,group:g});
+}
+rackBankX.forEach(buildRackRow);
+
+/* aisle floor markings + bay numbers */
+aisleXs.forEach((ax,i)=>{
+  [-1,1].forEach(s=>{const ln=new THREE.Mesh(new THREE.PlaneGeometry(.08,FLOOR_L-4),M(0xf2c200,.6));
+    ln.rotation.x=-Math.PI/2;ln.position.set(ax+s*1.55,.006,0);scene.add(ln);});
+});
+
+/* ============================================================
+   NAVIGATION GRAPH — the drivable "yellow line" network.
+   Vertical lanes run along Z at each aisle centre; horizontal
+   cross-aisles connect them at front / middle / rear. Routing
+   snaps endpoints to lanes and walks the grid, so the truck
+   NEVER cuts diagonally through racking.
+   ============================================================ */
+const NAVGRID={xs:aisleXs.slice(), zs:CROSS_Z.slice()};
+/* draw cross-aisle centre lines (lighter) */
+CROSS_Z.forEach(cz=>{const ln=new THREE.Mesh(new THREE.PlaneGeometry(aisleXs[aisleXs.length-1]-aisleXs[0]+3,.07),M(0xb89000,.45));
+  ln.rotation.x=-Math.PI/2;ln.position.set((aisleXs[0]+aisleXs[aisleXs.length-1])/2,.006,cz);scene.add(ln);});
+const nearestAisleX=x=>NAVGRID.xs.reduce((b,a)=>Math.abs(a-x)<Math.abs(b-x)?a:b,NAVGRID.xs[0]);
+const nearestCrossZ=z=>NAVGRID.zs.reduce((b,a)=>Math.abs(a-z)<Math.abs(b-z)?a:b,NAVGRID.zs[0]);
+/* route from A=[x,z] to B=[x,z] along the grid; returns dense polyline */
+function routeOnGrid(A,B){
+  const ax=nearestAisleX(A[0]), bx=nearestAisleX(B[0]);
+  // pick the cross-aisle nearest to A's z to transfer lanes (or B's if closer to a junction)
+  const transferZ = nearestCrossZ((A[1]+B[1])/2);
+  const corners=[];
+  corners.push([A[0],A[1]]);          // start (real position)
+  corners.push([ax,A[1]]);            // slide onto start lane
+  if(ax!==bx){
+    corners.push([ax,transferZ]);     // up/down start lane to cross-aisle
+    corners.push([bx,transferZ]);     // across cross-aisle to target lane
+  }
+  corners.push([bx,B[1]]);            // along target lane to target z
+  corners.push([B[0],B[1]]);          // ease to exact target
+  return densify(corners,0.5);
+}
+/* route from A to B but DETOUR around a blocked aisle x (avoidX):
+   leave the current lane at the nearest cross-aisle, shift to an adjacent
+   clear aisle, run past the blockage, then rejoin toward B. Returns null
+   if no alternative lane exists (truly boxed in). */
+function routeAround(A,B,avoidX){
+  const startX=nearestAisleX(A[0]);
+  // candidate detour lanes: nearest aisles that are NOT the blocked one
+  const alts=aisleXs.filter(x=>Math.abs(x-avoidX)>0.1)
+                    .sort((p,q)=>Math.abs(p-A[0])-Math.abs(q-A[0]));
+  if(!alts.length)return null;
+  const detourX=alts[0];
+  // cross-aisle to transfer onto the detour lane: pick the one nearest behind/at the truck
+  const backCross=nearestCrossZ(A[1]);
+  // and a cross-aisle nearer the destination to come back
+  const fwdCross=nearestCrossZ(B[1]);
+  const bx=nearestAisleX(B[0]);
+  const corners=[];
+  corners.push([A[0],A[1]]);
+  corners.push([startX,A[1]]);          // onto current lane
+  corners.push([startX,backCross]);     // back to a cross-aisle
+  corners.push([detourX,backCross]);    // shift to the clear detour lane
+  corners.push([detourX,fwdCross]);     // run along the detour lane past the blockage
+  if(detourX!==bx) corners.push([bx,fwdCross]);  // cross to the destination lane
+  corners.push([bx,B[1]]);              // along destination lane
+  corners.push([B[0],B[1]]);            // ease to target
+  return densify(corners,0.5);
+}
+/* turn a corner list into a dense, slightly-rounded polyline */
+function densify(corners,step){
+  // de-dup
+  const c=[]; for(const p of corners){if(!c.length||Math.hypot(p[0]-c[c.length-1][0],p[1]-c[c.length-1][1])>1e-3)c.push(p);}
+  const out=[];
+  for(let i=0;i<c.length-1;i++){
+    const [x0,z0]=c[i],[x1,z1]=c[i+1];
+    const d=Math.hypot(x1-x0,z1-z0),n=Math.max(1,Math.round(d/step));
+    for(let k=0;k<n;k++){const t=k/n;out.push([x0+(x1-x0)*t,z0+(z1-z0)*t]);}
+  }
+  out.push(c[c.length-1]);
+  return roundCorners(out);
+}
+/* light corner smoothing so the truck doesn't need to stop dead at 90° turns */
+function roundCorners(pts){
+  if(pts.length<3)return pts;
+  const out=[pts[0]];
+  for(let i=1;i<pts.length-1;i++){
+    const a=pts[i-1],b=pts[i],c=pts[i+1];
+    out.push([(a[0]+2*b[0]+c[0])/4,(a[1]+2*b[1]+c[1])/4]);
+  }
+  out.push(pts[pts.length-1]);
+  return out;
+}
+/* charging dock back-right */
+const charger=box(2,1.4,1,EM(0x1c3a2a,0x0d2418));charger.position.set(FLOOR_W/2-3,.7,FLOOR_L/2-4);scene.add(charger);
+scene.add((()=>{const l=makeLabel('CHARGE','#34d399',2.4);l.position.set(FLOOR_W/2-3,1.9,FLOOR_L/2-4);return l;})());
+
+/* ============================================================
+   EGO — autonomous reach/counterbalance forklift
+   Tricycle: two fixed front wheels (under forks), one driven+steered rear
+   ============================================================ */
+function buildForklift(){
+  const g=new THREE.Group();
+  const bodyMat=M(0xf4b400,.6,.2), darkMat=M(0x222428,.6,.3);
+  // chassis / counterweight
+  const chas=box(1.15,.62,1.7,bodyMat);chas.position.set(0,.55,-.35);g.add(chas);
+  const cw=box(1.05,.7,.55,darkMat);cw.position.set(0,.6,-1.25);g.add(cw);
+  // operator cage (no operator — autonomous)
+  const cageMat=M(0x2a2d33,.5,.4);
+  [[-.5,-.35],[.5,-.35],[-.5,-.95],[.5,-.95]].forEach(([x,z])=>{
+    const p=box(.06,1.25,.06,cageMat);p.position.set(x,1.55,z);g.add(p);});
+  const roof=box(1.15,.08,.78,cageMat);roof.position.set(0,2.18,-.65);g.add(roof);
+  const seat=box(.5,.5,.5,M(0x15171b,.8));seat.position.set(0,1.0,-.75);g.add(seat);
+  // mast + forks
+  const mastMat=M(0x33373d,.5,.4);
+  [-.42,.42].forEach(x=>{const m=box(.1,2.4,.12,mastMat);m.position.set(x,1.2,.55);g.add(m);});
+  const carriage=new THREE.Group();
+  [-.35,.35].forEach(x=>{const f=box(.13,.06,1.25,M(0x2a2d33,.5,.5));f.position.set(x,0,.62+.62);carriage.add(f);});
+  const back=box(.9,.5,.06,mastMat);back.position.set(0,.25,.56);carriage.add(back);
+  carriage.position.set(0,.16,0);g.add(carriage);
+  // a carried pallet (toggled by task)
+  const load=new THREE.Group();load.visible=false;
+  const pal=box(1.0,.14,1.1,M(0x8a6a3c,.9));pal.position.set(0,.07,1.24);load.add(pal);
+  const cgo=box(.85,.7,.95,M(0xc7a880,.95));cgo.position.set(0,.5,1.24);load.add(cgo);
+  carriage.add(load);
+  // wheels
+  const tyM=M(0x111316,.95);const wheels=[];
+  [[-.5,.55],[.5,.55]].forEach(([x,z])=>{const w=cyl(.3,.3,.18,tyM);w.rotation.z=Math.PI/2;w.position.set(x,.3,z);g.add(w);wheels.push({grp:w,steer:false});});
+  const rwG=new THREE.Group();const rw=cyl(.26,.26,.2,tyM);rw.rotation.z=Math.PI/2;rwG.add(rw);
+  rwG.position.set(0,.26,-1.15);g.add(rwG);wheels.push({grp:rwG,steer:true});
+  // Unitree L1 LiDAR puck on a small mast at the rear roof
+  const lmast=cyl(.04,.04,.5,darkMat);lmast.position.set(0,2.45,-.65);g.add(lmast);
+  const puck=cyl(.1,.12,.16,M(0x1b1e24,.4,.5),18);puck.position.set(0,2.74,-.65);g.add(puck);
+  const ring=cyl(.105,.105,.05,EM(0x0a0d12,0x0a2030),.3,18);ring.position.set(0,2.74,-.65);g.add(ring);
+  // front camera (between forks)
+  const cam=box(.16,.1,.08,M(0x15171b,.4,.5));cam.position.set(0,1.0,.62);g.add(cam);
+  const lens=cyl(.035,.035,.05,EM(0x8fd0ff,0x16384f),.2,10);lens.rotation.x=Math.PI/2;lens.position.set(0,1.0,.67);g.add(lens);
+  // amber beacon
+  const bcn=cyl(.07,.08,.12,EM(0xff8f3f,0x000000),.4,12);bcn.position.set(0,2.32,-.65);g.add(bcn);
+  g.userData={wheels,carriage,load,beacon:bcn.material,ring:ring.material};
+  return g;
+}
+const ego=buildForklift();scene.add(ego);
+
+/* Unitree L1 dome FOV cone (forward) */
+const fov=new THREE.Mesh(new THREE.ConeGeometry(4.2,9,4,1,true),
+  new THREE.MeshBasicMaterial({color:0x34d399,transparent:true,opacity:.08,side:THREE.DoubleSide,depthWrite:false}));
+fov.rotation.x=-Math.PI/2;fov.rotation.y=Math.PI/4;fov.scale.set(1,.999,.35);
+fov.position.set(0,.9,5.2);ego.add(fov);
+
+/* ---- floor SAFETY RING-FENCE around the forklift (world-space, regenerated each frame) ---- */
+function ringMesh(color,op){
+  const g=new THREE.RingGeometry(1,1.06,64);
+  const m=new THREE.MeshBasicMaterial({color,transparent:true,opacity:op,side:THREE.DoubleSide,depthWrite:false});
+  const o=new THREE.Mesh(g,m);o.rotation.x=-Math.PI/2;o.position.y=0.03;return o;
+}
+const stopRing=ringMesh(0xff3b3b,.9);     // hard e-stop fence
+const stopFill=new THREE.Mesh(new THREE.CircleGeometry(1,64),
+  new THREE.MeshBasicMaterial({color:0xff2222,transparent:true,opacity:.07,side:THREE.DoubleSide,depthWrite:false}));
+stopFill.rotation.x=-Math.PI/2;stopFill.position.y=0.022;
+const slowRing=ringMesh(0xff8f3f,.5);     // slow-zone fence
+scene.add(stopFill,slowRing,stopRing);
+/* dashed tick marks on the stop fence for a "laser scanner" look */
+const stopTicks=new THREE.Group();
+for(let i=0;i<32;i++){const t=new THREE.Mesh(new THREE.PlaneGeometry(.05,.22),
+  new THREE.MeshBasicMaterial({color:0xff5555,transparent:true,opacity:.8,depthWrite:false}));
+  t.rotation.x=-Math.PI/2;stopTicks.add(t);}
+scene.add(stopTicks);
+function updateRingFence(Z){
+  const r=Math.max(0.8,Z.stop);
+  stopRing.scale.set(r,r,1);stopFill.scale.set(r,r,1);
+  stopRing.position.set(EGO.x,0.03,EGO.z);stopFill.position.set(EGO.x,0.022,EGO.z);
+  const rs=Math.max(r+0.3,Z.slow);
+  slowRing.scale.set(rs,rs,1);slowRing.position.set(EGO.x,0.028,EGO.z);
+  // pulse the stop fence when actually stopping
+  const pulse=alerts.stop?(0.55+0.45*Math.sin(simT*12)):0.9;
+  stopRing.material.opacity=pulse; stopFill.material.opacity=alerts.stop?0.18:0.07;
+  stopRing.material.color.setHex(alerts.stop?0xff2222:0xff5b5b);
+  stopTicks.position.set(EGO.x,0.03,EGO.z);
+  stopTicks.children.forEach((t,i)=>{const a=i/32*Math.PI*2;
+    t.position.set(Math.sin(a)*r,0,Math.cos(a)*r);t.rotation.z=-a;
+    t.material.opacity=alerts.stop?pulse:0.55;});
+}
+
+/* ============================================================
+   PHYSICS — tricycle (rear steer) + longitudinal force model
+     mast-heavy AMR; rear wheel both drives and steers
+     ψ̇ = v·tan(δ)/WB  (steer at rear -> sign handled in integrator)
+   ============================================================ */
+const P={m:1600,WB:1.70,maxSteer:1.0,steerRate:2.2,Fmax:2400,
+  brakeA:2.5, CdA:1.1, rho:1.2, Crr:0.02, g:9.81, wheelR:0.3,
+  vmax:1.5};                              // 1.5 m/s = warehouse AMR cap
+const EGO={x:0,z:0,psi:0,v:0,a:0,delta:0,
+  targetV:0,fork:0.05,loaded:false,
+  state:'IDLE',odo:0, goal:null,         // goal = world point currently steering toward
+  avoidLat:0, reverse:false,             // reverse=true lets velocity go negative (backing up)
+  // reroute state machine for fixed obstacles the truck can't squeeze past:
+  rr:{phase:'none', t:0, tries:0, blockedX:null, dest:null, startZ:0}};
+
+/* ---- PATH: dense polyline the forklift tracks (set by router/editor) ---- */
+const PATH={pts:[],seg:0,done:true};      // pts: [[x,z],...]; seg = index of current target point
+let routeLineDirty=false;                  // set true to rebuild the 3D floor route line
+let routeLine=null;
+function rebuildRouteLine(){
+  if(routeLine){scene.remove(routeLine);routeLine.geometry.dispose();routeLine=null;}
+  if(PATH.pts.length>1){
+    const arr=new Float32Array(PATH.pts.length*3);
+    PATH.pts.forEach((p,i)=>{arr[i*3]=p[0];arr[i*3+1]=0.06;arr[i*3+2]=p[1];});
+    const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(arr,3));
+    routeLine=new THREE.Line(geo,new THREE.LineBasicMaterial({color:0x56b0ff,transparent:true,opacity:.6}));
+    scene.add(routeLine);
+  }
+  routeLineDirty=false;
+}
+function setPath(pts){
+  PATH.pts=pts||[]; PATH.seg=0; PATH.done=!(pts&&pts.length>1); routeLineDirty=true;
+}
+function pathProgressGoal(){
+  // pure-pursuit: walk forward along the polyline to a point ~Ld ahead of ego
+  const pts=PATH.pts; if(pts.length<2){PATH.done=true;return null;}
+  const Ld=Math.max(1.4,0.9+1.1*EGO.v);
+  // advance seg index past points we've already passed (closest-point tracking)
+  let bestI=PATH.seg,bestD=1e9;
+  for(let i=PATH.seg;i<pts.length;i++){
+    const d=Math.hypot(pts[i][0]-EGO.x,pts[i][1]-EGO.z);
+    if(d<bestD){bestD=d;bestI=i;}
+    if(d>Ld+4 && i>bestI+2)break;            // don't scan the whole path, but allow reaching tail
+  }
+  PATH.seg=bestI;
+  // finished? — proximity to the final point, BUT only once we've actually
+  // traversed most of the path (prevents loop-closure stutter where start≈end)
+  const end=pts[pts.length-1];
+  if(bestI>=pts.length-3 && Math.hypot(end[0]-EGO.x,end[1]-EGO.z)<0.7){PATH.done=true;return null;}
+  // from bestI, find first point at least Ld away → look-ahead goal; else aim at the end
+  let goal=end;
+  for(let i=bestI;i<pts.length;i++){
+    if(Math.hypot(pts[i][0]-EGO.x,pts[i][1]-EGO.z)>=Ld){goal=pts[i];break;}
+  }
+  return goal;
+}
+
+function stepPhysics(dt){
+  // pure-pursuit steering toward EGO.goal (a world point on the path / from EXT)
+  const g=EGO.goal;
+  if(g){
+    const dx=g[0]-EGO.x, dz=g[1]-EGO.z;
+    const lat=dx*Math.cos(EGO.psi)-dz*Math.sin(EGO.psi);   // +lat = goal to the left
+    const lon=dx*Math.sin(EGO.psi)+dz*Math.cos(EGO.psi);   // +lon = ahead
+    const Ld=Math.max(0.6,Math.hypot(dx,dz));
+    const alpha=Math.atan2(lat,Math.max(.2,lon));          // bearing to goal
+    let cmd=clamp(Math.atan2(2*P.WB*Math.sin(alpha),Ld),-P.maxSteer,P.maxSteer);
+    // if goal is behind (sharp), allow a tighter turn-in-place crawl
+    if(lon<0) cmd=clamp(alpha,-P.maxSteer,P.maxSteer);
+    EGO.delta+=clamp(cmd-EGO.delta,-P.steerRate*dt,P.steerRate*dt);
+  } else {
+    EGO.delta+=clamp(-EGO.delta,-P.steerRate*dt,P.steerRate*dt); // straighten when idle
+  }
+
+  const ev=EGO.targetV-EGO.v;
+  let F=0;
+  if(ev>0.02)F=clamp(ev*P.m*1.6,0,P.Fmax);
+  else if(ev<-0.02)F=-clamp(-ev*2.0,0,P.brakeA)*P.m;
+  const Fdrag=.5*P.rho*P.CdA*EGO.v*EGO.v, Froll=Math.abs(EGO.v)>.04?P.Crr*P.m*P.g:0;
+  EGO.a=(F-Math.sign(EGO.v||1)*(Fdrag+Froll))/P.m;
+  // allow reverse (down to -0.6 m/s) only while the reroute machine is backing up
+  const vmin = EGO.reverse ? -0.6 : 0;
+  EGO.v=clamp(EGO.v+EGO.a*dt, vmin, P.vmax);
+  if(Math.abs(EGO.targetV)<0.03&&Math.abs(EGO.v)<0.1)EGO.v=0;
+
+  const psidot=EGO.v*Math.tan(EGO.delta)/P.WB;
+  EGO.psi+=psidot*dt;
+  let nx=EGO.x+EGO.v*Math.sin(EGO.psi)*dt;
+  let nz=EGO.z+EGO.v*Math.cos(EGO.psi)*dt;
+  // HARD FLOOR BOUNDARY — the truck (with its footprint) can never leave the walls.
+  // Half-diagonal of the ~1.1 x 2.6 m chassis ≈ 1.4 m; keep the centre inside that margin.
+  const MX=FLOOR_W/2-1.5, MZ=FLOOR_L/2-1.5;
+  const hitX=(nx>MX||nx<-MX), hitZ=(nz>MZ||nz<-MZ);
+  nx=clamp(nx,-MX,MX); nz=clamp(nz,-MZ,MZ);
+  if(hitX||hitZ){ EGO.v=0; EGO.targetV=0; }   // stop dead at the wall instead of grinding into it
+  EGO.x=nx; EGO.z=nz;
+  EGO.odo+=EGO.v*dt;
+
+  ego.position.set(EGO.x,0,EGO.z);
+  ego.rotation.y=EGO.psi;
+  for(const w of ego.userData.wheels){
+    const tyre=w.grp.children&&w.grp.children[0];
+    if(tyre&&tyre.rotation)tyre.rotation.x+=EGO.v*dt/P.wheelR;
+    if(w.steer)w.grp.rotation.y=EGO.delta;
+  }
+  ego.userData.carriage.position.y=0.16+EGO.fork;
+  ego.userData.load.visible=EGO.loaded;
+}
+
+/* ============================================================
+   ACTORS — warehouse hazards
+   ============================================================ */
+let actors=[];
+function buildWorker(vest){
+  const g=new THREE.Group();
+  const body=cyl(.2,.24,.95,M(vest?0xff7a1a:0x2d5d8e,.85),10);body.position.y=.95;g.add(body);
+  const head=cyl(.13,.13,.24,M(0xc98a5b,.8),10);head.position.y=1.55;g.add(head);
+  if(vest){const v=cyl(.22,.26,.5,EM(0xffe000,0x222000),.5,10);v.position.y=1.05;g.add(v);}
+  const hat=cyl(.15,.16,.1,M(vest?0xffffff:0xffd000,.6),10);hat.position.y=1.7;g.add(hat);
+  return g;
+}
+function buildTrolley(){ // hand pallet truck / picking trolley
+  const g=new THREE.Group();
+  const deck=box(.7,.12,1.3,M(0x6a7079,.6,.4));deck.position.y=.45;g.add(deck);
+  const stack=box(.62,.9,1.15,M(0xb8946a,.95));stack.position.y=1.0;g.add(stack);
+  const handle=box(.06,.9,.06,M(0x33373d,.5));handle.position.set(0,.9,-.7);g.add(handle);
+  const tyM=M(0x111316,.95);
+  [[-.3,.6],[.3,.6],[-.3,-.6],[.3,-.6]].forEach(([x,z])=>{const w=cyl(.1,.1,.06,tyM);w.rotation.z=Math.PI/2;w.position.set(x,.1,z);g.add(w);});
+  return g;
+}
+function buildAMR(){ // peer autonomous mobile robot
+  const g=new THREE.Group();
+  const b=box(.8,.4,1.1,M(0x37506e,.5,.3));b.position.y=.3;g.add(b);
+  const top=box(.7,.18,.9,M(0x223247,.5));top.position.y=.58;g.add(top);
+  const ld=box(.6,.6,.7,M(0xc7a880,.95));ld.position.set(0,.95,0);g.add(ld);
+  const puck=cyl(.07,.08,.1,EM(0x121821,0x0a2030),.4,12);puck.position.set(0,.72,.4);g.add(puck);
+  const tyM=M(0x111316,.95);
+  [[-.34,.4],[.34,.4],[-.34,-.4],[.34,-.4]].forEach(([x,z])=>{const w=cyl(.13,.13,.08,tyM);w.rotation.z=Math.PI/2;w.position.set(x,.13,z);g.add(w);});
+  return g;
+}
+function buildSpill(){
+  const g=new THREE.Group();
+  const p=new THREE.Mesh(new THREE.CircleGeometry(.7,16),M(0x2a4a8a,.3,.2));
+  p.rotation.x=-Math.PI/2;p.position.y=.012;g.add(p);
+  const cone=cyl(.02,.16,.5,EM(0xff5a1a,0x331000),.5,10);cone.position.set(.5,.25,.3);g.add(cone);
+  return g;
+}
+function buildPalletObstacle(){
+  const g=new THREE.Group();
+  const pal=box(1.0,.14,1.1,M(0x8a6a3c,.9));pal.position.y=.07;g.add(pal);
+  const cgo=box(.85,.6,.9,M(0xb8946a,.95));cgo.position.y=.44;g.add(cgo);
+  return g;
+}
+const ADIMS={'worker':[.5,1.8,.5],'worker (hi-vis)':[.5,1.8,.5],'pick trolley':[.7,1.4,1.3],
+  'peer AMR':[.8,1.1,1.1],'floor spill':[1.4,.2,1.4],'stray pallet':[1.0,.7,1.1]};
+
+function addActor(a){scene.add(a.mesh);actors.push(a);return a;}
+
+/* ============================================================
+   TASKS / SCENARIOS — quick-commerce dark-store ops
+   ============================================================ */
+const TASK={
+  putaway:{label:'PUT-AWAY', vmax:1.5,
+    stops:[[-15,-26],[-15,24],[0,24],[7.5,-26]],   // dock → aisle A → cross → bay
+    seed(){ worker(false,[-15,5]); trolley([0,-6]); peerAMR([7.5,2],[7.5,-20]); }},
+  pick:{label:'PICK RUN', vmax:1.3,
+    stops:[[0,-24],[0,22],[-7.5,22],[-7.5,-24]],
+    seed(){ worker(true,[0,8]); worker(false,[-7.5,-4]); trolley([7.5,10]); spill([0,16]); }},
+  peak:{label:'PEAK FLOOR', vmax:1.2,
+    stops:[[-7.5,-26],[-7.5,24],[7.5,24],[7.5,-26],[0,-26]],
+    seed(){ worker(true,[-7.5,4]); worker(true,[7.5,-2]); worker(false,[0,12]);
+      trolley([-7.5,-12]); trolley([7.5,16]); peerAMR([0,-18],[0,22]); spill([7.5,2]);
+      strayPallet([-7.5,18]); }},
+};
+let taskKey='putaway';
+
+// response policy per obstacle:
+//  'person'  → stop + honk + "move away" (they can clear)
+//  'mobile'  → stop + yield quietly (peer machine will move; no voice)
+//  'avoid'   → fixed obstacle to route around; stop only if contact truly imminent
+//  'traverse'→ slow-creep over/past (e.g. spill); flag for cleanup, no stop/honk
+function worker(vest,[x,z]){addActor({type:vest?'worker (hi-vis)':'worker',mesh:buildWorker(vest),
+  x,z,kind:'worker', response:'person', home:[x,z], v:0, vmax:rnd(.7,1.2), wanderT:rnd(1,4), tx:x,tz:z,vx:0,vz:0,
+  cross:Math.random()<.6});}
+function trolley([x,z]){addActor({type:'pick trolley',mesh:buildTrolley(),x,z,kind:'trolley',response:'mobile',
+  v:0,vmax:rnd(.5,.9),home:[x,z],wanderT:rnd(2,5),tx:x,tz:z,vx:0,vz:0,push:null});}
+function peerAMR([x,z],[x2,z2]){addActor({type:'peer AMR',mesh:buildAMR(),x,z,kind:'amr',response:'mobile',
+  v:0,vmax:1.2,patrol:[[x,z],[x2,z2]],pi:0,vx:0,vz:0});}
+function spill([x,z]){addActor({type:'floor spill',mesh:buildSpill(),x,z,kind:'static',response:'traverse',v:0,vx:0,vz:0});}
+function strayPallet([x,z]){addActor({type:'stray pallet',mesh:buildPalletObstacle(),x,z,kind:'static',response:'avoid',v:0,vx:0,vz:0});}
+
+/* mission = ordered list of stops; the planner grid-routes between them and loops */
+const MISSION={stops:[],i:0,loop:true};
+function buildMissionPath(stops,loop){
+  // start the route from the truck's current pose to stop[0], then between stops
+  const pts=[];
+  let from=[EGO.x,EGO.z];
+  const seq=stops.slice();
+  if(loop)seq.push(stops[0]);
+  for(const s of seq){
+    const leg=routeOnGrid(from,s);
+    for(let k=(pts.length?1:0);k<leg.length;k++)pts.push(leg[k]);
+    from=s;
+  }
+  return pts;
+}
+function startMission(stops,loop){
+  MISSION.stops=stops.slice();MISSION.i=0;MISSION.loop=loop!==false;
+  setPath(buildMissionPath(stops,MISSION.loop));
+  routeLineDirty=true;
+}
+/* the point the truck is ultimately driving toward right now (for rerouting) */
+function currentDest(){
+  if(PATH.pts.length>1) return PATH.pts[PATH.pts.length-1].slice();
+  return null;
+}
+/* commit a fresh path and reset progress (used by reroute) */
+function commitReroute(pts){
+  if(!pts||pts.length<2)return false;
+  PATH.pts=pts; PATH.seg=0; PATH.done=false; routeLineDirty=true;
+  return true;
+}
+/* Force a fresh route to the current destination, escaping a stuck/blocked state.
+   Used by the manual OVERRIDE button and by the auto-reroute timeout.
+   Tries, in order: a detour around the blocked aisle; the next clear aisle;
+   and finally a straight grid route from where we are. */
+function forceReroute(reason){
+  const dest=EGO.rr.dest||currentDest();
+  if(!dest){ EGO.rr.phase='none'; EGO.reverse=false; stuckClock=0; setOverrideVisible(false); return false; }
+  const here=[EGO.x,EGO.z];
+  // is something blocking close ahead right now? if so, back away first so we have room to turn.
+  let blockAhead=false;
+  for(const a of actors){ const {fwd,d}=relInfo(a); if(d<2.6 && fwd>-0.5){ blockAhead=true; break; } }
+  const blocked = (EGO.rr.blockedX!=null) ? EGO.rr.blockedX : nearestAisleX(EGO.x);
+  if(blockAhead){
+    // enter a back-up-then-reroute cycle (reuses the reroute state machine).
+    // forced=true lets it proceed even past a dynamic agent (operator/timeout decision).
+    EGO.rr={phase:'backup', t:0, tries:0, blockedX:blocked, dest:dest, startZ:EGO.z, stuck:0, forced:true};
+    EGO.reverse=true; stuckClock=0; setOverrideVisible(false);
+    log((reason||'Manual override')+' — backing clear, then rerouting','ev-ok');
+    return true;
+  }
+  // otherwise route around immediately
+  let path = routeAround(here,dest,blocked) || routeOnGrid(here,dest);
+  EGO.rr={phase:'none',t:0,tries:0,blockedX:null,dest:null,startZ:0,stuck:0};
+  EGO.reverse=false; stuckClock=0; setOverrideVisible(false);
+  if(path && commitReroute(path)){
+    log((reason||'Manual override')+' — forcing new route to destination','ev-ok');
+    return true;
+  }
+  return false;
+}
+function loadTask(k){
+  taskKey=k; editMode=false; updateEditUI();
+  actors.forEach(a=>scene.remove(a.mesh));actors=[];
+  const s0=TASK[k].stops[0];
+  Object.assign(EGO,{x:s0[0],z:s0[1]-3,psi:0,v:0,delta:0,fork:0.05,loaded:false,odo:0,state:'IDLE',goal:null,reverse:false,avoidLat:0});
+  EGO.rr={phase:'none',t:0,tries:0,blockedX:null,dest:null,startZ:0};
+  stuckClock=0; setOverrideVisible(false);
+  P.vmax=TASK[k].vmax;
+  TASK[k].seed();
+  collided.clear();simT=0;
+  startMission(TASK[k].stops,true);
+  document.querySelectorAll('#task button').forEach(b=>b.classList.toggle('on',b.dataset.t===k));
+  $('taskTxt').textContent=TASK[k].label;
+  log(`Task: ${TASK[k].label} — routing through ${TASK[k].stops.length} stops along aisles`,'ev-ok');
+}
+
+/* ============================================================
+   ACTOR BEHAVIOUR
+   ============================================================ */
+function updateActors(dt){
+  for(const a of actors){
+    a.vx=a.vz=0;
+    if(a.kind==='worker'){
+      a.wanderT-=dt;
+      if(a.wanderT<0){a.wanderT=rnd(1.5,4);
+        if(a.cross){a.tx=a.home[0]+rnd(-3.2,3.2);a.tz=a.tz+rnd(-3,3);}
+        else{a.tx=a.home[0]+rnd(-1.2,1.2);a.tz=a.home[1]+rnd(-4,4);}
+        a.tz=clamp(a.tz,-FLOOR_L/2+4,FLOOR_L/2-4);
+      }
+      // is the worker standing in the truck's lane ahead? (truck blocked because of them)
+      const rx=a.x-EGO.x,rz=a.z-EGO.z;
+      const fwd=rx*Math.sin(EGO.psi)+rz*Math.cos(EGO.psi);
+      const lat=rx*Math.cos(EGO.psi)-rz*Math.sin(EGO.psi);
+      const inLaneAhead=fwd>-1&&fwd<6&&Math.abs(lat)<1.4;
+      if(inLaneAhead&&EGO.v<0.25){
+        // heard the horn — step sideways out of the aisle toward the rack face
+        a.clearT=(a.clearT||0)+dt;
+        const side=lat>=0?1.6:-1.6;        // move to whichever side they're nearer
+        a.tx=clamp(a.x+side,-FLOOR_W/2+2,FLOOR_W/2-2); a.tz=a.z;
+      } else if(a.clearT){ a.clearT=Math.max(0,a.clearT-dt*0.5); }
+      const dx=a.tx-a.x,dz=a.tz-a.z,d=Math.hypot(dx,dz);
+      if(d>.1){a.vx=clamp(dx/d*a.vmax,-a.vmax,a.vmax);a.vz=clamp(dz/d*a.vmax,-a.vmax,a.vmax);
+        // when clearing, move briskly; otherwise normal wander, occasionally pausing for the AMR
+        const de=Math.hypot(EGO.x-a.x,EGO.z-a.z);
+        if(!inLaneAhead && de<2.0 && Math.random()<.5){a.vx*=-.3;a.vz*=-.3;}
+        if(inLaneAhead){a.vx*=1.4;a.vz*=1.4;}
+        a.x+=a.vx*dt;a.z+=a.vz*dt;a.mesh.rotation.y=Math.atan2(a.vx,a.vz);}
+    }
+    else if(a.kind==='trolley'){
+      a.wanderT-=dt;
+      if(a.wanderT<0){a.wanderT=rnd(3,7);a.tz=clamp(a.z+rnd(-8,8),-FLOOR_L/2+5,FLOOR_L/2-5);a.tx=a.home[0]+rnd(-1,1);}
+      const dx=a.tx-a.x,dz=a.tz-a.z,d=Math.hypot(dx,dz);
+      if(d>.15){a.vx=dx/d*a.vmax;a.vz=dz/d*a.vmax;a.x+=a.vx*dt;a.z+=a.vz*dt;a.mesh.rotation.y=Math.atan2(a.vx,a.vz);}
+    }
+    else if(a.kind==='amr'){
+      const tgt=a.patrol[a.pi];const dx=tgt[0]-a.x,dz=tgt[1]-a.z,d=Math.hypot(dx,dz);
+      if(d<.4){a.pi=(a.pi+1)%a.patrol.length;}
+      else{
+        // peer AMR runs the SAME safety logic: slows for ego
+        let v=a.vmax;const de=Math.hypot(EGO.x-a.x,EGO.z-a.z);
+        if(de<3.5)v=Math.min(v,.4);if(de<1.8)v=0;
+        a.vx=dx/d*v;a.vz=dz/d*v;a.x+=a.vx*dt;a.z+=a.vz*dt;a.mesh.rotation.y=Math.atan2(a.vx,a.vz);a.v=v;
+      }
+    }
+    a.mesh.position.set(a.x,0,a.z);
+  }
+}
+
+/* ============================================================
+   AUDIO — warehouse horn + spoken alerts (Web Audio + SpeechSynthesis)
+   On SAFETY STOP: cyclic horn — 2 s ON, then pause, repeat — plus a
+   spoken "Move away please". If a hazard is dangerously close (collision
+   range), the spoken alert becomes "Collision! Move away".
+   A soft intermittent beep plays in the SLOW/creep zone.
+   ============================================================ */
+const AUDIO={ctx:null,on:true,hornGain:null,beepT:0,
+  hornPhase:'off',hornT:0,        // cyclic honk state machine
+  spokeT:0,lastSpeech:''};
+let HORN_ON=2.0, HORN_GAP=1.2;     // seconds (settings-adjustable)
+let HORN_MODE='both';               // 'both' | 'honk' | 'voice' | 'off'
+let CAM_FOV_DEG=57;                 // camera horizontal FOV (settings-adjustable)
+let STUCK_TIMEOUT=180;             // s the truck may stay stuck before auto-rerouting (0 = off)
+let stuckClock=0;                  // s the truck has been stalled/blocked making no progress
+function audioInit(){
+  if(AUDIO.ctx)return;
+  try{AUDIO.ctx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){return;}
+  AUDIO.hornGain=AUDIO.ctx.createGain();AUDIO.hornGain.gain.value=0;
+  AUDIO.hornGain.connect(AUDIO.ctx.destination);
+  [220,277].forEach(f=>{const o=AUDIO.ctx.createOscillator();o.type='sawtooth';o.frequency.value=f;
+    o.connect(AUDIO.hornGain);o.start();});      // two detuned saws = meaty horn
+}
+function beep(freq,dur){
+  if(!AUDIO.ctx||HORN_MODE==='off'||HORN_MODE==='voice')return;
+  const o=AUDIO.ctx.createOscillator(),g=AUDIO.ctx.createGain();
+  o.type='square';o.frequency.value=freq;o.connect(g);g.connect(AUDIO.ctx.destination);
+  const t=AUDIO.ctx.currentTime;g.gain.setValueAtTime(0.0001,t);
+  g.gain.exponentialRampToValueAtTime(0.18,t+0.01);g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+  o.start(t);o.stop(t+dur+0.02);
+}
+function speak(text){
+  if(HORN_MODE==='off'||HORN_MODE==='honk'||!('speechSynthesis'in window))return;
+  if(text===AUDIO.lastSpeech&&AUDIO.spokeT>0)return;     // don't stack the same phrase
+  try{speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.rate=1.05;u.pitch=1.0;u.volume=1.0;
+    speechSynthesis.speak(u);
+    AUDIO.lastSpeech=text;AUDIO.spokeT=3.2;              // re-announce every ~3 s while active
+  }catch(e){}
+}
+function audioUpdate(dt){
+  if(!AUDIO.ctx)return;
+  AUDIO.spokeT=Math.max(0,AUDIO.spokeT-dt);
+  const honkOK=(HORN_MODE==='both'||HORN_MODE==='honk');
+  // Horn only sounds when a PERSON needs to clear (alerts.voice) — not for pallets/spills.
+  // For a machine-vs-machine stop we hold position quietly.
+  const hornActive=alerts.stop && alerts.voice;
+  if(hornActive){
+    // cyclic honk: ON for HORN_ON s, gap for HORN_GAP s, repeat
+    AUDIO.hornT-=dt;
+    if(AUDIO.hornPhase!=='on'&&AUDIO.hornPhase!=='gap'){AUDIO.hornPhase='on';AUDIO.hornT=HORN_ON;}
+    if(AUDIO.hornT<=0){
+      if(AUDIO.hornPhase==='on'){AUDIO.hornPhase='gap';AUDIO.hornT=HORN_GAP;}
+      else{AUDIO.hornPhase='on';AUDIO.hornT=HORN_ON;}
+    }
+    const tone=(honkOK&&AUDIO.hornPhase==='on')?0.16:0.0;
+    AUDIO.hornGain.gain.setTargetAtTime(tone,AUDIO.ctx.currentTime,0.03);
+    if(AUDIO.spokeT<=0)speak(alerts.collision?'Collision! Move away.':'Move away please.');
+  } else {
+    AUDIO.hornPhase='off';AUDIO.hornT=0;
+    AUDIO.hornGain.gain.setTargetAtTime(0.0,AUDIO.ctx.currentTime,0.05);
+    if(alerts.slow||alerts.avoiding||alerts.cleanup){     // soft beep while creeping / avoiding
+      AUDIO.beepT-=dt; if(AUDIO.beepT<=0){AUDIO.beepT=0.6;beep(880,0.12);}
+    } else AUDIO.beepT=0;
+  }
+}
+
+/* ============================================================
+   SAFETY FIELD + NAV CONTROLLER (AMR safety stack)
+   Concentric zones scale with speed (ISO 3691-4 spirit):
+     STOP  : hard e-stop radius
+     SLOW  : creep
+     WARN  : beacon + audible, mild slow
+   ============================================================ */
+const alerts={stop:false,slow:false,warn:false,blocked:false,collision:false,
+  voice:false,        // a PERSON is the reason we're stopped → speak "move away"
+  cleanup:false,      // creeping over/around a spill → flag housekeeping
+  avoiding:false};    // steering around a fixed obstacle (pallet)
+let simT=0;const logEl=document.getElementById('log');
+function log(m,c='ev-ok'){const d=document.createElement('div');
+  d.innerHTML=`<span class="t">${simT.toFixed(1)}s</span><span class="${c}">${m}</span>`;
+  logEl.prepend(d);while(logEl.children.length>24)logEl.lastChild.remove();
+  if(EXT&&EXT.events)EXT.events.push({t:+simT.toFixed(2),level:c.replace('ev-',''),msg:m});}
+log('Boot · Unitree L1 LiDAR + camera fusion online');
+const collided=new Set();
+
+function zoneRadii(){
+  // forward-biased: stopping distance + margin
+  const stop=0.7+EGO.v*EGO.v/(2*P.brakeA)+0.35;
+  const slow=stop+0.9+EGO.v*0.7;
+  const warn=slow+1.4+EGO.v*1.1;
+  return {stop,slow,warn};
+}
+function relInfo(a){
+  const rx=a.x-EGO.x,rz=a.z-EGO.z;
+  return {fwd:rx*Math.sin(EGO.psi)+rz*Math.cos(EGO.psi),
+          lat:rx*Math.cos(EGO.psi)-rz*Math.sin(EGO.psi),
+          d:Math.hypot(rx,rz)};
+}
+
+function controller(dt){
+  alerts.stop=alerts.slow=alerts.warn=alerts.blocked=alerts.collision=false;
+  alerts.voice=alerts.cleanup=alerts.avoiding=false;
+  const Z=zoneRadii();
+  const extLive=EXT.active&&EXT.fresh();
+  let limit=P.vmax;
+  const detections=[];
+  let minStop=99, nearest=null, nd=99;
+  let avoidLat=0;   // commanded lateral nudge to steer around fixed obstacles
+  let rrBlocker=null;  // closest fixed obstacle we're trying to pass this tick
+  let dynBlocking=false; // a person/AMR is currently in our stop bubble (yield, never reroute)
+
+  for(const a of actors){
+    const {fwd,lat,d}=relInfo(a);
+    const dm=ADIMS[a.type]||[.5,1,.5];
+    const halfW=dm[0]/2, halfL=dm[2]/2;
+    const resp=a.response||(a.kind==='worker'?'person':a.kind==='static'?'avoid':'mobile');
+    const latGap=Math.abs(lat)-(halfW+0.7);
+    const fwdGap=fwd-(halfL+1.4);
+    let level='ok';
+    const inPath=Math.abs(lat)<(halfW+0.9);
+    const contact=Math.max(halfW,halfL);    // imminent-contact radius for this object
+
+    if(resp==='traverse'){
+      // SPILL: a flat floor hazard — never stop; creep through slowly and flag for cleanup.
+      if(d<Z.warn+contact){ level='warn'; alerts.cleanup=true;
+        if(inPath&&fwd>-0.5&&fwdGap<Z.slow) limit=Math.min(limit,0.5);    // creep over it
+        else limit=Math.min(limit,Math.max(0.7,P.vmax*0.6));
+      }
+    }
+    else if(resp==='avoid'){
+      // FIXED OBSTACLE (pallet): try to steer around it; if we can't make progress,
+      // back up and reroute via another aisle rather than stopping forever.
+      if(d<Z.warn+contact && fwd>-0.5 && inPath){
+        level='warn'; alerts.avoiding=true;
+        // GENTLE lateral nudge only — never enough to approach the racks.
+        // (A real AMR won't squeeze past a pallet in a narrow aisle; if a small
+        //  shift doesn't clear it, the reroute machine takes over.)
+        const side = lat>=0 ? -1 : 1;            // obstacle on right → nudge left
+        const want = side*0.6;                    // small fixed bias, bounded
+        if(Math.abs(want)>Math.abs(avoidLat)) avoidLat=want;
+        limit=Math.min(limit, Math.max(0.4, P.vmax*0.45));
+        rrBlocker={x:a.x, d, contact};
+      }
+      // collision guard: hold short of contact (but the stuck-detector may convert this to a reroute)
+      if(d<0.5+contact && EGO.rr.phase==='none'){ level='danger'; alerts.stop=true;
+        if(d<0.32+contact) alerts.collision=true; }   // no voice: a pallet won't move away
+    }
+    else {
+      // PERSON or MOBILE machine: standard speed-scaled stop bubble.
+      if(d<Z.stop+contact){ level='danger'; alerts.stop=true; dynBlocking=true;
+        if(resp==='person') alerts.voice=true;        // only ask PEOPLE to move
+        if(d<1.3+contact) alerts.collision=true; }
+      else if(fwd>-0.5){
+        if(inPath&&fwdGap<Z.slow){level='danger';alerts.slow=true;limit=Math.min(limit,0.35);}
+        else if(inPath&&fwdGap<Z.warn){level='warn';alerts.warn=true;limit=Math.min(limit,Math.max(0.6,P.vmax*0.55));}
+        else if(d<Z.warn){level='warn';alerts.warn=true;}
+      }
+    }
+    if(d<nd){nd=d;nearest={a,fwd,lat,d};}
+    if(level!=='ok'||d<Z.warn+1)detections.push({a,fwd,lat,d,level});
+  }
+  if(alerts.stop)limit=0;
+  EGO.avoidLat=avoidLat;   // consumed by the path follower to bias steering around pallets
+
+  /* STUCK DETECTOR: if we're trying to get past a FIXED obstacle but barely moving,
+     escalate to a back-up-and-reroute. Never triggered by people or peer machines —
+     those we simply yield to (they move on their own). */
+  if(EGO.rr.phase==='none' && rrBlocker && !dynBlocking && !extLive && !editMode){
+    if(alerts.avoiding && Math.abs(EGO.v)<0.12) EGO.rr.stuck=(EGO.rr.stuck||0)+dt;
+    else EGO.rr.stuck=0;
+    if(EGO.rr.stuck>1.4){          // ~1.4 s of no progress next to a pallet → reroute
+      EGO.rr.phase='backup'; EGO.rr.t=0; EGO.rr.tries++; EGO.rr.stuck=0;
+      EGO.rr.blockedX=nearestAisleX(rrBlocker.x);
+      EGO.rr.dest=currentDest();
+      EGO.rr.startZ=EGO.z;
+      log('Aisle blocked by fixed obstacle — backing up to reroute','ev-warn');
+    }
+  } else if(EGO.rr.phase==='none'){ EGO.rr.stuck=0; }
+
+  /* ---- REROUTE STATE MACHINE: back up out of a blocked aisle, then route around ----
+     Applies ONLY to fixed obstacles (pallets). It yields to any person or peer machine
+     and never reverses into something behind it. */
+  if(EGO.rr.phase!=='none' && !extLive && !editMode){
+    EGO.rr.t+=dt;
+    // scan the scene: nearest FIXED blocker ahead, and any DYNAMIC agent (person/AMR) close by,
+    // plus anything close BEHIND us (we must not reverse into it).
+    let blkFwd=99, dynNear=false, behindBlocked=false;
+    for(const a of actors){
+      const resp=a.response||'avoid';
+      const {fwd,d}=relInfo(a);
+      if(resp==='avoid'){ if(d<6) blkFwd=Math.min(blkFwd,fwd); }
+      else if(resp==='person'||resp==='mobile'){
+        if(d<3.0) dynNear=true;                 // a moving agent is in our way → yield, don't manoeuvre
+        if(fwd<-0.2 && d<2.6) behindBlocked=true; // and specifically behind us while reversing
+      }
+    }
+
+    // SAFETY: a person or peer machine is close → abandon the manoeuvre and yield quietly.
+    // (We reroute around dead pallets, never around things that can move themselves.)
+    // EXCEPTION: a forced reroute (manual override or stuck-timeout) proceeds anyway.
+    if(dynNear && !EGO.rr.forced){
+      EGO.reverse=false; EGO.goal=null; EGO.targetV=0; alerts.stop=true;
+      // hold the current phase; resume the manoeuvre once they clear
+    }
+    else if(EGO.rr.phase==='backup'){
+      if(behindBlocked){
+        // something is behind us — don't reverse into it; wait
+        EGO.reverse=false; EGO.targetV=0; EGO.goal=null; alerts.stop=true;
+      } else {
+        EGO.reverse=true;
+        EGO.goal=[EGO.x-Math.sin(EGO.psi)*3, EGO.z-Math.cos(EGO.psi)*3];  // aim behind
+        EGO.targetV=-0.5;                                 // reverse at 0.5 m/s
+        alerts.avoiding=true;
+        const dz=Math.abs(EGO.z-EGO.rr.startZ);
+        // require an actual reversed distance. For a normal (pallet) backup, clearing the
+        // blocker ahead also counts. A forced backup must physically reverse ~3 m so it has
+        // room to turn away from a dynamic blocker that won't show up in blkFwd.
+        const backedEnough = EGO.rr.forced
+          ? dz>3.0
+          : (dz>2.6 || (blkFwd<90 && blkFwd>2.2));
+        if(backedEnough || EGO.rr.t>8){
+          const dest=EGO.rr.dest||currentDest();
+          let path=dest?routeAround([EGO.x,EGO.z],dest,EGO.rr.blockedX):null;
+          if(!path) path=routeOnGrid([EGO.x,EGO.z],dest);
+          if(path && commitReroute(path)){
+            EGO.rr.phase='none'; EGO.reverse=false; EGO.rr.t=0; EGO.rr.forced=false;
+            log('Rerouted around obstacle via alternate aisle','ev-ok');
+          } else if(EGO.rr.tries<2 && dest){
+            EGO.rr.phase='backup'; EGO.rr.t=0; EGO.rr.startZ=EGO.z;
+          } else {
+            EGO.rr.phase='blocked';     // genuinely boxed in
+          }
+        }
+      }
+    }
+    else if(EGO.rr.phase==='blocked'){
+      EGO.reverse=false; EGO.goal=null; EGO.targetV=0; alerts.stop=true;
+      if(blkFwd>3||blkFwd>=99){ EGO.rr.phase='none'; EGO.rr.tries=0; }   // obstacle cleared → resume
+    }
+  } else {
+    EGO.reverse=false;
+  }
+
+  /* ---- STUCK CLOCK + AUTO-RECOVERY TIMEOUT ----
+     Count how long the truck has been unable to make forward progress for ANY reason
+     (boxed-in reroute, prolonged yield, etc). If it exceeds the configured timeout,
+     force a fresh route so it can never sit in permanent closure. */
+  const stalled = (!editMode && !extLive) &&
+                  (EGO.rr.phase==='blocked' || (alerts.stop && Math.abs(EGO.v)<0.08) || (alerts.avoiding && Math.abs(EGO.v)<0.08));
+  if(stalled) stuckClock+=dt; else stuckClock=Math.max(0,stuckClock-dt*2); // decays quickly once moving
+  // surface/hide the manual override button when stuck for a few seconds
+  setOverrideVisible(stuckClock>4);
+  if(STUCK_TIMEOUT>0 && stuckClock>=STUCK_TIMEOUT){
+    forceReroute('Auto-recovery ('+Math.round(STUCK_TIMEOUT/60)+' min stuck)');
+  }
+
+  /* path-following navigation (built-in) — replaced by EXT model when live */
+  if(EGO.rr.phase!=='none'){ /* nav overridden by reroute machine above */ }
+  else if(editMode){ EGO.goal=null; EGO.targetV=0; }
+  else if(!extLive){
+    if(!PATH.done && PATH.pts.length>1){
+      const goal=pathProgressGoal();
+      if(goal && Math.abs(EGO.avoidLat)>0.05){
+        // shift the goal sideways (in world frame) to arc around a fixed obstacle,
+        // but keep it within the drivable aisle band so we never aim at the racks
+        const offX=Math.cos(EGO.psi)*EGO.avoidLat, offZ=-Math.sin(EGO.psi)*EGO.avoidLat;
+        let gx=goal[0]+offX;
+        const ax=nearestAisleX(gx);
+        gx=clamp(gx, ax-(AISLE_HALF-0.7), ax+(AISLE_HALF-0.7));
+        EGO.goal=[gx, goal[1]+offZ];
+      } else EGO.goal=goal;
+      if(goal){
+        // curvature-aware speed: slow when the path bends ahead
+        const look=PATH.pts[Math.min(PATH.pts.length-1,PATH.seg+6)];
+        const here=PATH.pts[Math.min(PATH.pts.length-1,PATH.seg)];
+        const bend=Math.abs(Math.atan2(look[0]-here[0],look[1]-here[1])
+                            -Math.atan2(goal[0]-EGO.x,goal[1]-EGO.z));
+        let want=Math.min(limit,P.vmax);
+        if(bend>0.35)want=Math.min(want,0.7);          // ease into turns (no shelf-clipping)
+        if(bend>0.8) want=Math.min(want,0.45);
+        // taper toward the final point of the path
+        const end=PATH.pts[PATH.pts.length-1];
+        const dEnd=Math.hypot(end[0]-EGO.x,end[1]-EGO.z);
+        if(dEnd<2.5)want=Math.min(want,0.4+dEnd*0.28);
+        EGO.targetV=alerts.stop?0:want;
+      } else { EGO.targetV=0; }
+    } else {
+      // path finished → if looping, rebuild the full loop from here; else park
+      EGO.goal=null; EGO.targetV=0;
+      if(MISSION.stops.length && MISSION.loop){
+        setPath(buildMissionPath(MISSION.stops,true));
+        log('Route loop complete — repeating','ev-ok');
+      }
+    }
+  } else {
+    // EXT model supplies a goal point ahead (lane_x as world-x target at +4 m, or a direct point)
+    const gx=clamp(EXT.act.lane_x,-FLOOR_W/2+1.5,FLOOR_W/2-1.5);
+    const gz=clamp(EGO.z+Math.cos(EGO.psi)*Math.max(2,2+EGO.v*1.5),-FLOOR_L/2+1.5,FLOOR_L/2-1.5);
+    EGO.goal=[gx, gz];
+    EGO.targetV=alerts.stop?0:clamp(EXT.act.target_v,0,P.vmax); // STOP zone always overrides
+  }
+
+  /* state + beacon */
+  let st='RUNNING',col='var(--ok)';
+  if(EGO.v<0.02&&EGO.targetV<0.02){st=alerts.stop?'SAFETY STOP':'IDLE';col=alerts.stop?'var(--danger)':'var(--dim)';}
+  else if(alerts.stop){st='SAFETY STOP';col='var(--danger)';}
+  else if(alerts.slow){st='OBSTACLE · CREEP';col='var(--warn)';}
+  else if(alerts.warn){st='CAUTION ZONE';col='var(--warn)';}
+  else if(extLive){st='EXT MODEL';col='var(--acc)';}
+  if(st!==EGO.state){
+    if(st==='SAFETY STOP')log(`E-STOP — ${nearest?nearest.a.type:'obstacle'} in path · HORN + red beacon`,'ev-danger');
+    else if(st==='OBSTACLE · CREEP')log(`Obstacle in slow zone — creeping`,'ev-warn');
+    else if(st==='CAUTION ZONE')log('Hazard in caution zone — beacon + horn','ev-warn');
+    EGO.state=st;
+  }
+  // beacon + ring color
+  const bcol=alerts.stop?0xff2200:alerts.slow?0xff8f3f:alerts.warn?0xffc83f:0x111111;
+  ego.userData.beacon.emissive.setHex(bcol);
+  ego.userData.ring.emissive.setHex(alerts.stop?0xff2200:0x0a2030);
+  fov.material.color.set(alerts.stop?0xf87171:alerts.slow||alerts.warn?0xfbbf24:0x34d399);
+  updateRingFence(Z);
+
+  /* collision audit — response-aware */
+  for(const a of actors){
+    const dm=ADIMS[a.type]||[.5,1,.5];const {d}=relInfo(a);
+    const resp=a.response||'mobile';
+    if(resp==='traverse')continue;               // spills are meant to be traversed — not a breach
+    const hit=0.55+Math.max(dm[0],dm[2])/2;      // genuine footprint overlap threshold
+    if(d<hit&&!collided.has(a)){
+      collided.add(a);
+      const msg=resp==='avoid'?`CLIPPED ${a.type} — clearance too tight`:`CONTACT with ${a.type} — safety field breach`;
+      log(msg,'ev-danger');}
+  }
+  return {detections,st,col,nearest,Z};
+}
+
+/* ============================================================
+   UNITREE L1 LiDAR — dome FOV (~360°x90°), rotating sample
+   ============================================================ */
+const LID={ch:16,az:Math.round(360/1.2),sweep:0,maxR:24,rotHz:5,on:true};
+LID.elev=[];for(let i=0;i<LID.ch;i++)LID.elev.push((-7+i*(52/(LID.ch-1)))*Math.PI/180); // L1: wide vertical
+const PTS=LID.az*LID.ch;
+const lidGeo=new THREE.BufferGeometry();
+const lidPos=new Float32Array(PTS*3),lidCol=new Float32Array(PTS*3);
+lidGeo.setAttribute('position',new THREE.BufferAttribute(lidPos,3));
+lidGeo.setAttribute('color',new THREE.BufferAttribute(lidCol,3));
+const lidPoints=new THREE.Points(lidGeo,new THREE.PointsMaterial({size:.045,vertexColors:true,sizeAttenuation:true}));
+lidPoints.frustumCulled=false;scene.add(lidPoints);
+for(let i=0;i<PTS;i++)lidPos[i*3+1]=-50;
+
+function rayAABB(o,d,bmin,bmax){
+  let tmin=0,tmax=LID.maxR;
+  for(let i=0;i<3;i++){const inv=1/d[i];let t0=(bmin[i]-o[i])*inv,t1=(bmax[i]-o[i])*inv;
+    if(inv<0){const t=t0;t0=t1;t1=t;}tmin=Math.max(tmin,t0);tmax=Math.min(tmax,t1);if(tmax<tmin)return -1;}
+  return tmin>0.25?tmin:-1;
+}
+function lidarTargets(){
+  const T=[];
+  // racks (as solid banks, sampled near ego)
+  for(const r of racks){
+    if(Math.abs(r.cx-EGO.x)>LID.maxR+3)continue;
+    T.push({min:[r.cx-1.15,0,EGO.z-LID.maxR],max:[r.cx+1.15,RACK_H,EGO.z+LID.maxR],c:[.55,.4,.28]});
+  }
+  // walls
+  T.push({min:[-FLOOR_W/2-.3,0,-FLOOR_L/2],max:[-FLOOR_W/2+.1,8,FLOOR_L/2],c:[.3,.34,.4]});
+  T.push({min:[FLOOR_W/2-.1,0,-FLOOR_L/2],max:[FLOOR_W/2+.3,8,FLOOR_L/2],c:[.3,.34,.4]});
+  // actors
+  for(const a of actors){
+    const dm=ADIMS[a.type]||[.5,1,.5];const sw=Math.abs(Math.sin(a.mesh.rotation.y)),cw=Math.abs(Math.cos(a.mesh.rotation.y));
+    const hw=(dm[0]*cw+dm[2]*sw)/2,hl=(dm[0]*sw+dm[2]*cw)/2;
+    const col=a.kind==='worker'?[1,.5,.15]:a.kind==='amr'?[.3,.5,.9]:[.6,.55,.4];
+    T.push({min:[a.x-hw,0,a.z-hl],max:[a.x+hw,dm[1],a.z+hl],c:col});
+  }
+  return T;
+}
+const tmpC=new THREE.Color();
+function stepLidar(dt){
+  if(!LID.on)return;
+  const T=lidarTargets();
+  const o=[EGO.x,2.74,EGO.z- Math.cos(EGO.psi)*0.65]; // puck at rear roof
+  const steps=Math.max(1,Math.round(LID.az*LID.rotHz*dt));
+  for(let s=0;s<steps;s++){
+    LID.sweep=(LID.sweep+1)%LID.az;
+    const az=LID.sweep*(Math.PI*2/LID.az);
+    const sa=Math.sin(az),ca=Math.cos(az);
+    for(let c=0;c<LID.ch;c++){
+      const el=LID.elev[c],ce=Math.cos(el),se=Math.sin(el);
+      const d=[sa*ce,se,ca*ce];
+      let best=-1,bc=null;
+      if(se<0){const tG=(0-o[1])/se;if(tG>.25&&tG<LID.maxR){best=tG;bc=[.16,.2,.28];}}
+      for(const b of T){const t=rayAABB(o,d,b.min,b.max);if(t>0&&(best<0||t<best)){best=t;bc=b.c;}}
+      const idx=(LID.sweep*LID.ch+c)*3;
+      if(best>0){lidPos[idx]=o[0]+d[0]*best;lidPos[idx+1]=o[1]+d[1]*best+.02;lidPos[idx+2]=o[2]+d[2]*best;
+        const sh=best<6?1:6/best; tmpC.setRGB(bc[0]*sh+.05,bc[1]*sh+.05,bc[2]*sh+.05);
+        lidCol[idx]=tmpC.r;lidCol[idx+1]=tmpC.g;lidCol[idx+2]=tmpC.b;}
+      else lidPos[idx+1]=-50;
+    }
+  }
+  lidGeo.attributes.position.needsUpdate=true;lidGeo.attributes.color.needsUpdate=true;
+}
+
+/* ============================================================
+   EXT MODEL BRIDGE (same protocol family as the road sim)
+   ============================================================ */
+const EXT_CFG_DEFAULT={send_lidar:false,lidar_stride:6,send_camera:false,camera_hz:5,camera_w:320};
+EXT={active:false,ws:null,act:{target_v:0,lane_x:0},lastRx:0,events:[],
+  cfg:{...EXT_CFG_DEFAULT},
+  lastTx:0,lastCam:0,url:'ws://localhost:8766'};
+EXT.fresh=()=>performance.now()-EXT.lastRx<400;
+function extConnect(){
+  try{EXT.ws=new WebSocket(EXT.url);}catch(e){log('EXT: socket open failed','ev-danger');return;}
+  EXT.ws.onopen=()=>{EXT.active=true;$('bExt').textContent='EXT: LIVE';$('bExt').classList.add('on');log(`EXT model link up @ ${EXT.url}`,'ev-ok');};
+  EXT.ws.onclose=()=>{EXT.active=false;$('bExt').textContent='EXT: OFF';$('bExt').classList.remove('on');log('EXT link closed — built-in nav resumed','ev-warn');};
+  EXT.ws.onerror=()=>{log('EXT: connection error (warehouse_bridge.py running?)','ev-danger');};
+  EXT.ws.onmessage=ev=>{try{const m=JSON.parse(ev.data);
+    if(m.hello){Object.assign(EXT.cfg,m.hello);log(`EXT hello: lidar=${!!EXT.cfg.send_lidar} cam=${!!EXT.cfg.send_camera}`,'ev-ok');return;}
+    if(typeof m.target_v==='number'){EXT.act.target_v=m.target_v;EXT.act.lane_x=typeof m.lane_x==='number'?m.lane_x:EGO.laneX;EXT.lastRx=performance.now();}
+  }catch(e){}};
+}
+const camScratch=document.createElement('canvas');
+function extTick(now){
+  if(!EXT.active||!EXT.ws||EXT.ws.readyState!==1)return;
+  if(now-EXT.lastTx<50)return;EXT.lastTx=now;
+  const Z=zoneRadii();
+  const obs={t:+simT.toFixed(3),dt:0.05,task:taskKey,
+    ego:{x:+EGO.x.toFixed(3),z:+EGO.z.toFixed(3),psi:+EGO.psi.toFixed(4),v:+EGO.v.toFixed(3),
+      a:+EGO.a.toFixed(3),delta:+EGO.delta.toFixed(4),fork:+EGO.fork.toFixed(3),loaded:EGO.loaded,vmax:P.vmax},
+    zones:{stop:+Z.stop.toFixed(2),slow:+Z.slow.toFixed(2),warn:+Z.warn.toFixed(2)},
+    waypoint:EGO.goal||null, path_pts:PATH.pts.length, path_seg:PATH.seg, path_done:PATH.done,
+    mission_stop:MISSION.i, mission_total:MISSION.stops.length,
+    objects:actors.map(a=>({type:a.type,x:+a.x.toFixed(2),z:+a.z.toFixed(2),
+      vx:+a.vx.toFixed(2),vz:+a.vz.toFixed(2),kind:a.kind,dims:ADIMS[a.type]||[.5,1,.5]})),
+    events:EXT.events.splice(0)};
+  if(EXT.cfg.send_lidar){const pts=[];const st=Math.max(1,EXT.cfg.lidar_stride|0);
+    for(let i=0;i<PTS;i+=st){const y=lidPos[i*3+1];if(y>-10)pts.push(+lidPos[i*3].toFixed(2),+y.toFixed(2),+lidPos[i*3+2].toFixed(2));}
+    obs.lidar=pts;}
+  if(EXT.cfg.send_camera&&now-EXT.lastCam>1000/Math.max(1,EXT.cfg.camera_hz)){EXT.lastCam=now;
+    const w=EXT.cfg.camera_w|0||320,h=Math.round(w*H()/W());camScratch.width=w;camScratch.height=h;
+    camScratch.getContext('2d').drawImage(renderer.domElement,0,0,w,h);
+    obs.camera_jpeg_b64=camScratch.toDataURL('image/jpeg',0.6).split(',')[1];}
+  EXT.ws.send(JSON.stringify(obs));
+}
+
+/* ============================================================
+   BEV — safety field + path + hazards (ego frame, forward = up)
+   ============================================================ */
+const bev=document.getElementById('bev'),bx=bev.getContext('2d');
+const BS=11, BCX=125, BCY=205;
+function toBev(fwd,lat){return [BCX+lat*BS,BCY-fwd*BS];}
+function drawBev(r){
+  bx.clearRect(0,0,250,330);
+  // floor grid (ego-relative)
+  bx.strokeStyle='rgba(120,170,255,.07)';bx.lineWidth=1;
+  for(let g=-10;g<=10;g+=2){const [x]=toBev(0,g);bx.beginPath();bx.moveTo(x,0);bx.lineTo(x,330);bx.stroke();}
+  for(let g=-6;g<=18;g+=2){const [,y]=toBev(g,0);bx.beginPath();bx.moveTo(0,y);bx.lineTo(250,y);bx.stroke();}
+  // safety zones (forward-biased ovals)
+  const Z=r.Z;
+  const zone=(rad,fill,stroke)=>{bx.beginPath();
+    bx.ellipse(BCX,BCY,rad*BS*0.8,rad*BS,0,0,7);bx.fillStyle=fill;bx.fill();bx.strokeStyle=stroke;bx.lineWidth=1;bx.stroke();};
+  zone(Z.warn,'rgba(251,191,36,.05)','rgba(251,191,36,.3)');
+  zone(Z.slow,'rgba(255,143,63,.07)','rgba(255,143,63,.4)');
+  zone(Z.stop,'rgba(248,113,113,.12)','rgba(248,113,113,.6)');
+  // hard e-stop ring-fence (heavy red ring, matches the floor fence)
+  bx.beginPath();bx.ellipse(BCX,BCY,Z.stop*BS*0.8,Z.stop*BS,0,0,7);
+  bx.strokeStyle=alerts.stop?'#ff2222':'#ff5b5b';bx.lineWidth=2.4;bx.stroke();
+  // camera FOV wedge (forward sensor coverage) — fusion overlay layer 1
+  if(showFusion){
+    const camHalf=CAM_FOV_DEG*Math.PI/360, camRange=12;   // settings-driven HFOV
+    bx.save();bx.beginPath();bx.moveTo(BCX,BCY);
+    const a0=Math.PI/2-camHalf, a1=Math.PI/2+camHalf;
+    bx.arc(BCX,BCY,camRange*BS, -a1, -a0);bx.closePath();
+    bx.fillStyle='rgba(143,208,255,.07)';bx.fill();
+    bx.strokeStyle='rgba(143,208,255,.35)';bx.lineWidth=1;bx.stroke();bx.restore();
+  }
+  // planned path the truck is tracking (full polyline, ego-frame)
+  if(!PATH.done && PATH.pts.length>1){
+    bx.strokeStyle='rgba(86,176,255,.85)';bx.lineWidth=2;bx.beginPath();
+    let started=false;
+    for(let i=PATH.seg;i<PATH.pts.length;i++){
+      const rx=PATH.pts[i][0]-EGO.x, rz=PATH.pts[i][1]-EGO.z;
+      const fwd=rx*Math.sin(EGO.psi)+rz*Math.cos(EGO.psi), lat=rx*Math.cos(EGO.psi)-rz*Math.sin(EGO.psi);
+      if(fwd<-6||fwd>18||Math.abs(lat)>11.5){started=false;continue;}
+      const [px,py]=toBev(fwd,lat);
+      if(!started){bx.moveTo(px,py);started=true;}else bx.lineTo(px,py);
+    }
+    bx.stroke();
+    // look-ahead goal dot
+    if(EGO.goal){const rx=EGO.goal[0]-EGO.x,rz=EGO.goal[1]-EGO.z;
+      const fwd=rx*Math.sin(EGO.psi)+rz*Math.cos(EGO.psi),lat=rx*Math.cos(EGO.psi)-rz*Math.sin(EGO.psi);
+      if(fwd<18&&fwd>-6&&Math.abs(lat)<11.5){const [gx,gy]=toBev(fwd,lat);
+        bx.fillStyle='#56b0ff';bx.beginPath();bx.arc(gx,gy,4,0,7);bx.fill();}}
+  }
+  // hazards
+  for(const d of r.detections){
+    const a=d.a, dm=ADIMS[a.type]||[.5,1,.5];
+    if(Math.abs(d.lat)>11.5||d.fwd>18||d.fwd<-6)continue;
+    const col=d.level==='danger'?'#f87171':d.level==='warn'?'#fbbf24':'#7fd0a0';
+    const [cx,cy]=toBev(d.fwd,d.lat);
+    bx.save();bx.translate(cx,cy);bx.rotate(-(a.mesh.rotation.y-EGO.psi));
+    if(a.kind==='worker'){bx.fillStyle=col;bx.beginPath();bx.arc(0,0,dm[0]/2*BS+1,0,7);bx.fill();}
+    else{bx.strokeStyle=col;bx.lineWidth=1.5;bx.strokeRect(-dm[0]/2*BS,-dm[2]/2*BS,dm[0]*BS,dm[2]*BS);}
+    bx.restore();
+    // velocity vector
+    if(a.vx||a.vz){const vf=a.vx*Math.sin(EGO.psi)+a.vz*Math.cos(EGO.psi),vl=a.vx*Math.cos(EGO.psi)-a.vz*Math.sin(EGO.psi);
+      bx.strokeStyle=col;bx.beginPath();bx.moveTo(cx,cy);bx.lineTo(cx+vl*BS*1.4,cy-vf*BS*1.4);bx.stroke();}
+  }
+  // LiDAR returns projected into BEV (fusion overlay layer 2) — what the L1 actually sees
+  if(showFusion&&LID.on){
+    const sp=Math.sin(EGO.psi),cp=Math.cos(EGO.psi);
+    for(let i=0;i<PTS;i++){
+      const y=lidPos[i*3+1]; if(y<-10) continue;       // unset return
+      const rx=lidPos[i*3]-EGO.x, rz=lidPos[i*3+2]-EGO.z;
+      const fwd=rx*sp+rz*cp, lat=rx*cp-rz*sp;
+      if(fwd<-6||fwd>18||Math.abs(lat)>11.5) continue;
+      const [px,py]=toBev(fwd,lat);
+      // colour by height: ground returns dim blue, tall returns cyan→white
+      const c=lidCol[i*3], g=lidCol[i*3+1], b=lidCol[i*3+2];
+      bx.fillStyle=y<0.15?'rgba(70,110,150,.35)':`rgba(${(c*255)|0},${(g*255+90)|0},${(b*255+120)|0},.8)`;
+      bx.fillRect(px-0.6,py-0.6,1.4,1.4);
+    }
+  }
+  // fusion legend (top-left of BEV)
+  if(showFusion){
+    bx.font='8px IBM Plex Mono';
+    bx.fillStyle='rgba(143,208,255,.9)';bx.fillText('▦ camera FOV',6,14);
+    bx.fillStyle='rgba(120,210,255,.95)';bx.fillText('• lidar return',6,25);
+    bx.fillStyle='#ff5b5b';bx.fillText('◯ e-stop fence',6,36);
+  }
+  // ego (forklift) footprint
+  bx.save();bx.translate(BCX,BCY);
+  bx.fillStyle='rgba(244,180,0,.95)';
+  bx.fillRect(-0.55*BS,-1.4*BS,1.1*BS,2.6*BS);
+  bx.fillStyle='rgba(255,255,255,.7)';bx.fillRect(-0.45*BS,0.9*BS,0.9*BS,0.5*BS); // forks fwd
+  bx.restore();
+}
+
+/* ============================================================
+   HUD
+   ============================================================ */
+const $=id=>document.getElementById(id);
+const detPool=[];const vTmp=new THREE.Vector3();
+function getDet(i){if(!detPool[i]){const d=document.createElement('div');d.className='det';document.body.appendChild(d);detPool[i]=d;}return detPool[i];}
+function updHUD(r){
+  $('spd').innerHTML=`${EGO.v.toFixed(1)} <small>m/s</small>`;
+  $('wpTxt').textContent=MISSION.stops.length?`stop ${MISSION.i+1}/${MISSION.stops.length}`:(PATH.done?'—':'en route');
+  $('forkTxt').textContent=`${EGO.fork.toFixed(2)} m · ${EGO.loaded?'laden':'empty'}`;
+  $('nearTxt').textContent=r.nearest?`${r.nearest.a.type} · ${r.nearest.d.toFixed(1)}m`:'—';
+  const badge=$('stateBadge');badge.textContent=r.st;badge.style.borderColor=r.col;badge.style.color=r.col;
+  // zone bar = nearest hazard severity
+  const zf=$('zoneFill');
+  if(alerts.stop){zf.style.width='100%';zf.style.background='var(--danger)';}
+  else if(alerts.slow){zf.style.width='70%';zf.style.background='var(--amber)';}
+  else if(alerts.warn){zf.style.width='40%';zf.style.background='var(--warn)';}
+  else{zf.style.width='12%';zf.style.background='var(--ok)';}
+  // banner + on-vehicle beacon mock
+  const al=$('alert'),bc=$('beacon');
+  bc.className='hud panel';
+  if(alerts.stop && alerts.voice){al.className='hud danger';
+    al.textContent=alerts.collision?'⚠ COLLISION — MOVE AWAY':'⚠ SAFETY STOP — MOVE AWAY PLEASE';
+    bc.className='hud panel stop';bc.innerHTML=alerts.collision?'STOP<br>!!!':'STOP<br>HORN';}
+  else if(alerts.stop){al.className='hud danger';      // stopped for a machine/obstacle — hold, no horn
+    al.textContent=alerts.collision?'⚠ CONTACT IMMINENT — HOLDING':'⚠ YIELDING — WAITING TO CLEAR';
+    bc.className='hud panel stop';bc.innerHTML='STOP<br>HOLD';}
+  else if(EGO.rr.phase==='backup'){al.className='hud amber';al.textContent='⟲ OBSTACLE BLOCKING — REVERSING TO REROUTE';bc.className='hud panel on';bc.innerHTML='BACK<br>⟲';}
+  else if(EGO.rr.phase==='blocked'){al.className='hud danger';al.textContent='⚠ AISLE BLOCKED — NO ALTERNATE ROUTE';bc.className='hud panel stop';bc.innerHTML='STOP<br>✕';}
+  else if(alerts.avoiding){al.className='hud amber';al.textContent='FIXED OBSTACLE — STEERING AROUND';bc.className='hud panel on';bc.innerHTML='AVOID<br>↪';}
+  else if(alerts.cleanup){al.className='hud amber';al.textContent='SPILL DETECTED — CREEPING · HOUSEKEEPING NOTIFIED';bc.className='hud panel on';bc.innerHTML='SPILL<br>~';}
+  else if(alerts.slow){al.className='hud amber';al.textContent='OBSTACLE AHEAD — CREEPING';bc.className='hud panel on';bc.innerHTML='SLOW<br>BEEP';}
+  else if(alerts.warn){al.className='hud warn';al.textContent='CAUTION — PERSONNEL NEARBY';bc.className='hud panel on';bc.innerHTML='WARN<br>♪';}
+  else{al.className='hud';bc.innerHTML='SIG<br>BEACON';}
+  // target list
+  const sorted=r.detections.slice().sort((a,b)=>a.d-b.d).slice(0,5);
+  $('targets').innerHTML=sorted.length?sorted.map(d=>
+    `<div class="tgt ${d.level}"><span class="cls">${d.a.type}</span><span class="rng">${d.d.toFixed(1)} m</span></div>`
+  ).join(''):'<div class="tgt"><span class="cls">Floor clear</span></div>';
+  // projected labels
+  let i=0;
+  for(const d of r.detections){
+    if(d.d>14)continue;
+    const dm=ADIMS[d.a.type]||[.5,1,.5];
+    vTmp.set(d.a.x,dm[1]*0.9,d.a.z).project(camera);if(vTmp.z>1)continue;
+    const el=getDet(i++);el.className=`det ${d.level==='ok'?'':d.level}`;
+    el.textContent=`${d.a.type} · ${d.d.toFixed(1)}m`;
+    el.style.left=`${(vTmp.x*.5+.5)*W()}px`;el.style.top=`${(-vTmp.y*.5+.5)*H()}px`;el.style.display='block';
+    if(i>=8)break;
+  }
+  for(let j=i;j<detPool.length;j++)detPool[j].style.display='none';
+}
+
+/* ============================================================
+   CAMERA + CONTROLS
+   ============================================================ */
+let camMode=0,paused=false,showFusion=true;const camNames=['CHASE','TOP','FORK-CAM'];
+
+/* ============================================================
+   MAP EDITOR — 2D floorplan. Click anywhere to set waypoints
+   A→B→C; route auto-snaps to aisles and grid-routes between them.
+   ============================================================ */
+let editMode=false, editLoop=true;
+const EDIT={stops:[], obstacles:[]};   // obstacles: [{type, x, z, x2,z2 for amr patrol}]
+let placeMode='waypoint';              // what a floorplan click drops
+let planCv=null, planCtx=null;
+function ensurePlan(){
+  if(!planCv){planCv=$('plan'); if(planCv){try{planCtx=planCv.getContext('2d');}catch(e){planCtx=null;}
+    if(planCv)planCv.addEventListener('pointerdown',onPlanClick);}}
+  return !!planCtx;
+}
+let PV={ox:0,oz:0,scale:1,W:0,H:0};       // floorplan view transform (world→canvas)
+function updateEditUI(){
+  $('editbar').classList.toggle('on',editMode);
+  $('bDraw').classList.toggle('on',editMode);
+  $('planWrap').classList.toggle('on',editMode);
+  // on small screens the bottom bars would collide with the editor sheet — tuck them away
+  const small=innerWidth<=760;
+  $('task').style.visibility=(small&&editMode)?'hidden':'';
+  $('ctrl').style.visibility=(small&&editMode)?'hidden':'';
+  const cb=$('confBadge'); if(cb)cb.style.visibility=(small&&editMode)?'hidden':'';
+}
+function sizePlan(){
+  if(!ensurePlan())return;
+  // fit the warehouse (FLOOR_W × FLOOR_L) into the available overlay area
+  const mobile=innerWidth<=760;
+  const availW=mobile ? innerWidth-24 : Math.min(innerWidth-260, 900);
+  const availH=mobile ? innerHeight*0.56 : Math.min(innerHeight-60, 760);  // leave room for bottom editor sheet
+  const sx=availW/FLOOR_W, sz=availH/FLOOR_L, sc=Math.min(sx,sz);
+  PV.scale=sc; PV.W=Math.round(FLOOR_W*sc); PV.H=Math.round(FLOOR_L*sc);
+  planCv.width=PV.W; planCv.height=PV.H;
+  PV.ox=PV.W/2; PV.oz=PV.H/2;              // world (0,0) at canvas centre
+}
+// world(x,z) → canvas(px,py). Note: world +z is "up the warehouse"; draw it upward.
+const wx2c=x=>PV.ox + x*PV.scale;
+const wz2c=z=>PV.oz - z*PV.scale;
+const c2wx=px=>(px-PV.ox)/PV.scale;
+const c2wz=py=>(PV.oz-py)/PV.scale;
+
+function drawPlan(){
+  if(!editMode||!planCtx)return;
+  const g=planCtx, S=PV.scale;
+  g.clearRect(0,0,PV.W,PV.H);
+  // floor
+  g.fillStyle='#171c24'; g.fillRect(0,0,PV.W,PV.H);
+  // rack banks (brown blocks between aisles)
+  g.fillStyle='rgba(193,91,39,.5)'; g.strokeStyle='rgba(242,165,28,.5)';
+  for(const cx of rackBankX){
+    const x=wx2c(cx-1.15), w=2.3*S, y=wz2c(FLOOR_L/2-3), h=(FLOOR_L-6)*S;
+    g.fillRect(x,y,w,h); g.strokeRect(x,y,w,h);
+  }
+  // aisle centre lines (yellow, drivable)
+  g.strokeStyle='rgba(242,194,0,.7)'; g.lineWidth=2;
+  for(const ax of aisleXs){g.beginPath();g.moveTo(wx2c(ax),wz2c(FLOOR_L/2-2));g.lineTo(wx2c(ax),wz2c(-FLOOR_L/2+2));g.stroke();}
+  // cross-aisles
+  g.strokeStyle='rgba(184,144,0,.55)'; g.setLineDash([6,5]);
+  for(const cz of CROSS_Z){g.beginPath();g.moveTo(wx2c(aisleXs[0]),wz2c(cz));g.lineTo(wx2c(aisleXs[aisleXs.length-1]),wz2c(cz));g.stroke();}
+  g.setLineDash([]);
+  // dock doors (front wall, world -z)
+  g.fillStyle='rgba(86,176,255,.5)';
+  for(let i=0;i<3;i++){const x=wx2c(-14+i*14-2.5);g.fillRect(x,wz2c(-FLOOR_L/2+0.4)-3,5*S,6);}
+  g.fillStyle='#7fa0c8';g.font='9px IBM Plex Mono';g.textAlign='center';
+  for(let i=0;i<3;i++)g.fillText('DOCK '+(i+1),wx2c(-14+i*14),wz2c(-FLOOR_L/2+2));
+  // charging dock (back-right, world +z)
+  g.fillStyle='rgba(52,211,153,.5)';g.fillRect(wx2c(FLOOR_W/2-4),wz2c(FLOOR_L/2-3),2*S,2*S);
+  g.fillStyle='#34d399';g.fillText('CHARGE',wx2c(FLOOR_W/2-3),wz2c(FLOOR_L/2-5));
+  // border
+  g.strokeStyle='rgba(120,170,255,.3)';g.lineWidth=1.5;g.strokeRect(1,1,PV.W-2,PV.H-2);
+
+  // grid-routed preview through the stops
+  if(EDIT.stops.length>=2){
+    let pts=[];let from=EDIT.stops[0];
+    const seq=EDIT.stops.slice(1);if(editLoop)seq.push(EDIT.stops[0]);
+    for(const s of seq){const leg=routeOnGrid(from,s);for(let k=(pts.length?1:0);k<leg.length;k++)pts.push(leg[k]);from=s;}
+    g.strokeStyle='#7c5cff';g.lineWidth=3;g.beginPath();
+    pts.forEach((p,i)=>{const px=wx2c(p[0]),py=wz2c(p[1]);i?g.lineTo(px,py):g.moveTo(px,py);});
+    g.stroke();
+  }
+  // placed obstacles (drawn under the waypoint pins)
+  const obsColor={worker:'#ff7a1a',hivis:'#ffe000',amr:'#56b0ff',trolley:'#c7a880',spill:'#2a6ad8',pallet:'#8a6a3c'};
+  EDIT.obstacles.forEach(o=>{
+    const px=wx2c(o.x),py=wz2c(o.z), c=obsColor[o.type]||'#bbb';
+    if(o.type==='amr'&&o.x2!=null){   // patrol line
+      g.strokeStyle='rgba(86,176,255,.5)';g.lineWidth=1.5;g.setLineDash([4,3]);
+      g.beginPath();g.moveTo(px,py);g.lineTo(wx2c(o.x2),wz2c(o.z2));g.stroke();g.setLineDash([]);
+    }
+    g.fillStyle=c;
+    if(o.type==='spill'){g.globalAlpha=.5;g.beginPath();g.arc(px,py,0.8*S,0,7);g.fill();g.globalAlpha=1;}
+    else if(o.type==='pallet'){g.fillRect(px-0.55*S,py-0.55*S,1.1*S,1.1*S);}
+    else{g.beginPath();g.arc(px,py,6,0,7);g.fill();}
+    // tiny icon glyph
+    g.fillStyle=o.type==='hivis'?'#000':'#0c1118';g.font='8px IBM Plex Mono';g.textAlign='center';g.textBaseline='middle';
+    const gly={worker:'P',hivis:'P',amr:'R',trolley:'T',spill:'~',pallet:'▢'};
+    if(o.type!=='spill'&&o.type!=='pallet')g.fillText(gly[o.type]||'',px,py);
+    g.textBaseline='alphabetic';
+  });
+  // waypoint pins
+  EDIT.stops.forEach((s,i)=>{
+    const px=wx2c(s[0]),py=wz2c(s[1]);
+    g.fillStyle=i===0?'#34d399':'#a78bfa';
+    g.beginPath();g.arc(px,py,8,0,7);g.fill();
+    g.fillStyle='#0c1118';g.font='bold 10px Space Grotesk';g.textAlign='center';g.textBaseline='middle';
+    g.fillText(i===0?'A':String.fromCharCode(65+i),px,py);
+    g.textBaseline='alphabetic';
+  });
+  // live forklift position
+  const fx=wx2c(EGO.x),fz=wz2c(EGO.z);
+  g.save();g.translate(fx,fz);g.rotate(-EGO.psi);
+  g.fillStyle='#f4b400';g.fillRect(-0.55*S,-1.4*S,1.1*S,2.6*S);
+  g.restore();
+}
+function snapToAisle(x,z){ return [nearestAisleX(x), clamp(z,-FLOOR_L/2+4,FLOOR_L/2-4)]; }
+function onPlanClick(ev){
+  if(!editMode||!planCv)return;
+  const r=planCv.getBoundingClientRect();
+  const px=(ev.clientX-r.left)*(PV.W/r.width), py=(ev.clientY-r.top)*(PV.H/r.height);
+  const wx=c2wx(px), wz=c2wz(py);
+  if(placeMode==='waypoint'){
+    const [sx,sz]=snapToAisle(wx,wz);
+    const last=EDIT.stops[EDIT.stops.length-1];
+    if(last&&Math.hypot(last[0]-sx,last[1]-sz)<1.2)return;   // ignore double-tap on same spot
+    EDIT.stops.push([sx,sz]);
+    updateStopCount(); drawPlan();
+    log(`Waypoint ${String.fromCharCode(64+EDIT.stops.length)} set — aisle x=${sx}, z=${sz.toFixed(0)}`,'ev-ok');
+  } else {
+    // obstacle: place freely where clicked (clamped inside the floor)
+    const ox=clamp(wx,-FLOOR_W/2+1,FLOOR_W/2-1), oz=clamp(wz,-FLOOR_L/2+2,FLOOR_L/2-2);
+    const ob={type:placeMode,x:ox,z:oz};
+    if(placeMode==='amr'){ob.x2=ox;ob.z2=clamp(oz-12,-FLOOR_L/2+2,FLOOR_L/2-2);}  // default patrol leg
+    EDIT.obstacles.push(ob);
+    updateObsCount(); drawPlan();
+    const names={worker:'Worker',hivis:'Hi-vis worker',amr:'Peer AMR',trolley:'Trolley',spill:'Spill',pallet:'Pallet'};
+    log(`${names[placeMode]||placeMode} placed at x=${ox.toFixed(0)}, z=${oz.toFixed(0)}`,'ev-ok');
+  }
+}
+function updateObsCount(){const n=EDIT.obstacles.length;
+  $('eObsCount').textContent=n?`${n} obstacle${n===1?'':'s'} placed`:'No obstacles placed';}
+function enterEdit(){
+  editMode=true;
+  EXT.active&&EXT.ws&&EXT.ws.close();
+  EGO.goal=null;EGO.targetV=0;PATH.done=true;
+  if(!EDIT.stops.length)EDIT.stops.push([nearestAisleX(EGO.x),EGO.z]); // seed A at truck
+  sizePlan(); updateEditUI(); updateStopCount(); updateObsCount(); drawPlan(); renderSavedList();
+  log('MAP EDITOR — click the floorplan to set waypoints, then RUN ROUTE','ev-warn');
+}
+function spawnEditObstacles(){
+  // replace the scene's actors with the user-placed obstacle set
+  actors.forEach(a=>scene.remove(a.mesh)); actors.length=0;
+  for(const o of EDIT.obstacles){
+    if(o.type==='worker')      worker(false,[o.x,o.z]);
+    else if(o.type==='hivis')  worker(true,[o.x,o.z]);
+    else if(o.type==='trolley')trolley([o.x,o.z]);
+    else if(o.type==='spill')  spill([o.x,o.z]);
+    else if(o.type==='pallet') strayPallet([o.x,o.z]);
+    else if(o.type==='amr')    peerAMR([o.x,o.z],[o.x2!=null?o.x2:o.x, o.z2!=null?o.z2:o.z-12]);
+  }
+}
+function exitEdit(run){
+  editMode=false; updateEditUI();
+  if(run&&EDIT.stops.length>=2){
+    const s0=EDIT.stops[0];
+    Object.assign(EGO,{x:s0[0],z:s0[1],psi:0,v:0,delta:0,goal:null,reverse:false,avoidLat:0});
+    EGO.rr={phase:'none',t:0,tries:0,blockedX:null,dest:null,startZ:0};
+    stuckClock=0; setOverrideVisible(false);
+    startMission(EDIT.stops.slice(),editLoop);
+    spawnEditObstacles();                       // use the obstacles the user drew
+    collided.clear(); simT=0;
+    $('taskTxt').textContent='CUSTOM ROUTE';
+    document.querySelectorAll('#task button').forEach(b=>b.classList.remove('on'));
+    log(`Running custom route — ${EDIT.stops.length} waypoints, ${EDIT.obstacles.length} obstacles, ${editLoop?'looping':'one-shot'}`,'ev-ok');
+  }
+}
+$('bDraw').onclick=()=>{ if(editMode)exitEdit(false); else enterEdit(); };
+$('eUndo').onclick=()=>{
+  // undo removes the most recent thing of the active type
+  if(placeMode==='waypoint'){ if(EDIT.stops.length>1){EDIT.stops.pop();updateStopCount();} }
+  else if(EDIT.obstacles.length){ EDIT.obstacles.pop();updateObsCount(); }
+  drawPlan();
+};
+$('eClear').onclick=()=>{
+  EDIT.stops=[[nearestAisleX(EGO.x),EGO.z]]; EDIT.obstacles=[];
+  updateStopCount();updateObsCount();drawPlan();log('Route + obstacles cleared','ev-warn');
+};
+$('eLoop').onclick=()=>{ editLoop=!editLoop;$('eLoop').classList.toggle('on',editLoop);drawPlan(); };
+$('eRun').onclick=()=>exitEdit(true);
+$('eExit').onclick=()=>exitEdit(false);
+// obstacle palette: pick what a click places
+document.querySelectorAll('#ePalette .ePal').forEach(b=>b.onclick=()=>{
+  placeMode=b.dataset.place;
+  document.querySelectorAll('#ePalette .ePal').forEach(x=>x.classList.toggle('on',x===b));
+  const planEl=$('plan'); if(planEl)planEl.style.cursor=placeMode==='waypoint'?'crosshair':'copy';
+});
+function updateStopCount(){const n=EDIT.stops.length;
+  $('eStopCount').textContent=n<2?`${n} waypoint${n===1?' (A set)':''}`:`${n} waypoints (A→${String.fromCharCode(64+n)})${editLoop?' ↻':''} · ready`;}
+
+/* ---- SAVED MAPS (presets + session list + file import/export) ---- */
+// preset routes use the aisle grid: x∈{-15,-7.5,0,7.5,15}, z∈[-31,+31]
+const PRESET_MAPS=[
+  {name:'Perimeter Sweep', preset:true, loop:true,
+   stops:[[-15,-30],[-15,30],[15,30],[15,-30]]},               // up far-left aisle, across, down far-right
+  {name:'Full Serpentine', preset:true, loop:true,
+   stops:[[-15,-30],[-15,30],[-7.5,30],[-7.5,-30],[0,-30],[0,30],[7.5,30],[7.5,-30],[15,-30],[15,30]]}, // every aisle
+  {name:'Dock → Aisle C Pick', preset:true, loop:false,
+   stops:[[-7.5,-30],[0,-30],[0,28]]},                          // from front dock to a mid-aisle pick face
+  {name:'Cross-Dock Shuttle', preset:true, loop:true,
+   stops:[[-15,-30],[15,-30]]},                                 // shuttle along the front cross-aisle dock line
+  {name:'Charge → Pick Loop', preset:true, loop:true,
+   stops:[[15,30],[15,-30],[-7.5,-30],[-7.5,30],[15,30]]},      // leave charger, pick, return
+];
+const SAVED=PRESET_MAPS.map(m=>({...m,stops:m.stops.map(p=>p.slice())}));   // [{name, stops, loop, preset?}]
+function renderSavedList(){
+  const el=$('eSavedList');
+  if(!SAVED.length){el.innerHTML='<span class="eEmpty">No saved maps yet</span>';return;}
+  el.innerHTML='';
+  SAVED.forEach((m,idx)=>{
+    const row=document.createElement('div');row.className='eSaved';
+    const load=document.createElement('button');
+    load.innerHTML=`${m.preset?'<span class="ePreset">◆</span> ':''}${m.name} <span class="eMeta">(${m.stops.length}${m.loop?' ↻':''}${m.obstacles&&m.obstacles.length?' · '+m.obstacles.length+'⚠':''})</span>`;
+    load.title='Load this route onto the floorplan';
+    load.onclick=()=>{EDIT.stops=m.stops.map(p=>p.slice());editLoop=m.loop;
+      EDIT.obstacles=(m.obstacles||[]).map(o=>({...o}));
+      $('eLoop').classList.toggle('on',editLoop);updateStopCount();updateObsCount();drawPlan();
+      log(`Loaded "${m.name}" — ${m.stops.length} waypoints, ${EDIT.obstacles.length} obstacles. Press RUN ROUTE.`,'ev-ok');};
+    row.appendChild(load);
+    if(!m.preset){   // user-saved maps can be deleted; presets are permanent
+      const del=document.createElement('button');del.className='eDel';del.textContent='✕';del.title='Delete';
+      del.onclick=()=>{SAVED.splice(idx,1);renderSavedList();};
+      row.appendChild(del);
+    }
+    el.appendChild(row);
+  });
+}
+$('eSave').onclick=()=>{
+  if(EDIT.stops.length<2){log('Add at least 2 waypoints before saving','ev-warn');return;}
+  const name=(prompt('Name this map / route:','Route '+(SAVED.length+1))||'').trim();
+  if(!name)return;
+  const map={name,stops:EDIT.stops.map(p=>p.slice()),loop:editLoop,obstacles:EDIT.obstacles.map(o=>({...o}))};
+  SAVED.push(map);renderSavedList();
+  // also download a JSON file so it persists beyond the session and can be shared
+  try{
+    const blob=new Blob([JSON.stringify({deepgrid_forklift_map:1,...map},null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);const a=document.createElement('a');
+    a.href=url;a.download=name.replace(/[^a-z0-9]+/gi,'_')+'.json';a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),2000);
+  }catch(e){}
+  log(`Saved "${name}" (${map.stops.length} waypoints, ${map.obstacles.length} obstacles) + downloaded JSON`,'ev-ok');
+};
+$('eImport').onclick=()=>$('eFile').click();
+$('eFile').onchange=ev=>{
+  const f=ev.target.files&&ev.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{const m=JSON.parse(r.result);
+    if(!Array.isArray(m.stops)||m.stops.length<2)throw 0;
+    const map={name:m.name||f.name.replace(/\.json$/i,''),stops:m.stops.map(p=>p.slice()),loop:!!m.loop,obstacles:Array.isArray(m.obstacles)?m.obstacles.map(o=>({...o})):[]};
+    SAVED.push(map);renderSavedList();
+    EDIT.stops=map.stops.map(p=>p.slice());editLoop=map.loop;EDIT.obstacles=map.obstacles.map(o=>({...o}));
+    $('eLoop').classList.toggle('on',editLoop);
+    updateStopCount();updateObsCount();drawPlan();
+    log(`Imported "${map.name}" — ${map.stops.length} waypoints, ${map.obstacles.length} obstacles`,'ev-ok');
+  }catch(e){log('Could not read that map file','ev-danger');}};
+  r.readAsText(f); ev.target.value='';
+};
+
+/* browsers require a gesture before audio; arm it on the first click anywhere */
+addEventListener('pointerdown',()=>{audioInit();if(AUDIO.ctx&&AUDIO.ctx.state==='suspended')AUDIO.ctx.resume();
+  if('speechSynthesis'in window){try{const w=new SpeechSynthesisUtterance('');w.volume=0;speechSynthesis.speak(w);}catch(e){}}},{once:true});
+
+function placeCamera(dt){
+  const fx=Math.sin(EGO.psi),fz=Math.cos(EGO.psi);let t,l;
+  if(camMode===0){t=[EGO.x-fx*6-1.5,4.5,EGO.z-fz*6];l=[EGO.x+fx*4,1,EGO.z+fz*4];}
+  else if(camMode===1){t=[EGO.x,30,EGO.z+2];l=[EGO.x,0,EGO.z+3];}
+  else{t=[EGO.x+fx*0.7,1.15,EGO.z+fz*0.7];l=[EGO.x+fx*12,0.9,EGO.z+fz*12];}
+  camera.position.lerp(new THREE.Vector3(...t),Math.min(1,dt*4.5));
+  camera.lookAt(...l);
+  key.position.set(EGO.x+20,40,EGO.z+12);key.target.position.set(EGO.x,0,EGO.z);key.target.updateMatrixWorld();
+}
+function setCam(m){camMode=m%3;$('bCam').textContent='CAM: '+camNames[camMode];const sel=$('sCamMode');if(sel)sel.value=String(camMode);}
+$('bCam').onclick=()=>setCam((camMode+1)%3);
+$('bPause').onclick=()=>{paused=!paused;$('bPause').textContent=paused?'RESUME':'PAUSE';$('bPause').classList.toggle('on',paused);};
+$('bExt').onclick=()=>{if(EXT.active)EXT.ws&&EXT.ws.close();else{const u=prompt('Bridge WebSocket URL','ws://localhost:8766');if(u){EXT.url=u;extConnect();}}};
+document.querySelectorAll('#task button').forEach(b=>{if(b.dataset.t)b.onclick=()=>loadTask(b.dataset.t);});
+
+/* ---- SETTINGS PANEL ---- */
+function setSettingsOpen(open){
+  const s=$('settings');
+  s.classList.toggle('on',open);
+  $('bSettings').classList.toggle('on',open);
+  // BEV and settings share the top-right corner — hide BEV while settings is open
+  const bev=$('bevWrap');
+  if(bev)bev.style.display=open?'none':'';
+}
+$('bSettings').onclick=()=>setSettingsOpen(!$('settings').classList.contains('on'));
+$('sClose').onclick=()=>setSettingsOpen(false);
+// speed
+$('sSpeed').oninput=e=>{P.vmax=+e.target.value;$('sSpeedV').textContent=P.vmax.toFixed(1)+' m/s';};
+// lidar
+$('sLidar').onchange=e=>{LID.on=e.target.checked;lidPoints.visible=LID.on;
+  if(!LID.on){for(let i=0;i<PTS;i++)lidPos[i*3+1]=-50;lidGeo.attributes.position.needsUpdate=true;}};
+$('sLidarR').oninput=e=>{LID.maxR=+e.target.value;$('sLidarRV').textContent=LID.maxR+' m';};
+$('sLidarHz').oninput=e=>{LID.rotHz=+e.target.value;$('sLidarHzV').textContent=LID.rotHz+' Hz';};
+// fusion + camera
+$('sFusion').onchange=e=>{showFusion=e.target.checked;
+  document.querySelector('#bevWrap h3').textContent=showFusion?'BEV · Sensor Fusion (cam + lidar)':'BEV · Safety Field + Path';};
+$('sCamFov').oninput=e=>{CAM_FOV_DEG=+e.target.value;$('sCamFovV').textContent=CAM_FOV_DEG+'°';};
+$('sZones').onchange=e=>{const v=e.target.checked;fov.visible=v;stopRing.visible=stopFill.visible=slowRing.visible=stopTicks.visible=v;};
+// alerts
+$('sHornMode').onchange=e=>{HORN_MODE=e.target.value;audioInit();if(AUDIO.ctx&&AUDIO.ctx.state==='suspended')AUDIO.ctx.resume();};
+$('sHornOn').oninput=e=>{HORN_ON=+e.target.value;$('sHornOnV').textContent=HORN_ON.toFixed(1)+' s';};
+$('sHornGap').oninput=e=>{HORN_GAP=+e.target.value;$('sHornGapV').textContent=HORN_GAP.toFixed(1)+' s';};
+// view
+$('sCamMode').onchange=e=>setCam(+e.target.value);
+// recovery
+$('sStuckTimeout').onchange=e=>{STUCK_TIMEOUT=+e.target.value;
+  log(STUCK_TIMEOUT>0?('Auto-reroute if stuck: '+Math.round(STUCK_TIMEOUT/60)+' min'):'Auto-reroute if stuck: off','ev-ok');};
+// manual override
+function setOverrideVisible(v){const b=$('overrideBtn');if(b)b.classList.toggle('show',!!v);}
+$('overrideBtn').onclick=()=>{ forceReroute('Manual override'); setOverrideVisible(false); };
+
+addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();$('bPause').click();}
+  if(e.key==='c'||e.key==='C')$('bCam').click();
+  if(e.key==='e'||e.key==='E')$('bExt').click();
+  if(e.key===','){$('bSettings').click();}
+  if(e.key==='1')loadTask('putaway');if(e.key==='2')loadTask('pick');if(e.key==='3')loadTask('peak');
+});
+addEventListener('resize',()=>{camera.aspect=W()/H();camera.updateProjectionMatrix();renderer.setSize(W(),H());if(editMode){sizePlan();drawPlan();}});
+
+/* ============================================================
+   MAIN LOOP — fixed-step physics
+   ============================================================ */
+loadTask('putaway');
+let last=performance.now(),acc=0;const FIX=1/120;
+camera.position.set(-2,4.5,-6);
+function loop(now){
+  requestAnimationFrame(loop);
+  let dt=Math.min(.05,(now-last)/1000);last=now;
+  if(!paused){
+    simT+=dt;acc+=dt;let r=null;
+    while(acc>=FIX){r=controller(FIX);stepPhysics(FIX);acc-=FIX;}
+    if(!r)r=controller(0);
+    updateActors(dt);
+    stepLidar(dt);
+    extTick(now);
+    audioUpdate(dt);
+    if(routeLineDirty)rebuildRouteLine();
+    if(editMode)drawPlan();
+    updHUD(r);
+    drawBev(r);
+  }
+  placeCamera(dt);
+  renderer.render(scene,camera);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

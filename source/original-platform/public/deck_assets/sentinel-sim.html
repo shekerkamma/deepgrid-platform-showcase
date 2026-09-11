@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DGrid Sentinel — Perimeter Threat Fusion</title>
+<style>
+  :root{
+    --bg:#070d14; --bg2:#0a131e; --panel:rgba(10,18,28,.86); --line:rgba(90,120,150,.18);
+    --ink:#dce6f0; --dim:#7f96ac; --faint:#516274;
+    --cyan:#22d3ee; --teal:#2dd4bf; --amber:#f5a623; --red:#ff3b3b; --green:#34d399; --phos:#5ef0a8;
+    --mono:'SF Mono',ui-monospace,'Cascadia Code',Menlo,Consolas,monospace;
+    --cond:'Bahnschrift','DIN Condensed','Arial Narrow',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-smoothing:antialiased}
+  #app{position:fixed;inset:0;display:flex}
+  #stage{position:relative;flex:1;min-width:0;overflow:hidden}
+  #map{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+  .panel{background:var(--panel);backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);
+    border:1px solid var(--line);border-radius:12px}
+  .hud{position:absolute;z-index:10;pointer-events:none}
+
+  /* ---- header ---- */
+  #hdr{top:13px;left:13px;display:flex;align-items:center;gap:12px;padding:8px 14px}
+  #logo{height:23px;width:auto;display:block}
+  #hdr .t{font-family:var(--cond);font-weight:700;font-size:16px;letter-spacing:.04em;line-height:1}
+  #hdr .t small{display:block;font-size:8.5px;letter-spacing:.22em;color:var(--cyan);margin-top:3px;font-family:var(--mono);font-weight:400}
+  #status{margin-left:4px;font-size:10px;letter-spacing:.1em;padding:4px 11px;border-radius:99px;white-space:nowrap;
+    border:1px solid var(--green);color:var(--green)}
+  #status.alert{border-color:var(--red);color:var(--red);animation:flash 1s steps(2) infinite}
+  @keyframes flash{50%{opacity:.4}}
+
+  /* ---- threat banner (signature payoff) ---- */
+  #threatBanner{top:13px;left:50%;transform:translateX(-50%);max-width:62%;padding:9px 18px;display:none;
+    align-items:center;gap:11px;border:1px solid var(--red);background:rgba(60,12,12,.82);border-radius:11px}
+  #threatBanner.show{display:flex}
+  #threatBanner .ico{font-size:15px}
+  #threatBanner .tb{font-family:var(--cond);font-weight:700;font-size:14px;letter-spacing:.05em;color:#ffd2d2}
+  #threatBanner .tb small{display:block;font-family:var(--mono);font-weight:400;font-size:9.5px;letter-spacing:.03em;color:#ffb0b0;margin-top:2px}
+
+  /* ---- right rail ---- */
+  #rail{width:312px;flex:0 0 auto;display:flex;flex-direction:column;gap:11px;padding:13px 13px 13px 0;overflow-y:auto}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .card h3{font-family:var(--cond);font-size:12px;letter-spacing:.08em;color:var(--cyan);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+  .card h3 .live{font-family:var(--mono);font-size:8px;color:var(--green);letter-spacing:.12em;display:flex;align-items:center;gap:5px}
+  .card h3 .live::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 1.5s infinite}
+  @keyframes pulse{50%{opacity:.3}}
+
+  /* track list */
+  .trk{display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:8px;margin-bottom:5px;background:rgba(255,255,255,.025);border-left:2px solid var(--dim)}
+  .trk:last-child{margin-bottom:0}
+  .trk.t-veh{border-left-color:var(--cyan)} .trk.t-hum{border-left-color:var(--teal)}
+  .trk.t-susp{border-left-color:var(--amber);background:rgba(245,166,35,.08)}
+  .trk.t-threat{border-left-color:var(--red);background:rgba(255,59,59,.1)}
+  .trk .tid{font-size:11px;font-weight:600;width:40px;flex:0 0 auto}
+  .trk .tcls{font-size:9px;color:var(--dim);flex:1;text-transform:uppercase;letter-spacing:.04em}
+  .trk .tconf{font-size:10px;width:34px;text-align:right;flex:0 0 auto}
+  .trk .tstat{font-size:8px;padding:2px 6px;border-radius:5px;letter-spacing:.04em;white-space:nowrap;background:rgba(255,255,255,.06);color:var(--dim)}
+  .trk.t-susp .tstat{background:rgba(245,166,35,.18);color:var(--amber)}
+  .trk.t-threat .tstat{background:rgba(255,59,59,.2);color:#ff9a9a}
+  #trkEmpty{font-size:10px;color:var(--faint);text-align:center;padding:10px 0;letter-spacing:.03em}
+
+  /* escalation timeline */
+  .esc{position:relative;padding-left:6px}
+  .escStep{display:flex;gap:11px;padding:6px 0;position:relative}
+  .escStep::before{content:'';position:absolute;left:4px;top:14px;bottom:-6px;width:1px;background:var(--line)}
+  .escStep:last-child::before{display:none}
+  .escDot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;margin-top:3px;background:#26323f;border:1px solid var(--faint);z-index:1}
+  .escStep.done .escDot{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 7px var(--cyan)}
+  .escStep.active .escDot{background:var(--amber);border-color:var(--amber);box-shadow:0 0 9px var(--amber)}
+  .escStep.threat .escDot{background:var(--red);border-color:var(--red);box-shadow:0 0 10px var(--red)}
+  .escTxt{flex:1}
+  .escName{font-size:11px;letter-spacing:.03em;color:var(--dim)}
+  .escStep.done .escName,.escStep.active .escName{color:var(--ink)}
+  .escStep.threat .escName{color:#ff9a9a;font-weight:600}
+  .escTime{font-size:8.5px;color:var(--faint);margin-top:1px;letter-spacing:.04em}
+
+  /* fusion explainer */
+  #fusionLine{font-size:10px;line-height:1.5;color:var(--dim);letter-spacing:.01em}
+  #fusionLine b{color:var(--cyan);font-weight:600}
+  #fusionLine .r{color:#ff9a9a;font-weight:600}
+
+  /* sensor health grid */
+  .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+  .sCell{background:rgba(255,255,255,.025);border-radius:8px;padding:7px 9px}
+  .sCell .sl{font-size:8.5px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+  .sCell .sv{font-family:var(--cond);font-size:16px;font-weight:700;margin-top:2px}
+  .sCell .sv.ok{color:var(--green)} .sCell .sv.cy{color:var(--cyan)}
+
+  /* ---- bottom controls over the map ---- */
+  #scn{bottom:13px;left:13px;display:flex;padding:0;overflow:hidden;pointer-events:auto;max-width:calc(100% - 26px)}
+  #scn button{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--dim);background:transparent;border:0;
+    border-right:1px solid var(--line);padding:11px 15px;cursor:pointer;white-space:nowrap;transition:all .15s}
+  #scn button:last-child{border-right:0}
+  #scn button.on{background:var(--cyan);color:#04212a}
+  #scn button:not(.on):hover{color:var(--ink);background:rgba(34,211,238,.1)}
+
+  #ctrl{bottom:13px;right:13px;display:flex;gap:7px;padding:0}
+  #ctrl button{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--ink);background:var(--panel);
+    border:1px solid var(--line);border-radius:10px;padding:11px 13px;cursor:pointer;pointer-events:auto;
+    backdrop-filter:blur(13px);transition:all .15s;-webkit-tap-highlight-color:transparent}
+  #ctrl button:hover{border-color:var(--cyan);color:var(--cyan)}
+  #ctrl button.on{background:var(--cyan);color:#04212a;border-color:var(--cyan)}
+
+  /* legend */
+  #legend{bottom:54px;left:13px;display:flex;gap:14px;padding:7px 13px;align-items:center}
+  #legend .lg{display:flex;align-items:center;gap:6px;font-size:9px;color:var(--dim);letter-spacing:.04em}
+  #legend .dot{width:9px;height:9px;border-radius:2px}
+
+  /* toast */
+  #toast{bottom:100px;left:13px;font-size:10.5px;padding:8px 14px;border-radius:9px;letter-spacing:.02em;display:none;max-width:380px}
+  #toast.show{display:block}
+  #toast.info{background:rgba(34,211,238,.12);border:1px solid var(--cyan);color:#a5f0fb}
+  #toast.warn{background:rgba(245,166,35,.14);border:1px solid var(--amber);color:#fde0b0}
+  #toast.threat{background:rgba(255,59,59,.14);border:1px solid var(--red);color:#ffc2c2}
+
+  /* confidential + watermark */
+  #conf{position:absolute;bottom:13px;left:50%;transform:translateX(-50%);z-index:8;font-size:8.5px;letter-spacing:.16em;
+    color:#e7b84b;background:rgba(40,30,5,.5);border:1px solid rgba(231,184,75,.4);border-radius:5px;padding:4px 12px;
+    display:none;align-items:center;gap:8px;white-space:nowrap}
+  #conf .c2{color:rgba(255,255,255,.5);letter-spacing:.08em}
+
+  /* intro */
+  #intro{position:absolute;inset:0;z-index:40;background:radial-gradient(circle at 50% 36%,#0d1b2a,#05090f 76%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;transition:opacity .55s}
+  #intro.hide{opacity:0;pointer-events:none}
+  #intro .il{height:42px;margin-bottom:18px}
+  #intro h1{font-family:var(--cond);font-size:clamp(28px,5.5vw,46px);font-weight:700;letter-spacing:.03em}
+  #intro h1 .d{color:var(--red)}
+  #intro .sub{font-size:11px;letter-spacing:.2em;color:var(--cyan);text-transform:uppercase;margin:8px 0 22px}
+  #intro p{max-width:520px;color:var(--dim);font-size:13.5px;line-height:1.65;margin-bottom:24px}
+  #intro .ig{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:640px;margin-bottom:28px}
+  #intro .ic{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:11px;padding:12px 15px;width:188px;text-align:left}
+  #intro .ic .k{font-size:9px;letter-spacing:.1em;color:var(--cyan);text-transform:uppercase;margin-bottom:6px}
+  #intro .ic .v{font-size:12px;color:var(--ink);line-height:1.45}
+  #start{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.05em;color:#04212a;background:var(--cyan);
+    border:0;border-radius:11px;padding:13px 30px;cursor:pointer;box-shadow:0 8px 28px rgba(34,211,238,.32);transition:transform .15s}
+  #start:hover{transform:translateY(-2px)}
+  #intro .foot{margin-top:22px;font-size:9px;color:var(--faint);letter-spacing:.08em}
+
+  /* mobile */
+  @media (max-width:880px){
+    #app{flex-direction:column}
+    #stage{flex:1;min-height:0}
+    #rail{width:auto;flex:0 0 auto;max-height:33vh;flex-direction:row;overflow-x:auto;overflow-y:hidden;
+      padding:0 10px 10px;gap:9px;scroll-snap-type:x proximity}
+    #rail .card{flex:0 0 80vw;max-width:300px;scroll-snap-align:start}
+    #hdr{top:8px;left:8px;right:8px;padding:6px 11px;gap:9px;flex-wrap:nowrap}
+    #hdr .t{font-size:13px;white-space:nowrap} #hdr .t small{display:none} #logo{height:16px}
+    #status{margin-left:auto;font-size:8.5px;padding:3px 8px;white-space:nowrap}
+    /* compact banner that overlays the top of the map, single tight block */
+    #threatBanner{top:44px;left:8px;right:8px;max-width:none;padding:7px 12px;gap:9px;transform:none}
+    #threatBanner .ico{font-size:13px}
+    #threatBanner .tb{font-size:12px} #threatBanner .tb small{font-size:9px;margin-top:1px}
+    #scn{bottom:8px;left:8px;right:8px;overflow-x:auto;border-radius:11px;max-width:none}
+    #scn button{flex:1 0 auto;padding:12px 12px;min-height:44px}
+    #ctrl{bottom:54px;right:8px}
+    #legend{display:none}
+    #conf{display:none!important}
+    /* toast appears in the empty water band near the top, under the banner — never over fence labels */
+    #toast{top:104px;bottom:auto;left:8px;right:8px;max-width:none;font-size:10px;padding:7px 11px;text-align:center}
+    #intro .ic{width:100%;max-width:300px}
+  }
+  @media (prefers-reduced-motion:reduce){ #status.alert,.card h3 .live::before{animation:none} }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="stage">
+    <canvas id="map"></canvas>
+
+    <div class="hud panel" id="hdr">
+      <img id="logo" alt="Deepgrid">
+      <div class="t">DGrid Sentinel<small>Perimeter Threat Fusion · PS16</small></div>
+      <span id="status">PERIMETER SECURE</span>
+    </div>
+
+    <div class="hud panel" id="threatBanner">
+      <span class="ico">⚠</span>
+      <div class="tb"><span id="tbHead">CORRELATED THREAT CONFIRMED</span><small id="tbSub">—</small></div>
+    </div>
+
+    <div class="hud panel" id="toast"></div>
+
+    <div class="hud panel" id="legend">
+      <span class="lg"><span class="dot" style="background:var(--cyan)"></span>Vehicle</span>
+      <span class="lg"><span class="dot" style="background:var(--teal)"></span>Human</span>
+      <span class="lg"><span class="dot" style="background:var(--amber)"></span>Suspicious</span>
+      <span class="lg"><span class="dot" style="background:var(--red)"></span>Correlated threat</span>
+      <span class="lg"><span class="dot" style="background:var(--phos);opacity:.6"></span>Sensor coverage</span>
+    </div>
+
+    <div class="hud panel" id="scn">
+      <button data-s="intrusion" class="on">COORDINATED INTRUSION</button>
+      <button data-s="patrol">PERIMETER PATROL</button>
+      <button data-s="maritime">MARITIME APPROACH</button>
+    </div>
+
+    <div class="hud" id="ctrl">
+      <button id="bCoverage" class="on">COVERAGE</button>
+      <button id="bReplay">▶ REPLAY</button>
+      <button id="bPause">PAUSE</button>
+    </div>
+
+    <div id="conf">CONFIDENTIAL<span class="c2">© Deepgrid 2026</span></div>
+
+    <div id="intro">
+      <img id="introLogo" class="il" alt="Deepgrid">
+      <h1>DGrid Sentinel<span class="d">.</span></h1>
+      <div class="sub">PS16 · Intelligent Port Perimeter Threat Detection</div>
+      <p>A live perimeter fusion console. Radar, thermal and camera tracks along the fence are classified, then correlated — so a vehicle loitering on the access road and a person approaching the fence stop being two unrelated blips and become one coordinated threat, flagged before the breach.</p>
+      <div class="ig">
+        <div class="ic"><div class="k">Correlate</div><div class="v">External vehicle + fence-line human fuse into a single threat track.</div></div>
+        <div class="ic"><div class="k">Escalate</div><div class="v">Loiter → approach → breach risk, on a timed threat ladder.</div></div>
+        <div class="ic"><div class="k">Hand off</div><div class="v">Ground sensors, patrol drone and sea buoy share the target.</div></div>
+      </div>
+      <button id="start">Open the console</button>
+      <div class="foot">Deepgrid Semi Pvt Ltd · T-Hub Phase 2, Hyderabad · Confidential</div>
+    </div>
+  </div>
+
+  <div id="rail">
+    <div class="card">
+      <h3>Active tracks <span class="live">FUSION</span></h3>
+      <div id="trkList"></div>
+      <div id="trkEmpty">No tracks in coverage</div>
+    </div>
+    <div class="card">
+      <h3>Threat escalation</h3>
+      <div class="esc" id="escList"></div>
+    </div>
+    <div class="card">
+      <h3>Fusion rationale</h3>
+      <div id="fusionLine">Awaiting correlated activity. Benign tracks are monitored but not escalated.</div>
+    </div>
+    <div class="card">
+      <h3>Coverage &amp; health</h3>
+      <div class="sgrid">
+        <div class="sCell"><div class="sl">Fence coverage</div><div class="sv ok" id="sCov">100%</div></div>
+        <div class="sCell"><div class="sl">Sensors online</div><div class="sv cy" id="sOnline">— / —</div></div>
+        <div class="sCell"><div class="sl">Tracks held</div><div class="sv cy" id="sTracks">0</div></div>
+        <div class="sCell"><div class="sl">False alarms</div><div class="sv ok" id="sFalse">0</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>window.__DG_LOGO__="data:image/png;base64,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";</script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const dist=(ax,ay,bx,by)=>Math.hypot(ax-bx,ay-by);
+const now=()=>simClock;
+
+/* ============================================================
+   CANVAS + WORLD
+   World units ≈ metres. We map a ~520 x 360 m slice of the port
+   perimeter onto the canvas, fitted with letterboxing.
+   ============================================================ */
+const cv=$('map'), ctx=cv.getContext('2d');
+let DPR=Math.min(devicePixelRatio||1, 2);
+const WORLD={w:520, h:360};
+// the part of the world worth showing on a narrow screen (drops dead water/interior margins)
+const FOCUS={x:20, y:30, w:480, h:300};
+let view={s:1, ox:0, oy:0};   // scale + offset (world→screen)
+function resize(){
+  const r=cv.parentElement.getBoundingClientRect();
+  cv.width=r.width*DPR; cv.height=r.height*DPR;
+  cv.style.width=r.width+'px'; cv.style.height=r.height+'px';
+  const portrait = r.height >= r.width*1.05;
+  if(portrait){
+    // fit the FOCUS region by width, anchor it so the fence/road band is centred vertically
+    const s=(r.width/FOCUS.w)*0.99;
+    view.s=s;
+    view.ox=-FOCUS.x*s + (r.width-FOCUS.w*s)/2;
+    // vertically centre the focus region in the available height
+    view.oy=-FOCUS.y*s + (r.height-FOCUS.h*s)/2;
+  } else {
+    const s=Math.min(r.width/WORLD.w, r.height/WORLD.h)*0.97;
+    view.s=s; view.ox=(r.width-WORLD.w*s)/2; view.oy=(r.height-WORLD.h*s)/2;
+  }
+  view.W=r.width; view.H=r.height;
+}
+addEventListener('resize',resize);
+function X(wx){return (view.ox+wx*view.s)*DPR;}
+function Y(wy){return (view.oy+wy*view.s)*DPR;}
+function S(v){return v*view.s*DPR;}
+
+/* ============================================================
+   PERIMETER LAYOUT
+   - The PORT interior is the lower-left landmass; WATER is upper area.
+   - FENCE runs as a polyline along the landward boundary.
+   - ACCESS ROAD runs OUTSIDE the fence (the public side).
+   - SENSOR TOWERS spaced along the fence (radar+thermal+camera).
+   ============================================================ */
+// fence polyline (world coords). Left edge down the side, across the bottom-land boundary.
+const FENCE=[ {x:60,y:70},{x:60,y:250},{x:250,y:250},{x:430,y:250},{x:460,y:170} ];
+// fence segments with ids
+const SEGS=[]; for(let i=0;i<FENCE.length-1;i++) SEGS.push({i, a:FENCE[i], b:FENCE[i+1], id:'SEG '+(i+1)});
+function segMid(s){return {x:(s.a.x+s.b.x)/2, y:(s.a.y+s.b.y)/2};}
+// outward normal for a segment (points to the OUTSIDE / public road side = up-left-ish)
+function segNormal(s){const dx=s.b.x-s.a.x, dy=s.b.y-s.a.y, L=Math.hypot(dx,dy)||1;
+  return {x:-dy/L, y:dx/L}; }   // rotate +90°
+// the interior reference point (yard side) to orient normals outward
+const INTERIOR={x:250,y:330};
+function outwardNormal(s){let n=segNormal(s);const m=segMid(s);
+  // ensure normal points away from interior
+  if((m.x+n.x*10-INTERIOR.x)**2+(m.y+n.y*10-INTERIOR.y)**2 < (m.x-INTERIOR.x)**2+(m.y-INTERIOR.y)**2){n.x*=-1;n.y*=-1;}
+  return n;}
+
+// access road: a polyline ~22 m outside the fence
+const ROAD=FENCE.map(p=>p); // computed offset at draw time per-seg; we also build a road path
+function roadPathPts(off){
+  const pts=[];
+  for(const s of SEGS){ const n=outwardNormal(s);
+    pts.push({x:s.a.x+n.x*off, y:s.a.y+n.y*off});
+  }
+  const last=SEGS[SEGS.length-1]; const n=outwardNormal(last);
+  pts.push({x:last.b.x+n.x*off, y:last.b.y+n.y*off});
+  return pts;
+}
+const ROAD_PTS=roadPathPts(26);
+
+// SENSOR TOWERS along the fence (radar + thermal + PTZ camera fused at each mast)
+const TOWERS=[];
+function placeTowers(){
+  TOWERS.length=0;
+  const spots=[ {seg:0,t:0.25},{seg:0,t:0.75},{seg:1,t:0.33},{seg:1,t:0.66},
+                {seg:2,t:0.4},{seg:2,t:0.8},{seg:3,t:0.5} ];
+  spots.forEach((sp,i)=>{
+    const s=SEGS[sp.seg]; const x=lerp(s.a.x,s.b.x,sp.t), y=lerp(s.a.y,s.b.y,sp.t);
+    const n=outwardNormal(s);
+    TOWERS.push({ id:'T'+(i+1), x, y, nx:n.x, ny:n.y,
+      range:rnd(95,120), fov:Math.PI*0.62, sweep:rnd(0,Math.PI*2), sweepSpd:rnd(.5,.9)*(i%2?1:-1),
+      online:true, type: i%3===0?'radar':(i%3===1?'thermal':'camera') });
+  });
+}
+placeTowers();
+// sea sensor buoy (maritime side) + a shore radar
+const BUOY={x:150,y:48,range:130,sweep:0,sweepSpd:.6,online:true};
+// patrol drone (aerial)
+const DRONE={x:250,y:120,tx:250,ty:120,home:{x:250,y:120},state:'patrol',patrolT:0,target:null,alt:1};
+
+/* ============================================================
+   TRACKS  (detected entities)
+   class: 'vehicle' | 'human' | 'animal' | 'vessel' | 'clutter'
+   ============================================================ */
+let tracks=[];
+let trackSeq=0, threatSeq=0;
+function spawnTrack(o){
+  const t=Object.assign({
+    id:null, cls:'human', x:0,y:0, vx:0,vy:0, speed:1, conf:0.5,
+    path:null, pi:0, role:'benign', loiterT:0, detected:false, age:0,
+    nearFence:99, headingToFence:false, link:null, threat:false, gone:false,
+    seenBy:[], approachT:0
+  },o);
+  t.id = o.id || ((t.cls==='vehicle'?'V-':t.cls==='vessel'?'S-':t.cls==='animal'?'A-':'H-')+String(++trackSeq).padStart(2,'0'));
+  tracks.push(t); return t;
+}
+
+/* nearest fence point + distance for a world point */
+function nearestFence(x,y){
+  let best=1e9, bx=0,by=0, seg=null;
+  for(const s of SEGS){
+    const dx=s.b.x-s.a.x, dy=s.b.y-s.a.y, L2=dx*dx+dy*dy||1;
+    let t=((x-s.a.x)*dx+(y-s.a.y)*dy)/L2; t=clamp(t,0,1);
+    const px=s.a.x+dx*t, py=s.a.y+dy*t, d=dist(x,y,px,py);
+    if(d<best){best=d;bx=px;by=py;seg=s;}
+  }
+  return {d:best,x:bx,y:by,seg};
+}
+
+/* ============================================================
+   SENSOR DETECTION
+   A track is "detected" if within range of an ONLINE tower (and,
+   for camera/thermal, within the swept FOV; radar is omnidirectional arc).
+   Detection raises confidence; multiple sensors raise it faster (fusion).
+   ============================================================ */
+function senseTrack(t,dt){
+  let seen=[]; let bestConf=0;
+  for(const tw of TOWERS){ if(!tw.online) continue;
+    const d=dist(t.x,t.y,tw.x,tw.y);
+    if(d>tw.range) continue;
+    let inFov=true;
+    if(tw.type!=='radar'){
+      const ang=Math.atan2(t.y-tw.y,t.x-tw.x);
+      let da=Math.atan2(Math.sin(ang-tw.sweep),Math.cos(ang-tw.sweep));
+      inFov=Math.abs(da)<tw.fov/2;
+    }
+    if(inFov){ seen.push(tw.id);
+      const q=1-d/tw.range; bestConf=Math.max(bestConf, 0.55+q*0.4);
+    }
+  }
+  // buoy covers maritime tracks
+  if(BUOY.online && dist(t.x,t.y,BUOY.x,BUOY.y)<BUOY.range){ seen.push('BUOY'); bestConf=Math.max(bestConf,0.7); }
+  // drone, when overhead a target, confirms strongly
+  if(DRONE.state==='engage' && DRONE.target===t && dist(DRONE.x,DRONE.y,t.x,t.y)<40){ seen.push('DRONE'); bestConf=Math.max(bestConf,0.97); }
+
+  t.seenBy=seen;
+  const fuseBoost=Math.min(seen.length,3)*0.02;  // multi-sensor fusion confidence boost
+  const target = seen.length? clamp(bestConf+fuseBoost,0,0.99) : 0.0;
+  t.conf=lerp(t.conf, target, seen.length?0.12:0.05);
+  t.detected = t.conf>0.45;
+}
+
+/* ============================================================
+   CLASSIFY ROLE / BEHAVIOUR
+   - vehicle on road that stops/creeps for >LOITER_S = loitering (suspicious)
+   - human heading toward fence and getting close = approaching
+   ============================================================ */
+const LOITER_S=3.0;          // seconds stationary-ish to count as loitering
+const APPROACH_FENCE=24;     // m from fence = "at the fence line"
+const CORRELATE_RADIUS=90;   // vehicle & human within this of each other near same segment
+function behave(t,dt){
+  const nf=nearestFence(t.x,t.y); t.nearFence=nf.d; t.nearSeg=nf.seg;
+  const sp=Math.hypot(t.vx,t.vy);
+  if(t.cls==='vehicle'){
+    if(sp<3.5){ t.loiterT+=dt; } else { t.loiterT=Math.max(0,t.loiterT-dt*0.5); }
+    if(t.loiterT>LOITER_S && t.role==='benign'){ t.role='suspicious'; toast('Vehicle '+t.id+' loitering on access road — flagged suspicious','warn'); }
+  }
+  if(t.cls==='human'){
+    // "heading to fence": actively moving toward the nearest fence point, OR already inside the approach band
+    let movingIn=false;
+    if(sp>0.6){ const toF=Math.atan2(nf.y-t.y, nf.x-t.x), mv=Math.atan2(t.vy,t.vx);
+      movingIn=Math.cos(toF-mv)>0.3; }
+    t.headingToFence = (movingIn && t.nearFence<130) || t.nearFence<APPROACH_FENCE+18;
+    if(t.headingToFence) t.approachT+=dt; else t.approachT=Math.max(0,t.approachT-dt);
+    if(t.nearFence<APPROACH_FENCE && t.role!=='threat' && t.role!=='suspicious'){ t.role='suspicious'; }
+  }
+}
+
+/* ============================================================
+   CORRELATION  →  THREAT
+   Rule (the signature): a SUSPICIOUS vehicle (loitering, outside) +
+   a human approaching the SAME fence area within CORRELATE_RADIUS and
+   within a short time window → fuse into ONE threat track.
+   ============================================================ */
+let threat=null;   // the active correlated threat {veh,hum,id,seg,t0}
+function correlate(dt){
+  if(threat) return;
+  const vehs=tracks.filter(t=>t.cls==='vehicle'&&t.role==='suspicious'&&!t.gone);
+  const hums=tracks.filter(t=>t.cls==='human'&&t.headingToFence&&t.nearFence<APPROACH_FENCE+25&&!t.gone);
+  for(const v of vehs){ for(const h of hums){
+    const near = dist(v.x,v.y,h.x,h.y) < CORRELATE_RADIUS;
+    const sameSeg = v.nearSeg===h.nearSeg;
+    const timing = h.approachT>1.2 && v.loiterT>LOITER_S;
+    if(near && (sameSeg||true) && timing){
+      // FUSE
+      threat={ veh:v, hum:h, id:'T-'+(++threatSeq), seg:h.nearSeg, t0:now(), confirmedT:now() };
+      v.role='threat'; h.role='threat'; v.threat=true; h.threat=true; v.link=h; h.link=v;
+      escSet('approach', now());
+      escSet('breach', now()+0.01, true);  // will mark threat shortly
+      setStatus(true);
+      $('threatBanner').classList.add('show');
+      $('tbHead').textContent='CORRELATED THREAT '+threat.id;
+      $('tbSub').textContent='Vehicle '+v.id+' + Human '+h.id+' → coordinated intrusion at '+(h.nearSeg?h.nearSeg.id:'fence');
+      toast('THREAT '+threat.id+': '+v.id+' (loitering) correlated with '+h.id+' (fence approach) — dispatching drone','threat');
+      // dispatch drone to hand off
+      DRONE.state='engage'; DRONE.target=h;
+      fusionExplain();
+      return;
+    }
+  }}
+}
+
+/* ============================================================
+   ESCALATION TIMELINE
+   ============================================================ */
+const ESC=[
+  {k:'detect', name:'Track detected in coverage', t:null, st:''},
+  {k:'loiter', name:'Loitering / suspicious behaviour', t:null, st:''},
+  {k:'approach', name:'Fence approach correlated', t:null, st:''},
+  {k:'breach', name:'Breach risk — response dispatched', t:null, st:''}
+];
+function escSet(k,t,threatFlag){ const e=ESC.find(e=>e.k===k); if(e&&e.t==null){ e.t=t; e.threat=!!threatFlag; renderEsc(); } }
+function escReset(){ ESC.forEach(e=>{e.t=null;e.threat=false;}); renderEsc(); }
+
+/* ============================================================
+   SCENARIOS
+   ============================================================ */
+let scenario='intrusion';
+function clearWorld(){
+  tracks=[]; threat=null; trackSeq=0; threatSeq=0; escReset();
+  DRONE.state='patrol'; DRONE.target=null; DRONE.x=DRONE.home.x; DRONE.y=DRONE.home.y; DRONE.tx=DRONE.home.x; DRONE.ty=DRONE.home.y;
+  falseAlarms=0; setStatus(false); $('threatBanner').classList.remove('show');
+  scriptT=0; scriptStep=0;
+}
+let scriptT=0, scriptStep=0, scriptQueue=[];
+function loadScenario(s){
+  scenario=s; clearWorld();
+  document.querySelectorAll('#scn button').forEach(b=>b.classList.toggle('on',b.dataset.s===s));
+  if(s==='intrusion'){
+    // ambient benign foot patrol INSIDE the perimeter
+    spawnTrack({cls:'human', x:120,y:300, role:'benign', patrol:true, path:[{x:120,y:300},{x:380,y:300},{x:380,y:280},{x:120,y:280}], speed:9, loop:true});
+    // target a point on SEG 2 (the long bottom run at y=250) for the approach
+    const fx=320, fy=250;           // fence contact point
+    scriptQueue=[
+      {t:1.0, fn:()=>{ // suspicious vehicle pulls onto the access road outside SEG 2 and STOPS
+        const v=spawnTrack({cls:'vehicle', x:fx-150, y:224, role:'benign', speed:26});
+        v.path=[{x:fx, y:224}]; v.stopAtEnd=true;   // road sits ~26m outside the fence
+        toast('Vehicle '+v.id+' detected on access road','info'); escSet('detect', now());
+      }},
+      {t:6.5, fn:()=>{ // a person dismounts and walks straight to the fence (perpendicular)
+        const v=tracks.find(t=>t.cls==='vehicle');
+        const sx=v?v.x:fx, sy=v?v.y:224;
+        const h=spawnTrack({cls:'human', x:sx, y:sy, role:'benign', speed:8});
+        h.path=[{x:fx, y:fy-2}];     // walk to the fence line
+        toast('Human '+h.id+' dismounted from '+(v?v.id:'vehicle')+' — moving toward fence','warn');
+      }},
+    ];
+    toast('Scenario: coordinated intrusion — watch two tracks correlate into one threat','info');
+  }
+  else if(s==='patrol'){
+    // benign world: animals, a delivery vehicle that does NOT loiter, foot patrol; drone patrols
+    spawnTrack({cls:'human', x:120,y:300, role:'benign', path:[{x:120,y:300},{x:400,y:300},{x:120,y:300}], speed:9, loop:true});
+    scriptQueue=[
+      {t:1.0, fn:()=>{ const a=spawnTrack({cls:'animal', x:300,y:120, role:'benign', speed:11});
+        a.path=[{x:200,y:150},{x:120,y:200},{x:300,y:160}]; a.loop=true; toast('Track A-01 classified ANIMAL — no escalation','info'); }},
+      {t:3.0, fn:()=>{ const v=spawnTrack({cls:'vehicle', x:ROAD_PTS[0].x-30,y:ROAD_PTS[0].y, role:'benign', speed:18});
+        v.path=[{x:ROAD_PTS[4].x+20,y:ROAD_PTS[4].y}]; v._note='through-traffic'; toast('Vehicle '+v.id+' transiting access road — speed nominal, not loitering','info'); }},
+      {t:5.0, fn:()=>{ escSet('detect', now()); }},
+    ];
+    DRONE.state='sweep';
+    toast('Scenario: routine patrol — benign tracks held, low false-alarm rate','info');
+  }
+  else if(s==='maritime'){
+    // a small craft approaches the waterline; buoy + shore radar detect & hand off
+    spawnTrack({cls:'human', x:120,y:300, role:'benign', path:[{x:120,y:300},{x:380,y:300},{x:120,y:300}], speed:9, loop:true});
+    scriptQueue=[
+      {t:1.0, fn:()=>{ const s2=spawnTrack({cls:'vessel', x:60,y:30, role:'benign', speed:13});
+        s2.path=[{x:150,y:60},{x:175,y:120},{x:185,y:175}]; s2._note='nearing waterline';
+        toast('Sea buoy contact — small craft S-01 inbound','info'); }},
+      {t:6.5, fn:()=>{ escSet('detect', now()); }},
+      {t:7.0, fn:()=>{ const v=tracks.find(t=>t.cls==='vessel'); if(v){ v.role='suspicious';
+        toast('S-01 holding near waterline — flagged; cueing shore radar + drone','warn'); } }},
+      {t:9.5, fn:()=>{ const v=tracks.find(t=>t.cls==='vessel'); if(v){
+        // maritime "correlated" threat: vessel loiter at waterline near a fence-water junction
+        threat={veh:v, hum:null, id:'T-'+(++threatSeq), seg:SEGS[0], t0:now(), confirmedT:now(), maritime:true};
+        v.role='threat'; v.threat=true; escSet('loiter', now()-2); escSet('approach', now()); escSet('breach', now()+0.01,true);
+        setStatus(true); $('threatBanner').classList.add('show');
+        $('tbHead').textContent='MARITIME THREAT '+threat.id;
+        $('tbSub').textContent='Vessel '+v.id+' loitering at waterline — sea+shore sensors fused';
+        DRONE.state='engage'; DRONE.target=v;
+        toast('THREAT '+threat.id+': vessel '+v.id+' fused across sea buoy + shore radar — drone dispatched','threat');
+        fusionExplain();
+      } }},
+    ];
+    DRONE.state='sweep';
+    toast('Scenario: maritime approach — sea buoy and shore radar share one target','info');
+  }
+}
+
+/* ============================================================
+   ENTITY MOTION
+   ============================================================ */
+function moveAlong(t,dt){
+  if(!t.path||t.pi>=t.path.length){ t.vx*=0.86; t.vy*=0.86;
+    if(t.stopAtEnd){/* stays = loiters */} return; }
+  const tgt=t.path[t.pi];
+  const dx=tgt.x-t.x, dy=tgt.y-t.y, d=Math.hypot(dx,dy);
+  if(d<3){ t.pi++; if(t.pi>=t.path.length && t.loop){ t.pi=0; } return; }
+  const v=t.speed;
+  t.vx=lerp(t.vx, dx/d*v, 0.2); t.vy=lerp(t.vy, dy/d*v, 0.2);
+  t.x+=t.vx*dt; t.y+=t.vy*dt;
+}
+
+/* ============================================================
+   DRONE
+   ============================================================ */
+function stepDrone(dt){
+  if(DRONE.state==='patrol'){ DRONE.patrolT+=dt;
+    DRONE.tx=250+Math.cos(DRONE.patrolT*0.4)*120; DRONE.ty=150+Math.sin(DRONE.patrolT*0.4)*70;
+  } else if(DRONE.state==='sweep'){ DRONE.patrolT+=dt;
+    // sweep the fence line
+    const u=(Math.sin(DRONE.patrolT*0.3)*0.5+0.5);
+    const seg=SEGS[Math.floor(u*(SEGS.length-1))]; const m=segMid(seg);
+    DRONE.tx=m.x; DRONE.ty=m.y-20;
+  } else if(DRONE.state==='engage' && DRONE.target){
+    DRONE.tx=DRONE.target.x; DRONE.ty=DRONE.target.y-6;
+  }
+  DRONE.x=lerp(DRONE.x,DRONE.tx, DRONE.state==='engage'?0.06:0.03);
+  DRONE.y=lerp(DRONE.y,DRONE.ty, DRONE.state==='engage'?0.06:0.03);
+}
+
+/* ============================================================
+   STATUS / HUD HELPERS
+   ============================================================ */
+let falseAlarms=0;
+function setStatus(alert){ const e=$('status');
+  if(alert){ e.textContent='⚠ THREAT ACTIVE'; e.className='alert'; }
+  else { e.textContent='PERIMETER SECURE'; e.className=''; }
+}
+let toastT=0;
+function toast(msg,kind){ const t=$('toast'); t.textContent=msg; t.className='hud panel '+(kind||'info')+' show'; toastT=3.4; }
+
+function fusionExplain(){
+  const el=$('fusionLine');
+  if(!threat){ el.innerHTML='Awaiting correlated activity. Benign tracks are monitored but not escalated.'; return; }
+  if(threat.maritime){
+    el.innerHTML=`Vessel <b>${threat.veh.id}</b> held by <b>sea buoy</b> + <b>shore radar</b>, loitering at the waterline near ${threat.seg.id}. Cross-domain tracks fused → single maritime threat <span class="r">${threat.id}</span>. Drone cued for visual ID.`;
+  } else {
+    el.innerHTML=`Vehicle <b>${threat.veh.id}</b> loitering on the access road (>${LOITER_S|0}s) and human <b>${threat.hum.id}</b> moving to ${threat.seg?threat.seg.id:'the fence'} are within ${CORRELATE_RADIUS} m and time-aligned. Two benign tracks → one coordinated threat <span class="r">${threat.id}</span>. Drone dispatched for hand-off.`;
+  }
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function draw(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  // backgrounds: water (top) and land (interior)
+  drawWaterLand();
+  drawRoad();
+  if(showCoverage) drawCoverage();
+  drawFence();
+  drawTowers();
+  drawBuoy();
+  drawTracks();
+  drawThreatLink();
+  drawDrone();
+  drawScale();
+}
+
+function drawWaterLand(){
+  // whole canvas = water tint; land polygon drawn on top
+  ctx.fillStyle='#081826'; ctx.fillRect(0,0,cv.width,cv.height);
+  // animated water shimmer lines (upper area)
+  ctx.strokeStyle='rgba(45,90,120,.18)'; ctx.lineWidth=1*DPR;
+  for(let i=0;i<7;i++){ const yy=18+i*16; ctx.beginPath();
+    for(let xx=0;xx<=WORLD.w;xx+=14){ const off=Math.sin(xx*0.06+simClock*0.8+i)*2.2;
+      const px=X(xx), py=Y(yy+off); xx===0?ctx.moveTo(px,py):ctx.lineTo(px,py);} ctx.stroke(); }
+  // land mass (interior of fence + a margin) — fill below/right of fence
+  ctx.beginPath();
+  ctx.moveTo(X(FENCE[0].x),Y(FENCE[0].y));
+  for(const p of FENCE) ctx.lineTo(X(p.x),Y(p.y));
+  ctx.lineTo(X(WORLD.w),Y(FENCE[FENCE.length-1].y));
+  ctx.lineTo(X(WORLD.w),Y(WORLD.h)); ctx.lineTo(X(0),Y(WORLD.h)); ctx.lineTo(X(0),Y(FENCE[0].y));
+  ctx.closePath();
+  ctx.fillStyle='#0c1722'; ctx.fill();
+  // faint yard grid on land
+  ctx.strokeStyle='rgba(70,95,120,.10)'; ctx.lineWidth=1*DPR;
+  for(let gx=20;gx<WORLD.w;gx+=40){ ctx.beginPath(); ctx.moveTo(X(gx),Y(255)); ctx.lineTo(X(gx),Y(WORLD.h)); ctx.stroke(); }
+  // a few container blocks on land for context
+  ctx.fillStyle='rgba(60,90,115,.22)';
+  const blocks=[[90,275,60,18],[170,275,80,18],[270,275,90,18],[380,278,50,16],[120,300,70,16],[230,300,90,16],[340,300,70,16]];
+  for(const [bx,by,bw,bh] of blocks){ rr(X(bx),Y(by),S(bw),S(bh),3*DPR); ctx.fill(); }
+  // quay edge label
+  ctx.fillStyle='rgba(150,180,205,.5)'; ctx.font=`${10*DPR}px ${MONO}`; ctx.textAlign='left';
+  ctx.fillText('◤ WATERSIDE', X(20), Y(16));
+  ctx.fillText('PORT INTERIOR ▸', X(300), Y(WORLD.h-8));
+}
+
+const MONO="ui-monospace,Menlo,Consolas,monospace";
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function drawRoad(){
+  // access road (outside the fence) — public side
+  ctx.strokeStyle='rgba(120,140,160,.22)'; ctx.lineWidth=S(12); ctx.lineCap='round'; ctx.lineJoin='round';
+  ctx.beginPath(); ROAD_PTS.forEach((p,i)=>{ i?ctx.lineTo(X(p.x),Y(p.y)):ctx.moveTo(X(p.x),Y(p.y)); }); ctx.stroke();
+  // centre dashes
+  ctx.strokeStyle='rgba(180,180,120,.3)'; ctx.lineWidth=1.4*DPR; ctx.setLineDash([6*DPR,8*DPR]);
+  ctx.beginPath(); ROAD_PTS.forEach((p,i)=>{ i?ctx.lineTo(X(p.x),Y(p.y)):ctx.moveTo(X(p.x),Y(p.y)); }); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='rgba(140,160,180,.4)'; ctx.font=`${9*DPR}px ${MONO}`; ctx.textAlign='left';
+  const rp=ROAD_PTS[1]; ctx.fillText('ACCESS ROAD · PUBLIC SIDE', X(rp.x-8), Y(rp.y-10));
+}
+
+function drawCoverage(){
+  // sensor coverage shield — radar arcs (full range) + thermal/camera swept cones
+  for(const tw of TOWERS){ if(!tw.online) continue;
+    const cx=X(tw.x), cy=Y(tw.y), R=S(tw.range);
+    const col = tw.type==='radar'? '94,240,168' : tw.type==='thermal'? '245,166,35' : '34,211,238';
+    if(tw.type==='radar'){
+      const g=ctx.createRadialGradient(cx,cy,0,cx,cy,R);
+      g.addColorStop(0,`rgba(${col},.10)`); g.addColorStop(1,`rgba(${col},0)`);
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
+      // sweeping radar line
+      ctx.strokeStyle=`rgba(${col},.5)`; ctx.lineWidth=1.5*DPR;
+      ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(tw.sweep)*R, cy+Math.sin(tw.sweep)*R); ctx.stroke();
+    } else {
+      ctx.fillStyle=`rgba(${col},.09)`;
+      ctx.beginPath(); ctx.moveTo(cx,cy);
+      ctx.arc(cx,cy,R, tw.sweep-tw.fov/2, tw.sweep+tw.fov/2); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle=`rgba(${col},.25)`; ctx.lineWidth=1*DPR; ctx.stroke();
+    }
+  }
+  // buoy coverage
+  if(BUOY.online){ const cx=X(BUOY.x),cy=Y(BUOY.y),R=S(BUOY.range);
+    const g=ctx.createRadialGradient(cx,cy,0,cx,cy,R); g.addColorStop(0,'rgba(94,240,168,.08)'); g.addColorStop(1,'rgba(94,240,168,0)');
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle='rgba(94,240,168,.4)'; ctx.lineWidth=1.4*DPR;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+Math.cos(BUOY.sweep)*R,cy+Math.sin(BUOY.sweep)*R); ctx.stroke();
+  }
+}
+
+function drawFence(){
+  // the fence line — solid, with posts; turns red on the threatened segment
+  ctx.lineWidth=2.4*DPR; ctx.lineCap='round';
+  for(const s of SEGS){
+    const breached = threat && threat.seg===s;
+    ctx.strokeStyle = breached? 'rgba(255,59,59,.9)' : 'rgba(150,180,205,.55)';
+    if(breached){ ctx.shadowColor='rgba(255,59,59,.8)'; ctx.shadowBlur=12*DPR; }
+    ctx.beginPath(); ctx.moveTo(X(s.a.x),Y(s.a.y)); ctx.lineTo(X(s.b.x),Y(s.b.y)); ctx.stroke();
+    ctx.shadowBlur=0;
+  }
+  // posts
+  ctx.fillStyle='rgba(150,180,205,.5)';
+  for(const s of SEGS){ const n=14; for(let i=0;i<=n;i++){ const x=lerp(s.a.x,s.b.x,i/n),y=lerp(s.a.y,s.b.y,i/n);
+    ctx.beginPath(); ctx.arc(X(x),Y(y),1.3*DPR,0,Math.PI*2); ctx.fill(); } }
+  // segment labels
+  ctx.fillStyle='rgba(140,170,195,.6)'; ctx.font=`${8.5*DPR}px ${MONO}`; ctx.textAlign='center';
+  for(const s of SEGS){ const m=segMid(s); const nrm=outwardNormal(s);
+    ctx.fillText(s.id, X(m.x+nrm.x*9), Y(m.y+nrm.y*9)); }
+}
+
+function drawTowers(){
+  for(const tw of TOWERS){
+    const x=X(tw.x), y=Y(tw.y);
+    // base
+    ctx.fillStyle = tw.online? 'rgba(34,211,238,.9)':'rgba(120,130,140,.6)';
+    ctx.beginPath(); ctx.arc(x,y,4.2*DPR,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle='rgba(34,211,238,.35)'; ctx.lineWidth=1.2*DPR;
+    ctx.beginPath(); ctx.arc(x,y,7*DPR,0,Math.PI*2); ctx.stroke();
+    // type tick
+    ctx.fillStyle='rgba(200,225,240,.85)'; ctx.font=`${7.5*DPR}px ${MONO}`; ctx.textAlign='center';
+    ctx.fillText(tw.id, x, y-10*DPR);
+  }
+}
+
+function drawBuoy(){
+  const x=X(BUOY.x), y=Y(BUOY.y);
+  ctx.fillStyle='rgba(94,240,168,.9)'; ctx.beginPath(); ctx.arc(x,y,4*DPR,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='rgba(180,230,205,.8)'; ctx.font=`${7.5*DPR}px ${MONO}`; ctx.textAlign='center';
+  ctx.fillText('BUOY', x, y-10*DPR);
+}
+
+function trackColor(t){
+  if(t.role==='threat') return '255,59,59';
+  if(t.role==='suspicious') return '245,166,35';
+  if(t.cls==='vehicle') return '34,211,238';
+  if(t.cls==='human') return '45,212,191';
+  if(t.cls==='vessel') return '120,180,230';
+  if(t.cls==='animal') return '150,160,175';
+  return '120,140,160';
+}
+function drawTracks(){
+  for(const t of tracks){ if(t.gone) continue;
+    const x=X(t.x), y=Y(t.y), col=trackColor(t);
+    // detection ring (confidence)
+    if(t.detected){
+      ctx.strokeStyle=`rgba(${col},.35)`; ctx.lineWidth=1.2*DPR;
+      ctx.beginPath(); ctx.arc(x,y, 10*DPR + 4*DPR*Math.sin(simClock*3), 0, Math.PI*2); ctx.stroke();
+    }
+    // glyph: square=vehicle, triangle=human, diamond=vessel, dot=animal
+    ctx.fillStyle=`rgba(${col},.95)`;
+    if(t.cls==='vehicle'){ rr(x-5*DPR,y-3.5*DPR,10*DPR,7*DPR,1.5*DPR); ctx.fill(); }
+    else if(t.cls==='human'){ ctx.beginPath(); ctx.moveTo(x,y-5*DPR); ctx.lineTo(x+4.4*DPR,y+4*DPR); ctx.lineTo(x-4.4*DPR,y+4*DPR); ctx.closePath(); ctx.fill(); }
+    else if(t.cls==='vessel'){ ctx.beginPath(); ctx.moveTo(x,y-5*DPR); ctx.lineTo(x+5*DPR,y); ctx.lineTo(x,y+5*DPR); ctx.lineTo(x-5*DPR,y); ctx.closePath(); ctx.fill(); }
+    else { ctx.beginPath(); ctx.arc(x,y,3.4*DPR,0,Math.PI*2); ctx.fill(); }
+    // velocity vector
+    const sp=Math.hypot(t.vx,t.vy);
+    if(sp>1){ ctx.strokeStyle=`rgba(${col},.6)`; ctx.lineWidth=1.4*DPR;
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+t.vx/sp*12*DPR, y+t.vy/sp*12*DPR); ctx.stroke(); }
+    // label (skip on correlated-threat tracks — the link tag identifies them)
+    if(t.detected && t.role!=='threat'){
+      ctx.fillStyle=`rgba(${col},.95)`; ctx.font=`${8.5*DPR}px ${MONO}`; ctx.textAlign='left';
+      let tag=t.id+'  '+(t.conf*100|0)+'%';
+      ctx.fillText(tag, x+9*DPR, y-7*DPR);
+      if(t.role==='suspicious'){ ctx.fillStyle='rgba(245,166,35,.95)'; ctx.fillText('LOITER '+(t.loiterT|0)+'s', x+9*DPR, y+3*DPR); }
+    }
+    // loiter pulse for suspicious vehicle
+    if(t.role==='suspicious'&&t.cls==='vehicle'){ ctx.strokeStyle='rgba(245,166,35,.5)'; ctx.lineWidth=1.4*DPR;
+      ctx.beginPath(); ctx.arc(x,y, 14*DPR+6*DPR*(0.5+0.5*Math.sin(simClock*2)),0,Math.PI*2); ctx.stroke(); }
+  }
+}
+
+function drawThreatLink(){
+  if(!threat || !threat.hum) {
+    // maritime: pulse ring on vessel + line to buoy & nearest tower
+    if(threat && threat.maritime){ const v=threat.veh; const x=X(v.x),y=Y(v.y);
+      ctx.strokeStyle='rgba(255,59,59,.85)'; ctx.lineWidth=2*DPR; ctx.setLineDash([5*DPR,4*DPR]);
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(X(BUOY.x),Y(BUOY.y)); ctx.stroke();
+      // to nearest tower
+      let bt=TOWERS[0],bd=1e9; for(const tw of TOWERS){const d=dist(v.x,v.y,tw.x,tw.y); if(d<bd){bd=d;bt=tw;}}
+      ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(X(bt.x),Y(bt.y)); ctx.stroke(); ctx.setLineDash([]);
+      threatPulse(x,y);
+    }
+    return;
+  }
+  const v=threat.veh, h=threat.hum;
+  // correlation link line (animated)
+  ctx.strokeStyle='rgba(255,59,59,.9)'; ctx.lineWidth=2*DPR; ctx.setLineDash([6*DPR,5*DPR]); ctx.lineDashOffset=-simClock*22;
+  ctx.beginPath(); ctx.moveTo(X(v.x),Y(v.y)); ctx.lineTo(X(h.x),Y(h.y)); ctx.stroke();
+  ctx.setLineDash([]); ctx.lineDashOffset=0;
+  // midpoint threat tag
+  const mx=(v.x+h.x)/2, my=(v.y+h.y)/2;
+  ctx.fillStyle='rgba(255,59,59,.95)'; ctx.font=`${9.5*DPR}px ${MONO}`; ctx.textAlign='center';
+  ctx.fillText('⚠ '+threat.id+' CORRELATED', X(mx), Y(my)-6*DPR);
+  threatPulse(X(h.x),Y(h.y)); threatPulse(X(v.x),Y(v.y));
+}
+function threatPulse(x,y){
+  const r=12*DPR+10*DPR*(0.5+0.5*Math.sin(simClock*4));
+  ctx.strokeStyle=`rgba(255,59,59,${0.5*(1-(r/(28*DPR)))+0.2})`; ctx.lineWidth=2*DPR;
+  ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.stroke();
+}
+
+function drawDrone(){
+  const x=X(DRONE.x), y=Y(DRONE.y);
+  const engage=DRONE.state==='engage';
+  // shadow
+  ctx.fillStyle='rgba(0,0,0,.3)'; ctx.beginPath(); ctx.ellipse(x,y+5*DPR,7*DPR,3*DPR,0,0,Math.PI*2); ctx.fill();
+  // rotors
+  const col = engage? '255,59,59':'34,211,238';
+  ctx.strokeStyle=`rgba(${col},.9)`; ctx.lineWidth=1.6*DPR;
+  const a=simClock*16;
+  for(let i=0;i<4;i++){ const ang=a+i*Math.PI/2; const rx=x+Math.cos(ang)*7*DPR, ry=y+Math.sin(ang)*7*DPR;
+    ctx.beginPath(); ctx.arc(rx,ry,3.2*DPR,0,Math.PI*2); ctx.stroke(); }
+  // body
+  ctx.fillStyle=`rgba(${col},.95)`; ctx.beginPath(); ctx.arc(x,y,3.2*DPR,0,Math.PI*2); ctx.fill();
+  // label + downlink cone when engaging
+  ctx.fillStyle=`rgba(${col},.9)`; ctx.font=`${8*DPR}px ${MONO}`; ctx.textAlign='center';
+  ctx.fillText(engage?'DRONE · ENGAGE':'DRONE · '+DRONE.state.toUpperCase(), x, y-15*DPR);
+  if(engage && DRONE.target){ ctx.strokeStyle='rgba(255,59,59,.3)'; ctx.lineWidth=1*DPR; ctx.setLineDash([3*DPR,3*DPR]);
+    ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(X(DRONE.target.x),Y(DRONE.target.y)); ctx.stroke(); ctx.setLineDash([]); }
+}
+
+function drawScale(){
+  // simple scale bar (50 m)
+  const x0=X(20), y0=Y(WORLD.h-22), len=S(50);
+  ctx.strokeStyle='rgba(150,180,205,.5)'; ctx.lineWidth=1.4*DPR;
+  ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(x0+len,y0); ctx.moveTo(x0,y0-3*DPR); ctx.lineTo(x0,y0+3*DPR); ctx.moveTo(x0+len,y0-3*DPR); ctx.lineTo(x0+len,y0+3*DPR); ctx.stroke();
+  ctx.fillStyle='rgba(150,180,205,.6)'; ctx.font=`${8*DPR}px ${MONO}`; ctx.textAlign='left'; ctx.fillText('50 m', x0+len+5*DPR, y0+3*DPR);
+}
+
+/* ============================================================
+   HUD SYNC (rail)
+   ============================================================ */
+let hudTick=0;
+function renderHUD(){
+  // track list
+  const shown=tracks.filter(t=>!t.gone && t.detected);
+  const list=$('trkList'); list.innerHTML='';
+  $('trkEmpty').style.display = shown.length? 'none':'block';
+  // threat tracks first
+  shown.sort((a,b)=>(b.role==='threat')-(a.role==='threat') || (b.role==='suspicious')-(a.role==='suspicious'));
+  for(const t of shown){
+    const cls = t.role==='threat'?'t-threat': t.role==='suspicious'?'t-susp': t.cls==='vehicle'?'t-veh':'t-hum';
+    const stat = t.role==='threat'?'THREAT': t.role==='suspicious'?(t.cls==='vehicle'?'LOITERING':'APPROACH'): 'tracking';
+    const d=document.createElement('div'); d.className='trk '+cls;
+    d.innerHTML=`<span class="tid">${t.id}</span><span class="tcls">${t.cls}</span><span class="tconf">${t.conf*100|0}%</span><span class="tstat">${stat}</span>`;
+    list.appendChild(d);
+  }
+  // sensor health
+  const online=TOWERS.filter(t=>t.online).length + (BUOY.online?1:0);
+  const total=TOWERS.length+1;
+  $('sOnline').textContent=online+' / '+total;
+  $('sTracks').textContent=shown.length;
+  $('sFalse').textContent=falseAlarms;
+  $('sCov').textContent='100%';
+}
+function renderEsc(){
+  const el=$('escList'); el.innerHTML='';
+  let lastDoneIdx=-1; ESC.forEach((e,i)=>{ if(e.t!=null) lastDoneIdx=i; });
+  ESC.forEach((e,i)=>{
+    let cls='escStep';
+    if(e.t!=null){ cls+= e.threat?' threat': (i===lastDoneIdx?' active':' done'); }
+    const d=document.createElement('div'); d.className=cls;
+    const tm = e.t!=null? fmtClock(e.t):'—';
+    d.innerHTML=`<div class="escDot"></div><div class="escTxt"><div class="escName">${e.name}</div><div class="escTime">${tm}</div></div>`;
+    el.appendChild(d);
+  });
+}
+function fmtClock(t){ const base=18*3600+ 23*60; const s=(base+Math.floor(t))%86400;
+  const hh=String(Math.floor(s/3600)).padStart(2,'0'), mm=String(Math.floor(s%3600/60)).padStart(2,'0'), ss=String(s%60).padStart(2,'0');
+  return `T+${t.toFixed(1)}s · ${hh}:${mm}:${ss}`; }
+
+/* ============================================================
+   MAIN LOOP
+   ============================================================ */
+let simClock=0, paused=false, last=performance.now();
+function loop(nowMs){
+  const dt=Math.min(0.05,(nowMs-last)/1000); last=nowMs;
+  if(!paused){
+    simClock+=dt;
+    // scripted events
+    while(scriptStep<scriptQueue.length && simClock>=scriptQueue[scriptStep].t){ scriptQueue[scriptStep].fn(); scriptStep++; }
+    // sensors sweep
+    for(const tw of TOWERS) tw.sweep+=tw.sweepSpd*dt;
+    BUOY.sweep+=BUOY.sweepSpd*dt;
+    // entities
+    for(const t of tracks){ moveAlong(t,dt); senseTrack(t,dt); behave(t,dt); }
+    // escalation hooks from behaviour
+    if(ESC.find(e=>e.k==='loiter').t==null && tracks.some(t=>t.role==='suspicious')) escSet('loiter', simClock);
+    correlate(dt);
+    stepDrone(dt);
+    // mark breach step as threat once drone close (hand-off complete)
+    if(threat){ const tgt=threat.hum||threat.veh; if(tgt && dist(DRONE.x,DRONE.y,tgt.x,tgt.y)<28){
+      const b=ESC.find(e=>e.k==='breach'); if(b && !b.threat){ b.threat=true; b.t=simClock; renderEsc();
+        toast('Drone over target — visual ID handed to control. '+threat.id+' contained.','threat'); } } }
+    toastT-=dt; if(toastT<=0) $('toast').classList.remove('show');
+    hudTick-=dt; if(hudTick<=0){ renderHUD(); hudTick=0.4; }
+  }
+  draw();
+  requestAnimationFrame(loop);
+}
+
+/* ============================================================
+   UI WIRING
+   ============================================================ */
+let showCoverage=true;
+$('bCoverage').onclick=()=>{ showCoverage=!showCoverage; $('bCoverage').classList.toggle('on',showCoverage); };
+$('bPause').onclick=()=>{ paused=!paused; $('bPause').textContent=paused?'RESUME':'PAUSE'; $('bPause').classList.toggle('on',paused); };
+$('bReplay').onclick=()=>{ loadScenario(scenario); };
+document.querySelectorAll('#scn button').forEach(b=>b.onclick=()=>loadScenario(b.dataset.s));
+
+const LOGO=window.__DG_LOGO__||'';
+if(LOGO){ $('logo').src=LOGO; $('introLogo').src=LOGO; } else { $('logo').style.display='none'; $('introLogo').style.display='none'; }
+$('start').onclick=()=>{ $('intro').classList.add('hide'); if(window.innerWidth>880)$('conf').style.display='flex'; setTimeout(()=>$('intro').remove(),550); };
+
+/* boot */
+resize();
+loadScenario('intrusion');
+renderEsc(); renderHUD();
+requestAnimationFrame(loop);
+</script>
+
+</body>
+</html>

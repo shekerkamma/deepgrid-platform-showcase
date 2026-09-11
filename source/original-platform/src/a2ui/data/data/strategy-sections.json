@@ -1,0 +1,1026 @@
+{
+ "contract_version": "strategy-1.0",
+ "generated": "2026-08-15",
+ "countermoves": {
+  "title": "What they do when we start winning",
+  "kicker": "Competitive strategy · counter-move",
+  "sub": "The dossier's war room points outward — DeepGrid watching them, monthly. Nothing modelled the reverse. Every move below is a capability the rival already demonstrably has.",
+  "note": "Every counter is a capability the rival already has, cited to a ledger row — none rests on assumed intent. Counter RISK and blocker rank measure different things: risk is how badly the move hurts, blocker rank is how much the rival obstructs the seat. ZF's counter is unanswerable yet ZF ranks 3/5, because ZF forecloses the ROUTE while STRADVISION occupies the SEAT.",
+  "rows": [
+   [
+    "ZF",
+    "DeepGrid attaches to a braking Tier-1",
+    "Ship perception inside the 16-feature suite it already sells — AEBS, BSIS, DDAWS, LDWS and MOIS on its own radar and camera, already ARAI-certified and nominated.",
+    "HIGH",
+    "No. DeepGrid cannot dislodge a function the incumbent already ships inside a certified suite.",
+    "EV-ZF-02"
+   ],
+   [
+    "STRADVISION",
+    "DeepGrid offers a cheaper perception layer to an integrator",
+    "Match on price — SVNet is explicitly designed for low-cost, resource-constrained hardware — and hold on ISO 26262, which DeepGrid does not have.",
+    "HIGH",
+    "Only with a functional-safety pathway. Until then the integrator is comparing a certified 5m-unit incumbent with an uncertified newcomer.",
+    "EV-SV-03, EV-SV-05"
+   ],
+   [
+    "Aptiv",
+    "DeepGrid wins a design-in at one OEM",
+    "Ship a feature or performance improvement over the air to the deployed fleet, widening the gap after SOP without a new design cycle.",
+    "HIGH",
+    "No. A module vendor has no channel to a fleet it has already shipped.",
+    "EV-APT-06"
+   ],
+   [
+    "Starkenn",
+    "DeepGrid enters government or PSU tenders",
+    "Underbid on empanelment. In that arena eligibility, not certification, is the gate — and it draws 30% of revenue from tenders already.",
+    "MEDIUM",
+    "Partly. GeM procurability and Class-I local content are winnable, but slowly.",
+    "EV-STK-01"
+   ],
+   [
+    "drivebuddyAI",
+    "DeepGrid pursues mining or fleet retrofit as its proof route",
+    "Compete on total platform value rather than box price: ADAS, driver monitoring, video telematics and predictive risk intelligence sold as one unified product to the fleet operator.",
+    "HIGH",
+    "No. DeepGrid sells a perception subsystem, not a fleet platform, so it cannot match the bundle.",
+    "EV-DBA-01"
+   ],
+   [
+    "bitsensing",
+    "DeepGrid competes on retrofit price",
+    "Lean on NXP silicon economics and an existing Indian channel; pricing is already agreed case by case, so it can flex per deal.",
+    "MEDIUM",
+    "Partly — but this arena needs no certification, so DeepGrid's one structural advantage is worth nothing in it.",
+    "EV-BIT-01, EV-BIT-02"
+   ],
+   [
+    "Aptiv (2nd)",
+    "DeepGrid asks an OEM to integrate its perception layer",
+    "Put its own people on site: 2,500 India engineers across 4 technical centres and 7 plants, offering integration and calibration support a merchant module vendor cannot staff.",
+    "HIGH",
+    "No. DeepGrid cannot match an incumbent's local engineering bench during a design-in.",
+    "EV-APT-07"
+   ],
+   [
+    "Sterling × MINIEYE",
+    "DeepGrid seeks an Indian integrator to attach to",
+    "Occupy the same slot first: an established Indian component major with existing OEM relationships and domestic manufacturing, already paired with a foreign perception stack.",
+    "MEDIUM",
+    "Partly. Other integrators exist, but the most obvious partner is already taken.",
+    "EV-STL-01"
+   ]
+  ]
+ },
+ "donotcompete": {
+  "title": "Four contests to lose deliberately",
+  "kicker": "Competitive strategy · where not to compete",
+  "sub": "The dossier says where to compete. It never says where to stop — so every arena stays notionally open and scarce evidence spend gets spread across all of them.",
+  "note": "These are arena exits, not pipeline-qualification rules. Each is falsifiable: the trigger column states what would reopen it.",
+  "rows": [
+   [
+    "1 Jan 2027 line-fit",
+    "UNWINNABLE ON TIME",
+    "Design-in for an OEM programme runs 18–30 months. It is August 2026. A programme binding 1 Jan 2027 was specified before DeepGrid could have entered it.",
+    "Reopen only if an OEM offers a mid-cycle perception swap with no re-homologation."
+   ],
+   [
+    "Full-system AEBS supply",
+    "STRUCTURALLY CLOSED",
+    "Rule 96(12) obliges a system that brakes. The safety case, calibration and warranty sit with the actuator owner, and ZF will not hand those over.",
+    "Reopen only if a braking Tier-1 offers a white-label safety case — which none has ever done."
+   ],
+   [
+    "Warning-only retrofit on price",
+    "ADVANTAGE IS WORTHLESS HERE",
+    "drivebuddyAI, bitsensing and Starkenn already hold it, and it requires no certification at all — so the functional-safety pathway DeepGrid must still ACQUIRE would buy nothing here even once it exists. DeepGrid enters this arena with no structural advantage of any kind, against a rival selling a unified platform (ADAS + driver monitoring + telematics + risk analytics) that a perception subsystem cannot match.",
+    "Reopen only as a paid instrumented pilot bought for telemetry rights, never for revenue."
+   ],
+   [
+    "'India-native' as the differentiator",
+    "NO LONGER DIFFERENTIATING",
+    "Aptiv publishes the exact Indian object classes; STRADVISION cites dense mixed traffic; Netrasemi is Indian silicon; Starkenn markets Made-in-India. Four rivals make this claim.",
+    "Reopen only with a measured perception result against a named baseline — the claim must become a number."
+   ]
+  ]
+ },
+ "pricing": {
+  "title": "No competitor's India unit price is quotable — say so before you are asked",
+  "kicker": "Competitive strategy · pricing reality",
+  "sub": "Every cost-advantage slide invites a question the evidence cannot answer. Two rows of the ledger establish why, and the answer is market structure rather than a search failure.",
+  "evidence": [
+   [
+    "No public per-unit India price exists",
+    "for Mobileye, Bosch, Continental, Qualcomm or Nvidia truck ADAS",
+    "VERIFIED ABSENCE"
+   ],
+   [
+    "bitsensing states pricing is 'agreed case by case'",
+    "just-auto, 6 Feb 2026, quoting CEO Jae-Eun Lee: install ~4 hours per vehicle, pricing agreed case by case",
+    "EV-BIT-04"
+   ],
+   [
+    "ADAS unit pricing is quoted, not listed",
+    "so the absence is structural — more searching will not produce a number",
+    "METHOD"
+   ]
+  ],
+  "banned": [
+   "Any competitor per-unit price, in any currency, on any slide",
+   "Any 'Nx cheaper than <competitor>' claim — it compares our die cost to their system price",
+   "Any implied ASP derived from a contract value divided by a vehicle count"
+  ],
+  "instead": "State the cost argument as cannibalisation immunity — DeepGrid has no global ASP to defend, so it can price the India function at the India price. That is a structural fact about position, needs no competitor price to stand up, and survives the question 'where did that number come from'.",
+  "gate": "If a slide carries a cost comparison, it must name the two things being compared and confirm they are the same scope. The retracted 774× and 12.9× claims both failed exactly this test."
+ },
+ "buildbuy": {
+  "title": "Buy the certification, partner the homologation, build only the perception",
+  "kicker": "Competitive strategy · build / buy / partner",
+  "sub": "The gate analysis names a functional-safety pathway as the highest-value proof gate. That is a procurement decision before it is an engineering one, and the deck never framed it as one.",
+  "rows": [
+   [
+    "ISO 26262 functional-safety pathway",
+    "BUY",
+    "A certification route is bought from an assessor and a consultancy, on a known timetable. Building the competence in-house delays the only credential that unlocks Tier-2 sales.",
+    "STRADVISION already holds it (EV-SV-05). This is the single gate that decides whether an integrator can even consider DeepGrid."
+   ],
+   [
+    "Indian homologation and test capability",
+    "PARTNER",
+    "ZF has an in-house Indian test track; DeepGrid does not and should not fund one. ARAI and ICAT are the neutral route and their reports carry more weight with a third party anyway.",
+    "Independent characterisation is worth more than self-reported kilometres — the gap in ZF's own 300,000 km claim (EV-ZF-03)."
+   ],
+   [
+    "mmWave radar silicon",
+    "DO NOT BUILD",
+    "DeepGrid's position is camera-based perception. Radar is a separate competence with its own qualification path, and TI, NXP and bitsensing already occupy it.",
+    "Gahan AI is the cautionary case: 15 people carrying a radar-to-software claim no third party corroborates (EV-GHN-01, EV-GHN-04)."
+   ],
+   [
+    "Route to an OEM",
+    "PARTNER",
+    "Sterling Tools took the local manufacturing, channel and compliance role beside a foreign perception stack. That is the mirror of the move DeepGrid needs, and at ₹806 Cr Sterling is a plausible partner rather than an adversary.",
+    "The attach motion is the strategy; the only question is which integrator (EV-STL-01, EV-STL-02)."
+   ],
+   [
+    "Perception model and India dataset",
+    "BUILD",
+    "The one thing that must be owned. But it stops being a differentiator the moment it is a claim rather than a measurement — four rivals already claim India tuning.",
+    "Convert to a scenario-stratified result against a named baseline, with nuisance-event denominators."
+   ]
+  ]
+ },
+ "silicon": {
+  "kicker": "The field · supply dependency",
+  "title": "The one holding the seat owns no silicon at all",
+  "sub": "DeepGrid's thesis is owned silicon. Mapping who actually depends on whom tests that thesis directly — and the answer is uncomfortable.",
+  "rows": [
+   [
+    "STRADVISION",
+    "None — hardware-agnostic",
+    "Runs on whatever the integrator chooses; designed for low-cost constrained hardware",
+    "HOLDS THE SEAT",
+    "EV-SV-03"
+   ],
+   [
+    "Aptiv",
+    "Own Gen 8 radar + Gen 7 camera",
+    "But the perception INSIDE the camera is STRADVISION's, not Aptiv's",
+    "OWNS THE PLATFORM",
+    "EV-APT-02"
+   ],
+   [
+    "ZF",
+    "Own OnGuardMAX + short-range radar",
+    "Owns the actuator, so the silicon question never decides the sale",
+    "OWNS THE SAFETY CASE",
+    "EV-ZF-02"
+   ],
+   [
+    "Gahan AI",
+    "TI AWR2944",
+    "AEC-Q100 attaches to TI's IC; TI's own CES release names no Indian partner",
+    "NO ROUTE TO MARKET",
+    "EV-GHN-02, EV-GHN-04"
+   ],
+   [
+    "Netrasemi",
+    "TSMC 12nm, own NPU/VPU/ISP",
+    "Real Indian silicon — with no AIS, AEC-Q100 or ISO 26262",
+    "NO CERTIFICATION",
+    "EV-NTR-02"
+   ],
+   [
+    "bitsensing",
+    "NXP",
+    "Radar IP plus a semiconductor partner, capped at warning-only",
+    "HARD CEILING",
+    "EV-BIT-02"
+   ]
+  ],
+  "sowhat": "Two of the three companies that reach brake actuation buy their perception rather than build it, and the company occupying the exact seat DeepGrid wants owns no silicon whatsoever. Meanwhile the two players with the most credible silicon story — Gahan and Netrasemi — have no route to an Indian CV buyer between them. On this evidence, silicon ownership is neither necessary nor sufficient to hold the perception seat. It is a margin and supply-assurance argument, not an entry argument, and the deck should stop selling it as one."
+ },
+ "lifecycle": {
+  "kicker": "Competitive strategy · lifecycle economics",
+  "title": "Four rivals keep earning after the sale. DeepGrid stops at the invoice.",
+  "sub": "A module vendor ships once. Every competitor below holds a channel to the vehicle after start of production — which is where the customer relationship actually lives.",
+  "rows": [
+   [
+    "Aptiv",
+    "Over-the-air updates",
+    "LINC platform + Wind River VxWorks; adds features and improves performance on the deployed fleet without a new design cycle",
+    "EV-APT-06"
+   ],
+   [
+    "ZF",
+    "SCALAR fleet orchestration",
+    "A software platform sold alongside the hardware into the same customer",
+    "EV-ZF-07"
+   ],
+   [
+    "drivebuddyAI",
+    "Video telematics + predictive risk",
+    "The box feeds a platform; the platform feeds the parent's insurance business",
+    "EV-DBA-01"
+   ],
+   [
+    "Starkenn",
+    "Stark-I subscription",
+    "40% of revenue is recurring subscription, not hardware",
+    "EV-STK-06"
+   ],
+   [
+    "DeepGrid Semi",
+    "None",
+    "A perception subsystem sold to an integrator, with no channel to the vehicle after SOP",
+    "NO ROW — this is the gap"
+   ]
+  ],
+  "sowhat": "OTA is the underrated threat on this list. It converts ADAS from a shipped part into a maintained service: the incumbent's field performance improves after SOP, and the customer relationship stays with the integrator. A merchant module vendor cannot answer that with a better die. If DeepGrid intends to sell a subsystem, it must decide now whether it also sells the means to update it — because that decision is an architecture decision, not a commercial one, and it is cheap today and expensive after the first design-in."
+ },
+ "oneprogramme": {
+  "kicker": "The field · an unresolved question",
+  "title": "Aptiv's win and STRADVISION's win may be the same programme",
+  "sub": "The dossier counts these as two competitive events. The evidence does not establish that they are.",
+  "left": {
+   "title": "Aptiv, 6 Jan 2026",
+   "rows": [
+    [
+     "Counterparty",
+     "\"a leading commercial vehicle OEM\" — unnamed"
+    ],
+    [
+     "Scope",
+     "Gen 6 ADAS for future trucks and buses in India"
+    ],
+    [
+     "Programme",
+     "14 models, 30+ variants"
+    ],
+    [
+     "Perception",
+     "Gen 7 smart camera featuring STRADVISION's AI vision"
+    ]
+   ],
+   "ev": "EV-APT-01, EV-APT-02"
+  },
+  "right": {
+   "title": "STRADVISION, 16 Apr 2026",
+   "rows": [
+    [
+     "Counterparty",
+     "\"a global commercial vehicle OEM\" — unnamed"
+    ],
+    [
+     "Scope",
+     "SVNet across its India vehicle lineup"
+    ],
+    [
+     "Programme",
+     "structured for deployment across multiple vehicle models"
+    ],
+    [
+     "Perception",
+     "SVNet — the software inside Aptiv's camera"
+    ]
+   ],
+   "ev": "EV-SV-01"
+  },
+  "verdict": "UNRESOLVED — do not merge, do not double-count",
+  "sowhat": "If it is one programme, the field has one Indian CV line-fit win between Aptiv and STRADVISION, not two, and the dossier overstates the pace of competitive capture. If it is two, then STRADVISION is selling into India independently of Aptiv as well as inside it, which makes it a broader threat than the profile allows. Both readings change a rating. Neither is established, and the honest move is to carry the question rather than pick the flattering answer."
+ },
+ "patterns": {
+  "kicker": "Competitive strategy · relationship patterns",
+  "title": "One of these nine is a competitor. The other eight are something else.",
+  "sub": "Threat rating asks how dangerous a company is. It presumes the company is bidding for the same thing — and by the dossier's own obstruction scores, six of nine are not. Pattern first, rating second.",
+  "rows": [
+   [
+    "SUBSTITUTE",
+    "Sells the same thing to the same buyer for the same job. Interchangeable at the point of decision.",
+    "STRADVISION",
+    "5/5",
+    "Displace or differentiate. This is the only company where 'win the deal' is the right verb.",
+    "Porter — rivalry",
+    "EV-SV-01, EV-SV-03, EV-SV-05"
+   ],
+   [
+    "GATEKEEPER",
+    "Does not sell what you sell. Decides who gets to.",
+    "Aptiv",
+    "4/5",
+    "Sell TO, not against. The buying decision you must win is its vendor-selection, not an end customer's.",
+    "Value Net — customer",
+    "EV-APT-01, EV-APT-02"
+   ],
+   [
+    "CHANNEL / COOPETITOR",
+    "Owns a control point you must pass through, and is simultaneously your route to market.",
+    "ZF · Sterling × MINIEYE",
+    "3/5 · 1/5",
+    "Attach. Both are customers first and rivals only if they build the layer themselves.",
+    "Brandenburger & Nalebuff",
+    "EV-ZF-01, EV-STL-01"
+   ],
+   [
+    "DIFFERENT JOB",
+    "Same industry, different buyer, different budget, different clock. Never in the same bid.",
+    "drivebuddyAI · Starkenn · bitsensing",
+    "1/5 each",
+    "Ignore for the mandate. Track only as evidence that retrofit demand is real.",
+    "Christensen — jobs to be done",
+    "EV-DBA-01, EV-STK-01, EV-BIT-02"
+   ],
+   [
+    "NARRATIVE RIVAL",
+    "Competes for the same story, the same sympathy and the same government shortlist — not the same purchase order.",
+    "Gahan AI · Netrasemi",
+    "2/5 each",
+    "Counter the claim, not the product. Losing the indigenous-champion narrative costs Segment A access.",
+    "legitimacy competition",
+    "EV-GHN-07, EV-NTR-01"
+   ],
+   [
+    "SUPPLIER-SIDE",
+    "Sets the cost floor and the qualification path for everyone, including you.",
+    "TI · NXP · TSMC",
+    "n/a",
+    "Choose deliberately. Not in this dossier at all, and it decides the ASIC economics.",
+    "Porter — supplier power",
+    "EV-GHN-05, EV-BIT-02, EV-NTR-02"
+   ]
+  ],
+  "sowhat": "Six of the nine score 2/5 or less on obstructing the position DeepGrid has chosen, and the dossier says so in its own words — 'blocks nothing', 'no overlap', 'a partner-shaped competitor'. A threat ranking across all nine therefore compares things that were never comparable, and it spends the scarce evidence budget on companies DeepGrid will never bid against. The pattern determines the verb: displace one, sell to three, ignore three for the mandate, out-argue two."
+ },
+ "valuenet": {
+  "kicker": "Competitive strategy · the Value Net",
+  "title": "The same company can be a customer and a rival at once",
+  "sub": "Brandenburger & Nalebuff's Value Net places four roles around a firm. The dossier collapsed all four into one axis called threat — which is why ZF, a company DeepGrid intends to sell through, was ranked as an adversary.",
+  "quadrants": [
+   [
+    "CUSTOMERS",
+    "Who DeepGrid sells the perception layer TO",
+    [
+     "Aptiv — selects the perception vendor for its camera",
+     "ZF — owns the actuator and the safety case",
+     "Sterling × MINIEYE — the localisation template"
+    ],
+    "EV-APT-02, EV-ZF-01, EV-STL-01"
+   ],
+   [
+    "COMPETITORS",
+    "Who the buyer would choose INSTEAD",
+    [
+     "STRADVISION — the only true substitute",
+     "(Aptiv, only if it in-sources perception)",
+     "(ZF, only if it bundles the layer)"
+    ],
+    "EV-SV-03, EV-SV-05"
+   ],
+   [
+    "SUPPLIERS",
+    "Who sets DeepGrid's cost floor and qualification path",
+    [
+     "TI, NXP — radar and sensor silicon",
+     "TSMC — the fab for any ASIC",
+     "ARAI / ICAT — homologation and characterisation"
+    ],
+    "EV-GHN-05, EV-BIT-02, EV-NTR-02"
+   ],
+   [
+    "COMPLEMENTORS",
+    "Who makes DeepGrid's layer more valuable when present",
+    [
+     "Braking Tier-1s — supply the actuation DeepGrid cannot",
+     "Netrasemi — an Indian silicon ecosystem raises all local credibility",
+     "Fleet telematics — supplies the field data DeepGrid needs"
+    ],
+    "EV-ZF-02, EV-NTR-02"
+   ]
+  ],
+  "sowhat": "Three companies sit in two quadrants at once. ZF and Aptiv are customers today and become competitors only if they in-source the perception layer — which is precisely the counter-move page's finding, and precisely why the counter-move risk and the blocker rank disagree. Coopetition is the normal state here, not an anomaly, and a dossier that can only express hostility cannot describe it."
+ },
+ "reshape": {
+  "kicker": "Competitive strategy · what this changes",
+  "title": "The dossier is a market map wearing a competitor dossier's clothes",
+  "sub": "Applying the patterns changes what each page is for, and where the evidence budget should go.",
+  "rows": [
+   [
+    "What the dossier does now",
+    "What the pattern says it should do"
+   ],
+   [
+    "Nine competitor profiles, equally weighted, each with a threat rating",
+    "ONE competitor to beat (STRADVISION), THREE accounts to win (Aptiv, ZF, Sterling), THREE markets to note and leave, TWO narratives to counter"
+   ],
+   [
+    "A threat heatmap spanning all nine across three arenas",
+    "A relationship map: substitute · gatekeeper · channel · different job · narrative · supplier. Rating only within the substitute row"
+   ],
+   [
+    "44 pages of Act III spread evenly across rivals",
+    "Depth proportional to relationship: STRADVISION deserves a displacement plan; Starkenn deserves a paragraph"
+   ],
+   [
+    "Counter-move analysis framed as what rivals do to us",
+    "Two distinct questions: what a SUBSTITUTE does to win the deal, and what a CUSTOMER does if it decides to in-source"
+   ],
+   [
+    "Supplier side absent entirely",
+    "TI, NXP, TSMC and ARAI set the cost floor and the qualification clock — the ASIC case cannot be argued without them"
+   ]
+  ],
+  "sowhat": "None of this says the research was wasted. The evidence stands and the ratings are sound within their rows. What changes is the shape: a dossier that treats a route-to-market as an adversary will keep producing plans to out-compete the companies DeepGrid most needs to sell to, and will keep under-investing in the single displacement contest that actually decides the strategy."
+ },
+ "universe": {
+  "kicker": "The field · competitive universe",
+  "title": "Only one player demands a direct fight. The system leaders are routes to market.",
+  "sub": "Ten players, two axes that actually decide the sale. Position is qualitative; the zone sets the verb. Adapted from the 13 Aug executive synthesis and re-plotted on the corrected evidence.",
+  "xlab": "INDIA OPERATING PROOF",
+  "ylab": "SYSTEM / ACCOUNTABILITY CONTROL",
+  "zones": [
+   [
+    "ATTACH",
+    "System owners — sell the missing layer into them",
+    75,
+    75,
+    "#1BA271"
+   ],
+   [
+    "BENCHMARK",
+    "Sets the buyer's reference point, thin India proof",
+    25,
+    75,
+    "#E06767"
+   ],
+   [
+    "PARTNER / COUNTER",
+    "India field access without control",
+    75,
+    25,
+    "#D7720B"
+   ],
+   [
+    "MONITOR",
+    "Adjacent components — track, do not spend",
+    25,
+    25,
+    "#04B3C7"
+   ]
+  ],
+  "players": [
+   [
+    "ZF",
+    84,
+    88,
+    "ATTACH",
+    "Owns braking, calibration, approval, warranty"
+   ],
+   [
+    "Bosch/Conti/Valeo",
+    52,
+    74,
+    "ATTACH",
+    "Incumbent cohort — structural, unevidenced in India CV"
+   ],
+   [
+    "Aptiv",
+    76,
+    58,
+    "ATTACH",
+    "Owns OEM platform selection and the OTA lifecycle"
+   ],
+   [
+    "Sterling × MINIEYE",
+    58,
+    44,
+    "ATTACH",
+    "Indian channel + compliance, foreign perception inside"
+   ],
+   [
+    "STRADVISION",
+    28,
+    62,
+    "BENCHMARK",
+    "THE substitute — holds the seat, ISO 26262"
+   ],
+   [
+    "drivebuddyAI",
+    86,
+    26,
+    "PARTNER / COUNTER",
+    "Contracted fleet scale, camera-only, no actuation"
+   ],
+   [
+    "Starkenn",
+    68,
+    18,
+    "PARTNER / COUNTER",
+    "Govt tender access; scale claim fails its own source"
+   ],
+   [
+    "Gahan AI",
+    14,
+    34,
+    "MONITOR",
+    "Radar claims, zero third-party corroboration"
+   ],
+   [
+    "bitsensing",
+    30,
+    16,
+    "MONITOR",
+    "Radar retrofit, hard warning-only ceiling"
+   ],
+   [
+    "Netrasemi",
+    16,
+    12,
+    "MONITOR",
+    "Edge silicon, no automotive certification"
+   ]
+  ],
+  "read": "ZF, Aptiv and the incumbent Tier-1 cohort control OEM entry — they are customers, not adversaries. Starkenn holds the strongest India field narrative on the weakest evidence. STRADVISION sits low on India proof and mid on control, and is still the only direct fight, because it occupies the exact seat DeepGrid wants. Colour encodes the response mode, not evidence confidence — the two are deliberately separate axes."
+ },
+ "execcompare": {
+  "kicker": "The field · executive comparison",
+  "title": "Every competitor, its evidence boundary, and the one move it implies",
+  "sub": "One row per player. Threat and evidence are kept apart on purpose: a HIGH threat on ATTRIBUTED evidence is a diligence task, not a competitive response.",
+  "cols": [
+   "Competitor",
+   "Model · strongest arena",
+   "Evidence",
+   "Threat",
+   "Partner potential",
+   "DeepGrid move"
+  ],
+  "rows": [
+   [
+    "STRADVISION",
+    "Vision software · OEM perception seat",
+    "VERIFIED",
+    "HIGH",
+    "LOW",
+    "DISPLACE OR DIFFERENTIATE"
+   ],
+   [
+    "ZF CVCS India",
+    "Tier-1 system owner · OEM programme",
+    "VERIFIED",
+    "HIGH",
+    "HIGH",
+    "ATTACH"
+   ],
+   [
+    "Aptiv",
+    "Global ADAS platform · OEM programme",
+    "VERIFIED",
+    "HIGH",
+    "MEDIUM",
+    "ATTACH / BENCHMARK"
+   ],
+   [
+    "Bosch · Continental · Valeo",
+    "Incumbent Tier-1 cohort · OEM accountability",
+    "UNEVIDENCED IN INDIA CV",
+    "STRUCTURAL",
+    "HIGH",
+    "ATTACH / BOUNDARY"
+   ],
+   [
+    "Sterling × MINIEYE",
+    "India Tier-1 alliance · OEM channel",
+    "VERIFIED",
+    "MEDIUM",
+    "MEDIUM",
+    "CHANNEL DILIGENCE"
+   ],
+   [
+    "drivebuddyAI",
+    "Fleet platform · retrofit · insurance",
+    "VERIFIED",
+    "MEDIUM",
+    "MEDIUM",
+    "DIFFERENT JOB — note and leave"
+   ],
+   [
+    "Starkenn",
+    "India retrofit · govt · mining",
+    "FAILS ITS OWN SOURCE",
+    "MEDIUM",
+    "MEDIUM",
+    "PARTNER + COUNTER"
+   ],
+   [
+    "bitsensing",
+    "Radar retrofit · fleet warning",
+    "VERIFIED",
+    "LOW",
+    "MEDIUM",
+    "MONITOR"
+   ],
+   [
+    "Netrasemi",
+    "Edge silicon · compute layer",
+    "ATTRIBUTED",
+    "LOW",
+    "MEDIUM",
+    "MONITOR"
+   ],
+   [
+    "Gahan AI",
+    "India radar platform · claimed OEM pilots",
+    "SELF-PUBLISHED ONLY",
+    "LOW",
+    "LOW",
+    "VERIFY BEFORE ESCALATING"
+   ]
+  ],
+  "howto": [
+   "Never equate threat with evidence confidence.",
+   "Attach wherever a Tier-1 already owns braking accountability.",
+   "Partner and counter where India field access is decisive.",
+   "Escalate only when the named evidence gate clears."
+  ],
+  "decision": "Three actions carry the quarter: open attach conversations with the system owners, run STRADVISION as a displacement contest rather than a comparison, and verify Gahan and the incumbent cohort before either enters a threat ranking."
+ },
+ "posture": {
+  "kicker": "Competitive strategy · strategic posture",
+  "title": "Compete in one arena, attach in another, and refuse the full-stack fight",
+  "sub": "The posture follows each competitor's control point, not the number of companies in the market. Every mode carries the boundary that keeps it bounded.",
+  "modes": [
+   [
+    "DISPLACE",
+    "STRADVISION",
+    "#E06767",
+    "Occupies the exact seat — bounded perception, constrained hardware, inside an accountable integrator, holding ISO 26262.",
+    "Win only where a measured VRU-classification result against a named baseline is buyer-visible. Do not open on price."
+   ],
+   [
+    "ATTACH",
+    "ZF · APTIV · INCUMBENT TIER-1s",
+    "#1BA271",
+    "They own OEM access, braking integration, calibration and the safety case.",
+    "Sell camera perception as a bounded subsystem. Do not inherit actuation liability, and do not price against a bundled feature."
+   ],
+   [
+    "PARTNER + COUNTER",
+    "STARKENN · STERLING × MINIEYE",
+    "#D7720B",
+    "India field and channel access that DeepGrid cannot build on its 2027 clock.",
+    "Time-box the probe. Compete only where tender eligibility and Class-I local content are winnable."
+   ],
+   [
+    "VERIFY / MONITOR",
+    "GAHAN · NETRASEMI · BITSENSING · DRIVEBUDDYAI",
+    "#04B3C7",
+    "Claims or adjacency that could change the hierarchy but do not today.",
+    "No direct-response spending until a named artifact clears. Re-test Netrasemi before mid-2027."
+   ]
+  ],
+  "choice": "Position DeepGrid as the low-cost, India-measured vision-perception layer inside an integrated AEBS platform — not as the supplier answerable for the complete braking system."
+ },
+ "execaction": {
+  "kicker": "Competitive strategy · executive action",
+  "title": "Three decisions convert the landscape into a 90-day agenda",
+  "sub": "Each carries a visible proof gate. None requires DeepGrid to claim full-system readiness today.",
+  "rows": [
+   [
+    "01",
+    "AUTHORISE THE ATTACH THESIS",
+    "Open bounded perception-supply discussions with a braking Tier-1 and with Sterling as the channel template.",
+    "Technical exchange held; responsibility matrix and a written go/no-go recorded.",
+    "CEO"
+   ],
+   [
+    "02",
+    "CLOSE THE FIELD-PROOF GAP",
+    "Convert pilots into tender-usable operating evidence rather than more bench claims.",
+    "Three paid instrumented pilots; telemetry rights secured; a fielded-kilometre statement published.",
+    "Head of Validation"
+   ],
+   [
+    "03",
+    "BUY THE CERTIFICATION ROUTE",
+    "Start the ISO 26262 pathway as a procurement action, not an engineering backlog item.",
+    "Assessor engaged, gap assessment complete, costed route and date on the board calendar.",
+    "CTO"
+   ]
+  ],
+  "donotfund": "A full-stack braking safety case · broad OEM customisation · any performance marketing not backed by a measured result · a radar programme of any kind. Release capital only when partner access, field telemetry and a primary qualification artifact clear together."
+ },
+ "displacement": {
+  "kicker": "Act III · substitute · displacement plan",
+  "title": "STRADVISION holds the slot DeepGrid is bidding for — and India specificity will not take it back",
+  "sub": "The one company where 'win the deal' is the right verb. It is a 300-person private firm, smaller than most of the field, already inside the stack that won: Aptiv's Gen 7 camera runs STRADVISION vision, tailored to Indian three-wheelers, large animals and VRUs. The differentiator DeepGrid planned to lead with is the one the incumbent already claims.",
+  "contest": [
+   [
+    "THE SLOT",
+    "Perception software supplied into another firm's actuation safety case",
+    "EV-SV-01, EV-SV-02"
+   ],
+   [
+    "THE HOLDER",
+    "SVNet — AEB, FCW and LDW from a single stack, on constrained hardware",
+    "EV-SV-02, EV-SV-03"
+   ],
+   [
+    "THE ROUTE IN",
+    "Already inside Aptiv Gen 7; the gatekeeper's vendor selection is the real bid",
+    "EV-APT-02"
+   ]
+  ],
+  "levers": [
+   [
+    "INDIA-SPECIFIC PERCEPTION",
+    "Beat a stack already tuned to Indian three-wheelers, animals and VRUs, on the same road types.",
+    "OCCUPIED",
+    "Not a wedge. Aptiv's release describes the India tailoring in STRADVISION's own vision layer.",
+    "EV-APT-03",
+    "red"
+   ],
+   [
+    "CONSTRAINED-COMPUTE COST",
+    "Equal-scope benchmark on the same SoC class, same functions, same test set — published.",
+    "UNTESTED",
+    "The only lever with an open result. SVNet's own claim is low-cost constrained hardware, so this is a like-for-like contest, not a category difference.",
+    "EV-SV-03",
+    "amber"
+   ],
+   [
+    "FUNCTIONAL SAFETY",
+    "ISO 26262 scope, edition and ASIL level, evidenced — not asserted.",
+    "BEHIND",
+    "STRADVISION holds ISO 26262, ISO 9001:2015 and TISAX AL3. DeepGrid publishes no functional-safety pathway at all. This is a deficit to close before a bid, not a lever to win on.",
+    "EV-SV-05",
+    "red"
+   ],
+   [
+    "DEPLOYED SCALE",
+    "Field hours a Tier-1 will accept as validation.",
+    "BEHIND",
+    "~5 million cumulative SVNet units. DeepGrid cannot argue scale and should not try.",
+    "EV-SV-04",
+    "red"
+   ],
+   [
+    "PROXIMITY TO THE INTEGRATOR",
+    "Be the layer the braking Tier-1 finds easiest to accept: interfaces, diagnostics, safety assumptions.",
+    "OPEN",
+    "STRADVISION supplies through Aptiv. A braking Tier-1 that wants an alternative to its camera supplier's vision stack has no second source today. That gap is the plan.",
+    "EV-ZF-01, EV-APT-02",
+    "verified"
+   ]
+  ],
+  "plan": [
+   [
+    "1",
+    "Fund the equal-scope benchmark",
+    "Same SoC class, same functions, same test set as SVNet's stated envelope",
+    "Publishable result",
+    "CTO"
+   ],
+   [
+    "2",
+    "Open the ISO 26262 pathway",
+    "Scope and ASIL target declared before any Tier-1 conversation",
+    "Named assessor engaged",
+    "CTO"
+   ],
+   [
+    "3",
+    "Bid as the second source, not the challenger",
+    "Approach braking Tier-1s that do not own their camera supplier's vision layer",
+    "First written Tier-1 response",
+    "CEO"
+   ]
+  ],
+  "falsifier": "Falsified as a contest if STRADVISION's India CV counterparty is named and turns out to be the same programme as Aptiv's — one win, not two, and the slot is filled by the gatekeeper's own choice rather than an open selection.",
+  "sowhat": "This is the only page in Act III where the goal is to take business from the company named on it. Two of the five levers are already lost, one is a deficit to close, and exactly one — being the second source a braking Tier-1 can accept — is open. A displacement plan that leads with India specificity walks into the incumbent's strongest evidence."
+ },
+ "differentjob": {
+  "kicker": "Act III · different job · note and leave",
+  "title": "Three companies the dossier rated as rivals are not in the same bid — and cannot be",
+  "sub": "Same industry, different buyer, different budget, different clock. All three score 1/5 on obstruction. None reaches brake actuation, so none can satisfy rule 96(12) at any price. They are evidence that retrofit demand is real, which is a different and useful thing.",
+  "cols": [
+   "Company",
+   "The job it is hired for",
+   "Who buys it",
+   "The clock",
+   "Why never in the same bid",
+   "What it does prove"
+  ],
+  "rows": [
+   [
+    "drivebuddyAI",
+    "Fleet risk reduction — six-camera surround view, driver monitoring, video telematics",
+    "Fleet operators and their insurers (Roadzen parent)",
+    "Operating budget, renews annually",
+    "Camera-only, no brake actuation. Structurally excluded from the mandate market.",
+    "$5.3m across 3,600 electric buses and trucks in two months — the retrofit budget is real and moving.",
+    "EV-DBA-01, EV-DBA-03"
+   ],
+   [
+    "Starkenn",
+    "Indigenous retrofit ADAS and driver monitoring, sold as field-proven",
+    "Government tenders (30%) and subscription fleets (40%)",
+    "Tender cycle",
+    "Warning-only. Also the only company here whose headline number this run could not state.",
+    "A 30% government-tender share is the durable fact and the one worth watching — not the deployment count.",
+    "EV-STK-01, EV-STK-04"
+   ],
+   [
+    "bitsensing",
+    "Retrofit imaging radar for buses and heavy trucks, ~4 hours per vehicle to fit",
+    "Private site operators where visibility is the constraint",
+    "Case-by-case pricing, no list",
+    "No AEB. Capped below the certified-AEBS line by design.",
+    "$42m raised and an NXP radar partnership — a well-funded player still chose the retrofit job.",
+    "EV-BIT-01, EV-BIT-02, EV-BIT-04"
+   ]
+  ],
+  "paragraph_note": "Starkenn held seven pages in v8 and one contested number across three of them. It gets a row here because that is what the evidence supports.",
+  "sowhat": "Nineteen pages of Act III argued against three companies that cannot bid for the mandate. Reading them as demand evidence rather than as rivals frees the depth for the one contest that is real, and stops the dossier producing counter-moves against firms with no overlapping purchase order."
+ },
+ "narrativecounter": {
+  "kicker": "Act III · narrative rivals · counter the claim",
+  "title": "Two companies compete for the indigenous-champion story, not for the purchase order",
+  "sub": "Neither is a substitute and neither blocks the perception slot. Both compete for the same government shortlist and the same sympathy. The cost of losing that contest is Segment A access, so the answer is evidence about the claim — not a product fight.",
+  "cols": [
+   "The claim",
+   "Who makes it",
+   "What the evidence actually shows",
+   "What would settle it",
+   "Cost if unanswered"
+  ],
+  "rows": [
+   [
+    "TRL-8, AEC-Q100, TI exclusivity, Tata/Ather qualification",
+    "Gahan AI — 15 people, Bengaluru, pivoted from edtech to radar in 2023",
+    "Two search engines across 18 results returned no dated primary artifact for any of the four. TI's own CES 2026 automotive radar announcement names no Indian radar design partner.",
+    "The TRL-8 certificate and its issuing body; TI confirming the exclusivity directly.",
+    "An unanswered indigenous-champion claim shapes the government shortlist DeepGrid needs.",
+    "EV-GHN-01, EV-GHN-03, EV-GHN-04, EV-GHN-08"
+   ],
+   [
+    "AEC-Q100 proves the platform is automotive-grade",
+    "Gahan AI, on its own site",
+    "Category error. TI's datasheets show AEC-Q100 qualifies the packaged IC, with ASIL-B hardware integrity targeted at device level. It says nothing about the platform built on top.",
+    "Nothing — the standard does not make the claim it is being used to make.",
+    "The same error, uncorrected, is available to any competitor briefing the same buyer.",
+    "EV-GHN-05"
+   ],
+   [
+    "India's 2027 mandate comes from Bharat NCAP; the sensor import gap is over ₹15,000 crore a year",
+    "Gahan AI, market framing",
+    "The mandate is G.S.R. 834(E) as amended by 862(E), under rule 96(12) — not Bharat NCAP. The import figure is unsourced.",
+    "A primary citation for the import number, and the correct instrument named.",
+    "A rival mis-stating the rule is an opening, not a threat — provided DeepGrid states it correctly.",
+    "EV-GHN-07, EV-REG-01"
+   ],
+   [
+    "Indian silicon is arriving, so India-native is no longer a differentiator",
+    "Netrasemi — Zoho-backed, ₹107 crore Series A, Thiruvananthapuram",
+    "A2000 is production-ready with early automotive trials, targeting mid-2027 commercial availability. The claim is substantially true and it is not aimed at DeepGrid.",
+    "Already settled. The timing is the point, not the rivalry.",
+    "Mid-2027 lands before the 1 Oct 2027 all-models date. 'India-native' expires as a standalone argument.",
+    "EV-NTR-01, EV-NTR-03"
+   ]
+  ],
+  "sowhat": "Thirteen pages rated these two as threats. The rating was never the issue: Gahan scores 1.45 and Netrasemi 1.65, the bottom of the field. What they contest is legitimacy, and one of them is making a regulatory error that DeepGrid can correct in front of the same buyer. That is a communications action with an owner, not a competitive threat with a counter-move."
+ },
+ "supplierside": {
+  "kicker": "Act III · supplier side · the cost floor",
+  "title": "The companies that set DeepGrid's cost floor and qualification clock are not in this dossier",
+  "sub": "Porter's supplier power, applied to a dossier that mapped only rivalry. These firms decide the ASIC economics and the certification calendar for every player on the previous pages, including DeepGrid — and the ASIC case cannot be argued without them.",
+  "cols": [
+   "Supplier",
+   "What it sets",
+   "Evidenced position",
+   "What it means for DeepGrid",
+   "Status"
+  ],
+  "rows": [
+   [
+    "Texas Instruments",
+    "Radar silicon and the qualification envelope",
+    "AWR2188 4D imaging radar transceiver announced at CES 2026; datasheets show AEC-Q100 qualifies the packaged IC with ASIL-B hardware integrity targeted at device level.",
+    "Buying a qualified part does not deliver a qualified system. The functional-safety work sits above the device and lands on DeepGrid.",
+    "EVIDENCED",
+    "EV-GHN-04, EV-GHN-05"
+   ],
+   [
+    "NXP",
+    "The second radar supply path",
+    "Radar partnership with bitsensing since Dec 2024, developing scalable radar across industries.",
+    "A second source exists at device level. Supplier concentration is a manageable risk, not a structural one.",
+    "EVIDENCED",
+    "EV-BIT-02"
+   ],
+   [
+    "Netrasemi",
+    "The domestic edge-AI SoC option",
+    "A2000 with in-house NPU, VPU, ISP and crypto engines; production-ready, early automotive trials, mid-2027 commercial target; ₹107 crore Series A.",
+    "A complementor, not a rival — and its availability window opens before the 1 Oct 2027 all-models date.",
+    "EVIDENCED",
+    "EV-NTR-01, EV-NTR-02, EV-NTR-03"
+   ],
+   [
+    "ARAI / ICAT",
+    "The homologation clock",
+    "AIS-162 for AEBS under rule 96(12); AIS-188, AIS-184 and AIS-186 follow on the 2027-28 dates. ZF's ARAI certification is claimed but its certificate numbers are not published.",
+    "The queue for the test agency is a schedule risk shared by the whole field. No competitor has published certificate numbers, so nobody's position here is verified.",
+    "EVIDENCED",
+    "EV-REG-01, EV-REG-02"
+   ],
+   [
+    "Foundry (TSMC or alternative)",
+    "The unit economics of any DeepGrid ASIC",
+    "Process node is now evidenced: TSMC 12nm for Netrasemi's A2000 (EV-NTR-02); India's domestic option is Tata Electronics Dholera 28nm, ISM-approved (EV-FND-01). Mask cost, lead time and wafer commitment/NRE remain unestablished — no public per-program disclosure norm.",
+    "Process-node choice is an input, not the cost line. Mask cost, NRE, wafer commitment and lead time are the numbers that set the cost floor, and they remain unsourced — do not carry an ASIC cost line into a board paper.",
+    "GAP — DO NOT ASSERT",
+    "EV-NTR-02, EV-FND-01"
+   ]
+  ],
+  "sowhat": "Four of the five rows are fully evidenced. The foundry row is now partially evidenced: the process node is sourced (TSMC 12nm for the domestic option; Tata Dholera 28nm for India), but mask cost, NRE, wafer commitment and lead time remain unsourced because no public per-program disclosure norm exists. The immediate action is unchanged: source the foundry economics before any ASIC number reaches a board paper."
+ },
+ "v9_note": "Sections added 2026-08-16 to give Act III the shape its own reshape page called for. displacement / differentjob / narrativecounter / supplierside.",
+ "act3_sections": {
+  "substitute": {
+   "pattern": "SUBSTITUTE",
+   "verb": "Displace or differentiate",
+   "who": "STRADVISION",
+   "blocker": "5/5",
+   "why": "The only company in the dossier selling the same thing to the same buyer for the same job. This is the one section where taking business from the company named on the page is the goal, so it is the one section that gets a plan rather than a rating.",
+   "tone": "red"
+  },
+  "gatekeeper": {
+   "pattern": "GATEKEEPER",
+   "verb": "Sell TO, not against",
+   "who": "Aptiv",
+   "blocker": "4/5",
+   "why": "Does not sell what DeepGrid sells — it decides who gets to. The buying decision to win is Aptiv's vendor selection, not an end customer's purchase order. Rating it as an adversary produces the wrong plan.",
+   "tone": "amber"
+  },
+  "channel": {
+   "pattern": "CHANNEL / COOPETITOR",
+   "verb": "Attach",
+   "who": "ZF · Sterling × MINIEYE",
+   "blocker": "3/5 · 1/5",
+   "why": "Both own a control point DeepGrid must pass through and are simultaneously its route to market. Customers first; rivals only if they build the perception layer themselves. Full depth retained because these are accounts to win, not contests to enter.",
+   "tone": "verified"
+  },
+  "differentjob": {
+   "pattern": "DIFFERENT JOB",
+   "verb": "Note and leave",
+   "who": "drivebuddyAI · Starkenn · bitsensing",
+   "blocker": "1/5 each",
+   "why": "Same industry, different buyer, different budget, different clock — and none reaches brake actuation, so none can satisfy rule 96(12) at any price. Nineteen pages in v8; one consolidated page plus drivebuddyAI's profile here, because that is what a 1/5 blocker earns.",
+   "tone": "accent"
+  },
+  "narrative": {
+   "pattern": "NARRATIVE RIVAL",
+   "verb": "Counter the claim, not the product",
+   "who": "Gahan AI · Netrasemi",
+   "blocker": "2/5 each",
+   "why": "They compete for the same government shortlist and the same indigenous-champion story, not for the same purchase order. Thirteen pages in v8 rated them as threats; the action is communications with an owner, not a counter-move.",
+   "tone": "violet"
+  },
+  "incumbent": {
+   "pattern": "INCUMBENT COHORT",
+   "verb": "Add a displacement gate to OEM bids",
+   "who": "Bosch · Continental · Valeo",
+   "blocker": "unproven",
+   "why": "Structural rather than company-specific: no supplier-specific India CV programme is evidenced for any of the three. They are treated as one cohort because that is the resolution the evidence supports — naming a threat per company would assert more than this run can show.",
+   "tone": "amber"
+  },
+  "supplier": {
+   "pattern": "SUPPLIER-SIDE",
+   "verb": "Choose deliberately",
+   "who": "TI · NXP · ARAI/ICAT · foundry",
+   "blocker": "n/a",
+   "why": "Sets the cost floor and the qualification path for everyone on the previous pages, DeepGrid included. Absent from every prior version of this dossier — which is why the ASIC case has never been arguable.",
+   "tone": "muted"
+  }
+ }
+}

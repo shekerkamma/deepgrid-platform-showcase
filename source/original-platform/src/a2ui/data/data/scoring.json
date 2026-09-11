@@ -1,0 +1,306 @@
+{
+ "weights": {
+  "execution": 0.2,
+  "access": 0.35,
+  "leverage": 0.45
+ },
+ "scale": {
+  "execution": {
+   "1": "No verifiable deployment or qualification artifact.",
+   "3": "Real product and customers, but counts are self-reported or undated.",
+   "5": "Named programme, dated, with qualification artifacts and third-party or filing-grade disclosure."
+  },
+  "access": {
+   "1": "No evidenced route to an Indian CV buyer.",
+   "3": "One evidenced channel or partnership, no named end customer.",
+   "5": "Multiple evidenced routes including OEM line-fit or standing tender position."
+  },
+  "leverage": {
+   "1": "Owns nothing DeepGrid must pass through.",
+   "3": "Owns IP or a channel that raises DeepGrid's cost but can be routed around.",
+   "5": "Owns a control point DeepGrid cannot bypass — the safety case, the platform slot, or the certification."
+  }
+ },
+ "competitors": [
+  {
+   "id": "zf",
+   "name": "ZF CVCS India",
+   "execution": 5,
+   "access": 5,
+   "leverage": 5,
+   "ev": "EV-ZF-01…08",
+   "tier": "P-ACT",
+   "why_e": "Named Indian E-Mobility CV OEM nomination with 16 features; 300,000 km India validation; ARAI certification claimed; a listed ₹29,642 Cr entity.",
+   "why_a": "OEM line-fit nomination plus its own Indian homologation capability and an export business to ~18 countries.",
+   "why_l": "Owns the brake actuator, therefore owns the safety case. DeepGrid's perception output cannot reach AEBS without passing through an actuator owner.",
+   "conf": "high",
+   "conf_note": "Nomination and feature scope primary; validation km and ARAI certification vendor-published, certificate numbers not released.",
+   "arenas": {
+    "Government / PSU": [
+     "MEDIUM",
+     "Homologation capability, no evidenced tender position"
+    ],
+    "OEM / Tier-1": [
+     "HIGH",
+     "Named nomination, ARAI, 16 features"
+    ],
+    "Fleet / mining": [
+     "LOW",
+     "No retrofit evidence retrieved"
+    ]
+   },
+   "score": 5.0,
+   "blocker": 3,
+   "blocker_why": "Owns a DIFFERENT control point. DeepGrid intends to sell INTO an actuator owner, so ZF is the route rather than the obstacle — until it bundles perception itself."
+  },
+  {
+   "id": "aptiv",
+   "name": "Aptiv (+STRADVISION)",
+   "execution": 5,
+   "access": 4,
+   "leverage": 5,
+   "ev": "EV-APT-01…08",
+   "tier": "P-ACT",
+   "why_e": "Indian CV OEM selected Gen 6 across 14 models and 30+ variants; 40m+ vehicles globally on the ADAS software.",
+   "why_a": "2,500 India engineers, 7 plants, 4 technical centres — but this is its FIRST Indian CV OEM ADAS collaboration, so India CV access is new.",
+   "why_l": "Owns OEM platform selection and the OTA lifecycle. Once shipped, it improves the fleet after SOP and keeps the customer relationship.",
+   "conf": "high",
+   "conf_note": "All load-bearing facts from a primary dated press release.",
+   "arenas": {
+    "Government / PSU": [
+     "LOW",
+     "No evidenced tender activity"
+    ],
+    "OEM / Tier-1": [
+     "HIGH",
+     "Named CV OEM platform win, 14 models"
+    ],
+    "Fleet / mining": [
+     "LOW",
+     "Not a retrofit player"
+    ]
+   },
+   "score": 4.65,
+   "blocker": 4,
+   "blocker_why": "Decides who gets the seat. It selects the perception vendor for its camera and controls the OTA lifecycle afterwards — gatekeeper and prospective customer at once."
+  },
+  {
+   "id": "stradvision",
+   "name": "STRADVISION",
+   "execution": 4,
+   "access": 3,
+   "leverage": 5,
+   "ev": "EV-SV-01…06",
+   "tier": "P-ACT",
+   "why_e": "~5 million cumulative SVNet units and ISO 26262; the India CV lineup selection is dated April 2026 and therefore new.",
+   "why_a": "Reaches OEMs THROUGH integrators — its India CV position is inside Aptiv's camera. No independent Indian channel evidenced.",
+   "why_l": "Occupies the exact slot DeepGrid is bidding for — bounded perception, priced for constrained hardware, inside an accountable integrator — and holds the ISO 26262 DeepGrid lacks.",
+   "conf": "high",
+   "conf_note": "Primary dated release; ISO 26262 vendor-published but specific.",
+   "arenas": {
+    "Government / PSU": [
+     "LOW",
+     "No evidenced position"
+    ],
+    "OEM / Tier-1": [
+     "HIGH",
+     "Embedded in the winning Gen 6 stack"
+    ],
+    "Fleet / mining": [
+     "LOW",
+     "Not a retrofit player"
+    ]
+   },
+   "score": 4.1,
+   "blocker": 5,
+   "blocker_why": "Occupies the seat. A bounded perception layer priced for constrained hardware, already inside the winning stack, holding the ISO 26262 DeepGrid lacks. Displacing it is the entire job."
+  },
+  {
+   "id": "drivebuddy",
+   "name": "drivebuddyAI",
+   "execution": 4,
+   "access": 4,
+   "leverage": 2,
+   "ev": "EV-DBA-01…04",
+   "tier": "P-WARN",
+   "why_e": "$5.3m across 3,600 e-buses and trucks, June 2026, disclosed by a listed parent, and won after an evaluation of competing solutions in live fleet operations.",
+   "why_a": "Proven routes into public transport, seaport logistics, mining and industrial fleets — the arenas the dossier nominates for DeepGrid's fastest proof.",
+   "why_l": "Camera-only with no AEB, so it owns nothing on the mandate path. Its real leverage is the parent's insurance flywheel, which DeepGrid cannot copy.",
+   "conf": "high",
+   "conf_note": "Contract values from listed-parent disclosure; capability read from the same release.",
+   "arenas": {
+    "Government / PSU": [
+     "MEDIUM",
+     "Public transport fleets are state-adjacent"
+    ],
+    "OEM / Tier-1": [
+     "LOW",
+     "No line-fit position; cannot brake"
+    ],
+    "Fleet / mining": [
+     "HIGH",
+     "Contracted, dated, and crossing into mining"
+    ]
+   },
+   "score": 3.1,
+   "blocker": 1,
+   "blocker_why": "Camera-only, no actuation. Owns retrofit share DeepGrid was never going to win on certification."
+  },
+  {
+   "id": "sterling",
+   "name": "Sterling Tools × MINIEYE",
+   "execution": 2,
+   "access": 3,
+   "leverage": 2,
+   "ev": "EV-STL-01…02",
+   "tier": "P-WARN",
+   "why_e": "Partnership exchange-filed and corroborated ×4, but no named Indian OEM nomination — the falsifier stands unfired.",
+   "why_a": "A listed Indian component major with existing OEM relationships and manufacturing scale.",
+   "why_l": "Holds the local manufacturing, channel and compliance role — the same role DeepGrid needs an integrator to play for it.",
+   "conf": "medium",
+   "conf_note": "Partnership verified; commercial outcome not evidenced.",
+   "arenas": {
+    "Government / PSU": [
+     "LOW",
+     "No evidenced position"
+    ],
+    "OEM / Tier-1": [
+     "MEDIUM",
+     "Existing fastener relationships, no ADAS nomination"
+    ],
+    "Fleet / mining": [
+     "LOW",
+     "No evidenced position"
+    ]
+   },
+   "score": 2.35,
+   "blocker": 1,
+   "blocker_why": "A partner-shaped competitor. Holds the local role DeepGrid needs someone to play, not the seat."
+  },
+  {
+   "id": "starkenn",
+   "name": "Starkenn",
+   "execution": 2,
+   "access": 4,
+   "leverage": 1,
+   "ev": "EV-STK-01…07",
+   "tier": "P-WARN",
+   "why_e": "DOWNGRADED. The deployment count cannot be stated — one source gives 2,500, 700 and 300+ for the same quantity. Turnover ₹5 Cr, 57 staff and shrinking 15.8% YoY on $2.0m lifetime funding.",
+   "why_a": "HELD. 30% of revenue from government tenders plus DPIIT recognition is a standing empanelment position, and empanelment — not certification — is the gate in that arena.",
+   "why_l": "No certification, no silicon, warning-only. Owns nothing DeepGrid must pass through.",
+   "conf": "medium",
+   "conf_note": "Access figure is self-reported and ~21 months old but directionally corroborated by the subscription model; execution evidence fails its own source.",
+   "arenas": {
+    "Government / PSU": [
+     "HIGH",
+     "30% tender revenue — the durable fact"
+    ],
+    "OEM / Tier-1": [
+     "LOW",
+     "10% of revenue, no named OEM"
+    ],
+    "Fleet / mining": [
+     "MEDIUM",
+     "Real presence; scale unstatable"
+    ]
+   },
+   "score": 2.25,
+   "blocker": 1,
+   "blocker_why": "Warning-only, uncertified. Blocks nothing on the perception-into-integrator path; competes for a different budget."
+  },
+  {
+   "id": "bitsensing",
+   "name": "bitsensing",
+   "execution": 3,
+   "access": 2,
+   "leverage": 2,
+   "ev": "EV-BIT-01…03",
+   "tier": "P-WARN",
+   "why_e": "$42m raised across 5 rounds and a shipping India retrofit kit, but no India deployment volume established.",
+   "why_a": "One evidenced Indian channel (IKIO MoU); no named end customer.",
+   "why_l": "NXP partnership and real radar IP, but warning-only caps it below the mandate line at any price.",
+   "conf": "medium",
+   "conf_note": "Funding and partnership dated and corroborated; India traction not established.",
+   "arenas": {
+    "Government / PSU": [
+     "LOW",
+     "No evidenced tender position"
+    ],
+    "OEM / Tier-1": [
+     "LOW",
+     "No line-fit position"
+    ],
+    "Fleet / mining": [
+     "MEDIUM",
+     "Retrofit kit is real, volume unknown"
+    ]
+   },
+   "score": 2.2,
+   "blocker": 1,
+   "blocker_why": "Radar retrofit with a hard warning-only ceiling; no overlap with the perception seat."
+  },
+  {
+   "id": "netrasemi",
+   "name": "Netrasemi",
+   "execution": 2,
+   "access": 1,
+   "leverage": 2,
+   "ev": "EV-NTR-01…03",
+   "tier": "P-ADJ",
+   "why_e": "A2000 production-ready May 2026 with trials under way; commercial mid-2027.",
+   "why_a": "Surveillance and automotive trials, no named CV customer.",
+   "why_l": "Indian edge-AI silicon weakens 'India-native' as a DeepGrid differentiator, but carries no AIS, AEC-Q100 or ISO 26262.",
+   "conf": "medium",
+   "conf_note": "National business daily, dated; Series A not re-verified against a primary filing.",
+   "arenas": {
+    "Government / PSU": [
+     "LOW",
+     "No evidenced position"
+    ],
+    "OEM / Tier-1": [
+     "LOW",
+     "No automotive certification"
+    ],
+    "Fleet / mining": [
+     "LOW",
+     "No evidenced position"
+    ]
+   },
+   "score": 1.65,
+   "blocker": 2,
+   "blocker_why": "Erodes 'India-native' as a differentiator without competing for the seat; its mid-2027 window is when that changes."
+  },
+  {
+   "id": "gahan",
+   "name": "Gahan AI",
+   "execution": 1,
+   "access": 1,
+   "leverage": 1,
+   "ev": "EV-GHN-01…07",
+   "tier": "P-ADJ",
+   "why_e": "No dated primary artifact for any capability claim. 15 employees. The one peer-reviewed output is a simulation platform.",
+   "why_a": "Claimed Tata and Ather pilots are self-published; no corroboration from either counterparty.",
+   "why_l": "Lowered 2->1 on external challenge: the leverage scale defines 1 as 'owns nothing DeepGrid must pass through', and TI does not corroborate the exclusivity while AEC-Q100 attaches to TI's IC rather than to Gahan's platform. No chokepoint is evidenced.",
+   "conf": "low",
+   "conf_note": "Every capability claim self-published and undated; the absence is measured, not assumed.",
+   "arenas": {
+    "Government / PSU": [
+     "LOW",
+     "Defence pipeline claimed, unevidenced"
+    ],
+    "OEM / Tier-1": [
+     "LOW",
+     "Pilots claimed, uncorroborated"
+    ],
+    "Fleet / mining": [
+     "LOW",
+     "No evidenced position"
+    ]
+   },
+   "score": 1.0,
+   "blocker": 2,
+   "blocker_why": "Competes for the same indigenous-perception narrative and the same government sympathy, on claims no third party has corroborated."
+  }
+ ],
+ "generated": "2026-08-15"
+}

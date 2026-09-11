@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D-DRIVE · ADAS Sim v2 — BEV + LiDAR + Physics</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0f1a; --panel:rgba(10,16,28,.84); --line:rgba(86,140,255,.25);
+    --ink:#dbe7ff; --dim:#7e93b8; --acc:#4f8dff; --acc2:#8b5cf6;
+    --ok:#34d399; --warn:#fbbf24; --danger:#f87171;
+    --mono:'IBM Plex Mono',monospace; --disp:'Space Grotesk',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--mono)}
+  #scene{position:fixed;inset:0}
+  .hud{position:fixed;z-index:10;pointer-events:none}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;backdrop-filter:blur(8px)}
+
+  #hdr{top:12px;left:12px;padding:9px 13px;display:flex;align-items:center;gap:12px}
+  #hdr .logo{font-family:var(--disp);font-weight:700;font-size:14px;letter-spacing:.04em;
+    background:linear-gradient(90deg,#6ea8ff,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+  #hdr .sub{font-size:9.5px;color:var(--dim);letter-spacing:.13em;text-transform:uppercase}
+  #stateBadge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;border:1px solid var(--ok);color:var(--ok);letter-spacing:.08em}
+
+  /* scenario selector */
+  #scen{top:12px;left:50%;transform:translateX(-50%);display:flex;gap:0;pointer-events:auto;overflow:hidden;padding:0}
+  #scen button{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;color:var(--dim);
+    background:transparent;border:0;border-right:1px solid var(--line);padding:9px 14px;cursor:pointer}
+  #scen button:last-child{border-right:0}
+  #scen button.on{color:#fff;background:rgba(79,141,255,.18)}
+  #scen button:focus-visible{outline:2px solid var(--acc);outline-offset:-2px}
+
+  #ctrl{top:12px;right:12px;display:flex;gap:7px;pointer-events:auto;flex-wrap:wrap;justify-content:flex-end}
+  #ctrl button{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--ink);
+    background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 11px;cursor:pointer}
+  #ctrl button:hover{border-color:var(--acc);color:#fff}
+  #ctrl button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+  #ctrl button.on{border-color:var(--acc);color:#bcd6ff;background:rgba(79,141,255,.12)}
+
+  /* speed + physics cluster */
+  #cluster{bottom:12px;left:12px;padding:11px 15px;min-width:208px}
+  #spd{font-family:var(--disp);font-size:42px;font-weight:700;line-height:1;color:#fff}
+  #spd small{font-size:13px;color:var(--dim);font-weight:500}
+  .row{display:flex;justify-content:space-between;font-size:10px;color:var(--dim);margin-top:5px;letter-spacing:.05em}
+  .row b{color:var(--ink);font-weight:500}
+  #throttleBar{height:4px;border-radius:2px;background:rgba(255,255,255,.08);margin-top:9px;overflow:hidden}
+  #throttleFill{height:100%;width:0%;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .12s}
+  #brakeFill{height:4px;border-radius:2px;background:var(--danger);margin-top:3px;width:0%;transition:width .1s}
+
+  /* BEV */
+  #bevWrap{bottom:12px;left:50%;transform:translateX(-50%);padding:8px}
+  #bevWrap h3{font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:5px;text-align:center}
+  #bev{display:block;border-radius:6px;background:#070b14}
+
+  /* perception */
+  #percept{bottom:12px;right:12px;width:296px;max-height:44vh;display:flex;flex-direction:column;overflow:hidden}
+  #percept h3{font-size:10px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;padding:9px 12px 6px;border-bottom:1px solid var(--line)}
+  #targets{padding:6px 12px;font-size:11px;min-height:50px}
+  .tgt{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
+  .tgt:last-child{border-bottom:0}
+  .tgt .cls{color:var(--ink)} .tgt .rng{color:var(--dim)}
+  .tgt.warn .cls,.tgt.warn .rng{color:var(--warn)}
+  .tgt.danger .cls,.tgt.danger .rng{color:var(--danger);font-weight:600}
+  #log{padding:6px 12px 10px;font-size:10.5px;color:var(--dim);overflow-y:auto;border-top:1px solid var(--line)}
+  #log div{padding:2px 0}
+  #log .t{color:#54719c;margin-right:6px}
+  #log .ev-warn{color:var(--warn)} #log .ev-danger{color:var(--danger)} #log .ev-ok{color:var(--ok)}
+
+  #alert{top:68px;left:50%;transform:translateX(-50%);padding:9px 24px;border-radius:10px;
+    font-family:var(--disp);font-weight:700;font-size:17px;letter-spacing:.1em;display:none}
+  #alert.warn{display:block;background:rgba(120,82,7,.85);border:1px solid var(--warn);color:#ffe1a1}
+  #alert.danger{display:block;background:rgba(127,29,29,.88);border:1px solid var(--danger);color:#ffd1d1;animation:blink .5s steps(2) infinite}
+  @keyframes blink{50%{opacity:.55}}
+
+  .det{position:fixed;z-index:9;pointer-events:none;transform:translate(-50%,-100%);
+    font-size:10px;letter-spacing:.05em;padding:2px 7px;border-radius:4px;white-space:nowrap;
+    background:rgba(8,14,26,.85);border:1px solid var(--ok);color:var(--ok)}
+  .det.warn{border-color:var(--warn);color:var(--warn)}
+  .det.danger{border-color:var(--danger);color:var(--danger)}
+
+  @media (max-width:980px){ #bevWrap{display:none} }
+  @media (max-width:760px){
+    #percept{width:225px;max-height:32vh} #spd{font-size:32px} #hdr .sub{display:none}
+    #scen{top:auto;bottom:12px;left:12px;transform:none}
+    #cluster{bottom:64px}
+  }
+  @media (prefers-reduced-motion: reduce){ #alert.danger{animation:none} }
+</style>
+</head>
+<body>
+<div id="scene"></div>
+
+<div class="hud panel" id="hdr">
+  <div>
+    <div class="logo">DEEPGRID · D-DRIVE</div>
+    <div class="sub">ADAS Sim v2 · BEV + LiDAR + Vehicle Dynamics</div>
+  </div>
+  <span id="stateBadge">CRUISE</span>
+</div>
+
+<div class="hud panel" id="scen">
+  <button data-s="market" class="on">MARKET STREET</button>
+  <button data-s="highway">NH SINGLE CARRIAGEWAY</button>
+  <button data-s="stress">STRESS TEST</button>
+</div>
+
+<div class="hud" id="ctrl">
+  <button id="bCam">CAM: CHASE</button>
+  <button id="bLidar" class="on">LIDAR</button>
+  <button id="bCone" class="on">FOV</button>
+  <button id="bPause">PAUSE</button>
+</div>
+
+<div class="hud panel" id="cluster">
+  <div id="spd">0 <small>km/h</small></div>
+  <div class="row"><span>TARGET</span><b id="tgtSpd">0 km/h</b></div>
+  <div class="row"><span>ACCEL</span><b id="accTxt">0.00 g</b></div>
+  <div class="row"><span>STEER δ</span><b id="steerTxt">0.0°</b></div>
+  <div class="row"><span>ODO</span><b id="odo">0 m</b></div>
+  <div class="row"><span>PLANT</span><b>550 kg · WB 2.10 m · μ 0.75</b></div>
+  <div id="throttleBar"><div id="throttleFill"></div></div>
+  <div id="brakeFill"></div>
+</div>
+
+<div class="hud panel" id="bevWrap">
+  <h3>BEV · Planner View</h3>
+  <canvas id="bev" width="250" height="330"></canvas>
+</div>
+
+<div class="hud panel" id="percept">
+  <h3>Perception · camera + radar + lidar</h3>
+  <div id="targets"><div class="tgt"><span class="cls">No targets in corridor</span></div></div>
+  <div id="log"></div>
+</div>
+
+<div class="hud" id="alert"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+'use strict';
+/* ============================================================
+   D-DRIVE ADAS SIM v2
+   - Kinematic bicycle steering + force-based longitudinal model
+   - Speed-breaker heave/pitch via axle profile + 2nd-order suspension
+   - Simulated 16-channel rotating LiDAR (analytic ray vs AABB set)
+   - BEV planner canvas (ego frame)
+   - 3 Indian scenario presets w/ scripted hazards
+   ============================================================ */
+const W=()=>innerWidth, H=()=>innerHeight, KMH=3.6, rnd=(a,b)=>a+Math.random()*(b-a);
+const clamp=THREE.MathUtils.clamp;
+
+/* ---------------- renderer / scene ---------------- */
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(W(),H()); renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+document.getElementById('scene').appendChild(renderer.domElement);
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0xc8d8e8);
+scene.fog=new THREE.Fog(0xc8d8e8,60,220);
+const camera=new THREE.PerspectiveCamera(58,W()/H(),.1,500);
+const sun=new THREE.DirectionalLight(0xfff2dc,1.15);
+sun.position.set(40,60,-30); sun.castShadow=true;
+sun.shadow.mapSize.set(2048,2048);
+Object.assign(sun.shadow.camera,{left:-60,right:60,top:60,bottom:-60,far:200});
+scene.add(sun);
+scene.add(new THREE.HemisphereLight(0xbfd4ee,0x8a7a5a,.75));
+
+/* ---------------- helpers ---------------- */
+const M=(c,r=.85,m=0)=>new THREE.MeshStandardMaterial({color:c,roughness:r,metalness:m});
+const box=(w,h,d,mat)=>{const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);o.castShadow=true;o.receiveShadow=true;return o;};
+const cyl=(rt,rb,h,mat,seg=14)=>{const o=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,seg),mat);o.castShadow=true;return o;};
+function makeLabel(txt,fg){
+  const c=document.createElement('canvas');c.width=256;c.height=64;
+  const x=c.getContext('2d');x.fillStyle=fg;x.font='bold 40px "Space Grotesk",sans-serif';
+  x.textAlign='center';x.textBaseline='middle';x.fillText(txt,128,34);
+  return new THREE.Mesh(new THREE.PlaneGeometry(1,.25),
+    new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true}));
+}
+
+/* ---------------- road ---------------- */
+const ROAD_W=7.4, LANE=1.85;
+const ground=new THREE.Mesh(new THREE.PlaneGeometry(400,400),M(0x9a8f6b,1));
+ground.rotation.x=-Math.PI/2; ground.receiveShadow=true; scene.add(ground);
+const road=new THREE.Mesh(new THREE.PlaneGeometry(ROAD_W,400),M(0x3c3f44,.95));
+road.rotation.x=-Math.PI/2; road.position.y=.01; road.receiveShadow=true; scene.add(road);
+[-1,1].forEach(s=>{const sh=new THREE.Mesh(new THREE.PlaneGeometry(1.6,400),M(0xb3a06f,1));
+  sh.rotation.x=-Math.PI/2;sh.position.set(s*(ROAD_W/2+.8),.005,0);sh.receiveShadow=true;scene.add(sh);});
+const stripes=[],edges=[],potholes=[];
+for(let i=0;i<40;i++){const st=new THREE.Mesh(new THREE.PlaneGeometry(.16,2.2),M(0xe8e4d8,.6));
+  st.rotation.x=-Math.PI/2;st.position.set(0,.02,i*6);scene.add(st);stripes.push(st);}
+[-1,1].forEach(s=>{for(let i=0;i<14;i++){const e=new THREE.Mesh(new THREE.PlaneGeometry(.13,28),M(0xd8d4c4,.7));
+  e.rotation.x=-Math.PI/2;e.position.set(s*(ROAD_W/2-.25),.02,i*30);scene.add(e);edges.push(e);}});
+for(let i=0;i<10;i++){const p=new THREE.Mesh(new THREE.CircleGeometry(.35+Math.random()*.4,10),M(0x26282c,1));
+  p.rotation.x=-Math.PI/2;p.position.set((Math.random()-.5)*5.5,.025,25+i*40);scene.add(p);potholes.push(p);}
+
+/* ---------------- ego: D-DRIVE UGV ---------------- */
+function buildDDrive(){
+  const g=new THREE.Group(); const bodyMat=M(0x141414,.6,.25);
+  const hull=box(1.7,.62,3.1,bodyMat);hull.position.y=.62;g.add(hull);
+  const nose=box(1.7,.5,.7,bodyMat);nose.position.set(0,.56,1.78);nose.rotation.x=.16;g.add(nose);
+  const tail=box(1.7,.5,.5,bodyMat);tail.position.set(0,.56,-1.7);tail.rotation.x=-.12;g.add(tail);
+  const plate=box(.9,.4,.03,M(0xf4f4f0,.5));plate.position.set(0,.62,2.13);plate.rotation.x=.16;g.add(plate);
+  const txt=makeLabel('D-DRIVE','#111a33');txt.scale.set(1.15,.3,1);txt.position.set(0,.63,2.16);g.add(txt);
+  const tyreMat=M(0x101010,.95),hubMat=M(0x2a2a2a,.5,.4);const wheels=[];
+  [[-.95,1.05],[.95,1.05],[-.95,-1.05],[.95,-1.05]].forEach(([x,z],i)=>{
+    const wg=new THREE.Group();
+    const t=cyl(.42,.42,.34,tyreMat,18);t.rotation.z=Math.PI/2;wg.add(t);
+    const h=cyl(.2,.2,.36,hubMat,12);h.rotation.z=Math.PI/2;wg.add(h);
+    wg.position.set(x,.42,z);g.add(wg);wheels.push({grp:wg,front:z>0,spin:0});
+  });
+  const ant=cyl(.012,.012,.55,M(0x111111,.4));ant.position.set(.35,1.2,.4);g.add(ant);
+  const wire=box(.1,.05,.18,M(0xc23b3b,.6));wire.position.set(-.2,.96,.9);g.add(wire);
+  const pod=box(.5,.16,.2,M(0x1c2740,.4,.5));pod.position.set(0,1.0,1.5);g.add(pod);
+  const lens=cyl(.045,.045,.06,new THREE.MeshStandardMaterial({color:0x76b6ff,roughness:.2,metalness:.6,emissive:0x16314f}),10);
+  lens.rotation.x=Math.PI/2;lens.position.set(0,1.0,1.62);g.add(lens);
+  const lidarPuck=cyl(.11,.13,.12,M(0x222831,.4,.5),16);lidarPuck.position.set(0,1.12,.2);g.add(lidarPuck);
+  const radar=box(.34,.12,.05,M(0x33384a,.5));radar.position.set(0,.45,2.18);g.add(radar);
+  g.userData.wheels=wheels; return g;
+}
+const ego=buildDDrive(); scene.add(ego);
+
+/* FOV cone */
+const fov=new THREE.Mesh(new THREE.ConeGeometry(7,34,4,1,true),
+  new THREE.MeshBasicMaterial({color:0x34d399,transparent:true,opacity:.10,side:THREE.DoubleSide,depthWrite:false}));
+fov.rotation.x=-Math.PI/2;fov.rotation.y=Math.PI/4;fov.scale.set(1,.999,.18);
+fov.position.set(0,.7,18.6);ego.add(fov);
+
+/* ---------------- actor builders (with lidar dims) ---------------- */
+function buildRickshaw(){const g=new THREE.Group();
+  const b=box(1.15,.8,1.7,M(0xe8b80c,.7));b.position.y=.75;g.add(b);
+  const r=box(1.2,.32,1.8,M(0x1d6b3a,.8));r.position.y=1.32;g.add(r);
+  const w=box(1.0,.4,.04,M(0x9cc4de,.2,.4));w.position.set(0,1.0,.86);g.add(w);
+  const ty=M(0x111111,.95);
+  const f=cyl(.26,.26,.16,ty);f.rotation.z=Math.PI/2;f.position.set(0,.26,.8);g.add(f);
+  [-.55,.55].forEach(x=>{const wh=cyl(.26,.26,.16,ty);wh.rotation.z=Math.PI/2;wh.position.set(x,.26,-.6);g.add(wh);});
+  return g;}
+function buildBike(){const g=new THREE.Group();
+  const f=box(.22,.3,1.3,M(0x8a1f1f,.6));f.position.y=.55;g.add(f);
+  const ty=M(0x111111,.95);
+  [.6,-.6].forEach(z=>{const w=cyl(.26,.26,.09,ty);w.rotation.z=Math.PI/2;w.position.set(0,.26,z);g.add(w);});
+  const r=box(.34,.55,.3,M(0x27496d,.8));r.position.set(0,.95,-.1);g.add(r);
+  const h=cyl(.13,.13,.2,M(0xf0d020,.5),10);h.position.set(0,1.33,-.1);g.add(h);return g;}
+function buildTruck(){const g=new THREE.Group();
+  const cab=box(2.0,1.5,1.4,M(0x2d6cb5,.7));cab.position.set(0,1.15,1.9);g.add(cab);
+  const cargo=box(2.1,2.0,3.6,M(0xc4622a,.85));cargo.position.set(0,1.4,-.7);g.add(cargo);
+  const ty=M(0x111111,.95);
+  [[-.95,1.7],[.95,1.7],[-.95,-1.2],[.95,-1.2],[-.95,-2.0],[.95,-2.0]].forEach(([x,z])=>{
+    const w=cyl(.42,.42,.3,ty);w.rotation.z=Math.PI/2;w.position.set(x,.42,z);g.add(w);});
+  const hw=makeLabel('HORN OK PLEASE','#fff');hw.scale.set(1.8,.5,1);hw.position.set(0,1.6,-2.52);hw.rotation.y=Math.PI;g.add(hw);
+  return g;}
+function buildCar(){const g=new THREE.Group();
+  const b=box(1.6,.55,3.4,M(0xd9d9d9,.5,.3));b.position.y=.55;g.add(b);
+  const c=box(1.4,.45,1.7,M(0xcfcfcf,.4,.3));c.position.set(0,1.0,-.1);g.add(c);
+  const ty=M(0x111111,.95);
+  [[-.8,1.1],[.8,1.1],[-.8,-1.1],[.8,-1.1]].forEach(([x,z])=>{
+    const w=cyl(.3,.3,.2,ty);w.rotation.z=Math.PI/2;w.position.set(x,.3,z);g.add(w);});return g;}
+function buildCow(){const g=new THREE.Group();
+  const bm=M(0xe9e2d4,.9);
+  const b=box(.7,.75,1.5,bm);b.position.y=1.0;g.add(b);
+  const sp=box(.72,.4,.6,M(0x8a7158,.9));sp.position.set(0,1.1,-.3);g.add(sp);
+  const h=box(.4,.45,.55,bm);h.position.set(0,1.25,.95);g.add(h);
+  [-.16,.16].forEach(x=>{const ho=cyl(.03,.05,.25,M(0x4d4438,.8),6);ho.position.set(x,1.55,.9);ho.rotation.z=x>0?-.5:.5;g.add(ho);});
+  [[-.25,.55],[.25,.55],[-.25,-.55],[.25,-.55]].forEach(([x,z])=>{
+    const l=cyl(.08,.07,.65,M(0xd9d2c2,.9),8);l.position.set(x,.33,z);g.add(l);});return g;}
+function buildPed(){const g=new THREE.Group();
+  const cols=[0xb5651d,0x2d5d8e,0x7a3b6e,0x3f7a4d];
+  const b=cyl(.18,.22,.85,M(cols[Math.floor(Math.random()*4)],.9),10);b.position.y=.85;g.add(b);
+  const h=cyl(.12,.12,.22,M(0xc98a5b,.8),10);h.position.y=1.42;g.add(h);return g;}
+/* dims for AABB lidar + BEV footprints: [w,h,l] */
+const DIMS={'auto-rickshaw':[1.25,1.5,1.9],'motorbike':[.6,1.45,1.4],'motorbike (cut-in)':[.6,1.45,1.4],
+  'motorbike (wrong side!)':[.6,1.45,1.4],'truck':[2.1,2.4,6.4],'truck (oncoming)':[2.1,2.4,6.4],
+  'truck (stopped)':[2.1,2.4,6.4],'car (oncoming)':[1.6,1.3,3.6],'cow':[.8,1.7,2.1],'pedestrian':[.5,1.6,.5]};
+
+/* ---------------- speed breakers / scenery ---------------- */
+let breakers=[];
+function clearBreakers(){breakers.forEach(b=>scene.remove(b));breakers=[];}
+function addBreaker(z){
+  const g=new THREE.Group();
+  const hump=new THREE.Mesh(new THREE.CylinderGeometry(.32,.32,ROAD_W,12,1,false,0,Math.PI),M(0x4a4d52,.9));
+  hump.rotation.z=Math.PI/2;hump.scale.y=.55;g.add(hump);
+  for(let i=0;i<6;i++){const s=new THREE.Mesh(new THREE.PlaneGeometry(.9,.5),M(i%2?0xf2c200:0xeaeaea,.6));
+    s.rotation.x=-Math.PI/2.6;s.position.set(-ROAD_W/2+.7+i*1.2,.22,.12);g.add(s);}
+  g.position.set(0,0,z);scene.add(g);breakers.push(g);
+}
+const scenery=[];const shopCols=[0xc46a4a,0x6a8fc4,0xc4b04a,0x7ac48f,0xb07ac4];
+function addShop(z,side){const g=new THREE.Group();
+  const w=4+Math.random()*3,h=3+Math.random()*3;
+  const b=box(w,h,4,M(shopCols[Math.floor(Math.random()*5)],.95));b.position.y=h/2;g.add(b);
+  const awn=box(w*.9,.12,1.2,M(0x355d8a,.8));awn.position.set(0,1.9,2.4*(side>0?-1:1));g.add(awn);
+  g.position.set(side*(ROAD_W/2+4.5+Math.random()*3),0,z);g.userData.dims=[w,h,4];scene.add(g);scenery.push(g);}
+function addTree(z,side){const g=new THREE.Group();
+  const tr=cyl(.14,.2,2.2,M(0x6b4a2e,.95),8);tr.position.y=1.1;g.add(tr);
+  const cn=new THREE.Mesh(new THREE.SphereGeometry(1.2+Math.random()*.7,10,8),M(0x3e6b35,.95));
+  cn.position.y=2.8;cn.castShadow=true;g.add(cn);
+  const wb=cyl(.22,.26,.7,M(0xe8e8e0,.8),8);wb.position.y=.35;g.add(wb);
+  g.position.set(side*(ROAD_W/2+1.6+Math.random()*1.5),0,z);g.userData.dims=[2.2,4.2,2.2];scene.add(g);scenery.push(g);}
+for(let i=0;i<16;i++){addShop(i*36+10,i%2?1:-1);addTree(i*22+6,i%2?-1:1);}
+
+/* ============================================================
+   PHYSICS — ego plant model
+   Kinematic bicycle (valid at UGV speeds, a_lat < ~0.4 g):
+     ψ̇ = v·tan(δ)/WB ;  ẋ = v·sinψ ; ż = v·cosψ
+   Longitudinal:  m·v̇ = F_trac − F_brake − ½ρCdA·v² − Crr·m·g
+   Suspension heave: 2nd-order system driven by axle road profile
+   ============================================================ */
+const P={
+  m:550, WB:2.10, maxSteer:0.55,            // rad ≈ 31°
+  steerRate:1.2,                            // rad/s actuator slew
+  Fmax:2600,                                // N traction (≈0.48 g)
+  muBrake:0.75, g:9.81,                     // AEB-capable service brake
+  CdA:1.05, rho:1.2, Crr:0.018,
+  kSus:60, cSus:11,                         // heave spring/damper
+  wheelR:0.42
+};
+const EGO={x:LANE,z:0,psi:0,v:0,a:0,delta:0,deltaCmd:0,
+  heave:0,heaveV:0,pitch:0,roll:0,odo:0,
+  targetV:0,cruise:40/KMH,laneX:LANE,
+  state:'CRUISE',blockedT:0,overtakePhase:0,brakeFrac:0,throtFrac:0};
+
+function humpProfile(z){ // road height under a wheel
+  let h=0;
+  for(const b of breakers){
+    const d=z-b.position.z;
+    if(Math.abs(d)<0.38){const t=d/0.38;h=Math.max(h,0.10*(1-t*t));}
+  }
+  return h;
+}
+function stepPhysics(dt){
+  /* steering: pure pursuit to lane target */
+  const Ld=Math.max(4,2+0.6*EGO.v);
+  const dx=EGO.laneX-EGO.x, dz=Ld;
+  const lat=dx*Math.cos(EGO.psi)-dz*Math.sin(EGO.psi);
+  const lon=dx*Math.sin(EGO.psi)+dz*Math.cos(EGO.psi);
+  const alpha=Math.atan2(lat,Math.max(.5,lon));
+  EGO.deltaCmd=clamp(Math.atan2(2*P.WB*Math.sin(alpha),Ld),-P.maxSteer,P.maxSteer);
+  EGO.delta+=clamp(EGO.deltaCmd-EGO.delta,-P.steerRate*dt,P.steerRate*dt);
+
+  /* longitudinal: force-based tracking of targetV */
+  const ev=EGO.targetV-EGO.v;
+  let Ftrac=0,Fbrk=0;
+  if(ev>0.02) Ftrac=clamp(ev*P.m*1.4,0,P.Fmax);
+  else if(ev<-0.02){
+    const wantA=clamp(-ev*2.2,0,P.muBrake*P.g);
+    Fbrk=wantA*P.m;
+  }
+  const Fdrag=.5*P.rho*P.CdA*EGO.v*EGO.v;
+  const Froll=EGO.v>0.05?P.Crr*P.m*P.g:0;
+  EGO.a=(Ftrac-Fbrk-Fdrag-Froll)/P.m;
+  EGO.v=Math.max(0,EGO.v+EGO.a*dt);
+  EGO.throtFrac=Ftrac/P.Fmax; EGO.brakeFrac=Fbrk/(P.muBrake*P.g*P.m);
+
+  /* kinematics */
+  const psidot=EGO.v*Math.tan(EGO.delta)/P.WB;
+  EGO.psi+=psidot*dt;
+  EGO.x+=EGO.v*Math.sin(EGO.psi)*dt;
+  EGO.z+=EGO.v*Math.cos(EGO.psi)*dt;
+  EGO.odo+=EGO.v*dt;
+
+  /* suspension heave & pitch from axle profiles */
+  const zF=EGO.z+Math.cos(EGO.psi)*1.05, zR=EGO.z-Math.cos(EGO.psi)*1.05;
+  const hF=humpProfile(zF), hR=humpProfile(zR);
+  const hTarget=(hF+hR)/2;
+  const acc=(hTarget-EGO.heave)*P.kSus-EGO.heaveV*P.cSus;
+  EGO.heaveV+=acc*dt; EGO.heave+=EGO.heaveV*dt;
+  const roadPitch=Math.atan2(hF-hR,P.WB);
+  const accelPitch=-EGO.a*0.012;
+  EGO.pitch+= (clamp(roadPitch*1.4+accelPitch,-.12,.12)-EGO.pitch)*Math.min(1,dt*8);
+  const aLat=EGO.v*psidot;
+  EGO.roll+=(clamp(aLat*0.013,-.09,.09)-EGO.roll)*Math.min(1,dt*7);
+
+  /* pose to mesh */
+  ego.position.set(EGO.x,EGO.heave,EGO.z);
+  ego.rotation.set(-EGO.pitch,EGO.psi,-EGO.roll);
+  for(const w of ego.userData.wheels){
+    w.spin+=EGO.v*dt/P.wheelR;
+    w.grp.rotation.x=w.spin;
+    if(w.front)w.grp.rotation.y=EGO.delta;
+  }
+}
+
+/* ============================================================
+   SCENARIOS
+   ============================================================ */
+const SCN={
+  market:{cruise:28,fog:[45,150],seed(){
+    sp('rickshaw',40);sp('rickshaw',105);sp('cow',70);sp('cow',165);
+    sp('ped',115);sp('ped',180);sp('bike',18);sp('car',140);sp('car',230);
+    clearBreakers();addBreaker(85);addBreaker(200);addBreaker(330);
+  }},
+  highway:{cruise:70,fog:[70,260],seed(){
+    sp('truckSlow',85);sp('truck',170);sp('car',240);sp('car',330);
+    sp('bike',25);sp('wrongway',300);sp('cow',380);
+    clearBreakers();addBreaker(420);
+  }},
+  stress:{cruise:45,fog:[60,210],seed(){
+    sp('truckStop',130);sp('cutin',-14);sp('pedDash',225);sp('cow',330);sp('car',190);sp('car',290);
+    clearBreakers();addBreaker(290);
+  }}
+};
+let scnKey='market';
+
+/* ---------------- actors ---------------- */
+let actors=[];
+function sp(kind,z){
+  let a=null;
+  if(kind==='rickshaw')a={type:'auto-rickshaw',mesh:buildRickshaw(),x:LANE+rnd(-.25,.25),z,dir:1,v:rnd(12,18)/KMH};
+  if(kind==='bike')a={type:'motorbike',mesh:buildBike(),x:LANE,z,dir:1,v:rnd(34,46)/KMH,weave:Math.random()*6};
+  if(kind==='truck')a={type:'truck (oncoming)',mesh:buildTruck(),x:-LANE,z,dir:-1,v:rnd(30,42)/KMH};
+  if(kind==='truckSlow')a={type:'truck',mesh:buildTruck(),x:LANE,z,dir:1,v:rnd(30,36)/KMH};
+  if(kind==='truckStop')a={type:'truck (stopped)',mesh:buildTruck(),x:LANE+.15,z,dir:1,v:0,stopped:true};
+  if(kind==='car')a={type:'car (oncoming)',mesh:buildCar(),x:-LANE+rnd(-.2,.2),z,dir:-1,v:rnd(32,46)/KMH};
+  if(kind==='cow')a={type:'cow',mesh:buildCow(),x:rnd(0,2.6),z,dir:0,v:0,crossV:rnd(.25,.6),crossDir:Math.random()<.5?1:-1,crossT:rnd(2,9)};
+  if(kind==='ped')a={type:'pedestrian',mesh:buildPed(),x:ROAD_W/2+1.2,z,dir:0,v:0,crossV:rnd(.7,1.2),crossing:false,waitT:rnd(3,10)};
+  if(kind==='pedDash')a={type:'pedestrian',mesh:buildPed(),x:ROAD_W/2+1.0,z,dir:0,v:0,crossV:2.3,crossing:false,dash:true,waitT:99};
+  if(kind==='wrongway')a={type:'motorbike (wrong side!)',mesh:buildBike(),x:LANE*.85,z,dir:-1,v:rnd(22,28)/KMH,wrong:true};
+  if(kind==='cutin')a={type:'motorbike (cut-in)',mesh:buildBike(),x:LANE-1.5,z,dir:1,v:0,cutin:0};
+  if(!a)return; a.yaw=a.dir===-1?Math.PI:0; a.kind=kind;
+  scene.add(a.mesh);actors.push(a);
+}
+function loadScenario(k){
+  scnKey=k;
+  actors.forEach(a=>scene.remove(a.mesh));actors=[];
+  Object.assign(EGO,{x:LANE,z:0,psi:0,v:0,delta:0,deltaCmd:0,heave:0,heaveV:0,pitch:0,roll:0,
+    overtakePhase:0,blockedT:0,state:'CRUISE'});
+  EGO.cruise=SCN[k].cruise/KMH;EGO.laneX=LANE;
+  scene.fog.near=SCN[k].fog[0];scene.fog.far=SCN[k].fog[1];
+  SCN[k].seed();
+  collided.clear();
+  log(`Scenario loaded: ${k.toUpperCase()} — cruise ${SCN[k].cruise} km/h`,'ev-ok');
+  document.querySelectorAll('#scen button').forEach(b=>b.classList.toggle('on',b.dataset.s===k));
+}
+
+function updateActors(dt){
+  for(const a of actors){
+    const dz=a.z-EGO.z;
+    if(a.cutin!==undefined){           // scripted cut-in bike
+      if(a.cutin===0){a.v=Math.min(a.v+3*dt,(EGO.cruise*KMH+18)/KMH);
+        if(dz>6){a.cutin=1;log('Two-wheeler cutting in ahead','ev-warn');}}
+      else if(a.cutin===1){a.x+=(LANE-a.x)*Math.min(1,dt*2.2);a.v=Math.max(a.v-2.5*dt,EGO.cruise*.55);
+        if(Math.abs(a.x-LANE)<.1)a.cutin=2;}
+      else {a.v=EGO.cruise*.55;}
+      a.z+=a.v*dt;
+    }
+    else if(a.dash){                   // scripted pedestrian dash
+      if(!a.crossing && dz<32 && dz>8 && EGO.v>5/KMH){a.crossing=true;log('Pedestrian dashing across!','ev-danger');}
+      if(a.crossing){a.x-=a.crossV*dt;if(a.x<-ROAD_W/2-1.4){a.crossing=false;a.z=EGO.z+rnd(180,300);a.x=ROAD_W/2+1.0;}}
+      a.yaw=a.crossing?Math.PI/2:0;
+    }
+    else if(a.dir===1){
+      if(!a.stopped)a.z+=a.v*dt;
+      if(a.weave!==undefined){a.weave+=dt;a.x=LANE+Math.sin(a.weave*1.4)*.55;
+        if(dz>-6&&dz<3&&Math.abs(a.x-EGO.x)<1.0)a.x=EGO.x>0?EGO.x-1.5:EGO.x+1.5;}
+      if(dz<-28||dz>340)respawn(a);
+    }
+    else if(a.dir===-1){
+      a.z-=a.v*dt;
+      if(a.wrong&&dz<14&&dz>0&&Math.abs(a.x-EGO.x)<1.2)a.x+=2.6*dt; // last-second dodge, like real wrong-side riders
+      if(a.z<EGO.z-30)respawn(a);
+    }
+    else{ // cow / ped
+      if(a.type==='cow'){a.crossT-=dt;if(a.crossT<0){a.crossDir*=-1;a.crossT=rnd(3,10);}
+        a.x+=a.crossDir*a.crossV*dt;
+        if(a.x>3.4){a.x=3.4;a.crossDir=-1;}if(a.x<-3.4){a.x=-3.4;a.crossDir=1;}
+        a.yaw=a.crossDir>0?-Math.PI/2:Math.PI/2;}
+      else{if(!a.crossing){a.waitT-=dt;if(a.waitT<0&&dz<45&&dz>20){a.crossing=true;log('Pedestrian entering carriageway','ev-warn');}}
+        else{a.x-=a.crossV*dt;if(a.x<-ROAD_W/2-1.4){a.crossing=false;a.waitT=rnd(6,14);a.z=EGO.z+rnd(150,320);a.x=ROAD_W/2+1.2;}}
+        a.yaw=a.crossing?Math.PI/2:0;}
+      if(dz<-25){a.z=EGO.z+rnd(150,320);}
+    }
+    a.mesh.position.set(a.x,0,a.z);
+    a.mesh.rotation.y=a.yaw!==undefined?a.yaw:(a.dir===-1?Math.PI:0);
+  }
+}
+function respawn(a){
+  a.z=EGO.z+rnd(150,340);
+  if(a.kind==='rickshaw'){a.x=LANE+rnd(-.25,.25);a.v=rnd(12,18)/KMH;}
+  if(a.kind==='bike'){a.x=LANE;a.v=rnd(34,46)/KMH;}
+  if(a.kind==='truckSlow'){a.x=LANE;a.v=rnd(30,36)/KMH;}
+  if(a.kind==='truckStop'){a.x=LANE+.15;}
+  if(a.dir===-1&&!a.wrong){a.x=-LANE+rnd(-.2,.2);a.v=rnd(30,46)/KMH;}
+  if(a.wrong){a.x=LANE*.85;a.v=rnd(22,28)/KMH;}
+}
+
+/* ============================================================
+   ADAS controller (planner)
+   ============================================================ */
+const RANGE=42,CORRIDOR=1.35;
+const alerts={fcw:false,aeb:false,hump:false};
+let simT=0;const logEl=document.getElementById('log');
+function log(m,c='ev-ok'){const d=document.createElement('div');
+  d.innerHTML=`<span class="t">${simT.toFixed(1)}s</span><span class="${c}">${m}</span>`;
+  logEl.prepend(d);while(logEl.children.length>26)logEl.lastChild.remove();}
+const collided=new Set();
+
+function relInfo(a){ // ego-frame forward/lateral of actor
+  const rx=a.x-EGO.x,rz=a.z-EGO.z;
+  return {fwd:rx*Math.sin(EGO.psi)+rz*Math.cos(EGO.psi),
+          lat:rx*Math.cos(EGO.psi)-rz*Math.sin(EGO.psi)};
+}
+function oncomingClear(extra=0){
+  return !actors.some(a=>a.dir===-1&&!a.wrong&&a.z>EGO.z-6&&a.z<EGO.z+50+extra+EGO.v*2);
+}
+function controller(dt){
+  alerts.fcw=alerts.aeb=alerts.hump=false;
+  let limit=EGO.cruise,leader=null,threat=null;
+  const detections=[];
+  for(const a of actors){
+    const {fwd,lat}=relInfo(a);
+    if(fwd>1&&fwd<RANGE){
+      const rel=Math.abs(lat-(EGO.laneX-EGO.x)*0); // lateral in ego frame
+      const inCorridor=Math.abs(lat)<CORRIDOR+(a.type==='cow'?.45:0);
+      const closing=EGO.v-(a.dir===1?a.v:(a.dir===-1?-a.v:0));
+      const ttc=closing>0.1?fwd/closing:99;
+      let level='ok';
+      if(inCorridor){
+        if(a.dir===1&&!a.stopped){if(!leader||a.z<leader.z)leader=a;if(fwd<10)level='warn';if(ttc<1.6)level='danger';}
+        if(a.dir===0||a.dir===-1||a.stopped){
+          const stopDist=EGO.v*EGO.v/(2*P.muBrake*P.g)+6;
+          if(fwd<stopDist+8||ttc<2.4){level='danger';if(!threat||a.z<threat.z)threat=a;}
+          else if(fwd<34){level='warn';alerts.fcw=true;limit=Math.min(limit,18/KMH);}
+        }
+      }
+      detections.push({a,dz:fwd,lat,level,ttc,inCorridor});
+    }
+  }
+  for(const b of breakers){
+    const dz=b.position.z-EGO.z;
+    const slowDist=EGO.v*EGO.v/(2*2.2)+6;
+    if(dz>0&&dz<slowDist+10){limit=Math.min(limit,9/KMH);alerts.hump=true;}
+  }
+  /* follow / overtake */
+  if(EGO.overtakePhase===0){
+    EGO.laneX=LANE;
+    if(leader){
+      const gap=leader.z-EGO.z;
+      const desired=Math.max(6,EGO.v*1.4);
+      if(gap<desired+6)limit=Math.min(limit,Math.max(leader.v+(gap-desired)*.5,0));
+      if(leader.v<EGO.cruise*.6&&gap<desired+4){
+        EGO.blockedT+=dt;
+        if(EGO.blockedT>2.5&&oncomingClear()){EGO.overtakePhase=1;EGO.blockedT=0;
+          log(`Overtaking ${leader.type} — oncoming lane clear`,'ev-warn');}
+      }else EGO.blockedT=Math.max(0,EGO.blockedT-dt);
+    }else EGO.blockedT=0;
+    // stopped vehicle blocking lane → overtake too
+    const blocker=actors.find(a=>a.stopped&&a.z-EGO.z>0&&a.z-EGO.z<26&&Math.abs(a.x-LANE)<1.3);
+    if(blocker&&EGO.overtakePhase===0){
+      limit=Math.min(limit,Math.max((blocker.z-EGO.z-9)/16,0)*EGO.cruise);
+      EGO.blockedT+=dt;
+      if(EGO.blockedT>1.2&&oncomingClear(10)){EGO.overtakePhase=1;EGO.blockedT=0;
+        log('Stopped truck in lane — initiating overtake','ev-warn');}
+    }
+  }else{
+    if(EGO.overtakePhase===1){EGO.laneX=-LANE;
+      if(Math.abs(EGO.x+LANE)<.2)EGO.overtakePhase=2;
+      if(!oncomingClear(14)){EGO.overtakePhase=3;log('Overtake aborted — oncoming traffic','ev-danger');}}
+    else if(EGO.overtakePhase===2){EGO.laneX=-LANE;
+      const ahead=actors.some(a=>(a.dir===1||a.stopped)&&Math.abs(a.x-LANE)<1.3&&a.z>EGO.z-5&&a.z<EGO.z+11);
+      if(!ahead||!oncomingClear(20))EGO.overtakePhase=3;}
+    else{EGO.laneX=LANE;
+      if(Math.abs(EGO.x-LANE)<.15){EGO.overtakePhase=0;log('Returned to lane — cruise resumed','ev-ok');}}
+  }
+  /* AEB sized by physics: required decel vs available μg */
+  if(threat){
+    const gap=(threat.z-EGO.z)-5.5;
+    const aReq=gap>0.3?(EGO.v*EGO.v)/(2*gap):99;
+    if(aReq>P.muBrake*P.g*.55||gap<3){limit=0;alerts.aeb=true;}
+    else{limit=Math.min(limit,Math.sqrt(Math.max(0,2*2.5*gap)));alerts.fcw=true;}
+  }
+  EGO.targetV=Math.max(0,limit);
+
+  /* collision audit */
+  for(const a of actors){
+    const d=Math.hypot(a.x-EGO.x,a.z-EGO.z);
+    if(d<1.6&&!collided.has(a)){collided.add(a);log(`CONTACT with ${a.type} — review planner params`,'ev-danger');}
+  }
+
+  /* state */
+  let st='CRUISE',col='var(--ok)';
+  if(EGO.overtakePhase===1){st='LANE CHANGE →';col='var(--warn)';}
+  else if(EGO.overtakePhase===2){st='OVERTAKING';col='var(--warn)';}
+  else if(EGO.overtakePhase===3){st='MERGE BACK';col='var(--warn)';}
+  else if(alerts.aeb){st='AEB ACTIVE';col='var(--danger)';}
+  else if(alerts.fcw){st='FCW · SLOWING';col='var(--warn)';}
+  else if(alerts.hump){st='SPEED BREAKER';col='var(--warn)';}
+  else if(leader&&leader.z-EGO.z<Math.max(6,EGO.v*1.4)+6){st='FOLLOWING';col='var(--ok)';}
+  if(st!==EGO.state){
+    if(st==='AEB ACTIVE')log(`AEB — braking for ${threat?threat.type:'obstacle'}`,'ev-danger');
+    else if(st==='FCW · SLOWING')log('Forward collision warning','ev-warn');
+    else if(st==='SPEED BREAKER')log('Speed breaker — slowing to 9 km/h','ev-warn');
+    EGO.state=st;
+  }
+  return {detections,st,col,threat};
+}
+
+/* ============================================================
+   LiDAR — 16ch rotating scanner, analytic ray vs AABB
+   ============================================================ */
+const LID={ch:16,azStep:0.9*Math.PI/180,rotHz:2.5,maxR:55,
+  elev:[],sweep:0,on:true};
+for(let i=0;i<LID.ch;i++)LID.elev.push((-15+i*(18/(LID.ch-1)))*Math.PI/180);
+const AZ_TOTAL=Math.round(2*Math.PI/LID.azStep);
+const PTS=AZ_TOTAL*LID.ch;
+const lidGeo=new THREE.BufferGeometry();
+const lidPos=new Float32Array(PTS*3),lidCol=new Float32Array(PTS*3);
+lidGeo.setAttribute('position',new THREE.BufferAttribute(lidPos,3));
+lidGeo.setAttribute('color',new THREE.BufferAttribute(lidCol,3));
+const lidPoints=new THREE.Points(lidGeo,new THREE.PointsMaterial({size:.07,vertexColors:true,sizeAttenuation:true}));
+lidPoints.frustumCulled=false;scene.add(lidPoints);
+for(let i=0;i<PTS;i++){lidPos[i*3+1]=-50;}
+
+function rayAABB(o,d,bmin,bmax){
+  let tmin=0,tmax=LID.maxR;
+  for(let i=0;i<3;i++){
+    const inv=1/d[i];let t0=(bmin[i]-o[i])*inv,t1=(bmax[i]-o[i])*inv;
+    if(inv<0){const t=t0;t0=t1;t1=t;}
+    tmin=Math.max(tmin,t0);tmax=Math.min(tmax,t1);
+    if(tmax<tmin)return -1;
+  }
+  return tmin>0.3?tmin:-1;
+}
+function lidarTargets(){
+  const T=[];
+  for(const a of actors){
+    const d=DIMS[a.type]||[1,1,2];
+    const sw=Math.abs(Math.sin(a.mesh.rotation.y)),cw=Math.abs(Math.cos(a.mesh.rotation.y));
+    const hw=(d[0]*cw+d[2]*sw)/2,hl=(d[0]*sw+d[2]*cw)/2;
+    T.push({min:[a.x-hw,0,a.z-hl],max:[a.x+hw,d[1],a.z+hl],kind:'obj'});
+  }
+  for(const s of scenery){
+    if(Math.abs(s.position.z-EGO.z)>LID.maxR+6)continue;
+    const d=s.userData.dims;
+    T.push({min:[s.position.x-d[0]/2,0,s.position.z-d[2]/2],
+            max:[s.position.x+d[0]/2,d[1],s.position.z+d[2]/2],kind:'env'});
+  }
+  for(const b of breakers){
+    if(Math.abs(b.position.z-EGO.z)>LID.maxR)continue;
+    T.push({min:[-ROAD_W/2,0,b.position.z-.35],max:[ROAD_W/2,.11,b.position.z+.35],kind:'env'});
+  }
+  return T;
+}
+const tmpCol=new THREE.Color();
+function stepLidar(dt){
+  if(!LID.on)return;
+  const T=lidarTargets();
+  const o=[EGO.x+Math.sin(EGO.psi)*.2,1.12+EGO.heave,EGO.z+Math.cos(EGO.psi)*.2];
+  const steps=Math.max(1,Math.round(AZ_TOTAL*LID.rotHz*dt));
+  for(let s=0;s<steps;s++){
+    LID.sweep=(LID.sweep+1)%AZ_TOTAL;
+    const az=LID.sweep*LID.azStep+EGO.psi;
+    const sa=Math.sin(az),ca=Math.cos(az);
+    for(let c=0;c<LID.ch;c++){
+      const el=LID.elev[c],ce=Math.cos(el),se=Math.sin(el);
+      const d=[sa*ce,se,ca*ce];
+      let best=-1;
+      if(se<0){const tG=(0-o[1])/se;if(tG>0.3&&tG<LID.maxR)best=tG;}
+      for(const b of T){const t=rayAABB(o,d,b.min,b.max);if(t>0&&(best<0||t<best))best=t;}
+      const idx=(LID.sweep*LID.ch+c)*3;
+      if(best>0){
+        const px=o[0]+d[0]*best,py=o[1]+d[1]*best,pz=o[2]+d[2]*best;
+        lidPos[idx]=px;lidPos[idx+1]=py+.02;lidPos[idx+2]=pz;
+        if(py<0.12)tmpCol.setRGB(.18,.28,.42);                    // ground return
+        else tmpCol.setHSL(clamp(.33-py*.11,0,.33)+.0,1,.55);     // height colormap
+        lidCol[idx]=tmpCol.r;lidCol[idx+1]=tmpCol.g;lidCol[idx+2]=tmpCol.b;
+      }else{lidPos[idx+1]=-50;}
+    }
+  }
+  lidGeo.attributes.position.needsUpdate=true;
+  lidGeo.attributes.color.needsUpdate=true;
+}
+
+/* ============================================================
+   BEV planner canvas
+   ============================================================ */
+const bev=document.getElementById('bev'),bx=bev.getContext('2d');
+const BS=4.6, BCX=125, BCY=268; // px/m, ego anchor
+function toBev(fwd,lat){return [BCX+lat*BS,BCY-fwd*BS];}
+function drawBev(detections,threat){
+  bx.clearRect(0,0,250,330);
+  bx.save();
+  /* road */
+  bx.fillStyle='#11161f';
+  bx.fillRect(BCX-ROAD_W/2*BS,0,ROAD_W*BS,330);
+  bx.strokeStyle='rgba(216,212,196,.5)';bx.lineWidth=1.4;
+  bx.beginPath();bx.moveTo(BCX-(ROAD_W/2-.25)*BS,0);bx.lineTo(BCX-(ROAD_W/2-.25)*BS,330);
+  bx.moveTo(BCX+(ROAD_W/2-.25)*BS,0);bx.lineTo(BCX+(ROAD_W/2-.25)*BS,330);bx.stroke();
+  bx.setLineDash([7,8]);bx.strokeStyle='rgba(232,228,216,.55)';
+  bx.beginPath();bx.moveTo(BCX,0);bx.lineTo(BCX,330);bx.stroke();bx.setLineDash([]);
+  /* range rings */
+  bx.strokeStyle='rgba(86,140,255,.12)';bx.fillStyle='rgba(126,147,184,.6)';bx.font='8px IBM Plex Mono';
+  [10,20,30,40,50].forEach(r=>{const y=BCY-r*BS;if(y>4){bx.beginPath();bx.moveTo(8,y);bx.lineTo(242,y);bx.stroke();bx.fillText(r+'m',6,y-2);}});
+  /* breakers */
+  for(const b of breakers){const f=b.position.z-EGO.z;if(f>-10&&f<58){
+    const [,y]=toBev(f,0);bx.fillStyle='rgba(242,194,0,.5)';bx.fillRect(BCX-ROAD_W/2*BS,y-2,ROAD_W*BS,4);}}
+  /* planned path */
+  bx.strokeStyle='rgba(79,141,255,.9)';bx.lineWidth=2;
+  bx.beginPath();
+  const Ld=Math.max(4,2+0.6*EGO.v);
+  for(let f=0;f<=50;f+=2.5){
+    const blend=Math.min(1,f/(Ld*2));
+    const latE=(EGO.laneX-EGO.x)*blend*Math.cos(EGO.psi);
+    const [qx,qy]=toBev(f,latE);
+    if(f===0)bx.moveTo(qx,qy);else bx.lineTo(qx,qy);
+  }
+  bx.stroke();
+  /* actors */
+  for(const a of actors){
+    const {fwd,lat}=relInfo(a);
+    if(fwd<-12||fwd>58||Math.abs(lat)>22)continue;
+    const d=DIMS[a.type]||[1,1,2];
+    const det=detections.find(x=>x.a===a);
+    const col=det?(det.level==='danger'?'#f87171':det.level==='warn'?'#fbbf24':'#34d399'):'#5b6b85';
+    const [cx,cy]=toBev(fwd,lat);
+    bx.save();bx.translate(cx,cy);bx.rotate(-(a.mesh.rotation.y-EGO.psi));
+    bx.strokeStyle=col;bx.lineWidth=1.5;
+    bx.strokeRect(-d[0]/2*BS,-d[2]/2*BS,d[0]*BS,d[2]*BS);
+    bx.restore();
+    /* velocity vector */
+    const vz=a.dir===1?a.v:(a.dir===-1?-a.v:0);
+    let vx=0; if(a.type==='cow')vx=a.crossDir*a.crossV; if(a.crossing)vx=-a.crossV;
+    const vf=vx*Math.sin(-EGO.psi)+vz*Math.cos(EGO.psi), vl=vx*Math.cos(EGO.psi)-vz*Math.sin(EGO.psi);
+    bx.strokeStyle=col;bx.beginPath();bx.moveTo(cx,cy);bx.lineTo(cx+vl*BS*.9,cy-vf*BS*.9);bx.stroke();
+  }
+  /* ego footprint */
+  bx.save();bx.translate(BCX+(0)*BS,BCY);bx.rotate(0);
+  bx.fillStyle='rgba(110,168,255,.95)';
+  bx.beginPath();
+  bx.moveTo(0,-1.9*BS);bx.lineTo(.85*BS,1.6*BS);bx.lineTo(-.85*BS,1.6*BS);bx.closePath();bx.fill();
+  bx.restore();
+  /* fov wedge */
+  bx.fillStyle=alerts.aeb?'rgba(248,113,113,.10)':alerts.fcw||alerts.hump?'rgba(251,191,36,.10)':'rgba(52,211,153,.08)';
+  bx.beginPath();bx.moveTo(BCX,BCY);
+  bx.lineTo(BCX-RANGE*BS*Math.tan(.34),BCY-RANGE*BS);
+  bx.lineTo(BCX+RANGE*BS*Math.tan(.34),BCY-RANGE*BS);bx.closePath();bx.fill();
+  bx.restore();
+}
+
+/* ============================================================
+   HUD
+   ============================================================ */
+const $=id=>document.getElementById(id);
+const detPool=[];const vTmp=new THREE.Vector3();
+function getDet(i){if(!detPool[i]){const d=document.createElement('div');d.className='det';document.body.appendChild(d);detPool[i]=d;}return detPool[i];}
+function updHUD(r){
+  $('spd').innerHTML=`${Math.round(EGO.v*KMH)} <small>km/h</small>`;
+  $('tgtSpd').textContent=`${Math.round(EGO.targetV*KMH)} km/h`;
+  $('accTxt').textContent=`${(EGO.a/9.81).toFixed(2)} g`;
+  $('steerTxt').textContent=`${(EGO.delta*180/Math.PI).toFixed(1)}°`;
+  $('odo').textContent=`${Math.round(EGO.odo)} m`;
+  $('throttleFill').style.width=`${EGO.throtFrac*100}%`;
+  $('brakeFill').style.width=`${EGO.brakeFrac*100}%`;
+  const badge=$('stateBadge');badge.textContent=r.st;badge.style.borderColor=r.col;badge.style.color=r.col;
+  const al=$('alert');
+  if(alerts.aeb){al.className='hud danger';al.textContent='⚠ AEB — EMERGENCY BRAKE';}
+  else if(alerts.fcw){al.className='hud warn';al.textContent='FORWARD COLLISION WARNING';}
+  else if(alerts.hump){al.className='hud warn';al.textContent='SPEED BREAKER AHEAD';}
+  else al.className='hud';
+  fov.material.color.set(alerts.aeb?0xf87171:(alerts.fcw||alerts.hump)?0xfbbf24:0x34d399);
+  const sorted=r.detections.filter(d=>d.inCorridor||d.level!=='ok').sort((a,b)=>a.dz-b.dz).slice(0,5);
+  $('targets').innerHTML=sorted.length?sorted.map(d=>
+    `<div class="tgt ${d.level}"><span class="cls">${d.a.type}</span><span class="rng">${d.dz.toFixed(1)} m${d.ttc<9?` · ttc ${d.ttc.toFixed(1)}s`:''}</span></div>`
+  ).join(''):'<div class="tgt"><span class="cls">No targets in corridor</span></div>';
+  let i=0;
+  for(const d of r.detections){
+    if(d.dz>RANGE||(!d.inCorridor&&d.level==='ok'))continue;
+    vTmp.set(d.a.x,1.9,d.a.z).project(camera);
+    if(vTmp.z>1)continue;
+    const el=getDet(i++);
+    el.className=`det ${d.level==='ok'?'':d.level}`;
+    el.textContent=`${d.a.type} · ${d.dz.toFixed(0)}m`;
+    el.style.left=`${(vTmp.x*.5+.5)*W()}px`;el.style.top=`${(-vTmp.y*.5+.5)*H()}px`;
+    el.style.display='block';if(i>=8)break;
+  }
+  for(let j=i;j<detPool.length;j++)detPool[j].style.display='none';
+}
+
+/* ---------------- camera & controls ---------------- */
+let camMode=0,paused=false;const camNames=['CHASE','TOP','ONBOARD'];
+function placeCamera(dt){
+  const fx=Math.sin(EGO.psi),fz=Math.cos(EGO.psi);
+  let t,l;
+  if(camMode===0){t=[EGO.x-fx*8.5+3.2,4.4,EGO.z-fz*8.5];l=[EGO.x+fx*8,1,EGO.z+fz*8];}
+  else if(camMode===1){t=[EGO.x,27,EGO.z+4];l=[EGO.x,0,EGO.z+8];}
+  else{t=[EGO.x+fx*1.9,1.25+EGO.heave,EGO.z+fz*1.9];l=[EGO.x+fx*22,1.1,EGO.z+fz*22];}
+  camera.position.lerp(new THREE.Vector3(...t),Math.min(1,dt*4.5));
+  camera.lookAt(...l);
+  sun.position.set(EGO.x+40,60,EGO.z-30);sun.target.position.set(EGO.x,0,EGO.z);sun.target.updateMatrixWorld();
+}
+$('bCam').onclick=()=>{camMode=(camMode+1)%3;$('bCam').textContent='CAM: '+camNames[camMode];};
+$('bPause').onclick=()=>{paused=!paused;$('bPause').textContent=paused?'RESUME':'PAUSE';$('bPause').classList.toggle('on',paused);};
+$('bCone').onclick=()=>{fov.visible=!fov.visible;$('bCone').classList.toggle('on',fov.visible);};
+$('bLidar').onclick=()=>{LID.on=!LID.on;lidPoints.visible=LID.on;$('bLidar').classList.toggle('on',LID.on);
+  if(!LID.on)for(let i=0;i<PTS;i++)lidPos[i*3+1]=-50,lidGeo.attributes.position.needsUpdate=true;};
+document.querySelectorAll('#scen button').forEach(b=>b.onclick=()=>loadScenario(b.dataset.s));
+addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();$('bPause').click();}
+  if(e.key==='c'||e.key==='C')$('bCam').click();
+  if(e.key==='f'||e.key==='F')$('bCone').click();
+  if(e.key==='l'||e.key==='L')$('bLidar').click();
+  if(e.key==='1')loadScenario('market');if(e.key==='2')loadScenario('highway');if(e.key==='3')loadScenario('stress');
+});
+addEventListener('resize',()=>{camera.aspect=W()/H();camera.updateProjectionMatrix();renderer.setSize(W(),H());});
+
+/* ---------------- world recycle ---------------- */
+function recycleWorld(){
+  for(const s of stripes)if(s.position.z<EGO.z-15)s.position.z+=240;
+  for(const e of edges)if(e.position.z<EGO.z-35)e.position.z+=420;
+  for(const p of potholes)if(p.position.z<EGO.z-20){p.position.z+=400;p.position.x=(Math.random()-.5)*5.5;}
+  for(const b of breakers)if(b.position.z<EGO.z-15)b.position.z+=rnd(300,380);
+  for(const s of scenery)if(s.position.z<EGO.z-30)s.position.z+=rnd(520,600);
+}
+
+/* ---------------- main loop (fixed-step physics) ---------------- */
+loadScenario('market');
+log('Plant: kinematic bicycle · m=550kg · brake μ=0.75 · 16-ch LiDAR @2.5Hz');
+let last=performance.now(),acc=0;const FIX=1/120;
+camera.position.set(LANE+3,4.4,-9);
+function loop(now){
+  requestAnimationFrame(loop);
+  let dt=Math.min(.05,(now-last)/1000);last=now;
+  if(!paused){
+    simT+=dt;acc+=dt;
+    let r=null;
+    while(acc>=FIX){ r=controller(FIX); stepPhysics(FIX); acc-=FIX; }
+    if(!r)r=controller(0);
+    updateActors(dt);
+    recycleWorld();
+    stepLidar(dt);
+    updHUD(r);
+    drawBev(r.detections,r.threat);
+  }
+  placeCamera(dt);
+  renderer.render(scene,camera);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

@@ -1,0 +1,706 @@
+[
+  {
+    "slide": 1,
+    "title": "STRICTLY CONFIDENTIAL  ·  PRE-SERIES A",
+    "body": "Product Lines\nFifteen SKUs, explained\nFor each product: what it is, how it works on the shared silicon, who buys it, and what it contributes.\n15 SKUs\nFOUR SLIDES EACH\nOne chip\nSoC2 · 28 NM\nAll figures are management projections prepared for fundraising purposes.\nAugust 2026",
+    "notes": "SKU explainer. Storyboard: storyboard-sku-explainer.md. Figures: Revenue Build rows 44-58 and 61-75; pools from Demand & TAM section B.",
+    "script": "Welcome to Deepgrid Semi. Pre-Series A investment briefing for our 28-nanometer automotive SoC. One shared silicon die powering fifteen commercial products, capturing 1,128 Crore Rupees of legislated demand by FY2032.",
+    "sim_type": null
+  },
+  {
+    "slide": 2,
+    "title": "HOW TO READ THIS DECK",
+    "body": "Every SKU gets the same four slides\nLearn the pattern once and you can navigate all fifteen products.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n02\nA · What it is\nIf you held one, what would you be holding\nB · How it works\nWhat the silicon actually does in this product\nC · Who buys it\nBuyer, channel and the trigger to purchase\nD · How it fits\nWhat it contributes and what it depends on\nPART\nSKUS\nFY2032 REVENUE\nSHARE\nROLE IN THE PORTFOLIO\nRoad autonomy\n3\n₹762 Cr\n67.5%\nThree kits, one chip, ₹762 Cr\nSilicon & compute\n5\n₹194 Cr\n17.2%\nSelling the chip, not the vehicle\nFleet & mobility\n2\n₹88.7 Cr\n7.9%\nHighest revenue per unit we sell\nSensors & robotics\n5\n₹83.5 Cr\n7.4%\nCapability, channel and a second cycle\nThe one thing to carry through\nEvery SKU here runs the same SoC2 silicon under different firmware — one tapeout, not fifteen independent product bets.",
+    "notes": "Reading key. The four-slide unit is the deck grammar.",
+    "script": "How to read this presentation: Every SKU follows the exact same four-slide grammar—What it is, How it works, Who buys it, and How it fits. Every product runs on our shared SoC2 silicon.",
+    "sim_type": null
+  },
+  {
+    "slide": 3,
+    "title": "WHY NOW",
+    "body": "The mandate is a demand floor, not a forecast\nCompliance dates are set. The buying decision is when, not whether.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n03\n1.0 M\nTRUCKS A YEAR IN SCOPE\n0.5 M\nNEW BUILD, ANNUALLY\n0.5 M\nEXISTING FLEET RETROFIT\n18,000\nOUR FY2032 AD2 UNITS\nMAR 2025\nRule notified\nSets the ADAS obligation for N2/N3 vehicles\nAPR 2026\nNew models\nDrowsiness, blind-spot and lane-departure required\nOCT 2026\nExisting models\nObligation reaches the in-service fleet\nOCT 2027\nBraking\nAdvanced emergency braking on a separate schedule\nWhat a floor means for an investor\nA mandated purchase removes the hardest question in hardware — whether the buyer will pay for safety. Execution risk stays ours: certification and installation throughput.",
+    "notes": "Mandate framing per the demand schedule.",
+    "script": "Why now: In India, commercial vehicle safety is undergoing an unprecedented regulatory transformation. Under Ministry of Road Transport mandates GSR 184(E), AIS-162, and AIS-188, safety systems become legally mandatory across 1.0M trucks annually.",
+    "sim_type": null
+  },
+  {
+    "slide": 4,
+    "title": "THE MOVE",
+    "body": "One chip, priced for the mandate\nA phased 28 nm programme: prove the blocks, then the die, then commit the mask.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n04\n$3.17 M\nPROGRAMME COST\n$3.88\nCOST PER DIE\n175k\nDIES TO REPAY IT\n4\nGATED STAGES\nBlock prototypes\nCompute and radar blocks on a shared wafer\nFull-die prototype\n57 mm² device, shared wafer\nBackend to GDSII\nPhysical design and sign-off\nProduction mask\nCommitted only once silicon works\nWhy this is the thing to fund\nSilicon absorbs 66.2% of the equity round, and every SKU in this deck is downstream of it. Sign-off and the mask are committed only after working silicon exists.",
+    "notes": "Tapeout economics from the unit-economics schedule.",
+    "script": "The Move: One chip, priced for the mandate. A milestone-gated 28-nanometer tapeout programme capping total NRE at 3.17 million dollars, delivering silicon at an unbeatable 3.88 dollars per die.",
+    "sim_type": null
+  },
+  {
+    "slide": 5,
+    "title": "THE SILICON",
+    "body": "What the part actually is\nOne 28 nm die under every SKU in this deck. Configuration changes; the compute does not.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n05\nPARAMETER\nSPECIFICATION\nWHY AN INVESTOR SHOULD CARE\nProcess\nTSMC 28 nm · single die, ~57 mm²\nMonolithic, not chiplet — less cost and less risk.\nCompute\n32,768 MACs at 600 MHz · 39.3 TOPS\n64 compute cubes of 512 MACs. Derived, not rounded up.\nMemory\n102.4 GB/s dual-channel LPDDR5\nBandwidth, not TOPS, binds multi-camera fusion.\nTransformer\nHardware softmax · weight-stationary attention\nThe operation an FPGA cannot do at frame rate.\nSafety\nLockstep cores plus a hardware root of trust\nThe path to an automotive safety rating.\nThroughput\nEleven sensor channels fused in 8.6 ms\nOf a 33.3 ms frame budget — 74% left unused.\nThe one number that explains the portfolio\nA part that clears eleven channels in a quarter of its frame budget configures downward into a one-channel module, a mirror unit, a radar pod or a forklift kit without redesigning the compute. That headroom is why fifteen SKUs are one tapeout, not fifteen programmes.",
+    "notes": "SoC2 specification. Headroom is what permits the SKU fan-out; every configuration below eleven channels is a firmware and front-end change, not a new die.",
+    "script": "The Silicon: Our monolithic 28-nanometer SoC2 die integrates 32,768 MACs delivering 39.3 TOPS, 102.4 gigabytes per second LPDDR5 bandwidth, and fuses 11 multi-modal channels in just 8.6 milliseconds.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 6,
+    "title": "THE PORTFOLIO",
+    "body": "Fifteen SKUs across four platform surfaces\nSorted by FY2032 revenue. Same silicon, priced independently by market.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n06\nSKU\nPRICE\nFY32 REV.\nSHARE\nGM\nFIRST\nSmart Truck (AD2 kit)\n₹2.50 L\n₹450 Cr\n39.9%\n89%\nFY2027\nAD0 Smart Mirror\n₹50,000\n₹270 Cr\n23.9%\n89%\nFY2027\nAutonomous TaaS\n₹66.00 L\n₹66.0 Cr\n5.8%\n89%\nFY2028\nChipset OEM B2B\n₹18,000\n₹54.0 Cr\n4.8%\n94%\nFY2028\nT100 AI licence\n₹100.00 L\n₹50.0 Cr\n4.4%\n94%\nFY2029\nAD1 Indoor L4 kit\n₹1.00 L\n₹42.0 Cr\n3.7%\n89%\nFY2028\nA100 compute box 4ch PCIe\n₹3.00 L\n₹36.0 Cr\n3.2%\n89%\nFY2028\nDefence D-HUMR\n₹20.00 L\n₹30.0 Cr\n2.7%\n68%\nFY2027\nSKU\nPRICE\nFY32 REV.\nSHARE\nGM\nFIRST\nA100 compute box 2ch\n₹1.60 L\n₹28.8 Cr\n2.5%\n89%\nFY2028\nA100 compute box 1ch M.2\n₹85,000\n₹25.5 Cr\n2.3%\n89%\nFY2028\nSeaport AGV\n₹45.30 L\n₹22.6 Cr\n2.0%\n89%\nFY2028\nD100 drone SoC kit\n₹5.00 L\n₹20.0 Cr\n1.8%\n68%\nFY2028\nThermal camera\n₹50,000\n₹16.0 Cr\n1.4%\n50%\nFY2027\nH100 driver monitor\n₹5,000\n₹10.0 Cr\n0.9%\n50%\nFY2027\n4D radar pod\n₹25,000\n₹7.50 Cr\n0.7%\n50%\nFY2027",
+    "notes": "All fifteen SKUs; totals reconcile to ₹1,128.45 Cr.",
+    "script": "The Portfolio: Fifteen commercial SKUs across Road Autonomy, Edge Compute, Fleet Mobility, and Sovereign Defence, generating 1,128.45 Crore Rupees in FY2032 revenue.",
+    "sim_type": null
+  },
+  {
+    "slide": 7,
+    "title": "PART ONE",
+    "body": "Road autonomy\n₹762 Cr · 67.5% of FY2032 · 3 SKUs · Three kits, one chip, ₹762 Cr\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n07",
+    "notes": "Road autonomy: AD0 Smart Mirror (mandate retrofit), AD1 Indoor L4 kit, Smart Truck (AD2 kit).",
+    "script": "Part One: Road Autonomy. Three commercial systems built on our single SoC2 die, generating 762 Crore Rupees or 67.5% of our FY2032 revenue.",
+    "sim_type": null
+  },
+  {
+    "slide": 8,
+    "title": "AD0 SMART MIRROR · A",
+    "body": "What it is\nA replacement mirror unit with an integrated display, four body cameras and a wiring loom.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n08\n₹50,000\nUNIT PRICE\nSystems\nSEGMENT\nOutdoor\nOPERATING DOMAIN\nFY2027\nFIRST REVENUE\nWHAT IS IN IT\n01\nFour surround cameras with mounting hardware\n02\nMirror-format display head unit\n03\nSoC2 compute integrated in the head unit\n04\nRecording storage and alert speaker\nHow it is positioned\nAD0 Smart Mirror (mandate retrofit) sells at ₹50,000 into the road autonomy surface. The volume ramp of the portfolio: highest unit count of any SKU and the lowest fitment complexity, so it scales channel reach that the harder products later inherit.",
+    "notes": "AD0 Smart Mirror (mandate retrofit) — what it is. Price ₹50,000, segment Systems, domain Outdoor, first revenue FY2027.",
+    "script": "Slide 8: AD0 SMART MIRROR — What it is. What it is A replacement mirror unit with an integrated display, four body cameras and a wiring loom. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 08 ₹50,000 UNIT PRICE Systems SEGMENT Outdoor OPERATING DOMAIN FY2027 FIRST REVENUE WHAT IS IN IT 01 Four surround cameras with mounting hardware 02 Mirror-format display head unit 03 SoC2 compute integrated in the head unit 04 Recording storage and alert speaker How it is positioned AD0 Smart Mirror (mandate retrofit) sells at ₹50,000 into the road autonomy surface. The volume ramp of the portfolio: highest unit count of any SKU and the lowest fitment complexity, so it scales channel reach that the harder products later inherit.",
+    "sim_type": "mirror"
+  },
+  {
+    "slide": 9,
+    "title": "AD0 SMART MIRROR · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n09\nSIGNAL CHAIN\n1\nFour cameras cover the vehicle's blind quarters\n2\nSoC2 stitches the views into one 360° surround image\n3\nProximity and motion logic flags anything entering the danger zone\n4\nDriver sees the stitched view and hears a directional alert\nWhat the silicon does here\nThe SoC2 stage is common to every SKU: it is the same perception compute under different firmware. For AD0 Smart Mirror it runs stage two of the chain above.\nWhat this product depends on\nDistribution reach and price holding at ₹50k. It runs on current-generation hardware, so it is not gated on the ASIC.",
+    "notes": "AD0 Smart Mirror (mandate retrofit) — signal chain: Four cameras cover the vehicle's blind quarters -> SoC2 stitches the views into one 360° surround image -> Proximity and motion logic flags anything entering the danger zone -> Driver sees the stitched view and hears a directional alert. Depends on: Distribution reach and price holding at ₹50k. It runs on current-generation hardware, so it is not gated on the ASIC.",
+    "script": "Slide 9: AD0 SMART MIRROR — Processing Signal Chain. AD0 Smart Mirror (mandate retrofit) — signal chain: Four cameras cover the vehicle's blind quarters -> SoC2 stitches the views into one 360° surround image -> Proximity and motion logic flags anything entering the danger zone -> Driver sees the stitched view and hears a directional alert. Depends on: Distribution reach and price holding at ₹50k. It runs on current-generation hardware, so it is not gated on the ASIC.",
+    "sim_type": "mirror"
+  },
+  {
+    "slide": 10,
+    "title": "AD0 SMART MIRROR · C",
+    "body": "Who buys it, and why now\nNo mandate applies. Buyers pay for visibility and parking safety — which is why it already sells.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n10\nThe buyer\nVehicle owners and small fleets, bought as an accessory rather than specified into a vehicle programme.\nThe channel\nAftermarket accessory retail and fitment shops, plus OEM accessory catalogues.\nDemand pool · 0.93% capture at FY2032\nExisting 360 surround-view market $3.1B (already selling). Our FY2032 volume of 54,000 units is 0.93% of that pool.\nSource: Towards Automotive: $3.09B 2025, 10.7% CAGR. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "AD0 Smart Mirror (mandate retrofit) — buyer: Vehicle owners and small fleets, bought as an accessory rather than specified into a vehicle programme. Channel: Aftermarket accessory retail and fitment shops, plus OEM accessory catalogues. Trigger: No mandate applies. Buyers pay for visibility and parking safety — which is why it already sells. Pool: Existing 360 surround-view market $3.1B (already selling) (0.93%). Source: Towards Automotive: $3.09B 2025, 10.7% CAGR.",
+    "script": "Slide 10: AD0 SMART MIRROR — Commercial Profile and Buyer Trigger. AD0 Smart Mirror (mandate retrofit) — buyer: Vehicle owners and small fleets, bought as an accessory rather than specified into a vehicle programme. Channel: Aftermarket accessory retail and fitment shops, plus OEM accessory catalogues. Trigger: No mandate applies. Buyers pay for visibility and parking safety — which is why it already sells. Pool: Existing 360 surround-view market $3.1B (already selling) (0.93%). Source: Towards Automotive: $3.09B 2025, 10.7% CAGR.",
+    "sim_type": "mirror"
+  },
+  {
+    "slide": 11,
+    "title": "AD0 SMART MIRROR · D",
+    "body": "How it fits the overall picture\n₹270 Cr at FY2032 — 23.9% of group revenue, at 89% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n11\n54,000\nFY2032 UNITS\n₹270 Cr\nFY2032 REVENUE\n23.9%\nSHARE OF GROUP\n89%\nGROSS MARGIN\nUNITS SHIPPED\n10\nFY27\n2,200\nFY28\n8,000\nFY29\n18,000\nFY30\n34,000\nFY31\n54,000\nFY32\nREVENUE, ₹ CR\n0\nFY27\n11\nFY28\n40\nFY29\n90\nFY30\n170\nFY31\n270\nFY32\nIts role in the portfolio\nThe volume ramp of the portfolio: highest unit count of any SKU and the lowest fitment complexity, so it scales channel reach that the harder products later inherit.\nWhat it depends on\nDistribution reach and price holding at ₹50k. It runs on current-generation hardware, so it is not gated on the ASIC.",
+    "notes": "AD0 Smart Mirror (mandate retrofit) — units 10 / 2200 / 8000 / 18000 / 34000 / 54000, revenue 0.05 / 11 / 40 / 90 / 170 / 270 ₹Cr. FY2032 ₹270 Cr = 23.93% at 89%. Role: The volume ramp of the portfolio: highest unit count of any SKU and the lowest fitment complexity, so it scales channel reach that the harder products later inherit.",
+    "script": "Slide 11: AD0 SMART MIRROR — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹270 Cr at FY2032 — 23.9% of group revenue, at 89% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 11 54,000 FY2032 UNITS ₹270 Cr FY2032 REVENUE 23.9% SHARE OF GROUP 89% GROSS MARGIN UNITS SHIPPED 10 FY27 2,200 FY28 8,000 FY29 18,000 FY30 34,000 FY31 54,000 FY32 REVENUE, ₹ CR 0 FY27 11 FY28 40 FY29 90 FY30 170 FY31 270 FY32 Its role in the portfolio The volume ramp of the portfolio: highest unit count of any SKU and the lowest fitment complexity, so it scales channel reach that the harder products later inherit. What it depends on Distribution reach and price holding at ₹50k. It runs on current-generation hardware, so it is not gated on the ASIC.",
+    "sim_type": "mirror"
+  },
+  {
+    "slide": 12,
+    "title": "AD1 INDOOR L4 KIT · A",
+    "body": "What it is\nA self-driving retrofit kit for indoor vehicles: sensor head, compute box and a drive-by-wire interface.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n12\n₹1.00 L\nUNIT PRICE\nSystems\nSEGMENT\nIndoor\nOPERATING DOMAIN\nFY2028\nFIRST REVENUE\nWHAT IS IN IT\n01\nCamera and depth sensing head\n02\nSoC2 compute box\n03\nDrive-by-wire actuation interface\n04\nSite mapping and commissioning tooling\nHow it is positioned\nAD1 Indoor L4 kit sells at ₹1.00 L into the road autonomy surface. Where level-4 behaviour ships years before it is legal on a public road, on exactly the same silicon — the technical proof point for the road roadmap.",
+    "notes": "AD1 Indoor L4 kit — what it is. Price ₹1.00 L, segment Systems, domain Indoor, first revenue FY2028.",
+    "script": "Slide 12: AD1 INDOOR L4 KIT — What it is. What it is A self-driving retrofit kit for indoor vehicles: sensor head, compute box and a drive-by-wire interface. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 12 ₹1.00 L UNIT PRICE Systems SEGMENT Indoor OPERATING DOMAIN FY2028 FIRST REVENUE WHAT IS IN IT 01 Camera and depth sensing head 02 SoC2 compute box 03 Drive-by-wire actuation interface 04 Site mapping and commissioning tooling How it is positioned AD1 Indoor L4 kit sells at ₹1.00 L into the road autonomy surface. Where level-4 behaviour ships years before it is legal on a public road, on exactly the same silicon — the technical proof point for the road roadmap.",
+    "sim_type": "forklift"
+  },
+  {
+    "slide": 13,
+    "title": "AD1 INDOOR L4 KIT · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n13\nSIGNAL CHAIN\n1\nCameras and depth sensing read the aisle, load and people\n2\nSoC2 localises the vehicle against a site map it holds onboard\n3\nPlanner picks a path and a speed for the geofenced route\n4\nDrive-by-wire interface issues steer, throttle and brake\nWhat the silicon does here\nIndoor autonomy is where the silicon runs closed-loop rather than advisory. A 24 m LiDAR at 5 Hz and a 57° camera fuse into one bird’s-eye occupancy view, and the planner drives to it at up to 1.5 m/s inside a ring-fenced safety zone — the vehicle steers, not the driver.\nWhat this product depends on\nSite mapping and commissioning throughput, which is services capacity rather than product.",
+    "notes": "AD1 Indoor L4 kit — signal chain: Cameras and depth sensing read the aisle, load and people -> SoC2 localises the vehicle against a site map it holds onboard -> Planner picks a path and a speed for the geofenced route -> Drive-by-wire interface issues steer, throttle and brake. Depends on: Site mapping and commissioning throughput, which is services capacity rather than product.",
+    "script": "Slide 13: AD1 INDOOR L4 KIT — Processing Signal Chain. AD1 Indoor L4 kit — signal chain: Cameras and depth sensing read the aisle, load and people -> SoC2 localises the vehicle against a site map it holds onboard -> Planner picks a path and a speed for the geofenced route -> Drive-by-wire interface issues steer, throttle and brake. Depends on: Site mapping and commissioning throughput, which is services capacity rather than product.",
+    "sim_type": "forklift"
+  },
+  {
+    "slide": 14,
+    "title": "AD1 INDOOR L4 KIT · C",
+    "body": "Who buys it, and why now\nInside a private site no homologation applies, so deployment is a commercial decision.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n14\nThe buyer\nWarehouse and industrial operators automating repetitive internal movement.\nThe channel\nDirect to site operators and through material-handling integrators.\nDemand pool · — capture at FY2032\nWarehouse/industrial autonomy; part of $4.8B edge-AI. Our FY2032 volume of 4,200 units is — of that pool.\nSource: Dataintelo/GMI automotive edge-AI 2025. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "AD1 Indoor L4 kit — buyer: Warehouse and industrial operators automating repetitive internal movement. Channel: Direct to site operators and through material-handling integrators. Trigger: Inside a private site no homologation applies, so deployment is a commercial decision. Pool: Warehouse/industrial autonomy; part of $4.8B edge-AI (—). Source: Dataintelo/GMI automotive edge-AI 2025.",
+    "script": "Slide 14: AD1 INDOOR L4 KIT — Commercial Profile and Buyer Trigger. AD1 Indoor L4 kit — buyer: Warehouse and industrial operators automating repetitive internal movement. Channel: Direct to site operators and through material-handling integrators. Trigger: Inside a private site no homologation applies, so deployment is a commercial decision. Pool: Warehouse/industrial autonomy; part of $4.8B edge-AI (—). Source: Dataintelo/GMI automotive edge-AI 2025.",
+    "sim_type": "forklift"
+  },
+  {
+    "slide": 15,
+    "title": "AD1 INDOOR L4 KIT · D",
+    "body": "How it fits the overall picture\n₹42.0 Cr at FY2032 — 3.7% of group revenue, at 89% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n15\n4,200\nFY2032 UNITS\n₹42.0 Cr\nFY2032 REVENUE\n3.7%\nSHARE OF GROUP\n89%\nGROSS MARGIN\nUNITS SHIPPED\n0\nFY27\n20\nFY28\n400\nFY29\n1,000\nFY30\n2,200\nFY31\n4,200\nFY32\nREVENUE, ₹ CR\n0\nFY27\n0\nFY28\n4\nFY29\n10\nFY30\n22\nFY31\n42\nFY32\nIts role in the portfolio\nWhere level-4 behaviour ships years before it is legal on a public road, on exactly the same silicon — the technical proof point for the road roadmap.\nWhat it depends on\nSite mapping and commissioning throughput, which is services capacity rather than product.",
+    "notes": "AD1 Indoor L4 kit — units 0 / 20 / 400 / 1000 / 2200 / 4200, revenue 0 / 0.2 / 4 / 10 / 22 / 42 ₹Cr. FY2032 ₹42.0 Cr = 3.72% at 89%. Role: Where level-4 behaviour ships years before it is legal on a public road, on exactly the same silicon — the technical proof point for the road roadmap.",
+    "script": "Slide 15: AD1 INDOOR L4 KIT — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹42.0 Cr at FY2032 — 3.7% of group revenue, at 89% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 15 4,200 FY2032 UNITS ₹42.0 Cr FY2032 REVENUE 3.7% SHARE OF GROUP 89% GROSS MARGIN UNITS SHIPPED 0 FY27 20 FY28 400 FY29 1,000 FY30 2,200 FY31 4,200 FY32 REVENUE, ₹ CR 0 FY27 0 FY28 4 FY29 10 FY30 22 FY31 42 FY32 Its role in the portfolio Where level-4 behaviour ships years before it is legal on a public road, on exactly the same silicon — the technical proof point for the road roadmap. What it depends on Site mapping and commissioning throughput, which is services capacity rather than product.",
+    "sim_type": "forklift"
+  },
+  {
+    "slide": 16,
+    "title": "AD1 INDOOR L4 KIT · E",
+    "body": "Proven in a working simulator\nA drawable warehouse floor where the same stack runs a real put-away and pick route\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n16\nLIVE DEMONSTRATOR\nAMR Forklift · Dark-Store Sim\nAuthor the site\nWaypoints snap to aisles; inbound put-away, pick run and a peak-hour floor ship as presets.\nPopulate the hazards\nWorkers, hi-vis staff, peer AMRs, trolleys, spills and pallets are placed on the map and the vehicle must resolve them.\nGraded response\nHonk, voice, both or silent — with configurable on-time and gap, because an indoor alert policy is a site decision.\nRecovery is explicit\nAuto-reroute after a set stuck-time, which is the operational question every warehouse buyer asks first.\nThe demonstrator runs the production perception stack against a simulated environment. It is evidence of the decision layer, not of a fielded deployment.",
+    "notes": "AD1 Indoor L4 kit — demonstrator AMR Forklift · Dark-Store Sim. Author the site: Waypoints snap to aisles; inbound put-away, pick run and a peak-hour floor ship as presets. Populate the hazards: Workers, hi-vis staff, peer AMRs, trolleys, spills and pallets are placed on the map and the vehicle must resolve them. Graded response: Honk, voice, both or silent — with configurable on-time and gap, because an indoor alert policy is a site decision. Recovery is explicit: Auto-reroute after a set stuck-time, which is the operational question every warehouse buyer asks first.",
+    "script": "Slide 16: AD1 INDOOR L4 KIT · E. AD1 Indoor L4 kit — demonstrator AMR Forklift · Dark-Store Sim. Author the site: Waypoints snap to aisles; inbound put-away, pick run and a peak-hour floor ship as presets. Populate the hazards: Workers, hi-vis staff, peer AMRs, trolleys, spills and pallets are placed on the map and the vehicle must resolve them. Graded response: Honk, voice, both or silent — with configurable on-time and gap, because an indoor alert policy is a site decision. Recovery is explicit: Auto-reroute after a set stuck-time, which is the operational question every warehouse buyer asks first.",
+    "sim_type": "forklift"
+  },
+  {
+    "slide": 17,
+    "title": "AD1 INDOOR L4 KIT · F",
+    "body": "The simulator, running\nDark-store AMR sim, recorded running. Inbound put-away, then a pick run, then the peak-hour floor.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n17\nThe route\nWaypoints snap to aisles; the vehicle drives them, not an animation path.\nThe safety ring\nA geofenced zone travels with the truck and gates its speed.\nThe hazards\nWorkers, peer AMRs, trolleys and spills must all be resolved, not dodged by luck.\nThe peak floor\nThe third scenario decides whether a site can actually run this.\nRecorded from the simulator itself; the clip plays in the deck. Simulation, not a fielded deployment.",
+    "notes": "AD1 Indoor L4 kit — embedded clip of AMR Forklift · Dark-Store Sim. The route: Waypoints snap to aisles; the vehicle drives them, not an animation path. The safety ring: A geofenced zone travels with the truck and gates its speed. The hazards: Workers, peer AMRs, trolleys and spills must all be resolved, not dodged by luck. The peak floor: The third scenario decides whether a site can actually run this.",
+    "script": "Slide 17: AD1 INDOOR L4 KIT · F. AD1 Indoor L4 kit — embedded clip of AMR Forklift · Dark-Store Sim. The route: Waypoints snap to aisles; the vehicle drives them, not an animation path. The safety ring: A geofenced zone travels with the truck and gates its speed. The hazards: Workers, peer AMRs, trolleys and spills must all be resolved, not dodged by luck. The peak floor: The third scenario decides whether a site can actually run this.",
+    "sim_type": "forklift"
+  },
+  {
+    "slide": 18,
+    "title": "SMART TRUCK (AD2 KIT) · A",
+    "body": "What it is\nA commercial-vehicle ADAS kit: forward camera, radar, compute box, driver display and harness.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n18\n₹2.50 L\nUNIT PRICE\nSystems\nSEGMENT\nOutdoor\nOPERATING DOMAIN\nFY2027\nFIRST REVENUE\nWHAT IS IN IT\n01\nForward camera and 4D radar\n02\nSoC2 compute box\n03\nDriver interface display and alert\n04\nVehicle bus harness and brake interface\nHow it is positioned\nSmart Truck (AD2 kit) sells at ₹2.50 L into the road autonomy surface. The largest SKU in the plan at ₹450 Cr and the reason the portfolio has a demand floor rather than a demand forecast.",
+    "notes": "Smart Truck (AD2 kit) — what it is. Price ₹2.50 L, segment Systems, domain Outdoor, first revenue FY2027.",
+    "script": "Slide 18: SMART TRUCK (AD2 KIT) — What it is. What it is A commercial-vehicle ADAS kit: forward camera, radar, compute box, driver display and harness. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 18 ₹2.50 L UNIT PRICE Systems SEGMENT Outdoor OPERATING DOMAIN FY2027 FIRST REVENUE WHAT IS IN IT 01 Forward camera and 4D radar 02 SoC2 compute box 03 Driver interface display and alert 04 Vehicle bus harness and brake interface How it is positioned Smart Truck (AD2 kit) sells at ₹2.50 L into the road autonomy surface. The largest SKU in the plan at ₹450 Cr and the reason the portfolio has a demand floor rather than a demand forecast.",
+    "sim_type": "ddrive"
+  },
+  {
+    "slide": 19,
+    "title": "SMART TRUCK (AD2 KIT) · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n19\nSIGNAL CHAIN\n1\nCamera and radar watch the forward path and the blind quarters\n2\nSoC2 fuses both into one object list with range and closing speed\n3\nCollision, lane and blind-spot logic decide whether to warn\n4\nDriver is warned, and the brake interface is signalled where fitted\nWhat the silicon does here\nThe box takes eleven channels at once — seven 8MP RGB cameras on GMSL2, two thermal and front/rear 4D 77 GHz radar — and fuses the whole suite in 8.6 ms of a 33.3 ms frame. That leaves 74% of the frame budget unused, which is the margin that lets one part serve every sensor configuration below it.\nWhat this product depends on\nCertification through ARAI or ICAT, and installation capacity at 18,000 fitments a year.",
+    "notes": "Smart Truck (AD2 kit) — signal chain: Camera and radar watch the forward path and the blind quarters -> SoC2 fuses both into one object list with range and closing speed -> Collision, lane and blind-spot logic decide whether to warn -> Driver is warned, and the brake interface is signalled where fitted. Depends on: Certification through ARAI or ICAT, and installation capacity at 18,000 fitments a year.",
+    "script": "Slide 19: SMART TRUCK (AD2 KIT) — Processing Signal Chain. Smart Truck (AD2 kit) — signal chain: Camera and radar watch the forward path and the blind quarters -> SoC2 fuses both into one object list with range and closing speed -> Collision, lane and blind-spot logic decide whether to warn -> Driver is warned, and the brake interface is signalled where fitted. Depends on: Certification through ARAI or ICAT, and installation capacity at 18,000 fitments a year.",
+    "sim_type": "ddrive"
+  },
+  {
+    "slide": 20,
+    "title": "SMART TRUCK (AD2 KIT) · C",
+    "body": "Who buys it, and why now\nRegulatory. Driver-drowsiness, blind-spot and lane-departure obligations on N2/N3 vehicles.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n20\nThe buyer\nFleet operators and truck OEMs — the decision is compliance-led, not discretionary.\nThe channel\nFleet direct and retrofit installers, with OEM line-fit as the longer route.\nDemand pool · 1.80% capture at FY2032\nMANDATORY: 0.5M new N2/N3 trucks/yr + 0.5M retrofit. Our FY2032 volume of 18,000 units is 1.80% of that pool.\nSource: MoRTH GSR 184(E) ADAS mandate on N2/N3. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "Smart Truck (AD2 kit) — buyer: Fleet operators and truck OEMs — the decision is compliance-led, not discretionary. Channel: Fleet direct and retrofit installers, with OEM line-fit as the longer route. Trigger: Regulatory. Driver-drowsiness, blind-spot and lane-departure obligations on N2/N3 vehicles. Pool: MANDATORY: 0.5M new N2/N3 trucks/yr + 0.5M retrofit (1.80%). Source: MoRTH GSR 184(E) ADAS mandate on N2/N3.",
+    "script": "Slide 20: SMART TRUCK (AD2 KIT) — Commercial Profile and Buyer Trigger. Smart Truck (AD2 kit) — buyer: Fleet operators and truck OEMs — the decision is compliance-led, not discretionary. Channel: Fleet direct and retrofit installers, with OEM line-fit as the longer route. Trigger: Regulatory. Driver-drowsiness, blind-spot and lane-departure obligations on N2/N3 vehicles. Pool: MANDATORY: 0.5M new N2/N3 trucks/yr + 0.5M retrofit (1.80%). Source: MoRTH GSR 184(E) ADAS mandate on N2/N3.",
+    "sim_type": "ddrive"
+  },
+  {
+    "slide": 21,
+    "title": "SMART TRUCK (AD2 KIT) · D",
+    "body": "How it fits the overall picture\n₹450 Cr at FY2032 — 39.9% of group revenue, at 89% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n21\n18,000\nFY2032 UNITS\n₹450 Cr\nFY2032 REVENUE\n39.9%\nSHARE OF GROUP\n89%\nGROSS MARGIN\nUNITS SHIPPED\n3\nFY27\n80\nFY28\n1,400\nFY29\n4,000\nFY30\n9,000\nFY31\n18,000\nFY32\nREVENUE, ₹ CR\n0\nFY27\n2\nFY28\n35\nFY29\n100\nFY30\n225\nFY31\n450\nFY32\nIts role in the portfolio\nThe largest SKU in the plan at ₹450 Cr and the reason the portfolio has a demand floor rather than a demand forecast.\nWhat it depends on\nCertification through ARAI or ICAT, and installation capacity at 18,000 fitments a year.",
+    "notes": "Smart Truck (AD2 kit) — units 3 / 80 / 1400 / 4000 / 9000 / 18000, revenue 0.07 / 2 / 35 / 100 / 225 / 450 ₹Cr. FY2032 ₹450 Cr = 39.88% at 89%. Role: The largest SKU in the plan at ₹450 Cr and the reason the portfolio has a demand floor rather than a demand forecast.",
+    "script": "Slide 21: SMART TRUCK (AD2 KIT) — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹450 Cr at FY2032 — 39.9% of group revenue, at 89% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 21 18,000 FY2032 UNITS ₹450 Cr FY2032 REVENUE 39.9% SHARE OF GROUP 89% GROSS MARGIN UNITS SHIPPED 3 FY27 80 FY28 1,400 FY29 4,000 FY30 9,000 FY31 18,000 FY32 REVENUE, ₹ CR 0 FY27 2 FY28 35 FY29 100 FY30 225 FY31 450 FY32 Its role in the portfolio The largest SKU in the plan at ₹450 Cr and the reason the portfolio has a demand floor rather than a demand forecast. What it depends on Certification through ARAI or ICAT, and installation capacity at 18,000 fitments a year.",
+    "sim_type": "ddrive"
+  },
+  {
+    "slide": 22,
+    "title": "SMART TRUCK (AD2 KIT) · E",
+    "body": "Proven in a working simulator\nBird’s-eye planner view over camera, radar and LiDAR, on a live vehicle-dynamics model\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n22\nLIVE DEMONSTRATOR\nD-DRIVE · ADAS Sim v2\nThree road profiles\nMarket street, single-carriageway highway and a stress-test scenario run against the same perception stack.\nReal plant model\n550 kg mass, 2.10 m wheelbase, μ 0.75 tyre friction — steering angle and lateral acceleration are solved, not scripted.\nPerception, not replay\nTargets enter and leave the corridor from the sensor model; the planner view redraws from the fused object list.\nWhy it matters\nIt shows the decision layer a buyer is actually purchasing, before any truck is fitted.\nThe demonstrator runs the production perception stack against a simulated environment. It is evidence of the decision layer, not of a fielded deployment.",
+    "notes": "Smart Truck (AD2 kit) — demonstrator D-DRIVE · ADAS Sim v2. Three road profiles: Market street, single-carriageway highway and a stress-test scenario run against the same perception stack. Real plant model: 550 kg mass, 2.10 m wheelbase, μ 0.75 tyre friction — steering angle and lateral acceleration are solved, not scripted. Perception, not replay: Targets enter and leave the corridor from the sensor model; the planner view redraws from the fused object list. Why it matters: It shows the decision layer a buyer is actually purchasing, before any truck is fitted.",
+    "script": "Slide 22: SMART TRUCK (AD2 KIT) · E. Smart Truck (AD2 kit) — demonstrator D-DRIVE · ADAS Sim v2. Three road profiles: Market street, single-carriageway highway and a stress-test scenario run against the same perception stack. Real plant model: 550 kg mass, 2.10 m wheelbase, μ 0.75 tyre friction — steering angle and lateral acceleration are solved, not scripted. Perception, not replay: Targets enter and leave the corridor from the sensor model; the planner view redraws from the fused object list. Why it matters: It shows the decision layer a buyer is actually purchasing, before any truck is fitted.",
+    "sim_type": "ddrive"
+  },
+  {
+    "slide": 23,
+    "title": "SMART TRUCK (AD2 KIT) · F",
+    "body": "The simulator, running\nD-DRIVE ADAS Sim v2, recorded running. Market street, then highway, then the stress-test scenario.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n23\nThe planner view\nThe BEV panel redraws from the fused object list, not from a script.\nThe perception rail\nNamed classes with live range — motorbike and auto-rickshaw, metres out.\nThe plant readout\n550 kg, 2.10 m wheelbase, μ 0.75. Steering and lateral g are solved.\nThe scenario switch\nSame stack, three road profiles. Nothing is reloaded between them.\nRecorded from the simulator itself; the clip plays in the deck. Simulation, not a fielded deployment.",
+    "notes": "Smart Truck (AD2 kit) — embedded clip of D-DRIVE · ADAS Sim v2. The planner view: The BEV panel redraws from the fused object list, not from a script. The perception rail: Named classes with live range — motorbike and auto-rickshaw, metres out. The plant readout: 550 kg, 2.10 m wheelbase, μ 0.75. Steering and lateral g are solved. The scenario switch: Same stack, three road profiles. Nothing is reloaded between them.",
+    "script": "Slide 23: SMART TRUCK (AD2 KIT) · F. Smart Truck (AD2 kit) — embedded clip of D-DRIVE · ADAS Sim v2. The planner view: The BEV panel redraws from the fused object list, not from a script. The perception rail: Named classes with live range — motorbike and auto-rickshaw, metres out. The plant readout: 550 kg, 2.10 m wheelbase, μ 0.75. Steering and lateral g are solved. The scenario switch: Same stack, three road profiles. Nothing is reloaded between them.",
+    "sim_type": "ddrive"
+  },
+  {
+    "slide": 24,
+    "title": "SMART TRUCK (AD2 KIT) · G",
+    "body": "Sensor coverage, animated\nSmart Mirror Tower — the first system on the box. Eleven channels, and where each one looks.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n24\nThe two mirror towers\nA thermal cam, a road cam and a 120° truck-side cam, retrofitted above the existing mirrors.\nThe cones are the coverage\nWatch them sweep. Where they overlap is where a cyclist or animal is picked up.\nFront and rear 4D radar\nRange and velocity at both ends, in rain, dust and glare.\nZero blind spots\nNo quarter of an N3 truck is left unobserved.\nRecorded from the source animation; the clip plays in the deck. Illustrative of the architecture, not a measurement.",
+    "notes": "Smart Truck (AD2 kit) — Sensor coverage, animated. The two mirror towers: A thermal cam, a road cam and a 120° truck-side cam, retrofitted above the existing mirrors. The cones are the coverage: Watch them sweep. Where they overlap is where a cyclist or animal is picked up. Front and rear 4D radar: Range and velocity at both ends, in rain, dust and glare. Zero blind spots: No quarter of an N3 truck is left unobserved.",
+    "script": "Slide 24: SMART TRUCK (AD2 KIT) · G. Smart Truck (AD2 kit) — Sensor coverage, animated. The two mirror towers: A thermal cam, a road cam and a 120° truck-side cam, retrofitted above the existing mirrors. The cones are the coverage: Watch them sweep. Where they overlap is where a cyclist or animal is picked up. Front and rear 4D radar: Range and velocity at both ends, in rain, dust and glare. Zero blind spots: No quarter of an N3 truck is left unobserved.",
+    "sim_type": "ddrive"
+  },
+  {
+    "slide": 25,
+    "title": "PART TWO",
+    "body": "Silicon & compute\n₹194 Cr · 17.2% of FY2032 · 5 SKUs · Selling the chip, not the vehicle\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n25",
+    "notes": "Silicon & compute: Chipset OEM B2B (ASIC die), A100 compute box 1ch +SDK (M.2), A100 compute box 2ch +SDK, A100 compute box 4ch +SDK (PCIe), T100 AI licence (SaaS).",
+    "script": "Part Two: Silicon and Compute. Selling bare 28-nanometer ASIC dies, M.2 and PCIe acceleration boards, and recurring AI model licenses directly to Tier-1 suppliers.",
+    "sim_type": null
+  },
+  {
+    "slide": 26,
+    "title": "CHIPSET OEM B2B · A",
+    "body": "What it is\nThe bare SoC2 die, supplied in tray or reel for the customer to place on their own board.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n26\n₹18,000\nUNIT PRICE\nSemiconductors\nSEGMENT\nOutdoor\nOPERATING DOMAIN\nFY2028\nFIRST REVENUE\nWHAT IS IN IT\n01\nSoC2 die, tested and binned\n02\nReference design and integration documentation\n03\nToolchain access and support\nHow it is positioned\nChipset OEM B2B (ASIC die) sells at ₹18,000 into the silicon & compute surface. The most profitable revenue in the plan at 94% margin, needing no integration, certification or installation capacity from us.",
+    "notes": "Chipset OEM B2B (ASIC die) — what it is. Price ₹18,000, segment Semiconductors, domain Outdoor, first revenue FY2028.",
+    "script": "Slide 26: CHIPSET OEM B2B — What it is. What it is The bare SoC2 die, supplied in tray or reel for the customer to place on their own board. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 26 ₹18,000 UNIT PRICE Semiconductors SEGMENT Outdoor OPERATING DOMAIN FY2028 FIRST REVENUE WHAT IS IN IT 01 SoC2 die, tested and binned 02 Reference design and integration documentation 03 Toolchain access and support How it is positioned Chipset OEM B2B (ASIC die) sells at ₹18,000 into the silicon & compute surface. The most profitable revenue in the plan at 94% margin, needing no integration, certification or installation capacity from us.",
+    "sim_type": null
+  },
+  {
+    "slide": 27,
+    "title": "CHIPSET OEM B2B · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n27\nSIGNAL CHAIN\n1\nThe customer's own sensors feed their own board\n2\nThe SoC2 die does the perception compute inside their design\n3\nTheir software decides what to do with the result\n4\nTheir product ships, with our silicon inside it\nWhat the silicon does here\nThis is the die itself: TSMC 28 nm, roughly 57 mm², 32,768 MACs at 600 MHz for 39.3 TOPS, against 102.4 GB/s of dual-channel LPDDR5. Sold as silicon, so the buyer builds their own board and carries their own integration.\nWhat this product depends on\nWorking, qualified silicon. Every unit of this line is downstream of the tapeout landing.",
+    "notes": "Chipset OEM B2B (ASIC die) — signal chain: The customer's own sensors feed their own board -> The SoC2 die does the perception compute inside their design -> Their software decides what to do with the result -> Their product ships, with our silicon inside it. Depends on: Working, qualified silicon. Every unit of this line is downstream of the tapeout landing.",
+    "script": "Slide 27: CHIPSET OEM B2B — Processing Signal Chain. Chipset OEM B2B (ASIC die) — signal chain: The customer's own sensors feed their own board -> The SoC2 die does the perception compute inside their design -> Their software decides what to do with the result -> Their product ships, with our silicon inside it. Depends on: Working, qualified silicon. Every unit of this line is downstream of the tapeout landing.",
+    "sim_type": "flow"
+  },
+  {
+    "slide": 28,
+    "title": "CHIPSET OEM B2B · C",
+    "body": "Who buys it, and why now\nWanting Indian-designed silicon and domestic supply rather than an imported module.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n28\nThe buyer\nTier-1 suppliers and OEMs with in-house hardware teams.\nThe channel\nDirect design-in engagements, long cycle, high commitment.\nDemand pool · 0.25% capture at FY2032\nIndia ADAS chip pool; $2.29B ADAS (2024). Our FY2032 volume of 30,000 units is 0.25% of that pool.\nSource: EMR 2024: $2.29B, 20.6% CAGR. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "Chipset OEM B2B (ASIC die) — buyer: Tier-1 suppliers and OEMs with in-house hardware teams. Channel: Direct design-in engagements, long cycle, high commitment. Trigger: Wanting Indian-designed silicon and domestic supply rather than an imported module. Pool: India ADAS chip pool; $2.29B ADAS (2024) (0.25%). Source: EMR 2024: $2.29B, 20.6% CAGR.",
+    "script": "Slide 28: CHIPSET OEM B2B — Commercial Profile and Buyer Trigger. Chipset OEM B2B (ASIC die) — buyer: Tier-1 suppliers and OEMs with in-house hardware teams. Channel: Direct design-in engagements, long cycle, high commitment. Trigger: Wanting Indian-designed silicon and domestic supply rather than an imported module. Pool: India ADAS chip pool; $2.29B ADAS (2024) (0.25%). Source: EMR 2024: $2.29B, 20.6% CAGR.",
+    "sim_type": null
+  },
+  {
+    "slide": 29,
+    "title": "CHIPSET OEM B2B · D",
+    "body": "How it fits the overall picture\n₹54.0 Cr at FY2032 — 4.8% of group revenue, at 94% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n29\n30,000\nFY2032 UNITS\n₹54.0 Cr\nFY2032 REVENUE\n4.8%\nSHARE OF GROUP\n94%\nGROSS MARGIN\nUNITS SHIPPED\n0\nFY27\n30\nFY28\n1,750\nFY29\n6,000\nFY30\n15,000\nFY31\n30,000\nFY32\nREVENUE, ₹ CR\n0\nFY27\n0\nFY28\n3\nFY29\n11\nFY30\n27\nFY31\n54\nFY32\nIts role in the portfolio\nThe most profitable revenue in the plan at 94% margin, needing no integration, certification or installation capacity from us.\nWhat it depends on\nWorking, qualified silicon. Every unit of this line is downstream of the tapeout landing.",
+    "notes": "Chipset OEM B2B (ASIC die) — units 0 / 30 / 1750 / 6000 / 15000 / 30000, revenue 0 / 0.05 / 3.15 / 10.8 / 27 / 54 ₹Cr. FY2032 ₹54.0 Cr = 4.79% at 94%. Role: The most profitable revenue in the plan at 94% margin, needing no integration, certification or installation capacity from us.",
+    "script": "Slide 29: CHIPSET OEM B2B — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹54.0 Cr at FY2032 — 4.8% of group revenue, at 94% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 29 30,000 FY2032 UNITS ₹54.0 Cr FY2032 REVENUE 4.8% SHARE OF GROUP 94% GROSS MARGIN UNITS SHIPPED 0 FY27 30 FY28 1,750 FY29 6,000 FY30 15,000 FY31 30,000 FY32 REVENUE, ₹ CR 0 FY27 0 FY28 3 FY29 11 FY30 27 FY31 54 FY32 Its role in the portfolio The most profitable revenue in the plan at 94% margin, needing no integration, certification or installation capacity from us. What it depends on Working, qualified silicon. Every unit of this line is downstream of the tapeout landing.",
+    "sim_type": null
+  },
+  {
+    "slide": 30,
+    "title": "CHIPSET OEM B2B · E",
+    "body": "The compute, animated\nFlat 8×8 to an 8×8×8 cube: the same arithmetic, a different geometry, eight times the throughput.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n30\nLeft: the flat matrix\nSoC1.2 on FPGA. 64 MACs/cycle, iterating K in software — eight cycles per tile.\nRight: the cube\nSoC2 on 28 nm. K becomes hardware depth: eight layers fire at once, 512 MACs/cycle.\nWatch the counters\nThe tile counts diverge live. That gap is the eight-times figure, shown not asserted.\nWhy it needs an ASIC\nCube plus per-core memory access does not fit on FPGA. This forces 28 nm.\nRecorded from the source animation; the clip plays in the deck. Illustrative of the architecture, not a measurement.",
+    "notes": "Chipset OEM B2B (ASIC die) — The compute, animated. Left: the flat matrix: SoC1.2 on FPGA. 64 MACs/cycle, iterating K in software — eight cycles per tile. Right: the cube: SoC2 on 28 nm. K becomes hardware depth: eight layers fire at once, 512 MACs/cycle. Watch the counters: The tile counts diverge live. That gap is the eight-times figure, shown not asserted. Why it needs an ASIC: Cube plus per-core memory access does not fit on FPGA. This forces 28 nm.",
+    "script": "Slide 30: CHIPSET OEM B2B · E. Chipset OEM B2B (ASIC die) — The compute, animated. Left: the flat matrix: SoC1.2 on FPGA. 64 MACs/cycle, iterating K in software — eight cycles per tile. Right: the cube: SoC2 on 28 nm. K becomes hardware depth: eight layers fire at once, 512 MACs/cycle. Watch the counters: The tile counts diverge live. That gap is the eight-times figure, shown not asserted. Why it needs an ASIC: Cube plus per-core memory access does not fit on FPGA. This forces 28 nm.",
+    "sim_type": null
+  },
+  {
+    "slide": 31,
+    "title": "A100 COMPUTE BOX 1CH M.2 · A",
+    "body": "What it is\nAn M.2 module carrying the SoC2, sized to drop into a customer's existing carrier board.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n31\n₹85,000\nUNIT PRICE\nSystems\nSEGMENT\nCompute\nOPERATING DOMAIN\nFY2028\nFIRST REVENUE\nWHAT IS IN IT\n01\nM.2 form-factor SoC2 module\n02\nSDK and model toolchain\n03\nReference carrier documentation\nHow it is positioned\nA100 compute box 1ch +SDK (M.2) sells at ₹85,000 into the silicon & compute surface. The widest top of the compute funnel at ₹85k — the cheapest way a customer can adopt the platform.",
+    "notes": "A100 compute box 1ch +SDK (M.2) — what it is. Price ₹85,000, segment Systems, domain Compute, first revenue FY2028.",
+    "script": "Slide 31: A100 COMPUTE BOX 1CH M.2 — What it is. What it is An M.2 module carrying the SoC2, sized to drop into a customer's existing carrier board. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 31 ₹85,000 UNIT PRICE Systems SEGMENT Compute OPERATING DOMAIN FY2028 FIRST REVENUE WHAT IS IN IT 01 M.2 form-factor SoC2 module 02 SDK and model toolchain 03 Reference carrier documentation How it is positioned A100 compute box 1ch +SDK (M.2) sells at ₹85,000 into the silicon & compute surface. The widest top of the compute funnel at ₹85k — the cheapest way a customer can adopt the platform.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 32,
+    "title": "A100 COMPUTE BOX 1CH M.2 · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n32\nSIGNAL CHAIN\n1\nOne camera feeds the customer's carrier board\n2\nThe M.2 module runs their model on the SoC2\n3\nResults return over the bus to their application\n4\nTheir product acts on the output\nWhat the silicon does here\nThe same die on an M.2 module: one camera channel and the SDK, sized for a design-in where the customer already owns the enclosure and the sensor.\nWhat this product depends on\nToolchain quality and documentation, because this customer self-serves.",
+    "notes": "A100 compute box 1ch +SDK (M.2) — signal chain: One camera feeds the customer's carrier board -> The M.2 module runs their model on the SoC2 -> Results return over the bus to their application -> Their product acts on the output. Depends on: Toolchain quality and documentation, because this customer self-serves.",
+    "script": "Slide 32: A100 COMPUTE BOX 1CH M.2 — Processing Signal Chain. A100 compute box 1ch +SDK (M.2) — signal chain: One camera feeds the customer's carrier board -> The M.2 module runs their model on the SoC2 -> Results return over the bus to their application -> Their product acts on the output. Depends on: Toolchain quality and documentation, because this customer self-serves.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 33,
+    "title": "A100 COMPUTE BOX 1CH M.2 · C",
+    "body": "Who buys it, and why now\nWanting the silicon and toolchain without designing a board around a bare die.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n33\nThe buyer\nIntegrators prototyping, or building genuinely single-camera products.\nThe channel\nDirect and through electronics distribution.\nDemand pool · 0.20% capture at FY2032\nAutomotive edge-AI accelerator modules $4.8B (2025). Our FY2032 volume of 3,000 units is 0.20% of that pool.\nSource: Dataintelo: $4.8B 2025 -> $22.6B 2034, 21% CAGR. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "A100 compute box 1ch +SDK (M.2) — buyer: Integrators prototyping, or building genuinely single-camera products. Channel: Direct and through electronics distribution. Trigger: Wanting the silicon and toolchain without designing a board around a bare die. Pool: Automotive edge-AI accelerator modules $4.8B (2025) (0.20%). Source: Dataintelo: $4.8B 2025 -> $22.6B 2034, 21% CAGR.",
+    "script": "Slide 33: A100 COMPUTE BOX 1CH M.2 — Commercial Profile and Buyer Trigger. A100 compute box 1ch +SDK (M.2) — buyer: Integrators prototyping, or building genuinely single-camera products. Channel: Direct and through electronics distribution. Trigger: Wanting the silicon and toolchain without designing a board around a bare die. Pool: Automotive edge-AI accelerator modules $4.8B (2025) (0.20%). Source: Dataintelo: $4.8B 2025 -> $22.6B 2034, 21% CAGR.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 34,
+    "title": "A100 COMPUTE BOX 1CH M.2 · D",
+    "body": "How it fits the overall picture\n₹25.5 Cr at FY2032 — 2.3% of group revenue, at 89% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n34\n3,000\nFY2032 UNITS\n₹25.5 Cr\nFY2032 REVENUE\n2.3%\nSHARE OF GROUP\n89%\nGROSS MARGIN\nUNITS SHIPPED\n0\nFY27\n188\nFY28\n375\nFY29\n750\nFY30\n1,500\nFY31\n3,000\nFY32\nREVENUE, ₹ CR\n0\nFY27\n2\nFY28\n3\nFY29\n6\nFY30\n13\nFY31\n26\nFY32\nIts role in the portfolio\nThe widest top of the compute funnel at ₹85k — the cheapest way a customer can adopt the platform.\nWhat it depends on\nToolchain quality and documentation, because this customer self-serves.",
+    "notes": "A100 compute box 1ch +SDK (M.2) — units 0 / 188 / 375 / 750 / 1500 / 3000, revenue 0 / 1.6 / 3.19 / 6.38 / 12.75 / 25.5 ₹Cr. FY2032 ₹25.5 Cr = 2.26% at 89%. Role: The widest top of the compute funnel at ₹85k — the cheapest way a customer can adopt the platform.",
+    "script": "Slide 34: A100 COMPUTE BOX 1CH M.2 — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹25.5 Cr at FY2032 — 2.3% of group revenue, at 89% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 34 3,000 FY2032 UNITS ₹25.5 Cr FY2032 REVENUE 2.3% SHARE OF GROUP 89% GROSS MARGIN UNITS SHIPPED 0 FY27 188 FY28 375 FY29 750 FY30 1,500 FY31 3,000 FY32 REVENUE, ₹ CR 0 FY27 2 FY28 3 FY29 6 FY30 13 FY31 26 FY32 Its role in the portfolio The widest top of the compute funnel at ₹85k — the cheapest way a customer can adopt the platform. What it depends on Toolchain quality and documentation, because this customer self-serves.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 35,
+    "title": "A100 COMPUTE BOX 2CH · A",
+    "body": "What it is\nA board-level compute module with two camera inputs and the SDK.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n35\n₹1.60 L\nUNIT PRICE\nSystems\nSEGMENT\nCompute\nOPERATING DOMAIN\nFY2028\nFIRST REVENUE\nWHAT IS IN IT\n01\nTwo-channel SoC2 board\n02\nCamera input harnessing\n03\nSDK and model toolchain\nHow it is positioned\nA100 compute box 2ch +SDK sells at ₹1.60 L into the silicon & compute surface. The volume centre of the compute line: twice the channels at roughly double the price, at ₹1.60 L.",
+    "notes": "A100 compute box 2ch +SDK — what it is. Price ₹1.60 L, segment Systems, domain Compute, first revenue FY2028.",
+    "script": "Slide 35: A100 COMPUTE BOX 2CH — What it is. What it is A board-level compute module with two camera inputs and the SDK. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 35 ₹1.60 L UNIT PRICE Systems SEGMENT Compute OPERATING DOMAIN FY2028 FIRST REVENUE WHAT IS IN IT 01 Two-channel SoC2 board 02 Camera input harnessing 03 SDK and model toolchain How it is positioned A100 compute box 2ch +SDK sells at ₹1.60 L into the silicon & compute surface. The volume centre of the compute line: twice the channels at roughly double the price, at ₹1.60 L.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 36,
+    "title": "A100 COMPUTE BOX 2CH · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n36\nSIGNAL CHAIN\n1\nTwo cameras cover a wider field or a stereo pair\n2\nThe board runs perception on both streams on one SoC2\n3\nFused output is returned to the customer's application\n4\nTheir system acts on it\nWhat the silicon does here\nTwo channels on the same silicon. The step from one channel to two is where fusion starts to matter, and it is the first configuration that justifies the hardware transformer path rather than a general-purpose part.\nWhat this product depends on\nThe same toolchain as the entry SKU; no additional certification path.",
+    "notes": "A100 compute box 2ch +SDK — signal chain: Two cameras cover a wider field or a stereo pair -> The board runs perception on both streams on one SoC2 -> Fused output is returned to the customer's application -> Their system acts on it. Depends on: The same toolchain as the entry SKU; no additional certification path.",
+    "script": "Slide 36: A100 COMPUTE BOX 2CH — Processing Signal Chain. A100 compute box 2ch +SDK — signal chain: Two cameras cover a wider field or a stereo pair -> The board runs perception on both streams on one SoC2 -> Fused output is returned to the customer's application -> Their system acts on it. Depends on: The same toolchain as the entry SKU; no additional certification path.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 37,
+    "title": "A100 COMPUTE BOX 2CH · C",
+    "body": "Who buys it, and why now\nNeeding more than one view but not a full surround system.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n37\nThe buyer\nIntegrators building multi-camera perception without taking our full kit.\nThe channel\nDirect and through electronics distribution.\nDemand pool · 0.20% capture at FY2032\nAutomotive edge-AI accelerator modules $4.8B (2025). Our FY2032 volume of 1,800 units is 0.20% of that pool.\nSource: Dataintelo: $4.8B 2025 -> $22.6B 2034, 21% CAGR. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "A100 compute box 2ch +SDK — buyer: Integrators building multi-camera perception without taking our full kit. Channel: Direct and through electronics distribution. Trigger: Needing more than one view but not a full surround system. Pool: Automotive edge-AI accelerator modules $4.8B (2025) (0.20%). Source: Dataintelo: $4.8B 2025 -> $22.6B 2034, 21% CAGR.",
+    "script": "Slide 37: A100 COMPUTE BOX 2CH — Commercial Profile and Buyer Trigger. A100 compute box 2ch +SDK — buyer: Integrators building multi-camera perception without taking our full kit. Channel: Direct and through electronics distribution. Trigger: Needing more than one view but not a full surround system. Pool: Automotive edge-AI accelerator modules $4.8B (2025) (0.20%). Source: Dataintelo: $4.8B 2025 -> $22.6B 2034, 21% CAGR.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 38,
+    "title": "A100 COMPUTE BOX 2CH · D",
+    "body": "How it fits the overall picture\n₹28.8 Cr at FY2032 — 2.5% of group revenue, at 89% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n38\n1,800\nFY2032 UNITS\n₹28.8 Cr\nFY2032 REVENUE\n2.5%\nSHARE OF GROUP\n89%\nGROSS MARGIN\nUNITS SHIPPED\n0\nFY27\n113\nFY28\n225\nFY29\n450\nFY30\n900\nFY31\n1,800\nFY32\nREVENUE, ₹ CR\n0\nFY27\n2\nFY28\n4\nFY29\n7\nFY30\n14\nFY31\n29\nFY32\nIts role in the portfolio\nThe volume centre of the compute line: twice the channels at roughly double the price, at ₹1.60 L.\nWhat it depends on\nThe same toolchain as the entry SKU; no additional certification path.",
+    "notes": "A100 compute box 2ch +SDK — units 0 / 113 / 225 / 450 / 900 / 1800, revenue 0 / 1.81 / 3.6 / 7.2 / 14.4 / 28.8 ₹Cr. FY2032 ₹28.8 Cr = 2.55% at 89%. Role: The volume centre of the compute line: twice the channels at roughly double the price, at ₹1.60 L.",
+    "script": "Slide 38: A100 COMPUTE BOX 2CH — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹28.8 Cr at FY2032 — 2.5% of group revenue, at 89% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 38 1,800 FY2032 UNITS ₹28.8 Cr FY2032 REVENUE 2.5% SHARE OF GROUP 89% GROSS MARGIN UNITS SHIPPED 0 FY27 113 FY28 225 FY29 450 FY30 900 FY31 1,800 FY32 REVENUE, ₹ CR 0 FY27 2 FY28 4 FY29 7 FY30 14 FY31 29 FY32 Its role in the portfolio The volume centre of the compute line: twice the channels at roughly double the price, at ₹1.60 L. What it depends on The same toolchain as the entry SKU; no additional certification path.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 39,
+    "title": "A100 COMPUTE BOX 4CH PCIE · A",
+    "body": "What it is\nA PCIe card carrying the SoC2 with four camera inputs, for a host system.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n39\n₹3.00 L\nUNIT PRICE\nSystems\nSEGMENT\nCompute\nOPERATING DOMAIN\nFY2028\nFIRST REVENUE\nWHAT IS IN IT\n01\nFour-channel SoC2 PCIe card\n02\nCamera input harnessing\n03\nSDK and model toolchain\nHow it is positioned\nA100 compute box 4ch +SDK (PCIe) sells at ₹3.00 L into the silicon & compute surface. The highest-priced compute SKU at ₹3.00 L, and the closest the module line gets to being a full system.",
+    "notes": "A100 compute box 4ch +SDK (PCIe) — what it is. Price ₹3.00 L, segment Systems, domain Compute, first revenue FY2028.",
+    "script": "Slide 39: A100 COMPUTE BOX 4CH PCIE — What it is. What it is A PCIe card carrying the SoC2 with four camera inputs, for a host system. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 39 ₹3.00 L UNIT PRICE Systems SEGMENT Compute OPERATING DOMAIN FY2028 FIRST REVENUE WHAT IS IN IT 01 Four-channel SoC2 PCIe card 02 Camera input harnessing 03 SDK and model toolchain How it is positioned A100 compute box 4ch +SDK (PCIe) sells at ₹3.00 L into the silicon & compute surface. The highest-priced compute SKU at ₹3.00 L, and the closest the module line gets to being a full system.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 40,
+    "title": "A100 COMPUTE BOX 4CH PCIE · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n40\nSIGNAL CHAIN\n1\nFour cameras give full surround coverage\n2\nThe card runs perception across all four streams\n3\nResults go to the host over PCIe\n4\nThe host system builds its own product on top\nWhat the silicon does here\nFour channels on a PCIe card, carrying the memory bandwidth the cube geometry needs: each compute cube runs its own local DMA against an eight-bank L2, which is what keeps utilisation high instead of starving on a single global DMA.\nWhat this product depends on\nHost thermal and power budget, which constrains which customers can take it.",
+    "notes": "A100 compute box 4ch +SDK (PCIe) — signal chain: Four cameras give full surround coverage -> The card runs perception across all four streams -> Results go to the host over PCIe -> The host system builds its own product on top. Depends on: Host thermal and power budget, which constrains which customers can take it.",
+    "script": "Slide 40: A100 COMPUTE BOX 4CH PCIE — Processing Signal Chain. A100 compute box 4ch +SDK (PCIe) — signal chain: Four cameras give full surround coverage -> The card runs perception across all four streams -> Results go to the host over PCIe -> The host system builds its own product on top. Depends on: Host thermal and power budget, which constrains which customers can take it.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 41,
+    "title": "A100 COMPUTE BOX 4CH PCIE · C",
+    "body": "Who buys it, and why now\nFull surround perception with the compute inside the customer's own architecture.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n41\nThe buyer\nOEMs and integrators running complete multi-camera stacks on their own platform.\nThe channel\nDirect design-in with larger integrators.\nDemand pool · 0.20% capture at FY2032\nAutomotive edge-AI accelerator modules $4.8B (2025). Our FY2032 volume of 1,200 units is 0.20% of that pool.\nSource: Dataintelo: $4.8B 2025 -> $22.6B 2034, 21% CAGR. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "A100 compute box 4ch +SDK (PCIe) — buyer: OEMs and integrators running complete multi-camera stacks on their own platform. Channel: Direct design-in with larger integrators. Trigger: Full surround perception with the compute inside the customer's own architecture. Pool: Automotive edge-AI accelerator modules $4.8B (2025) (0.20%). Source: Dataintelo: $4.8B 2025 -> $22.6B 2034, 21% CAGR.",
+    "script": "Slide 41: A100 COMPUTE BOX 4CH PCIE — Commercial Profile and Buyer Trigger. A100 compute box 4ch +SDK (PCIe) — buyer: OEMs and integrators running complete multi-camera stacks on their own platform. Channel: Direct design-in with larger integrators. Trigger: Full surround perception with the compute inside the customer's own architecture. Pool: Automotive edge-AI accelerator modules $4.8B (2025) (0.20%). Source: Dataintelo: $4.8B 2025 -> $22.6B 2034, 21% CAGR.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 42,
+    "title": "A100 COMPUTE BOX 4CH PCIE · D",
+    "body": "How it fits the overall picture\n₹36.0 Cr at FY2032 — 3.2% of group revenue, at 89% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n42\n1,200\nFY2032 UNITS\n₹36.0 Cr\nFY2032 REVENUE\n3.2%\nSHARE OF GROUP\n89%\nGROSS MARGIN\nUNITS SHIPPED\n0\nFY27\n75\nFY28\n150\nFY29\n300\nFY30\n600\nFY31\n1,200\nFY32\nREVENUE, ₹ CR\n0\nFY27\n2\nFY28\n5\nFY29\n9\nFY30\n18\nFY31\n36\nFY32\nIts role in the portfolio\nThe highest-priced compute SKU at ₹3.00 L, and the closest the module line gets to being a full system.\nWhat it depends on\nHost thermal and power budget, which constrains which customers can take it.",
+    "notes": "A100 compute box 4ch +SDK (PCIe) — units 0 / 75 / 150 / 300 / 600 / 1200, revenue 0 / 2.25 / 4.5 / 9 / 18 / 36 ₹Cr. FY2032 ₹36.0 Cr = 3.19% at 89%. Role: The highest-priced compute SKU at ₹3.00 L, and the closest the module line gets to being a full system.",
+    "script": "Slide 42: A100 COMPUTE BOX 4CH PCIE — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹36.0 Cr at FY2032 — 3.2% of group revenue, at 89% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 42 1,200 FY2032 UNITS ₹36.0 Cr FY2032 REVENUE 3.2% SHARE OF GROUP 89% GROSS MARGIN UNITS SHIPPED 0 FY27 75 FY28 150 FY29 300 FY30 600 FY31 1,200 FY32 REVENUE, ₹ CR 0 FY27 2 FY28 5 FY29 9 FY30 18 FY31 36 FY32 Its role in the portfolio The highest-priced compute SKU at ₹3.00 L, and the closest the module line gets to being a full system. What it depends on Host thermal and power budget, which constrains which customers can take it.",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 43,
+    "title": "A100 COMPUTE BOX 4CH PCIE · E",
+    "body": "Data movement, animated\nOne shared DMA engine starves eight cores. Eight local engines feed them all — same silicon, same MAC count.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n43\nLeft: one shared engine\nEight PCOREs queue on a single DP engine. Seven wait while one is fed, and utilisation never clears 12%.\nRight: one engine per core\nEach PCORE owns an LDMA and pulls from banked SRAM in parallel. All eight hold about 59%.\nWatch the utilisation bars\nThe left column stays short and red; the right fills and holds. That gap is the case for per-core DMA.\nThe frame budget\n470 ms per YOLO frame today, about 85 ms with per-PCORE DMA. Same process, same multiplier count.\nRecorded from the source animation; the clip plays in the deck. Illustrative of the architecture, not a measurement.",
+    "notes": "",
+    "script": "Slide 43: A100 COMPUTE BOX 4CH PCIE · E. Data movement, animated One shared DMA engine starves eight cores. Eight local engines feed them all — same silicon, same MAC count. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 43 Left: one shared engine Eight PCOREs queue on a single DP engine. Seven wait while one is fed, and utilisatio",
+    "sim_type": "cube"
+  },
+  {
+    "slide": 44,
+    "title": "T100 AI LICENCE · A",
+    "body": "What it is\nNot hardware: a licence to the trained perception models and the toolchain around them.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n44\n₹100.00 L\nUNIT PRICE\nSemiconductors\nSEGMENT\nOutdoor\nOPERATING DOMAIN\nFY2029\nFIRST REVENUE\nWHAT IS IN IT\n01\nTrained India-road perception models\n02\nToolchain and deployment runtime\n03\nUpdate stream and support\nHow it is positioned\nT100 AI licence (SaaS) sells at ₹100.00 L into the silicon & compute surface. ₹50 Cr on pure margin with no unit cost — but no separately sized demand pool exists behind it, so treat it as optionality rather than base case.",
+    "notes": "T100 AI licence (SaaS) — what it is. Price ₹100.00 L, segment Semiconductors, domain Outdoor, first revenue FY2029.",
+    "script": "Slide 44: T100 AI LICENCE — What it is. What it is Not hardware: a licence to the trained perception models and the toolchain around them. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 44 ₹100.00 L UNIT PRICE Semiconductors SEGMENT Outdoor OPERATING DOMAIN FY2029 FIRST REVENUE WHAT IS IN IT 01 Trained India-road perception models 02 Toolchain and deployment runtime 03 Update stream and support How it is positioned T100 AI licence (SaaS) sells at ₹100.00 L into the silicon & compute surface. ₹50 Cr on pure margin with no unit cost — but no separately sized demand pool exists behind it, so treat it as optionality rather than base case.",
+    "sim_type": null
+  },
+  {
+    "slide": 45,
+    "title": "T100 AI LICENCE · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n45\nSIGNAL CHAIN\n1\nThe customer runs their own hardware and their own sensors\n2\nOur models do the perception work inside their runtime\n3\nTheir system decides and acts\n4\nThey ship under their own brand, with our perception inside\nWhat the silicon does here\nThe licence sells the model and toolchain without the board. It is the only line that carries no bill of materials at all, which is why it prices on value rather than on cost.\nWhat this product depends on\nA defensible model advantage and a signed licence; neither is evidenced yet.",
+    "notes": "T100 AI licence (SaaS) — signal chain: The customer runs their own hardware and their own sensors -> Our models do the perception work inside their runtime -> Their system decides and acts -> They ship under their own brand, with our perception inside. Depends on: A defensible model advantage and a signed licence; neither is evidenced yet.",
+    "script": "Slide 45: T100 AI LICENCE — Processing Signal Chain. T100 AI licence (SaaS) — signal chain: The customer runs their own hardware and their own sensors -> Our models do the perception work inside their runtime -> Their system decides and acts -> They ship under their own brand, with our perception inside. Depends on: A defensible model advantage and a signed licence; neither is evidenced yet.",
+    "sim_type": "flow"
+  },
+  {
+    "slide": 46,
+    "title": "T100 AI LICENCE · C",
+    "body": "Who buys it, and why now\nWanting perception tuned for Indian road conditions without building the dataset themselves.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n46\nThe buyer\nOEMs and platform partners who want the India-road stack without our silicon.\nThe channel\nDirect licensing, negotiated per engagement.\nDemand pool · none separately sized\nNo separately sized demand pool is modelled for this line. Treat its revenue as optionality rather than base case.\nSource: no sized pool in the demand schedule. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "T100 AI licence (SaaS) — buyer: OEMs and platform partners who want the India-road stack without our silicon. Channel: Direct licensing, negotiated per engagement. Trigger: Wanting perception tuned for Indian road conditions without building the dataset themselves. Pool: none sized (—). Source: n/a.",
+    "script": "Slide 46: T100 AI LICENCE — Commercial Profile and Buyer Trigger. T100 AI licence (SaaS) — buyer: OEMs and platform partners who want the India-road stack without our silicon. Channel: Direct licensing, negotiated per engagement. Trigger: Wanting perception tuned for Indian road conditions without building the dataset themselves. Pool: none sized (—). Source: n/a.",
+    "sim_type": null
+  },
+  {
+    "slide": 47,
+    "title": "T100 AI LICENCE · D",
+    "body": "How it fits the overall picture\n₹50.0 Cr at FY2032 — 4.4% of group revenue, at 94% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n47\n50\nFY2032 UNITS\n₹50.0 Cr\nFY2032 REVENUE\n4.4%\nSHARE OF GROUP\n94%\nGROSS MARGIN\nUNITS SHIPPED\n0\nFY27\n0\nFY28\n2\nFY29\n6\nFY30\n18\nFY31\n50\nFY32\nREVENUE, ₹ CR\n0\nFY27\n0\nFY28\n2\nFY29\n6\nFY30\n18\nFY31\n50\nFY32\nIts role in the portfolio\n₹50 Cr on pure margin with no unit cost — but no separately sized demand pool exists behind it, so treat it as optionality rather than base case.\nWhat it depends on\nA defensible model advantage and a signed licence; neither is evidenced yet.",
+    "notes": "T100 AI licence (SaaS) — units 0 / 0 / 2 / 6 / 18 / 50, revenue 0 / 0 / 2 / 6 / 18 / 50 ₹Cr. FY2032 ₹50.0 Cr = 4.43% at 94%. Role: ₹50 Cr on pure margin with no unit cost — but no separately sized demand pool exists behind it, so treat it as optionality rather than base case.",
+    "script": "Slide 47: T100 AI LICENCE — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹50.0 Cr at FY2032 — 4.4% of group revenue, at 94% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 47 50 FY2032 UNITS ₹50.0 Cr FY2032 REVENUE 4.4% SHARE OF GROUP 94% GROSS MARGIN UNITS SHIPPED 0 FY27 0 FY28 2 FY29 6 FY30 18 FY31 50 FY32 REVENUE, ₹ CR 0 FY27 0 FY28 2 FY29 6 FY30 18 FY31 50 FY32 Its role in the portfolio ₹50 Cr on pure margin with no unit cost — but no separately sized demand pool exists behind it, so treat it as optionality rather than base case. What it depends on A defensible model advantage and a signed licence; neither is evidenced yet.",
+    "sim_type": null
+  },
+  {
+    "slide": 48,
+    "title": "PART THREE",
+    "body": "Fleet & mobility\n₹88.7 Cr · 7.9% of FY2032 · 2 SKUs · Highest revenue per unit we sell\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n48",
+    "notes": "Fleet & mobility: Autonomous TaaS, Seaport AGV (port autonomy).",
+    "script": "Part Three: Fleet and Mobility. Autonomous transport-as-a-service freight haulers and seaport container terminal automation—capturing our highest revenue per unit.",
+    "sim_type": null
+  },
+  {
+    "slide": 49,
+    "title": "AUTONOMOUS TAAS · A",
+    "body": "What it is\nNot a product sold to a customer: a vehicle we own, operated under contract on a fixed route.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n49\n₹66.00 L\nUNIT PRICE\nSystems\nSEGMENT\nOutdoor\nOPERATING DOMAIN\nFY2028\nFIRST REVENUE\nWHAT IS IN IT\n01\nVehicle with the full AD2 sensor set\n02\nSoC2 autonomy stack\n03\nRemote operations and monitoring link\n04\nService contract and route commissioning\nHow it is positioned\nAutonomous TaaS sells at ₹66.00 L into the fleet & mobility surface. Highest revenue per unit in the portfolio at ₹66 lakh a vehicle, and the only line where we capture the operating margin rather than a hardware margin.",
+    "notes": "Autonomous TaaS — what it is. Price ₹66.00 L, segment Systems, domain Outdoor, first revenue FY2028.",
+    "script": "Slide 49: AUTONOMOUS TAAS — What it is. What it is Not a product sold to a customer: a vehicle we own, operated under contract on a fixed route. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 49 ₹66.00 L UNIT PRICE Systems SEGMENT Outdoor OPERATING DOMAIN FY2028 FIRST REVENUE WHAT IS IN IT 01 Vehicle with the full AD2 sensor set 02 SoC2 autonomy stack 03 Remote operations and monitoring link 04 Service contract and route commissioning How it is positioned Autonomous TaaS sells at ₹66.00 L into the fleet & mobility surface. Highest revenue per unit in the portfolio at ₹66 lakh a vehicle, and the only line where we capture the operating margin rather than a hardware margin.",
+    "sim_type": null
+  },
+  {
+    "slide": 50,
+    "title": "AUTONOMOUS TAAS · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n50\nSIGNAL CHAIN\n1\nThe vehicle's full sensor set reads a route we have already surveyed\n2\nSoC2 runs the autonomy stack against that route model\n3\nFleet logic schedules, routes and hands off to a remote operator when needed\n4\nThe vehicle drives, and the customer is billed per trip or per tonne\nWhat the silicon does here\nThe SoC2 stage is common to every SKU: it is the same perception compute under different firmware. For Autonomous TaaS it runs stage two of the chain above.\nWhat this product depends on\nAsset finance against the trucks, not the equity round, plus route-level regulatory permission.",
+    "notes": "Autonomous TaaS — signal chain: The vehicle's full sensor set reads a route we have already surveyed -> SoC2 runs the autonomy stack against that route model -> Fleet logic schedules, routes and hands off to a remote operator when needed -> The vehicle drives, and the customer is billed per trip or per tonne. Depends on: Asset finance against the trucks, not the equity round, plus route-level regulatory permission.",
+    "script": "Slide 50: AUTONOMOUS TAAS — Processing Signal Chain. Autonomous TaaS — signal chain: The vehicle's full sensor set reads a route we have already surveyed -> SoC2 runs the autonomy stack against that route model -> Fleet logic schedules, routes and hands off to a remote operator when needed -> The vehicle drives, and the customer is billed per trip or per tonne. Depends on: Asset finance against the trucks, not the equity round, plus route-level regulatory permission.",
+    "sim_type": "flow"
+  },
+  {
+    "slide": 51,
+    "title": "AUTONOMOUS TAAS · C",
+    "body": "Who buys it, and why now\nCost per tonne-kilometre against a driven alternative, plus driver availability.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n51\nThe buyer\nLogistics operators on fixed, repeatable routes where an autonomous lane can be proven.\nThe channel\nDirect commercial contracts, one route at a time.\nDemand pool · 0.01% capture at FY2032\nIndia trucking 0.6-0.8M units/yr; fleet ops. Our FY2032 volume of 100 units is 0.01% of that pool.\nSource: Mobility Foresights; TheGlobalEconomy 952k CV. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "Autonomous TaaS — buyer: Logistics operators on fixed, repeatable routes where an autonomous lane can be proven. Channel: Direct commercial contracts, one route at a time. Trigger: Cost per tonne-kilometre against a driven alternative, plus driver availability. Pool: India trucking 0.6-0.8M units/yr; fleet ops (0.01%). Source: Mobility Foresights; TheGlobalEconomy 952k CV.",
+    "script": "Slide 51: AUTONOMOUS TAAS — Commercial Profile and Buyer Trigger. Autonomous TaaS — buyer: Logistics operators on fixed, repeatable routes where an autonomous lane can be proven. Channel: Direct commercial contracts, one route at a time. Trigger: Cost per tonne-kilometre against a driven alternative, plus driver availability. Pool: India trucking 0.6-0.8M units/yr; fleet ops (0.01%). Source: Mobility Foresights; TheGlobalEconomy 952k CV.",
+    "sim_type": null
+  },
+  {
+    "slide": 52,
+    "title": "AUTONOMOUS TAAS · D",
+    "body": "How it fits the overall picture\n₹66.0 Cr at FY2032 — 5.8% of group revenue, at 89% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n52\n100\nFY2032 UNITS\n₹66.0 Cr\nFY2032 REVENUE\n5.8%\nSHARE OF GROUP\n89%\nGROSS MARGIN\nUNITS SHIPPED\n0\nFY27\n5\nFY28\n10\nFY29\n25\nFY30\n50\nFY31\n100\nFY32\nREVENUE, ₹ CR\n0\nFY27\n3\nFY28\n7\nFY29\n17\nFY30\n33\nFY31\n66\nFY32\nIts role in the portfolio\nHighest revenue per unit in the portfolio at ₹66 lakh a vehicle, and the only line where we capture the operating margin rather than a hardware margin.\nWhat it depends on\nAsset finance against the trucks, not the equity round, plus route-level regulatory permission.",
+    "notes": "Autonomous TaaS — units 0 / 5 / 10 / 25 / 50 / 100, revenue 0 / 3.3 / 6.6 / 16.5 / 33 / 66 ₹Cr. FY2032 ₹66.0 Cr = 5.85% at 89%. Role: Highest revenue per unit in the portfolio at ₹66 lakh a vehicle, and the only line where we capture the operating margin rather than a hardware margin.",
+    "script": "Slide 52: AUTONOMOUS TAAS — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹66.0 Cr at FY2032 — 5.8% of group revenue, at 89% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 52 100 FY2032 UNITS ₹66.0 Cr FY2032 REVENUE 5.8% SHARE OF GROUP 89% GROSS MARGIN UNITS SHIPPED 0 FY27 5 FY28 10 FY29 25 FY30 50 FY31 100 FY32 REVENUE, ₹ CR 0 FY27 3 FY28 7 FY29 17 FY30 33 FY31 66 FY32 Its role in the portfolio Highest revenue per unit in the portfolio at ₹66 lakh a vehicle, and the only line where we capture the operating margin rather than a hardware margin. What it depends on Asset finance against the trucks, not the equity round, plus route-level regulatory permission.",
+    "sim_type": null
+  },
+  {
+    "slide": 53,
+    "title": "SEAPORT AGV · A",
+    "body": "What it is\nAn autonomous container-yard vehicle operating inside a port perimeter.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n53\n₹45.30 L\nUNIT PRICE\nSystems\nSEGMENT\nIndoor\nOPERATING DOMAIN\nFY2028\nFIRST REVENUE\nWHAT IS IN IT\n01\nVehicle platform with surround sensing\n02\nSoC2 compute and autonomy stack\n03\nYard-management system integration\n04\nCommissioning and site survey\nHow it is positioned\nSeaport AGV (port autonomy) sells at ₹45.30 L into the fleet & mobility surface. Small in units, material in revenue at ₹45.3 lakh each, and the line with the most concrete external proof: a live order at Vizag Container Terminal.",
+    "notes": "Seaport AGV (port autonomy) — what it is. Price ₹45.30 L, segment Systems, domain Indoor, first revenue FY2028.",
+    "script": "Slide 53: SEAPORT AGV — What it is. What it is An autonomous container-yard vehicle operating inside a port perimeter. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 53 ₹45.30 L UNIT PRICE Systems SEGMENT Indoor OPERATING DOMAIN FY2028 FIRST REVENUE WHAT IS IN IT 01 Vehicle platform with surround sensing 02 SoC2 compute and autonomy stack 03 Yard-management system integration 04 Commissioning and site survey How it is positioned Seaport AGV (port autonomy) sells at ₹45.30 L into the fleet & mobility surface. Small in units, material in revenue at ₹45.3 lakh each, and the line with the most concrete external proof: a live order at Vizag Container Terminal.",
+    "sim_type": "yard"
+  },
+  {
+    "slide": 54,
+    "title": "SEAPORT AGV · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n54\nSIGNAL CHAIN\n1\nSurround sensing reads containers, cranes, lanes and people in the yard\n2\nSoC2 localises against the yard map and tracks moving obstacles\n3\nPlanner sequences the pick, the move and the drop against the yard schedule\n4\nThe vehicle executes and reports back to the terminal system\nWhat the silicon does here\nUnder a quay crane, satellite positioning degrades exactly where precision matters most. Dynamic fusion on the SoC2 holds 7 cm in the open and 22 cm under the crane, where RTK-GNSS alone falls away — and that positioning is what makes crane-synchronised dispatch possible at all.\nWhat this product depends on\nTerminal integration work and berth-level commissioning, which is slow and bespoke.",
+    "notes": "Seaport AGV (port autonomy) — signal chain: Surround sensing reads containers, cranes, lanes and people in the yard -> SoC2 localises against the yard map and tracks moving obstacles -> Planner sequences the pick, the move and the drop against the yard schedule -> The vehicle executes and reports back to the terminal system. Depends on: Terminal integration work and berth-level commissioning, which is slow and bespoke.",
+    "script": "Slide 54: SEAPORT AGV — Processing Signal Chain. Seaport AGV (port autonomy) — signal chain: Surround sensing reads containers, cranes, lanes and people in the yard -> SoC2 localises against the yard map and tracks moving obstacles -> Planner sequences the pick, the move and the drop against the yard schedule -> The vehicle executes and reports back to the terminal system. Depends on: Terminal integration work and berth-level commissioning, which is slow and bespoke.",
+    "sim_type": "yard"
+  },
+  {
+    "slide": 55,
+    "title": "SEAPORT AGV · C",
+    "body": "Who buys it, and why now\nTerminal throughput and labour cost inside a controlled, geofenced site.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n55\nThe buyer\nPort and terminal operators automating container movement.\nThe channel\nDirect to terminal operators, typically through a pilot berth first.\nDemand pool · 0.02% capture at FY2032\nAutomated container terminal market $10.95B (2024). Our FY2032 volume of 50 units is 0.02% of that pool.\nSource: SNS Insider: $10.95B 2024 -> $16.35B 2032, 5.2% CAGR. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "Seaport AGV (port autonomy) — buyer: Port and terminal operators automating container movement. Channel: Direct to terminal operators, typically through a pilot berth first. Trigger: Terminal throughput and labour cost inside a controlled, geofenced site. Pool: Automated container terminal market $10.95B (2024) (0.02%). Source: SNS Insider: $10.95B 2024 -> $16.35B 2032, 5.2% CAGR.",
+    "script": "Slide 55: SEAPORT AGV — Commercial Profile and Buyer Trigger. Seaport AGV (port autonomy) — buyer: Port and terminal operators automating container movement. Channel: Direct to terminal operators, typically through a pilot berth first. Trigger: Terminal throughput and labour cost inside a controlled, geofenced site. Pool: Automated container terminal market $10.95B (2024) (0.02%). Source: SNS Insider: $10.95B 2024 -> $16.35B 2032, 5.2% CAGR.",
+    "sim_type": "yard"
+  },
+  {
+    "slide": 56,
+    "title": "SEAPORT AGV · D",
+    "body": "How it fits the overall picture\n₹22.6 Cr at FY2032 — 2.0% of group revenue, at 89% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n56\n50\nFY2032 UNITS\n₹22.6 Cr\nFY2032 REVENUE\n2.0%\nSHARE OF GROUP\n89%\nGROSS MARGIN\nUNITS SHIPPED\n0\nFY27\n2\nFY28\n5\nFY29\n10\nFY30\n15\nFY31\n50\nFY32\nREVENUE, ₹ CR\n0\nFY27\n1\nFY28\n2\nFY29\n5\nFY30\n7\nFY31\n23\nFY32\nIts role in the portfolio\nSmall in units, material in revenue at ₹45.3 lakh each, and the line with the most concrete external proof: a live order at Vizag Container Terminal.\nWhat it depends on\nTerminal integration work and berth-level commissioning, which is slow and bespoke.",
+    "notes": "Seaport AGV (port autonomy) — units 0 / 2 / 5 / 10 / 15 / 50, revenue 0 / 0.91 / 2.27 / 4.53 / 6.79 / 22.65 ₹Cr. FY2032 ₹22.6 Cr = 2.01% at 89%. Role: Small in units, material in revenue at ₹45.3 lakh each, and the line with the most concrete external proof: a live order at Vizag Container Terminal.",
+    "script": "Slide 56: SEAPORT AGV — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹22.6 Cr at FY2032 — 2.0% of group revenue, at 89% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 56 50 FY2032 UNITS ₹22.6 Cr FY2032 REVENUE 2.0% SHARE OF GROUP 89% GROSS MARGIN UNITS SHIPPED 0 FY27 2 FY28 5 FY29 10 FY30 15 FY31 50 FY32 REVENUE, ₹ CR 0 FY27 1 FY28 2 FY29 5 FY30 7 FY31 23 FY32 Its role in the portfolio Small in units, material in revenue at ₹45.3 lakh each, and the line with the most concrete external proof: a live order at Vizag Container Terminal. What it depends on Terminal integration work and berth-level commissioning, which is slow and bespoke.",
+    "sim_type": "yard"
+  },
+  {
+    "slide": 57,
+    "title": "SEAPORT AGV · E",
+    "body": "Proven in a working simulator\nPS18 · a working twin of a container terminal, proving the three things the programme asks for\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n57\nLIVE DEMONSTRATOR\nDGrid Yard OS · Live Terminal Twin\nPositioning\nConfidence bars for RTK-GNSS and Deepgrid fusion diverge as the vehicle enters the container canyon; fusion holds, GNSS does not.\nNavigation\nCongestion-aware routing between stacks with obstacle-safe stops in mixed traffic.\nScheduling\nToggle FIFO against predictive ETA and watch crane idle time collapse — the number a terminal operator is paid on.\nShadow mode first\nIt runs alongside the existing terminal system before it is given control, which is how a port actually adopts this.\nThe demonstrator runs the production perception stack against a simulated environment. It is evidence of the decision layer, not of a fielded deployment.",
+    "notes": "Seaport AGV (port autonomy) — demonstrator DGrid Yard OS · Live Terminal Twin. Positioning: Confidence bars for RTK-GNSS and Deepgrid fusion diverge as the vehicle enters the container canyon; fusion holds, GNSS does not. Navigation: Congestion-aware routing between stacks with obstacle-safe stops in mixed traffic. Scheduling: Toggle FIFO against predictive ETA and watch crane idle time collapse — the number a terminal operator is paid on. Shadow mode first: It runs alongside the existing terminal system before it is given control, which is how a port actually adopts this.",
+    "script": "Slide 57: SEAPORT AGV · E. Seaport AGV (port autonomy) — demonstrator DGrid Yard OS · Live Terminal Twin. Positioning: Confidence bars for RTK-GNSS and Deepgrid fusion diverge as the vehicle enters the container canyon; fusion holds, GNSS does not. Navigation: Congestion-aware routing between stacks with obstacle-safe stops in mixed traffic. Scheduling: Toggle FIFO against predictive ETA and watch crane idle time collapse — the number a terminal operator is paid on. Shadow mode first: It runs alongside the existing terminal system before it is given control, which is how a port actually adopts this.",
+    "sim_type": "yard"
+  },
+  {
+    "slide": 58,
+    "title": "SEAPORT AGV · F",
+    "body": "The simulator, running\nDGrid Yard OS, recorded running. Quay discharge, then the container canyon, then peak mixed traffic.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n58\nThe confidence bars\nGNSS and fusion diverge entering the canyon. Fusion holds.\nThe KPI strip\nPositioning error open and under crane, ETA error, crane idle saved.\nThe dispatch toggle\nFIFO against predictive ETA, with crane idle moving in response.\nShadow mode\nThe badge stays on. It advises the terminal before it is given control.\nRecorded from the simulator itself; the clip plays in the deck. Simulation, not a fielded deployment.",
+    "notes": "Seaport AGV (port autonomy) — embedded clip of DGrid Yard OS · Live Terminal Twin. The confidence bars: GNSS and fusion diverge entering the canyon. Fusion holds. The KPI strip: Positioning error open and under crane, ETA error, crane idle saved. The dispatch toggle: FIFO against predictive ETA, with crane idle moving in response. Shadow mode: The badge stays on. It advises the terminal before it is given control.",
+    "script": "Slide 58: SEAPORT AGV · F. Seaport AGV (port autonomy) — embedded clip of DGrid Yard OS · Live Terminal Twin. The confidence bars: GNSS and fusion diverge entering the canyon. Fusion holds. The KPI strip: Positioning error open and under crane, ETA error, crane idle saved. The dispatch toggle: FIFO against predictive ETA, with crane idle moving in response. Shadow mode: The badge stays on. It advises the terminal before it is given control.",
+    "sim_type": "yard"
+  },
+  {
+    "slide": 59,
+    "title": "PART FOUR",
+    "body": "Sensors & robotics\n₹83.5 Cr · 7.4% of FY2032 · 5 SKUs · Capability, channel and a second cycle\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n59",
+    "notes": "Sensors & robotics: Thermal camera (aftermarket), 4D radar pod (aftermarket), H100 driver-monitor wearable, Defence D-HUMR, D100 drone SoC kit.",
+    "script": "Part Four: Sensors and Robotics. Long-wave infrared thermal cameras, 77-gigahertz 4D radars, driver drowsiness wearables, tactical UGVs, and drone avionics.",
+    "sim_type": null
+  },
+  {
+    "slide": 60,
+    "title": "THERMAL CAMERA · A",
+    "body": "What it is\nA bolt-on long-wave infrared camera pod with its own lens and heater, feeding the existing compute box.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n60\n₹50,000\nUNIT PRICE\nSensors\nSEGMENT\nOutdoor\nOPERATING DOMAIN\nFY2027\nFIRST REVENUE\nWHAT IS IN IT\n01\nLWIR thermal sensor and lens\n02\nWeatherised housing with lens heater\n03\nHarness into the SoC2 compute box\nHow it is positioned\nThermal camera (aftermarket) sells at ₹50,000 into the sensors & robotics surface. A capability line, not a profit line, at 50% margin — it closes the condition where the core product is weakest.",
+    "notes": "Thermal camera (aftermarket) — what it is. Price ₹50,000, segment Sensors, domain Outdoor, first revenue FY2027.",
+    "script": "Slide 60: THERMAL CAMERA — What it is. What it is A bolt-on long-wave infrared camera pod with its own lens and heater, feeding the existing compute box. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 60 ₹50,000 UNIT PRICE Sensors SEGMENT Outdoor OPERATING DOMAIN FY2027 FIRST REVENUE WHAT IS IN IT 01 LWIR thermal sensor and lens 02 Weatherised housing with lens heater 03 Harness into the SoC2 compute box How it is positioned Thermal camera (aftermarket) sells at ₹50,000 into the sensors & robotics surface. A capability line, not a profit line, at 50% margin — it closes the condition where the core product is weakest.",
+    "sim_type": null
+  },
+  {
+    "slide": 61,
+    "title": "THERMAL CAMERA · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n61\nSIGNAL CHAIN\n1\nThe LWIR sensor reads emitted heat rather than reflected light\n2\nSoC2 runs detection on the thermal image, where a person is bright against cold road\n3\nClassification separates people and animals from roadside clutter\n4\nDetections join the same object list the cameras feed\nWhat the silicon does here\nThermal is the channel that keeps working when the others fail — glare, dust, smoke and unlit road. In the perimeter build it is what separates a person from background at night; in the truck kit it is one of eleven fused channels rather than a standalone product.\nWhat this product depends on\nThermal sensor supply, which is imported and the highest bill-of-materials risk in the sensor group.",
+    "notes": "Thermal camera (aftermarket) — signal chain: The LWIR sensor reads emitted heat rather than reflected light -> SoC2 runs detection on the thermal image, where a person is bright against cold road -> Classification separates people and animals from roadside clutter -> Detections join the same object list the cameras feed. Depends on: Thermal sensor supply, which is imported and the highest bill-of-materials risk in the sensor group.",
+    "script": "Slide 61: THERMAL CAMERA — Processing Signal Chain. Thermal camera (aftermarket) — signal chain: The LWIR sensor reads emitted heat rather than reflected light -> SoC2 runs detection on the thermal image, where a person is bright against cold road -> Classification separates people and animals from roadside clutter -> Detections join the same object list the cameras feed. Depends on: Thermal sensor supply, which is imported and the highest bill-of-materials risk in the sensor group.",
+    "sim_type": "flow"
+  },
+  {
+    "slide": 62,
+    "title": "THERMAL CAMERA · C",
+    "body": "Who buys it, and why now\nNight and monsoon operation, where camera-only detection degrades sharply.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n62\nThe buyer\nFleets upgrading existing vehicles, and as an attach sold alongside AD0 and AD2.\nThe channel\nAftermarket, usually at the same fitment as the base kit.\nDemand pool · 0.10% capture at FY2032\nAutomotive thermal camera $1.68B global (2025). Our FY2032 volume of 3,200 units is 0.10% of that pool.\nSource: Verified Market Research: $1.68B 2025, 12% CAGR. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "Thermal camera (aftermarket) — buyer: Fleets upgrading existing vehicles, and as an attach sold alongside AD0 and AD2. Channel: Aftermarket, usually at the same fitment as the base kit. Trigger: Night and monsoon operation, where camera-only detection degrades sharply. Pool: Automotive thermal camera $1.68B global (2025) (0.10%). Source: Verified Market Research: $1.68B 2025, 12% CAGR.",
+    "script": "Slide 62: THERMAL CAMERA — Commercial Profile and Buyer Trigger. Thermal camera (aftermarket) — buyer: Fleets upgrading existing vehicles, and as an attach sold alongside AD0 and AD2. Channel: Aftermarket, usually at the same fitment as the base kit. Trigger: Night and monsoon operation, where camera-only detection degrades sharply. Pool: Automotive thermal camera $1.68B global (2025) (0.10%). Source: Verified Market Research: $1.68B 2025, 12% CAGR.",
+    "sim_type": null
+  },
+  {
+    "slide": 63,
+    "title": "THERMAL CAMERA · D",
+    "body": "How it fits the overall picture\n₹16.0 Cr at FY2032 — 1.4% of group revenue, at 50% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n63\n3,200\nFY2032 UNITS\n₹16.0 Cr\nFY2032 REVENUE\n1.4%\nSHARE OF GROUP\n50%\nGROSS MARGIN\nUNITS SHIPPED\n40\nFY27\n150\nFY28\n400\nFY29\n900\nFY30\n1,800\nFY31\n3,200\nFY32\nREVENUE, ₹ CR\n0\nFY27\n1\nFY28\n2\nFY29\n5\nFY30\n9\nFY31\n16\nFY32\nIts role in the portfolio\nA capability line, not a profit line, at 50% margin — it closes the condition where the core product is weakest.\nWhat it depends on\nThermal sensor supply, which is imported and the highest bill-of-materials risk in the sensor group.",
+    "notes": "Thermal camera (aftermarket) — units 40 / 150 / 400 / 900 / 1800 / 3200, revenue 0.2 / 0.75 / 2 / 4.5 / 9 / 16 ₹Cr. FY2032 ₹16.0 Cr = 1.42% at 50%. Role: A capability line, not a profit line, at 50% margin — it closes the condition where the core product is weakest.",
+    "script": "Slide 63: THERMAL CAMERA — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹16.0 Cr at FY2032 — 1.4% of group revenue, at 50% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 63 3,200 FY2032 UNITS ₹16.0 Cr FY2032 REVENUE 1.4% SHARE OF GROUP 50% GROSS MARGIN UNITS SHIPPED 40 FY27 150 FY28 400 FY29 900 FY30 1,800 FY31 3,200 FY32 REVENUE, ₹ CR 0 FY27 1 FY28 2 FY29 5 FY30 9 FY31 16 FY32 Its role in the portfolio A capability line, not a profit line, at 50% margin — it closes the condition where the core product is weakest. What it depends on Thermal sensor supply, which is imported and the highest bill-of-materials risk in the sensor group.",
+    "sim_type": null
+  },
+  {
+    "slide": 64,
+    "title": "4D RADAR POD · A",
+    "body": "What it is\nA sealed radar pod, mounted forward or on the corner, feeding the compute box.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n64\n₹25,000\nUNIT PRICE\nSensors\nSEGMENT\nOutdoor\nOPERATING DOMAIN\nFY2027\nFIRST REVENUE\nWHAT IS IN IT\n01\n4D imaging radar front end\n02\nR100 radar DSP processing\n03\nSealed automotive housing and harness\nHow it is positioned\n4D radar pod (aftermarket) sells at ₹25,000 into the sensors & robotics surface. The smallest line at ₹7.5 Cr, but it exists because the radar block is already on the die — the tapeout has paid for the silicon.",
+    "notes": "4D radar pod (aftermarket) — what it is. Price ₹25,000, segment Sensors, domain Outdoor, first revenue FY2027.",
+    "script": "Slide 64: 4D RADAR POD — What it is. What it is A sealed radar pod, mounted forward or on the corner, feeding the compute box. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 64 ₹25,000 UNIT PRICE Sensors SEGMENT Outdoor OPERATING DOMAIN FY2027 FIRST REVENUE WHAT IS IN IT 01 4D imaging radar front end 02 R100 radar DSP processing 03 Sealed automotive housing and harness How it is positioned 4D radar pod (aftermarket) sells at ₹25,000 into the sensors & robotics surface. The smallest line at ₹7.5 Cr, but it exists because the radar block is already on the die — the tapeout has paid for the silicon.",
+    "sim_type": null
+  },
+  {
+    "slide": 65,
+    "title": "4D RADAR POD · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n65\nSIGNAL CHAIN\n1\nThe radar illuminates the scene and reads the returns\n2\nThe R100 block on the die turns returns into range, velocity and elevation\n3\nTracks are formed and held across frames, including through rain and dust\n4\nTracks fuse with the camera object list to confirm or reject detections\nWhat the silicon does here\n4D radar returns range and velocity in rain, dust and glare, which is precisely where cameras degrade. In the fused suite it is the channel that supplies closing speed — the quantity a collision decision actually turns on.\nWhat this product depends on\nRadar front-end supply and antenna qualification; the processing is already ours.",
+    "notes": "4D radar pod (aftermarket) — signal chain: The radar illuminates the scene and reads the returns -> The R100 block on the die turns returns into range, velocity and elevation -> Tracks are formed and held across frames, including through rain and dust -> Tracks fuse with the camera object list to confirm or reject detections. Depends on: Radar front-end supply and antenna qualification; the processing is already ours.",
+    "script": "Slide 65: 4D RADAR POD — Processing Signal Chain. 4D radar pod (aftermarket) — signal chain: The radar illuminates the scene and reads the returns -> The R100 block on the die turns returns into range, velocity and elevation -> Tracks are formed and held across frames, including through rain and dust -> Tracks fuse with the camera object list to confirm or reject detections. Depends on: Radar front-end supply and antenna qualification; the processing is already ours.",
+    "sim_type": "flow"
+  },
+  {
+    "slide": 66,
+    "title": "4D RADAR POD · C",
+    "body": "Who buys it, and why now\nWeather and dust defeat cameras; radar supplies the closing speed a braking decision needs.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n66\nThe buyer\nFleets and integrators adding radar to camera-only fitments.\nThe channel\nAftermarket and integrator supply.\nDemand pool · 0.03% capture at FY2032\n4D imaging radar $2.75B global (2025). Our FY2032 volume of 3,000 units is 0.03% of that pool.\nSource: Business Research Co./Mordor: ~$2.75B 2025, 13% CAGR. Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "4D radar pod (aftermarket) — buyer: Fleets and integrators adding radar to camera-only fitments. Channel: Aftermarket and integrator supply. Trigger: Weather and dust defeat cameras; radar supplies the closing speed a braking decision needs. Pool: 4D imaging radar $2.75B global (2025) (0.03%). Source: Business Research Co./Mordor: ~$2.75B 2025, 13% CAGR.",
+    "script": "Slide 66: 4D RADAR POD — Commercial Profile and Buyer Trigger. 4D radar pod (aftermarket) — buyer: Fleets and integrators adding radar to camera-only fitments. Channel: Aftermarket and integrator supply. Trigger: Weather and dust defeat cameras; radar supplies the closing speed a braking decision needs. Pool: 4D imaging radar $2.75B global (2025) (0.03%). Source: Business Research Co./Mordor: ~$2.75B 2025, 13% CAGR.",
+    "sim_type": null
+  },
+  {
+    "slide": 67,
+    "title": "4D RADAR POD · D",
+    "body": "How it fits the overall picture\n₹7.50 Cr at FY2032 — 0.7% of group revenue, at 50% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n67\n3,000\nFY2032 UNITS\n₹7.50 Cr\nFY2032 REVENUE\n0.7%\nSHARE OF GROUP\n50%\nGROSS MARGIN\nUNITS SHIPPED\n30\nFY27\n120\nFY28\n350\nFY29\n800\nFY30\n1,600\nFY31\n3,000\nFY32\nREVENUE, ₹ CR\n0\nFY27\n0\nFY28\n1\nFY29\n2\nFY30\n4\nFY31\n8\nFY32\nIts role in the portfolio\nThe smallest line at ₹7.5 Cr, but it exists because the radar block is already on the die — the tapeout has paid for the silicon.\nWhat it depends on\nRadar front-end supply and antenna qualification; the processing is already ours.",
+    "notes": "4D radar pod (aftermarket) — units 30 / 120 / 350 / 800 / 1600 / 3000, revenue 0.07 / 0.3 / 0.88 / 2 / 4 / 7.5 ₹Cr. FY2032 ₹7.50 Cr = 0.66% at 50%. Role: The smallest line at ₹7.5 Cr, but it exists because the radar block is already on the die — the tapeout has paid for the silicon.",
+    "script": "Slide 67: 4D RADAR POD — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹7.50 Cr at FY2032 — 0.7% of group revenue, at 50% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 67 3,000 FY2032 UNITS ₹7.50 Cr FY2032 REVENUE 0.7% SHARE OF GROUP 50% GROSS MARGIN UNITS SHIPPED 30 FY27 120 FY28 350 FY29 800 FY30 1,600 FY31 3,000 FY32 REVENUE, ₹ CR 0 FY27 0 FY28 1 FY29 2 FY30 4 FY31 8 FY32 Its role in the portfolio The smallest line at ₹7.5 Cr, but it exists because the radar block is already on the die — the tapeout has paid for the silicon. What it depends on Radar front-end supply and antenna qualification; the processing is already ours.",
+    "sim_type": null
+  },
+  {
+    "slide": 68,
+    "title": "H100 DRIVER MONITOR · A",
+    "body": "What it is\nA wrist-worn band with an on-body sensor set and a radio link to the vehicle.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n68\n₹5,000\nUNIT PRICE\nSensors\nSEGMENT\nOutdoor\nOPERATING DOMAIN\nFY2027\nFIRST REVENUE\nWHAT IS IN IT\n01\nPPG and motion sensing band\n02\nOn-device fatigue model\n03\nRadio link into the vehicle alert chain\n04\nCharging and fleet enrolment tooling\nHow it is positioned\nH100 driver-monitor wearable sells at ₹5,000 into the sensors & robotics surface. The lowest-priced item we sell at ₹5,000 and the cheapest way into a fleet relationship; ₹10 Cr of revenue makes it a channel line, not a profit line.",
+    "notes": "H100 driver-monitor wearable — what it is. Price ₹5,000, segment Sensors, domain Outdoor, first revenue FY2027.",
+    "script": "Slide 68: H100 DRIVER MONITOR — What it is. What it is A wrist-worn band with an on-body sensor set and a radio link to the vehicle. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 68 ₹5,000 UNIT PRICE Sensors SEGMENT Outdoor OPERATING DOMAIN FY2027 FIRST REVENUE WHAT IS IN IT 01 PPG and motion sensing band 02 On-device fatigue model 03 Radio link into the vehicle alert chain 04 Charging and fleet enrolment tooling How it is positioned H100 driver-monitor wearable sells at ₹5,000 into the sensors & robotics surface. The lowest-priced item we sell at ₹5,000 and the cheapest way into a fleet relationship; ₹10 Cr of revenue makes it a channel line, not a profit line.",
+    "sim_type": null
+  },
+  {
+    "slide": 69,
+    "title": "H100 DRIVER MONITOR · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n69\nSIGNAL CHAIN\n1\nThe band reads pulse and movement continuously on the driver\n2\nAn on-device model scores alertness without sending raw data anywhere\n3\nA drowsiness state crosses a threshold\n4\nThe vehicle alert chain warns the driver and the fleet is notified\nWhat the silicon does here\nThe SoC2 stage is common to every SKU: it is the same perception compute under different firmware. For H100 driver monitor it runs stage two of the chain above.\nWhat this product depends on\nDriver acceptance and enrolment discipline, which is an operational problem rather than a technical one.",
+    "notes": "H100 driver-monitor wearable — signal chain: The band reads pulse and movement continuously on the driver -> An on-device model scores alertness without sending raw data anywhere -> A drowsiness state crosses a threshold -> The vehicle alert chain warns the driver and the fleet is notified. Depends on: Driver acceptance and enrolment discipline, which is an operational problem rather than a technical one.",
+    "script": "Slide 69: H100 DRIVER MONITOR — Processing Signal Chain. H100 driver-monitor wearable — signal chain: The band reads pulse and movement continuously on the driver -> An on-device model scores alertness without sending raw data anywhere -> A drowsiness state crosses a threshold -> The vehicle alert chain warns the driver and the fleet is notified. Depends on: Driver acceptance and enrolment discipline, which is an operational problem rather than a technical one.",
+    "sim_type": "flow"
+  },
+  {
+    "slide": 70,
+    "title": "H100 DRIVER MONITOR · C",
+    "body": "Who buys it, and why now\nDriver-drowsiness obligations, and fleets wanting a lower-intrusion option than in-cab video.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n70\nThe buyer\nFleets meeting drowsiness obligations without fitting a cabin camera.\nThe channel\nFleet direct, often as the first purchase a fleet makes from us.\nDemand pool · — capture at FY2032\nDDAWS mandate (AIS-184) + global DMS demand. Our FY2032 volume of 20,000 units is — of that pool.\nSource: MoRTH AIS-184; EU Reg 2021/267 (commercial DMS). Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "H100 driver-monitor wearable — buyer: Fleets meeting drowsiness obligations without fitting a cabin camera. Channel: Fleet direct, often as the first purchase a fleet makes from us. Trigger: Driver-drowsiness obligations, and fleets wanting a lower-intrusion option than in-cab video. Pool: DDAWS mandate (AIS-184) + global DMS demand (—). Source: MoRTH AIS-184; EU Reg 2021/267 (commercial DMS).",
+    "script": "Slide 70: H100 DRIVER MONITOR — Commercial Profile and Buyer Trigger. H100 driver-monitor wearable — buyer: Fleets meeting drowsiness obligations without fitting a cabin camera. Channel: Fleet direct, often as the first purchase a fleet makes from us. Trigger: Driver-drowsiness obligations, and fleets wanting a lower-intrusion option than in-cab video. Pool: DDAWS mandate (AIS-184) + global DMS demand (—). Source: MoRTH AIS-184; EU Reg 2021/267 (commercial DMS).",
+    "sim_type": null
+  },
+  {
+    "slide": 71,
+    "title": "H100 DRIVER MONITOR · D",
+    "body": "How it fits the overall picture\n₹10.0 Cr at FY2032 — 0.9% of group revenue, at 50% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n71\n20,000\nFY2032 UNITS\n₹10.0 Cr\nFY2032 REVENUE\n0.9%\nSHARE OF GROUP\n50%\nGROSS MARGIN\nUNITS SHIPPED\n200\nFY27\n800\nFY28\n2,200\nFY29\n5,000\nFY30\n11,000\nFY31\n20,000\nFY32\nREVENUE, ₹ CR\n0\nFY27\n0\nFY28\n1\nFY29\n3\nFY30\n6\nFY31\n10\nFY32\nIts role in the portfolio\nThe lowest-priced item we sell at ₹5,000 and the cheapest way into a fleet relationship; ₹10 Cr of revenue makes it a channel line, not a profit line.\nWhat it depends on\nDriver acceptance and enrolment discipline, which is an operational problem rather than a technical one.",
+    "notes": "H100 driver-monitor wearable — units 200 / 800 / 2200 / 5000 / 11000 / 20000, revenue 0.1 / 0.4 / 1.1 / 2.5 / 5.5 / 10 ₹Cr. FY2032 ₹10.0 Cr = 0.89% at 50%. Role: The lowest-priced item we sell at ₹5,000 and the cheapest way into a fleet relationship; ₹10 Cr of revenue makes it a channel line, not a profit line.",
+    "script": "Slide 71: H100 DRIVER MONITOR — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹10.0 Cr at FY2032 — 0.9% of group revenue, at 50% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 71 20,000 FY2032 UNITS ₹10.0 Cr FY2032 REVENUE 0.9% SHARE OF GROUP 50% GROSS MARGIN UNITS SHIPPED 200 FY27 800 FY28 2,200 FY29 5,000 FY30 11,000 FY31 20,000 FY32 REVENUE, ₹ CR 0 FY27 0 FY28 1 FY29 3 FY30 6 FY31 10 FY32 Its role in the portfolio The lowest-priced item we sell at ₹5,000 and the cheapest way into a fleet relationship; ₹10 Cr of revenue makes it a channel line, not a profit line. What it depends on Driver acceptance and enrolment discipline, which is an operational problem rather than a technical one.",
+    "sim_type": null
+  },
+  {
+    "slide": 72,
+    "title": "DEFENCE D-HUMR · A",
+    "body": "What it is\nAn unmanned ground vehicle for defence logistics and reconnaissance.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n72\n₹20.00 L\nUNIT PRICE\nRobotics\nSEGMENT\nOutdoor\nOPERATING DOMAIN\nFY2027\nFIRST REVENUE\nWHAT IS IN IT\n01\nUGV platform with surround sensing\n02\nSoC2 compute and autonomy stack\n03\nTeleoperation link\n04\nMission payload interface\nHow it is positioned\nDefence D-HUMR sells at ₹20.00 L into the sensors & robotics surface. Revenue has already been received on this line, on FPGA hardware, which makes it the portfolio's earliest external validation.",
+    "notes": "Defence D-HUMR — what it is. Price ₹20.00 L, segment Robotics, domain Outdoor, first revenue FY2027.",
+    "script": "Slide 72: DEFENCE D-HUMR — What it is. What it is An unmanned ground vehicle for defence logistics and reconnaissance. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 72 ₹20.00 L UNIT PRICE Robotics SEGMENT Outdoor OPERATING DOMAIN FY2027 FIRST REVENUE WHAT IS IN IT 01 UGV platform with surround sensing 02 SoC2 compute and autonomy stack 03 Teleoperation link 04 Mission payload interface How it is positioned Defence D-HUMR sells at ₹20.00 L into the sensors & robotics surface. Revenue has already been received on this line, on FPGA hardware, which makes it the portfolio's earliest external validation.",
+    "sim_type": "sentinel"
+  },
+  {
+    "slide": 73,
+    "title": "DEFENCE D-HUMR · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n73\nSIGNAL CHAIN\n1\nSurround sensing reads terrain, obstacles and people\n2\nSoC2 builds a local map and plans a traversable route\n3\nAutonomy drives, with a teleoperator able to take control\n4\nMission payload does its job at the destination\nWhat the silicon does here\nThe defence build runs the fusion stack outward instead of forward: radar, thermal and camera tracks along a perimeter are classified individually, then correlated, so a vehicle loitering on an access road and a person at the fence stop being two unrelated blips.\nWhat this product depends on\nProcurement cycle timing, which is slow and lumpy rather than technical.",
+    "notes": "Defence D-HUMR — signal chain: Surround sensing reads terrain, obstacles and people -> SoC2 builds a local map and plans a traversable route -> Autonomy drives, with a teleoperator able to take control -> Mission payload does its job at the destination. Depends on: Procurement cycle timing, which is slow and lumpy rather than technical.",
+    "script": "Slide 73: DEFENCE D-HUMR — Processing Signal Chain. Defence D-HUMR — signal chain: Surround sensing reads terrain, obstacles and people -> SoC2 builds a local map and plans a traversable route -> Autonomy drives, with a teleoperator able to take control -> Mission payload does its job at the destination. Depends on: Procurement cycle timing, which is slow and lumpy rather than technical.",
+    "sim_type": "sentinel"
+  },
+  {
+    "slide": 74,
+    "title": "DEFENCE D-HUMR · C",
+    "body": "Who buys it, and why now\nLogistics and reconnaissance tasks where sending a vehicle is preferable to sending people.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n74\nThe buyer\nIndian Army and MoD procurement programmes.\nThe channel\nGovernment procurement, including GeM listing.\nDemand pool · — capture at FY2032\nIndian Army UGV/robotics procurement. Our FY2032 volume of 150 units is — of that pool.\nSource: MoD/Army programs (existing Rs1 Cr revenue). Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "Defence D-HUMR — buyer: Indian Army and MoD procurement programmes. Channel: Government procurement, including GeM listing. Trigger: Logistics and reconnaissance tasks where sending a vehicle is preferable to sending people. Pool: Indian Army UGV/robotics procurement (—). Source: MoD/Army programs (existing Rs1 Cr revenue).",
+    "script": "Slide 74: DEFENCE D-HUMR — Commercial Profile and Buyer Trigger. Defence D-HUMR — buyer: Indian Army and MoD procurement programmes. Channel: Government procurement, including GeM listing. Trigger: Logistics and reconnaissance tasks where sending a vehicle is preferable to sending people. Pool: Indian Army UGV/robotics procurement (—). Source: MoD/Army programs (existing Rs1 Cr revenue).",
+    "sim_type": "sentinel"
+  },
+  {
+    "slide": 75,
+    "title": "DEFENCE D-HUMR · D",
+    "body": "How it fits the overall picture\n₹30.0 Cr at FY2032 — 2.7% of group revenue, at 68% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n75\n150\nFY2032 UNITS\n₹30.0 Cr\nFY2032 REVENUE\n2.7%\nSHARE OF GROUP\n68%\nGROSS MARGIN\nUNITS SHIPPED\n6\nFY27\n15\nFY28\n23\nFY29\n45\nFY30\n88\nFY31\n150\nFY32\nREVENUE, ₹ CR\n1\nFY27\n3\nFY28\n5\nFY29\n9\nFY30\n18\nFY31\n30\nFY32\nIts role in the portfolio\nRevenue has already been received on this line, on FPGA hardware, which makes it the portfolio's earliest external validation.\nWhat it depends on\nProcurement cycle timing, which is slow and lumpy rather than technical.",
+    "notes": "Defence D-HUMR — units 6 / 15 / 23 / 45 / 88 / 150, revenue 1.2 / 3 / 4.6 / 9 / 17.6 / 30 ₹Cr. FY2032 ₹30.0 Cr = 2.66% at 68%. Role: Revenue has already been received on this line, on FPGA hardware, which makes it the portfolio's earliest external validation.",
+    "script": "Slide 75: DEFENCE D-HUMR — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹30.0 Cr at FY2032 — 2.7% of group revenue, at 68% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 75 150 FY2032 UNITS ₹30.0 Cr FY2032 REVENUE 2.7% SHARE OF GROUP 68% GROSS MARGIN UNITS SHIPPED 6 FY27 15 FY28 23 FY29 45 FY30 88 FY31 150 FY32 REVENUE, ₹ CR 1 FY27 3 FY28 5 FY29 9 FY30 18 FY31 30 FY32 Its role in the portfolio Revenue has already been received on this line, on FPGA hardware, which makes it the portfolio's earliest external validation. What it depends on Procurement cycle timing, which is slow and lumpy rather than technical.",
+    "sim_type": "sentinel"
+  },
+  {
+    "slide": 76,
+    "title": "DEFENCE D-HUMR · E",
+    "body": "Proven in a working simulator\nPS16 · a live console for intelligent perimeter threat detection\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n76\nLIVE DEMONSTRATOR\nDGrid Sentinel · Perimeter Threat Fusion\nCorrelate\nAn external vehicle track and a fence-line human track fuse into one threat, which neither sensor would raise alone.\nEscalate\nLoiter → approach → breach risk on a timed ladder, so the operator sees intent forming rather than an alarm at the breach.\nHand off\nGround sensors, a patrol drone and a sea buoy share the same target track.\nRestraint is the feature\nBenign tracks are held and monitored but never escalated — false-alarm rate is what gets a perimeter system switched off.\nThe demonstrator runs the production perception stack against a simulated environment. It is evidence of the decision layer, not of a fielded deployment.",
+    "notes": "Defence D-HUMR — demonstrator DGrid Sentinel · Perimeter Threat Fusion. Correlate: An external vehicle track and a fence-line human track fuse into one threat, which neither sensor would raise alone. Escalate: Loiter → approach → breach risk on a timed ladder, so the operator sees intent forming rather than an alarm at the breach. Hand off: Ground sensors, a patrol drone and a sea buoy share the same target track. Restraint is the feature: Benign tracks are held and monitored but never escalated — false-alarm rate is what gets a perimeter system switched off.",
+    "script": "Slide 76: DEFENCE D-HUMR · E. Defence D-HUMR — demonstrator DGrid Sentinel · Perimeter Threat Fusion. Correlate: An external vehicle track and a fence-line human track fuse into one threat, which neither sensor would raise alone. Escalate: Loiter → approach → breach risk on a timed ladder, so the operator sees intent forming rather than an alarm at the breach. Hand off: Ground sensors, a patrol drone and a sea buoy share the same target track. Restraint is the feature: Benign tracks are held and monitored but never escalated — false-alarm rate is what gets a perimeter system switched off.",
+    "sim_type": "sentinel"
+  },
+  {
+    "slide": 77,
+    "title": "DEFENCE D-HUMR · F",
+    "body": "The simulator, running\nDGrid Sentinel, recorded running. Coordinated intrusion, then perimeter patrol, then a maritime approach.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n77\nTwo tracks becoming one\nA vehicle on the access road and a human at the fence fuse into one threat.\nThe escalation ladder\nLoiter, approach, breach risk — the operator sees intent forming.\nThe fusion rationale\nThe console says why it escalated, in words, not as a bare alarm.\nWhat it ignores\nBenign tracks are held and never escalated. That restraint is the product.\nRecorded from the simulator itself; the clip plays in the deck. Simulation, not a fielded deployment.",
+    "notes": "Defence D-HUMR — embedded clip of DGrid Sentinel · Perimeter Threat Fusion. Two tracks becoming one: A vehicle on the access road and a human at the fence fuse into one threat. The escalation ladder: Loiter, approach, breach risk — the operator sees intent forming. The fusion rationale: The console says why it escalated, in words, not as a bare alarm. What it ignores: Benign tracks are held and never escalated. That restraint is the product.",
+    "script": "Slide 77: DEFENCE D-HUMR · F. Defence D-HUMR — embedded clip of DGrid Sentinel · Perimeter Threat Fusion. Two tracks becoming one: A vehicle on the access road and a human at the fence fuse into one threat. The escalation ladder: Loiter, approach, breach risk — the operator sees intent forming. The fusion rationale: The console says why it escalated, in words, not as a bare alarm. What it ignores: Benign tracks are held and never escalated. That restraint is the product.",
+    "sim_type": "sentinel"
+  },
+  {
+    "slide": 78,
+    "title": "D100 DRONE SOC KIT · A",
+    "body": "What it is\nA flight-capable compute and perception kit for an airframe builder.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n78\n₹5.00 L\nUNIT PRICE\nRobotics\nSEGMENT\nOutdoor\nOPERATING DOMAIN\nFY2028\nFIRST REVENUE\nWHAT IS IN IT\n01\nFlight-weight SoC2 compute module\n02\nCamera and IMU sensing set\n03\nFlight-controller interface\n04\nSDK for airborne perception\nHow it is positioned\nD100 drone SoC kit sells at ₹5.00 L into the sensors & robotics surface. Opens a procurement cycle unlike automotive for little incremental engineering, because the perception problem is the same one with the ground removed.",
+    "notes": "D100 drone SoC kit — what it is. Price ₹5.00 L, segment Robotics, domain Outdoor, first revenue FY2028.",
+    "script": "Slide 78: D100 DRONE SOC KIT — What it is. What it is A flight-capable compute and perception kit for an airframe builder. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 78 ₹5.00 L UNIT PRICE Robotics SEGMENT Outdoor OPERATING DOMAIN FY2028 FIRST REVENUE WHAT IS IN IT 01 Flight-weight SoC2 compute module 02 Camera and IMU sensing set 03 Flight-controller interface 04 SDK for airborne perception How it is positioned D100 drone SoC kit sells at ₹5.00 L into the sensors & robotics surface. Opens a procurement cycle unlike automotive for little incremental engineering, because the perception problem is the same one with the ground removed.",
+    "sim_type": null
+  },
+  {
+    "slide": 79,
+    "title": "D100 DRONE SOC KIT · B",
+    "body": "How it works\nSense, compute on SoC2, decide, act — the same four stages in every product.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n79\nSIGNAL CHAIN\n1\nCameras and IMU read the scene and the airframe's own motion\n2\nSoC2 runs perception and visual odometry in flight\n3\nPlanner produces waypoints or avoidance manoeuvres\n4\nThe flight controller executes them\nWhat the silicon does here\nThe SoC2 stage is common to every SKU: it is the same perception compute under different firmware. For D100 drone SoC kit it runs stage two of the chain above.\nWhat this product depends on\nWeight and power budget, which is tighter in the air than on a vehicle.",
+    "notes": "D100 drone SoC kit — signal chain: Cameras and IMU read the scene and the airframe's own motion -> SoC2 runs perception and visual odometry in flight -> Planner produces waypoints or avoidance manoeuvres -> The flight controller executes them. Depends on: Weight and power budget, which is tighter in the air than on a vehicle.",
+    "script": "Slide 79: D100 DRONE SOC KIT — Processing Signal Chain. D100 drone SoC kit — signal chain: Cameras and IMU read the scene and the airframe's own motion -> SoC2 runs perception and visual odometry in flight -> Planner produces waypoints or avoidance manoeuvres -> The flight controller executes them. Depends on: Weight and power budget, which is tighter in the air than on a vehicle.",
+    "sim_type": "flow"
+  },
+  {
+    "slide": 80,
+    "title": "D100 DRONE SOC KIT · C",
+    "body": "Who buys it, and why now\nOnboard autonomy requirements where a radio link cannot be relied on.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n80\nThe buyer\nDefence and commercial drone manufacturers.\nThe channel\nDirect to airframe builders.\nDemand pool · — capture at FY2032\nIndia defence + commercial drone SoC. Our FY2032 volume of 400 units is — of that pool.\nSource: Edge-AI drones segment (Mordor 18% CAGR). Capture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "D100 drone SoC kit — buyer: Defence and commercial drone manufacturers. Channel: Direct to airframe builders. Trigger: Onboard autonomy requirements where a radio link cannot be relied on. Pool: India defence + commercial drone SoC (—). Source: Edge-AI drones segment (Mordor 18% CAGR).",
+    "script": "Slide 80: D100 DRONE SOC KIT — Commercial Profile and Buyer Trigger. D100 drone SoC kit — buyer: Defence and commercial drone manufacturers. Channel: Direct to airframe builders. Trigger: Onboard autonomy requirements where a radio link cannot be relied on. Pool: India defence + commercial drone SoC (—). Source: Edge-AI drones segment (Mordor 18% CAGR).",
+    "sim_type": null
+  },
+  {
+    "slide": 81,
+    "title": "D100 DRONE SOC KIT · D",
+    "body": "How it fits the overall picture\n₹20.0 Cr at FY2032 — 1.8% of group revenue, at 68% gross margin.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n81\n400\nFY2032 UNITS\n₹20.0 Cr\nFY2032 REVENUE\n1.8%\nSHARE OF GROUP\n68%\nGROSS MARGIN\nUNITS SHIPPED\n0\nFY27\n5\nFY28\n50\nFY29\n125\nFY30\n225\nFY31\n400\nFY32\nREVENUE, ₹ CR\n0\nFY27\n0\nFY28\n3\nFY29\n6\nFY30\n11\nFY31\n20\nFY32\nIts role in the portfolio\nOpens a procurement cycle unlike automotive for little incremental engineering, because the perception problem is the same one with the ground removed.\nWhat it depends on\nWeight and power budget, which is tighter in the air than on a vehicle.",
+    "notes": "D100 drone SoC kit — units 0 / 5 / 50 / 125 / 225 / 400, revenue 0 / 0.25 / 2.5 / 6.25 / 11.25 / 20 ₹Cr. FY2032 ₹20.0 Cr = 1.77% at 68%. Role: Opens a procurement cycle unlike automotive for little incremental engineering, because the perception problem is the same one with the ground removed.",
+    "script": "Slide 81: D100 DRONE SOC KIT — Unit Economics & Portfolio Contribution. How it fits the overall picture ₹20.0 Cr at FY2032 — 1.8% of group revenue, at 68% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 81 400 FY2032 UNITS ₹20.0 Cr FY2032 REVENUE 1.8% SHARE OF GROUP 68% GROSS MARGIN UNITS SHIPPED 0 FY27 5 FY28 50 FY29 125 FY30 225 FY31 400 FY32 REVENUE, ₹ CR 0 FY27 0 FY28 3 FY29 6 FY30 11 FY31 20 FY32 Its role in the portfolio Opens a procurement cycle unlike automotive for little incremental engineering, because the perception problem is the same one with the ground removed. What it depends on Weight and power budget, which is tighter in the air than on a vehicle.",
+    "sim_type": null
+  },
+  {
+    "slide": 82,
+    "title": "PART FIVE",
+    "body": "Portfolio economics\nConcentration, sequencing, operating domains, the margin ladder and demand headroom\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n82",
+    "notes": "Economics section.",
+    "script": "Slide 82: PART FIVE. Portfolio economics Concentration, sequencing, operating domains, the margin ladder and demand headroom DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 82",
+    "sim_type": null
+  },
+  {
+    "slide": 83,
+    "title": "CONCENTRATION",
+    "body": "Two SKUs carry 64%, thirteen carry the rest\nFY2032 revenue by SKU. Colour shows platform surface.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n83\nSmart Truck (AD2 kit)\n₹450 Cr\nAD0 Smart Mirror\n₹270 Cr\nAutonomous TaaS\n₹66.0 Cr\nChipset OEM B2B\n₹54.0 Cr\nT100 AI licence\n₹50.0 Cr\nAD1 Indoor L4 kit\n₹42.0 Cr\nA100 compute box 4ch PCIe\n₹36.0 Cr\nDefence D-HUMR\n₹30.0 Cr\nA100 compute box 2ch\n₹28.8 Cr\nA100 compute box 1ch M.2\n₹25.5 Cr\nSeaport AGV\n₹22.6 Cr\nD100 drone SoC kit\n₹20.0 Cr\nThermal camera\n₹16.0 Cr\nH100 driver monitor\n₹10.0 Cr\n4D radar pod\n₹7.50 Cr\nAD2 and AD0 are the same product family sold to overlapping buyers, so a certification or installation delay hits ₹720 Cr at once — larger than the other thirteen SKUs combined.",
+    "notes": "Revenue Build FY2032 column.",
+    "script": "Slide 83: CONCENTRATION. Revenue Build FY2032 column.",
+    "sim_type": null
+  },
+  {
+    "slide": 84,
+    "title": "SEQUENCING",
+    "body": "Six SKUs earn in FY2027, nine more in FY2028\nFirst revenue year per SKU. FY2027 is FPGA-based product only.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n84\nFIRST REVENUE\nSKUS\nWHAT SWITCHES ON\nFY2027\n6\nAD0 Smart Mirror · Smart Truck (AD2 kit) · Thermal camera · 4D radar pod · H100 driver monitor · Defence D-HUMR\nFY2028\n8\nAD1 Indoor L4 kit · Autonomous TaaS · Seaport AGV · Chipset OEM B2B · A100 compute box 1ch M.2 · A100 compute box 2ch · A100 compute box 4ch PCIe · D100 drone SoC kit\nFY2029\n1\nT100 AI licence\nWhy the shape matters\nFY2027 revenue is FPGA-based product and robot sales only — ₹1.7 Cr across six SKUs. Nine more begin earning in FY2028 as ASIC-era product reaches market, and the licence line starts in FY2029. The ramp is gated by silicon, which is what the round funds.",
+    "notes": "Launch year = first non-zero revenue year per SKU.",
+    "script": "Slide 84: SEQUENCING. Launch year = first non-zero revenue year per SKU.",
+    "sim_type": null
+  },
+  {
+    "slide": 85,
+    "title": "WHERE AUTONOMY RUNS",
+    "body": "Outdoor carries it; indoor ships L4 sooner\nThe same chip across three operating domains, with different regulatory exposure.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n85\n86.3%\nOUTDOOR AUTONOMY\n8.0%\nGENERAL COMPUTE\n5.7%\nINDOOR AUTONOMY\n15\nSKUS IN TOTAL\nDOMAIN\nSKUS\nFY2032 REVENUE\nSHARE\nWHAT IT COVERS\nOutdoor autonomy\n10\n₹974 Cr\n86.3%\nRoad, fleet, sensing, defence — anything on a public road or open site\nGeneral compute\n3\n₹90.3 Cr\n8.0%\nA100 modules sold as silicon, with no vehicle attached\nIndoor autonomy\n2\n₹64.7 Cr\n5.7%\nGeofenced level-4: warehouse kits and port vehicles\nThe regulatory asymmetry\nOutdoor revenue depends on homologation and public-road rules. Indoor is geofenced, so level-4 ships years earlier on the same chip. Compute carries no vehicle exposure at all.",
+    "notes": "Revenue Build section C.",
+    "script": "Slide 85: WHERE AUTONOMY RUNS. Revenue Build section C.",
+    "sim_type": null
+  },
+  {
+    "slide": 86,
+    "title": "MARGIN",
+    "body": "Volume and margin sit in different places\nSystems carry the revenue; semiconductors carry the profit per rupee.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n86\nSEGMENT\nSKUS\nFY2032 REVENUE\nSHARE OF REVENUE\nFY2032 GROSS MARGIN\nSystems\n8\n₹941 Cr\n83.4%\n89%\nSemiconductors\n2\n₹104 Cr\n9.2%\n94%\nRobotics\n2\n₹50.0 Cr\n4.4%\n68%\nSensors\n3\n₹33.5 Cr\n3.0%\n50%\nHow to read the two together\nGroup economics track systems, because systems are 83.4% of revenue. But the marginal rupee is worth most in semiconductors at 94%, and those SKUs need no installation capacity. Growth in the silicon SKUs improves group margin without adding operational load.",
+    "notes": "Segment totals computed from the fifteen SKUs.",
+    "script": "Slide 86: MARGIN. Segment totals computed from the fifteen SKUs.",
+    "sim_type": null
+  },
+  {
+    "slide": 87,
+    "title": "HEADROOM",
+    "body": "No SKU assumes we win its market\nFY2032 share of each SKU's own sized demand pool. Axis runs to 2%.\nDEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS\n87\nAD0 Smart Mirror\n0.93%\nSmart Truck (AD2 kit)\n1.80%\nAutonomous TaaS\n0.01%\nSeaport AGV\n0.02%\nThermal camera\n0.10%\n4D radar pod\n0.03%\nChipset OEM B2B\n0.25%\nA100 compute box (3 SKUs)\n0.20%\nWhy the shares look small\nMost pools are global while our serviceable market is the India slice, so the real share is higher. The three A100 SKUs share one pool row; T100 has none.\nThe one to read differently\nSeaport AGV shows 0.02% against a pool that is total port automation, cranes and software included. We sell only the vehicle layer.\nCapture rates are management assumptions; pool sizes are third-party published estimates.",
+    "notes": "Demand & TAM section B capture column; A100 collapsed to its single pool row.",
+    "script": "Slide 87: HEADROOM. Demand & TAM section B capture column; A100 collapsed to its single pool row.",
+    "sim_type": null
+  },
+  {
+    "slide": 88,
+    "title": "THE ASK",
+    "body": "Fund the silicon; the portfolio follows\nFifteen SKUs, one tapeout. Release capital against silicon, certification and paying customers — not against the forecast.\nLegislated demand\nA million trucks a year in scope\nOne tapeout\nAll fifteen SKUs downstream of a single 28 nm chip\nMargin where it counts\n94% on silicon, needing no installation capacity\nA floor, not a stretch\nUnder 2% of every sized pool, prices flat six years\nThe portfolio is not fifteen bets. It is one bet, fifteen times over.\nAll figures are management projections prepared for fundraising purposes and are not audited or reported results.\nDEEPGRID SEMI  ·  PRODUCT LINES  ·  AUGUST 2026\n88",
+    "notes": "Close.",
+    "script": "Slide 88: THE ASK. Fund the silicon; the portfolio follows Fifteen SKUs, one tapeout. Release capital against silicon, certification and paying customers — not against the forecast. Legislated demand A million trucks a year in scope One tapeout All fifteen SKUs downstream of a single 28 nm chip Margin where it counts ",
+    "sim_type": null
+  }
+]

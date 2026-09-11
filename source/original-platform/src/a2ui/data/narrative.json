@@ -1,0 +1,937 @@
+{
+ "contract_version": "narrative-3.0",
+ "core_message": "DeepGrid cannot win India CV ADAS as a full-system supplier — ZF and Aptiv own braking, ECU, calibration, approval and warranty. It can win as the bounded perception layer an accountable integrator embeds, and the only thing between here and there is reproducible evidence that four funded gates buy in 90 days.",
+ "scqa": {
+  "situation": "India CV ADAS is already occupied — by control point, not by product. ZF and Aptiv hold braking, ECU, calibration, approval and warranty.",
+  "complication": "DeepGrid’s claims outrun its evidence: the mandate date is wrong, five claims are unsupported, and no competitor placement here is independently verified.",
+  "question": "Where can DeepGrid still win, against whom, and what must be true first?",
+  "answer": "Attach and prove. Sell a bounded perception subsystem inside an accountable integrator, fund four evidence gates, and decide in 90 days."
+ },
+ "acts": [
+  {
+   "id": "A1",
+   "no": "Act I",
+   "name": "The verdict",
+   "question": "What should DeepGrid do, before any of the evidence?",
+   "settles": "The answer, the gates that fund it, and what live research changed.",
+   "items": [
+    {
+     "page": "pyramid"
+    },
+    {
+     "slide": 1
+    },
+    {
+     "slide": 2
+    },
+    {
+     "slide": 3
+    },
+    {
+     "slide": 4
+    },
+    {
+     "page": "delta"
+    }
+   ],
+   "slides": [
+    1,
+    2,
+    3,
+    4
+   ],
+   "length": 6
+  },
+  {
+   "id": "A2",
+   "no": "Act II",
+   "name": "The field",
+   "question": "Who occupies India CV ADAS, what is the actual rule, and what does each arena reward?",
+   "settles": "The notified instrument, the scale of the field, and the line that divides it.",
+   "items": [
+    {
+     "page": "universe"
+    },
+    {
+     "page": "execcompare"
+    },
+    {
+     "page": "patterns"
+    },
+    {
+     "page": "valuenet"
+    },
+    {
+     "page": "regulatory"
+    },
+    {
+     "page": "scale"
+    },
+    {
+     "page": "actuation"
+    },
+    {
+     "page": "certification"
+    },
+    {
+     "page": "silicon"
+    },
+    {
+     "page": "timeline"
+    },
+    {
+     "page": "oneprogramme"
+    },
+    {
+     "slide": 5
+    },
+    {
+     "slide": 6
+    },
+    {
+     "slide": 7
+    },
+    {
+     "slide": 11
+    },
+    {
+     "slide": 12
+    },
+    {
+     "slide": 13
+    }
+   ],
+   "slides": [
+    5,
+    6,
+    7,
+    11,
+    12,
+    13
+   ],
+   "length": 17
+  },
+  {
+   "id": "A3",
+   "no": "Act III",
+   "name": "The contest",
+   "question": "What is each rival TO DeepGrid — substitute, gatekeeper, channel, different job, narrative or supplier — and how much of this deck should that relationship buy?",
+   "settles": "The one contest to win, the three accounts to sell to, the three markets to leave, the two claims to counter, and the supplier layer that sets the cost floor.",
+   "items": [
+    {
+     "page": "section",
+     "arg": "substitute"
+    },
+    {
+     "page": "profile",
+     "arg": "stradvision"
+    },
+    {
+     "page": "usecase",
+     "arg": "stradvision"
+    },
+    {
+     "slide": 45
+    },
+    {
+     "slide": 46
+    },
+    {
+     "slide": 32
+    },
+    {
+     "slide": 63
+    },
+    {
+     "page": "displacement"
+    },
+    {
+     "page": "section",
+     "arg": "gatekeeper"
+    },
+    {
+     "page": "profile",
+     "arg": "aptiv"
+    },
+    {
+     "page": "usecase",
+     "arg": "aptiv"
+    },
+    {
+     "slide": 9
+    },
+    {
+     "slide": 29
+    },
+    {
+     "slide": 31
+    },
+    {
+     "slide": 30
+    },
+    {
+     "slide": 62
+    },
+    {
+     "page": "section",
+     "arg": "channel"
+    },
+    {
+     "page": "profile",
+     "arg": "zf"
+    },
+    {
+     "page": "usecase",
+     "arg": "zf"
+    },
+    {
+     "slide": 26
+    },
+    {
+     "slide": 28
+    },
+    {
+     "slide": 27
+    },
+    {
+     "slide": 61
+    },
+    {
+     "page": "profile",
+     "arg": "sterling"
+    },
+    {
+     "page": "usecase",
+     "arg": "sterling"
+    },
+    {
+     "slide": 47
+    },
+    {
+     "slide": 48
+    },
+    {
+     "slide": 33
+    },
+    {
+     "slide": 64
+    },
+    {
+     "page": "section",
+     "arg": "differentjob"
+    },
+    {
+     "page": "differentjob"
+    },
+    {
+     "page": "profile",
+     "arg": "drivebuddy"
+    },
+    {
+     "page": "usecase",
+     "arg": "drivebuddy"
+    },
+    {
+     "slide": 23
+    },
+    {
+     "page": "section",
+     "arg": "narrative"
+    },
+    {
+     "page": "narrativecounter"
+    },
+    {
+     "page": "profile",
+     "arg": "gahan"
+    },
+    {
+     "slide": 36
+    },
+    {
+     "page": "section",
+     "arg": "supplier"
+    },
+    {
+     "page": "supplierside"
+    },
+    {
+     "page": "section",
+     "arg": "incumbent"
+    },
+    {
+     "slide": 53
+    },
+    {
+     "slide": 54
+    },
+    {
+     "slide": 35
+    },
+    {
+     "slide": 69
+    },
+    {
+     "slide": 70
+    }
+   ],
+   "slides": [
+    26,
+    28,
+    27,
+    61,
+    9,
+    29,
+    31,
+    30,
+    62,
+    45,
+    46,
+    32,
+    63,
+    23,
+    25,
+    24,
+    60,
+    17,
+    19,
+    18,
+    34,
+    58,
+    47,
+    48,
+    33,
+    64,
+    49,
+    50,
+    65,
+    66,
+    51,
+    52,
+    67,
+    68,
+    20,
+    22,
+    21,
+    36,
+    59,
+    53,
+    54,
+    35,
+    69,
+    70
+   ],
+   "length": 46,
+   "reweighted": {
+    "from": 62,
+    "to": 46,
+    "rule": "depth follows relationship, not company count",
+    "authority": "strategy-sections.json · reshape (v7) — row 3",
+    "displaced_to": "A7 Appendix"
+   }
+  },
+  {
+   "id": "A4",
+   "no": "Act IV",
+   "name": "The ranking",
+   "question": "Who actually blocks us, in what order, and what do they do when we start winning?",
+   "settles": "The re-derived ranking, the obstruction axis it was hiding, and the contests to lose deliberately.",
+   "items": [
+    {
+     "page": "scorecard"
+    },
+    {
+     "page": "twoaxis"
+    },
+    {
+     "slide": 8
+    },
+    {
+     "page": "countermove"
+    },
+    {
+     "page": "donotcompete"
+    },
+    {
+     "page": "lifecycle"
+    },
+    {
+     "page": "reshape"
+    },
+    {
+     "page": "posture"
+    }
+   ],
+   "slides": [
+    8
+   ],
+   "length": 8
+  },
+  {
+   "id": "A5",
+   "no": "Act V",
+   "name": "The wedge",
+   "question": "What exactly does DeepGrid sell, at what price, and what should it build versus buy?",
+   "settles": "The bounded offer, what cannot be said about price, and the make-or-buy line.",
+   "items": [
+    {
+     "slide": 14
+    },
+    {
+     "slide": 10
+    },
+    {
+     "slide": 15
+    },
+    {
+     "slide": 16
+    },
+    {
+     "slide": 40
+    },
+    {
+     "slide": 41
+    },
+    {
+     "slide": 42
+    },
+    {
+     "slide": 43
+    },
+    {
+     "slide": 44
+    },
+    {
+     "slide": 56
+    },
+    {
+     "slide": 71
+    },
+    {
+     "slide": 73
+    },
+    {
+     "page": "pricing"
+    },
+    {
+     "page": "buildbuy"
+    }
+   ],
+   "slides": [
+    14,
+    10,
+    15,
+    16,
+    40,
+    41,
+    42,
+    43,
+    44,
+    56,
+    71,
+    73
+   ],
+   "length": 14
+  },
+  {
+   "id": "A6",
+   "no": "Act VI",
+   "name": "The plan",
+   "question": "What must be true in 90 days, and who owns each gate?",
+   "settles": "Owners, triggers and the gates that decide whether the position is real.",
+   "items": [
+    {
+     "page": "execaction"
+    },
+    {
+     "slide": 37
+    },
+    {
+     "slide": 38
+    },
+    {
+     "slide": 39
+    },
+    {
+     "slide": 55
+    },
+    {
+     "slide": 57
+    },
+    {
+     "slide": 72
+    }
+   ],
+   "slides": [
+    37,
+    38,
+    39,
+    55,
+    57,
+    72
+   ],
+   "length": 7
+  },
+  {
+   "id": "A7",
+   "no": "Appendix",
+   "name": "The rest of the field",
+   "question": "For the six companies Act III no longer leads with, what was the evidence?",
+   "settles": "Every rating in the main line is still argued somewhere. Re-weighting moved these pages out of the argument; it did not withdraw them.",
+   "items": [
+    {
+     "page": "profile",
+     "arg": "starkenn"
+    },
+    {
+     "page": "usecase",
+     "arg": "starkenn"
+    },
+    {
+     "slide": 17
+    },
+    {
+     "slide": 19
+    },
+    {
+     "slide": 18
+    },
+    {
+     "slide": 34
+    },
+    {
+     "slide": 58
+    },
+    {
+     "page": "profile",
+     "arg": "bitsensing"
+    },
+    {
+     "page": "usecase",
+     "arg": "bitsensing"
+    },
+    {
+     "slide": 49
+    },
+    {
+     "slide": 50
+    },
+    {
+     "slide": 65
+    },
+    {
+     "slide": 66
+    },
+    {
+     "page": "profile",
+     "arg": "netrasemi"
+    },
+    {
+     "page": "usecase",
+     "arg": "netrasemi"
+    },
+    {
+     "slide": 51
+    },
+    {
+     "slide": 52
+    },
+    {
+     "slide": 67
+    },
+    {
+     "slide": 68
+    },
+    {
+     "page": "usecase",
+     "arg": "gahan"
+    },
+    {
+     "slide": 20
+    },
+    {
+     "slide": 22
+    },
+    {
+     "slide": 21
+    },
+    {
+     "slide": 59
+    },
+    {
+     "slide": 25
+    },
+    {
+     "slide": 24
+    },
+    {
+     "slide": 60
+    }
+   ],
+   "slides": [
+    17,
+    19,
+    18,
+    34,
+    58,
+    49,
+    50,
+    65,
+    66,
+    51,
+    52,
+    67,
+    68,
+    20,
+    22,
+    21,
+    59,
+    25,
+    24,
+    60
+   ],
+   "length": 27
+  }
+ ],
+ "pyramid": {
+  "governing_thought": "DeepGrid cannot win India CV ADAS as a full-system supplier — ZF and Aptiv own braking, ECU, calibration, approval and warranty. It can win as the bounded perception layer an accountable integrator embeds, and the only thing between here and there is reproducible evidence that four funded gates buy in 90 days.",
+  "supports": [
+   {
+    "claim": "The field is occupied by control point, not by product.",
+    "because": "A competitor is dangerous when it owns something DeepGrid must pass through. ZF and Aptiv hold the gates that decide a programme; no feature answers that.",
+    "proof": "Act II · four arenas, four control points"
+   },
+   {
+    "claim": "No competitor placement in this dossier is independently verified.",
+    "because": "Every rating rests on company statements, not on procurement or homologation artifacts, so the war room must move scores on evidence events rather than announcements.",
+    "proof": "Act III · ten evidence ladders and falsifiers"
+   },
+   {
+    "claim": "DeepGrid’s current claims outrun its evidence, and that is the binding constraint.",
+    "because": "The April-2026 mandate date is wrong, five claims are unsupported, and a projected die price is being compared to a system price. Proof deficit — not feature deficit — is what blocks entry.",
+    "proof": "Act IV · the wedge · Act V · the 90-day sprint"
+   }
+  ]
+ },
+ "hostile_questions": [
+  [
+   "“India-native” is our differentiator — why retire it?",
+   "It is not a control point. Government buyers reward demonstrable performance and procurement credibility; nationality alone has never cleared a homologation gate. Lead with measured constrained-compute VRU performance instead."
+  ],
+  [
+   "If ZF and Aptiv own the vehicle, is there any position left at all?",
+   "Yes — the perception layer they choose to embed. That is a Tier-2 position inside their safety case, which is exactly why the market-entry event is a named braking Tier-1 accepting our interfaces, not an OEM win."
+  ],
+  [
+   "Starkenn shows 2,500+ vehicles. Are we not already behind?",
+   "The number does not survive its own source. The single Nov-2024 interview it comes from also says ‘over 700 units sold’ and ‘300+ vehicles have deployed our tech’ — three figures for one quantity, self-reported and unaudited, now ~21 months old. Starkenn is a 57-person company shrinking 15.8% year on year on $2.0m of lifetime funding. What is real is its 30% government-tender share and 40% subscription revenue — empanelment and recurring revenue, not scale. Compete on the tender route, not against a deployment count that cannot be quoted. (EV-STK-04, EV-STK-05)"
+  ],
+  [
+   "The ASIC gives us a 3–7× cost advantage. Why gate the capital?",
+   "Because a projected die price is not comparable to a system price. The bridge must carry NRE, yield, package, qualification, warranty and lifecycle. Commission the break-even model first; the direction is not the magnitude."
+  ],
+  [
+   "Why only four gates? Can we not run more in parallel?",
+   "Four parallel gates already exceed the engineering and management capacity of a company this size. Running six dilutes all of them rather than clearing any one. The stop rule is explicit: re-plan if two of four miss their first milestone."
+  ],
+  [
+   "What would make you change this recommendation?",
+   "A named Indian CV OEM qualifying DeepGrid directly, with no braking Tier-1 in the loop, before 1 October 2027. That single observable overturns the attach-and-prove thesis, and it is on the page."
+  ]
+ ],
+ "order": [
+  {
+   "slide_id": 1,
+   "act": "A1"
+  },
+  {
+   "slide_id": 2,
+   "act": "A1"
+  },
+  {
+   "slide_id": 3,
+   "act": "A1"
+  },
+  {
+   "slide_id": 4,
+   "act": "A1"
+  },
+  {
+   "slide_id": 5,
+   "act": "A2"
+  },
+  {
+   "slide_id": 6,
+   "act": "A2"
+  },
+  {
+   "slide_id": 7,
+   "act": "A2"
+  },
+  {
+   "slide_id": 8,
+   "act": "A2"
+  },
+  {
+   "slide_id": 11,
+   "act": "A2"
+  },
+  {
+   "slide_id": 12,
+   "act": "A2"
+  },
+  {
+   "slide_id": 13,
+   "act": "A2"
+  },
+  {
+   "slide_id": 17,
+   "act": "A3"
+  },
+  {
+   "slide_id": 19,
+   "act": "A3"
+  },
+  {
+   "slide_id": 18,
+   "act": "A3"
+  },
+  {
+   "slide_id": 34,
+   "act": "A3"
+  },
+  {
+   "slide_id": 58,
+   "act": "A3"
+  },
+  {
+   "slide_id": 20,
+   "act": "A3"
+  },
+  {
+   "slide_id": 22,
+   "act": "A3"
+  },
+  {
+   "slide_id": 21,
+   "act": "A3"
+  },
+  {
+   "slide_id": 36,
+   "act": "A3"
+  },
+  {
+   "slide_id": 59,
+   "act": "A3"
+  },
+  {
+   "slide_id": 23,
+   "act": "A3"
+  },
+  {
+   "slide_id": 25,
+   "act": "A3"
+  },
+  {
+   "slide_id": 24,
+   "act": "A3"
+  },
+  {
+   "slide_id": 60,
+   "act": "A3"
+  },
+  {
+   "slide_id": 26,
+   "act": "A3"
+  },
+  {
+   "slide_id": 28,
+   "act": "A3"
+  },
+  {
+   "slide_id": 27,
+   "act": "A3"
+  },
+  {
+   "slide_id": 61,
+   "act": "A3"
+  },
+  {
+   "slide_id": 9,
+   "act": "A3"
+  },
+  {
+   "slide_id": 29,
+   "act": "A3"
+  },
+  {
+   "slide_id": 31,
+   "act": "A3"
+  },
+  {
+   "slide_id": 30,
+   "act": "A3"
+  },
+  {
+   "slide_id": 62,
+   "act": "A3"
+  },
+  {
+   "slide_id": 45,
+   "act": "A3"
+  },
+  {
+   "slide_id": 46,
+   "act": "A3"
+  },
+  {
+   "slide_id": 32,
+   "act": "A3"
+  },
+  {
+   "slide_id": 63,
+   "act": "A3"
+  },
+  {
+   "slide_id": 47,
+   "act": "A3"
+  },
+  {
+   "slide_id": 48,
+   "act": "A3"
+  },
+  {
+   "slide_id": 33,
+   "act": "A3"
+  },
+  {
+   "slide_id": 64,
+   "act": "A3"
+  },
+  {
+   "slide_id": 49,
+   "act": "A3"
+  },
+  {
+   "slide_id": 50,
+   "act": "A3"
+  },
+  {
+   "slide_id": 65,
+   "act": "A3"
+  },
+  {
+   "slide_id": 66,
+   "act": "A3"
+  },
+  {
+   "slide_id": 51,
+   "act": "A3"
+  },
+  {
+   "slide_id": 52,
+   "act": "A3"
+  },
+  {
+   "slide_id": 67,
+   "act": "A3"
+  },
+  {
+   "slide_id": 68,
+   "act": "A3"
+  },
+  {
+   "slide_id": 53,
+   "act": "A3"
+  },
+  {
+   "slide_id": 54,
+   "act": "A3"
+  },
+  {
+   "slide_id": 35,
+   "act": "A3"
+  },
+  {
+   "slide_id": 69,
+   "act": "A3"
+  },
+  {
+   "slide_id": 70,
+   "act": "A3"
+  },
+  {
+   "slide_id": 14,
+   "act": "A4"
+  },
+  {
+   "slide_id": 10,
+   "act": "A4"
+  },
+  {
+   "slide_id": 15,
+   "act": "A4"
+  },
+  {
+   "slide_id": 16,
+   "act": "A4"
+  },
+  {
+   "slide_id": 40,
+   "act": "A4"
+  },
+  {
+   "slide_id": 41,
+   "act": "A4"
+  },
+  {
+   "slide_id": 42,
+   "act": "A4"
+  },
+  {
+   "slide_id": 43,
+   "act": "A4"
+  },
+  {
+   "slide_id": 44,
+   "act": "A4"
+  },
+  {
+   "slide_id": 56,
+   "act": "A4"
+  },
+  {
+   "slide_id": 71,
+   "act": "A4"
+  },
+  {
+   "slide_id": 73,
+   "act": "A4"
+  },
+  {
+   "slide_id": 37,
+   "act": "A5"
+  },
+  {
+   "slide_id": 38,
+   "act": "A5"
+  },
+  {
+   "slide_id": 39,
+   "act": "A5"
+  },
+  {
+   "slide_id": 55,
+   "act": "A5"
+  },
+  {
+   "slide_id": 57,
+   "act": "A5"
+  },
+  {
+   "slide_id": 72,
+   "act": "A5"
+  }
+ ],
+ "v9_note": "Act III re-weighted 62 -> 46 pages across six relationship sections; 27 per-company pages moved to the Appendix. Nothing deleted."
+}

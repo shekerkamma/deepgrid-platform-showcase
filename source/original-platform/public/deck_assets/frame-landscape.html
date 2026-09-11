@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Memory Spectrum — How DGrid Compares</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --panel: #131826;
+    --ink: #e8edf5;
+    --dim: #6b7388;
+    --accent: #3ba3ff;
+    --hot: #ff5440;
+    --warm: #ffb340;
+    --cool: #34c285;
+    --line: #1f2738;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page { max-width: 1300px; margin: 0 auto; padding: 50px 24px 80px; }
+
+  /* HEADER */
+  header { text-align: center; margin-bottom: 36px; }
+  header .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.25em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  header h1 {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.05; margin-bottom: 14px;
+  }
+  header h1 .em { color: var(--accent); }
+  header p.sub {
+    color: var(--dim); font-size: 16px;
+    max-width: 720px; margin: 0 auto; line-height: 1.55;
+  }
+
+  /* SPECTRUM RIBBON */
+  .spectrum {
+    margin: 30px auto 24px;
+    max-width: 1100px;
+    height: 50px;
+    position: relative;
+    background: linear-gradient(90deg,
+      rgba(255,84,64,0.12) 0%,
+      rgba(255,179,64,0.10) 25%,
+      rgba(59,163,255,0.10) 50%,
+      rgba(52,194,133,0.12) 75%,
+      rgba(180,80,200,0.14) 100%);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .spectrum-label-l, .spectrum-label-r {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: var(--dim); text-transform: uppercase;
+    padding: 0 14px;
+  }
+  .spectrum-label-l { left: 0; }
+  .spectrum-label-r { right: 0; }
+  .spectrum-label-c {
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    color: var(--dim); text-transform: uppercase;
+  }
+  .spectrum-marks {
+    position: absolute;
+    top: -10px;
+    left: 0; right: 0;
+    height: 70px;
+  }
+  .mark {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  .mark .dot {
+    width: 12px; height: 12px;
+    background: var(--ink);
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    margin: 0 auto;
+  }
+  .mark .name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink);
+    margin-top: 4px;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .mark.dgrid .dot { background: var(--hot); border-color: var(--bg); }
+  .mark.dgrid-fut .dot { background: var(--cool); border-color: var(--bg); }
+  .mark.mobileye .dot { background: var(--warm); }
+  .mark.orin .dot { background: var(--accent); }
+  .mark.hailo .dot { background: #b450c8; }
+  .mark.dojo .dot { background: #c8508c; }
+
+  /* CONTROLS */
+  .controls {
+    display: flex; justify-content: center; align-items: center;
+    gap: 14px; margin: 50px 0 30px; flex-wrap: wrap;
+  }
+  .btn {
+    background: var(--panel); color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 10px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.05em;
+    cursor: pointer; transition: all 0.15s;
+    border-radius: 6px;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary {
+    background: var(--accent); color: #0a0e1a;
+    font-weight: 700; border-color: var(--accent);
+  }
+  .speed-display {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--dim); font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  /* GRID OF SCENES */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 1100px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+
+  .scene {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+    position: relative;
+    display: flex; flex-direction: column;
+  }
+  .scene-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 8px; gap: 8px;
+  }
+  .scene-name {
+    font-size: 16px; font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .scene-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .scene[data-id="dgrid-now"] { border-left: 3px solid var(--hot); }
+  .scene[data-id="dgrid-now"] .scene-tag { background: rgba(255,84,64,0.15); color: var(--hot); }
+  .scene[data-id="dgrid-fut"] { border-left: 3px solid var(--cool); }
+  .scene[data-id="dgrid-fut"] .scene-tag { background: rgba(52,194,133,0.15); color: var(--cool); }
+  .scene[data-id="mobileye"]  { border-left: 3px solid var(--warm); }
+  .scene[data-id="mobileye"] .scene-tag { background: rgba(255,179,64,0.15); color: var(--warm); }
+  .scene[data-id="orin"]      { border-left: 3px solid var(--accent); }
+  .scene[data-id="orin"] .scene-tag { background: rgba(59,163,255,0.15); color: var(--accent); }
+  .scene[data-id="hailo"]     { border-left: 3px solid #b450c8; }
+  .scene[data-id="hailo"] .scene-tag { background: rgba(180,80,200,0.15); color: #b450c8; }
+  .scene[data-id="dojo"]      { border-left: 3px solid #c8508c; }
+  .scene[data-id="dojo"] .scene-tag { background: rgba(200,80,140,0.15); color: #c8508c; }
+
+  .scene-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: var(--dim);
+    margin-bottom: 10px; line-height: 1.5;
+  }
+
+  .stage {
+    width: 100%;
+    aspect-ratio: 1.4 / 1;
+    background: rgba(255,255,255,0.015);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .scene-caption {
+    margin-top: 12px;
+    font-size: 12px; color: var(--dim);
+    line-height: 1.5;
+  }
+  .scene-caption strong { color: var(--ink); }
+
+  /* TAKEAWAY */
+  .takeaway {
+    margin-top: 40px;
+    padding: 32px;
+    background: linear-gradient(135deg,
+      rgba(52,194,133,0.05) 0%,
+      rgba(59,163,255,0.06) 100%);
+    border: 1px solid rgba(59,163,255,0.18);
+    border-radius: 14px;
+  }
+  .takeaway h2 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+  .takeaway h2 em { color: var(--cool); font-style: normal; }
+  .takeaway p {
+    color: var(--dim);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .takeaway p strong { color: var(--ink); }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    margin-top: 30px;
+    padding: 16px 20px;
+    background: rgba(255,179,64,0.05);
+    border-left: 3px solid var(--warm);
+    border-radius: 6px;
+    font-size: 12.5px;
+    color: var(--dim);
+    line-height: 1.55;
+  }
+  .disclaimer strong { color: var(--warm); }
+
+  footer {
+    margin-top: 50px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="eyebrow">DGrid Semi · Architecture</div>
+  <h1>The <span class="em">memory spectrum</span> — and where DGrid lands</h1>
+  <p class="sub">Six AI chips. Six approaches to the data-movement problem. From DGrid's shared-DMA today to Tesla Dojo's all-SRAM extreme. Per-PCORE DMA is the proven middle ground.</p>
+</header>
+
+<!-- SPECTRUM RIBBON -->
+<div class="spectrum">
+  <div class="spectrum-label-l">SHARED MEMORY</div>
+  <div class="spectrum-label-c">PER-CORE DMA</div>
+  <div class="spectrum-label-r">ALL LOCAL SRAM</div>
+  <div class="spectrum-marks">
+    <div class="mark dgrid"     style="left: 8%;"><div class="dot"></div><div class="name">DGrid today</div></div>
+    <div class="mark mobileye"  style="left: 22%;"><div class="dot"></div><div class="name">EyeQ</div></div>
+    <div class="mark orin"      style="left: 36%;"><div class="dot"></div><div class="name">Orin</div></div>
+    <div class="mark dgrid-fut" style="left: 52%;"><div class="dot"></div><div class="name">DGrid LDMA</div></div>
+    <div class="mark hailo"     style="left: 72%;"><div class="dot"></div><div class="name">Hailo-8</div></div>
+    <div class="mark dojo"      style="left: 92%;"><div class="dot"></div><div class="name">Dojo D1</div></div>
+  </div>
+</div>
+
+<div class="controls">
+  <button class="btn primary" id="btnPlay">▶ Play all</button>
+  <button class="btn" id="btnPause">⏸ Pause</button>
+  <button class="btn" id="btnReset">↺ Reset</button>
+  <button class="btn" id="btnSpeed">Speed: 1×</button>
+  <span class="speed-display" id="cycleCount">cycle 0</span>
+</div>
+
+<!-- GRID OF 6 SCENES -->
+<div class="grid">
+
+  <div class="scene" data-id="dgrid-now">
+    <div class="scene-head">
+      <div class="scene-name">DGrid SoC1.1 today</div>
+      <div class="scene-tag">single DP</div>
+    </div>
+    <div class="scene-meta">8 PCOREs · 1 DP engine · 7A100T FPGA · ~205 GMAC/s</div>
+    <svg class="stage" id="stage-dgrid-now" viewBox="0 0 360 260" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="scene-caption">All cores queue on <strong>one DMA engine</strong>. 7 wait while 1 eats. Today's bottleneck.</div>
+  </div>
+
+  <div class="scene" data-id="mobileye">
+    <div class="scene-head">
+      <div class="scene-name">Mobileye EyeQ</div>
+      <div class="scene-tag">VLIW + accel</div>
+    </div>
+    <div class="scene-meta">Multiple VLIW cores + accelerators · ~35 TOPS · 7nm</div>
+    <svg class="stage" id="stage-mobileye" viewBox="0 0 360 260" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="scene-caption">VLIW cores share an L2 with <strong>multi-channel DMA</strong>. Better than single-engine but still memory-shared.</div>
+  </div>
+
+  <div class="scene" data-id="orin">
+    <div class="scene-head">
+      <div class="scene-name">NVIDIA Orin AGX</div>
+      <div class="scene-tag">GPU + DLA</div>
+    </div>
+    <div class="scene-meta">2048 CUDA cores + DLA · ~275 TOPS · 8nm · 60W</div>
+    <svg class="stage" id="stage-orin" viewBox="0 0 360 260" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="scene-caption">SMs have <strong>per-SM shared memory</strong>. Brute-force throughput via massive parallelism — high power.</div>
+  </div>
+
+  <div class="scene" data-id="dgrid-fut">
+    <div class="scene-head">
+      <div class="scene-name">DGrid SoC1.3 / SoC2</div>
+      <div class="scene-tag">per-PCORE LDMA</div>
+    </div>
+    <div class="scene-meta">8-56 PCOREs · LDMA per core · shared SRAM L2</div>
+    <svg class="stage" id="stage-dgrid-fut" viewBox="0 0 360 260" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="scene-caption">Each PCORE owns its DMA. <strong>All 8 read in parallel</strong> from shared SRAM. The proven middle ground.</div>
+  </div>
+
+  <div class="scene" data-id="hailo">
+    <div class="scene-head">
+      <div class="scene-name">Hailo-8</div>
+      <div class="scene-tag">dataflow</div>
+    </div>
+    <div class="scene-meta">Distributed memory fabric · ~26 TOPS · 16nm · 2.5W</div>
+    <svg class="stage" id="stage-hailo" viewBox="0 0 360 260" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="scene-caption">Compiler maps each NN layer to <strong>memory + compute blocks</strong>, no DRAM needed. Extreme efficiency, narrow workload range.</div>
+  </div>
+
+  <div class="scene" data-id="dojo">
+    <div class="scene-head">
+      <div class="scene-name">Tesla Dojo D1</div>
+      <div class="scene-tag">all-SRAM</div>
+    </div>
+    <div class="scene-meta">354 cores × 1.25 MB SRAM · 362 TFLOPS BF16 · 7nm · 400W</div>
+    <svg class="stage" id="stage-dojo" viewBox="0 0 360 260" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="scene-caption">Each core has its <strong>own private SRAM</strong>, no DRAM at all on-chip. Cores explicitly send data to neighbors. Most extreme; project disbanded 2025.</div>
+  </div>
+
+</div>
+
+<!-- TAKEAWAY -->
+<div class="takeaway">
+  <h2>The proven middle ground is <em>per-core DMA with shared L2</em></h2>
+  <p><strong>DGrid today (left of spectrum)</strong> is where most academic prototypes start: one DMA engine, simple to verify, hits a wall fast.</p>
+  <p><strong>Tesla Dojo (right of spectrum)</strong> is the opposite extreme: each core gets its own SRAM, no DRAM at all. It works for one workload (vision training) at one scale (datacenter), with one customer (Tesla). Project was disbanded August 2025 after struggling to find general applicability.</p>
+  <p><strong>Mobileye, NVIDIA, and Hailo all sit between these poles.</strong> They use per-core or per-cluster DMA against shared memory — exactly what DGrid's per-PCORE LDMA proposal would deliver. This is the architecture that ships in cars, security cameras, and edge devices today.</p>
+  <p style="color: var(--ink); font-size: 16px; margin-top: 16px; font-weight: 600;">DGrid's roadmap from SoC1.2 → SoC1.3 → SoC2 traces this exact arc. Not radical. Not novel. <em style="color: var(--cool); font-style: normal;">Proven.</em></p>
+</div>
+
+<div class="disclaimer">
+  <strong>About the numbers.</strong>
+  Performance figures from public sources (vendor whitepapers, IEEE/Wikipedia) and represent peak compute, not application throughput. Power figures are rough. Memory architectures are simplified for animation — actual chip designs include cache coherence protocols, banked memories, and IO subsystems not shown. Animation rates are illustrative; absolute speeds between scenes are not to scale across vendors. Use this as a conceptual map, not a benchmark.
+</div>
+
+<footer>
+  DGrid Semi · architecture comparison · Apr 2026 · sources: Wikipedia, IEEE Hot Chips 34, Hailo product brief, NVIDIA whitepaper, Mobileye briefings
+</footer>
+
+</div>
+
+<script>
+const SVG = "http://www.w3.org/2000/svg";
+function el(tag, attrs={}, parent=null) {
+  const e = document.createElementNS(SVG, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+// ============================================================
+// SCENE BUILDERS
+// ============================================================
+
+// Each scene returns { tick(cycle), reset() }
+
+// ---------- DGrid today (single DP, 8 cores queue) ----------
+function buildDGridNow(svg) {
+  svg.innerHTML = '';
+  const W = 360, H = 260;
+
+  // DDR
+  el('rect', { x: 12, y: 12, width: W-24, height: 24, rx: 4,
+    fill: '#1c2536', stroke: '#2a3a52' }, svg);
+  el('text', { x: W/2, y: 28, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight': 600 }, svg).textContent = 'DDR';
+
+  // Single DP engine
+  const dpx=140, dpy=90, dpw=80, dph=42;
+  el('rect', { x: dpx, y: dpy, width: dpw, height: dph, rx: 4,
+    fill: '#2a1518', stroke: '#ff5440', 'stroke-width': 2 }, svg);
+  el('text', { x: dpx+dpw/2, y: dpy+18, 'text-anchor':'middle',
+    fill: '#ff8472', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight':700 }, svg).textContent = 'DP ENGINE';
+  el('text', { x: dpx+dpw/2, y: dpy+32, 'text-anchor':'middle',
+    fill: '#7a4a4a', 'font-family':'JetBrains Mono', 'font-size': 8 }, svg).textContent = '1 fetch';
+
+  // 8 PCOREs in 2 columns
+  const pcores = [];
+  const px = 270, pgap = 4, pw = 60, ph = 22;
+  for (let i=0; i<8; i++) {
+    const col = i%2, row = Math.floor(i/2);
+    const x = px + col*0 - col*0;
+    const y = 70 + row*(ph + pgap);
+    const cx = (i%2 === 0) ? 245 : 305;
+    const r = el('rect', { x: cx-25, y: y, width: 50, height: ph, rx: 3,
+      fill: '#1f2638', stroke: '#34c285', 'stroke-width': 1, 'stroke-opacity': 0.3 }, svg);
+    el('text', { x: cx, y: y+15, 'text-anchor':'middle',
+      fill: '#9ca8c2', 'font-family':'JetBrains Mono',
+      'font-size': 9, 'font-weight':600 }, svg).textContent = `P${i}`;
+    pcores.push({ rect: r, cx: cx, cy: y+ph/2, edgeX: cx-25 });
+  }
+
+  // Connection lines DP → pcores (faded)
+  for (const p of pcores) {
+    el('line', { x1: dpx+dpw, y1: dpy+dph/2, x2: p.edgeX, y2: p.cy,
+      stroke: '#2a1d1d', 'stroke-width': 0.7, 'stroke-opacity': 0.5 }, svg);
+  }
+
+  // SRAM
+  el('rect', { x: 30, y: 200, width: 90, height: 30, rx: 4,
+    fill: '#1c2536', stroke: '#3ba3ff', 'stroke-opacity':0.4 }, svg);
+  el('text', { x: 75, y: 220, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10 }, svg).textContent = 'SRAM L2';
+
+  // State
+  const state = { current: -1, queue: [], progress: 0, dur: 30,
+                  busy: Array(8).fill(0), total: Array(8).fill(0) };
+
+  function tick(cycle) {
+    // schedule
+    if (state.current === -1) {
+      // pick next idle pcore
+      for (let i=0; i<8; i++) {
+        if (state.busy[i] === 0 && !state.queue.includes(i)) state.queue.push(i);
+      }
+      if (state.queue.length > 0) {
+        state.current = state.queue.shift();
+        state.progress = 0;
+      }
+    } else {
+      state.progress++;
+      if (state.progress >= state.dur) {
+        // pcore now full, set busy for compute
+        state.busy[state.current] = 25;  // compute duration
+        state.current = -1;
+      }
+    }
+
+    // compute drain
+    for (let i=0; i<8; i++) {
+      state.total[i]++;
+      if (state.busy[i] > 0) state.busy[i]--;
+    }
+
+    // emit packet
+    if (state.current !== -1 && cycle % 3 === 0) {
+      const p = pcores[state.current];
+      spawnPacket(svg, dpx+dpw, dpy+dph/2, p.edgeX, p.cy, '#ff5440', 400);
+    }
+
+    // visual update
+    for (let i=0; i<8; i++) {
+      const r = pcores[i].rect;
+      if (state.busy[i] > 5) { r.setAttribute('fill', '#1f3a2c'); r.setAttribute('stroke-opacity', 1); }
+      else if (i === state.current) { r.setAttribute('fill', '#2a2618'); r.setAttribute('stroke', '#ffb340'); r.setAttribute('stroke-opacity', 0.8); }
+      else { r.setAttribute('fill', '#1f2638'); r.setAttribute('stroke', '#34c285'); r.setAttribute('stroke-opacity', 0.25); }
+    }
+  }
+
+  function reset() {
+    state.current = -1; state.queue = []; state.progress = 0;
+    state.busy.fill(0); state.total.fill(0);
+  }
+
+  return { tick, reset };
+}
+
+// ---------- DGrid future (8 LDMA, parallel) ----------
+function buildDGridFut(svg) {
+  svg.innerHTML = '';
+  const W = 360, H = 260;
+
+  // DDR
+  el('rect', { x: 12, y: 12, width: W-24, height: 24, rx: 4,
+    fill: '#1c2536', stroke: '#2a3a52' }, svg);
+  el('text', { x: W/2, y: 28, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight': 600 }, svg).textContent = 'DDR';
+
+  // Global DP (small, secondary)
+  el('rect', { x: 30, y: 60, width: 80, height: 32, rx: 4,
+    fill: '#1c2536', stroke: '#5a6788' }, svg);
+  el('text', { x: 70, y: 80, 'text-anchor':'middle',
+    fill: '#7a8aa8', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-weight':600 }, svg).textContent = 'Global DP';
+
+  // SRAM L2
+  el('rect', { x: 30, y: 110, width: 80, height: 36, rx: 4,
+    fill: '#1c2536', stroke: '#3ba3ff', 'stroke-width': 1.5 }, svg);
+  el('text', { x: 70, y: 125, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight':600 }, svg).textContent = 'SRAM L2';
+  el('text', { x: 70, y: 138, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 8 }, svg).textContent = 'shared';
+
+  // 8 LDMA + PCORE pairs
+  const pcores = [];
+  const ldmas = [];
+  for (let i=0; i<8; i++) {
+    const col = i%2, row = Math.floor(i/2);
+    const cx = (col === 0) ? 200 : 295;
+    const y = 60 + row*40;
+    // LDMA
+    el('rect', { x: cx-58, y: y+5, width: 22, height: 16, rx: 2,
+      fill: '#0d2438', stroke: '#3ba3ff' }, svg);
+    el('text', { x: cx-47, y: y+16, 'text-anchor':'middle',
+      fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 7, 'font-weight':700 }, svg).textContent = 'LDMA';
+    // PCORE
+    const r = el('rect', { x: cx-25, y: y, width: 50, height: 26, rx: 3,
+      fill: '#1f2638', stroke: '#34c285', 'stroke-width': 1.5, 'stroke-opacity': 0.6 }, svg);
+    el('text', { x: cx, y: y+16, 'text-anchor':'middle',
+      fill: '#9ca8c2', 'font-family':'JetBrains Mono',
+      'font-size': 9, 'font-weight':600 }, svg).textContent = `P${i}`;
+
+    // line LDMA → SRAM
+    el('line', { x1: 110, y1: 128, x2: cx-58, y2: y+13,
+      stroke: '#0d2438', 'stroke-width': 0.7 }, svg);
+
+    pcores.push({ rect: r, cx: cx, cy: y+13, edgeX: cx-25 });
+    ldmas.push({ x: cx-47, y: y+13 });
+  }
+
+  const state = {
+    progress: Array(8).fill(0),
+    busy: Array(8).fill(0),
+    state: Array(8).fill(0),  // 0=idle, 1=loading, 2=computing
+    dur: 18,
+  };
+
+  function tick(cycle) {
+    for (let i=0; i<8; i++) {
+      if (state.state[i] === 0 && state.busy[i] === 0) {
+        state.state[i] = 1; state.progress[i] = 0;
+      }
+      if (state.state[i] === 1) {
+        state.progress[i]++;
+        if (state.progress[i] >= state.dur) {
+          state.state[i] = 2;
+          state.busy[i] = 25;
+        }
+      }
+      if (state.state[i] === 2) {
+        state.busy[i]--;
+        if (state.busy[i] <= 0) state.state[i] = 0;
+      }
+    }
+
+    if (cycle % 3 === 0) {
+      for (let i=0; i<8; i++) {
+        if (state.state[i] === 1) {
+          const p = pcores[i];
+          spawnPacket(svg, 110, 128, p.edgeX, p.cy, '#3ba3ff', 350);
+        }
+      }
+    }
+
+    for (let i=0; i<8; i++) {
+      const r = pcores[i].rect;
+      if (state.state[i] === 2) { r.setAttribute('fill', '#1f3a2c'); r.setAttribute('stroke-opacity', 1); }
+      else if (state.state[i] === 1) { r.setAttribute('fill', '#2a2618'); r.setAttribute('stroke', '#ffb340'); r.setAttribute('stroke-opacity', 0.8); }
+      else { r.setAttribute('fill', '#1f2638'); r.setAttribute('stroke', '#34c285'); r.setAttribute('stroke-opacity', 0.4); }
+    }
+  }
+
+  function reset() {
+    state.progress.fill(0); state.busy.fill(0); state.state.fill(0);
+  }
+
+  return { tick, reset };
+}
+
+// ---------- Mobileye (multi-channel DMA, shared L2) ----------
+function buildMobileye(svg) {
+  svg.innerHTML = '';
+  const W = 360, H = 260;
+  el('rect', { x: 12, y: 12, width: W-24, height: 24, rx: 4,
+    fill: '#1c2536', stroke: '#2a3a52' }, svg);
+  el('text', { x: W/2, y: 28, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight': 600 }, svg).textContent = 'DDR';
+
+  // 4-channel DMA in middle
+  el('rect', { x: 130, y: 50, width: 100, height: 30, rx: 4,
+    fill: '#2a2010', stroke: '#ffb340', 'stroke-width': 1.5 }, svg);
+  el('text', { x: 180, y: 67, 'text-anchor':'middle',
+    fill: '#ffb340', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-weight':700 }, svg).textContent = 'DMA × 4 ch';
+
+  // Shared L2
+  el('rect', { x: 100, y: 100, width: 160, height: 26, rx: 4,
+    fill: '#1c2536', stroke: '#3ba3ff', 'stroke-opacity':0.4 }, svg);
+  el('text', { x: 180, y: 117, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 9 }, svg).textContent = 'L2 shared';
+
+  // 4 VLIW cores + 4 accelerators
+  const cores = [];
+  const labels = ['VLIW0','VLIW1','VLIW2','VLIW3','XNN0','XNN1','XNN2','XNN3'];
+  const colors = ['#34c285','#34c285','#34c285','#34c285','#ffb340','#ffb340','#ffb340','#ffb340'];
+  for (let i=0; i<8; i++) {
+    const col = i%4, row = Math.floor(i/4);
+    const x = 25 + col*80, y = 145 + row*42;
+    const r = el('rect', { x, y, width: 70, height: 32, rx: 3,
+      fill: '#1f2638', stroke: colors[i], 'stroke-width': 1, 'stroke-opacity': 0.4 }, svg);
+    el('text', { x: x+35, y: y+19, 'text-anchor':'middle',
+      fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-weight':600 }, svg).textContent = labels[i];
+    cores.push({ rect: r, cx: x+35, cy: y+16, color: colors[i] });
+  }
+
+  const state = {
+    progress: Array(8).fill(0),
+    busy: Array(8).fill(0),
+    state: Array(8).fill(0),
+    dur: 22, // 4 channels = ~half the latency of single DP, but still some serialization
+    chBusy: 0,
+  };
+
+  function tick(cycle) {
+    for (let i=0; i<8; i++) {
+      if (state.state[i] === 0 && state.busy[i] === 0) {
+        // Need a channel — only 4 simultaneous loads
+        if (state.chBusy < 4) {
+          state.state[i] = 1; state.progress[i] = 0;
+          state.chBusy++;
+        }
+      }
+      if (state.state[i] === 1) {
+        state.progress[i]++;
+        if (state.progress[i] >= state.dur) {
+          state.state[i] = 2;
+          state.busy[i] = 22;
+          state.chBusy--;
+        }
+      }
+      if (state.state[i] === 2) {
+        state.busy[i]--;
+        if (state.busy[i] <= 0) state.state[i] = 0;
+      }
+    }
+
+    if (cycle % 3 === 0) {
+      for (let i=0; i<8; i++) {
+        if (state.state[i] === 1) {
+          const p = cores[i];
+          spawnPacket(svg, 180, 113, p.cx, p.cy, '#ffb340', 380);
+        }
+      }
+    }
+
+    for (let i=0; i<8; i++) {
+      const r = cores[i].rect;
+      if (state.state[i] === 2) { r.setAttribute('fill', '#1f3a2c'); r.setAttribute('stroke-opacity', 1); }
+      else if (state.state[i] === 1) { r.setAttribute('fill', '#2a2618'); r.setAttribute('stroke-opacity', 0.8); }
+      else { r.setAttribute('fill', '#1f2638'); r.setAttribute('stroke-opacity', 0.35); }
+    }
+  }
+
+  function reset() {
+    state.progress.fill(0); state.busy.fill(0); state.state.fill(0);
+    state.chBusy = 0;
+  }
+
+  return { tick, reset };
+}
+
+// ---------- Orin (GPU SMs + DLA) ----------
+function buildOrin(svg) {
+  svg.innerHTML = '';
+  el('rect', { x: 12, y: 12, width: 336, height: 24, rx: 4,
+    fill: '#1c2536', stroke: '#2a3a52' }, svg);
+  el('text', { x: 180, y: 28, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight': 600 }, svg).textContent = 'LPDDR5 (DRAM)';
+
+  // L2 cache
+  el('rect', { x: 30, y: 50, width: 300, height: 22, rx: 4,
+    fill: '#0d2438', stroke: '#3ba3ff', 'stroke-opacity':0.5 }, svg);
+  el('text', { x: 180, y: 65, 'text-anchor':'middle',
+    fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-weight':600 }, svg).textContent = 'Unified L2 cache';
+
+  // 16 small SMs (representing the GPU)
+  const cores = [];
+  for (let i=0; i<16; i++) {
+    const col = i%8, row = Math.floor(i/8);
+    const x = 25 + col*40, y = 90 + row*30;
+    const r = el('rect', { x, y, width: 32, height: 22, rx: 2,
+      fill: '#0d2438', stroke: '#3ba3ff', 'stroke-width': 1, 'stroke-opacity': 0.4 }, svg);
+    el('text', { x: x+16, y: y+15, 'text-anchor':'middle',
+      fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 8, 'font-weight':600 }, svg).textContent = `SM${i}`;
+    cores.push({ rect: r, cx: x+16, cy: y+11 });
+  }
+
+  // 2 DLAs
+  for (let i=0; i<2; i++) {
+    const x = 70 + i*150, y = 165;
+    const r = el('rect', { x, y, width: 110, height: 30, rx: 3,
+      fill: '#1f2638', stroke: '#3ba3ff', 'stroke-opacity':0.6 }, svg);
+    el('text', { x: x+55, y: y+19, 'text-anchor':'middle',
+      fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight':700 }, svg).textContent = `DLA${i}`;
+    cores.push({ rect: r, cx: x+55, cy: y+15 });
+  }
+
+  // Caption text
+  el('text', { x: 180, y: 220, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-style': 'italic' }, svg).textContent = '~2048 CUDA cores · simplified to 16 SMs + 2 DLA';
+
+  const state = {
+    busy: Array(18).fill(0),
+    progress: Array(18).fill(0),
+    state: Array(18).fill(0),
+    dur: 14,  // GPU-style: short load (cache hit), deep parallelism
+  };
+
+  function tick(cycle) {
+    for (let i=0; i<18; i++) {
+      if (state.state[i] === 0 && state.busy[i] === 0) {
+        state.state[i] = 1; state.progress[i] = 0;
+      }
+      if (state.state[i] === 1) {
+        state.progress[i]++;
+        if (state.progress[i] >= state.dur) {
+          state.state[i] = 2;
+          state.busy[i] = 18;
+        }
+      }
+      if (state.state[i] === 2) {
+        state.busy[i]--;
+        if (state.busy[i] <= 0) state.state[i] = 0;
+      }
+    }
+
+    if (cycle % 4 === 0) {
+      for (let i=0; i<Math.min(18, 18); i++) {
+        if (state.state[i] === 1) {
+          const p = cores[i];
+          spawnPacket(svg, 180, 60, p.cx, p.cy, '#3ba3ff', 280);
+        }
+      }
+    }
+
+    for (let i=0; i<18; i++) {
+      const r = cores[i].rect;
+      if (state.state[i] === 2) { r.setAttribute('fill', '#1f3a2c'); r.setAttribute('stroke', '#34c285'); r.setAttribute('stroke-opacity', 1); }
+      else if (state.state[i] === 1) { r.setAttribute('fill', '#2a2618'); r.setAttribute('stroke', '#ffb340'); r.setAttribute('stroke-opacity', 0.8); }
+      else { r.setAttribute('fill', '#0d2438'); r.setAttribute('stroke', '#3ba3ff'); r.setAttribute('stroke-opacity', 0.35); }
+    }
+  }
+
+  function reset() {
+    state.busy.fill(0); state.progress.fill(0); state.state.fill(0);
+  }
+
+  return { tick, reset };
+}
+
+// ---------- Hailo (dataflow — pipelined) ----------
+function buildHailo(svg) {
+  svg.innerHTML = '';
+  el('rect', { x: 12, y: 12, width: 336, height: 22, rx: 4,
+    fill: '#1c2536', stroke: '#2a3a52' }, svg);
+  el('text', { x: 180, y: 27, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight': 600 }, svg).textContent = 'Camera input (no DRAM!)';
+
+  // 5-stage pipeline of memory-control-compute blocks
+  const stages = [];
+  const stageNames = ['Layer1','Layer2','Layer3','Layer4','Layer5'];
+  for (let i=0; i<5; i++) {
+    const x = 30 + i*64, y = 80;
+    const r = el('rect', { x, y, width: 56, height: 100, rx: 4,
+      fill: '#1f1929', stroke: '#b450c8', 'stroke-width': 1.5 }, svg);
+    // sub-blocks: M (memory), C (control), X (compute)
+    el('rect', { x: x+5, y: y+8, width: 46, height: 22, rx: 2,
+      fill: '#3a1f3a', stroke: '#b450c8', 'stroke-opacity':0.5 }, svg);
+    el('text', { x: x+28, y: y+22, 'text-anchor':'middle',
+      fill: '#d090e0', 'font-family':'JetBrains Mono', 'font-size': 8 }, svg).textContent = 'MEM';
+    el('rect', { x: x+5, y: y+34, width: 46, height: 22, rx: 2,
+      fill: '#1f2a3a', stroke: '#3ba3ff', 'stroke-opacity':0.5 }, svg);
+    el('text', { x: x+28, y: y+48, 'text-anchor':'middle',
+      fill: '#7ac0e8', 'font-family':'JetBrains Mono', 'font-size': 8 }, svg).textContent = 'CTRL';
+    const cr = el('rect', { x: x+5, y: y+60, width: 46, height: 32, rx: 2,
+      fill: '#1f2a18', stroke: '#34c285', 'stroke-opacity':0.5 }, svg);
+    el('text', { x: x+28, y: y+78, 'text-anchor':'middle',
+      fill: '#a0e0b8', 'font-family':'JetBrains Mono', 'font-size': 8 }, svg).textContent = 'COMP';
+    el('text', { x: x+28, y: y-3, 'text-anchor':'middle',
+      fill: '#b450c8', 'font-family':'JetBrains Mono', 'font-size': 8, 'font-weight':600 }, svg).textContent = stageNames[i];
+    stages.push({ rect: r, computeRect: cr, cx: x+28, cy: y+50, x1: x, x2: x+56 });
+  }
+
+  // arrows between stages
+  for (let i=0; i<4; i++) {
+    el('path', {
+      d: `M${stages[i].x2} ${stages[i].cy} L${stages[i+1].x1} ${stages[i+1].cy}`,
+      stroke: '#b450c8', 'stroke-width': 1.5, fill: 'none',
+      'marker-end': 'url(#arrowH)',
+    }, svg);
+  }
+  // arrow defs
+  const defs = el('defs', {}, svg);
+  const marker = el('marker', { id: 'arrowH', viewBox: '0 0 10 10',
+    refX: 8, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto' }, defs);
+  el('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#b450c8' }, marker);
+
+  el('text', { x: 180, y: 210, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-style':'italic' }, svg).textContent = 'compiler maps NN layers spatially';
+  el('text', { x: 180, y: 224, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-style':'italic' }, svg).textContent = 'no DMA, no DRAM';
+
+  const state = { activeStage: -1, packets: 0 };
+
+  function tick(cycle) {
+    // pipeline marches: every cycle advance one stage
+    state.activeStage = (cycle / 6 | 0) % 5;
+
+    // emit a packet flowing through pipeline
+    if (cycle % 12 === 0) {
+      // start a packet at left
+      const startX = 30, startY = 130;
+      const c = el('circle', { cx: startX, cy: startY, r: 3.5,
+        fill: '#b450c8', opacity: 0.9 }, svg);
+      const start = performance.now();
+      const totalDuration = 2400;
+      function step(t) {
+        const dt = (t - start) / totalDuration;
+        if (dt >= 1) { c.remove(); return; }
+        const x = 30 + dt * (5*64);
+        c.setAttribute('cx', x);
+        c.setAttribute('opacity', 0.9 * (1 - dt*0.4));
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // highlight current active stage's compute block
+    for (let i=0; i<5; i++) {
+      const r = stages[i].computeRect;
+      if (i === state.activeStage) {
+        r.setAttribute('fill', '#1f3a2c');
+        r.setAttribute('stroke-opacity', 1);
+      } else {
+        r.setAttribute('fill', '#1f2a18');
+        r.setAttribute('stroke-opacity', 0.5);
+      }
+    }
+  }
+
+  function reset() {
+    state.activeStage = -1;
+  }
+
+  return { tick, reset };
+}
+
+// ---------- Dojo (354 cores, all SRAM) ----------
+function buildDojo(svg) {
+  svg.innerHTML = '';
+  el('rect', { x: 12, y: 12, width: 336, height: 22, rx: 4,
+    fill: '#1c2536', stroke: '#5a6788' }, svg);
+  el('text', { x: 180, y: 27, 'text-anchor':'middle',
+    fill: '#7a8aa8', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-style':'italic' }, svg).textContent = '(no DRAM on chip)';
+
+  // Grid of cores 18 x 12 = 216 representing 354
+  const cores = [];
+  const gridW = 18, gridH = 11;
+  const cellW = (336-30) / gridW;  // ~17 each
+  const cellH = (260-50-30) / gridH;
+  const startX = 18, startY = 50;
+  for (let r=0; r<gridH; r++) {
+    for (let c=0; c<gridW; c++) {
+      const x = startX + c*cellW;
+      const y = startY + r*cellH;
+      const rect = el('rect', { x: x+0.5, y: y+0.5, width: cellW-1.5, height: cellH-1.5,
+        fill: '#1f1c2a', stroke: '#c8508c', 'stroke-width': 0.4, 'stroke-opacity': 0.4 }, svg);
+      cores.push({ rect, cx: x+cellW/2, cy: y+cellH/2 });
+    }
+  }
+
+  el('text', { x: 180, y: 251, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-style':'italic' }, svg).textContent = '354 cores × 1.25 MB SRAM each — neighbors send data via mesh';
+
+  const N = cores.length;
+  const state = {
+    busy: new Float32Array(N),
+    phase: new Float32Array(N).map(() => Math.random() * 30),
+  };
+
+  function tick(cycle) {
+    // each core has its own private timing — randomly compute
+    for (let i=0; i<N; i++) {
+      state.phase[i] = (state.phase[i] + 1) % 40;
+      const r = cores[i].rect;
+      if (state.phase[i] < 25) {
+        // computing
+        r.setAttribute('fill', '#1f3a2c');
+        r.setAttribute('stroke', '#34c285');
+        r.setAttribute('stroke-opacity', 0.6);
+      } else {
+        // brief idle / data exchange
+        r.setAttribute('fill', '#3a1f2c');
+        r.setAttribute('stroke', '#c8508c');
+        r.setAttribute('stroke-opacity', 0.6);
+      }
+    }
+
+    // emit some neighbor-to-neighbor data packets occasionally
+    if (cycle % 4 === 0) {
+      for (let p=0; p<3; p++) {
+        const i = (Math.random() * N) | 0;
+        const dx = (Math.random() < 0.5) ? -1 : 1;
+        const dy = (Math.random() < 0.5) ? 0 : (Math.random() < 0.5) ? -1 : 1;
+        const j = i + dx + dy*gridW;
+        if (j >= 0 && j < N) {
+          spawnPacket(svg, cores[i].cx, cores[i].cy, cores[j].cx, cores[j].cy, '#c8508c', 200);
+        }
+      }
+    }
+  }
+
+  function reset() {
+    for (let i=0; i<N; i++) state.phase[i] = Math.random() * 30;
+  }
+
+  return { tick, reset };
+}
+
+// ============================================================
+// PACKET ANIMATION
+// ============================================================
+
+function spawnPacket(svg, x1, y1, x2, y2, color, duration=400) {
+  const c = el('circle', { cx: x1, cy: y1, r: 2.5,
+    fill: color, opacity: 0.9 }, svg);
+  const start = performance.now();
+  function step(t) {
+    const dt = (t - start) / duration;
+    if (dt >= 1) { c.remove(); return; }
+    const x = x1 + (x2-x1)*dt;
+    const y = y1 + (y2-y1)*dt;
+    c.setAttribute('cx', x);
+    c.setAttribute('cy', y);
+    c.setAttribute('opacity', 0.9 * (1 - dt*0.3));
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ============================================================
+// BUILD ALL SCENES
+// ============================================================
+
+const scenes = {
+  'dgrid-now': buildDGridNow(document.getElementById('stage-dgrid-now')),
+  'dgrid-fut': buildDGridFut(document.getElementById('stage-dgrid-fut')),
+  'mobileye':  buildMobileye(document.getElementById('stage-mobileye')),
+  'orin':      buildOrin(document.getElementById('stage-orin')),
+  'hailo':     buildHailo(document.getElementById('stage-hailo')),
+  'dojo':      buildDojo(document.getElementById('stage-dojo')),
+};
+
+// ============================================================
+// CLOCK
+// ============================================================
+
+let cycle = 0, running = false, speedMult = 1, lastT = 0;
+const baseTickMs = 60;
+const cycleLabel = document.getElementById('cycleCount');
+
+function tickAll() {
+  cycle++;
+  cycleLabel.textContent = `cycle ${cycle}`;
+  for (const k in scenes) scenes[k].tick(cycle);
+}
+
+function loop(t) {
+  if (!running) return;
+  if (t - lastT >= baseTickMs / speedMult) { tickAll(); lastT = t; }
+  requestAnimationFrame(loop);
+}
+
+document.getElementById('btnPlay').addEventListener('click', () => {
+  if (running) return;
+  running = true; lastT = performance.now();
+  requestAnimationFrame(loop);
+});
+document.getElementById('btnPause').addEventListener('click', () => { running = false; });
+document.getElementById('btnReset').addEventListener('click', () => {
+  running = false; cycle = 0;
+  cycleLabel.textContent = 'cycle 0';
+  for (const k in scenes) scenes[k].reset();
+});
+const speeds = [0.5, 1, 2, 4];
+let speedIdx = 1;
+document.getElementById('btnSpeed').addEventListener('click', (e) => {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  speedMult = speeds[speedIdx];
+  e.target.textContent = `Speed: ${speedMult}×`;
+});
+
+setTimeout(() => document.getElementById('btnPlay').click(), 600);
+</script>
+</body>
+</html>

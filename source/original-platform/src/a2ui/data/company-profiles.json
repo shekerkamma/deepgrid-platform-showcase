@@ -1,0 +1,836 @@
+{
+ "contract_version": "profiles-1.0",
+ "generated": "2026-08-15",
+ "as_of_note": "All market caps as of the stated date; retrieved 2026-08-15. A figure without a date is not a fact.",
+ "tiers": {
+  "P-ACT": "Reaches brake actuation — can satisfy CMVR rule 96(12) AEBS",
+  "P-WARN": "Warning-only — cannot satisfy rule 96(12) at any price",
+  "P-ADJ": "Adjacent — not competing for the mandate today"
+ },
+ "companies": [
+  {
+   "id": "zf",
+   "name": "ZF CVCS India",
+   "legal": "ZF Commercial Vehicle Control Systems India Limited",
+   "tier": "P-ACT",
+   "founded": "2004",
+   "founded_note": "Formerly WABCO India Ltd · renamed March 2022",
+   "hq": "Chennai, Tamil Nadu, India",
+   "status": "LISTED",
+   "ticker": "NSE: ZFCVINDIA · BSE: 533023",
+   "value": "₹29,642 Cr",
+   "value_usd": "~$3.4bn",
+   "value_asof": "7 Aug 2026",
+   "value_move": "+13.0% YoY",
+   "value_dir": "up",
+   "people": "—",
+   "parent": "WABCO Asia Pvt Ltd (ZF Group — €41.4bn sales, 161,600 staff)",
+   "sells": "Air brake actuation, electronic braking, ADAS, air disc brakes, EPH, TPMS, transmissions, SCALAR fleet orchestration",
+   "ai": [
+    [
+     "Pattern",
+     "P-FUSE → P-ACT — radar + camera into a braking safety case"
+    ],
+    [
+     "Stack",
+     "OnGuardMAX + short-range radar; 16 features (AEBS, BSIS, DDAWS, LDWS, MOIS)"
+    ],
+    [
+     "Autonomy",
+     "SAE Level 2, designed to extend higher"
+    ],
+    [
+     "Validation",
+     "300,000 km India roads + 65,000 km with customers"
+    ],
+    [
+     "Certification",
+     "ARAI-certified vs AIS-162/184/186/187/188 — certificate numbers not published"
+    ]
+   ],
+   "evidence": "EV-ZF-01 … EV-ZF-08",
+   "posture": "VERIFIED",
+   "read": "Filed as a foreign incumbent. Its India arm is a ₹29,600 Cr listed Indian company incorporated in Chennai in 2004, with Indian homologation capability and an export business. On sovereignty and India-native axes, ZFCVINDIA is domestic.",
+   "detail": [
+    [
+     "Valuation",
+     "P/E 60.3 · ROCE 19.1% · ROE 14.4%"
+    ],
+    [
+     "52-week range",
+     "₹2,050 – ₹3,044"
+    ],
+    [
+     "Book value",
+     "₹323 per share · face value ₹5"
+    ],
+    [
+     "Leadership",
+     "Paramjit Singh Chadha (MD) · Akash Passey (Chairman)"
+    ],
+    [
+     "Index",
+     "BSE 500 constituent · ISIN INE342J01019"
+    ],
+    [
+     "Exports",
+     "~18 countries — Americas, Asia, Europe, Africa"
+    ]
+   ],
+   "gaps": [
+    "Request ARAI certificate numbers and scope",
+    "Obtain the validation protocol behind 300,000 km",
+    "OEM counterparty is unnamed — do not infer"
+   ]
+  },
+  {
+   "id": "aptiv",
+   "name": "Aptiv PLC",
+   "legal": "Aptiv PLC",
+   "tier": "P-ACT",
+   "founded": "2017",
+   "founded_note": "Current PLC from the Delphi separation; lineage to 1994",
+   "hq": "Schaffhausen, Switzerland",
+   "status": "LISTED",
+   "ticker": "NYSE: APTV",
+   "value": "$10.2bn",
+   "value_usd": "share ~$49.86",
+   "value_asof": "13 Aug 2026",
+   "value_move": "−34.6% YoY",
+   "value_dir": "down",
+   "people": "13,000 in India (2,500 engineers)",
+   "parent": "—",
+   "sells": "Gen 6 ADAS platform, Gen 8 radar, Gen 7 smart camera, LINC software platform, OTA updates",
+   "ai": [
+    [
+     "Pattern",
+     "P-FUSE → P-ACT — Gen 8 radar + Gen 7 camera"
+    ],
+    [
+     "Perception",
+     "STRADVISION AI vision INSIDE the Gen 7 camera"
+    ],
+    [
+     "India classes",
+     "Three-wheelers, large animals, pedestrians, road workers, cyclists"
+    ],
+    [
+     "Scale",
+     "40m+ vehicles globally for the ADAS software — global, not India"
+    ],
+    [
+     "Lifecycle",
+     "OTA feature and performance updates via LINC + Wind River VxWorks"
+    ]
+   ],
+   "evidence": "EV-APT-01 … EV-APT-08",
+   "posture": "VERIFIED",
+   "read": "Market cap roughly halved in under three years and trades near a 52-week low — a supplier under that pressure partners and prices differently. Its 2,500 India engineers are ~165× Gahan AI's entire headcount.",
+   "detail": [
+    [
+     "Trajectory",
+     "$25.38bn (Dec 23) → $16.44bn (Dec 25) → $10.2bn"
+    ],
+    [
+     "52-week range",
+     "$46.16 – $88.93 — trading near the low"
+    ],
+    [
+     "India sites",
+     "7 manufacturing · 4 technical centres · 1 tooling"
+    ],
+    [
+     "Chennai",
+     "Technical centre opened 2025; plant expanded 2024"
+    ],
+    [
+     "Program scope",
+     "14 models · 30+ variants · uni-voltage architecture"
+    ],
+    [
+     "Software base",
+     "40m+ vehicles globally (not India)"
+    ]
+   ],
+   "gaps": [
+    "Confirm whether the Aptiv and STRADVISION India wins are one program",
+    "No India-specific certification published",
+    "OEM counterparty unnamed"
+   ]
+  },
+  {
+   "id": "stradvision",
+   "name": "STRADVISION",
+   "legal": "STRADVISION, Inc.",
+   "tier": "P-ACT",
+   "founded": "2014",
+   "founded_note": "Supplies into a customer's actuation safety case",
+   "hq": "Seoul, South Korea",
+   "status": "PRIVATE",
+   "ticker": "Offices: San Jose, Detroit, Tokyo, Shanghai, Düsseldorf",
+   "value": "Not established",
+   "value_usd": "no public valuation",
+   "value_asof": "—",
+   "value_move": "300+ employees",
+   "value_dir": "flat",
+   "people": "300+",
+   "parent": "—",
+   "sells": "SVNet — AI vision perception software for AEB, FCW and LDW on constrained hardware",
+   "ai": [
+    [
+     "Pattern",
+     "P-VIS supplied into a customer's P-ACT — DeepGrid's exact target slot"
+    ],
+    [
+     "Functions",
+     "Object detection + classification driving AEB, FCW, LDW from ONE stack"
+    ],
+    [
+     "Compute",
+     "Explicitly designed for low-cost, resource-constrained hardware"
+    ],
+    [
+     "Scale",
+     "~5 million cumulative SVNet units deployed globally"
+    ],
+    [
+     "Certification",
+     "ISO 26262 · ISO 9001:2015 · TISAX AL3"
+    ]
+   ],
+   "evidence": "EV-SV-01 … EV-SV-06",
+   "posture": "VERIFIED",
+   "read": "A 300-person private company — smaller than most of the field — occupying exactly the position DeepGrid is bidding for, with ISO 26262 and ~5m units. Both the proof the strategy works and the incumbent in the seat.",
+   "detail": [
+    [
+     "Founded by",
+     "Automotive AI vision specialists, Seoul"
+    ],
+    [
+     "Global offices",
+     "San Jose · Detroit · Tokyo · Shanghai · Düsseldorf"
+    ],
+    [
+     "Deployment",
+     "~5 million cumulative SVNet units"
+    ],
+    [
+     "Functional safety",
+     "ISO 26262 — the credential DeepGrid lacks"
+    ],
+    [
+     "Security",
+     "TISAX AL3 · ISO 9001:2015"
+    ],
+    [
+     "Position",
+     "Perception layer inside Aptiv Gen 7 camera"
+    ]
+   ],
+   "gaps": [
+    "Confirm ISO 26262 scope, edition and ASIL level",
+    "India CV program counterparty unnamed",
+    "No public valuation to size the competitor"
+   ]
+  },
+  {
+   "id": "drivebuddy",
+   "name": "drivebuddyAI",
+   "legal": "Roadzen Inc (parent)",
+   "tier": "P-WARN",
+   "founded": "2015",
+   "founded_note": "Roadzen; drivebuddyAI acquired into the group",
+   "hq": "New York, USA + India operations",
+   "status": "LISTED",
+   "ticker": "Nasdaq: RDZN",
+   "value": "~$112m",
+   "value_usd": "share ~$1.26 · 84.56m shares",
+   "value_asof": "14 Aug 2026",
+   "value_move": "52-wk $0.81–$2.56",
+   "value_dir": "down",
+   "people": "—",
+   "parent": "Roadzen Inc — insurance + mobility AI",
+   "sells": "Six-camera surround-view ADAS, driver monitoring, video telematics, predictive risk intelligence",
+   "ai": [
+    [
+     "Pattern",
+     "P-VIS + P-DMS + P-TEL — camera-only, NO brake actuation"
+    ],
+    [
+     "Architecture",
+     "Six cameras; onboard AI interprets the scene in real time"
+    ],
+    [
+     "Function",
+     "Detects and classifies vulnerable road users, assesses risk, ALERTS the driver"
+    ],
+    [
+     "Commercial",
+     "$5.3m / 3,600 e-buses and trucks (Jun 2026); prior $2.5m / 3,000 trucks"
+    ],
+    [
+     "Flywheel",
+     "Telematics feeds the parent's insurance underwriting — recurring, not hardware"
+    ]
+   ],
+   "evidence": "EV-DBA-01 … EV-DBA-04",
+   "posture": "VERIFIED",
+   "read": "Fastest commercial momentum in the set on the weakest balance sheet — a micro-cap near $1. Sources disagree on its market cap ($60m / $112m / $160m). It does not actuate brakes, so it is not competing for the mandate.",
+   "detail": [
+    [
+     "Market cap caution",
+     "Sources differ: $60m / $112m / $160m"
+    ],
+    [
+     "Shares",
+     "84.56m outstanding · float 40.1m"
+    ],
+    [
+     "52-week range",
+     "$0.81 – $2.56"
+    ],
+    [
+     "Current contract",
+     "$5.3m / 3,600 e-buses and trucks (Jun 2026)"
+    ],
+    [
+     "Prior contract",
+     "$2.5m / 3,000 heavy trucks"
+    ],
+    [
+     "Sectors",
+     "Public transport · seaport logistics · mining · industrial"
+    ]
+   ],
+   "gaps": [
+    "Customer-side confirmation of live deployment, not issuer announcement",
+    "Market cap disputed across sources",
+    "No AEB actuation — confirm before rating as mandate threat"
+   ]
+  },
+  {
+   "id": "starkenn",
+   "name": "Starkenn",
+   "legal": "Starkenn Technologies Private Limited",
+   "tier": "P-WARN",
+   "founded": "2022",
+   "founded_note": "Founders Sumedh and Swastid Badve",
+   "hq": "Pune · mfg Turbhe, assembly Aundh",
+   "status": "PRIVATE",
+   "ticker": "Backed by Belrise Industries",
+   "value": "$2.0m raised",
+   "value_usd": "₹5 Cr turnover",
+   "value_asof": "seed Apr 2023",
+   "value_move": "57 staff, −15.8% YoY",
+   "value_dir": "down",
+   "people": "57 (−12 YoY)",
+   "parent": "—",
+   "sells": "Brake-Safe (collision mitigation), Attention (DMS with alcohol interlock), Stark-I (fleet telematics)",
+   "ai": [
+    [
+     "Pattern",
+     "P-VIS + P-DMS + P-TEL — warning and monitoring"
+    ],
+    [
+     "DMS",
+     "Driver monitoring incl. alcohol detection that prevents vehicle start"
+    ],
+    [
+     "Telematics",
+     "Stark-I — tracking, driver behaviour, route and fuel analytics"
+    ],
+    [
+     "Revenue",
+     "40% subscription · 30% government tenders · 20% B2C · 10% OEM"
+    ],
+    [
+     "Deployment",
+     "HEADLINE FIGURE FAILS — one source states 2,500 / 700 / 300+"
+    ]
+   ],
+   "evidence": "EV-STK-01 … EV-STK-15",
+   "posture": "CONTESTED",
+   "read": "The 2,500+ vehicle number comes from one Nov 2024 interview that also says 700 units and 300+ vehicles. Unaudited, ~21 months old, internally contradicted. What is durable: 30% tender share and 40% recurring revenue.",
+   "detail": [
+    [
+     "Funding",
+     "$2.0m — single seed round, April 2023 (aggregator/company-asserted, directional)"
+    ],
+    [
+     "Headcount trend",
+     "57, down 15.8% YoY (−12 people)"
+    ],
+    [
+     "Revenue",
+     "₹5 Cr turnover; ₹2 Cr in each prior FY"
+    ],
+    [
+     "Revenue mix",
+     "40% subscription · 30% govt · 20% B2C · 10% OEM"
+    ],
+    [
+     "Sites",
+     "Manufacturing Turbhe · assembly Aundh"
+    ],
+    [
+     "Recognition",
+     "DPIIT-recognised under Startup India"
+    ]
+   ],
+   "gaps": [
+    "Deployment count cannot be stated — source self-contradicts",
+    "Re-baseline turnover; figures are ~21 months old",
+    "No certification evidence retrieved at all"
+   ]
+  },
+  {
+   "id": "gahan",
+   "name": "Gahan AI",
+   "legal": "Gahan AI",
+   "tier": "P-ADJ",
+   "founded": "2020",
+   "founded_note": "Pivoted from edtech to automotive radar in 2023",
+   "hq": "Bengaluru, Karnataka, India",
+   "status": "PRIVATE",
+   "ticker": "Valuation not established",
+   "value": "15 people",
+   "value_usd": "+39.1% YoY (+9)",
+   "value_asof": "Jun 2026",
+   "value_move": "no funding disclosed",
+   "value_dir": "flat",
+   "people": "15",
+   "parent": "—",
+   "sells": "DRWIG — claimed 77GHz FMCW 4D point-cloud radar platform, silicon to software",
+   "ai": [
+    [
+     "Pattern",
+     "P-RAD (claimed) — built on TI AWR2944 silicon"
+    ],
+    [
+     "Claimed",
+     "TRL-8 · AEC-Q100 · 10 patents · 10TB India data · TI exclusive partner"
+    ],
+    [
+     "Category error",
+     "AEC-Q100 qualifies a packaged IC, not a platform"
+    ],
+    [
+     "Not corroborated",
+     "TI's CES 2026 radar release names no Indian partner"
+    ],
+    [
+     "Published",
+     "DrwigBot — a ROS/Gazebo/CARLA SIMULATION research platform"
+    ]
+   ],
+   "evidence": "EV-GHN-01 … EV-GHN-13",
+   "posture": "UNVERIFIED",
+   "read": "Fifteen people asserting TRL-8, AEC-Q100, TI exclusivity and two OEM pilots — every claim self-published. Also attributes the 2027 mandate to Bharat NCAP, which is wrong. Diligence watchlist, not a ranked threat.",
+   "detail": [
+    [
+     "Headcount",
+     "15 people (+39.1% YoY)"
+    ],
+    [
+     "Silicon",
+     "Built on TI AWR2944 mmWave chipset"
+    ],
+    [
+     "Patent claim",
+     "10 patents (self-published, unverified)"
+    ],
+    [
+     "Data claim",
+     "Road-data volume not independently verified (company-asserted only)"
+    ],
+    [
+     "Pilots claimed",
+     "No public OEM confirmation — site shows logos without dated announcements"
+    ],
+    [
+     "Third-party record",
+     "One Springer chapter — a simulation platform"
+    ]
+   ],
+   "gaps": [
+    "Obtain the TRL-8 certificate and its issuing body",
+    "Ask TI directly to confirm the exclusive-partner claim",
+    "AEC-Q100 scope: which packaged IC, whose qualification"
+   ]
+  },
+  {
+   "id": "bitsensing",
+   "name": "bitsensing",
+   "legal": "bitsensing Inc.",
+   "tier": "P-WARN",
+   "founded": "2018",
+   "founded_note": "CEO Jae-Eun Lee",
+   "hq": "Seongnam, South Korea",
+   "status": "PRIVATE",
+   "ticker": "NXP radar partnership since Dec 2024",
+   "value": "$42m raised",
+   "value_usd": "$25m Series B Apr 2026",
+   "value_asof": "5 rounds, 18 investors",
+   "value_move": "led by HL Mando",
+   "value_dir": "up",
+   "people": "—",
+   "parent": "—",
+   "sells": "Imaging radar and sensor fusion; India retrofit ADAS kit (Feb 2026) via IKIO channel MoU",
+   "ai": [
+    [
+     "Pattern",
+     "P-RAD / P-FUSE — stops short of P-ACT"
+    ],
+    [
+     "Functions",
+     "BSIS, SVM, RCW, FVSA, FCW, MOIS — warning-only, NO AEB"
+    ],
+    [
+     "Silicon",
+     "NXP partnership for scalable radar across industries"
+    ],
+    [
+     "Adjacent",
+     "Radar sleep-care for hospitals — a non-automotive revenue line"
+    ],
+    [
+     "Ceiling",
+     "Cannot reach certified AEBS at any price"
+    ]
+   ],
+   "evidence": "EV-BIT-01 … EV-BIT-05",
+   "posture": "VERIFIED",
+   "read": "Well funded but structurally capped. Evidence that retrofit demand is real — not a line-fit threat.",
+   "detail": [
+    [
+     "Series B",
+     "$25m (KRW 35bn), April 2026, led by HL Mando"
+    ],
+    [
+     "Total raised",
+     "~$42m across 5 rounds from 18 investors"
+    ],
+    [
+     "Silicon partner",
+     "NXP — scalable radar across industries"
+    ],
+    [
+     "India route",
+     "Retrofit kit Feb 2026 · IKIO channel MoU"
+    ],
+    [
+     "Install time",
+     "~4 hours · pricing agreed case by case"
+    ],
+    [
+     "Hard ceiling",
+     "Warning-only — no AEB at any price"
+    ]
+   ],
+   "gaps": [
+    "India deployment volume not established",
+    "No AEB — cannot enter the mandate market",
+    "Pricing not public"
+   ]
+  },
+  {
+   "id": "netrasemi",
+   "name": "Netrasemi",
+   "legal": "Netrasemi Private Limited",
+   "tier": "P-ADJ",
+   "founded": "2020",
+   "founded_note": "Fabless · Design Linked Incentive support",
+   "hq": "Thiruvananthapuram, Kerala, India",
+   "status": "PRIVATE",
+   "ticker": "Zoho-backed",
+   "value": "₹107 Cr",
+   "value_usd": "Series A, Jul 2025",
+   "value_asof": "Zoho ₹87 Cr + UIV ₹16.5 Cr",
+   "value_move": "commercial mid-2027",
+   "value_dir": "up",
+   "people": "—",
+   "parent": "—",
+   "sells": "A2000 edge-AI SoC and chiplet-based architectures for edge computing",
+   "ai": [
+    [
+     "Pattern",
+     "Silicon substrate for P-VIS — not a perception product"
+    ],
+    [
+     "A2000",
+     "In-house NPU + VPU + ISP + crypto engines on TSMC 12nm"
+    ],
+    [
+     "Status",
+     "Production-ready May 2026; trials in surveillance and automotive"
+    ],
+    [
+     "Timing",
+     "Commercial mid-2027 — inside the AEBS all-models window"
+    ],
+    [
+     "Gap",
+     "NO AIS, AEC-Q100 or ISO 26262 claim — not a certified ADAS part"
+    ]
+   ],
+   "evidence": "EV-NTR-01 … EV-NTR-07",
+   "posture": "ATTRIBUTED",
+   "read": "Adjacent with an expiry date. It demotes 'India-native' as a differentiator on its own, and its mid-2027 window lands inside the all-models deadline. Re-test before mid-2027.",
+   "detail": [
+    [
+     "Series A",
+     "₹107 Cr — Zoho ₹87 Cr + UIV ₹16.5 Cr (Jul 2025)"
+    ],
+    [
+     "Process",
+     "TSMC 12nm"
+    ],
+    [
+     "A2000 blocks",
+     "In-house NPU + VPU + ISP + crypto engines"
+    ],
+    [
+     "Status",
+     "Production-ready May 2026; trials underway"
+    ],
+    [
+     "Commercial",
+     "Mid-2027 — inside the AEBS all-models window"
+    ],
+    [
+     "Certification",
+     "None — no AIS, AEC-Q100 or ISO 26262"
+    ]
+   ],
+   "gaps": [
+    "Re-verify the ₹107 Cr Series A against a primary filing",
+    "No automotive certification pathway published",
+    "Re-test coexistence before mid-2027"
+   ]
+  },
+  {
+   "id": "sterling",
+   "name": "Sterling Tools × MINIEYE",
+   "legal": "Sterling Tools Limited",
+   "tier": "P-WARN",
+   "founded": "1979",
+   "founded_note": "India's fastener major",
+   "hq": "New Delhi, India",
+   "status": "LISTED",
+   "ticker": "NSE: STERTOOLS · BSE SmallCap",
+   "value": "₹806 Cr",
+   "value_usd": "~$92m · share ₹221.80",
+   "value_asof": "13 Aug 2026",
+   "value_move": "₹888 Cr Jul → ₹806 Cr Aug",
+   "value_dir": "down",
+   "people": "—",
+   "parent": "—",
+   "sells": "Fasteners; ADAS and driver monitoring for India via the MINIEYE partnership",
+   "ai": [
+    [
+     "Pattern",
+     "Localisation of a foreign P-VIS + P-DMS stack"
+    ],
+    [
+     "Partner",
+     "MINIEYE — Hong-Kong-listed, China-based"
+    ],
+    [
+     "Division of labour",
+     "Sterling takes manufacturing, channel and compliance"
+    ],
+    [
+     "Status",
+     "Exchange-filed Jan 2026, corroborated across four outlets"
+    ],
+    [
+     "Falsifier",
+     "No named Indian OEM nomination — UNFIRED"
+    ]
+   ],
+   "evidence": "EV-STL-01 … EV-STL-06",
+   "posture": "ATTRIBUTED",
+   "read": "The template, not the threat. An Indian component maker attached a foreign perception stack and took the local role — the mirror image of the move DeepGrid needs. At ₹806 Cr, a realistic partner rather than an adversary.",
+   "detail": [
+    [
+     "Market cap trend",
+     "₹758 Cr (Jun) → ₹888 Cr (Jul) → ₹806 Cr (Aug)"
+    ],
+    [
+     "Share price",
+     "₹221.80 — down 11.95% over five sessions"
+    ],
+    [
+     "Core business",
+     "Fasteners — India major since 1979"
+    ],
+    [
+     "Partner",
+     "MINIEYE — HK-listed, China-based"
+    ],
+    [
+     "Division of labour",
+     "Sterling: manufacturing, channel, compliance"
+    ],
+    [
+     "Stale-data warning",
+     "Yahoo still shows a Feb 2025 quote — do not use"
+    ]
+   ],
+   "gaps": [
+    "Named Indian OEM nomination — falsifier still unfired",
+    "MINIEYE China sourcing may carry procurement exposure",
+    "Partnership scope and economics not disclosed"
+   ]
+  }
+ ],
+ "timeline": [
+  [
+   "Dec 2025",
+   "ZF",
+   "India CV OEM ADAS nomination — 16 features, ARAI certified"
+  ],
+  [
+   "Jan 2026",
+   "Aptiv × STRADVISION",
+   "Indian CV OEM selects Gen 6 — 14 models, 30+ variants"
+  ],
+  [
+   "Jan 2026",
+   "Sterling × MINIEYE",
+   "Localisation partnership exchange-filed"
+  ],
+  [
+   "Apr 2026",
+   "bitsensing",
+   "$25m Series B led by HL Mando"
+  ],
+  [
+   "Apr 2026",
+   "STRADVISION",
+   "Global CV OEM selects SVNet across India lineup"
+  ],
+  [
+   "May 2026",
+   "Netrasemi",
+   "A2000 production-ready; customer trials begin"
+  ],
+  [
+   "Jun 2026",
+   "drivebuddyAI",
+   "$5.3m / 3,600 e-buses and trucks incl. mining"
+  ]
+ ],
+ "certification": [
+  [
+   "STRADVISION",
+   "ISO 26262",
+   "HELD",
+   "Also ISO 9001:2015 and TISAX AL3"
+  ],
+  [
+   "ZF",
+   "ARAI + AIS suite",
+   "CLAIMED",
+   "Certificate numbers not published"
+  ],
+  [
+   "Aptiv",
+   "Production scale",
+   "IMPLIED",
+   "40m+ vehicles; no India cert published"
+  ],
+  [
+   "Gahan AI",
+   "AEC-Q100",
+   "CATEGORY ERROR",
+   "Qualifies TI's IC, not the DRWIG platform"
+  ],
+  [
+   "Netrasemi",
+   "None",
+   "ABSENT",
+   "No AIS, AEC-Q100 or ISO 26262 claim"
+  ],
+  [
+   "Starkenn",
+   "None published",
+   "ABSENT",
+   "No certification evidence retrieved"
+  ],
+  [
+   "bitsensing",
+   "N/A",
+   "CAPPED",
+   "Warning-only — cannot reach certified AEBS"
+  ],
+  [
+   "DeepGrid Semi",
+   "None",
+   "ABSENT",
+   "No published functional-safety pathway"
+  ]
+ ],
+ "regulatory": {
+  "instrument": "G.S.R. 834(E), 11 November 2025",
+  "rules": "Central Motor Vehicles (Sixth Amendment) Rules, 2025 — in force 12 Nov 2025",
+  "amended": "G.S.R. 862(E), gazetted 21 November 2025 — substituted rule 96(12) to add Vehicle Stability Function",
+  "superseded": "G.S.R. 184(E), 20 March 2025 was a DRAFT. The notified rule's own preamble names it as the draft it replaces.",
+  "gazette": "CG-DL-E-13112025-267610 · digitally signed 13 Nov 2025 — public for nine months, not outstanding",
+  "obligations": [
+   [
+    "AEBS + Vehicle Stability Function",
+    "AIS-162 / IS 11852:2019",
+    "1 Jan 2027",
+    "1 Oct 2027",
+    "96(12)"
+   ],
+   [
+    "LDWS",
+    "AIS-188",
+    "1 Oct 2027",
+    "1 Jan 2028",
+    "98(6)"
+   ],
+   [
+    "DDAWS",
+    "AIS-184",
+    "1 Oct 2027",
+    "1 Jan 2028",
+    "125Q(1)"
+   ],
+   [
+    "BSIS",
+    "AIS-186",
+    "1 Oct 2027",
+    "1 Jan 2028",
+    "125Q(2)"
+   ],
+   [
+    "MOIS",
+    "AIS-187",
+    "1 Oct 2027",
+    "1 Jan 2028",
+    "125Q(3)"
+   ]
+  ],
+  "propagators": [
+   [
+    "ZF",
+    "Press note cites 'GSR 184e' compliance",
+    "EV-ZF-05"
+   ],
+   [
+    "Starkenn",
+    "Briefed 'Draft G.S.R. 184(E), from April 2026' in Oct 2025",
+    "EV-STK-07"
+   ],
+   [
+    "Gahan AI",
+    "Attributes the 2027 mandate to Bharat NCAP",
+    "EV-GHN-07"
+   ]
+  ]
+ },
+ "scale_axis_note": "Axis mixes disclosed value types — market cap for listed companies, annual sales for ZF Group, and total capital raised for private ones. They are not equivalent measures and the axis is indicative of order of magnitude only; each bar's label states which measure it carries."
+}

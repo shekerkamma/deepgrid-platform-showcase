@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why Per-PCORE DMA — DGrid Semi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --panel: #131826;
+    --ink: #e8edf5;
+    --dim: #6b7388;
+    --accent: #3ba3ff;
+    --hot: #ff5440;
+    --warm: #ffb340;
+    --cool: #34c285;
+    --line: #1f2738;
+    --pcore-idle: #2a3045;
+    --pcore-active: #34c285;
+    --pcore-waiting: #ffb340;
+    --dp: #ff5440;
+    --dma: #3ba3ff;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 30px 80px;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  header .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  header h1 {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+  header h1 .em { color: var(--accent); }
+  header p.sub {
+    color: var(--dim);
+    font-size: 17px;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* CONTROLS */
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0 36px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    background: var(--panel);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 12px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.15s;
+    border-radius: 6px;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary {
+    background: var(--accent);
+    color: #0a0e1a;
+    font-weight: 700;
+    border-color: var(--accent);
+  }
+  .btn.primary:hover { background: #5cb5ff; border-color: #5cb5ff; }
+  .speed-display {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--dim);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* SCENE GRID */
+  .scenes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 900px) {
+    .scenes { grid-template-columns: 1fr; }
+  }
+
+  .scene {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scene-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    gap: 12px;
+  }
+  .scene-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .scene-header h2 .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .scene.left  .tag { background: rgba(255,84,64,0.15);  color: var(--hot); }
+  .scene.right .tag { background: rgba(52,194,133,0.15); color: var(--cool); }
+  .scene-header .stat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--dim);
+    text-align: right;
+    line-height: 1.4;
+  }
+  .scene-header .stat .big {
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .scene.left  .stat .big { color: var(--hot); }
+  .scene.right .stat .big { color: var(--cool); }
+
+  /* SVG STAGE */
+  .stage {
+    width: 100%;
+    aspect-ratio: 1.3 / 1;
+    background: rgba(255,255,255,0.015);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  /* COMPUTE BAR (per-pcore utilization) */
+  .util-bars {
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+  }
+  .util-bars-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .util-row {
+    display: grid;
+    grid-template-columns: 36px 1fr 50px;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  .util-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+  }
+  .util-track {
+    height: 6px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .util-fill {
+    height: 100%;
+    background: var(--cool);
+    border-radius: 3px;
+    transition: width 0.12s linear;
+    width: 0%;
+  }
+  .util-pct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-align: right;
+    color: var(--ink);
+  }
+
+  /* THE STORY (below scenes) */
+  .story {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 800px) {
+    .story { grid-template-columns: 1fr; }
+  }
+  .story-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px;
+  }
+  .story-card .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .story-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .story-card p {
+    color: var(--dim);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .story-card p strong { color: var(--ink); }
+
+  /* THE PUNCHLINE */
+  .punchline {
+    margin-top: 50px;
+    padding: 36px 36px;
+    background: linear-gradient(135deg, rgba(59,163,255,0.08) 0%, rgba(52,194,133,0.06) 100%);
+    border: 1px solid rgba(59,163,255,0.2);
+    border-radius: 14px;
+    text-align: center;
+  }
+  .punchline .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .punchline .big {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .punchline .big em {
+    color: var(--cool);
+    font-style: normal;
+  }
+  .punchline .small {
+    color: var(--dim);
+    font-size: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* footer */
+  footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="eyebrow">DGrid Semi · Architecture</div>
+  <h1>Why <span class="em">per-PCORE DMA</span> changes everything</h1>
+  <p class="sub">Today, eight PCOREs share one data engine. Seven wait while one eats.<br>Watch the difference.</p>
+</header>
+
+<div class="controls">
+  <button class="btn primary" id="btnPlay">▶ Play</button>
+  <button class="btn" id="btnPause">⏸ Pause</button>
+  <button class="btn" id="btnReset">↺ Reset</button>
+  <button class="btn" id="btnSpeed">Speed: 1×</button>
+  <span class="speed-display" id="cycleCount">cycle 0</span>
+</div>
+
+<div class="scenes">
+
+  <!-- SCENE 1: TODAY -->
+  <div class="scene left">
+    <div class="scene-header">
+      <h2>Today<span class="tag">single DP engine</span></h2>
+      <div class="stat">
+        <span class="big" id="leftFps">2.1</span>
+        fps YOLO
+      </div>
+    </div>
+    <svg class="stage" id="stageLeft" viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="util-bars">
+      <div class="util-bars-title">PCORE compute utilization</div>
+      <div id="leftBars"></div>
+    </div>
+  </div>
+
+  <!-- SCENE 2: PER-PCORE DMA -->
+  <div class="scene right">
+    <div class="scene-header">
+      <h2>Per-PCORE DMA<span class="tag">8 local engines</span></h2>
+      <div class="stat">
+        <span class="big" id="rightFps">11.7</span>
+        fps YOLO (target)
+      </div>
+    </div>
+    <svg class="stage" id="stageRight" viewBox="0 0 520 400" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="util-bars">
+      <div class="util-bars-title">PCORE compute utilization</div>
+      <div id="rightBars"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- The 3-card narrative -->
+<div class="story">
+  <div class="story-card">
+    <div class="num">01 — THE PROBLEM</div>
+    <h3>Hungry compute, narrow pipe</h3>
+    <p>The DP engine fetches one descriptor at a time, generates one address per cycle. <strong>8 PCOREs queue for one engine.</strong> When PCORE 0 is loading, PCORE 1 through 7 wait. ~35 cycles of fixed setup × 8 turns = serial overhead.</p>
+  </div>
+  <div class="story-card">
+    <div class="num">02 — THE FIX</div>
+    <h3>Eight kitchens, one pantry</h3>
+    <p>Each PCORE gets its own small DMA — 16-entry descriptor table, 3-level address generator, FIFO. They all pull from a shared SRAM L2 in parallel. <strong>SRAM banks become the bottleneck instead of dispatch.</strong> Bandwidth scales 4-8×.</p>
+  </div>
+  <div class="story-card">
+    <div class="num">03 — THE COST</div>
+    <h3>Architecture, not magic</h3>
+    <p>Each LDMA ~600 LUT × 8 = 4,800 LUT extra. Plus arbitration logic, plus firmware compiler changes. <strong>16-24 weeks of focused RTL work</strong> — too much for SoC1.2, right-sized for SoC1.3 hybrid or SoC2 (28nm ASIC).</p>
+  </div>
+</div>
+
+<!-- The punchline -->
+<div class="punchline">
+  <div class="label">Bottom line</div>
+  <div class="big">YOLO frame: 470 ms today → <em>~85 ms</em> with per-PCORE DMA.</div>
+  <div class="small">Same silicon process, same MAC count. Just stop making compute wait for data. The architectural ceiling lifts from 2 fps to 12 fps — without adding a single multiplier.</div>
+</div>
+
+<footer>
+  DGrid Semi · paper-design phase · simulation TBD by Srikar (week 6)
+</footer>
+
+</div>
+
+<script>
+// ============================================================
+//   ANIMATION ENGINE — both scenes share the same clock
+// ============================================================
+
+const SVG = "http://www.w3.org/2000/svg";
+const PCORE_COUNT = 8;
+
+// ---------- SCENE BUILDERS ----------
+
+function el(tag, attrs={}, parent=null) {
+  const e = document.createElementNS(SVG, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+// Layout: PCOREs in 2x4 grid on right side, DDR on top-left, SRAM in middle, DP/LDMA in middle
+function buildScene(svg, type) {
+  svg.innerHTML = '';
+
+  const W = 520, H = 400;
+
+  // === DDR (top, full width) ===
+  const ddr = el('g', { id: type+'-ddr' }, svg);
+  el('rect', { x: 30, y: 16, width: 460, height: 38, rx: 6,
+    fill: '#1c2536', stroke: '#2a3a52', 'stroke-width': 1 }, ddr);
+  el('text', { x: 260, y: 40, 'text-anchor':'middle', fill: '#9ca8c2',
+    'font-family':'JetBrains Mono', 'font-size': 13, 'font-weight': 600 }, ddr).textContent = 'DDR3 — 256 MB · 1.33 GB/s';
+
+  // === PCORE grid (right side, 2x4 = 8 pcores) ===
+  const pcoreX = 320, pcoreY = 100;
+  const pcoreW = 75, pcoreH = 56;
+  const gap = 8;
+
+  const pcoreEls = [];
+  for (let i=0; i<PCORE_COUNT; i++) {
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const x = pcoreX + col * (pcoreW + gap);
+    const y = pcoreY + row * (pcoreH + gap);
+
+    const g = el('g', { id: `${type}-pcore-${i}`, transform: `translate(${x},${y})` }, svg);
+    const rect = el('rect', { width: pcoreW, height: pcoreH, rx: 5,
+      fill: '#1f2638', stroke: '#34c285', 'stroke-width': 1.5,
+      'stroke-opacity': 0.3, class: 'pcore-body' }, g);
+    rect.style.transition = 'fill 0.2s, stroke-opacity 0.2s';
+    el('text', { x: pcoreW/2, y: 22, 'text-anchor':'middle',
+      fill: '#9ca8c2', 'font-family':'JetBrains Mono',
+      'font-size': 10, 'font-weight':700 }, g).textContent = `PCORE ${i}`;
+    const stateText = el('text', { x: pcoreW/2, y: 40, 'text-anchor':'middle',
+      fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9,
+      class: 'pcore-state' }, g);
+    stateText.textContent = 'idle';
+
+    // small "fill bar" inside the pcore showing how much VM is loaded
+    const fillBg = el('rect', { x: 8, y: 46, width: pcoreW-16, height: 4,
+      rx: 2, fill: '#0a0e1a' }, g);
+    const fillFg = el('rect', { x: 8, y: 46, width: 0, height: 4,
+      rx: 2, fill: '#34c285', class: 'pcore-fill' }, g);
+
+    pcoreEls.push({ g, rect, stateText, fillFg, x: x + pcoreW/2, y: y + pcoreH/2,
+                    leftEdgeX: x, fillFgEl: fillFg });
+  }
+
+  // === SRAM in center ===
+  const sramX = 130, sramY = 240, sramW = 120, sramH = 50;
+  const sram = el('g', { id: type+'-sram' }, svg);
+  el('rect', { x: sramX, y: sramY, width: sramW, height: sramH, rx: 6,
+    fill: '#1c2536', stroke: '#3ba3ff', 'stroke-width': 1, 'stroke-opacity': 0.4 }, sram);
+  el('text', { x: sramX + sramW/2, y: sramY + 22, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 11, 'font-weight':600 }, sram).textContent = 'SRAM L2';
+  el('text', { x: sramX + sramW/2, y: sramY + 38, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9 }, sram).textContent = '32 KB · 2 banks';
+
+  // === Engine(s) ===
+  if (type === 'left') {
+    // Single DP engine — bottleneck
+    const dpX = 130, dpY = 130, dpW = 120, dpH = 70;
+    const dp = el('g', { id: 'left-dp' }, svg);
+    el('rect', { x: dpX, y: dpY, width: dpW, height: dpH, rx: 6,
+      fill: '#2a1518', stroke: '#ff5440', 'stroke-width': 2 }, dp);
+    el('text', { x: dpX + dpW/2, y: dpY + 24, 'text-anchor':'middle',
+      fill: '#ff8472', 'font-family':'JetBrains Mono', 'font-size': 12, 'font-weight':700 }, dp).textContent = 'DP ENGINE';
+    el('text', { x: dpX + dpW/2, y: dpY + 42, 'text-anchor':'middle',
+      fill: '#7a4a4a', 'font-family':'JetBrains Mono', 'font-size': 9 }, dp).textContent = '1 fetch · 1 addr/cyc';
+    const queueLabel = el('text', { x: dpX + dpW/2, y: dpY + 58, 'text-anchor':'middle',
+      fill: '#ff5440', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-weight':600,
+      id: 'left-queue' }, dp);
+    queueLabel.textContent = 'serving: —';
+
+    // Connection: DDR → DP
+    el('line', { x1: 260, y1: 54, x2: dpX + dpW/2, y2: dpY,
+      stroke: '#2a3a52', 'stroke-width': 1.5, 'stroke-dasharray':'3,3' }, svg);
+    // Connection: DP → SRAM
+    el('line', { x1: dpX + dpW/2, y1: dpY + dpH, x2: sramX + sramW/2, y2: sramY,
+      stroke: '#2a3a52', 'stroke-width': 1.5, 'stroke-dasharray':'3,3' }, svg);
+    // Connection: DP → PCORES (the bottleneck — single line fanning out)
+    for (let i=0; i<PCORE_COUNT; i++) {
+      const p = pcoreEls[i];
+      el('line', { x1: dpX + dpW, y1: dpY + dpH/2, x2: p.leftEdgeX, y2: p.y,
+        stroke: '#2a1d1d', 'stroke-width': 0.8, 'stroke-opacity': 0.5,
+        id: `left-line-to-${i}` }, svg);
+    }
+
+    return { type, pcoreEls, dpX: dpX + dpW, dpY: dpY + dpH/2, queueLabel };
+
+  } else {
+    // 8 LDMA engines, one per pcore
+    const ldmaEls = [];
+    for (let i=0; i<PCORE_COUNT; i++) {
+      const p = pcoreEls[i];
+      const lx = p.leftEdgeX - 32, ly = p.y - 10, lw = 24, lh = 20;
+      const ldma = el('g', { id: `right-ldma-${i}` }, svg);
+      el('rect', { x: lx, y: ly, width: lw, height: lh, rx: 3,
+        fill: '#0d2438', stroke: '#3ba3ff', 'stroke-width': 1.5 }, ldma);
+      el('text', { x: lx + lw/2, y: ly + 13, 'text-anchor':'middle',
+        fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 8, 'font-weight':700 }, ldma).textContent = 'LDMA';
+
+      // each LDMA connects to SRAM
+      el('line', { x1: lx, y1: ly + lh/2, x2: sramX + sramW, y2: sramY + sramH/2,
+        stroke: '#0d2438', 'stroke-width': 0.7, 'stroke-opacity': 0.6 }, svg);
+
+      ldmaEls.push({ g: ldma, x: lx + lw/2, y: ly + lh/2, edgeX: lx, edgeY: ly + lh/2 });
+    }
+
+    // global DP engine (DDR <-> SRAM only) — small, secondary
+    const gX = 130, gY = 130, gW = 120, gH = 50;
+    const gdp = el('g', { id: 'right-gdp' }, svg);
+    el('rect', { x: gX, y: gY, width: gW, height: gH, rx: 6,
+      fill: '#1c2536', stroke: '#5a6788', 'stroke-width': 1 }, gdp);
+    el('text', { x: gX + gW/2, y: gY + 22, 'text-anchor':'middle',
+      fill: '#7a8aa8', 'font-family':'JetBrains Mono', 'font-size': 11, 'font-weight':600 }, gdp).textContent = 'Global DP';
+    el('text', { x: gX + gW/2, y: gY + 38, 'text-anchor':'middle',
+      fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 8 }, gdp).textContent = 'DDR ⇄ SRAM only';
+
+    // DDR → Global DP → SRAM
+    el('line', { x1: 260, y1: 54, x2: gX + gW/2, y2: gY,
+      stroke: '#2a3a52', 'stroke-width': 1.5, 'stroke-dasharray':'3,3' }, svg);
+    el('line', { x1: gX + gW/2, y1: gY + gH, x2: sramX + sramW/2, y2: sramY,
+      stroke: '#2a3a52', 'stroke-width': 1.5, 'stroke-dasharray':'3,3' }, svg);
+
+    return { type, pcoreEls, ldmaEls, sramRight: sramX + sramW, sramY: sramY + sramH/2 };
+  }
+}
+
+// ============================================================
+// ANIMATION STATE
+// ============================================================
+
+const left  = buildScene(document.getElementById('stageLeft'),  'left');
+const right = buildScene(document.getElementById('stageRight'), 'right');
+
+// per-pcore state: { vmFill: 0..1, computing: bool, computeRemaining, busyCycles, totalCycles }
+function makeState() {
+  return Array.from({length: PCORE_COUNT}, () => ({
+    vmFill: 0, computing: false, computeRemaining: 0,
+    busyCycles: 0, totalCycles: 0,
+  }));
+}
+const leftState  = makeState();
+const rightState = makeState();
+
+// LEFT: serves one pcore at a time. State machine.
+const leftServer = {
+  current: -1,         // pcore being loaded
+  loadProgress: 0,     // 0..1
+  loadDuration: 35,    // cycles to fill VM (model: 35 cyc dispatch + load time)
+  setupRemaining: 0,
+  queue: [],           // pcores waiting
+  state: 'idle',       // 'idle', 'setup', 'loading'
+};
+
+// RIGHT: each LDMA loads its own pcore in parallel
+const rightServers = Array.from({length: PCORE_COUNT}, () => ({
+  loadProgress: 0,
+  loadDuration: 18,    // faster because no 35-cyc dispatch overhead
+  setupRemaining: 0,
+  state: 'idle',
+}));
+
+// constants
+const COMPUTE_DURATION_LEFT  = 30;  // cycles a pcore computes once VM full
+const COMPUTE_DURATION_RIGHT = 30;  // same — compute time is the SAME, only data delivery differs
+
+// build util bar UI
+function buildBars(parentId, side) {
+  const parent = document.getElementById(parentId);
+  parent.innerHTML = '';
+  const rows = [];
+  for (let i=0; i<PCORE_COUNT; i++) {
+    const row = document.createElement('div');
+    row.className = 'util-row';
+    row.innerHTML = `
+      <div class="util-label">P${i}</div>
+      <div class="util-track"><div class="util-fill" id="${side}-bar-${i}"></div></div>
+      <div class="util-pct" id="${side}-pct-${i}">0%</div>`;
+    parent.appendChild(row);
+    rows.push({
+      fill: document.getElementById(`${side}-bar-${i}`),
+      pct: document.getElementById(`${side}-pct-${i}`),
+    });
+  }
+  return rows;
+}
+const leftBars  = buildBars('leftBars',  'left');
+const rightBars = buildBars('rightBars', 'right');
+
+// data packet visualizations (for animation feel)
+const stageLeft  = document.getElementById('stageLeft');
+const stageRight = document.getElementById('stageRight');
+
+function spawnPacket(svg, x1, y1, x2, y2, color, duration=600) {
+  const c = el('circle', { cx: x1, cy: y1, r: 3.5,
+    fill: color, opacity: 0.95 }, svg);
+  const start = performance.now();
+  function step(t) {
+    const dt = (t - start) / duration;
+    if (dt >= 1) { c.remove(); return; }
+    const x = x1 + (x2-x1)*dt;
+    const y = y1 + (y2-y1)*dt;
+    c.setAttribute('cx', x);
+    c.setAttribute('cy', y);
+    c.setAttribute('opacity', 0.95 * (1 - dt*0.3));
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ============================================================
+// MAIN TICK
+// ============================================================
+
+let cycle = 0;
+let running = false;
+let speedMult = 1;
+let lastT = 0;
+const baseTickMs = 60;  // ms per simulated cycle at 1×
+
+const cycleLabel = document.getElementById('cycleCount');
+const leftFpsEl  = document.getElementById('leftFps');
+const rightFpsEl = document.getElementById('rightFps');
+
+function updatePcoreVisual(scene, pcoreEl, st) {
+  // color the pcore by state
+  const r = pcoreEl.rect;
+  if (st.computing) {
+    r.setAttribute('fill', '#1f3a2c');
+    r.setAttribute('stroke', '#34c285');
+    r.setAttribute('stroke-opacity', 1);
+    pcoreEl.stateText.textContent = 'compute';
+    pcoreEl.stateText.setAttribute('fill', '#34c285');
+  } else if (st.vmFill >= 1) {
+    r.setAttribute('fill', '#1f2638');
+    r.setAttribute('stroke', '#34c285');
+    r.setAttribute('stroke-opacity', 0.6);
+    pcoreEl.stateText.textContent = 'ready';
+    pcoreEl.stateText.setAttribute('fill', '#9ca8c2');
+  } else if (st.vmFill > 0) {
+    r.setAttribute('fill', '#2a2618');
+    r.setAttribute('stroke', '#ffb340');
+    r.setAttribute('stroke-opacity', 0.7);
+    pcoreEl.stateText.textContent = 'loading';
+    pcoreEl.stateText.setAttribute('fill', '#ffb340');
+  } else {
+    r.setAttribute('fill', '#1f2638');
+    r.setAttribute('stroke', '#34c285');
+    r.setAttribute('stroke-opacity', 0.25);
+    pcoreEl.stateText.textContent = 'waiting';
+    pcoreEl.stateText.setAttribute('fill', '#5a6788');
+  }
+  // inside-pcore VM fill bar
+  pcoreEl.fillFgEl.setAttribute('width', Math.max(0, (75-16) * st.vmFill));
+}
+
+function tickLeft() {
+  // Find pcores that are idle and need data, queue them
+  for (let i=0; i<PCORE_COUNT; i++) {
+    if (!leftState[i].computing && leftState[i].vmFill === 0 &&
+        !leftServer.queue.includes(i) && leftServer.current !== i) {
+      leftServer.queue.push(i);
+    }
+  }
+
+  // Server state machine
+  if (leftServer.state === 'idle' && leftServer.queue.length > 0) {
+    leftServer.current = leftServer.queue.shift();
+    leftServer.setupRemaining = 6;  // setup overhead
+    leftServer.loadProgress = 0;
+    leftServer.state = 'setup';
+  } else if (leftServer.state === 'setup') {
+    leftServer.setupRemaining--;
+    if (leftServer.setupRemaining <= 0) leftServer.state = 'loading';
+  } else if (leftServer.state === 'loading') {
+    leftServer.loadProgress += 1 / leftServer.loadDuration;
+    leftState[leftServer.current].vmFill = Math.min(1, leftServer.loadProgress);
+    // emit packets occasionally
+    if (cycle % 4 === 0) {
+      const target = left.pcoreEls[leftServer.current];
+      spawnPacket(stageLeft, left.dpX, left.dpY, target.leftEdgeX, target.y, '#ff5440', 500);
+    }
+    if (leftServer.loadProgress >= 1) {
+      leftState[leftServer.current].vmFill = 1;
+      leftServer.state = 'idle';
+      leftServer.current = -1;
+    }
+  }
+
+  // Update queue label
+  if (left.queueLabel) {
+    if (leftServer.state === 'setup' || leftServer.state === 'loading') {
+      const wait = leftServer.queue.length;
+      left.queueLabel.textContent = `serving P${leftServer.current} · ${wait} waiting`;
+    } else {
+      left.queueLabel.textContent = `serving: —`;
+    }
+  }
+
+  // Pcores: if vmFull, start computing. while computing, drain VM, count busy cycles.
+  for (let i=0; i<PCORE_COUNT; i++) {
+    const st = leftState[i];
+    st.totalCycles++;
+    if (!st.computing && st.vmFill >= 1) {
+      st.computing = true;
+      st.computeRemaining = COMPUTE_DURATION_LEFT;
+    }
+    if (st.computing) {
+      st.busyCycles++;
+      st.computeRemaining--;
+      if (st.computeRemaining <= 0) {
+        st.computing = false;
+        st.vmFill = 0;  // need new data
+      }
+    }
+    updatePcoreVisual(left, left.pcoreEls[i], st);
+    // util bars
+    const pct = st.totalCycles > 0 ? Math.round(100 * st.busyCycles / st.totalCycles) : 0;
+    leftBars[i].fill.style.width = pct + '%';
+    leftBars[i].fill.style.background = pct > 50 ? '#34c285' : pct > 20 ? '#ffb340' : '#ff5440';
+    leftBars[i].pct.textContent = pct + '%';
+  }
+}
+
+function tickRight() {
+  for (let i=0; i<PCORE_COUNT; i++) {
+    const sv = rightServers[i];
+    const st = rightState[i];
+
+    // start a load if idle and pcore is hungry
+    if (sv.state === 'idle' && !st.computing && st.vmFill === 0) {
+      sv.setupRemaining = 2;  // tiny setup, no global queue
+      sv.loadProgress = 0;
+      sv.state = 'setup';
+    } else if (sv.state === 'setup') {
+      sv.setupRemaining--;
+      if (sv.setupRemaining <= 0) sv.state = 'loading';
+    } else if (sv.state === 'loading') {
+      sv.loadProgress += 1 / sv.loadDuration;
+      st.vmFill = Math.min(1, sv.loadProgress);
+      // emit packets
+      if (cycle % 5 === 0) {
+        const target = right.pcoreEls[i];
+        spawnPacket(stageRight, right.sramRight, right.sramY,
+          target.leftEdgeX, target.y, '#3ba3ff', 380);
+      }
+      if (sv.loadProgress >= 1) {
+        st.vmFill = 1;
+        sv.state = 'idle';
+      }
+    }
+  }
+
+  for (let i=0; i<PCORE_COUNT; i++) {
+    const st = rightState[i];
+    st.totalCycles++;
+    if (!st.computing && st.vmFill >= 1) {
+      st.computing = true;
+      st.computeRemaining = COMPUTE_DURATION_RIGHT;
+    }
+    if (st.computing) {
+      st.busyCycles++;
+      st.computeRemaining--;
+      if (st.computeRemaining <= 0) {
+        st.computing = false;
+        st.vmFill = 0;
+      }
+    }
+    updatePcoreVisual(right, right.pcoreEls[i], st);
+    const pct = st.totalCycles > 0 ? Math.round(100 * st.busyCycles / st.totalCycles) : 0;
+    rightBars[i].fill.style.width = pct + '%';
+    rightBars[i].fill.style.background = pct > 50 ? '#34c285' : pct > 20 ? '#ffb340' : '#ff5440';
+    rightBars[i].pct.textContent = pct + '%';
+  }
+}
+
+function tick() {
+  cycle++;
+  cycleLabel.textContent = `cycle ${cycle}`;
+  tickLeft();
+  tickRight();
+}
+
+function loop(t) {
+  if (!running) return;
+  if (t - lastT >= baseTickMs / speedMult) {
+    tick();
+    lastT = t;
+  }
+  requestAnimationFrame(loop);
+}
+
+// ============================================================
+// CONTROLS
+// ============================================================
+
+document.getElementById('btnPlay').addEventListener('click', () => {
+  if (running) return;
+  running = true;
+  lastT = performance.now();
+  requestAnimationFrame(loop);
+});
+document.getElementById('btnPause').addEventListener('click', () => {
+  running = false;
+});
+document.getElementById('btnReset').addEventListener('click', () => {
+  running = false;
+  cycle = 0;
+  cycleLabel.textContent = 'cycle 0';
+  for (let i=0; i<PCORE_COUNT; i++) {
+    leftState[i]  = { vmFill: 0, computing: false, computeRemaining: 0, busyCycles: 0, totalCycles: 0 };
+    rightState[i] = { vmFill: 0, computing: false, computeRemaining: 0, busyCycles: 0, totalCycles: 0 };
+    rightServers[i].state = 'idle';
+    rightServers[i].loadProgress = 0;
+    leftBars[i].fill.style.width = '0%';
+    leftBars[i].pct.textContent = '0%';
+    rightBars[i].fill.style.width = '0%';
+    rightBars[i].pct.textContent = '0%';
+    updatePcoreVisual(left,  left.pcoreEls[i],  leftState[i]);
+    updatePcoreVisual(right, right.pcoreEls[i], rightState[i]);
+  }
+  leftServer.state = 'idle';
+  leftServer.queue = [];
+  leftServer.current = -1;
+  if (left.queueLabel) left.queueLabel.textContent = 'serving: —';
+});
+const speeds = [0.5, 1, 2, 4];
+let speedIdx = 1;
+document.getElementById('btnSpeed').addEventListener('click', (e) => {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  speedMult = speeds[speedIdx];
+  e.target.textContent = `Speed: ${speedMult}×`;
+});
+
+// auto-start
+setTimeout(() => {
+  document.getElementById('btnPlay').click();
+}, 600);
+</script>
+</body>
+</html>

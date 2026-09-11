@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SoC2 — 56 Cubes, 56 LDMAs, 8-Bank SRAM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0e1a;
+    --panel: #131826;
+    --panel-2: #1a2030;
+    --ink: #e8edf5;
+    --dim: #6b7388;
+    --accent: #3ba3ff;
+    --hot: #ff5440;
+    --warm: #ffb340;
+    --cool: #34c285;
+    --cube: #b450c8;
+    --line: #1f2738;
+    --bank-0: #3ba3ff;
+    --bank-1: #34c285;
+    --bank-2: #ffb340;
+    --bank-3: #b450c8;
+    --bank-4: #ff7a8a;
+    --bank-5: #5cd6e0;
+    --bank-6: #c8b450;
+    --bank-7: #a070ff;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page { max-width: 1400px; margin: 0 auto; padding: 40px 20px 60px; }
+
+  /* MASTHEAD */
+  header { text-align: center; margin-bottom: 24px; }
+  header .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.25em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  header h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800; letter-spacing: -0.025em;
+    line-height: 1.05; margin-bottom: 12px;
+  }
+  header h1 .em { color: var(--cube); }
+  header p.sub {
+    color: var(--dim); font-size: 15px;
+    max-width: 760px; margin: 0 auto; line-height: 1.55;
+  }
+
+  /* SPEC STRIP */
+  .spec-strip {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 24px 0 28px;
+    flex-wrap: wrap;
+    padding: 14px 20px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .spec-strip .item {
+    text-align: center;
+    padding: 0 12px;
+    border-right: 1px solid var(--line);
+  }
+  .spec-strip .item:last-child { border-right: none; }
+  .spec-strip .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 4px;
+  }
+  .spec-strip .value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .spec-strip .value.cube { color: var(--cube); }
+  .spec-strip .value.accent { color: var(--accent); }
+  .spec-strip .value.cool { color: var(--cool); }
+
+  /* CONTROLS */
+  .controls {
+    display: flex; justify-content: center; align-items: center;
+    gap: 12px; margin-bottom: 22px; flex-wrap: wrap;
+  }
+  .btn {
+    background: var(--panel); color: var(--ink);
+    border: 1px solid var(--line);
+    padding: 10px 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.05em;
+    cursor: pointer; transition: all 0.15s;
+    border-radius: 6px;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary {
+    background: var(--accent); color: #0a0e1a;
+    font-weight: 700; border-color: var(--accent);
+  }
+  .clock {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--dim); font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+
+  /* MAIN STAGE — full-width, the centerpiece */
+  .main-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 22px;
+  }
+
+  .stage-main {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* DETAIL ROW: zoomed LDMA + meters */
+  .detail-row {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+  @media (max-width: 900px) {
+    .detail-row { grid-template-columns: 1fr; }
+  }
+
+  .ldma-detail {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--cube);
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .ldma-detail h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .ldma-detail .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-bottom: 12px;
+  }
+  .ldma-detail svg {
+    width: 100%;
+    aspect-ratio: 1.2 / 1;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+  }
+
+  .meters-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .meters-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .meters-card .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-bottom: 16px;
+  }
+
+  /* Big number meters */
+  .meter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .big-meter {
+    background: rgba(0,0,0,0.3);
+    border-radius: 6px;
+    padding: 12px;
+    border-left: 3px solid var(--accent);
+  }
+  .big-meter.cube { border-left-color: var(--cube); }
+  .big-meter.cool { border-left-color: var(--cool); }
+  .big-meter.warm { border-left-color: var(--warm); }
+  .big-meter .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 6px;
+  }
+  .big-meter .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .big-meter .unit {
+    font-size: 11px;
+    color: var(--dim);
+    margin-left: 4px;
+  }
+
+  /* Per-bank bandwidth meter */
+  .bank-meters {
+    display: grid;
+    grid-template-columns: 60px 1fr 50px;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+  }
+  .bank-meters .name { color: var(--ink); font-weight: 600; }
+  .bank-meters .track {
+    height: 8px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bank-meters .fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.12s linear;
+  }
+  .bank-meters .pct {
+    text-align: right;
+    color: var(--dim);
+  }
+
+  /* LEGEND */
+  .legend {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 22px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--dim);
+  }
+  .legend-swatch {
+    width: 14px; height: 14px;
+    border: 1.5px solid;
+    border-radius: 3px;
+  }
+  .legend-cube { background: #3a1f5a; border-color: var(--cube); }
+  .legend-loading { background: #2a2618; border-color: var(--warm); }
+  .legend-idle { background: #1f1929; border-color: rgba(180,80,200,0.4); }
+  .legend-stalled { background: #2a1518; border-color: var(--hot); }
+
+  /* TAKEAWAY */
+  .takeaway {
+    margin-top: 30px;
+    padding: 26px;
+    background: linear-gradient(135deg,
+      rgba(180,80,200,0.06) 0%,
+      rgba(59,163,255,0.06) 100%);
+    border: 1px solid rgba(180,80,200,0.2);
+    border-radius: 12px;
+  }
+  .takeaway h2 {
+    font-size: 20px; font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .takeaway h2 em { color: var(--cube); font-style: normal; }
+  .takeaway p {
+    color: var(--dim); font-size: 14px;
+    line-height: 1.6; margin-bottom: 8px;
+  }
+  .takeaway p strong { color: var(--ink); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <div class="eyebrow">DGrid Semi · SoC2 · Per-PCORE DMA Architecture</div>
+  <h1>56 cubes &middot; 56 LDMAs &middot; 8-bank <span class="em">shared L2</span></h1>
+  <p class="sub">28,672 MACs at 600&nbsp;MHz hits 34.4&nbsp;TOPS only if memory keeps up. Watch how per-PCORE DMA against banked SRAM lets the cubes actually run.</p>
+</header>
+
+<!-- SPEC STRIP -->
+<div class="spec-strip">
+  <div class="item">
+    <div class="label">PCOREs</div>
+    <div class="value cube">56</div>
+  </div>
+  <div class="item">
+    <div class="label">Cube shape</div>
+    <div class="value cube">8×8×8</div>
+  </div>
+  <div class="item">
+    <div class="label">MACs / PCORE</div>
+    <div class="value">512</div>
+  </div>
+  <div class="item">
+    <div class="label">Total MACs</div>
+    <div class="value cube">28,672</div>
+  </div>
+  <div class="item">
+    <div class="label">Clock</div>
+    <div class="value">600 MHz</div>
+  </div>
+  <div class="item">
+    <div class="label">Peak</div>
+    <div class="value accent">34.4 TOPS</div>
+  </div>
+  <div class="item">
+    <div class="label">L2 banks</div>
+    <div class="value">8</div>
+  </div>
+  <div class="item">
+    <div class="label">Process</div>
+    <div class="value cool">28nm</div>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <button class="btn primary" id="btnPlay">▶ Play</button>
+  <button class="btn" id="btnPause">⏸ Pause</button>
+  <button class="btn" id="btnReset">↺ Reset</button>
+  <button class="btn" id="btnSpeed">Speed: 1×</button>
+  <button class="btn" id="btnContend">Toggle hot bank</button>
+  <span class="clock" id="cycleCount">cycle 0</span>
+</div>
+
+<!-- MAIN STAGE -->
+<div class="main-card">
+  <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">System view — DDR &rarr; banked L2 &rarr; 56 LDMAs &rarr; 56 cubes</h3>
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--dim); margin-bottom: 12px;">
+    Each cube has its own LDMA. LDMAs route to one of 8 banks based on address. Up to 8 cubes load simultaneously without contention.
+  </div>
+  <svg class="stage-main" id="stageMain" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet"></svg>
+</div>
+
+<!-- DETAIL ROW: zoomed LDMA + meters -->
+<div class="detail-row">
+
+  <div class="ldma-detail">
+    <h3>One LDMA, zoomed in</h3>
+    <div class="sub">descriptor table &middot; address generator &middot; read FIFO &middot; ~600 LUT total</div>
+    <svg id="stageLdma" viewBox="0 0 360 300" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
+
+  <div class="meters-card">
+    <h3>Live performance</h3>
+    <div class="sub">Aggregated across all 56 cubes &middot; updates every cycle</div>
+
+    <div class="meter-grid">
+      <div class="big-meter cube">
+        <div class="lbl">Cube utilization</div>
+        <div class="val" id="utilVal">0<span class="unit">%</span></div>
+      </div>
+      <div class="big-meter cool">
+        <div class="lbl">Effective TOPS</div>
+        <div class="val" id="topsVal">0.0<span class="unit">/ 34.4</span></div>
+      </div>
+      <div class="big-meter warm">
+        <div class="lbl">Bank conflicts</div>
+        <div class="val" id="conflictVal">0<span class="unit">/cyc</span></div>
+      </div>
+    </div>
+
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin: 8px 0 8px;">Per-bank load (this cycle)</div>
+    <div id="bankMeters"></div>
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><span class="legend-swatch legend-cube"></span> cube computing</div>
+  <div class="legend-item"><span class="legend-swatch legend-loading"></span> LDMA loading</div>
+  <div class="legend-item"><span class="legend-swatch legend-idle"></span> idle / ready</div>
+  <div class="legend-item"><span class="legend-swatch legend-stalled"></span> stalled (bank conflict)</div>
+</div>
+
+<!-- TAKEAWAY -->
+<div class="takeaway">
+  <h2>What this animation proves &mdash; <em>and where the limits are</em></h2>
+  <p><strong>The good case (no hot bank).</strong> Cubes spread across 8 banks, average ~83% utilization, ~28 effective TOPS. This is the design target.</p>
+  <p><strong>The pathological case (toggle "hot bank" button).</strong> All 56 LDMAs hit bank 0. Now 7 cubes contend per bank, utilization collapses to ~22%. Bank conflicts visible in the orange meter. <strong>This is the failure mode firmware must avoid via address hashing.</strong></p>
+  <p><strong>The real workload sits in between.</strong> Realistic SoC2 utilization is 60-70% sustained on YOLO-class workloads &mdash; better than starved (12%), worse than ideal (83%). Srikar&rsquo;s testbench data will pin this exactly.</p>
+</div>
+
+<footer>
+  DGrid Semi &middot; SoC2 architecture preview &middot; numbers from v5 doc + Srikar runbook estimates &middot; per-bank arbitration: Option B (bank-aware)
+</footer>
+
+</div>
+
+<script>
+const SVG = "http://www.w3.org/2000/svg";
+function el(tag, attrs={}, parent=null) {
+  const e = document.createElementNS(SVG, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+const BANK_COLORS = ['#3ba3ff', '#34c285', '#ffb340', '#b450c8',
+                     '#ff7a8a', '#5cd6e0', '#c8b450', '#a070ff'];
+
+// =============================================================
+// MAIN STAGE: 56 cubes, 8 banks, DDR
+// =============================================================
+
+const stageMain = document.getElementById('stageMain');
+const W = 1280, H = 720;
+
+// State
+const NUM_CUBES = 56;
+const NUM_BANKS = 8;
+const CUBES_PER_ROW = 8;
+const NUM_ROWS = 7;
+
+let hotBankMode = false;
+
+// Per-cube state
+const cubes = [];        // visual elements
+const cubeState = [];    // logic state
+for (let i=0; i<NUM_CUBES; i++) {
+  cubeState.push({
+    state: 0,         // 0=idle, 1=loading, 2=stalled (waiting for bank), 3=computing
+    progress: 0,
+    busy: 0,
+    bankAddr: i % 8,  // default: even spread across banks
+    requestedBank: -1,
+    loadDur: 4,
+    computeDur: 6,
+    busyTotal: 0,
+    cycleCount: 0,
+  });
+}
+
+// Per-bank state
+const bankState = [];
+for (let b=0; b<NUM_BANKS; b++) {
+  bankState.push({
+    busyThisCycle: false,
+    accessCount: 0,
+    conflictCount: 0,
+  });
+}
+
+// === Build the main stage ===
+function buildMainStage() {
+  stageMain.innerHTML = '';
+
+  // DDR at top — full width
+  const ddrY = 18, ddrH = 36;
+  el('rect', { x: 30, y: ddrY, width: W-60, height: ddrH, rx: 6,
+    fill: '#1c2536', stroke: '#2a3a52', 'stroke-width': 1.5 }, stageMain);
+  el('text', { x: W/2, y: ddrY + 17, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 14, 'font-weight':600 }, stageMain).textContent = 'DDR memory';
+  el('text', { x: W/2, y: ddrY + 31, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-style':'italic' }, stageMain).textContent = 'occasional refill — most traffic stays in L2';
+
+  // Global DP (small) — DDR <-> L2 only, not in critical path
+  const gdpX = 80, gdpY = 75, gdpW = 160, gdpH = 28;
+  el('rect', { x: gdpX, y: gdpY, width: gdpW, height: gdpH, rx: 4,
+    fill: '#1c2536', stroke: '#5a6788' }, stageMain);
+  el('text', { x: gdpX + gdpW/2, y: gdpY + 18, 'text-anchor':'middle',
+    fill: '#7a8aa8', 'font-family':'JetBrains Mono', 'font-size': 11, 'font-weight':600 }, stageMain).textContent = 'Global DP (DDR ↔ L2)';
+
+  // 8 BANKS spanning width
+  const bankY = 130, bankH = 64;
+  const bankPad = 14;
+  const bankAreaW = W - 60;
+  const bankW = (bankAreaW - bankPad * (NUM_BANKS - 1)) / NUM_BANKS;
+  const banks = [];
+  for (let b=0; b<NUM_BANKS; b++) {
+    const x = 30 + b * (bankW + bankPad);
+    el('rect', { x, y: bankY, width: bankW, height: bankH, rx: 6,
+      fill: '#0d2438', stroke: BANK_COLORS[b], 'stroke-width': 1.8 }, stageMain);
+    el('text', { x: x + bankW/2, y: bankY + 22, 'text-anchor':'middle',
+      fill: BANK_COLORS[b], 'font-family':'JetBrains Mono', 'font-size': 13, 'font-weight':700 }, stageMain).textContent = `BANK ${b}`;
+    el('text', { x: x + bankW/2, y: bankY + 38, 'text-anchor':'middle',
+      fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9 }, stageMain).textContent = '4 KB SRAM';
+    // bandwidth indicator inside bank
+    const bwBg = el('rect', { x: x + 10, y: bankY + 48, width: bankW - 20, height: 6,
+      rx: 3, fill: 'rgba(0,0,0,0.4)' }, stageMain);
+    const bwFg = el('rect', { x: x + 10, y: bankY + 48, width: 0, height: 6,
+      rx: 3, fill: BANK_COLORS[b], 'fill-opacity': 0.7 }, stageMain);
+    banks.push({ x, y: bankY, w: bankW, h: bankH,
+      bottomY: bankY + bankH, centerX: x + bankW/2,
+      bwFg, color: BANK_COLORS[b] });
+  }
+  bankState.forEach((b, i) => b.viz = banks[i]);
+
+  // Connector: Global DP -> banks
+  for (let b=0; b<NUM_BANKS; b++) {
+    el('line', { x1: gdpX + gdpW/2, y1: gdpY + gdpH,
+      x2: banks[b].centerX, y2: bankY,
+      stroke: '#2a3a52', 'stroke-width': 0.8, 'stroke-opacity': 0.5,
+      'stroke-dasharray': '3,3' }, stageMain);
+  }
+
+  // 7 ROWS x 8 CUBES grid below banks
+  const cubesAreaY = 230;
+  const cubesAreaH = H - cubesAreaY - 20;
+  const rowH = cubesAreaH / NUM_ROWS;
+  const colW = bankAreaW / CUBES_PER_ROW;
+  const colPad = bankPad;
+
+  for (let r=0; r<NUM_ROWS; r++) {
+    for (let c=0; c<CUBES_PER_ROW; c++) {
+      const i = r * CUBES_PER_ROW + c;
+      const cellX = 30 + c * (colW);  // align with banks
+      const cellY = cubesAreaY + r * rowH;
+      const cellInnerW = colW - colPad;
+
+      // LDMA — small box on left of cube
+      const ldmaW = 28, ldmaH = 28;
+      const ldmaX = cellX + 4;
+      const ldmaY = cellY + (rowH - ldmaH) / 2;
+      const ldmaRect = el('rect', { x: ldmaX, y: ldmaY,
+        width: ldmaW, height: ldmaH, rx: 3,
+        fill: '#0d2438', stroke: '#3ba3ff', 'stroke-width': 1.2 }, stageMain);
+      el('text', { x: ldmaX + ldmaW/2, y: ldmaY + ldmaH/2 + 3, 'text-anchor':'middle',
+        fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-weight':700 }, stageMain).textContent = 'L';
+
+      // Cube — isometric drawing of 8x8x8
+      const cubeX0 = ldmaX + ldmaW + 8;
+      const cubeSize = Math.min(rowH - 12, cellInnerW - ldmaW - 14);
+      const cubeY0 = cellY + (rowH - cubeSize) / 2;
+
+      // Draw simplified isometric cube outline
+      const off = cubeSize * 0.18;
+      const front = el('rect', { x: cubeX0, y: cubeY0,
+        width: cubeSize - off, height: cubeSize - off, rx: 2,
+        fill: '#2a1a3a', stroke: '#b450c8', 'stroke-width': 1.2,
+        'stroke-opacity': 0.5 }, stageMain);
+      // Top face hint
+      el('polygon', {
+        points: `${cubeX0},${cubeY0} ${cubeX0 + off},${cubeY0 - off} ${cubeX0 + cubeSize},${cubeY0 - off} ${cubeX0 + cubeSize - off},${cubeY0}`,
+        fill: '#1f1429', stroke: '#b450c8', 'stroke-width': 0.8, 'stroke-opacity': 0.4
+      }, stageMain);
+      // Side face hint
+      el('polygon', {
+        points: `${cubeX0 + cubeSize - off},${cubeY0} ${cubeX0 + cubeSize},${cubeY0 - off} ${cubeX0 + cubeSize},${cubeY0 + cubeSize - off - off} ${cubeX0 + cubeSize - off},${cubeY0 + cubeSize - off}`,
+        fill: '#241634', stroke: '#b450c8', 'stroke-width': 0.8, 'stroke-opacity': 0.4
+      }, stageMain);
+
+      // PCORE label
+      el('text', { x: cubeX0 + (cubeSize - off)/2, y: cubeY0 + (cubeSize - off)/2 + 3,
+        'text-anchor':'middle',
+        fill: '#9ca8c2', 'font-family':'JetBrains Mono',
+        'font-size': 9, 'font-weight':600,
+        'pointer-events': 'none' }, stageMain).textContent = `P${i}`;
+
+      // Connector: LDMA top -> bank bottom (color matches bank)
+      const targetBankIdx = i % NUM_BANKS;
+      const targetBank = banks[targetBankIdx];
+      const connector = el('line', {
+        x1: ldmaX + ldmaW/2, y1: ldmaY,
+        x2: targetBank.centerX, y2: targetBank.bottomY,
+        stroke: targetBank.color, 'stroke-width': 0.4,
+        'stroke-opacity': 0.15
+      }, stageMain);
+
+      cubes.push({
+        front, ldmaRect, connector,
+        cubeX: cubeX0 + (cubeSize - off)/2,
+        cubeY: cubeY0 + (cubeSize - off)/2,
+        ldmaX: ldmaX + ldmaW/2, ldmaY: ldmaY + ldmaH/2,
+        ldmaTopY: ldmaY,
+        bankIdx: targetBankIdx,
+      });
+    }
+  }
+}
+
+buildMainStage();
+
+// =============================================================
+// LDMA DETAIL VIEW (zoomed)
+// =============================================================
+const stageLdma = document.getElementById('stageLdma');
+
+function buildLdmaDetail() {
+  stageLdma.innerHTML = '';
+
+  // Big LDMA outline
+  el('rect', { x: 20, y: 20, width: 320, height: 260, rx: 8,
+    fill: '#0d1830', stroke: '#3ba3ff', 'stroke-width': 1.5 }, stageLdma);
+  el('text', { x: 180, y: 38, 'text-anchor':'middle',
+    fill: '#3ba3ff', 'font-family':'JetBrains Mono',
+    'font-size': 13, 'font-weight':700 }, stageLdma).textContent = 'LDMA';
+
+  // Descriptor table — 16 entries
+  el('rect', { x: 36, y: 56, width: 130, height: 96, rx: 4,
+    fill: '#1a2238', stroke: '#5a6788' }, stageLdma);
+  el('text', { x: 101, y: 70, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight':600 }, stageLdma).textContent = 'Descriptor table';
+  el('text', { x: 101, y: 82, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 8 }, stageLdma).textContent = '16 entries × 256b';
+  // 16 mini cells
+  const tableCells = [];
+  for (let i=0; i<16; i++) {
+    const col = i % 4, row = Math.floor(i / 4);
+    const x = 42 + col * 30, y = 92 + row * 14;
+    const r = el('rect', { x, y, width: 26, height: 10, rx: 1,
+      fill: '#0a0e1a', stroke: '#3ba3ff', 'stroke-width': 0.5,
+      'stroke-opacity': 0.4 }, stageLdma);
+    tableCells.push(r);
+  }
+
+  // Address generator — 3-level loop
+  el('rect', { x: 195, y: 56, width: 128, height: 96, rx: 4,
+    fill: '#1a2238', stroke: '#5a6788' }, stageLdma);
+  el('text', { x: 259, y: 70, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight':600 }, stageLdma).textContent = 'Address gen';
+  el('text', { x: 259, y: 82, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 8 }, stageLdma).textContent = '3-level nested loop';
+
+  // Animated address counters
+  const counterTexts = [];
+  for (let lvl=0; lvl<3; lvl++) {
+    el('text', { x: 207, y: 102 + lvl*14,
+      fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 9 }, stageLdma).textContent = `i${lvl}=`;
+    const t = el('text', { x: 230, y: 102 + lvl*14,
+      fill: '#3ba3ff', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight':600 }, stageLdma);
+    t.textContent = '0';
+    counterTexts.push(t);
+  }
+
+  // Read FIFO
+  el('rect', { x: 36, y: 168, width: 130, height: 96, rx: 4,
+    fill: '#1a2238', stroke: '#5a6788' }, stageLdma);
+  el('text', { x: 101, y: 182, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight':600 }, stageLdma).textContent = 'Read FIFO';
+  el('text', { x: 101, y: 194, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 8 }, stageLdma).textContent = '32 × 96b';
+  // FIFO fill bar
+  el('rect', { x: 42, y: 210, width: 118, height: 18, rx: 2,
+    fill: '#0a0e1a', stroke: '#5a6788', 'stroke-width': 0.5 }, stageLdma);
+  const fifoFill = el('rect', { x: 42, y: 210, width: 0, height: 18, rx: 2,
+    fill: '#3ba3ff', 'fill-opacity': 0.7 }, stageLdma);
+  const fifoLabel = el('text', { x: 101, y: 222, 'text-anchor':'middle',
+    fill: '#e8edf5', 'font-family':'JetBrains Mono', 'font-size': 9, 'font-weight':600 }, stageLdma);
+  fifoLabel.textContent = '0/32';
+  el('text', { x: 101, y: 247, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 8, 'font-style':'italic' }, stageLdma).textContent = 'absorbs SRAM bursts';
+
+  // State machine
+  el('rect', { x: 195, y: 168, width: 128, height: 96, rx: 4,
+    fill: '#1a2238', stroke: '#5a6788' }, stageLdma);
+  el('text', { x: 259, y: 182, 'text-anchor':'middle',
+    fill: '#9ca8c2', 'font-family':'JetBrains Mono', 'font-size': 10, 'font-weight':600 }, stageLdma).textContent = 'State machine';
+
+  // Three states drawn as nodes
+  const stateNodes = [];
+  const stateNames = ['IDLE', 'LOAD', 'COMP'];
+  const stateColors = ['#5a6788', '#ffb340', '#b450c8'];
+  for (let s=0; s<3; s++) {
+    const sx = 215 + s*32, sy = 220;
+    const c = el('circle', { cx: sx, cy: sy, r: 11,
+      fill: '#0a0e1a', stroke: stateColors[s], 'stroke-width': 1.2,
+      'stroke-opacity': 0.4 }, stageLdma);
+    el('text', { x: sx, y: sy + 3, 'text-anchor':'middle',
+      fill: stateColors[s], 'font-family':'JetBrains Mono',
+      'font-size': 7, 'font-weight':600 }, stageLdma).textContent = stateNames[s];
+    if (s < 2) {
+      el('line', { x1: sx + 11, y1: sy, x2: sx + 21, y2: sy,
+        stroke: '#5a6788', 'stroke-width': 1 }, stageLdma);
+    }
+    stateNodes.push(c);
+  }
+  // arrow back from COMP -> IDLE (curved)
+  el('path', { d: 'M 279 209 Q 247 195, 215 209',
+    fill: 'none', stroke: '#5a6788', 'stroke-width': 1, 'stroke-dasharray': '2,2' }, stageLdma);
+
+  el('text', { x: 259, y: 254, 'text-anchor':'middle',
+    fill: '#5a6788', 'font-family':'JetBrains Mono', 'font-size': 8, 'font-style':'italic' }, stageLdma).textContent = '4 cyc → 6 cyc → repeat';
+
+  // I/O arrows
+  // input from bank (top)
+  el('path', { d: 'M 100 16 L 100 56', stroke: '#3ba3ff',
+    'stroke-width': 1.5, 'marker-end': 'url(#arrowDown)' }, stageLdma);
+  el('text', { x: 105, y: 30, fill: '#5a6788',
+    'font-family':'JetBrains Mono', 'font-size': 9 }, stageLdma).textContent = 'from bank';
+
+  // output to PCORE (right)
+  el('path', { d: 'M 340 150 L 360 150 M 360 130 L 360 170',
+    stroke: '#b450c8', 'stroke-width': 1.5 }, stageLdma);
+
+  // arrow defs
+  const defs = el('defs', {}, stageLdma);
+  const m = el('marker', { id: 'arrowDown', viewBox: '0 0 10 10',
+    refX: 5, refY: 8, markerWidth: 6, markerHeight: 6, orient: 'auto' }, defs);
+  el('path', { d: 'M 0 0 L 10 0 L 5 8 z', fill: '#3ba3ff' }, m);
+
+  return { tableCells, counterTexts, fifoFill, fifoLabel, stateNodes };
+}
+
+const ldmaDetail = buildLdmaDetail();
+
+// =============================================================
+// BANK METERS UI
+// =============================================================
+const bankMetersDiv = document.getElementById('bankMeters');
+const bankMeterEls = [];
+for (let b=0; b<NUM_BANKS; b++) {
+  const row = document.createElement('div');
+  row.className = 'bank-meters';
+  row.innerHTML = `
+    <div class="name" style="color: ${BANK_COLORS[b]};">B${b}</div>
+    <div class="track"><div class="fill" id="bankFill${b}" style="background: ${BANK_COLORS[b]};"></div></div>
+    <div class="pct" id="bankPct${b}">0/56</div>`;
+  bankMetersDiv.appendChild(row);
+  bankMeterEls.push({
+    fill: document.getElementById(`bankFill${b}`),
+    pct: document.getElementById(`bankPct${b}`),
+  });
+}
+
+// =============================================================
+// PACKET ANIMATION
+// =============================================================
+function spawnPacket(svg, x1, y1, x2, y2, color, duration=350) {
+  const c = el('circle', { cx: x1, cy: y1, r: 2.8,
+    fill: color, opacity: 0.95 }, svg);
+  const start = performance.now();
+  function step(t) {
+    const dt = (t - start) / duration;
+    if (dt >= 1) { c.remove(); return; }
+    const x = x1 + (x2-x1)*dt;
+    const y = y1 + (y2-y1)*dt;
+    c.setAttribute('cx', x);
+    c.setAttribute('cy', y);
+    c.setAttribute('opacity', 0.95 * (1 - dt*0.4));
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// =============================================================
+// MAIN TICK
+// =============================================================
+let cycle = 0, running = false, speedMult = 1, lastT = 0;
+const baseTickMs = 70;
+const cycleLabel = document.getElementById('cycleCount');
+
+let aggBusy = 0;       // total cube-cycles spent computing
+let aggCycles = 0;     // total cube-cycles elapsed
+let aggConflicts = 0;  // total stalled-cycles
+let conflictThisCycle = 0;
+
+function tick() {
+  cycle++;
+  cycleLabel.textContent = `cycle ${cycle}`;
+
+  // Reset bank busy
+  bankState.forEach(b => b.busyThisCycle = false);
+  conflictThisCycle = 0;
+
+  // For "hot bank" mode: redirect ALL cube addresses to bank 0
+  for (let i=0; i<NUM_CUBES; i++) {
+    cubeState[i].bankAddr = hotBankMode ? 0 : (i % NUM_BANKS);
+    cubes[i].bankIdx = cubeState[i].bankAddr;
+  }
+
+  // Per-cube state machine
+  // Process in random order to be fair to bank arbitration
+  const order = Array.from({length: NUM_CUBES}, (_, i) => i);
+  for (let n = order.length - 1; n > 0; n--) {
+    const j = (cycle * 7 + n * 13) % (n + 1);
+    [order[n], order[j]] = [order[j], order[n]];
+  }
+
+  for (const i of order) {
+    const cs = cubeState[i];
+    cs.cycleCount++;
+
+    if (cs.state === 0) {
+      // idle, want to load — check if bank is available
+      const b = cs.bankAddr;
+      if (!bankState[b].busyThisCycle) {
+        bankState[b].busyThisCycle = true;
+        bankState[b].accessCount++;
+        cs.state = 1;
+        cs.progress = 1;  // loaded 1 cycle worth
+      } else {
+        cs.state = 2;  // stalled
+      }
+    } else if (cs.state === 1) {
+      // loading — keep accessing bank
+      const b = cs.bankAddr;
+      if (!bankState[b].busyThisCycle) {
+        bankState[b].busyThisCycle = true;
+        bankState[b].accessCount++;
+        cs.progress++;
+        if (cs.progress >= cs.loadDur) {
+          cs.state = 3;  // start computing
+          cs.busy = cs.computeDur;
+        }
+      } else {
+        cs.state = 2;  // stalled mid-load
+        bankState[b].conflictCount++;
+        aggConflicts++;
+        conflictThisCycle++;
+      }
+    } else if (cs.state === 2) {
+      // stalled — try again
+      const b = cs.bankAddr;
+      if (!bankState[b].busyThisCycle) {
+        bankState[b].busyThisCycle = true;
+        bankState[b].accessCount++;
+        cs.state = 1;
+      } else {
+        bankState[b].conflictCount++;
+        aggConflicts++;
+        conflictThisCycle++;
+      }
+    } else if (cs.state === 3) {
+      // computing
+      cs.busy--;
+      cs.busyTotal++;
+      aggBusy++;
+      if (cs.busy <= 0) cs.state = 0;
+    }
+    aggCycles++;
+  }
+
+  // === Update visuals ===
+  for (let i=0; i<NUM_CUBES; i++) {
+    const cs = cubeState[i];
+    const cube = cubes[i];
+
+    if (cs.state === 3) {
+      // computing
+      cube.front.setAttribute('fill', '#3a1f5a');
+      cube.front.setAttribute('stroke-opacity', 1);
+    } else if (cs.state === 1) {
+      // loading
+      cube.front.setAttribute('fill', '#2a2618');
+      cube.front.setAttribute('stroke', '#ffb340');
+      cube.front.setAttribute('stroke-opacity', 0.85);
+    } else if (cs.state === 2) {
+      // stalled
+      cube.front.setAttribute('fill', '#2a1518');
+      cube.front.setAttribute('stroke', '#ff5440');
+      cube.front.setAttribute('stroke-opacity', 0.9);
+    } else {
+      // idle
+      cube.front.setAttribute('fill', '#2a1a3a');
+      cube.front.setAttribute('stroke', '#b450c8');
+      cube.front.setAttribute('stroke-opacity', 0.4);
+    }
+
+    // LDMA color
+    cube.ldmaRect.setAttribute('stroke', cs.state === 1 ? '#ffb340' : '#3ba3ff');
+    cube.ldmaRect.setAttribute('stroke-opacity',
+      cs.state === 1 ? 1 : (cs.state === 2 ? 0.9 : 0.6));
+
+    // Connector pulse — make the bank-to-cube line bright when loading
+    const targetBank = bankState[cs.bankAddr].viz;
+    if (cube.connector) {
+      // update connector target if bank changed (hot bank mode)
+      cube.connector.setAttribute('x2', targetBank.centerX);
+      cube.connector.setAttribute('stroke', targetBank.color);
+      if (cs.state === 1) {
+        cube.connector.setAttribute('stroke-opacity', 0.7);
+        cube.connector.setAttribute('stroke-width', 1.2);
+      } else {
+        cube.connector.setAttribute('stroke-opacity', 0.12);
+        cube.connector.setAttribute('stroke-width', 0.5);
+      }
+    }
+
+    // Spawn data packets when loading, going from bank → LDMA
+    if (cs.state === 1 && cycle % 2 === 0) {
+      const bank = bankState[cs.bankAddr].viz;
+      spawnPacket(stageMain, bank.centerX, bank.bottomY,
+                  cube.ldmaX, cube.ldmaTopY, bank.color, 280);
+    }
+  }
+
+  // === Update bank visuals ===
+  for (let b=0; b<NUM_BANKS; b++) {
+    const bs = bankState[b];
+    const requesters = cubeState.filter(c => c.bankAddr === b).length;
+    // bandwidth indicator inside bank
+    const fillPct = bs.busyThisCycle ? 100 : 0;
+    bs.viz.bwFg.setAttribute('width', (bs.viz.w - 20) * fillPct / 100);
+
+    // bank meter
+    bankMeterEls[b].fill.style.width = (requesters / 7 * 100) + '%';
+    if (requesters > 7) bankMeterEls[b].fill.style.background = '#ff5440';
+    bankMeterEls[b].pct.textContent = `${requesters}/56`;
+  }
+
+  // === Update meters ===
+  const utilPct = aggCycles > 0 ? Math.round(100 * aggBusy / aggCycles) : 0;
+  document.getElementById('utilVal').innerHTML = `${utilPct}<span class="unit">%</span>`;
+  const peakTOPS = 28672 * 600e6 * 2 / 1e12;
+  const effTOPS = peakTOPS * utilPct / 100;
+  document.getElementById('topsVal').innerHTML = `${effTOPS.toFixed(1)}<span class="unit">/ 34.4</span>`;
+  document.getElementById('conflictVal').innerHTML = `${conflictThisCycle}<span class="unit">/cyc</span>`;
+
+  // === Update LDMA detail ===
+  // Pick a representative cube (cube 0) to drive the detail view
+  const repState = cubeState[0];
+  // Activate descriptor cell based on cycle
+  const activeCell = cycle % 16;
+  for (let k=0; k<16; k++) {
+    const c = ldmaDetail.tableCells[k];
+    if (k === activeCell && repState.state !== 0) {
+      c.setAttribute('fill', '#3ba3ff');
+      c.setAttribute('stroke-opacity', 1);
+    } else {
+      c.setAttribute('fill', '#0a0e1a');
+      c.setAttribute('stroke-opacity', 0.4);
+    }
+  }
+  // Address counters
+  ldmaDetail.counterTexts[0].textContent = String(cycle % 8);
+  ldmaDetail.counterTexts[1].textContent = String(Math.floor(cycle / 8) % 8);
+  ldmaDetail.counterTexts[2].textContent = String(Math.floor(cycle / 64) % 4);
+  // FIFO fill (varies by state)
+  let fifoFill = 0;
+  if (repState.state === 1) fifoFill = Math.min(repState.progress / repState.loadDur, 1);
+  else if (repState.state === 3) fifoFill = 1 - (repState.busy / repState.computeDur);
+  else if (repState.state === 2) fifoFill = repState.progress / repState.loadDur;
+  ldmaDetail.fifoFill.setAttribute('width', 118 * fifoFill);
+  ldmaDetail.fifoLabel.textContent = `${Math.round(fifoFill * 32)}/32`;
+  // State machine highlight
+  const activeState = repState.state === 0 ? 0 : (repState.state === 3 ? 2 : 1);
+  for (let s=0; s<3; s++) {
+    const c = ldmaDetail.stateNodes[s];
+    c.setAttribute('stroke-opacity', s === activeState ? 1 : 0.4);
+    c.setAttribute('fill', s === activeState ? '#1f2a3a' : '#0a0e1a');
+  }
+}
+
+function loop(t) {
+  if (!running) return;
+  if (t - lastT >= baseTickMs / speedMult) { tick(); lastT = t; }
+  requestAnimationFrame(loop);
+}
+
+document.getElementById('btnPlay').addEventListener('click', () => {
+  if (running) return;
+  running = true; lastT = performance.now();
+  requestAnimationFrame(loop);
+});
+document.getElementById('btnPause').addEventListener('click', () => { running = false; });
+document.getElementById('btnReset').addEventListener('click', () => {
+  running = false; cycle = 0;
+  cycleLabel.textContent = 'cycle 0';
+  for (let i=0; i<NUM_CUBES; i++) {
+    cubeState[i].state = 0;
+    cubeState[i].progress = 0;
+    cubeState[i].busy = 0;
+    cubeState[i].busyTotal = 0;
+    cubeState[i].cycleCount = 0;
+  }
+  for (let b=0; b<NUM_BANKS; b++) {
+    bankState[b].accessCount = 0;
+    bankState[b].conflictCount = 0;
+  }
+  aggBusy = 0; aggCycles = 0; aggConflicts = 0; conflictThisCycle = 0;
+});
+const speeds = [0.5, 1, 2, 4];
+let speedIdx = 1;
+document.getElementById('btnSpeed').addEventListener('click', (e) => {
+  speedIdx = (speedIdx + 1) % speeds.length;
+  speedMult = speeds[speedIdx];
+  e.target.textContent = `Speed: ${speedMult}×`;
+});
+document.getElementById('btnContend').addEventListener('click', (e) => {
+  hotBankMode = !hotBankMode;
+  e.target.textContent = hotBankMode ? 'Spread across banks' : 'Toggle hot bank';
+  e.target.classList.toggle('primary', hotBankMode);
+  // Reset stats on mode switch so user sees the new equilibrium
+  aggBusy = 0; aggCycles = 0; aggConflicts = 0;
+});
+
+setTimeout(() => document.getElementById('btnPlay').click(), 600);
+</script>
+</body>
+</html>

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Deepgrid Semi × Speciale Invest — Pre-Series A Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05080E;--bg2:#080D18;--bg3:#0E1525;--bg4:#121B2E;
+  --navy:#0A1245;--cy:#00C8F0;--cy2:#00E5FF;--cyd:rgba(0,200,240,.10);--cyb:rgba(0,200,240,.30);
+  --gr:#22C99A;--grd:rgba(34,201,154,.10);--grb:rgba(34,201,154,.32);
+  --am:#E8A020;--amd:rgba(232,160,32,.10);--amb:rgba(232,160,32,.32);
+  --re:#E84040;--red2:rgba(232,64,64,.10);--reb:rgba(232,64,64,.32);
+  --pu:#9B7BFF;--pud:rgba(155,123,255,.10);--pub:rgba(155,123,255,.32);
+  --tx:#CDD6E8;--dim:#5A7090;--mid:#90AECE;--rule:rgba(0,200,240,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--tx);font-family:"JetBrains Mono",monospace;font-size:14px;
+  -webkit-tap-highlight-color:transparent;user-select:none}
+h1,h2,h3,h4{font-family:"Syne",sans-serif;line-height:1.08;letter-spacing:-.015em}
+.cy{color:var(--cy)}.gr{color:var(--gr)}.am{color:var(--am)}.re{color:var(--re)}.pu{color:var(--pu)}.mid{color:var(--mid)}.dim{color:var(--dim)}
+b{color:#fff;font-weight:600}
+
+/* DECK MECHANICS */
+.deck{position:fixed;inset:0;overflow:hidden}
+.track{display:flex;height:100%;transition:transform .62s cubic-bezier(.76,0,.24,1)}
+.slide{position:relative;min-width:100vw;height:100%;display:flex;align-items:center;justify-content:center;padding:54px 30px 76px;overflow:hidden}
+.inner{width:100%;max-width:980px;max-height:100%;overflow:auto;scrollbar-width:none}
+.inner::-webkit-scrollbar{display:none}
+
+/* ambient bg */
+.slide::before{content:"";position:absolute;inset:0;background-image:
+  radial-gradient(circle at 12% 8%,rgba(0,200,240,.07),transparent 38%),
+  radial-gradient(circle at 88% 92%,rgba(155,123,255,.05),transparent 42%),
+  linear-gradient(rgba(0,200,240,.025) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(0,200,240,.025) 1px,transparent 1px);
+  background-size:auto,auto,44px 44px,44px 44px;pointer-events:none;opacity:.9}
+
+/* REVEAL ANIMATIONS */
+.r{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
+.slide.active .r{opacity:1;transform:none}
+.slide.active .d1{transition-delay:.08s}.slide.active .d2{transition-delay:.16s}
+.slide.active .d3{transition-delay:.24s}.slide.active .d4{transition-delay:.32s}
+.slide.active .d5{transition-delay:.40s}.slide.active .d6{transition-delay:.48s}
+.slide.active .d7{transition-delay:.56s}.slide.active .d8{transition-delay:.64s}
+.slide.active .d9{transition-delay:.72s}
+
+/* TYPE */
+.kick{font-size:11px;letter-spacing:.32em;color:var(--cy);text-transform:uppercase;font-weight:600;margin-bottom:16px;display:flex;gap:10px;align-items:center}
+.kick::before{content:"";width:26px;height:1px;background:var(--cy)}
+h2.t{font-size:clamp(26px,4.6vw,46px);font-weight:800;color:#fff;margin-bottom:14px}
+h2.t em{font-style:normal;color:var(--cy)}
+.lede{color:var(--mid);font-size:clamp(13px,1.7vw,16px);max-width:760px;line-height:1.6;margin-bottom:24px}
+
+/* TITLE SLIDE */
+.brand{font-family:"Syne",sans-serif;font-weight:800;letter-spacing:.2em;font-size:15px;color:#fff;margin-bottom:auto}
+.brand span{color:var(--cy)}
+.titleWrap{display:flex;flex-direction:column;height:100%;justify-content:center}
+.confbar{display:inline-flex;align-self:flex-start;gap:9px;background:var(--cyd);border:1px solid var(--cyb);border-radius:6px;padding:7px 13px;font-size:11px;letter-spacing:.08em;color:var(--cy);margin-bottom:22px}
+.titleWrap h1{font-size:clamp(30px,6.4vw,62px);font-weight:800;color:#fff;margin-bottom:16px}
+.titleWrap h1 em{font-style:normal;color:var(--cy)}
+.titleSub{color:var(--mid);font-size:clamp(13px,1.8vw,16px);max-width:680px;line-height:1.6}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-top:30px}
+.stat{background:var(--bg2);padding:16px 14px}
+.stat .v{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(18px,2.4vw,24px);color:#fff;line-height:1}
+.stat .l{font-size:10px;color:var(--dim);letter-spacing:.04em;margin-top:6px;text-transform:uppercase}
+@media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* CARDS */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:680px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--bg2);border:1px solid var(--rule);border-radius:11px;padding:18px}
+.card h4{font-size:15px;color:#fff;margin-bottom:7px;font-weight:700}
+.card p{font-size:12.5px;color:var(--mid);line-height:1.55}
+.card.cy{border-color:var(--cyb)}.card.gr{border-color:var(--grb)}.card.am{border-color:var(--amb)}.card.pu{border-color:var(--pub)}
+.tag{display:inline-block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:4px;font-weight:600;margin-bottom:9px}
+.tag.cy{background:var(--cyd);color:var(--cy);border:1px solid var(--cyb)}
+.tag.gr{background:var(--grd);color:var(--gr);border:1px solid var(--grb)}
+.tag.am{background:var(--amd);color:var(--am);border:1px solid var(--amb)}
+.tag.pu{background:var(--pud);color:var(--pu);border:1px solid var(--pub)}
+.tag.re{background:var(--red2);color:var(--re);border:1px solid var(--reb)}
+
+.callout{border-left:3px solid var(--cy);background:var(--cyd);padding:13px 16px;border-radius:0 8px 8px 0;font-size:13px;color:var(--tx);line-height:1.55;margin-top:18px}
+.callout.am{border-color:var(--am);background:var(--amd)}
+.callout.gr{border-color:var(--gr);background:var(--grd)}
+.callout.pu{border-color:var(--pu);background:var(--pud)}
+
+ul.clean{list-style:none}
+ul.clean li{position:relative;padding-left:18px;font-size:12.5px;color:var(--mid);margin-bottom:8px;line-height:1.5}
+ul.clean li::before{content:"▸";position:absolute;left:0;color:var(--cy)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:680px){.split{grid-template-columns:1fr;gap:16px}}
+
+/* LADDER */
+.ladder{display:flex;flex-direction:column;gap:5px}
+.rung{display:grid;grid-template-columns:88px 1fr;gap:12px;background:var(--bg2);border:1px solid var(--rule);border-radius:8px;overflow:hidden;align-items:center}
+.rung .gen{padding:10px;border-right:1px solid var(--rule)}
+.rung .gen .n{font-family:"Syne",sans-serif;font-weight:800;font-size:14px;color:#fff}
+.rung .gen .s{font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+.rung .body{padding:6px 12px;font-size:11px;color:var(--mid);line-height:1.4}
+.rung .body b{color:var(--tx)}
+.rung.shipped{border-color:var(--grb)}.rung.shipped .gen{background:var(--grd)}.rung.shipped .gen .s{color:var(--gr)}
+.rung.now{border-color:var(--cyb)}.rung.now .gen{background:var(--cyd)}.rung.now .gen .s{color:var(--cy)}
+.rung.funded{border-color:var(--amb)}.rung.funded .gen{background:var(--amd)}.rung.funded .gen .s{color:var(--am)}
+.rung.horizon{border-color:var(--pub)}.rung.horizon .gen{background:var(--pud)}.rung.horizon .gen .s{color:var(--pu)}
+/* ladder cascade */
+.slide.active .rung{animation:rungIn .5s cubic-bezier(.2,.7,.2,1) both}
+.slide.active .rung:nth-child(1){animation-delay:.10s}.slide.active .rung:nth-child(2){animation-delay:.17s}
+.slide.active .rung:nth-child(3){animation-delay:.24s}.slide.active .rung:nth-child(4){animation-delay:.31s}
+.slide.active .rung:nth-child(5){animation-delay:.38s}.slide.active .rung:nth-child(6){animation-delay:.45s}
+.slide.active .rung:nth-child(7){animation-delay:.52s}.slide.active .rung:nth-child(8){animation-delay:.59s}
+.slide.active .rung:nth-child(9){animation-delay:.66s}
+@keyframes rungIn{from{opacity:0;transform:translateX(-26px)}to{opacity:1;transform:none}}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule)}
+th{color:var(--cy);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase}
+td{color:var(--mid)}td b{color:var(--tx)}
+.tableWrap{border:1px solid var(--rule);border-radius:10px;background:var(--bg2);overflow:hidden}
+
+/* USE FUNDS */
+.uf{display:grid;grid-template-columns:58px 1fr;gap:11px;align-items:center;background:var(--bg2);border:1px solid var(--rule);border-radius:8px;padding:9px 13px;margin-bottom:7px}
+.uf .amt{font-family:"Syne",sans-serif;font-weight:800;font-size:15px;color:var(--cy)}
+.uf .d{font-size:11.5px;color:var(--mid);line-height:1.4}
+
+/* QA */
+.qa{background:var(--bg2);border:1px solid var(--rule);border-radius:9px;padding:14px 16px;margin-bottom:9px}
+.qa .q{font-family:"Syne",sans-serif;font-weight:700;font-size:13.5px;color:#fff;margin-bottom:5px}
+.qa .a{font-size:12px;color:var(--mid);line-height:1.5}
+
+/* HUD */
+.hud{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;align-items:center;gap:14px;padding:11px 22px;background:linear-gradient(transparent,rgba(5,8,14,.9));pointer-events:none}
+.dots{display:flex;gap:6px;pointer-events:auto}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--bg4);border:1px solid var(--rule);cursor:pointer;transition:all .3s}
+.dot.on{background:var(--cy);border-color:var(--cy);transform:scale(1.25);box-shadow:0 0 8px var(--cy)}
+.count{font-size:11px;color:var(--dim);letter-spacing:.1em;margin-left:auto}
+.count b{color:var(--cy)}
+.prog{position:fixed;top:0;left:0;height:2px;background:var(--cy);z-index:61;transition:width .5s cubic-bezier(.76,0,.24,1);box-shadow:0 0 8px var(--cy)}
+.brandHud{position:fixed;top:14px;left:22px;z-index:60;font-family:"Syne",sans-serif;font-weight:800;letter-spacing:.18em;font-size:12px;color:#fff;pointer-events:none}
+.brandHud span{color:var(--cy)}
+/* embedded-in-gallery mode: hide nav chrome so each slide reads as a clean animation tile */
+body.embed .prog,body.embed .brandHud,body.embed .arrow,body.embed .hud{display:none!important}
+body.embed{overflow:hidden}
+/* arrows */
+.arrow{position:fixed;top:50%;transform:translateY(-50%);z-index:60;width:42px;height:42px;border-radius:50%;border:1px solid var(--rule);background:rgba(8,13,24,.6);color:var(--cy);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .25s;pointer-events:auto}
+.arrow:hover{background:var(--cyd);border-color:var(--cyb)}
+.arrow.l{left:14px}.arrow.r{right:14px}
+.arrow.hide{opacity:.2;pointer-events:none}
+.hint{position:fixed;bottom:13px;left:50%;transform:translateX(-50%);z-index:60;font-size:9.5px;color:var(--dim);letter-spacing:.14em;pointer-events:none}
+@media(max-width:680px){.arrow{display:none}.hint{display:none}}
+
+/* ===== EXPLANATORY ANIMATIONS ===== */
+/* fps bars that climb when slide becomes active */
+.fpsBar{height:5px;border-radius:3px;background:var(--bg4);overflow:hidden;margin-top:4px;max-width:340px}
+.fpsBar i{display:block;height:100%;width:0;border-radius:3px;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.slide.active .fpsBar i{width:var(--w)}
+.fpsLbl{font-size:9px;color:var(--dim);letter-spacing:.05em;margin-top:3px}
+
+/* DATA-PATH DIAGRAM */
+.flow{position:relative;background:var(--bg2);border:1px solid var(--rule);border-radius:12px;padding:22px 20px 18px;margin-top:6px}
+.flowSvg{width:100%;height:300px;display:block}
+.flowSvg .wire{fill:none;stroke:var(--cyb);stroke-width:2}
+.flowSvg .live{fill:none;stroke:var(--cy);stroke-width:2.4;stroke-dasharray:7 11;stroke-linecap:round;
+  filter:drop-shadow(0 0 4px rgba(0,200,240,.5));opacity:0}
+.slide.active .flowSvg .live{opacity:1;animation:march 1.05s linear infinite}
+@keyframes march{to{stroke-dashoffset:-36}}
+.flowSvg .node{fill:var(--bg3);stroke:var(--cyb);stroke-width:1.4}
+.flowSvg .nodeHot{fill:var(--cyd);stroke:var(--cy);stroke-width:1.8}
+.slide.active .flowSvg .nodeHot{animation:hot 1.8s ease-in-out infinite}
+@keyframes hot{0%,100%{stroke-width:1.8;filter:drop-shadow(0 0 0 rgba(0,200,240,0))}50%{stroke-width:2.6;filter:drop-shadow(0 0 9px rgba(0,200,240,.7))}}
+.flowSvg .pkt{fill:var(--cy2);opacity:0}
+.slide.active .flowSvg .pkt{opacity:1;animation:pktrun 2.2s linear infinite}
+.flowSvg text{font-family:"JetBrains Mono",monospace;fill:var(--mid);font-size:10px}
+.flowSvg .tHot{fill:#fff;font-weight:600}
+@keyframes pktrun{0%{offset-distance:0%}100%{offset-distance:100%}}
+.p1{offset-path:path('M70,46 C150,46 150,130 250,130')}
+.p2{offset-path:path('M70,90 C150,90 170,130 250,130')}
+.p3{offset-path:path('M70,134 L250,134')}
+.p4{offset-path:path('M70,178 C150,178 170,138 250,138')}
+.p5{offset-path:path('M70,222 C150,222 150,142 250,142')}
+.p6{offset-path:path('M70,266 C160,266 160,146 250,146')}
+.pr{offset-path:path('M70,310 C170,310 170,150 250,150')}
+.pout{offset-path:path('M430,138 L640,138')}
+.slide.active .d-1{animation-delay:0s}.slide.active .d-2{animation-delay:.3s}.slide.active .d-3{animation-delay:.6s}
+.slide.active .d-4{animation-delay:.9s}.slide.active .d-5{animation-delay:1.2s}.slide.active .d-6{animation-delay:1.5s}.slide.active .d-7{animation-delay:1.8s}
+
+/* frame budget bar */
+.budget{margin-top:16px}
+.budgetTrack{position:relative;height:30px;background:var(--bg4);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.budgetUsed{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--cy),var(--cy2));
+  border-right:2px solid #fff;transition:width 1.3s cubic-bezier(.2,.7,.2,1);display:flex;align-items:center;justify-content:center}
+.slide.active .budgetUsed{width:25.8%}
+.budgetUsed span{font-size:10px;color:#021018;font-weight:600;white-space:nowrap}
+.budgetTrack .freeLbl{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--mid)}
+.flowCap{font-size:11px;color:var(--mid);margin-top:12px;line-height:1.5}
+.flowCap b{color:var(--cy)}
+@media(max-width:680px){.flowSvg{min-width:560px}.flowWrap{overflow-x:auto;scrollbar-width:none}}
+
+/* ===== 3D CUBE ===== */
+.cubeWrap{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:center;margin-top:4px}
+@media(max-width:680px){.cubeWrap{grid-template-columns:1fr;gap:8px}}
+.scene{width:100%;max-width:420px;margin:0 auto}
+#cubeStage{width:100%;height:auto;display:block;overflow:visible}
+.cubeRow{display:grid;grid-template-columns:84px 1fr;gap:12px;background:var(--bg2);border:1px solid var(--rule);border-radius:9px;padding:11px 14px;margin-bottom:8px}
+.cubeRow .lab{font-family:"Syne",sans-serif;font-weight:800;font-size:13px;color:#fff;line-height:1.1}
+.cubeRow .lab small{display:block;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:9px;letter-spacing:.08em;color:var(--dim);margin-top:3px}
+.cubeRow .txt{font-size:11.5px;color:var(--mid);line-height:1.45}.cubeRow .txt b{color:var(--tx)}
+.cubeRow.cube-c{border-color:var(--cyb)}.cubeRow.cube-c .lab{color:var(--cy)}
+.cubeRow.scale-c{border-color:var(--amb)}.cubeRow.scale-c .lab{color:var(--am)}
+
+/* ===== PRODUCT DIAGRAM (Smart Mirror Tower) ===== */
+.truckWrap{display:grid;grid-template-columns:1.25fr .85fr;gap:22px;align-items:center;margin-top:2px}
+@media(max-width:680px){.truckWrap{grid-template-columns:1fr}}
+.truckSvg{width:100%;height:auto;display:block;overflow:visible;max-height:62vh}
+.cover{fill:var(--cy);opacity:.14}
+.slide.active .cover{animation:coverBreath 3s ease-in-out infinite}
+@keyframes coverBreath{0%,100%{opacity:.12}50%{opacity:.26}}
+.ray{stroke:var(--cy2);stroke-width:2;opacity:0;transform-box:view-box;stroke-linecap:round;filter:drop-shadow(0 0 5px var(--cy2))}
+.slide.active .ray{opacity:.7}
+.slide.active .swL{animation:swLeft 3.4s ease-in-out infinite}
+.slide.active .swR{animation:swRight 3.4s ease-in-out infinite}
+.rayAm{stroke:var(--am);filter:drop-shadow(0 0 5px var(--am))}
+.slide.active .swF{animation:swFront 2.8s ease-in-out infinite}
+.slide.active .swB{animation:swBack 2.8s ease-in-out infinite}
+@keyframes swLeft{0%,100%{transform:rotate(-19deg)}50%{transform:rotate(56deg)}}
+@keyframes swRight{0%,100%{transform:rotate(19deg)}50%{transform:rotate(-56deg)}}
+@keyframes swFront{0%,100%{transform:rotate(-38deg)}50%{transform:rotate(38deg)}}
+@keyframes swBack{0%,100%{transform:rotate(-52deg)}50%{transform:rotate(52deg)}}
+/* DMS interior sweep (driver-monitoring) — violet, narrow, inside cab */
+.rayDms{stroke:var(--pu);stroke-width:2;opacity:0;transform-box:view-box;stroke-linecap:round;filter:drop-shadow(0 0 4px var(--pu))}
+.slide.active .rayDms{opacity:.75}
+.slide.active .swDms{animation:swDms 2.4s ease-in-out infinite}
+@keyframes swDms{0%,100%{transform:rotate(-26deg)}50%{transform:rotate(26deg)}}
+.dmsCover{fill:var(--pu);opacity:.12}
+.slide.active .dmsCover{animation:coverBreath 2.8s ease-in-out infinite}
+/* ultrasonic short-range proximity — concentric sound-wave arcs radiating from each sensor */
+.usWave{fill:none;stroke:var(--gr);stroke-width:1.6;opacity:0;transform-box:view-box;stroke-linecap:round}
+.slide.active .usWave{animation:usPing 1.65s ease-out infinite}
+@keyframes usPing{0%{transform:scale(.35);opacity:.85}100%{transform:scale(1.6);opacity:0}}
+.usDot{fill:var(--gr);filter:drop-shadow(0 0 3px var(--gr))}
+.slide.active .usDot{animation:ledBlink 1.5s ease-in-out infinite}
+.radarArc{fill:none;stroke:var(--am);stroke-width:1.6;opacity:0}
+.slide.active .radarArc{opacity:.7;animation:radarPing 2.6s ease-out infinite}
+@keyframes radarPing{0%{transform:scale(.5);opacity:.9}100%{transform:scale(1.3);opacity:0}}
+.detRing{fill:none;stroke:var(--gr);stroke-width:2;transform-box:fill-box;transform-origin:center}
+.slide.active .detRing{animation:detPulse 1.8s ease-out infinite}
+@keyframes detPulse{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.5);opacity:0}}
+.tower{fill:var(--cy);filter:drop-shadow(0 0 6px var(--cy))}
+.slide.active .tower{animation:towerGlow 2s ease-in-out infinite}
+@keyframes towerGlow{0%,100%{opacity:.85}50%{opacity:1}}
+.radarCone{fill:var(--am);opacity:.12}
+.slide.active .radarCone{animation:coverBreath 3.2s ease-in-out infinite;animation-delay:.7s}
+.thermalDot{fill:var(--re)}
+.slide.active .thermalDot{animation:ledBlink 1.7s ease-in-out infinite}
+.driverDot{fill:var(--cy2)}
+.slide.active .driverDot{animation:ledBlink 2.1s ease-in-out infinite}
+.truckBody{fill:#1b3050;stroke:var(--cy);stroke-width:1.5;stroke-opacity:.6}
+.truckCab{fill:#23375c;stroke:var(--cy);stroke-width:1.5;stroke-opacity:.6}
+.truckSvg text{font-family:"JetBrains Mono",monospace;fill:var(--mid);font-size:11px}
+.truckSvg .tg{fill:var(--gr);font-weight:600}
+.truckSvg .tc{fill:var(--cy);font-weight:600}
+.specPill{display:flex;gap:10px;align-items:flex-start;background:var(--bg2);border:1px solid var(--rule);border-radius:9px;padding:11px 14px;margin-bottom:9px}
+.specPill .ic{width:30px;height:30px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;font-family:"Syne",sans-serif}
+.specPill .ic.cy{background:var(--cyd);color:var(--cy);border:1px solid var(--cyb)}
+.specPill .ic.am{background:var(--amd);color:var(--am);border:1px solid var(--amb)}
+.specPill .ic.gr{background:var(--grd);color:var(--gr);border:1px solid var(--grb)}
+.specPill .pt{font-size:12px;color:var(--mid);line-height:1.45}.specPill .pt b{color:#fff;font-family:"Syne",sans-serif;font-size:13px;display:block;margin-bottom:2px}
+
+/* ===== AD-LEVEL PROGRESSION ===== */
+.adTrack{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px 0 8px;
+  background:
+    linear-gradient(90deg,var(--gr) 0 50%,var(--am) 50% 72%,var(--dim) 72%) no-repeat 8% 26px / 84% 3px,
+    linear-gradient(var(--bg4),var(--bg4)) no-repeat 8% 26px / 84% 3px}
+.adNode{position:relative;z-index:2;text-align:center}
+.adDot{width:54px;height:54px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;
+  font-family:"Syne",sans-serif;font-weight:800;font-size:16px;border:2px solid;background:var(--bg)}
+.adDot.done{border-color:var(--gr);color:var(--gr);box-shadow:0 0 16px rgba(34,201,154,.4)}
+.adDot.gate{border-color:var(--am);color:var(--am);box-shadow:0 0 16px rgba(232,160,32,.45)}
+.adDot.future{border-color:var(--dim);color:var(--dim)}
+.slide.active .adDot.gate{animation:gatePulse 1.8s ease-in-out infinite}
+@keyframes gatePulse{0%,100%{box-shadow:0 0 12px rgba(232,160,32,.35)}50%{box-shadow:0 0 22px rgba(232,160,32,.7)}}
+.adNode h4{font-size:14px;color:#fff;margin-bottom:3px}
+.adStat{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.adStat.done{color:var(--gr)}.adStat.gate{color:var(--am)}.adStat.future{color:var(--dim)}
+.adNode p{font-size:11px;color:var(--mid);line-height:1.4}
+@media(max-width:680px){.adTrack{grid-template-columns:1fr 1fr;gap:18px}.adTrack::before,.adFill{display:none}}
+
+/* ===== ALLOCATION BAR ===== */
+.allocBar{display:flex;height:46px;border-radius:9px;overflow:hidden;border:1px solid var(--rule);margin:24px 0 18px}
+.allocSeg{display:flex;align-items:center;justify-content:center;font-family:"Syne",sans-serif;font-weight:800;font-size:15px;color:#021018;
+  width:0;transition:width 1.2s cubic-bezier(.2,.7,.2,1);overflow:hidden;white-space:nowrap}
+.slide.active .allocSeg{width:var(--w)}
+.allocLegend{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+@media(max-width:680px){.allocLegend{grid-template-columns:1fr}}
+.allocItem{display:grid;grid-template-columns:14px 44px 1fr;gap:10px;align-items:center;background:var(--bg2);border:1px solid var(--rule);border-radius:8px;padding:9px 13px}
+.allocItem .sw{width:12px;height:12px;border-radius:3px}
+.allocItem .pc{font-family:"Syne",sans-serif;font-weight:800;font-size:14px;color:#fff}
+.allocItem .lb{font-size:11.5px;color:var(--mid);line-height:1.35}.allocItem .lb b{color:var(--tx)}
+
+/* ===== EXIT FUNNEL ===== */
+.funnel{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.fRow{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:center}
+.fBar{position:relative;height:62px;border-radius:9px;border:1px solid;display:flex;align-items:center;padding:0 18px;overflow:hidden;
+  transform:scaleX(.4);transform-origin:left;opacity:0;transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .5s}
+.slide.active .fBar{transform:scaleX(1);opacity:1}
+.slide.active .fRow:nth-child(2) .fBar{transition-delay:.15s}
+.slide.active .fRow:nth-child(3) .fBar{transition-delay:.3s}
+.fBar.gr{border-color:var(--grb);background:linear-gradient(90deg,var(--grd),transparent)}
+.fBar.cy{border-color:var(--cyb);background:linear-gradient(90deg,var(--cyd),transparent)}
+.fBar.pu{border-color:var(--pub);background:linear-gradient(90deg,var(--pud),transparent)}
+.fBar h4{font-size:15px;color:#fff;margin-bottom:2px}.fBar p{font-size:11px;color:var(--mid);line-height:1.35}
+.fLabel{text-align:right;font-family:"Syne",sans-serif;font-weight:800;font-size:13px}
+.fLabel small{display:block;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:9px;letter-spacing:.08em;color:var(--dim);margin-top:3px}
+
+/* ===== SoC4-A 1024-TILE MESH ===== */
+.meshWrap{display:grid;grid-template-columns:1.55fr 1fr;gap:20px;align-items:center;margin-top:2px}
+@media(max-width:680px){.meshWrap{grid-template-columns:1fr}}
+.meshStage{width:100%;max-width:520px;margin:0 auto;display:block;overflow:visible}
+.meshDie{fill:none;stroke:var(--pu);stroke-width:1.5;stroke-opacity:.7}
+.meshHbm{fill:var(--pud);stroke:var(--pu);stroke-width:1;stroke-opacity:.5}
+.meshSpec{display:flex;flex-direction:column;gap:9px}
+.meshRow{display:grid;grid-template-columns:96px 1fr;gap:12px;background:var(--bg2);border:1px solid var(--pub);border-radius:9px;padding:11px 14px}
+.meshRow .v{font-family:"Syne",sans-serif;font-weight:800;font-size:17px;color:var(--pu);line-height:1}
+.meshRow .v small{display:block;font-family:"JetBrains Mono",monospace;font-weight:500;font-size:9px;letter-spacing:.06em;color:var(--dim);margin-top:3px}
+.meshRow .t{font-size:11.5px;color:var(--mid);line-height:1.4}.meshRow .t b{color:var(--tx)}
+
+/* ===== COMPUTE BOX HERO ===== */
+.boxWrap{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center;margin-top:2px}
+@media(max-width:680px){.boxWrap{grid-template-columns:1fr}}
+.boxSvg{width:100%;height:auto;display:block;overflow:visible;max-height:60vh}
+.boxSvg .led{fill:var(--gr)}
+.slide.active .boxSvg .led{animation:ledBlink 1.6s ease-in-out infinite}
+.slide.active .boxSvg .led2{animation-delay:.5s}
+.slide.active .boxSvg .led3{animation-delay:1s}
+@keyframes ledBlink{0%,100%{opacity:.35}50%{opacity:1}}
+.boxSvg .port{fill:#0c1830;stroke:var(--cy);stroke-width:1;stroke-opacity:.5}
+.boxSvg .portHot{fill:var(--cyd);stroke:var(--cy);stroke-width:1.2}
+.slide.active .boxSvg .portHot{animation:ledBlink 2s ease-in-out infinite}
+.boxSvg text{font-family:"JetBrains Mono",monospace;fill:var(--mid);font-size:10px}
+.boxSvg .tc{fill:var(--cy);font-weight:600}.boxSvg .tw{fill:#fff;font-weight:600}
+.useTag{display:inline-flex;align-items:center;gap:8px;background:var(--grd);border:1px solid var(--grb);border-radius:6px;padding:6px 12px;font-size:11px;color:var(--gr);margin-top:10px}
+.useTag b{color:#fff}
+/* LEDs inside the unified flow svg */
+.flowSvg .led{fill:var(--gr)}
+.slide.active .flowSvg .led{animation:ledBlink 1.6s ease-in-out infinite}
+.slide.active .flowSvg .led2{animation-delay:.5s}.slide.active .flowSvg .led3{animation-delay:1s}
+/* clean orthogonal routing */
+.flowSvg .wire{stroke-linecap:butt}
+.flowSvg .bus{stroke:var(--cyb);stroke-width:2.4;opacity:.8}
+.flowSvg .live{stroke-linecap:butt;stroke-dasharray:5 9}
+.flowSvg .trunk{stroke-width:3.4}
+.flowSvg .jx{fill:var(--cy);opacity:.7}
+.flowSvg .jx.tap{fill:var(--cy2);opacity:1}
+.slide.active .flowSvg .jx.tap{animation:ledBlink 2s ease-in-out infinite}
+
+/* ASK headline strip */
+.askHead{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:baseline;background:var(--cyd);border:1px solid var(--cyb);border-radius:11px;padding:15px 20px;margin-bottom:16px}
+.askHead .hl{font-family:"Syne",sans-serif;font-weight:800;font-size:clamp(20px,2.7vw,28px);color:#fff;line-height:1}
+.askHead .hl em{font-style:normal;color:var(--cy)}
+.askHead .meta{font-size:12px;color:var(--mid);letter-spacing:.02em}
+.askHead .meta b{color:var(--tx)}
+</style>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+<div class="brandHud">DEEP<span>GRID</span> × SPECIALE</div>
+
+<div class="deck">
+<div class="track" id="track">
+
+  <!-- 1 TITLE -->
+  <section class="slide">
+   <div class="inner titleWrap">
+    <div class="brand r d1">DEEP<span>GRID</span> SEMI</div>
+    <div class="confbar r d2">CONFIDENTIAL · PRE-SERIES A · FOR SPECIALE INVEST</div>
+    <h1 class="r d3">India's first transformer-native <em>ADAS silicon</em> — proven on hardware.</h1>
+    <p class="titleSub r d4">A government mandate created a captive truck market. We hold the only indigenous chip path into it — and we've already been paid for working silicon. Every number in this deck is on the honest basis. Nothing rounded up.</p>
+    <div class="stats r d5">
+      <div class="stat"><div class="v">₹1 Cr</div><div class="l">Defence revenue · received</div></div>
+      <div class="stat"><div class="v">15+</div><div class="l">Patents · India + PCT</div></div>
+      <div class="stat"><div class="v">Q4 '26</div><div class="l">SoC2 28nm tapeout</div></div>
+      <div class="stat"><div class="v">22</div><div class="l">Team · 2 founder exits</div></div>
+    </div>
+   </div>
+  </section>
+
+  <!-- 2 WHY SPECIALE -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">01 · Why this is a Speciale deal</div>
+    <h2 class="t r d2">Sovereign silicon, <em>past the science risk.</em></h2>
+    <p class="lede r d3">Speciale backs deep-tech that's mitigated its science risk and is ready to scale into a sovereign, globally-competitive business. Deepgrid is exactly that company — indigenous ADAS silicon with shipped hardware and paying customers.</p>
+    <div class="grid2">
+      <div class="card cy r d4"><span class="tag cy">The thesis fit</span><h4>Sovereign deep-silicon</h4><p>Frontier computing + dual-use defence + advanced manufacturing — the core of Speciale's mandate. Deepgrid is indigenous automotive AI silicon with a defence wedge (₹1 Cr Army revenue), built for India's resilience and globally competitive from day one.</p></div>
+      <div class="card gr r d5"><span class="tag gr">The portfolio parallel</span><h4>CynLr · QNu lineage</h4><p>You've backed machine-vision robotics (CynLr) and sovereign deep-compute (QNu Labs). Deepgrid sits in the same family — hard-tech silicon with a long, defensible moat — and is further de-risked: working chips, four POs, ₹1 Cr institutional revenue already in.</p></div>
+      <div class="card pu r d6"><span class="tag pu">The stage</span><h4>Past the valley of death</h4><p>Speciale's gap-to-fill is proven tech that needs growth capital to reach commercial scale. We're there: science de-risked on FPGA silicon, the raise funds the 28nm production gate. Pre-Series A now; Growth Fund II is the natural follow-on.</p></div>
+      <div class="card am r d7"><span class="tag am">The unlock</span><h4>You anchor the round</h4><p>A lead from a sovereign-tech-credible fund releases the soft commitments already waiting on a lead. One Speciale term sheet is the catalytic event — and your defence + frontier-compute network turns our LOIs into binding design-ins.</p></div>
+    </div>
+   </div>
+  </section>
+
+  <!-- 3 WEDGE -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">02 · The wedge — the "so what"</div>
+    <h2 class="t r d2">A regulation made the market. <em>We're the only Indian chip in it.</em></h2>
+    <p class="lede r d3">GSR 184(E) mandates camera-radar systems on India's N2/N3 commercial trucks under AIS-162/188. Government-mandated, time-boxed demand — and the only AIS-certifiable indigenous silicon path runs through us.</p>
+    <div class="grid3">
+      <div class="card r d4"><span class="tag cy">Demand</span><h4>Mandated, not hoped-for</h4><p>Compliance is the law. The only question is whose chip is inside. Incumbents land ~$3,000+; our target is a ~$21–30 part.</p></div>
+      <div class="card r d5"><span class="tag cy">Delivery</span><h4>Smart Mirror Tower</h4><p>Two IP67 towers (road + 120° side + thermal) plus dashcam, DMS, rear cam and front/rear 4D radar — into an in-cab box. Full suite fused in 8.6 ms of a 33.3 ms budget. Retrofit now, factory-fit next.</p></div>
+      <div class="card gr r d6"><span class="tag gr">Proof</span><h4>₹1 Cr already received</h4><p>Defence revenue (MCEME / Indian Army), Q1 FY26, on Artix-7 FPGA hardware — not a sim, not an LOI. We are not, in fact, pre-revenue.</p></div>
+    </div>
+    <div class="callout gr r d7"><b>One sentence:</b> a law guarantees the demand, we hold the only indigenous path to satisfy it, and we've already been paid for working hardware.</div>
+   </div>
+  </section>
+
+  <!-- 2a PRODUCT: COMPUTE BOX = the hub (unified) -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">02a · The product</div>
+    <h2 class="t r d2">The compute box: <em>11 sensors in, AD2 out, 8.6 ms.</em></h2>
+    <div class="flow r d3">
+     <div class="flowWrap">
+     <svg class="flowSvg" viewBox="0 0 770 300" preserveAspectRatio="xMidYMid meet">
+      <!-- ORTHOGONAL ROUTING: sensor stubs → vertical bus → trunk → box -->
+      <!-- sensor horizontal stubs (static) to bus x=214 -->
+      <line class="wire" x1="74" y1="44"  x2="214" y2="44"/>
+      <line class="wire" x1="74" y1="66"  x2="214" y2="66"/>
+      <line class="wire" x1="74" y1="88"  x2="214" y2="88"/>
+      <line class="wire" x1="74" y1="110" x2="214" y2="110"/>
+      <line class="wire" x1="74" y1="132" x2="214" y2="132"/>
+      <line class="wire" x1="74" y1="154" x2="214" y2="154"/>
+      <line class="wire" x1="74" y1="176" x2="214" y2="176"/>
+      <line class="wire" x1="74" y1="208" x2="214" y2="208"/>
+      <line class="wire" x1="74" y1="230" x2="214" y2="230"/>
+      <line class="wire" x1="74" y1="262" x2="214" y2="262"/>
+      <line class="wire" x1="74" y1="284" x2="214" y2="284"/>
+      <!-- vertical bus rail (static) -->
+      <line class="wire bus" x1="214" y1="44" x2="214" y2="284"/>
+      <!-- trunk: bus → box (static) -->
+      <line class="wire" x1="214" y1="160" x2="300" y2="160"/>
+      <!-- output: box → AD2 (static) -->
+      <line class="wire" x1="500" y1="160" x2="632" y2="160"/>
+      <!-- live marching overlays (horizontal flow only — clean directional) -->
+      <line class="live" x1="74" y1="44"  x2="214" y2="44"/>
+      <line class="live" x1="74" y1="66"  x2="214" y2="66"/>
+      <line class="live" x1="74" y1="88"  x2="214" y2="88"/>
+      <line class="live" x1="74" y1="110" x2="214" y2="110"/>
+      <line class="live" x1="74" y1="132" x2="214" y2="132"/>
+      <line class="live" x1="74" y1="154" x2="214" y2="154"/>
+      <line class="live" x1="74" y1="176" x2="214" y2="176"/>
+      <line class="live" x1="74" y1="208" x2="214" y2="208"/>
+      <line class="live" x1="74" y1="230" x2="214" y2="230"/>
+      <line class="live" x1="74" y1="262" x2="214" y2="262"/>
+      <line class="live" x1="74" y1="284" x2="214" y2="284"/>
+      <line class="live trunk" x1="214" y1="160" x2="300" y2="160"/>
+      <line class="live" x1="500" y1="160" x2="632" y2="160"/>
+      <!-- junction dots on bus -->
+      <circle class="jx" cx="214" cy="44"  r="2.4"/>
+      <circle class="jx" cx="214" cy="66"  r="2.4"/>
+      <circle class="jx" cx="214" cy="88"  r="2.4"/>
+      <circle class="jx" cx="214" cy="110" r="2.4"/>
+      <circle class="jx" cx="214" cy="132" r="2.4"/>
+      <circle class="jx" cx="214" cy="154" r="2.4"/>
+      <circle class="jx" cx="214" cy="176" r="2.4"/>
+      <circle class="jx" cx="214" cy="208" r="2.4"/>
+      <circle class="jx" cx="214" cy="230" r="2.4"/>
+      <circle class="jx" cx="214" cy="262" r="2.4"/>
+      <circle class="jx" cx="214" cy="284" r="2.4"/>
+      <circle class="jx tap" cx="214" cy="160" r="4"/>
+      <!-- RGB camera nodes (7) -->
+      <text class="tc" x="8" y="36" font-size="9">7× RGB · 8MP GMSL2</text>
+      <rect class="node" x="8" y="38"  width="60" height="14" rx="3"/><text x="13" y="48" font-size="8">road L</text>
+      <rect class="node" x="8" y="60"  width="60" height="14" rx="3"/><text x="13" y="70" font-size="8">road R</text>
+      <rect class="node" x="8" y="82"  width="60" height="14" rx="3"/><text x="13" y="92" font-size="8">side L 120°</text>
+      <rect class="node" x="8" y="104" width="60" height="14" rx="3"/><text x="13" y="114" font-size="8">side R 120°</text>
+      <rect class="node" x="8" y="126" width="60" height="14" rx="3"/><text x="13" y="136" font-size="8">dashcam</text>
+      <rect class="node" x="8" y="148" width="60" height="14" rx="3"/><text x="13" y="158" font-size="8">driver DMS</text>
+      <rect class="node" x="8" y="170" width="60" height="14" rx="3"/><text x="13" y="180" font-size="8">rear cam</text>
+      <!-- thermal nodes (2) -->
+      <text x="8" y="202" font-size="9" fill="#E8746A">2× thermal</text>
+      <rect class="node" x="8" y="202" width="60" height="14" rx="3" stroke="#E8746A" stroke-opacity="0.6"/><text x="13" y="212" font-size="8" fill="#E8746A">therm L</text>
+      <rect class="node" x="8" y="224" width="60" height="14" rx="3" stroke="#E8746A" stroke-opacity="0.6"/><text x="13" y="234" font-size="8" fill="#E8746A">therm R</text>
+      <!-- radar nodes (2) -->
+      <text x="8" y="256" font-size="9" fill="#E8A020">2× 4D 77GHz</text>
+      <rect class="node" x="8" y="256" width="60" height="14" rx="3" stroke="#E8A020" stroke-opacity="0.6"/><text x="13" y="266" font-size="8" fill="#E8A020">radar F</text>
+      <rect class="node" x="8" y="278" width="60" height="14" rx="3" stroke="#E8A020" stroke-opacity="0.6"/><text x="13" y="288" font-size="8" fill="#E8A020">radar R</text>
+      <text class="tc" x="262" y="152" font-size="8">11 channels</text>
+      <!-- 2.5D compute box (the hub) -->
+      <polygon points="300,86 470,86 500,62 330,62" fill="#1d3257" stroke="#00C8F0" stroke-opacity="0.5" stroke-width="1.2"/>
+      <polygon points="470,86 500,62 500,210 470,234" fill="#0e1d36" stroke="#00C8F0" stroke-opacity="0.5" stroke-width="1.2"/>
+      <rect x="300" y="86" width="170" height="148" rx="3" fill="#16294a" stroke="#00C8F0" stroke-opacity="0.6" stroke-width="1.4"/>
+      <line x1="346" y1="84" x2="376" y2="60" stroke="#00C8F0" stroke-opacity="0.22"/>
+      <line x1="372" y1="84" x2="402" y2="60" stroke="#00C8F0" stroke-opacity="0.22"/>
+      <line x1="398" y1="84" x2="428" y2="60" stroke="#00C8F0" stroke-opacity="0.22"/>
+      <circle class="led" cx="314" cy="102" r="3.2"/>
+      <circle class="led led2" cx="325" cy="102" r="3.2"/>
+      <circle class="led led3" cx="336" cy="102" r="3.2"/>
+      <rect x="332" y="128" width="106" height="66" rx="3" fill="#0a1426" stroke="#00C8F0" stroke-opacity="0.4"/>
+      <rect x="356" y="143" width="58" height="36" rx="2" fill="#0c2030" stroke="#00E5FF" stroke-width="1.2"/>
+      <text class="tc" x="385" y="159" text-anchor="middle" font-size="10">DGrid</text>
+      <text class="tc" x="385" y="171" text-anchor="middle" font-size="8">SoC2·28nm</text>
+      <text x="385" y="212" text-anchor="middle" font-size="8.5" fill="#5a7090">in-cab compute · the product</text>
+      <text class="tw" x="385" y="54" text-anchor="middle" font-size="9">9 CAM + 2 RADAR FUSED</text>
+      <!-- output node -->
+      <rect class="node" x="632" y="138" width="104" height="44" rx="5"/>
+      <text class="tHot" x="648" y="160">AD2</text>
+      <text x="648" y="174">perception out</text>
+      <text x="632" y="128">REAL-TIME · 8.6 ms</text>
+     </svg>
+     </div>
+     <div class="budget r d4">
+       <div class="budgetTrack">
+         <div class="budgetUsed"><span>8.6 ms · 9 cams + 2 radar</span></div>
+         <div class="freeLbl">33.3 ms frame budget</div>
+       </div>
+       <div class="flowCap"><b>The box is the product — and the IP.</b> Our own SoC fuses the full suite — 7 RGB cameras + 2 thermal + front/rear 4D radar — in 8.6 ms of the 33.3 ms frame (74% headroom). The sensor front-ends are configurable — Smart Mirror Tower, 360° surround, blind-spot, park assist — and we sell the compute, not assembled hardware. That determinism is why the workload demands purpose-built silicon, not a general-purpose SoC.</div>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- 2b USE CASE: SMART MIRROR TOWER -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">02b · Use case · the first system on the box</div>
+    <h2 class="t r d2">Smart Mirror Tower. <em>Zero blind spots.</em></h2>
+    <div class="truckWrap">
+     <div class="r d3">
+      <svg class="truckSvg" viewBox="0 0 600 470" preserveAspectRatio="xMidYMid meet">
+        <!-- FOV: camera cones (cyan) -->
+        <polygon class="cover" points="244,128 108,84 108,198"/>      <!-- L road cam -->
+        <polygon class="cover" points="244,128 76,300 252,382"/>      <!-- L truck-side cam · 120° FOV -->
+        <polygon class="cover" points="356,128 492,84 492,198"/>      <!-- R road cam -->
+        <polygon class="cover" points="356,128 524,300 348,382"/>      <!-- R truck-side cam · 120° FOV -->
+        <polygon class="cover" points="300,360 214,412 386,412"/>      <!-- rear cam · 120° FOV (wide) -->
+        <polygon class="cover" points="300,104 234,52 366,52"/>        <!-- forward dashcam (road) -->
+        <!-- FOV: radar cones (amber) front + rear -->
+        <polygon class="radarCone" points="300,98 244,28 356,28"/>     <!-- front radar -->
+        <polygon class="radarCone" points="300,366 246,438 354,438"/> <!-- rear radar -->
+        <!-- ULTRASONIC short-range proximity — concentric sound-wave arcs (4 corners + 2 mid-side) -->
+        <path class="usWave" d="M235.1,107.8 A15,15 0 0 1 251.8,91.1" style="transform-origin:250px 106px;animation-delay:0s"/>
+        <path class="usWave" d="M235.1,107.8 A15,15 0 0 1 251.8,91.1" style="transform-origin:250px 106px;animation-delay:.55s"/>
+        <path class="usWave" d="M235.1,107.8 A15,15 0 0 1 251.8,91.1" style="transform-origin:250px 106px;animation-delay:1.1s"/>
+        <path class="usWave" d="M348.2,91.1 A15,15 0 0 1 364.9,107.8" style="transform-origin:350px 106px;animation-delay:0s"/>
+        <path class="usWave" d="M348.2,91.1 A15,15 0 0 1 364.9,107.8" style="transform-origin:350px 106px;animation-delay:.55s"/>
+        <path class="usWave" d="M348.2,91.1 A15,15 0 0 1 364.9,107.8" style="transform-origin:350px 106px;animation-delay:1.1s"/>
+        <path class="usWave" d="M230.8,273.8 A15,15 0 0 1 230.8,250.2" style="transform-origin:240px 262px;animation-delay:0s"/>
+        <path class="usWave" d="M230.8,273.8 A15,15 0 0 1 230.8,250.2" style="transform-origin:240px 262px;animation-delay:.55s"/>
+        <path class="usWave" d="M230.8,273.8 A15,15 0 0 1 230.8,250.2" style="transform-origin:240px 262px;animation-delay:1.1s"/>
+        <path class="usWave" d="M369.2,250.2 A15,15 0 0 1 369.2,273.8" style="transform-origin:360px 262px;animation-delay:0s"/>
+        <path class="usWave" d="M369.2,250.2 A15,15 0 0 1 369.2,273.8" style="transform-origin:360px 262px;animation-delay:.55s"/>
+        <path class="usWave" d="M369.2,250.2 A15,15 0 0 1 369.2,273.8" style="transform-origin:360px 262px;animation-delay:1.1s"/>
+        <path class="usWave" d="M245.8,379.9 A15,15 0 0 1 229.1,363.2" style="transform-origin:244px 365px;animation-delay:0s"/>
+        <path class="usWave" d="M245.8,379.9 A15,15 0 0 1 229.1,363.2" style="transform-origin:244px 365px;animation-delay:.55s"/>
+        <path class="usWave" d="M245.8,379.9 A15,15 0 0 1 229.1,363.2" style="transform-origin:244px 365px;animation-delay:1.1s"/>
+        <path class="usWave" d="M370.9,363.2 A15,15 0 0 1 354.2,379.9" style="transform-origin:356px 365px;animation-delay:0s"/>
+        <path class="usWave" d="M370.9,363.2 A15,15 0 0 1 354.2,379.9" style="transform-origin:356px 365px;animation-delay:.55s"/>
+        <path class="usWave" d="M370.9,363.2 A15,15 0 0 1 354.2,379.9" style="transform-origin:356px 365px;animation-delay:1.1s"/>
+        <!-- DMS interior monitoring zone (violet) inside cab -->
+        <polygon class="dmsCover" points="300,118 270,150 330,150"/>
+        <!-- sweeping scan rays (pivot at each sensor) -->
+        <line class="ray swL"  x1="244" y1="128" x2="112" y2="128" style="transform-origin:244px 128px"/>
+        <line class="ray swR"  x1="356" y1="128" x2="488" y2="128" style="transform-origin:356px 128px"/>
+        <line class="ray rayAm swF" x1="300" y1="98"  x2="300" y2="32"  style="transform-origin:300px 98px"/>
+        <line class="ray rayAm swB" x1="300" y1="366" x2="300" y2="432" style="transform-origin:300px 366px"/>
+        <!-- (ultrasonic now drawn as concentric sound-wave arcs above) -->
+        <!-- DMS interior sweep (driver-facing, inside cab) -->
+        <line class="rayDms swDms" x1="300" y1="118" x2="300" y2="152" style="transform-origin:300px 118px"/>
+        <!-- truck body (top-down, front = up) -->
+        <rect class="truckBody" x="244" y="160" width="112" height="205" rx="9"/>
+        <rect class="truckCab" x="250" y="100" width="100" height="60" rx="9"/>
+        <line x1="262" y1="160" x2="338" y2="160" stroke="#0a1830" stroke-width="2"/>
+        <rect x="234" y="190" width="11" height="32" rx="3" fill="#0a1424"/>
+        <rect x="355" y="190" width="11" height="32" rx="3" fill="#0a1424"/>
+        <rect x="234" y="316" width="11" height="32" rx="3" fill="#0a1424"/>
+        <rect x="355" y="316" width="11" height="32" rx="3" fill="#0a1424"/>
+        <!-- ultrasonic sensor dots — 4 corners + 2 mid-side -->
+        <circle class="usDot" cx="250" cy="106" r="3.4"/>
+        <circle class="usDot" cx="350" cy="106" r="3.4" style="animation-delay:.2s"/>
+        <circle class="usDot" cx="240" cy="262" r="3.4" style="animation-delay:.4s"/>
+        <circle class="usDot" cx="360" cy="262" r="3.4" style="animation-delay:.6s"/>
+        <circle class="usDot" cx="244" cy="365" r="3.4" style="animation-delay:.8s"/>
+        <circle class="usDot" cx="356" cy="365" r="3.4" style="animation-delay:1s"/>
+        <!-- mirror towers -->
+        <circle class="tower" cx="244" cy="128" r="8"/>
+        <circle class="tower" cx="356" cy="128" r="8"/>
+        <!-- thermal cams on towers -->
+        <circle class="thermalDot" cx="232" cy="116" r="4"/>
+        <circle class="thermalDot" cx="368" cy="116" r="4"/>
+        <!-- forward dashcam (road) + driver DMS, front-center cab -->
+        <circle class="driverDot" cx="290" cy="118" r="4.5"/>
+        <circle class="driverDot" cx="310" cy="118" r="4.5" style="animation-delay:.7s"/>
+        <!-- rear camera marker -->
+        <circle cx="300" cy="362" r="4.5" fill="var(--cy2)"/>
+        <!-- detected cyclist at rear-side — seen by the 120° rear cam -->
+        <circle class="detRing" cx="252" cy="398" r="13"/>
+        <circle cx="252" cy="398" r="6" fill="var(--gr)"/>
+        <text class="tg" x="252" y="426" text-anchor="middle">cyclist · DETECTED</text>
+        <!-- animal detected in the 120° truck-side cam zone -->
+        <circle class="detRing" cx="118" cy="296" r="13" style="animation-delay:.9s"/>
+        <circle cx="118" cy="296" r="6" fill="var(--gr)"/>
+        <text class="tg" x="118" y="326" text-anchor="middle">animal · DETECTED</text>
+        <!-- labels -->
+        <text class="am" x="300" y="20" text-anchor="middle" fill="#E8A020" font-weight="600">FRONT 4D RADAR</text>
+        <text class="am" x="300" y="456" text-anchor="middle" fill="#E8A020" font-weight="600">REAR RADAR + CAM</text>
+        <text class="tc" x="212" y="108" text-anchor="end">L tower</text>
+        <text class="tc" x="388" y="108" text-anchor="start">R tower</text>
+        <text x="232" y="104" text-anchor="middle" fill="#E8746A" font-size="9">thermal</text>
+        <text x="368" y="104" text-anchor="middle" fill="#E8746A" font-size="9">thermal</text>
+        <text class="tc" x="300" y="92" text-anchor="middle" font-size="9">road dashcam + driver DMS</text>
+        <text x="120" y="160" fill="#7da0c8" font-size="9">road cam</text>
+        <text x="200" y="356" fill="#7da0c8" font-size="9">side cam · 120°</text>
+        <text x="300" y="270" text-anchor="middle" fill="#5a7090" font-size="9">N3 truck</text>
+        <text x="410" y="192" text-anchor="start" fill="#22C99A" font-size="9">ultrasonic ×6</text>
+        <text x="300" y="166" text-anchor="middle" fill="#9B7BFF" font-size="8.5">DMS</text>
+      </svg>
+     </div>
+     <div>
+      <div class="specPill r d4"><div class="ic cy">2×</div><div class="pt"><b>Mirror towers</b>Each carries a thermal cam + road-facing cam + a 120° truck-side cam — retrofit above the existing mirrors.</div></div>
+      <div class="specPill r d5"><div class="ic cy">2</div><div class="pt"><b>Dual in-cab cams</b>Forward road dashcam (event recording) + driver-monitoring cam for fatigue and distraction.</div></div>
+      <div class="specPill r d6"><div class="ic am">4D</div><div class="pt"><b>Front + rear 77GHz radar</b>Range + velocity front and rear, in rain, dust and glare — where cameras alone fail.</div></div>
+      <div class="specPill r d7"><div class="ic cy">120°</div><div class="pt"><b>Rear camera</b>120° FOV — covers directly behind plus both rear-side blind zones; fused with the rear radar.</div></div>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- 4 HONEST STATE -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">03 · Honest current state — the bridge</div>
+    <h2 class="t r d2">Where we are on the <em>autonomy ladder.</em></h2>
+    <p class="lede r d3">A semiconductor fund is owed the unrounded truth. AD0 and AD1 are proven on our own silicon today. AD2 — the whole thesis — is what this raise puts on production silicon.</p>
+    <div class="adTrack r d4">
+      <div class="adNode">
+        <div class="adDot done">✓</div>
+        <h4>AD0</h4><div class="adStat done">Shipped · FPGA</div>
+        <p>Single-cam alerting. ₹1 Cr defence revenue on this die.</p>
+      </div>
+      <div class="adNode">
+        <div class="adDot done">✓</div>
+        <h4>AD1</h4><div class="adStat done">Shipped · FPGA</div>
+        <p>Lane + perception. FPU, 512-MAC matrix & 8×8×8 cube proven (SoC1.1–1.4).</p>
+      </div>
+      <div class="adNode">
+        <div class="adDot gate">◆</div>
+        <h4>AD2</h4><div class="adStat gate">This raise · SoC2</div>
+        <p>6-cam + radar transformer fusion. Needs 32,768 MACs + ITA softmax — 28nm only.</p>
+      </div>
+      <div class="adNode">
+        <div class="adDot future">○</div>
+        <h4>AD3 / AD4</h4><div class="adStat future">Horizon · SoC4-A</div>
+        <p>Full self-drive. 1,024-tile N4P, 4 PFLOPS, runs hipAD.</p>
+      </div>
+    </div>
+    <div class="callout am r d6">The one honest admission: <b>AD2-on-production-silicon is unproven until SoC2 returns from fab.</b> Road demos on FPGA prove AD0/AD1 only. OEM factory-fit, defence convoy and the 84% gross-margin economics all turn on that one milestone — which is exactly what this money de-risks.</div>
+   </div>
+  </section>
+
+  <!-- 5 LADDER -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">04 · The silicon roadmap — the spine</div>
+    <h2 class="t r d2">SoC1.0 → SoC2 → SoC4-A. <em>Every fps verified.</em></h2>
+    <div class="ladder">
+      <div class="rung shipped"><div class="gen"><div class="n">SoC1.0</div><div class="s">Shipped</div></div><div class="body">Artix-7 · 64 MACs · 125 MHz · <b>3.3 fps</b> whole-frame · ₹1 Cr defence revenue<div class="fpsBar"><i style="--w:8%;background:var(--gr)"></i></div></div></div>
+      <div class="rung shipped"><div class="gen"><div class="n">SoC1.1</div><div class="s">Shipped</div></div><div class="body">+ FPU (CORDIC, Newton-Raphson, exp/ln LUT) + HW transpose/pool · Tan 1,685ms → ~10ms</div></div>
+      <div class="rung shipped"><div class="gen"><div class="n">SoC1.2</div><div class="s">Shipped</div></div><div class="body">8×8 matrix · 512 MACs · weight-stationary · lane det <b>0.16 → 1.6 fps</b> (10×)</div></div>
+      <div class="rung shipped"><div class="gen"><div class="n">SoC1.3</div><div class="s">Shipped</div></div><div class="body">Triple-mode ALU · INT8 + BF16 + FP8 (E4M3) · 1× throughput</div></div>
+      <div class="rung shipped"><div class="gen"><div class="n">SoC1.4</div><div class="s">Shipped</div></div><div class="body">8×8×8 cube · 512 MAC/cycle · K=8 as pipelined DSP cascade · proves the cube geometry</div></div>
+      <div class="rung now"><div class="gen"><div class="n">SoC1.5</div><div class="s">Target</div></div><div class="body">250 MHz · Quad-mode ALU · INT8 + FP8 + INT4 + FP4 · 2× throughput · <b>~10 fps</b> · the FPGA pilot point<div class="fpsBar"><i style="--w:24%;background:var(--cy)"></i></div></div></div>
+      <div class="rung now"><div class="gen"><div class="n">SoC1.6</div><div class="s">Target</div></div><div class="body">400 → 600 MHz · + model changes · <b>~12 fps</b> · certification & pilot-fleet platform while ASIC is in fab<div class="fpsBar"><i style="--w:29%;background:var(--cy)"></i></div></div></div>
+      <div class="rung funded"><div class="gen"><div class="n">SoC2</div><div class="s">This raise</div></div><div class="body">TSMC 28nm · 32,768 MACs @ 600 MHz · 39.3 TOPS · ITA · <b>~41 fps AD2</b> · tapeout Q4 '26<div class="fpsBar"><i style="--w:100%;background:var(--am)"></i></div></div></div>
+      <div class="rung horizon"><div class="gen"><div class="n">SoC4-A</div><div class="s">Horizon</div></div><div class="body">TSMC N4P · 1,024-tile mesh · L4 / robotaxi · <b>4 PFLOPS</b> (FP4) · runs hipAD<div class="fpsBar"><i style="--w:100%;background:linear-gradient(90deg,var(--pu),transparent)"></i></div><div class="fpsLbl">≫ off the fps scale — PFLOPS-class</div></div></div>
+    </div>
+    <div class="callout r d2">SoC3 is deliberately removed. We raise on SoC2; SoC4-A is the option that compounds the cap table.</div>
+   </div>
+  </section>
+
+  <!-- 6 SOC2 -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">05 · SoC2 — what the money builds</div>
+    <h2 class="t r d2">The 28nm <em>production gate.</em></h2>
+    <p class="lede r d3">The first AIS-certifiable indigenous ADAS ASIC — validated on the FPGA stack before any NRE is committed.</p>
+    <div class="tableWrap r d4"><table>
+      <tr><th>Parameter</th><th>Spec</th><th>Why it matters</th></tr>
+      <tr><td><b>Process</b></td><td>TSMC 28nm · single die ~57.1 mm²</td><td>Monolithic, not chiplet — lower cost & risk</td></tr>
+      <tr><td><b>Compute</b></td><td>32,768 MACs @ 600 MHz · 39.3 TOPS</td><td>64 × 512 × 600 MHz × 2 ÷ 10¹² — nothing rounded</td></tr>
+      <tr><td><b>Memory</b></td><td>102.4 GB/s dual-ch LPDDR5</td><td>Bandwidth is the real ADAS bottleneck; cleared</td></tr>
+      <tr><td><b>Transformer</b></td><td>ITA softmax · weight-stationary attn</td><td>The op the FPGA can't do — why AD2 needs silicon</td></tr>
+      <tr><td><b>Safety</b></td><td>HSP-V lockstep + OpenTitan RoT</td><td>ASIL path — required to ship in any car</td></tr>
+      <tr><td><b>Perf</b></td><td>~41 fps AD2 whole-frame</td><td>6-cam + radar fusion real-time on a ~$21–30 part</td></tr>
+      <tr><td><b>Timeline</b></td><td>Tapeout Q4 '26 · PrimeSoC owns PD</td><td>Feasibility confirmed Mar '26; partner signed</td></tr>
+    </table></div>
+   </div>
+  </section>
+
+  <!-- 5b 3D CUBE (animated) -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">05b · The 3D cube — our compute differentiator</div>
+    <h2 class="t r d2">Flat 8×8 → 8×8×8 cube. <em>K becomes hardware depth.</em></h2>
+    <div class="cubeWrap">
+     <div class="scene r d3">
+      <svg id="cubeStage" viewBox="0 0 460 360" preserveAspectRatio="xMidYMid meet"></svg>
+     </div>
+     <div>
+      <div class="cubeRow r d4"><div class="lab">FLAT<small>SoC1.2 · FPGA</small></div><div class="txt">8×8 matrix · <b>64 MAC/cycle</b>. The K=8 reduction is iterated in software — 8 cycles to consume one tile. Proves the geometry on hardware we own.</div></div>
+      <div class="cubeRow cube-c r d5"><div class="lab">CUBE<small>SoC2 · 28nm</small></div><div class="txt">8×8×8 systolic · <b>512 MAC/cycle</b>. K=8 embedded as a pipelined DSP cascade — one K-slice retires every cycle, <b>8× flat throughput.</b></div></div>
+      <div class="cubeRow scale-c r d6"><div class="lab">SCALE<small>SoC2 die</small></div><div class="txt"><b>64 cubes × 512 = 32,768 MACs</b> @ 600 MHz → <b>39.3 TOPS</b>. The sweeping plane is one K-slice resolving per cycle across the depth.</div></div>
+     </div>
+    </div>
+    <div class="callout am r d7"><b>The honest catch we engineered around:</b> a cube does 512 MAC/cycle only if fed 512 B/cycle. 64 cubes on SoC1.x's single global DMA would starve at ~12% utilisation. So each cube gets its <b>own LDMA against an 8-bank L2</b> (~83% target util). Cube + per-PCORE DMA doesn't fit on FPGA — which is precisely why SoC2 must be 28nm.</div>
+   </div>
+  </section>
+
+  <!-- 7 SOC4 -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">06 · SoC4-A — the fund-returner</div>
+    <h2 class="t r d2">Far-horizon: a <em>4-petaflop</em> chip.</h2>
+    <p class="lede r d3">We're not asking you to fund SoC4-A today. We surface it because it turns a profitable ADAS-silicon business into a category-defining one — and it's the bet that makes a strategic acquirer move early.</p>
+    <div class="meshWrap">
+     <div class="r d3">
+      <svg id="meshStage" class="meshStage" viewBox="0 0 520 300" preserveAspectRatio="xMidYMid meet"></svg>
+     </div>
+     <div class="meshSpec">
+      <div class="meshRow r d4"><div class="v">1,024<small>tiles · 32×32 mesh</small></div><div class="t">Each tile = 5-port router + safety wrap + NI. <b>XY dimension-order routing</b>, 2 virtual channels (REQ/RSP), credit flow control — verified RTL with a deadlock-freedom proof.</div></div>
+      <div class="meshRow r d5"><div class="v">4<small>PFLOPS · FP4 peak</small></div><div class="t">2.1 PFLOPS FP8 · 1.05 FP16 · ~460 GB/s LPDDR5X. FlashAttention-style streaming softmax (FP16, &lt;0.15% err) is differentiated IP.</div></div>
+      <div class="meshRow r d6"><div class="v">ASIL-D<small>N4P · ~590 mm² · 280 W</small></div><div class="t">Per-hop header SECDED (routes on corrected coords), lockstep + TMR supervisor, fault→SAFE. FMEDA: SPFM 99.5%, measured by fault injection.</div></div>
+     </div>
+    </div>
+    <div class="callout pu r d7">SoC2 is the business; SoC4-A is the optionality. A sovereign-tech fund knows the value of edge-AI silicon is in the platform trajectory, not one SKU.</div>
+   </div>
+  </section>
+
+  <!-- 8 MOAT + TEAM -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">07 · Moat & team</div>
+    <h2 class="t r d2">What's <em>hard to copy.</em></h2>
+    <div class="grid3">
+      <div class="card r d3"><span class="tag cy">IP</span><h4>15+ patents</h4><p>3D weight-stationary dataflow, ITA, radar RTL, transpose elimination (537→24.8 ms lineage). Continuations mapped to 2027.</p></div>
+      <div class="card r d4"><span class="tag cy">Regulatory</span><h4>Only indigenous AIS path</h4><p>AIS-162/188 via ARAI/ICAT — and ARAI funds us, it doesn't just regulate us. A procurement edge no foreign incumbent matches.</p></div>
+      <div class="card r d5"><span class="tag cy">Data</span><h4>Scene-to-sim factory</h4><p>The S2S pipeline compounds with every fielded unit — a proprietary India-conditions dataset competitors can't buy.</p></div>
+    </div>
+    <div class="grid2" style="margin-top:14px">
+      <div class="card gr r d6"><span class="tag gr">Founder</span><h4>Aravind Prasad G — CEO</h4><p>Serial founder, two prior exits (Tranzeo 2009, Netgrid 2016). Owns the full technical and commercial stack.</p></div>
+      <div class="card gr r d7"><span class="tag gr">Silicon credibility</span><h4>The bench</h4><p>Ayas Khan — CTO/RTL, M.Tech IIT Gandhinagar. Venkat Simhadri — advisor, ex-CEO MosChip (Nasdaq-listed). 22 across design, firmware, defence.</p></div>
+    </div>
+   </div>
+  </section>
+
+  <!-- 9 ASK / TERMS -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">08 · The ask</div>
+    <h2 class="t r d2">Raise <em>₹45 Cr</em> at a ₹204 Cr pre-money.</h2>
+    <div class="askHead r d3">
+      <div class="hl">₹45.00 Cr <em>· $4.79M</em></div>
+      <div class="meta">CCPS · <b>₹204.03 Cr</b> pre → <b>₹249.03 Cr</b> post · <b>18.07%</b> to investors · ₹20,223/share</div>
+    </div>
+    <div class="split">
+      <div class="r d4">
+        <span class="tag cy">Deal terms · Project Pushpaka (locked)</span>
+        <div class="tableWrap" style="margin-top:8px"><table>
+          <tr><th>Term</th><th>Value</th></tr>
+          <tr><td>Instrument</td><td><b>Equity / CCPS</b></td></tr>
+          <tr><td>Raise (equity)</td><td><b>₹45.00 Cr</b> · $4.79M</td></tr>
+          <tr><td>Pre-money</td><td><b>₹204.03 Cr</b> · $21.7M</td></tr>
+          <tr><td>Post-money</td><td><b>₹249.03 Cr</b> · $26.5M</td></tr>
+          <tr><td>Price / share</td><td>₹20,223</td></tr>
+          <tr><td>New shares</td><td>22,252 (existing 1,00,893)</td></tr>
+          <tr><td>Investor ownership</td><td><b>18.07%</b></td></tr>
+          <tr><td>DCF fair value</td><td>₹272.04 Cr · 25% discount</td></tr>
+        </table></div>
+      </div>
+      <div class="r d5">
+        <span class="tag cy">Peer benchmark · India fabless</span>
+        <div class="tableWrap" style="margin-top:8px"><table>
+          <tr><th>Company</th><th>Round</th><th>Post</th></tr>
+          <tr><td><b>Netrasemi</b></td><td>Pre-A '24</td><td>~₹95 Cr</td></tr>
+          <tr><td><b>Netrasemi</b></td><td>Series A '25</td><td>~₹630 Cr</td></tr>
+          <tr><td><b>Mindgrove</b></td><td>Series A '24</td><td>~₹230 Cr</td></tr>
+          <tr><td class="cy"><b>Deepgrid</b></td><td class="cy">Pre-A</td><td class="cy">~₹249 Cr</td></tr>
+        </table></div>
+        <p style="font-size:11px;color:var(--mid);margin-top:10px;line-height:1.5">Priced like a Series A on a <b style="color:#fff">wider surface</b> — ADAS + defence + L4 — that no peer roadmap carries.</p>
+      </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- 10 USE OF FUNDS -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">09 · Use of proceeds</div>
+    <h2 class="t r d2">Half the raise is <em>one-time silicon NRE.</em></h2>
+    <div class="allocBar r d3">
+      <div class="allocSeg" style="--w:50%;background:var(--cy)">50%</div>
+      <div class="allocSeg" style="--w:20%;background:var(--cy2)">20%</div>
+      <div class="allocSeg" style="--w:10%;background:var(--gr)">10%</div>
+      <div class="allocSeg" style="--w:8%;background:var(--am)">8%</div>
+      <div class="allocSeg" style="--w:12%;background:var(--pu)">12%</div>
+    </div>
+    <div class="allocLegend">
+      <div class="allocItem r d4"><div class="sw" style="background:var(--cy)"></div><div class="pc">50%</div><div class="lb"><b>SoC2 NRE + IP</b> — $2.42M one-time: mask $1.3M · IP/PHY $0.62M · integration $0.5M</div></div>
+      <div class="allocItem r d5"><div class="sw" style="background:var(--cy2)"></div><div class="pc">20%</div><div class="lb"><b>Engineering team</b> — chip + firmware + defence · ~18-month runway to RTL→GDS</div></div>
+      <div class="allocItem r d6"><div class="sw" style="background:var(--gr)"></div><div class="pc">10%</div><div class="lb"><b>AIS-162/188 cert + FPGA pilot</b> — ARAI/ICAT approval · 100 units while ASIC is in fab</div></div>
+      <div class="allocItem r d6"><div class="sw" style="background:var(--am)"></div><div class="pc">8%</div><div class="lb"><b>First silicon</b> — prototype wafer lot + packaging + test + bring-up</div></div>
+      <div class="allocItem r d7"><div class="sw" style="background:var(--pu)"></div><div class="pc">12%</div><div class="lb"><b>Working capital / BD</b> — OEM eval samples, fleet partners, inventory</div></div>
+    </div>
+    <div class="callout cy r d7"><b>The chip-economics flywheel:</b> the $2.42M NRE is paid <b>once</b>. After that, a 300mm wafer yields ~1,100 good dies at $9k → <b>~$8 of silicon per die</b> (56 mm², ~94% yield, mature 28nm). A part with ~$8 of silicon goes into a system replacing a $3,000+ incumbent — this is why the raise is front-loaded into the mask, not the marginal unit.</div>
+   </div>
+  </section>
+
+  <!-- 11 DILIGENCE -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">10 · Diligence — answered before you ask</div>
+    <h2 class="t r d2">The <em>hard questions.</em></h2>
+    <div class="qa r d3"><div class="q">What's on production silicon today?</div><div class="a">Nothing on ASIC yet — we won't pretend. AD0/AD1 run on Artix-7 at 3.3 fps whole-frame, and that platform earned ₹1 Cr in defence revenue. AD2-on-silicon arrives with SoC2 (Q4 '26). The raise exists to cross exactly this gap.</div></div>
+    <div class="qa r d4"><div class="q">Why pre-tapeout but priced like a Series A?</div><div class="a">Wider application surface than any named peer — ADAS, defence, L4/robotics — and we're not pre-revenue. Against Netrasemi and Mindgrove, ₹249 Cr post is ~1.1× a Series A comp on a broader thesis. We price differentiation, not a DCF.</div></div>
+    <div class="qa r d5"><div class="q">Why will you tape out 28nm when few Indian teams have?</div><div class="a">We don't carry PD risk alone — PrimeSoC owns RTL→GDS and confirmed feasibility. RTL lead is IIT-GN; advisor ran a Nasdaq-listed semi (MosChip). The FPGA stack de-risks model, firmware and certification before NRE is committed.</div></div>
+    <div class="qa r d6"><div class="q">What kills this company?</div><div class="a">Tapeout yield/slip (mitigated: MPW-first, PrimeSoC ownership) and AIS timing (mitigated: ARAI funds us). The honest third: AD2-on-silicon is unproven until SoC2 returns — which is why the whole plan retires that risk first.</div></div>
+   </div>
+  </section>
+
+  <!-- 12 EXIT -->
+  <section class="slide">
+   <div class="inner">
+    <div class="kick r d1">11 · Exit thesis</div>
+    <h2 class="t r d2">You've already walked <em>this road once.</em></h2>
+    <div class="funnel r d2">
+      <div class="fRow">
+        <div class="fLabel gr">PRIMARY<small>strategic M&A</small></div>
+        <div class="fBar gr"><div><h4>Strategic acquisition</h4><p>Edge-AI automotive silicon + India ADAS + defence IP — a rare full-stack target. NXP, Mobileye, Ambarella, Qualcomm. One deal removes years of their NRE.</p></div></div>
+      </div>
+      <div class="fRow">
+        <div class="fLabel cy">SECONDARY<small>public markets</small></div>
+        <div class="fBar cy"><div><h4>NSE / BSE IPO</h4><p>India's first fabless-semi IPO story, riding the ₹76,000 Cr PLI pool. DRHP pathway post ₹100 Cr revenue.</p></div></div>
+      </div>
+      <div class="fRow">
+        <div class="fLabel pu">OPTIONAL<small>sovereign</small></div>
+        <div class="fBar pu"><div><h4>Defence carve-out</h4><p>D-line (D-HUMR / autonomous convoy) ring-fenced into an SPV for sovereign capital — independent of the ADAS exit, ₹1 Cr already received.</p></div></div>
+      </div>
+    </div>
+    <div class="callout gr r d6"><b>The precedent is Indian deep-silicon itself.</b> India's edge-AI chip companies are being acquired and scaled — Deepgrid is that asset in a regulation-guaranteed market, with the exit engineered from your board seat from day one.</div>
+   </div>
+  </section>
+
+  <!-- 13 CLOSE -->
+  <section class="slide">
+   <div class="inner titleWrap">
+    <div class="brand r d1">DEEP<span>GRID</span> SEMI</div>
+    <h1 class="r d2" style="font-size:clamp(28px,5.4vw,52px)">The ask: <span class="cy">a lead term sheet.</span></h1>
+    <p class="titleSub r d3">We'll share the verified cap table, the refreshed IBBI valuation, and the full data room 48 hours ahead of a diligence call. The mandate is live, the silicon is real, and the exit you've already proven is sitting one round ahead of us.</p>
+    <div class="callout r d4" style="margin-top:24px">Aravind Prasad G · CEO · aravind@deepgridsemi.com<br>Deepgrid Semi Pvt Ltd · CIN U62099TS2024PTC183631 · T-Hub Phase 2, Hyderabad</div>
+    <p class="r d5" style="font-size:10px;color:var(--dim);margin-top:18px;line-height:1.7">Financial projections are management estimates, not independently audited. This document does not constitute an offer of securities. Confidential.</p>
+   </div>
+  </section>
+
+</div>
+</div>
+
+<div class="arrow l hide" id="prev">‹</div>
+<div class="arrow r" id="next">›</div>
+<div class="hud">
+  <div class="dots" id="dots"></div>
+  <div class="count"><b id="cur">01</b> / <span id="total">13</span></div>
+</div>
+<div class="hint">← → or SWIPE / TAP TO NAVIGATE</div>
+
+<script>
+(function(){
+  var track=document.getElementById('track');
+  var slides=Array.prototype.slice.call(track.children);
+  var N=slides.length, i=0;
+  var prog=document.getElementById('prog'), cur=document.getElementById('cur');
+  var dotsWrap=document.getElementById('dots'), prev=document.getElementById('prev'), next=document.getElementById('next');
+  document.getElementById('total').textContent=String(N).padStart(2,'0');
+  // build dots
+  slides.forEach(function(_,k){
+    var d=document.createElement('div'); d.className='dot'; d.onclick=function(){go(k)}; dotsWrap.appendChild(d);
+  });
+  var dots=Array.prototype.slice.call(dotsWrap.children);
+  function go(n){
+    i=Math.max(0,Math.min(N-1,n));
+    track.style.transform='translateX(-'+(i*100)+'vw)';
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+    dots.forEach(function(d,k){d.classList.toggle('on',k===i)});
+    cur.textContent=String(i+1).padStart(2,'0');
+    prog.style.width=((i)/(N-1)*100)+'%';
+    prev.classList.toggle('hide',i===0);
+    next.classList.toggle('hide',i===N-1);
+    // gate cube animation to its slide
+    var cubeIdx=-1;
+    for(var z=0;z<slides.length;z++){if(slides[z].querySelector('#cubeStage')){cubeIdx=z;break;}}
+    if(window.__cubeStart){ if(i===cubeIdx) window.__cubeStart(); else if(window.__cubeStop) window.__cubeStop(); }
+    // gate mesh animation to its slide
+    var meshIdx=-1;
+    for(var z2=0;z2<slides.length;z2++){if(slides[z2].querySelector('#meshStage')){meshIdx=z2;break;}}
+    if(window.__meshStart){ if(i===meshIdx) window.__meshStart(); else if(window.__meshStop) window.__meshStop(); }
+  }
+  // init (honor #slide=N for deep-linking, e.g. from the animation gallery)
+  var hm=(location.hash||'').match(/slide=(\d+)/);
+  if(hm){ document.body.classList.add('embed'); }
+  go(hm?Math.max(0,Math.min(N-1,parseInt(hm[1],10))):0);
+  // keyboard
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();go(i+1)}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1)}
+    else if(e.key==='Home'){go(0)} else if(e.key==='End'){go(N-1)}
+  });
+  prev.onclick=function(){go(i-1)};
+  next.onclick=function(){go(i+1)};
+  // click zones (ignore when scrolling inner / interactive)
+  track.addEventListener('click',function(e){
+    if(e.target.closest('.dot,.arrow,a,button,details')) return;
+    var x=e.clientX, w=window.innerWidth;
+    if(x>w*0.62) go(i+1); else if(x<w*0.38) go(i-1);
+  });
+  // touch swipe
+  var sx=0, sy=0, t0=0;
+  track.addEventListener('touchstart',function(e){var t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;t0=Date.now()},{passive:true});
+  track.addEventListener('touchend',function(e){
+    var t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy, dt=Date.now()-t0;
+    if(Math.abs(dx)>46 && Math.abs(dx)>Math.abs(dy)*1.4 && dt<700){ go(dx<0 ? i+1 : i-1); }
+  },{passive:true});
+
+  // ===== Isometric 8×8×8 cube (ported, more accurate geometry) =====
+  (function(){
+    var SVG="http://www.w3.org/2000/svg";
+    var stage=document.getElementById('cubeStage');
+    if(!stage) return;
+    function el(tag,a){var e=document.createElementNS(SVG,tag);for(var k in a)e.setAttribute(k,a[k]);stage.appendChild(e);return e;}
+    var cubeX=196,cubeY=96,cell=15,off=7, layers=[];
+    function txt(x,y,fill,fs,t,it,fw){var e=el('text',{x:x,y:y,'text-anchor':'middle',fill:fill,'font-family':'JetBrains Mono, monospace','font-size':fs});if(it)e.setAttribute('font-style','italic');if(fw)e.setAttribute('font-weight',fw);e.textContent=t;return e;}
+    txt(92,20,'#5a6788',9,'Activation slab · A[k=0..7]',true);
+    txt(360,20,'#5a6788',9,'Output · C[8×8]',true);
+    // 8 stacked layers, back-to-front
+    for(var layer=7;layer>=0;layer--){var ld={cells:[],idx:layer};var dx=-layer*off,dy=-layer*off*0.6;
+      for(var r=0;r<8;r++)for(var c=0;c<8;c++){var x=cubeX+dx+c*cell,y=cubeY+dy+r*cell;
+        var rect=el('rect',{x:x,y:y,width:cell-0.5,height:cell-0.5,fill:'#0c2030',stroke:'#00C8F0','stroke-width':0.5,'stroke-opacity':(0.3+(7-layer)*0.05),'fill-opacity':0.85});
+        ld.cells.push(rect);}
+      layers.push(ld);}
+    // wireframe box
+    var px=[cubeX,cubeX+8*cell,cubeX+8*cell,cubeX,cubeX-7*off,cubeX+8*cell-7*off,cubeX+8*cell-7*off,cubeX-7*off];
+    var py=[cubeY,cubeY,cubeY+8*cell,cubeY+8*cell,cubeY-7*off*0.6,cubeY-7*off*0.6,cubeY+8*cell-7*off*0.6,cubeY+8*cell-7*off*0.6];
+    var edges=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+    for(var e2=0;e2<edges.length;e2++){var a=edges[e2][0],b=edges[e2][1];
+      el('line',{x1:px[a],y1:py[a],x2:px[b],y2:py[b],stroke:'#00E5FF','stroke-width':1,'stroke-opacity':0.45});}
+    // activation slab (left) — K thickness
+    for(var l2=7;l2>=0;l2--){var sx=-l2*5,sy=-l2*3;
+      for(var rr=0;rr<8;rr++)el('rect',{x:52+sx,y:cubeY+rr*cell+sy,width:72,height:cell-0.5,fill:'#0d2438',stroke:'#3ba3ff','stroke-width':0.4,'stroke-opacity':(0.4+l2*0.04),'fill-opacity':0.85});}
+    // output column (right)
+    var outCells=[];
+    for(var ro=0;ro<8;ro++)outCells.push(el('rect',{x:360,y:cubeY+ro*cell,width:cell,height:cell-0.5,fill:'#1f1f2a',stroke:'#E8A020','stroke-width':0.7,'stroke-opacity':0.25}));
+    txt(cubeX+4*cell-3.5*off,cubeY+8*cell+28,'#00C8F0',11,'8×8×8 cube · 512 MAC/cycle',false,600);
+    txt(cubeX+4*cell-3.5*off,cubeY+8*cell+44,'#5a6788',8.5,'one K-slice retires per cycle · pipelined DSP cascade',true);
+    // animation: a K-slice (layer) lights up, sweeping front→back
+    var cyc=0, raf=null;
+    function frame(){cyc++;var k=Math.floor(cyc/9)%8;
+      for(var li=0;li<layers.length;li++){var ld=layers[li];var on=(ld.idx===k);
+        for(var ci=0;ci<ld.cells.length;ci++){ld.cells[ci].setAttribute('fill',on?'#00E5FF':'#0c2030');ld.cells[ci].setAttribute('fill-opacity',on?0.95:0.85);}}
+      var oo=outCells[(k)%8];for(var oi=0;oi<8;oi++){outCells[oi].setAttribute('stroke-opacity',oi===k?0.9:0.25);outCells[oi].setAttribute('fill',oi===k?'#3a2c10':'#1f1f2a');}
+      raf=requestAnimationFrame(frame);}
+    // gate to the cube slide (slide index 7, the 8th)
+    window.__cubeStart=function(){if(!raf)frame();};
+    window.__cubeStop=function(){if(raf){cancelAnimationFrame(raf);raf=null;}};
+  })();
+
+  // ===== SoC4-A 1024-tile NoC — FlatAttention collective dataflow =====
+  (function(){
+    var SVG="http://www.w3.org/2000/svg";
+    var stage=document.getElementById('meshStage');
+    if(!stage) return;
+    function el(tag,a,parent){var e=document.createElementNS(SVG,tag);for(var k in a)e.setAttribute(k,a[k]);(parent||stage).appendChild(e);return e;}
+    var N=32, x0=44, y0=38, span=210, g=span/N, yBank=256, bankH=16;
+    function cx(c){return x0+c*g+g/2;} function cy(r){return y0+r*g+g/2;}
+    function clamp(v){return v<0?0:v>1?1:v;}
+
+    var gTiles=el('g',{}), gCompute=el('g',{}), gMem=el('g',{}), gBeam=el('g',{}), gLbl=el('g',{}), gCall=el('g',{});
+
+    // die outline + quiet 32x32 lattice with persistent diagonal highlight
+    el('rect',{x:x0-5,y:y0-5,width:span+10,height:span+10,rx:5,fill:'none',stroke:'#9B7BFF','stroke-width':1.4,'stroke-opacity':0.7},gTiles);
+    for(var r=0;r<N;r++)for(var c=0;c<N;c++){var diag=(r===c);
+      el('rect',{x:x0+c*g+0.5,y:y0+r*g+0.5,width:g-1,height:g-1,rx:0.5,
+        fill: diag?'rgba(155,123,255,.20)':'rgba(155,123,255,.05)',
+        stroke:'#9B7BFF','stroke-width':0.2,'stroke-opacity': diag?0.55:0.2},gTiles);}
+
+    // compute overlay (warm pulse across the whole array during COMPUTE)
+    var compute=el('rect',{x:x0,y:y0,width:span,height:span,rx:3,fill:'#E8A020',opacity:0},gCompute);
+
+    // south-edge memory: bar + 32 channels (aligned under columns)
+    el('rect',{x:x0-5,y:yBank,width:span+10,height:bankH,rx:2,fill:'rgba(155,123,255,.08)',stroke:'#9B7BFF','stroke-width':1,'stroke-opacity':0.45},gMem);
+    var chans=[];
+    for(var cc2=0;cc2<N;cc2++) chans.push(el('rect',{x:x0+cc2*g+0.8,y:yBank+2,width:g-1.6,height:bankH-4,rx:0.5,fill:'rgba(0,200,240,0)'},gMem));
+
+    // beam pools: memory streams (diagonal->edge), row beams, col beams
+    var memS=[],memH=[],rowB=[],colB=[];
+    for(var i=0;i<N;i++){
+      memS.push(el('line',{x1:cx(i),y1:yBank,x2:cx(i),y2:cy(i),stroke:'#00E5FF','stroke-width':1.2,'stroke-linecap':'round','stroke-opacity':0},gBeam));
+      memH.push(el('circle',{r:1.5,fill:'#fff',opacity:0},gBeam));
+      rowB.push(el('line',{x1:cx(i),y1:cy(i),x2:cx(i),y2:cy(i),stroke:'#00E5FF','stroke-width':1.2,'stroke-linecap':'round','stroke-opacity':0},gBeam));
+      colB.push(el('line',{x1:cx(i),y1:cy(i),x2:cx(i),y2:cy(i),stroke:'#9B7BFF','stroke-width':1.2,'stroke-linecap':'round','stroke-opacity':0},gBeam));
+    }
+
+    // labels
+    var phaseTxt=el('text',{x:150,y:13,'text-anchor':'middle','font-family':'JetBrains Mono, monospace','font-size':9,'font-weight':600,fill:'#00C8F0'},gLbl);
+    el('text',{x:150,y:294,'text-anchor':'middle','font-family':'JetBrains Mono, monospace','font-size':7,fill:'#5a6788'},gLbl).textContent='32-ch LPDDR5X · south edge · collective dataflow';
+
+    // ---- projected exploded-tile callout (one tile lifted from the grid) ----
+    (function(){
+      var sr=4, sc=27; // source tile near top-right of die
+      var sx=x0+sc*g, sy=y0+sr*g;
+      // highlight source tile
+      el('rect',{x:sx,y:sy,width:g,height:g,fill:'rgba(0,200,240,.9)',stroke:'#fff','stroke-width':0.5},gCall);
+      // panel geometry (right side)
+      var px=330, py=44, pw=176, ph=210;
+      // leader lines from source tile corners to panel
+      el('line',{x1:sx+g,y1:sy,x2:px,y2:py,stroke:'#00C8F0','stroke-width':0.6,'stroke-opacity':0.5,'stroke-dasharray':'2 2'},gCall);
+      el('line',{x1:sx+g,y1:sy+g,x2:px,y2:py+ph,stroke:'#00C8F0','stroke-width':0.6,'stroke-opacity':0.5,'stroke-dasharray':'2 2'},gCall);
+      // panel frame
+      el('rect',{x:px,y:py,width:pw,height:ph,rx:5,fill:'rgba(13,20,38,0.96)',stroke:'#00C8F0','stroke-width':1.2,'stroke-opacity':0.7},gCall);
+      el('text',{x:px+pw/2,y:py-5,'text-anchor':'middle','font-family':'JetBrains Mono, monospace','font-size':7.5,'font-weight':600,fill:'#00C8F0'},gCall).textContent='ONE TILE · ~1.8 mm² · ×1,024';
+      function blk(bx,by,bw,bh,col,lines){
+        el('rect',{x:px+bx,y:py+by,width:bw,height:bh,rx:2.5,fill:col.f,stroke:col.s,'stroke-width':0.9,'stroke-opacity':0.85},gCall);
+        for(var i=0;i<lines.length;i++){
+          el('text',{x:px+bx+bw/2,y:py+by+11+i*8.5,'text-anchor':'middle','font-family':(i===0?'Syne, sans-serif':'JetBrains Mono, monospace'),'font-size':(i===0?7.6:6),'font-weight':(i===0?700:400),fill:(i===0?'#fff':'#9fb4d4')},gCall).textContent=lines[i];
+        }
+      }
+      var CY={f:'rgba(0,200,240,.16)',s:'#00C8F0'}, PU={f:'rgba(155,123,255,.16)',s:'#9B7BFF'},
+          GR={f:'rgba(34,201,154,.16)',s:'#22C99A'}, AM={f:'rgba(232,160,32,.16)',s:'#E8A020'}, GY={f:'rgba(120,140,170,.12)',s:'#5a6788'};
+      // layout inside panel (pw=176, ph=210)
+      blk(8,10,78,34, PU, ['SNITCH','RV32 scalar','control + dispatch']);
+      blk(90,10,78,46, AM, ['RedMulE','32×16 CE matrix','~512 MAC/cyc','FP16/FP8/FP4']);
+      blk(8,50,78,46, CY, ['L1 TCDM','256 KB · 32-bank','ECC · 256 GB/s']);
+      blk(90,62,78,34, CY, ['SPATZ','8-lane vector','EXP/GELU']);
+      blk(8,100,78,40, GR, ['ITA SOFTMAX','streaming online','max·exp·recip']);
+      blk(90,100,78,40, GR, ['FlooNoC ROUTER','HW multicast','HW reduce']);
+      blk(8,144,78,34, PU, ['iDMA','64 B/cyc','tile↔L2↔LPDDR']);
+      blk(90,144,78,34, GY, ['CTRL + SAFETY','ECC · LBIST','N/S/E/W']);
+      // tiny TCDM interconnect bar
+      el('rect',{x:px+8,y:py+182,width:160,height:20,rx:2,fill:'rgba(232,160,32,.10)',stroke:'#E8A020','stroke-width':0.8,'stroke-opacity':0.6},gCall);
+      el('text',{x:px+pw/2,y:py+195,'text-anchor':'middle','font-family':'JetBrains Mono, monospace','font-size':6.2,fill:'#E8A020'},gCall).textContent='TCDM INTERCONNECT · 1024-bit';
+    })();
+
+    var PH=[['① LOAD Q  (diagonal ← edge)','#00C8F0'],
+            ['② MULTICAST Q  · row','#00C8F0'],
+            ['③ MULTICAST K·V  · col','#9B7BFF'],
+            ['④ COMPUTE  S=QKᵀ · softmax · PV','#E8A020'],
+            ['⑤ REDUCE O  · row → diagonal','#22C99A'],
+            ['⑥ STORE O  (diagonal → edge)','#22C99A']];
+    var B=[0,0.15,0.34,0.53,0.66,0.83,1.0], CYCLE=12000, start=null, raf=null;
+    function reset(){for(var i=0;i<N;i++){memS[i].setAttribute('stroke-opacity',0);memH[i].setAttribute('opacity',0);rowB[i].setAttribute('stroke-opacity',0);colB[i].setAttribute('stroke-opacity',0);}
+      compute.setAttribute('opacity',0); for(var c=0;c<N;c++) chans[c].setAttribute('fill','rgba(0,200,240,0)');}
+    function pidx(f){for(var p=0;p<6;p++){if(f>=B[p]&&f<B[p+1])return p;}return 5;}
+
+    function frame(now){
+      if(start===null)start=now;
+      var f=((now-start)%CYCLE)/CYCLE, p=pidx(f), lp=clamp((f-B[p])/(B[p+1]-B[p]));
+      reset();
+      phaseTxt.textContent=PH[p][0]; phaseTxt.setAttribute('fill',PH[p][1]);
+      if(p===0){ for(var i=0;i<N;i++){var hy=yBank-(yBank-cy(i))*lp;
+          memS[i].setAttribute('stroke','#00E5FF');memS[i].setAttribute('y1',yBank);memS[i].setAttribute('y2',hy);memS[i].setAttribute('stroke-opacity',0.6);
+          memH[i].setAttribute('cx',cx(i));memH[i].setAttribute('cy',hy);memH[i].setAttribute('opacity',0.9);
+          chans[i].setAttribute('fill','rgba(0,200,240,'+(0.35*(1-lp)+0.08)+')');} }
+      else if(p===1){ for(var i=0;i<N;i++){var ext=lp*span;
+          rowB[i].setAttribute('stroke','#00E5FF');rowB[i].setAttribute('y1',cy(i));rowB[i].setAttribute('y2',cy(i));
+          rowB[i].setAttribute('x1',Math.max(x0,cx(i)-ext));rowB[i].setAttribute('x2',Math.min(x0+span,cx(i)+ext));rowB[i].setAttribute('stroke-opacity',0.5);} }
+      else if(p===2){ for(var i=0;i<N;i++){ // Q resident (faint) + K·V col multicast
+          rowB[i].setAttribute('stroke','#00E5FF');rowB[i].setAttribute('x1',x0);rowB[i].setAttribute('x2',x0+span);rowB[i].setAttribute('y1',cy(i));rowB[i].setAttribute('y2',cy(i));rowB[i].setAttribute('stroke-opacity',0.12);
+          var ext=lp*span;colB[i].setAttribute('stroke','#9B7BFF');colB[i].setAttribute('x1',cx(i));colB[i].setAttribute('x2',cx(i));
+          colB[i].setAttribute('y1',Math.max(y0,cy(i)-ext));colB[i].setAttribute('y2',Math.min(y0+span,cy(i)+ext));colB[i].setAttribute('stroke-opacity',0.5);} }
+      else if(p===3){ compute.setAttribute('opacity',(0.10+0.13*Math.sin(lp*Math.PI)).toFixed(3));
+          for(var i=0;i<N;i++){rowB[i].setAttribute('stroke','#00E5FF');rowB[i].setAttribute('x1',x0);rowB[i].setAttribute('x2',x0+span);rowB[i].setAttribute('y1',cy(i));rowB[i].setAttribute('y2',cy(i));rowB[i].setAttribute('stroke-opacity',0.08);
+            colB[i].setAttribute('stroke','#9B7BFF');colB[i].setAttribute('y1',y0);colB[i].setAttribute('y2',y0+span);colB[i].setAttribute('x1',cx(i));colB[i].setAttribute('x2',cx(i));colB[i].setAttribute('stroke-opacity',0.08);} }
+      else if(p===4){ for(var i=0;i<N;i++){var ext=(1-lp)*span;
+          rowB[i].setAttribute('stroke','#22C99A');rowB[i].setAttribute('y1',cy(i));rowB[i].setAttribute('y2',cy(i));
+          rowB[i].setAttribute('x1',Math.max(x0,cx(i)-ext));rowB[i].setAttribute('x2',Math.min(x0+span,cx(i)+ext));rowB[i].setAttribute('stroke-opacity',0.5);} }
+      else { for(var i=0;i<N;i++){var hy=cy(i)+(yBank-cy(i))*lp;
+          memS[i].setAttribute('stroke','#22C99A');memS[i].setAttribute('y1',cy(i));memS[i].setAttribute('y2',hy);memS[i].setAttribute('stroke-opacity',0.6);
+          memH[i].setAttribute('cx',cx(i));memH[i].setAttribute('cy',hy);memH[i].setAttribute('opacity',0.9);
+          chans[i].setAttribute('fill','rgba(34,201,154,'+(0.35*lp+0.05)+')');} }
+      raf=requestAnimationFrame(frame);
+    }
+    window.__meshStart=function(){if(!raf){start=null;raf=requestAnimationFrame(frame);}};
+    window.__meshStop=function(){if(raf){cancelAnimationFrame(raf);raf=null;}};
+    return;
+    // (legacy comet code retained below but unreachable)
+    var tiles=[]; function idx(r,c){return r*N+c;}
+  })();
+})();
+</script>
+</body>
+</html>
