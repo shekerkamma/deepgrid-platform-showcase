@@ -67,19 +67,58 @@ npm run dev
 npm run build     # writes dist/
 ```
 
-On 2026-09-11 a clean install, TypeScript check and production build passed under Node
-24.14.1, regenerating 884 retrieval units. Vite reported a bundle-size warning.
+### Set VITE_RERANK_ENDPOINT or you will not reproduce the live bundle
+
+```sh
+VITE_RERANK_ENDPOINT=https://deepgrid-rerank.shekerkamma.workers.dev npm run build
+```
+
+The briefing reranker is injected at build time and defaults to empty. Build without
+it and you get a working page with a bundle 1,027 bytes smaller, no network call, and
+lexical ordering only. `src/a2ui/engine.ts` documents that degradation as deliberate:
+a ranking aid must never be able to take the answer away. Nothing else in the project
+names the endpoint, so an unset variable produces a correct-looking build that is not
+the published one. The Worker itself is defined in `wrangler.toml` and `proxy/`.
+
+Rebuilt on 2026-09-12 under Node 24.18.1 with that variable set, from the copy in this
+repository:
+
+- `assets/index-Czj8W0QI.css` reproduced **byte-identical** to the live stylesheet.
+- The main bundle reproduced at **1,502,679 bytes, the live byte count**, differing from
+  the live `index-7KvvxUUq.js` in exactly one place: the filename of the knowledge-index
+  chunk it imports.
+- That chunk reproduced at **991,068 bytes, the live byte count**, differing in **10 bytes
+  out of 991,068** — the generator's embedded build timestamp. Unit count (884) and score
+  (87.86004514672686) matched exactly, which is why its name and therefore the importing
+  bundle's name change on every build.
+
+An earlier run of the same build without the variable produced a 1,501,652-byte bundle
+missing the reranker code path entirely. Treat a size other than 1,502,679 as a missing
+environment variable, not as source drift.
 
 `wrangler.toml`, `proxy/` and the project `README.md` were added on 2026-09-12; the first
-upload had omitted them, so the Cloudflare Worker deployment and the local embedding and
-reranking dev servers could not be reproduced from this folder. Text files were committed
-with normalized line endings, so four data files differ from the Windows originals by
-line endings only.
+upload had omitted them, so the reranking Worker and the local embedding and reranking dev
+servers could not be reproduced from this folder. Text files were committed with normalized
+line endings, which changes no build output.
 
 Building this project does not regenerate the root of this repository. Do not publish its
 output here.
 
-### Where the numbers and visuals come from
+## The films are not in this repository, and both pages hot-link them
+
+`showcase-app/app/page.tsx` hardcodes
+`origin = 'https://shekerkamma.github.io/content-ideas/deepgrid-platform/'` and loads all
+seven product films plus the 104-slide master film from that path. The original platform
+loads the same files from its own `public/`. Those `.mp4` and `.mp3` binaries are excluded
+from both uploads here.
+
+They serve today, confirmed 2026-09-12. But the showcase's video section depends on a
+directory in a different repository's `gh-pages` branch. Republishing that page from
+`original-platform/` alone would delete the media and break the film section on **both**
+sites. Copy `public/media/` and the `public/deck_assets/` audio and video back from the
+Windows project before any publish that touches that path.
+
+## Where the numbers and visuals come from
 
 | Files | Purpose |
 | --- | --- |
@@ -101,7 +140,6 @@ workbook's formulas and are not audited financial results.
 ## What is excluded
 
 Audio and video binaries, `node_modules`, build output, caches, local environment files
-and Git history. The original platform's local video playback needs `public/media` and the
-`public/deck_assets` audio and video files copied back from the Windows project; its main
-video component also keeps a Google Drive embed fallback, whose availability is not
-guaranteed. Image assets are included in both projects.
+and Git history. See the section above on the films. The master-film player also keeps a
+Google Drive link as a fallback, whose availability is not guaranteed. Image assets are
+included in both projects.
