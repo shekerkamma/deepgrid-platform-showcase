@@ -1,0 +1,16 @@
+# Reranking proxy for the A2UI briefing agent.
+#
+# The Worker holds the Gemini key so the static page never has to. Deploy:
+#   wrangler login                      # interactive, one time
+#   wrangler deploy
+#   wrangler secret put GEMINI_API_KEY  # paste the AI Studio key
+#
+# Then rebuild the page with the returned URL so the client calls it:
+#   VITE_RERANK_ENDPOINT=https://<worker>.workers.dev npm run build
+# With the variable unset the client makes no network call at all and the
+# page keeps today's pure-lexical behaviour, which is why this is safe to
+# deploy before wiring the front end to it.
+name = "deepgrid-rerank"
+main = "proxy/rerank-worker.js"
+compatibility_date = "2026-09-04"
+workers_dev = true
