@@ -1,0 +1,40 @@
+{
+  "provenance": "Management projections from the recovered showcase. Reconcile changes against source/documents before publishing.",
+  "projections": [
+    [
+      "15",
+      "PRODUCT PATHS"
+    ],
+    [
+      "28nm",
+      "PROCESS NODE"
+    ],
+    [
+      "57mm²",
+      "DIE FOOTPRINT"
+    ],
+    [
+      "8.6ms",
+      "FUSION TARGET"
+    ]
+  ],
+  "investmentStats": [
+    [
+      "₹1,128 Cr",
+      "FY2032 REVENUE PLAN"
+    ],
+    [
+      "$3.17M",
+      "GATED TAPEOUT NRE"
+    ],
+    [
+      "175k dies",
+      "NRE BREAKEVEN GATE"
+    ],
+    [
+      "H1 2028",
+      "QUALIFIED SILICON PLAN"
+    ]
+  ],
+  "sourceGuide": "https://github.com/shekerkamma/deepgrid-platform-showcase/tree/main/source"
+}

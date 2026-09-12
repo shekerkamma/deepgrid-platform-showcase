@@ -143,3 +143,7 @@ Audio and video binaries, `node_modules`, build output, caches, local environmen
 and Git history. See the section above on the films. The master-film player also keeps a
 Google Drive link as a fallback, whose availability is not guaranteed. Image assets are
 included in both projects.
+
+## Automated deployment
+
+The showcase now builds and deploys through GitHub Actions from source/showcase-app/. See [the editing guide](showcase-app/README.md). The workbook remains supporting evidence; approved changes must be reflected in the page JSON and narrative. The repository-root static files are a retained snapshot, not the automated deployment source.

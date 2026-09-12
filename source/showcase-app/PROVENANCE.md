@@ -58,3 +58,7 @@ bundler, configured in `vite.config.ts` rather than by `next.config.ts` alone. I
 the standard `next build` toolchain, so `npx next build` will not reproduce this output.
 `three` 0.185.1 drives the interactive silicon view in `app/silicon.tsx`. Node 22.13 or
 newer is required, per `engines` in `package.json`.
+
+## Editable-source deployment update
+
+The recovered baseline described above has since been extended with editable summary metrics, a source-document footer link and automated GitHub Pages deployment. Current application chunk hashes therefore intentionally differ from that baseline. The Sites Vite plugin is not loaded in the standalone GitHub build.
