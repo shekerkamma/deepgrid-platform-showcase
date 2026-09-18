@@ -53,39 +53,28 @@ The root static snapshot remains available in Git history and the repository. Th
 
 ## Ask DeepGrid
 
-The Ask DeepGrid view (`#briefing`) follows the DG32 site's graphify + GraphRAG pattern
-([deepgrid-dr-silicon](https://github.com/shekerkamma/deepgrid-dr-silicon) `#ask`) over this showcase's own
-materials. It runs entirely in the browser, with no server or API key at runtime.
+`#briefing` is the DG32 site's Ask DeepGrid ([deepgrid-dr-silicon](https://shekerkamma.github.io/deepgrid-dr-silicon/#ask)):
+the same implementation (`app/ask.tsx`, `app/council-view.tsx`, `app/data/graphrag-engine.ts`, `app/data/semantic.ts`,
+`app/documents-data.ts`, `app/data/deepgrid-knowledge.ts`), answering from two parts of content:
 
-**Corpus (764 passages):** the page's products, 104 slides, use cases and investment memorandum, plus the
-primary sources behind them from `../original-platform/`: the 33-page Information Memorandum (OCR), the
-market research and document audits, the competitor dossiers, and the two financial workbooks in
-`../documents/` (Financial Model v3, Business Plan v2 — both indexed and labelled, since they disagree; Payroll
-and Cap Table are excluded from the public site).
-It also carries the primary documents found on this machine (IM v2, the BP1A and BP1B business plans, the
-Shravan/Mayookh brief, the image-only investor briefing via OCR, the ICP & GTM strategy): `npm run
-graph:documents` reads them from their Windows paths and records each file's SHA-256 in
-`knowledge/documents.json`. The files themselves are not in this repository. `scripts/lib/showcase-content.mjs` defines
-it once for both the graph and the answers.
+1. **The DG32 site's content**: its 42 documents (8 PDFs, 34 markdown), its catalog, its curated executive themes
+   and its document pillars Doc #1-#6, unchanged.
+2. **This site's content** as Doc #7-#9: the product portfolio (15 products + SoC2, 104-slide deck), the investment
+   and information memoranda with BP1A/BP1B and the research behind them, and the financial model and business plan.
 
-**Pipeline** (run in order after changing any of that content):
+Pipeline (graphify first, then GraphRAG):
 
 ```sh
-npm run graph:workbooks  # ../documents/*.xlsx -> knowledge/workbooks.json + ../documents/csv/ (/excel-ingest header detection, per block)
-npm run graph:documents  # primary PDFs/DOCX -> knowledge/documents.json (pdftotext; RapidOCR for image pages)
-npm run graph:corpus     # knowledge/corpus/*.md, the documents graphify reads
-npm run graph:extract    # graphify, via CLIProxyAPI to a subscription Gemini model (never the free tier)
-npm run graph:index      # app/data/graphrag-index.json + public/knowledge/ (graph page, JSON, report)
-npm run build:semantic   # public/graphrag/: bge-small embeddings, thresholds picked by the routing eval
+npm run graph:documents  # OCR text of image-only documents (knowledge/documents.json)
+npm run graph:sources    # every document of both parts -> knowledge/sources/ (gitignored; manifest: knowledge/sources.json)
+npm run graph:extract    # graphify over all of it, via CLIProxyAPI to a subscription model (never a free tier)
+npm run graph:index      # showcase catalog + unified GraphRAG index (the DG32 builder, extended) + graph page
+npm run build:semantic   # bge-small embeddings + routing eval (the DG32 script)
+npm run graph:themes     # executive themes for Doc #7-#9, in the DG32 shape, figure-checked against sources
+npm run build:semantic   # again: the themes are routing rows
 ```
 
-- `graph:extract` needs CLIProxyAPI running on Windows (reached from WSL at the default-gateway IP) and its key
-  in `CLIPROXY_API_KEY` or `~/.dsh/.credentials.yaml`. It proves the route with a real call before it starts.
-- `graph:index` merges graphify's entities onto the fifteen products and SoC2 by alias (graphify scopes ids to
-  their file, so one entity arrives from several files) and records which passages mention each entity.
-- Curated answers are in `app/data/themes.ts`. A theme writes no copy of its own: it names memorandum sections,
-  slides and products, and the engine quotes them. Example questions are in `app/data/theme-examples.ts`; the
-  held-out eval is `scripts/ask-routing-eval.json` (never copy it into the examples).
-- Every build runs `scripts/check-semantic.mjs` first. It fails if the index is stale against the page content,
-  the embeddings are stale against the index, a theme names a section that no longer exists, the model differs,
-  or the eval records a wrong or forced answer.
+graphify needs its `pdf`, `office` and `openai` extras (`uv tool install 'graphifyy[pdf,office,openai]'`); without
+them it silently skips every PDF and office file. The routing eval (`scripts/ask-routing-eval.json`) holds the DG32
+site's 25 cases unchanged plus 19 held-out showcase cases; every build fails if it records a wrong or forced answer.
+Links in an answer open showcase views here and DG32 views on the DG32 site.

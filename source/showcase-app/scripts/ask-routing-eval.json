@@ -1,148 +1,202 @@
 {
- "_about": "Held-out routing eval for the showcase's Ask DeepGrid. Written on 18 Sep 2026 BEFORE app/data/theme-examples.ts; never copy these questions into that file. `expect` is a theme title the question must reach, null for an on-topic question that must NOT be forced into a curated theme, or \"none\" for an off-topic question that must get no grounded answer. npm run build:semantic picks the theme thresholds (most correct, zero wrong, zero forced) and the relevance floor (catches the most off-topic questions without dropping any on-topic one) from this set, and fails if the recall floor cannot be met.",
- "minRecall": 0.5,
+ "_about": "Held-out routing eval for Ask DeepGrid. Each question names the curated answer (theme title) it must reach, or null for a question that must NOT be forced into a curated answer. Written on 18 Sep 2026 before the example questions in app/data/theme-examples.ts existed; never copy these into that file. npm run build:semantic picks the curated-answer threshold from this set (most correct with zero wrong and zero forced) and fails if that bar cannot be met.",
+ "minRecall": 0.7,
  "cases": [
   {
-   "q": "Why does a single chip matter for so many different things they sell?",
-   "expect": "One chip, fifteen products"
+   "q": "How can the chip spot a cracked rotor bar without a big frequency transform?",
+   "expect": "Goertzel Recurrence vs. 8 MB FFT for Broken Rotor Bar Detection"
   },
   {
-   "q": "Walk me through the whole product lineup and how it hangs together",
-   "expect": "One chip, fifteen products"
+   "q": "Why is a single peakedness statistic a poor alarm for worn bearings?",
+   "expect": "The Kurtosis Non-Monotonicity Trap in Bearing Health Alarms"
   },
   {
-   "q": "What sits inside the processor they designed?",
-   "expect": "SoC2: six chiplets on one 57 mm² die"
+   "q": "How much machine learning can the base chip run with no dedicated neural hardware?",
+   "expect": "DG32-LITE AI Compute Envelope (No Accelerator)"
   },
   {
-   "q": "How many separate compute blocks share the silicon?",
-   "expect": "SoC2: six chiplets on one 57 mm² die"
+   "q": "What diagnostic jobs can the entry chip handle in a factory?",
+   "expect": "30 Industrial Diagnostics & Observers on a 50 MHz Scalar Core"
   },
   {
-   "q": "Why will truck makers have to buy driver-assistance systems?",
-   "expect": "The demand is legislated, not forecast"
+   "q": "Are published bearing-fault accuracy numbers inflated by how the data was split?",
+   "expect": "Academic Benchmark Audit: CWRU Bearing Dataset Leakage"
   },
   {
-   "q": "Is the market pulled by government rules or by hope?",
-   "expect": "The demand is legislated, not forecast"
+   "q": "Does DG32 qualify under Indian defence procurement rules for domestic content?",
+   "expect": "DAP-2020 Buy (Indian-IDDM) & Make-II Statutory Defence Moats"
   },
   {
-   "q": "What is working today, before the final chip exists?",
-   "expect": "What is already built"
+   "q": "How does the chip read speed commands and report RPM back to the flight controller?",
+   "expect": "Hardware DShot Receive (dgrid_dshot_rx) & Zero-Jitter Motor Telemetry"
   },
   {
-   "q": "How far along is the hardware development?",
-   "expect": "What is already built"
+   "q": "Why was the clock speed chosen where it is?",
+   "expect": "50 MHz Operating Frequency: Lockstep Margin & Physical Timing Closure"
   },
   {
-   "q": "How should the company bridge the gap until its chip arrives?",
-   "expect": "The strategic choice: run A for B"
+   "q": "How does DG32 compare with the incumbent entry-level ST microcontroller?",
+   "expect": "DG32 vs. STM32G0: Hardware Lockstep, BOM Cost & Latency Benchmark"
   },
   {
-   "q": "Which go-to-market path does the memo advise?",
-   "expect": "The strategic choice: run A for B"
+   "q": "How will the seed money be spent and how long will it last?",
+   "expect": "₹10 Cr Capital Waterfall & 24-Month Seed Runway"
   },
   {
-   "q": "How big is the investment ask and where does the money go?",
-   "expect": "The round and what it funds"
+   "q": "What happens to the business if Chinese competitors slash prices?",
+   "expect": "Chinese Price Crash Stress Test & Operational Stop Rules S1–S4"
   },
   {
-   "q": "What will investors' cash be spent on?",
-   "expect": "The round and what it funds"
+   "q": "Which pins are on which side of the package?",
+   "expect": "DG32 64-Pin QFN Physical Pin Map & Packaging Specification"
   },
   {
-   "q": "What could make this a bad investment?",
-   "expect": "The investment risks"
+   "q": "Can supply be guaranteed if foreign fabs are cut off?",
+   "expect": "Sovereign Supply Chain Immunity: The Three-Factory & 100% Domestic Architecture"
   },
   {
-   "q": "Where do the company's own documents contradict each other?",
-   "expect": "The investment risks"
+   "q": "How does the lockstep checker catch a faulty computation?",
+   "expect": "Hardware Lockstep: How DG32 Catches a Faulty Computation"
   },
   {
-   "q": "When does the business make money, and how much by the end of the plan?",
-   "expect": "The revenue ramp"
+   "q": "What stops the motor if the processor silently computes a wrong value?",
+   "expect": "Hardware Lockstep: How DG32 Catches a Faulty Computation"
   },
   {
-   "q": "How fast do sales climb year by year?",
-   "expect": "The revenue ramp"
-  },
-  {
-   "q": "Who started the company and what is their background?",
-   "expect": "The company and its founders"
-  },
-  {
-   "q": "Who is behind the silicon design?",
-   "expect": "The company and its founders"
-  },
-  {
-   "q": "What does a customer actually receive under the AEBS use case?",
+   "q": "What does DG32-2DOM add over DG32-LITE?",
    "expect": null
   },
   {
-   "q": "How does the lane departure warning work without painted lines?",
+   "q": "How much SRAM does the chip have?",
    "expect": null
   },
   {
-   "q": "What is the frame budget for sensor fusion?",
+   "q": "What is the D100 drone processor?",
    "expect": null
   },
   {
-   "q": "How does the drowsiness detection camera read the driver?",
+   "q": "What radar chip is on the roadmap?",
    "expect": null
   },
   {
-   "q": "What is SoC4-A?",
+   "q": "How does the attention engine stay isolated from motor control?",
    "expect": null
   },
   {
-   "q": "What does the nuisance alert suppression use case do?",
+   "q": "What voltage rails does the chip need?",
    "expect": null
   },
   {
-   "q": "How is the product listed on GeM for government buyers?",
+   "q": "How many CORDIC operations does one control loop use?",
    "expect": null
   },
   {
-   "q": "What does the blind-spot moving-off information system detect?",
+   "q": "What is the verification evidence for pre-silicon figures?",
    "expect": null
   },
   {
-   "q": "What is the weather in Tokyo today?",
-   "expect": "none"
-  },
-  {
-   "q": "Give me a recipe for chocolate cake",
-   "expect": "none"
-  },
-  {
-   "q": "Who won the football world cup in 2022?",
-   "expect": "none"
-  },
-  {
-   "q": "How do I reset my email password?",
-   "expect": "none"
-  },
-  {
-   "q": "What is the EBITDA in FY2032?",
+   "q": "What is the weather in Tokyo tomorrow?",
    "expect": null
   },
   {
-   "q": "What is the gross margin in the P&L?",
+   "q": "Recommend a good pasta recipe",
    "expect": null
   },
   {
-   "q": "How much does the SoC2 tapeout cost?",
-   "expect": null
+   "q": "What makes this company worth backing?",
+   "expect": "The investment case",
+   "part": "showcase"
   },
   {
-   "q": "What is the cost per die at volume?",
-   "expect": null
+   "q": "Is there a real regulatory driver for ADAS in Indian trucks?",
+   "expect": "The demand is legislated, not forecast",
+   "part": "showcase"
   },
   {
-   "q": "What is the TAM for mandated ADAS in India?",
-   "expect": null
+   "q": "How many trucks could DeepGrid sell into?",
+   "expect": "Market size",
+   "part": "showcase"
+  },
+  {
+   "q": "Which fleets and OEMs will buy first?",
+   "expect": "Customers and go-to-market",
+   "part": "showcase"
+  },
+  {
+   "q": "Explain the product range and how it shares one die",
+   "expect": "One chip, fifteen products",
+   "part": "showcase"
+  },
+  {
+   "q": "How many chiplets are on the die and what do they do?",
+   "expect": "SoC2: six chiplets on one 57 mm² die",
+   "part": "showcase"
+  },
+  {
+   "q": "What revenue exists today before custom silicon?",
+   "expect": "What is already built",
+   "part": "showcase"
+  },
+  {
+   "q": "Do they sell hardware, chips or licences?",
+   "expect": "Business model",
+   "part": "showcase"
+  },
+  {
+   "q": "What is the non-recurring engineering cost and per-chip cost?",
+   "expect": "Chip unit economics",
+   "part": "showcase"
+  },
+  {
+   "q": "What sales does the plan forecast for each year?",
+   "expect": "The revenue ramp",
+   "part": "showcase"
+  },
+  {
+   "q": "What EBITDA margin does the plan reach?",
+   "expect": "Margins and profitability",
+   "part": "showcase"
+  },
+  {
+   "q": "Will the company run out of cash before it is self-funding?",
+   "expect": "Cash and runway",
+   "part": "showcase"
+  },
+  {
+   "q": "What equity stake does the investor receive for ₹45 Cr?",
+   "expect": "Valuation and terms",
+   "part": "showcase"
+  },
+  {
+   "q": "Who are the Indian and global rivals?",
+   "expect": "Competition",
+   "part": "showcase"
+  },
+  {
+   "q": "What should an investor worry about most?",
+   "expect": "The investment risks",
+   "part": "showcase"
+  },
+  {
+   "q": "What happens to revenue if silicon arrives a year late?",
+   "expect": "If the chip slips",
+   "part": "showcase"
+  },
+  {
+   "q": "What is being proposed for American autonomous trucking?",
+   "expect": "The US opportunity",
+   "part": "showcase"
+  },
+  {
+   "q": "How does the drone and humanoid business work?",
+   "expect": "Defence and robotics",
+   "part": "showcase"
+  },
+  {
+   "q": "What is the weather in Delhi tomorrow?",
+   "expect": null,
+   "part": "showcase"
   }
  ],
- "_minRecall": "0.5, not the DG32 site's 0.7: there a miss falls back to generic text, here it falls back to the best-grounded passages. Measured 18 Sep 2026 (bge-small, examples written blind): 9/18 reach their theme, 0 wrong, 0/8 forced; of the 9 misses, 6 fall back to a passage from the expected theme's own section or slide (e.g. 'contradict each other' -> 'Ten things to test'). The floor guards against a regression below that, not a target to tune the example questions toward.",
- "_added": "18 Sep 2026: five precise financial questions added as null cases after a browser run showed keyword routing answering them with a theme's prose instead of the workbook row. They guard that regression; they were not used to tune examples."
+ "_showcase": "18 Sep 2026: held-out cases for the showcase themes (app/data/showcase-themes.json), written before those themes were generated and never copied into their examples. The DG32 site's own 25 cases above are unchanged."
 }

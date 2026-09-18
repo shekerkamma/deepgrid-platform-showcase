@@ -1,69 +1,113 @@
-// Example questions for each curated theme (app/data/themes.ts), keyed by exact theme title. They are
-// embedded with the index, and a theme scores the best of its own text and these, so a reworded question
-// can still reach it. Written after scripts/ask-routing-eval.json; never copy eval questions here.
-// `npm run build:semantic` fails if a theme has fewer than 3 or an entry names no theme.
+// Example questions for each curated answer (executiveThemes in graphrag-engine.ts), phrased the way a
+// visitor asks rather than the way the answer is written. A question is matched against these by
+// meaning (question-to-question similarity is far sharper than question-to-document), and a theme's
+// score is its best example. Keys are theme titles: renaming a theme without updating its key fails
+// `npm run build:semantic`, and the site build fails until the index is rebuilt.
+//
+// When a visitor question misses its answer, add a question like it here, run `npm run build:semantic`,
+// and the routing eval (scripts/ask-routing-eval.json) confirms nothing else broke. Never copy an eval
+// question in here: the eval would then be grading its own answers.
 export const THEME_EXAMPLES: Record<string, string[]> = {
-  'One chip, fifteen products': [
-    'How are all the DeepGrid products related?',
-    'What is the product portfolio?',
-    'How can one chip become so many products?',
-    'What range of prices does the platform cover?',
-    'Which buyers does each product line reach?',
+  'Goertzel Recurrence vs. 8 MB FFT for Broken Rotor Bar Detection': [
+    'How does DG32 detect a broken rotor bar in an induction motor?',
+    'Why use Goertzel instead of a full FFT for motor current analysis?',
+    'Can the chip find rotor faults without a large frequency analysis buffer?',
+    'How much memory does rotor bar fault detection need on DG32?',
+    'How are the sidebands around the supply frequency tracked?',
   ],
-  'SoC2: six chiplets on one 57 mm² die': [
-    'Explain the chip design',
-    'What are the compute domains on the SoC?',
-    'What process node is the chip built on?',
-    'How big is the die?',
-    'What is the architecture of the DeepGrid silicon?',
+  'The Kurtosis Non-Monotonicity Trap in Bearing Health Alarms': [
+    'Why does kurtosis not keep rising as a bearing gets worse?',
+    'What goes wrong if bearing alarms rely only on kurtosis?',
+    'Which vibration statistics should trigger a bearing health alarm?',
+    'Why do bearing fault indicators fall again late in the damage?',
+    'How should vibration alarms combine RMS and peakiness?',
   ],
-  'The demand is legislated, not forecast': [
-    'Which Indian regulations require ADAS on commercial vehicles?',
-    'When do the AEBS rules come into force?',
-    'Why now for this company?',
-    'Is demand driven by regulation?',
-    'Which standards create the need for these systems?',
+  'DG32-LITE AI Compute Envelope (No Accelerator)': [
+    'What AI workloads can DG32-LITE run on its own CPU?',
+    'How fast is inference on the scalar core without an NPU?',
+    'Does DG32-LITE need a neural accelerator for edge AI?',
+    'How many multiply-accumulates per second can the base core do?',
+    'What model sizes fit on the chip without dedicated AI hardware?',
   ],
-  'What is already built': [
-    'What has the team shipped so far?',
-    'Does the perception stack already run on hardware?',
-    'Has the chip been taped out?',
-    'What revenue exists before the ASIC?',
-    'What stage is the technology at?',
+  '30 Industrial Diagnostics & Observers on a 50 MHz Scalar Core': [
+    'What industrial use cases does DG32 support?',
+    'Which predictive maintenance applications run on the chip?',
+    'List the edge diagnostics DG32 can perform in a plant.',
+    'What condition monitoring tasks fit on a 50 MHz controller?',
+    'Where would a factory deploy DG32 for machine health?',
   ],
-  'The strategic choice: run A for B': [
-    'What are the strategic options for the company?',
-    'Should DeepGrid lead with government buyers or Tier-1 suppliers?',
-    'What is the recommended path to market?',
-    'How does the company survive until volume silicon?',
-    'Why not just sprint to the tapeout?',
+  'Academic Benchmark Audit: CWRU Bearing Dataset Leakage': [
+    'Is the CWRU bearing dataset reliable for benchmarking?',
+    'Why are academic bearing fault results often overstated?',
+    'What is data leakage in bearing fault classification studies?',
+    'How should vibration datasets be split to avoid inflated accuracy?',
+    'Can published fault detection accuracies be trusted?',
   ],
-  'The round and what it funds': [
-    'How much money is being raised?',
-    'What is the pre-money valuation?',
-    'What is the use of proceeds?',
-    'What will the capital not be spent on?',
-    'How is the investment released against milestones?',
+  'DAP-2020 Buy (Indian-IDDM) & Make-II Statutory Defence Moats': [
+    'Is DG32 eligible under India’s defence acquisition procedure?',
+    'What domestic content does DeepGrid silicon offer defence buyers?',
+    'How does DG32 fit Make-II defence procurement?',
+    'Does DeepGrid qualify as an indigenous supplier to the armed forces?',
+    'Which Indian procurement rules favour DeepGrid chips?',
   ],
-  'The investment risks': [
-    'What are the key risks?',
-    'What should diligence test?',
-    'Which assumptions does the plan depend on?',
-    'What are the red flags in the materials?',
-    'Where are the numbers inconsistent?',
+  'Hardware DShot Receive (dgrid_dshot_rx) & Zero-Jitter Motor Telemetry': [
+    'How does DG32 handle ESC throttle signals from a drone flight controller?',
+    'Does the chip support bidirectional telemetry for drone motors?',
+    'How is motor speed reported back to the flight controller?',
+    'Is the drone ESC protocol decoded in hardware or software?',
+    'What makes the ESC command decoding jitter-free?',
   ],
-  'The revenue ramp': [
-    'What is the FY2032 revenue plan?',
-    'How does revenue grow over time?',
-    'When does the company break even?',
-    'Which products drive revenue?',
-    'What are the financial projections?',
+  '50 MHz Operating Frequency: Lockstep Margin & Physical Timing Closure': [
+    'Why does DG32 run at 50 MHz and not faster?',
+    'What limits the maximum clock frequency of the chip?',
+    'How much timing margin does the 50 MHz clock leave?',
+    'Could DG32 be clocked higher?',
+    'What is the fmax of the lockstep core?',
   ],
-  'The company and its founders': [
-    'Who are the founders?',
-    'Tell me about the leadership team',
-    'Who leads silicon architecture?',
-    'Where is the company based and how many people work there?',
-    'What experience does the management have?',
+  'DG32 vs. STM32G0: Hardware Lockstep, BOM Cost & Latency Benchmark': [
+    'How is DG32 different from an STM32G0?',
+    'Why choose DG32 over an existing ST microcontroller?',
+    'What does DG32 cost compared with incumbent motor-control MCUs?',
+    'Does the STM32G0 have hardware lockstep like DG32?',
+    'Compare DG32 against the market-leading entry-level MCU.',
+  ],
+  '₹10 Cr Capital Waterfall & 24-Month Seed Runway': [
+    'How much funding is DeepGrid raising?',
+    'What will the seed investment be used for?',
+    'How long is the company’s cash runway?',
+    'How is the capital split between tape-out and team?',
+    'What does the funding plan look like over two years?',
+  ],
+  'Chinese Price Crash Stress Test & Operational Stop Rules S1–S4': [
+    'What if Chinese suppliers undercut DeepGrid on price?',
+    'What are DeepGrid’s stop rules if the business case fails?',
+    'How does the plan hold up under a price war?',
+    'When would DeepGrid abandon or change course?',
+    'What downside scenarios has the company stress-tested?',
+  ],
+  'DG32 64-Pin QFN Physical Pin Map & Packaging Specification': [
+    'What is the pinout of the DG32 package?',
+    'Where are the PWM and ADC pins on the chip?',
+    'What package does DG32 come in?',
+    'How are the supply and ground pins arranged on the QFN?',
+    'What does the exposed thermal pad connect to?',
+  ],
+  'Sovereign Supply Chain Immunity: The Three-Factory & 100% Domestic Architecture': [
+    'What happens to supply if one foundry becomes unavailable?',
+    'Is DeepGrid dependent on Taiwanese fabs?',
+    'How resilient is DeepGrid’s manufacturing to export controls?',
+    'Can DG32 be made entirely in India?',
+    'Which foundries can manufacture DeepGrid chips?',
+  ],
+  'Hardware Lockstep: How DG32 Catches a Faulty Computation': [
+    'How does DG32 detect a CPU fault while the motor is running?',
+    'What happens when the two cores disagree?',
+    'How quickly does the chip shut the power stage down after an error?',
+    'Why does an entry-level MCU need a second checking core?',
+    'What is the FAULT_N output used for?',
   ],
 };
+
+// Showcase themes (app/data/showcase-themes.json) carry their own example phrasings (knowledge/briefs-spec.json).
+import showcaseThemes from './showcase-themes.json';
+for (const t of showcaseThemes as {title: string; examples: string[]}[]) THEME_EXAMPLES[t.title] = t.examples;
