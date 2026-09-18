@@ -172,22 +172,26 @@ export function executeGraphRAG(raw: string, products: ProductLike[], sem?: Sema
   // and the row is the answer. Measured 18 Sep 2026: even a +0.04 keyword nudge forced it into the essay.
   const kwScore = themes.map(t => t.keywords.reduce((acc, kw) => acc + (has(q, kw) ? 15 + kw.length : 0), 0));
   let theme: Theme | null = null, best = 0;
+  // a theme's own question (its prompt chip and related-question link) always opens that theme: a new source
+  // passage must never out-rank the curated answer the page itself offered
+  const own = themes.find(t => t.ask.toLowerCase() === q);
+  if (own) { theme = own; best = Infinity; }
   if (!useSem) kwScore.forEach((s, i) => { if (s > best) { best = s; theme = themes[i]; } });
   // By meaning, a theme must be close, clearly closer than the runner-up, and closer than the best single
   // passage by a margin: otherwise the question is narrower than any curated answer, and that passage is
   // the better answer. An off-topic question (best passage under the floor) never reaches a theme.
   const floor = useSem ? (sem!.floor ?? SEMANTIC_FLOOR) : TFIDF_FLOOR;
   const bestChunk = Math.max(0, ...chunkSim);
-  if (!named.length && useSem && bestChunk >= floor) {
+  if (!own && !named.length && useSem && bestChunk >= floor) {
     const order = Array.from(sem!.themes, (v, i) => [v, i] as const).sort((a, b) => b[0] - a[0]);
     const min = sem!.themeMin ?? SEMANTIC_THEME_MIN, gap = sem!.themeGap ?? SEMANTIC_THEME_GAP, lift = sem!.themeLift ?? SEMANTIC_LIFT;
     if (order[0][0] >= min && order[0][0] - (order[1]?.[0] ?? 0) >= gap && order[0][0] >= bestChunk + lift) theme = themes[order[0][1]];
   }
-  if (named.length && theme && !named.some(x => x.n.kind === 'platform')) theme = null;   // "AD2 revenue" is about AD2
+  if (!own && named.length && theme && !named.some(x => x.n.kind === 'platform')) theme = null;   // "AD2 revenue" is about AD2
   if (theme) {
-    const own = themePassages(theme);
-    const lead = own[0];
-    const support = [...own.slice(1, 3), ...theme.slides.map(n => chunkById.get(`slide:${n}`)!)].filter(Boolean);
+    const quoted = themePassages(theme);
+    const lead = quoted[0];
+    const support = [...quoted.slice(1, 3), ...theme.slides.map(n => chunkById.get(`slide:${n}`)!)].filter(Boolean);
     return {...base, kind: 'theme', theme: theme.title, tag: theme.tag, title: theme.title,
       answer: sentences(lead.text, 520), passages: [passage(lead, 900), ...support.map(c => passage(c))].slice(0, 4),
       seeds, path, focus: theme.focus, products: theme.products, related: related(theme.title)};
