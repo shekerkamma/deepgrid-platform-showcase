@@ -1,0 +1,31 @@
+# DeepGrid Semi — deck/049-fleet-and-mobility-part2
+
+All figures are management projections from DeepGrid's fundraising materials.
+
+## Slide 59 · T100 licence · What it is
+
+T100 licence · What it is. Sensors & robotics ₹83.5 Cr · 7.4% of FY2032 · 5 SKUs · Capability, channel and a second cycle DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 59 Not hardware at all. A licence to the trained perception models and the toolchain, so a customer can run our software on their own platform. Priced per deployment, with nothing shipped in a box.
+
+## Slide 60 · T100 licence · How it works
+
+T100 licence · How it works. What it is A bolt-on long-wave infrared camera pod with its own lens and heater, feeding the existing compute box. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 60 ₹50,000 UNIT PRICE Sensors SEGMENT Outdoor OPERATING DOMAIN FY2027 FIRST REVENUE WHAT IS IN IT 01 LWIR thermal sensor and lens 02 Weatherised housing with lens heater 03 Harness into the SoC2 compute box How it is positioned Thermal camera (aftermarket) sells at ₹50,000 into the sensors & robotics surface. A capability line, not a profit line, at 50% margin — it closes the condition where the core product is weakest. The models are the accumulated result of running these sensors on Indian roads. A customer licences that, integrates it, and ships. There is no board, no bill of materials, and nothing to manufacture.
+
+## Slide 61 · T100 licence · Who buys it
+
+T100 licence · Who buys it. How it works Sense, compute on SoC2, decide, act — the same four stages in every product. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 61 SIGNAL CHAIN 1 The LWIR sensor reads emitted heat rather than reflected light 2 SoC2 runs detection on the thermal image, where a person is bright against cold road 3 Classification separates people and animals from roadside clutter 4 Detections join the same object list the cameras feed What the silicon does here Thermal is the channel that keeps working when the others fail — glare, dust, smoke and unlit road. In the perimeter build it is what separates a person from background at night; in the truck kit it is one of eleven fused channels rather than a standalone product. What this product depends on Thermal sensor supply, which is imported and the highest bill-of-materials risk in the sensor group. Teams that want perception tuned for Indian road conditions — the traffic mix, the lane discipline, the light — without spending three years collecting the data to train it themselves. The dataset is the product here, not the code.
+
+## Slide 62 · T100 licence · How it fits
+
+T100 licence · How it fits. Who buys it, and why now Night and monsoon operation, where camera-only detection degrades sharply. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 62 The buyer Fleets upgrading existing vehicles, and as an attach sold alongside AD0 and AD2. The channel Aftermarket, usually at the same fitment as the base kit. Demand pool · 0.10% capture at FY2032 Automotive thermal camera $1.68B global (2025). Our FY2032 volume of 3,200 units is 0.10% of that pool. Source: Verified Market Research: $1.68B 2025, 12% CAGR. Capture rates are management assumptions; pool sizes are third-party published estimates. Fifty crore at ninety-four percent margin, and it starts later than everything else — in the 2029 financial year — because a licence needs a track record before anyone buys one. It is the only line in the plan with no bill of materials whatsoever.
+
+## Slide 63 · Part three — Fleet and mobility
+
+Part three — Fleet and mobility. How it fits the overall picture ₹16.0 Cr at FY2032 — 1.4% of group revenue, at 50% gross margin. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 63 3,200 FY2032 UNITS ₹16.0 Cr FY2032 REVENUE 1.4% SHARE OF GROUP 50% GROSS MARGIN UNITS SHIPPED 40 FY27 150 FY28 400 FY29 900 FY30 1,800 FY31 3,200 FY32 REVENUE, ₹ CR 0 FY27 1 FY28 2 FY29 5 FY30 9 FY31 16 FY32 Its role in the portfolio A capability line, not a profit line, at 50% margin — it closes the condition where the core product is weakest. What it depends on Thermal sensor supply, which is imported and the highest bill-of-materials risk in the sensor group. Two SKUs, eighty-nine crore, and the highest revenue per unit anywhere in the portfolio. Here we stop selling a product and start selling the work the product does.
+
+## Slide 64 · TaaS · What it is
+
+TaaS · What it is. What it is A sealed radar pod, mounted forward or on the corner, feeding the compute box. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 64 ₹25,000 UNIT PRICE Sensors SEGMENT Outdoor OPERATING DOMAIN FY2027 FIRST REVENUE WHAT IS IN IT 01 4D imaging radar front end 02 R100 radar DSP processing 03 Sealed automotive housing and harness How it is positioned 4D radar pod (aftermarket) sells at ₹25,000 into the sensors & robotics surface. The smallest line at ₹7.5 Cr, but it exists because the radar block is already on the die — the tapeout has paid for the silicon. Not a sale. A vehicle we own and operate under contract, where the customer pays for the transport rather than the truck. The revenue per unit is the largest in the plan because we are booking the whole job.
+
+## Slide 65 · TaaS · How it works
+
+TaaS · How it works. How it works Sense, compute on SoC2, decide, act — the same four stages in every product. DEEPGRID SEMI · PRODUCT LINES · MANAGEMENT PROJECTIONS 65 SIGNAL CHAIN 1 The radar illuminates the scene and reads the returns 2 The R100 block on the die turns returns into range, velocity and elevation 3 Tracks are formed and held across frames, including through rain and dust 4 Tracks fuse with the camera object list to confirm or reject detections What the silicon does here 4D radar returns range and velocity in rain, dust and glare, which is precisely where cameras degrade. In the fused suite it is the channel that supplies closing speed — the quantity a collision decision actually turns on. What this product depends on Radar front-end supply and antenna qualification; the processing is already ours. The vehicle runs the same autonomy stack as the kit we sell. Fleet logic schedules it, routes it, and hands off to a remote operator when the situation exceeds what the vehicle should decide alone. The difference from AD2 is commercial, not technical.

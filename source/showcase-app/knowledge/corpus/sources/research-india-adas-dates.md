@@ -1,0 +1,7 @@
+# DeepGrid Semi — sources/research-india-adas-dates
+
+All figures are management projections from DeepGrid's fundraising materials.
+
+## MoRTH revises vehicle width rules, mandates new safety systems for heavy and medium vehicles
+
+Under the revised guidelines, several external components will no longer be counted when measuring the overall width of a motor vehicle. E - ETAuto Desk - ETAuto - Published On Nov 28, 2025 at 08:22 PM IST - Read by 2894 Professionals - Select ETAuto as Preferred Choice on Google - - Copy Link - Share on WhatsApp - Share on Linkedin - Share on X - Share on Telegram - Share on Facebook - - - - - - The move is expected to offer greater flexibility to manufacturers, especially as vehicles increasingly integrate external safety sensors and ADAS architecture.New Delhi: The Ministry of Road Transport and Highways (MoRTH) has issued significant amendments to India’s motor vehicle regulations, revising norms for how vehicle width is measured and introducing mandatory safety technologies for medium and heavy commercial vehicles. The updated rules, notified in the Gazette on 21 November 2025, replace provisions announced earlier this month and set phased compliance deadlines through 2028. External fittings excluded from width measurement Under the revised guidelines, several external components will no longer be counted when measuring the overall width of a motor vehicle. These include rear-view mirrors, devices for indirect vision, guard rails, direction indicators, side foot steps, and r

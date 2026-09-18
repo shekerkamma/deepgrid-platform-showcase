@@ -1,0 +1,7 @@
+# DeepGrid Semi — sources/research-dossier-gap-register-part2
+
+All figures are management projections from DeepGrid's fundraising materials.
+
+## v10 closure — 17 Aug 2026
+
+The three items left open after v9 are now closed or precisely scoped: - Firmographics (source-or-cut). Every firmographic field for Starkenn, Gahan AI, Netrasemi, Sterling Tools × MINIEYE and bitsensing is now individually ledger-linked ( outputs/evidence-ledger.csv, 22 new rows; EV-NTR-03 upgraded to the Economic Times press source, resolving the ₹107 Cr Series A vs ₹125 Cr cumulative discrepancy). Two Gahan fields are cut, not asserted: the "10 TB road data" and "Tata/Ather OEM pilots" are now "not independently verified" and "no public OEM confirmation". Starkenn funding ($2.0m) and headcount trend (−15.8% YoY), and Gahan's 10 patents, are recorded company/aggregator-asserted at LOW confidence — directional, not verified. - Foundry row (source-or-cut). The supplier-side foundry row is now partially evidenced: the process node is sourced (TSMC 12nm for Netrasemi A2000, EV-NTR-02; India's domestic option Tata Electronics Dholera 28nm, ISM-approved, EV-FND-01 ). Mask cost, lead time and wafer commitment/NRE remain a documented GAP — no public per-program disclosure norm exists, and no citable source was retrievable this run. The standing rule is unchanged: do not carry an ASIC cost line into a board paper until the economics are sourced. - HTML artifact. client-package/site/i

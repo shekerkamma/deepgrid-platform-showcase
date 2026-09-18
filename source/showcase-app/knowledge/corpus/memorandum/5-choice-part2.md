@@ -1,0 +1,27 @@
+# DeepGrid Semi — memorandum/5-choice-part2
+
+All figures are management projections from DeepGrid's fundraising materials.
+
+## The round clears self-funding by ₹10.1 crore, and both missing lines land inside it
+
+FY2032 gross margin · not published · 87.4% · not published · Model, base only · First EBITDA-positive year · not published · FY2028 · not published · Model, base only · Minimum cash balance ₹ Cr · not published · 10.10 · not published · Model, base only · Year of the trough · not published · FY2029 · not published · Model, base only · Contingency line · — · none · — · Use of funds — four lines, no reserve · The workbook switches scenarios live, so the cash schedule does recompute — but only the base case is published. A downside cash trough is a diligence request, not a number anyone has seen. Ask for it before the term sheet: it is one cell.
+
+## Four load-bearing assumptions, and how hard each one leans
+
+Driver · The assumption · Evidence behind it · Confidence · FY2027 revenue mix · ₹1.20 Cr of the ₹1.70 Cr first year — 71% — comes from the defence humanoid line · Substantiated delivered revenue is ₹23.01L . The assumption is 5.2× that, on the single largest line of the first year. · Weak · Opex behaviour in a miss · Operating expense is modelled as a percentage of revenue, so a revenue shortfall shrinks cost with it · Real payroll, R&D and the ₹30 Cr tapeout do not shrink because sales miss. This is what makes “a 70% miss still self-funds” true in the model and untested in reality. · Weak · Unit capture · AD2 takes 1.8% of a 1.0M mandated pool; no line exceeds 2% of its own market · Pool sized from MoRTH and third-party sources; the capture rates are management assumptions. Every pool is global while the serviceable market is the India slice. · Moderate · Die cost at volume · $3.88 per die, breaking even on NRE at 174,908 chips against ~217,000 planned through FY2032 · Foundry quotation with 94.5% mature-node yield and a 300 mm wafer at a volume-committed price. A 20% volume miss pushes breakeven past the plan’s final year. · Strong ·
+
+## Four load-bearing assumptions, and how hard each one leans
+
+Prices are held flat across all six years, so there is no price lever hidden in the forecast — every rupee of growth is volume. That is a modelling choice worth crediting: it removes the easiest place to bury an assumption, and it means a 10% ASP erosion on the two concentrated lines takes roughly ₹72 Cr straight off FY2032 with nothing to offset it.
+
+## The scenario set tests the wrong variable
+
+The model runs Bull, Bear and Downside by scaling revenue — 1.2×, 0.75×, 0.3× — and adjusting opex as a percentage of it. Every one of those is a demand test. But demand is the most defensible thing in this plan: it is legislated, the pools are sourced, and no line assumes more than 2% capture. The variable that actually breaks this company is schedule. A tapeout slip pushes qualified silicon past H1 2028 into a window where the mandate has already closed, the FPGA lane is competing on price, and the fixed cost block — payroll, R&D, the remaining mask commitment — keeps running at full rate because none of it is a function of revenue. That case is not modelled anywhere. Ask for two more scenarios before the term sheet: a six-month silicon slip , and a fixed-cost floor in which opex holds at plan while revenue misses. Those are the two that decide whether ₹45 Cr is the right number. Recommendation
+
+## Proceed — and re-cut the use of funds before the term sheet, not after
+
+The case holds. The asset is real, the demand is legislated, the unit economics are the strongest part of the plan, and the staged tapeout already gives an investor four places to stop. Nothing found here argues against funding it. What it argues against is funding it on the current allocation . Four lines and no reserve, with a ₹10.1 Cr trough and two dated obligations that appear nowhere, is a use of funds that has not been asked the questions above. All four fixes are arithmetic, none of them changes the business, and all four are cheaper to make now than to discover in FY2029. 01 Quote and insert the two missing lines. Patent conversion by March 2027 and a functional-safety assessor. If they clear ₹10 Cr combined, the round is short and should be sized up rather than squeezed. Before term sheet 02 Reclassify the CGTMSE facility as declared contingency. It is not in the cash schedule and it is almost exactly the size of the trough. Calling it working capital hides the only reserve the plan has. Before term sheet 03 Re-forecast FY2027 without the ₹1.2 Cr defence assumption. Rebuild the first year from the delivered ₹23.01L plus the government lane, and show what the FPGA window actually earns. Before term sheet
+
+## Proceed — and re-cut the use of funds before the term sheet, not after
+
+04 Publish a schedule-slip and a fixed-cost-floor scenario. The existing downside tests demand, which is the defensible half. Test the half that is not. Before term sheet One structural note that no fix reaches: the recommended path has no revenue line in the model. The government and PSU lane is the first lane the strategy calls for and the only one transactable today, and it appears nowhere in the fifteen-line build — folded, at best, into the mirror and truck-kit lines it is meant to precede. A plan whose first eighteen months are carried by a channel the forecast does not name is a plan that cannot be tracked against itself. Give it a line.

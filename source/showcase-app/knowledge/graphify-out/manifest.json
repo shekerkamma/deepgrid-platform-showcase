@@ -1,0 +1,956 @@
+{
+  "deck/001-overview.md": {
+    "mtime": 1789758570.986276,
+    "seen": 1789758699.7673829,
+    "ast_hash": "5071076ab2f37717153bf35693e22ad2",
+    "semantic_hash": "5071076ab2f37717153bf35693e22ad2"
+  },
+  "deck/007-road-autonomy-part1.md": {
+    "mtime": 1789758570.9988225,
+    "seen": 1789758699.7673864,
+    "ast_hash": "fae6217a6b7cb50fb6f9456ea4efbdc4",
+    "semantic_hash": "fae6217a6b7cb50fb6f9456ea4efbdc4"
+  },
+  "deck/007-road-autonomy-part2.md": {
+    "mtime": 1789758570.9991786,
+    "seen": 1789758699.767388,
+    "ast_hash": "fd854f5489cad67b2b7214c98c90d758",
+    "semantic_hash": "fd854f5489cad67b2b7214c98c90d758"
+  },
+  "deck/024-frame-budget-and-sensors.md": {
+    "mtime": 1789758570.9869947,
+    "seen": 1789758699.7673895,
+    "ast_hash": "55f2c9c164cd4d1ebed712dd53841b05",
+    "semantic_hash": "55f2c9c164cd4d1ebed712dd53841b05"
+  },
+  "deck/031-silicon-and-compute-part1.md": {
+    "mtime": 1789758570.9993443,
+    "seen": 1789758699.7673907,
+    "ast_hash": "05fda33405355d25bf604db67a593b13",
+    "semantic_hash": "05fda33405355d25bf604db67a593b13"
+  },
+  "deck/031-silicon-and-compute-part2.md": {
+    "mtime": 1789758570.9996066,
+    "seen": 1789758699.767392,
+    "ast_hash": "407570eb7b13716fc3b3b1a03c996062",
+    "semantic_hash": "407570eb7b13716fc3b3b1a03c996062"
+  },
+  "deck/049-fleet-and-mobility-part1.md": {
+    "mtime": 1789758570.9997513,
+    "seen": 1789758699.7673936,
+    "ast_hash": "7c6cc3cf067bb2b98ee887de9ce12294",
+    "semantic_hash": "7c6cc3cf067bb2b98ee887de9ce12294"
+  },
+  "deck/049-fleet-and-mobility-part2.md": {
+    "mtime": 1789758570.9998941,
+    "seen": 1789758699.7673945,
+    "ast_hash": "b9b854f445a6675d9ed2f1fe04b16e78",
+    "semantic_hash": "b9b854f445a6675d9ed2f1fe04b16e78"
+  },
+  "deck/066-sensors-and-robotics-part1.md": {
+    "mtime": 1789758571.000045,
+    "seen": 1789758699.7673957,
+    "ast_hash": "f5357d3342cb95ceb1d9c3061485bb09",
+    "semantic_hash": "f5357d3342cb95ceb1d9c3061485bb09"
+  },
+  "deck/066-sensors-and-robotics-part2.md": {
+    "mtime": 1789758571.0003412,
+    "seen": 1789758699.7673976,
+    "ast_hash": "9a1117641a377b455befb141da2cce07",
+    "semantic_hash": "9a1117641a377b455befb141da2cce07"
+  },
+  "deck/066-sensors-and-robotics-part3.md": {
+    "mtime": 1789758571.000465,
+    "seen": 1789758699.7673986,
+    "ast_hash": "ae40e01ecb27d7ace974a41cf0e0f7a2",
+    "semantic_hash": "ae40e01ecb27d7ace974a41cf0e0f7a2"
+  },
+  "deck/097-portfolio-economics.md": {
+    "mtime": 1789758570.9870725,
+    "seen": 1789758699.7674,
+    "ast_hash": "b0fce093d7077566480bf89d6e87c7b2",
+    "semantic_hash": "b0fce093d7077566480bf89d6e87c7b2"
+  },
+  "memorandum/1-summary.md": {
+    "mtime": 1789758570.9870725,
+    "seen": 1789758699.767433,
+    "ast_hash": "2f02f85990851422b258ddfc4bbd4f6e",
+    "semantic_hash": "2f02f85990851422b258ddfc4bbd4f6e"
+  },
+  "memorandum/2-business.md": {
+    "mtime": 1789758570.987641,
+    "seen": 1789758699.7674344,
+    "ast_hash": "fc53bb2f1ef0255caec1f92bf6d3973e",
+    "semantic_hash": "fc53bb2f1ef0255caec1f92bf6d3973e"
+  },
+  "memorandum/3-technology.md": {
+    "mtime": 1789758570.987701,
+    "seen": 1789758699.7674356,
+    "ast_hash": "0b8d046a063b5554e726555a0b19601b",
+    "semantic_hash": "0b8d046a063b5554e726555a0b19601b"
+  },
+  "memorandum/4-usecases-part1.md": {
+    "mtime": 1789758571.000465,
+    "seen": 1789758699.7674363,
+    "ast_hash": "381163ba7abbcafb1ae3fef4492f15d2",
+    "semantic_hash": "381163ba7abbcafb1ae3fef4492f15d2"
+  },
+  "memorandum/4-usecases-part2.md": {
+    "mtime": 1789758571.0006967,
+    "seen": 1789758699.7674375,
+    "ast_hash": "4c1b28d45a914404adda141de141d469",
+    "semantic_hash": "4c1b28d45a914404adda141de141d469"
+  },
+  "memorandum/5-choice-part1.md": {
+    "mtime": 1789758571.000811,
+    "seen": 1789758699.7674387,
+    "ast_hash": "5d2a2dcdfade058adf424ae27931f399",
+    "semantic_hash": "5d2a2dcdfade058adf424ae27931f399"
+  },
+  "memorandum/5-choice-part2.md": {
+    "mtime": 1789758571.0009387,
+    "seen": 1789758699.76744,
+    "ast_hash": "764b374c5700b820e579a49b97e50072",
+    "semantic_hash": "764b374c5700b820e579a49b97e50072"
+  },
+  "memorandum/6-numbers.md": {
+    "mtime": 1789758570.9877646,
+    "seen": 1789758699.7674415,
+    "ast_hash": "c8e4ca0e84bd88b04a03e0700344f4c4",
+    "semantic_hash": "c8e4ca0e84bd88b04a03e0700344f4c4"
+  },
+  "products/a100-1.md": {
+    "mtime": 1789758570.9839869,
+    "seen": 1789758699.7674427,
+    "ast_hash": "3fe3b2239c890f2fd9c878a682a42433",
+    "semantic_hash": "3fe3b2239c890f2fd9c878a682a42433"
+  },
+  "products/a100-2.md": {
+    "mtime": 1789758570.9839187,
+    "seen": 1789758699.7674441,
+    "ast_hash": "e462ab475694882464a56ef86f2be061",
+    "semantic_hash": "e462ab475694882464a56ef86f2be061"
+  },
+  "products/a100-4.md": {
+    "mtime": 1789758570.983721,
+    "seen": 1789758699.7674453,
+    "ast_hash": "1ca453dc909c9e385c4e682cf487cde6",
+    "semantic_hash": "1ca453dc909c9e385c4e682cf487cde6"
+  },
+  "products/ad0.md": {
+    "mtime": 1789758570.9833596,
+    "seen": 1789758699.7674463,
+    "ast_hash": "0dbc91b2d71a82dd6d8d2ad91907bd4d",
+    "semantic_hash": "0dbc91b2d71a82dd6d8d2ad91907bd4d"
+  },
+  "products/ad1.md": {
+    "mtime": 1789758570.9835932,
+    "seen": 1789758699.7674472,
+    "ast_hash": "37e9b2e47e1f3ba9f1185fa5628aada2",
+    "semantic_hash": "37e9b2e47e1f3ba9f1185fa5628aada2"
+  },
+  "products/ad2.md": {
+    "mtime": 1789758570.9797063,
+    "seen": 1789758699.7674484,
+    "ast_hash": "73473efcab93533b6abb82fda847d73a",
+    "semantic_hash": "73473efcab93533b6abb82fda847d73a"
+  },
+  "products/agv.md": {
+    "mtime": 1789758570.9842799,
+    "seen": 1789758699.7674494,
+    "ast_hash": "6e3369f3bb2177142a03d65a28b774d2",
+    "semantic_hash": "6e3369f3bb2177142a03d65a28b774d2"
+  },
+  "products/chipset.md": {
+    "mtime": 1789758570.9834805,
+    "seen": 1789758699.7674503,
+    "ast_hash": "674c5071bb185ed13d30f7e4ef4f0f74",
+    "semantic_hash": "674c5071bb185ed13d30f7e4ef4f0f74"
+  },
+  "products/d100.md": {
+    "mtime": 1789758570.9844875,
+    "seen": 1789758699.7674518,
+    "ast_hash": "5f6029fb4f96c04705c829dcea35ef85",
+    "semantic_hash": "5f6029fb4f96c04705c829dcea35ef85"
+  },
+  "products/dhumr.md": {
+    "mtime": 1789758570.9838483,
+    "seen": 1789758699.7674527,
+    "ast_hash": "197bb775bdd78cdaea705a6732009f76",
+    "semantic_hash": "197bb775bdd78cdaea705a6732009f76"
+  },
+  "products/h100.md": {
+    "mtime": 1789758570.984774,
+    "seen": 1789758699.767454,
+    "ast_hash": "e572738011e34c0993d38b428f4b7fad",
+    "semantic_hash": "e572738011e34c0993d38b428f4b7fad"
+  },
+  "products/radar.md": {
+    "mtime": 1789758570.9848616,
+    "seen": 1789758699.7674546,
+    "ast_hash": "6bb7cd66bd494f785bd8bb4a5c85b2d8",
+    "semantic_hash": "6bb7cd66bd494f785bd8bb4a5c85b2d8"
+  },
+  "products/t100.md": {
+    "mtime": 1789758570.9835367,
+    "seen": 1789758699.7674563,
+    "ast_hash": "6da4dcff032732c6418576523155acc0",
+    "semantic_hash": "6da4dcff032732c6418576523155acc0"
+  },
+  "products/taas.md": {
+    "mtime": 1789758570.9834266,
+    "seen": 1789758699.7674572,
+    "ast_hash": "5f51be87cae16699257a6764d32a5bed",
+    "semantic_hash": "5f51be87cae16699257a6764d32a5bed"
+  },
+  "products/thermal.md": {
+    "mtime": 1789758570.9846406,
+    "seen": 1789758699.7674582,
+    "ast_hash": "486d35104930bbd2beb152ada84133eb",
+    "semantic_hash": "486d35104930bbd2beb152ada84133eb"
+  },
+  "sources/competitive-dossier-act-iii-different-job-note-and-leave.md": {
+    "mtime": 1789758570.9900627,
+    "seen": 1789758699.7674735,
+    "ast_hash": "e4e9af2b678336945a8b84976a22dbc2",
+    "semantic_hash": "e4e9af2b678336945a8b84976a22dbc2"
+  },
+  "sources/competitive-dossier-act-iii-narrative-rivals-counter-the-cla.md": {
+    "mtime": 1789758570.990334,
+    "seen": 1789758699.7674744,
+    "ast_hash": "986d26fb50b285a6a5b195ec80e0f835",
+    "semantic_hash": "986d26fb50b285a6a5b195ec80e0f835"
+  },
+  "sources/competitive-dossier-act-iii-substitute-displacement-plan.md": {
+    "mtime": 1789758570.9900074,
+    "seen": 1789758699.7674756,
+    "ast_hash": "d20a0dd5075de1827f92906fe6424731",
+    "semantic_hash": "d20a0dd5075de1827f92906fe6424731"
+  },
+  "sources/competitive-dossier-act-iii-supplier-side-the-cost-floor.md": {
+    "mtime": 1789758570.9903965,
+    "seen": 1789758699.7674768,
+    "ast_hash": "3be03f4c9e3eb786309b2434f91fa3a2",
+    "semantic_hash": "3be03f4c9e3eb786309b2434f91fa3a2"
+  },
+  "sources/competitive-dossier-competitive-strategy-build-buy-partner.md": {
+    "mtime": 1789758570.9891536,
+    "seen": 1789758699.767479,
+    "ast_hash": "bd002f6c78cebb6d0110787d54e687f4",
+    "semantic_hash": "bd002f6c78cebb6d0110787d54e687f4"
+  },
+  "sources/competitive-dossier-competitive-strategy-lifecycle-economics.md": {
+    "mtime": 1789758570.9893212,
+    "seen": 1789758699.7674825,
+    "ast_hash": "000bfb10fdaaaa9da3cefdc160363e49",
+    "semantic_hash": "000bfb10fdaaaa9da3cefdc160363e49"
+  },
+  "sources/competitive-dossier-competitive-strategy-relationship-patter.md": {
+    "mtime": 1789758570.989437,
+    "seen": 1789758699.7674851,
+    "ast_hash": "cae94270b163ad84b12de8beb8ba48a9",
+    "semantic_hash": "cae94270b163ad84b12de8beb8ba48a9"
+  },
+  "sources/competitive-dossier-competitive-strategy-strategic-posture.md": {
+    "mtime": 1789758570.9898674,
+    "seen": 1789758699.7674866,
+    "ast_hash": "133abd7454ba0281314d4100c5d8cb2e",
+    "semantic_hash": "133abd7454ba0281314d4100c5d8cb2e"
+  },
+  "sources/competitive-dossier-competitive-strategy-the-value-net.md": {
+    "mtime": 1789758570.9894938,
+    "seen": 1789758699.7674875,
+    "ast_hash": "fdca87236c751ac95a71e72b54e70462",
+    "semantic_hash": "fdca87236c751ac95a71e72b54e70462"
+  },
+  "sources/competitive-dossier-narrative.md": {
+    "mtime": 1789758570.9883192,
+    "seen": 1789758699.7674925,
+    "ast_hash": "a182a4547ca42f780408ff9c80e049bd",
+    "semantic_hash": "a182a4547ca42f780408ff9c80e049bd"
+  },
+  "sources/competitive-dossier-p-act.md": {
+    "mtime": 1789758570.9905138,
+    "seen": 1789758699.7674937,
+    "ast_hash": "ebf1c90af59adeab9b27feec2c67d307",
+    "semantic_hash": "ebf1c90af59adeab9b27feec2c67d307"
+  },
+  "sources/competitive-dossier-p-adj.md": {
+    "mtime": 1789758570.9906964,
+    "seen": 1789758699.7674956,
+    "ast_hash": "41e39d808efa390de2e5ecec16cff271",
+    "semantic_hash": "41e39d808efa390de2e5ecec16cff271"
+  },
+  "sources/competitive-dossier-p-warn.md": {
+    "mtime": 1789758570.9905746,
+    "seen": 1789758699.7674966,
+    "ast_hash": "3a2cda2f80577a395618663ea681e451",
+    "semantic_hash": "3a2cda2f80577a395618663ea681e451"
+  },
+  "sources/competitive-dossier-scqa.md": {
+    "mtime": 1789758570.9884381,
+    "seen": 1789758699.767499,
+    "ast_hash": "774929bb55f52bcabb0bdd5dbe18029d",
+    "semantic_hash": "774929bb55f52bcabb0bdd5dbe18029d"
+  },
+  "sources/competitive-dossier-the-field-competitive-universe.md": {
+    "mtime": 1789758570.9896414,
+    "seen": 1789758699.7675016,
+    "ast_hash": "678f5941f44cc52ccff2a4b7302d8df1",
+    "semantic_hash": "678f5941f44cc52ccff2a4b7302d8df1"
+  },
+  "sources/competitive-dossier-the-field-executive-comparison.md": {
+    "mtime": 1789758570.9897938,
+    "seen": 1789758699.7675033,
+    "ast_hash": "18872dee05a87a1801b98d70556ca59d",
+    "semantic_hash": "18872dee05a87a1801b98d70556ca59d"
+  },
+  "sources/competitive-dossier-the-field-supply-dependency.md": {
+    "mtime": 1789758570.9892173,
+    "seen": 1789758699.7675047,
+    "ast_hash": "56f782b397f0e22aa86f05d1e3cfccf7",
+    "semantic_hash": "56f782b397f0e22aa86f05d1e3cfccf7"
+  },
+  "sources/deepgrid-semi-competitor-analysis-part1.md": {
+    "mtime": 1789758571.0054505,
+    "seen": 1789758699.767506,
+    "ast_hash": "05acd27acaf2bf20623085a756b408ae",
+    "semantic_hash": "05acd27acaf2bf20623085a756b408ae"
+  },
+  "sources/deepgrid-semi-competitor-analysis-part2.md": {
+    "mtime": 1789758571.0055733,
+    "seen": 1789758699.7675068,
+    "ast_hash": "344926fd13fbc5033b3f7d304bcf2a90",
+    "semantic_hash": "344926fd13fbc5033b3f7d304bcf2a90"
+  },
+  "sources/deepgrid-semi-competitor-analysis-part3.md": {
+    "mtime": 1789758571.005667,
+    "seen": 1789758699.7675083,
+    "ast_hash": "3e6e40265bb04f99a4cab289b6405ffc",
+    "semantic_hash": "3e6e40265bb04f99a4cab289b6405ffc"
+  },
+  "sources/deepgrid-semi-competitor-analysis-part4.md": {
+    "mtime": 1789758571.0059025,
+    "seen": 1789758699.767509,
+    "ast_hash": "9f8b388373a93c7917c728552efc64a1",
+    "semantic_hash": "9f8b388373a93c7917c728552efc64a1"
+  },
+  "sources/deepgrid-semi-confidential-information-memorandum-june-2026--part1.md": {
+    "mtime": 1789758571.0009387,
+    "seen": 1789758699.7675102,
+    "ast_hash": "6145247059f7e43fdbc761838c12d0fc",
+    "semantic_hash": "6145247059f7e43fdbc761838c12d0fc"
+  },
+  "sources/deepgrid-semi-confidential-information-memorandum-june-2026--part10.md": {
+    "mtime": 1789758571.0048034,
+    "seen": 1789758699.7675116,
+    "ast_hash": "f788071c4ff967f4a7ad13c4481848e9",
+    "semantic_hash": "f788071c4ff967f4a7ad13c4481848e9"
+  },
+  "sources/deepgrid-semi-confidential-information-memorandum-june-2026--part2.md": {
+    "mtime": 1789758571.0012667,
+    "seen": 1789758699.7675126,
+    "ast_hash": "e47809cb2c5492d2e060adf49a0e3a81",
+    "semantic_hash": "e47809cb2c5492d2e060adf49a0e3a81"
+  },
+  "sources/deepgrid-semi-confidential-information-memorandum-june-2026--part3.md": {
+    "mtime": 1789758571.0014315,
+    "seen": 1789758699.7675135,
+    "ast_hash": "3305b2c5448ba8b9c89e911717628995",
+    "semantic_hash": "3305b2c5448ba8b9c89e911717628995"
+  },
+  "sources/deepgrid-semi-confidential-information-memorandum-june-2026--part4.md": {
+    "mtime": 1789758571.0015159,
+    "seen": 1789758699.7675147,
+    "ast_hash": "29ddafbf32148e41592d6f7545073fa3",
+    "semantic_hash": "29ddafbf32148e41592d6f7545073fa3"
+  },
+  "sources/deepgrid-semi-confidential-information-memorandum-june-2026--part5.md": {
+    "mtime": 1789758571.0015986,
+    "seen": 1789758699.7675157,
+    "ast_hash": "98abc36441c4edcd99ecff17e856a7b9",
+    "semantic_hash": "98abc36441c4edcd99ecff17e856a7b9"
+  },
+  "sources/deepgrid-semi-confidential-information-memorandum-june-2026--part6.md": {
+    "mtime": 1789758571.0021904,
+    "seen": 1789758699.7675166,
+    "ast_hash": "09f5e2ecec4f92cbb62f997232dd1b18",
+    "semantic_hash": "09f5e2ecec4f92cbb62f997232dd1b18"
+  },
+  "sources/deepgrid-semi-confidential-information-memorandum-june-2026--part7.md": {
+    "mtime": 1789758571.0039508,
+    "seen": 1789758699.7675178,
+    "ast_hash": "53ea099b3d91753cf87ee4b8e047c976",
+    "semantic_hash": "53ea099b3d91753cf87ee4b8e047c976"
+  },
+  "sources/deepgrid-semi-confidential-information-memorandum-june-2026--part8.md": {
+    "mtime": 1789758571.0043795,
+    "seen": 1789758699.7675192,
+    "ast_hash": "ca059ed4ea2cac6d8d7d90085b3a036a",
+    "semantic_hash": "ca059ed4ea2cac6d8d7d90085b3a036a"
+  },
+  "sources/deepgrid-semi-confidential-information-memorandum-june-2026--part9.md": {
+    "mtime": 1789758571.0045989,
+    "seen": 1789758699.7675202,
+    "ast_hash": "e303f3cbb0f0bf5c822c6aabe072aa4d",
+    "semantic_hash": "e303f3cbb0f0bf5c822c6aabe072aa4d"
+  },
+  "sources/research-accept-case-corrected-note.md": {
+    "mtime": 1789758570.9908712,
+    "seen": 1789758699.7675254,
+    "ast_hash": "f8e7b5c5aeb7efb639e2564f03859e0c",
+    "semantic_hash": "f8e7b5c5aeb7efb639e2564f03859e0c"
+  },
+  "sources/research-aptiv-gen6-india.md": {
+    "mtime": 1789758570.9910624,
+    "seen": 1789758699.7675266,
+    "ast_hash": "cc8d802286d128ec1e60c59628570d67",
+    "semantic_hash": "cc8d802286d128ec1e60c59628570d67"
+  },
+  "sources/research-brief.md": {
+    "mtime": 1789758570.9911811,
+    "seen": 1789758699.7675276,
+    "ast_hash": "ae01551a7806277adfa681f346515d06",
+    "semantic_hash": "ae01551a7806277adfa681f346515d06"
+  },
+  "sources/research-competitive-evidence-brief.md": {
+    "mtime": 1789758570.9913027,
+    "seen": 1789758699.767529,
+    "ast_hash": "bac85d91726cf11457df805d65341931",
+    "semantic_hash": "bac85d91726cf11457df805d65341931"
+  },
+  "sources/research-competitive-evidence-ledger.md": {
+    "mtime": 1789758570.9915123,
+    "seen": 1789758699.7675312,
+    "ast_hash": "d3d87c76b6e218af92b82b4a5631aec1",
+    "semantic_hash": "d3d87c76b6e218af92b82b4a5631aec1"
+  },
+  "sources/research-competitive-evidence-metrics.md": {
+    "mtime": 1789758570.9916136,
+    "seen": 1789758699.7675326,
+    "ast_hash": "c100f242c62dc9f3489b5514cf3ab9ab",
+    "semantic_hash": "c100f242c62dc9f3489b5514cf3ab9ab"
+  },
+  "sources/research-competitive-evidence-scoring.md": {
+    "mtime": 1789758570.9916778,
+    "seen": 1789758699.7675335,
+    "ast_hash": "491ba46ce95e9cac8ccdf1fbe9c139cf",
+    "semantic_hash": "491ba46ce95e9cac8ccdf1fbe9c139cf"
+  },
+  "sources/research-dossier-gap-register-part1.md": {
+    "mtime": 1789758571.004957,
+    "seen": 1789758699.7675352,
+    "ast_hash": "81732292f3433b2d582503c4b34ac9eb",
+    "semantic_hash": "81732292f3433b2d582503c4b34ac9eb"
+  },
+  "sources/research-dossier-gap-register-part2.md": {
+    "mtime": 1789758571.0050964,
+    "seen": 1789758699.7675364,
+    "ast_hash": "41f16efad85c0d0804c010d688b73c53",
+    "semantic_hash": "41f16efad85c0d0804c010d688b73c53"
+  },
+  "sources/research-drivebuddyai-expansion.md": {
+    "mtime": 1789758570.9917321,
+    "seen": 1789758699.7675374,
+    "ast_hash": "085164b0c0cb3226cc8b0ef990120934",
+    "semantic_hash": "085164b0c0cb3226cc8b0ef990120934"
+  },
+  "sources/research-drivebuddyai-ir.md": {
+    "mtime": 1789758570.991782,
+    "seen": 1789758699.7675385,
+    "ast_hash": "4f200ec08063e15b1e778e38f75497fd",
+    "semantic_hash": "4f200ec08063e15b1e778e38f75497fd"
+  },
+  "sources/research-exa-findings-deck-contradictions.md": {
+    "mtime": 1789758570.9918475,
+    "seen": 1789758699.7675395,
+    "ast_hash": "2bc06d107a8eb7e73d418f712dc3615d",
+    "semantic_hash": "2bc06d107a8eb7e73d418f712dc3615d"
+  },
+  "sources/research-gsr-834-862-gazette.md": {
+    "mtime": 1789758570.9919436,
+    "seen": 1789758699.7675405,
+    "ast_hash": "6dfcc2605c65cbde4176c4b6c9811c83",
+    "semantic_hash": "6dfcc2605c65cbde4176c4b6c9811c83"
+  },
+  "sources/research-im-review-sources.md": {
+    "mtime": 1789758570.9920049,
+    "seen": 1789758699.7675414,
+    "ast_hash": "f7d417aa3c8d8e6dde1b470931daceed",
+    "semantic_hash": "f7d417aa3c8d8e6dde1b470931daceed"
+  },
+  "sources/research-im-review-stage1-audit-part1.md": {
+    "mtime": 1789758571.0052903,
+    "seen": 1789758699.7675426,
+    "ast_hash": "c3246a612c44d3bbac4dca04e2f05d3b",
+    "semantic_hash": "c3246a612c44d3bbac4dca04e2f05d3b"
+  },
+  "sources/research-im-review-stage1-audit-part2.md": {
+    "mtime": 1789758571.0053632,
+    "seen": 1789758699.7675438,
+    "ast_hash": "c06718a5b885d3357fa0075fdba27089",
+    "semantic_hash": "c06718a5b885d3357fa0075fdba27089"
+  },
+  "sources/research-im-review-stage2-gaps.md": {
+    "mtime": 1789758570.9920723,
+    "seen": 1789758699.7675447,
+    "ast_hash": "9da407bce2b0ca6834a62f36da68e28d",
+    "semantic_hash": "9da407bce2b0ca6834a62f36da68e28d"
+  },
+  "sources/research-india-adas-dates.md": {
+    "mtime": 1789758570.992133,
+    "seen": 1789758699.767546,
+    "ast_hash": "58deff082c5e262fc791f2b184572dd9",
+    "semantic_hash": "58deff082c5e262fc791f2b184572dd9"
+  },
+  "sources/research-model-review-extract.md": {
+    "mtime": 1789758570.9922538,
+    "seen": 1789758699.7675467,
+    "ast_hash": "df1b510475b047d842be6298909ced9d",
+    "semantic_hash": "df1b510475b047d842be6298909ced9d"
+  },
+  "sources/research-model-review-findings.md": {
+    "mtime": 1789758570.9923987,
+    "seen": 1789758699.767548,
+    "ast_hash": "4c65eb1a8f56d155df07728826f2c392",
+    "semantic_hash": "4c65eb1a8f56d155df07728826f2c392"
+  },
+  "sources/research-model-review-story-pack.md": {
+    "mtime": 1789758570.992628,
+    "seen": 1789758699.7675493,
+    "ast_hash": "c8c267004df94317ef2bdb14457efe71",
+    "semantic_hash": "c8c267004df94317ef2bdb14457efe71"
+  },
+  "sources/research-reconciliation.md": {
+    "mtime": 1789758570.992731,
+    "seen": 1789758699.7675505,
+    "ast_hash": "51ec1dd265f8fe76441226a0187e5305",
+    "semantic_hash": "51ec1dd265f8fe76441226a0187e5305"
+  },
+  "sources/research-source-or-cut-netrasemi-sterling.md": {
+    "mtime": 1789758570.992862,
+    "seen": 1789758699.7675514,
+    "ast_hash": "d0c2581b3a0e54a07e4aec199c2b4129",
+    "semantic_hash": "d0c2581b3a0e54a07e4aec199c2b4129"
+  },
+  "sources/research-sterling-minieye-filing.md": {
+    "mtime": 1789758570.9933949,
+    "seen": 1789758699.7675526,
+    "ast_hash": "16ad2fe1dea750db242e93b208df7bce",
+    "semantic_hash": "16ad2fe1dea750db242e93b208df7bce"
+  },
+  "sources/research-stradvision-india-cv.md": {
+    "mtime": 1789758570.9940772,
+    "seen": 1789758699.7675536,
+    "ast_hash": "96f4596a217ef60c1da7f14dda5c672e",
+    "semantic_hash": "96f4596a217ef60c1da7f14dda5c672e"
+  },
+  "sources/research-tapeout-decision-memo.md": {
+    "mtime": 1789758570.9944537,
+    "seen": 1789758699.7675548,
+    "ast_hash": "1fcff835e25fcce7623479048bb0acdf",
+    "semantic_hash": "1fcff835e25fcce7623479048bb0acdf"
+  },
+  "sources/research-zf-india-nomination.md": {
+    "mtime": 1789758570.9946473,
+    "seen": 1789758699.7675555,
+    "ast_hash": "6516c4ae290721c61aacd0fdfe45d00a",
+    "semantic_hash": "6516c4ae290721c61aacd0fdfe45d00a"
+  },
+  "sources/use-cases-scope.md": {
+    "mtime": 1789758570.9907484,
+    "seen": 1789758699.767557,
+    "ast_hash": "f1209c65c176a3096ad2d427df31f310",
+    "semantic_hash": "f1209c65c176a3096ad2d427df31f310"
+  },
+  "use-cases/UC-01.md": {
+    "mtime": 1789758570.9848616,
+    "seen": 1789758699.7675579,
+    "ast_hash": "253ecd6afc9c27ec98a2c51576f666a6",
+    "semantic_hash": "253ecd6afc9c27ec98a2c51576f666a6"
+  },
+  "use-cases/UC-02.md": {
+    "mtime": 1789758570.9858813,
+    "seen": 1789758699.767559,
+    "ast_hash": "e0e6c5e8835ec6682b9890e657680bc3",
+    "semantic_hash": "e0e6c5e8835ec6682b9890e657680bc3"
+  },
+  "use-cases/UC-03.md": {
+    "mtime": 1789758570.9859898,
+    "seen": 1789758699.7675602,
+    "ast_hash": "71afab5ac66e9cd9dcb62676b9181d46",
+    "semantic_hash": "71afab5ac66e9cd9dcb62676b9181d46"
+  },
+  "use-cases/UC-04.md": {
+    "mtime": 1789758570.9860456,
+    "seen": 1789758699.7675612,
+    "ast_hash": "fe411873110d1cf3a8d917480ef42e31",
+    "semantic_hash": "fe411873110d1cf3a8d917480ef42e31"
+  },
+  "use-cases/UC-05.md": {
+    "mtime": 1789758570.986097,
+    "seen": 1789758699.7675624,
+    "ast_hash": "360fcdc6e8ba7a56055d90ea3c48a17f",
+    "semantic_hash": "360fcdc6e8ba7a56055d90ea3c48a17f"
+  },
+  "use-cases/UC-06.md": {
+    "mtime": 1789758570.986205,
+    "seen": 1789758699.7675636,
+    "ast_hash": "5a39ba0c98b9a731ddddd85932bef76d",
+    "semantic_hash": "5a39ba0c98b9a731ddddd85932bef76d"
+  },
+  "use-cases/boundary.md": {
+    "mtime": 1789758570.986276,
+    "seen": 1789758699.7675648,
+    "ast_hash": "778cdc3c0a241164f01520e9e04f5bc4",
+    "semantic_hash": "778cdc3c0a241164f01520e9e04f5bc4"
+  },
+  "sources/business-plan-v2-sheet-assumptions.md": {
+    "mtime": 1789754778.9477468,
+    "seen": 1789754834.8216054,
+    "ast_hash": "88011b9d85dabf77f07aa904f1da432b",
+    "semantic_hash": ""
+  },
+  "sources/business-plan-v2-sheet-cgtmse-debt.md": {
+    "mtime": 1789758570.9982316,
+    "seen": 1789758699.7674603,
+    "ast_hash": "7927089b1d833327e8a3662f7ae78914",
+    "semantic_hash": "7927089b1d833327e8a3662f7ae78914"
+  },
+  "sources/business-plan-v2-sheet-cover-page.md": {
+    "mtime": 1789758570.9968607,
+    "seen": 1789758699.7674615,
+    "ast_hash": "a0c395118c9f2ddb589cc143e9fb0487",
+    "semantic_hash": "a0c395118c9f2ddb589cc143e9fb0487"
+  },
+  "sources/business-plan-v2-sheet-market.md": {
+    "mtime": 1789758570.9983833,
+    "seen": 1789758699.7674649,
+    "ast_hash": "6540887ae341c6af7c9217108c4f13f8",
+    "semantic_hash": "6540887ae341c6af7c9217108c4f13f8"
+  },
+  "sources/business-plan-v2-sheet-p-l.md": {
+    "mtime": 1789758570.9971306,
+    "seen": 1789758699.767466,
+    "ast_hash": "c9fe51822eb358bfde4b4c7a710ff3ec",
+    "semantic_hash": "c9fe51822eb358bfde4b4c7a710ff3ec"
+  },
+  "sources/business-plan-v2-sheet-revenue-master-part1.md": {
+    "mtime": 1789758571.0059996,
+    "seen": 1789758699.7674673,
+    "ast_hash": "aa93c98a5e845a3d66363db6499263d1",
+    "semantic_hash": "aa93c98a5e845a3d66363db6499263d1"
+  },
+  "sources/business-plan-v2-sheet-revenue-master-part2.md": {
+    "mtime": 1789758571.0062237,
+    "seen": 1789758699.7674685,
+    "ast_hash": "f1adef9a0f23e68bcd2d846c804cc58e",
+    "semantic_hash": "f1adef9a0f23e68bcd2d846c804cc58e"
+  },
+  "sources/business-plan-v2-sheet-sales-summary.md": {
+    "mtime": 1789758570.9974182,
+    "seen": 1789758699.76747,
+    "ast_hash": "15e0ab502efa9fb296f8664f33f904e1",
+    "semantic_hash": "15e0ab502efa9fb296f8664f33f904e1"
+  },
+  "sources/business-plan-v2-sheet-tapeout-expenses.md": {
+    "mtime": 1789758570.998688,
+    "seen": 1789758699.767471,
+    "ast_hash": "5c7ff4cbcf96c84ec030fffb9db52e87",
+    "semantic_hash": "5c7ff4cbcf96c84ec030fffb9db52e87"
+  },
+  "sources/business-plan-v2-sheet-use-of-funds.md": {
+    "mtime": 1789758570.9976437,
+    "seen": 1789758699.7674723,
+    "ast_hash": "96652ba7b3525d56b15b80109bb4a766",
+    "semantic_hash": "96652ba7b3525d56b15b80109bb4a766"
+  },
+  "sources/competitive-dossier-competitive-strategy-counter-move.md": {
+    "mtime": 1789758570.9889042,
+    "seen": 1789758699.7674804,
+    "ast_hash": "3f3d9d489bdfe11ec810d9880b3fef64",
+    "semantic_hash": "3f3d9d489bdfe11ec810d9880b3fef64"
+  },
+  "sources/competitive-dossier-competitive-strategy-executive-action.md": {
+    "mtime": 1789758570.9899523,
+    "seen": 1789758699.7674816,
+    "ast_hash": "cf14e010bded61516d21b313c432eb68",
+    "semantic_hash": "cf14e010bded61516d21b313c432eb68"
+  },
+  "sources/competitive-dossier-competitive-strategy-pricing-reality.md": {
+    "mtime": 1789758570.9890244,
+    "seen": 1789758699.7674842,
+    "ast_hash": "e30f2fe5d14ae12fd2401f998aae9319",
+    "semantic_hash": "e30f2fe5d14ae12fd2401f998aae9319"
+  },
+  "sources/competitive-dossier-competitive-strategy-what-this-changes.md": {
+    "mtime": 1789758570.9895446,
+    "seen": 1789758699.7674887,
+    "ast_hash": "1fa47f9b7ee3f0cb8236dc240d70032e",
+    "semantic_hash": "1fa47f9b7ee3f0cb8236dc240d70032e"
+  },
+  "sources/competitive-dossier-competitive-strategy-where-not-to-compet.md": {
+    "mtime": 1789758570.9889734,
+    "seen": 1789758699.7674901,
+    "ast_hash": "ec624a35943c2c7e198f6be9884691cc",
+    "semantic_hash": "ec624a35943c2c7e198f6be9884691cc"
+  },
+  "sources/competitive-dossier-hostile-questions.md": {
+    "mtime": 1789758570.9877646,
+    "seen": 1789758699.7674916,
+    "ast_hash": "e1a05120fcd226caf951257478fcddb0",
+    "semantic_hash": "e1a05120fcd226caf951257478fcddb0"
+  },
+  "sources/competitive-dossier-pyramid.md": {
+    "mtime": 1789758570.988727,
+    "seen": 1789758699.767498,
+    "ast_hash": "37fd6916abd26d73f16e0fd38c94d15c",
+    "semantic_hash": "37fd6916abd26d73f16e0fd38c94d15c"
+  },
+  "sources/competitive-dossier-the-field-an-unresolved-question.md": {
+    "mtime": 1789758570.989383,
+    "seen": 1789758699.7675,
+    "ast_hash": "d25716c946df82d2092bf13b4e69502d",
+    "semantic_hash": "d25716c946df82d2092bf13b4e69502d"
+  },
+  "sources/financial-model-v3-corrected-sept-2026-sheet-assumptions.md": {
+    "mtime": 1789754778.9460938,
+    "seen": 1789754834.8216608,
+    "ast_hash": "6d34fde6d4bc46c0e9a7916a565d08f0",
+    "semantic_hash": ""
+  },
+  "sources/financial-model-v3-corrected-sept-2026-sheet-cash-flow-runwa.md": {
+    "mtime": 1789758570.996568,
+    "seen": 1789758699.7675214,
+    "ast_hash": "54dfbcfd6da7cf508e06a8116b15ae6c",
+    "semantic_hash": "54dfbcfd6da7cf508e06a8116b15ae6c"
+  },
+  "sources/financial-model-v3-corrected-sept-2026-sheet-demand-tam.md": {
+    "mtime": 1789758570.9967146,
+    "seen": 1789758699.7675223,
+    "ast_hash": "ce69cf846904d54243b8f76d26e4e69e",
+    "semantic_hash": "ce69cf846904d54243b8f76d26e4e69e"
+  },
+  "sources/financial-model-v3-corrected-sept-2026-sheet-p-l.md": {
+    "mtime": 1789758570.995669,
+    "seen": 1789758699.7675235,
+    "ast_hash": "620819530295020f6d4b097d75739c1f",
+    "semantic_hash": "620819530295020f6d4b097d75739c1f"
+  },
+  "sources/financial-model-v3-corrected-sept-2026-sheet-revenue-build.md": {
+    "mtime": 1789754778.946101,
+    "seen": 1789754834.8216653,
+    "ast_hash": "941a0ba0b9f9b542f71ab0e38c2fc558",
+    "semantic_hash": ""
+  },
+  "sources/financial-model-v3-corrected-sept-2026-sheet-tapeout-unit-ec.md": {
+    "mtime": 1789758570.9961615,
+    "seen": 1789758699.7675242,
+    "ast_hash": "73599fb728f8fbdf1103864777817d34",
+    "semantic_hash": "73599fb728f8fbdf1103864777817d34"
+  },
+  "sources/financial-model-v3-corrected-sept-2026-sheet-use-of-funds.md": {
+    "mtime": 1789754778.9464936,
+    "seen": 1789754834.821667,
+    "ast_hash": "b026d72182646057e0f6c785dc845e87",
+    "semantic_hash": ""
+  },
+  "sources/research-competitive-evidence-data-quality.md": {
+    "mtime": 1789758570.991408,
+    "seen": 1789758699.7675302,
+    "ast_hash": "58940720ada6e10eff2101828268a0ab",
+    "semantic_hash": "58940720ada6e10eff2101828268a0ab"
+  },
+  "documents/bp1a-india-autonomous-trucking-plan-part1.md": {
+    "mtime": 1789758571.0074043,
+    "seen": 1789758699.7674012,
+    "ast_hash": "1c06103787b968cefb8b2e56cf2faf95",
+    "semantic_hash": "1c06103787b968cefb8b2e56cf2faf95"
+  },
+  "documents/bp1a-india-autonomous-trucking-plan-part2.md": {
+    "mtime": 1789758571.0075097,
+    "seen": 1789758699.7674024,
+    "ast_hash": "933461205b40915464982f84a70ba64b",
+    "semantic_hash": "933461205b40915464982f84a70ba64b"
+  },
+  "documents/bp1a-india-autonomous-trucking-plan-part3.md": {
+    "mtime": 1789758571.0076065,
+    "seen": 1789758699.7674038,
+    "ast_hash": "bc63090e5964c83265301a3780dfb4ee",
+    "semantic_hash": "bc63090e5964c83265301a3780dfb4ee"
+  },
+  "documents/bp1a-india-autonomous-trucking-plan-part4.md": {
+    "mtime": 1789758571.0077448,
+    "seen": 1789758699.7674055,
+    "ast_hash": "704f7233807d28681b4ca6a4cc1b20f4",
+    "semantic_hash": "704f7233807d28681b4ca6a4cc1b20f4"
+  },
+  "documents/bp1a-india-autonomous-trucking-plan-part5.md": {
+    "mtime": 1789758571.0079055,
+    "seen": 1789758699.7674067,
+    "ast_hash": "42ab8e8b8d667787756084c0fa8ed855",
+    "semantic_hash": "42ab8e8b8d667787756084c0fa8ed855"
+  },
+  "documents/bp1a-india-autonomous-trucking-plan-part6.md": {
+    "mtime": 1789758571.0080411,
+    "seen": 1789758699.7674077,
+    "ast_hash": "25e97d3cf09c239717469f7d7c0817ab",
+    "semantic_hash": "25e97d3cf09c239717469f7d7c0817ab"
+  },
+  "documents/bp1a-india-autonomous-trucking-plan-part7.md": {
+    "mtime": 1789758571.0081828,
+    "seen": 1789758699.767409,
+    "ast_hash": "ab615102d4facba2ae84f3d700afc520",
+    "semantic_hash": "ab615102d4facba2ae84f3d700afc520"
+  },
+  "documents/bp1a-india-autonomous-trucking-plan-part8.md": {
+    "mtime": 1789758571.0082753,
+    "seen": 1789758699.7674098,
+    "ast_hash": "9ac5d25597e7853ee3c78e4b5fe20b1f",
+    "semantic_hash": "9ac5d25597e7853ee3c78e4b5fe20b1f"
+  },
+  "documents/bp1b-usa-proposal-part1.md": {
+    "mtime": 1789758571.0083644,
+    "seen": 1789758699.7674115,
+    "ast_hash": "667b41212fd3353c7b858b60b67d63b7",
+    "semantic_hash": "667b41212fd3353c7b858b60b67d63b7"
+  },
+  "documents/bp1b-usa-proposal-part2.md": {
+    "mtime": 1789758571.008447,
+    "seen": 1789758699.7674124,
+    "ast_hash": "eda3c6b1b76703a0e66a5f3221482ce0",
+    "semantic_hash": "eda3c6b1b76703a0e66a5f3221482ce0"
+  },
+  "documents/bp1b-usa-proposal-part3.md": {
+    "mtime": 1789758571.008528,
+    "seen": 1789758699.7674136,
+    "ast_hash": "e39d801fe23cfe8c8cb8c7142007261b",
+    "semantic_hash": "e39d801fe23cfe8c8cb8c7142007261b"
+  },
+  "documents/bp1b-usa-proposal-part4.md": {
+    "mtime": 1789758571.008607,
+    "seen": 1789758699.7674146,
+    "ast_hash": "8c8c638953042e148c550686a199216b",
+    "semantic_hash": "8c8c638953042e148c550686a199216b"
+  },
+  "documents/bp1b-usa-proposal-part5.md": {
+    "mtime": 1789758571.0086894,
+    "seen": 1789758699.7674155,
+    "ast_hash": "bd895c3366f05db347eb10e2654aab77",
+    "semantic_hash": "bd895c3366f05db347eb10e2654aab77"
+  },
+  "documents/bp1b-usa-proposal-part6.md": {
+    "mtime": 1789758571.0087504,
+    "seen": 1789758699.7674172,
+    "ast_hash": "d585630649a2ef8ee406f8c236dd28d2",
+    "semantic_hash": "d585630649a2ef8ee406f8c236dd28d2"
+  },
+  "documents/deepgrid-brief-shravan-mayookh-part1.md": {
+    "mtime": 1789758571.0088317,
+    "seen": 1789758699.767418,
+    "ast_hash": "5960142c987938221d560e983dd79f62",
+    "semantic_hash": "5960142c987938221d560e983dd79f62"
+  },
+  "documents/deepgrid-brief-shravan-mayookh-part2.md": {
+    "mtime": 1789758571.0090811,
+    "seen": 1789758699.7674189,
+    "ast_hash": "8ccf772836142ffd063dcf6da9374d04",
+    "semantic_hash": "8ccf772836142ffd063dcf6da9374d04"
+  },
+  "documents/deepgrid-brief-shravan-mayookh-part3.md": {
+    "mtime": 1789758571.009299,
+    "seen": 1789758699.7674198,
+    "ast_hash": "cefed4803bc53d18ad4bb327c057937d",
+    "semantic_hash": "cefed4803bc53d18ad4bb327c057937d"
+  },
+  "documents/deepgrid-semi-investor-briefing-jul-2026-part1.md": {
+    "mtime": 1789758571.0094483,
+    "seen": 1789758699.767421,
+    "ast_hash": "6e459e77bb93898d99665cd44dd43357",
+    "semantic_hash": "6e459e77bb93898d99665cd44dd43357"
+  },
+  "documents/deepgrid-semi-investor-briefing-jul-2026-part2.md": {
+    "mtime": 1789758571.0095491,
+    "seen": 1789758699.7674217,
+    "ast_hash": "f08914063efb78d583f3a5191dd6c370",
+    "semantic_hash": "f08914063efb78d583f3a5191dd6c370"
+  },
+  "documents/icp-and-gtm-strategy-jul-2026-part1.md": {
+    "mtime": 1789758571.0096757,
+    "seen": 1789758699.7674227,
+    "ast_hash": "24a5bfdaa9041d0135048657e6a58176",
+    "semantic_hash": "24a5bfdaa9041d0135048657e6a58176"
+  },
+  "documents/icp-and-gtm-strategy-jul-2026-part2.md": {
+    "mtime": 1789758571.0101643,
+    "seen": 1789758699.7674236,
+    "ast_hash": "00c795b3ecf89ead744876627974ac78",
+    "semantic_hash": "00c795b3ecf89ead744876627974ac78"
+  },
+  "documents/icp-and-gtm-strategy-jul-2026-part3.md": {
+    "mtime": 1789758571.0103216,
+    "seen": 1789758699.7674246,
+    "ast_hash": "220396d571d195b1bbfca007c0fd930b",
+    "semantic_hash": "220396d571d195b1bbfca007c0fd930b"
+  },
+  "documents/icp-and-gtm-strategy-jul-2026-part4.md": {
+    "mtime": 1789758571.010483,
+    "seen": 1789758699.7674255,
+    "ast_hash": "5106d57ede3dceaa59c5cbc8905a0ad3",
+    "semantic_hash": "5106d57ede3dceaa59c5cbc8905a0ad3"
+  },
+  "documents/information-memorandum-v2-emani-capital-aug-2026-part1.md": {
+    "mtime": 1789758571.0062237,
+    "seen": 1789758699.7674265,
+    "ast_hash": "ee6e74c466ee4f104579e7b5d7062dac",
+    "semantic_hash": "ee6e74c466ee4f104579e7b5d7062dac"
+  },
+  "documents/information-memorandum-v2-emani-capital-aug-2026-part2.md": {
+    "mtime": 1789758571.006931,
+    "seen": 1789758699.7674277,
+    "ast_hash": "e4ed3376163a93ef10bb7432bf433bd0",
+    "semantic_hash": "e4ed3376163a93ef10bb7432bf433bd0"
+  },
+  "documents/information-memorandum-v2-emani-capital-aug-2026-part3.md": {
+    "mtime": 1789758571.0070195,
+    "seen": 1789758699.7674289,
+    "ast_hash": "9d6cb373456edadb264c8c514674718a",
+    "semantic_hash": "9d6cb373456edadb264c8c514674718a"
+  },
+  "documents/information-memorandum-v2-emani-capital-aug-2026-part4.md": {
+    "mtime": 1789758571.0071616,
+    "seen": 1789758699.7674298,
+    "ast_hash": "712b105efc376eb72f3a2fb20fab9ea5",
+    "semantic_hash": "712b105efc376eb72f3a2fb20fab9ea5"
+  },
+  "documents/information-memorandum-v2-emani-capital-aug-2026-part5.md": {
+    "mtime": 1789758571.0072615,
+    "seen": 1789758699.7674305,
+    "ast_hash": "3c892468d6b532c579599d1deef5f8d6",
+    "semantic_hash": "3c892468d6b532c579599d1deef5f8d6"
+  },
+  "documents/information-memorandum-v2-emani-capital-aug-2026-part6.md": {
+    "mtime": 1789758571.0073245,
+    "seen": 1789758699.7674317,
+    "ast_hash": "0a1f3abc7949bba9e1b73e471f6f8ae6",
+    "semantic_hash": "0a1f3abc7949bba9e1b73e471f6f8ae6"
+  },
+  "sources/business-plan-v2-sheet-expense-schedules.md": {
+    "mtime": 1789758570.9988225,
+    "seen": 1789758699.7674627,
+    "ast_hash": "5d65096666b2a402a91cb550ea863a5f",
+    "semantic_hash": "5d65096666b2a402a91cb550ea863a5f"
+  },
+  "sources/business-plan-v2-sheet-historical-context.md": {
+    "mtime": 1789758570.9981096,
+    "seen": 1789758699.7674637,
+    "ast_hash": "04c1bcb2fdc72a959639c91f586c4288",
+    "semantic_hash": "04c1bcb2fdc72a959639c91f586c4288"
+  },
+  "sources/competitive-dossier-argument-arc.md": {
+    "mtime": 1789758570.9886189,
+    "seen": 1789758699.7674775,
+    "ast_hash": "2403e95afae4820c25dd464a61cf5f6b",
+    "semantic_hash": "2403e95afae4820c25dd464a61cf5f6b"
+  }
+}

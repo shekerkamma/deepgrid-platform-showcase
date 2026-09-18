@@ -37,3 +37,12 @@ next-env.d.ts
 /outputs/
 /work/
 *.tsbuildinfo
+
+# ONNX runtime and vis-network for Ask DeepGrid, copied from node_modules at build (scripts/copy-runtime.mjs)
+/public/ort/
+/public/vendor/
+
+# graphify per-run cache and dated backups (knowledge/graphify-out/graph.json and GRAPH_REPORT.md stay tracked)
+/knowledge/graphify-out/cache/
+/knowledge/graphify-out/20*/
+/knowledge/graphify-out/.graphify_*

@@ -1,0 +1,148 @@
+{
+ "_about": "Held-out routing eval for the showcase's Ask DeepGrid. Written on 18 Sep 2026 BEFORE app/data/theme-examples.ts; never copy these questions into that file. `expect` is a theme title the question must reach, null for an on-topic question that must NOT be forced into a curated theme, or \"none\" for an off-topic question that must get no grounded answer. npm run build:semantic picks the theme thresholds (most correct, zero wrong, zero forced) and the relevance floor (catches the most off-topic questions without dropping any on-topic one) from this set, and fails if the recall floor cannot be met.",
+ "minRecall": 0.5,
+ "cases": [
+  {
+   "q": "Why does a single chip matter for so many different things they sell?",
+   "expect": "One chip, fifteen products"
+  },
+  {
+   "q": "Walk me through the whole product lineup and how it hangs together",
+   "expect": "One chip, fifteen products"
+  },
+  {
+   "q": "What sits inside the processor they designed?",
+   "expect": "SoC2: six chiplets on one 57 mm² die"
+  },
+  {
+   "q": "How many separate compute blocks share the silicon?",
+   "expect": "SoC2: six chiplets on one 57 mm² die"
+  },
+  {
+   "q": "Why will truck makers have to buy driver-assistance systems?",
+   "expect": "The demand is legislated, not forecast"
+  },
+  {
+   "q": "Is the market pulled by government rules or by hope?",
+   "expect": "The demand is legislated, not forecast"
+  },
+  {
+   "q": "What is working today, before the final chip exists?",
+   "expect": "What is already built"
+  },
+  {
+   "q": "How far along is the hardware development?",
+   "expect": "What is already built"
+  },
+  {
+   "q": "How should the company bridge the gap until its chip arrives?",
+   "expect": "The strategic choice: run A for B"
+  },
+  {
+   "q": "Which go-to-market path does the memo advise?",
+   "expect": "The strategic choice: run A for B"
+  },
+  {
+   "q": "How big is the investment ask and where does the money go?",
+   "expect": "The round and what it funds"
+  },
+  {
+   "q": "What will investors' cash be spent on?",
+   "expect": "The round and what it funds"
+  },
+  {
+   "q": "What could make this a bad investment?",
+   "expect": "The investment risks"
+  },
+  {
+   "q": "Where do the company's own documents contradict each other?",
+   "expect": "The investment risks"
+  },
+  {
+   "q": "When does the business make money, and how much by the end of the plan?",
+   "expect": "The revenue ramp"
+  },
+  {
+   "q": "How fast do sales climb year by year?",
+   "expect": "The revenue ramp"
+  },
+  {
+   "q": "Who started the company and what is their background?",
+   "expect": "The company and its founders"
+  },
+  {
+   "q": "Who is behind the silicon design?",
+   "expect": "The company and its founders"
+  },
+  {
+   "q": "What does a customer actually receive under the AEBS use case?",
+   "expect": null
+  },
+  {
+   "q": "How does the lane departure warning work without painted lines?",
+   "expect": null
+  },
+  {
+   "q": "What is the frame budget for sensor fusion?",
+   "expect": null
+  },
+  {
+   "q": "How does the drowsiness detection camera read the driver?",
+   "expect": null
+  },
+  {
+   "q": "What is SoC4-A?",
+   "expect": null
+  },
+  {
+   "q": "What does the nuisance alert suppression use case do?",
+   "expect": null
+  },
+  {
+   "q": "How is the product listed on GeM for government buyers?",
+   "expect": null
+  },
+  {
+   "q": "What does the blind-spot moving-off information system detect?",
+   "expect": null
+  },
+  {
+   "q": "What is the weather in Tokyo today?",
+   "expect": "none"
+  },
+  {
+   "q": "Give me a recipe for chocolate cake",
+   "expect": "none"
+  },
+  {
+   "q": "Who won the football world cup in 2022?",
+   "expect": "none"
+  },
+  {
+   "q": "How do I reset my email password?",
+   "expect": "none"
+  },
+  {
+   "q": "What is the EBITDA in FY2032?",
+   "expect": null
+  },
+  {
+   "q": "What is the gross margin in the P&L?",
+   "expect": null
+  },
+  {
+   "q": "How much does the SoC2 tapeout cost?",
+   "expect": null
+  },
+  {
+   "q": "What is the cost per die at volume?",
+   "expect": null
+  },
+  {
+   "q": "What is the TAM for mandated ADAS in India?",
+   "expect": null
+  }
+ ],
+ "_minRecall": "0.5, not the DG32 site's 0.7: there a miss falls back to generic text, here it falls back to the best-grounded passages. Measured 18 Sep 2026 (bge-small, examples written blind): 9/18 reach their theme, 0 wrong, 0/8 forced; of the 9 misses, 6 fall back to a passage from the expected theme's own section or slide (e.g. 'contradict each other' -> 'Ten things to test'). The floor guards against a regression below that, not a target to tune the example questions toward.",
+ "_added": "18 Sep 2026: five precise financial questions added as null cases after a browser run showed keyword routing answering them with a theme's prose instead of the workbook row. They guard that regression; they were not used to tune examples."
+}

@@ -1,0 +1,7 @@
+Domain,FY2027,FY2028,FY2029,FY2030,FY2031,FY2032
+Outdoor autonomy,1.7,21.054,97.825,247.55,520.35,973.5
+Indoor autonomy,0,1.106,6.265,14.53,28.795,64.65
+General compute (A100 box),0,5.656,11.2875,22.575,45.15,90.3
+Total (check),1.7,27.816,115.3775,284.655,594.295,1128.45
+Indoor share of revenue,0,0.0397612884670693,0.054300015167602,0.0510442465440621,0.0484523679317511,0.057290974345341
+"Indoor = AD1 L4 + AGV (geofenced). Outdoor = road ADAS, trucks, rental, sensors, chip, defence. Compute = A100 box.",,,,,,

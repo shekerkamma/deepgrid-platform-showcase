@@ -1,0 +1,15 @@
+# DeepGrid Semi — memorandum/1-summary
+
+All figures are management projections from DeepGrid's fundraising materials.
+
+## One die, fifteen products
+
+A six-chiplet 28 nm automotive SoC, taped out in gated stages, sold as fifteen products into a market where the demand date is written into law. ₹1,128 Cr of FY2032 revenue rests on one tapeout — which is the whole investment case, and the whole risk. The summary, if you read nothing else Deepgrid Semi is a one-chip company with fifteen ways to sell the same die. The chip is real — six RTL designs are tapeout-ready, a 130 nm tapeout is already done, and the perception stack runs at 40 fps on an FPGA today. The demand is real — India is writing ADAS into law for commercial vehicles, function by function, on dated deadlines. What is not yet reconciled is the schedule between them. Qualified silicon lands H1 2028 , after the last mandate date, and OEM design-in runs 18–30 months. So the next two years are an FPGA business sold through government and PSU channels — and that, not the ₹1,128 Cr terminal year, is what this round actually underwrites. Underwrite this — 01: Two products carry 64% of revenue. The truck kit and the smart mirror are one family sold to overlapping buyers. A certification delay hits ₹720 Cr at once. Underwrite this — 02: The FPGA window, not the ASIC. Nothing beyond FY2027’s ₹1.7 Cr happens without production silicon, and silicon arrives after every mandate date. Underwrite this — 03:
+
+## One die, fifteen products
+
+Three headline claims fail the company’s own controls. The mandate date, the ₹1 Cr defence revenue and the price comparison are all barred by its internal ledger — and printed anyway. The ask. Release capital against silicon, certification and paying customers. The $3.17M of tapeout NRE is already structured as four gates, and six of nine de-risking milestones are marked done before the round opens — so the forecast is the consequence of those gates, not the thing being funded. The argument in seven moves Demand is written into law Five ADAS functions become mandatory on commercial vehicles across 2027–28. Roughly a million N2/N3 units a year fall in scope. Foreign silicon prices India out An imported ADAS module costs multiples of the kit price this market can pay, and no indigenous alternative exists at this stage. So own the die Six chiplets on one 57 mm² part. Eleven sensor channels fused in 8.6 ms of a 33.3 ms frame. The headroom is the portfolio 74% of the frame is unused, so fifteen products across four surfaces run on one mask and one firmware stack. But the silicon arrives late Qualified parts land H1 2028 — after every mandate date on the calendar — and design-in runs 18–30 months. This is the turn in the argument. So the FPGA window is the strategy Government and PSU units ship first, and the telemetry they generate is what makes the Tier-1 design-in winnable.
+
+## One die, fifteen products
+
+The round is priced against a ₹10.1 Cr trough That is the whole margin of safety, and two dated obligations land inside it, funded nowhere.

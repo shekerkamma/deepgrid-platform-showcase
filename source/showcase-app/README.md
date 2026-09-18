@@ -28,6 +28,7 @@ The static GitHub Pages artifact is `dist/pages/`, including the `/deepgrid-plat
 | Other page copy, investment risk summaries, navigation and layout | `app/page.tsx` |
 | Colours, typography and responsive layout | `app/globals.css`, `app/ux.css`, `app/use-cases.css` |
 | Interactive Three.js model | `app/silicon.tsx` |
+| Ask DeepGrid (`#briefing`) | Nothing here — see below |
 | Images and slide pictures | `public/images/`, `public/slides/` |
 
 The JSON files are imported into the page at build time; editing them and pushing to main updates the site after the workflow succeeds. Several narrative claims intentionally remain in page/report text, so a changed financial assumption may require updating more than one file. Never assume changing a single metric reconciles the entire narrative.
@@ -42,10 +43,49 @@ The source guide is linked from the site's footer. Financial/technical values re
 
 `.github/workflows/pages.yml` checks types, creates the static artifact, checks local entry references and the full slide set, then deploys to the existing GitHub Pages URL on successful main-branch pushes. Pull requests build without deploying. Node and dependencies are pinned through the workflow and lockfile.
 
-Videos still use the existing content-ideas and Google Drive URLs; the optional briefing reranker is external and has a local-search fallback. These services are not hosted by this repository. Images and all 104 slide images are included locally.
+Videos still use the existing content-ideas and Google Drive URLs, which this repository does not host. Images and all 104 slide images are included locally.
 
 The original Sites-specific Vite plugin is not loaded for this standalone GitHub build. No Sites account or credentials are needed to build the page.
 
 ## Recovery
 
 The root static snapshot remains available in Git history and the repository. The previous publishing commit was `e99caee90142257a0117843b335a3fe0725e269a`. To roll back content, revert the offending source commit and let the workflow redeploy. To return entirely to the old snapshot, change Pages publishing back to the main branch root.
+
+## Ask DeepGrid
+
+The Ask DeepGrid view (`#briefing`) follows the DG32 site's graphify + GraphRAG pattern
+([deepgrid-dr-silicon](https://github.com/shekerkamma/deepgrid-dr-silicon) `#ask`) over this showcase's own
+materials. It runs entirely in the browser, with no server or API key at runtime.
+
+**Corpus (764 passages):** the page's products, 104 slides, use cases and investment memorandum, plus the
+primary sources behind them from `../original-platform/`: the 33-page Information Memorandum (OCR), the
+market research and document audits, the competitor dossiers, and the two financial workbooks in
+`../documents/` (Financial Model v3, Business Plan v2 — both indexed and labelled, since they disagree; Payroll
+and Cap Table are excluded from the public site).
+It also carries the primary documents found on this machine (IM v2, the BP1A and BP1B business plans, the
+Shravan/Mayookh brief, the image-only investor briefing via OCR, the ICP & GTM strategy): `npm run
+graph:documents` reads them from their Windows paths and records each file's SHA-256 in
+`knowledge/documents.json`. The files themselves are not in this repository. `scripts/lib/showcase-content.mjs` defines
+it once for both the graph and the answers.
+
+**Pipeline** (run in order after changing any of that content):
+
+```sh
+npm run graph:workbooks  # ../documents/*.xlsx -> knowledge/workbooks.json + ../documents/csv/ (/excel-ingest header detection, per block)
+npm run graph:documents  # primary PDFs/DOCX -> knowledge/documents.json (pdftotext; RapidOCR for image pages)
+npm run graph:corpus     # knowledge/corpus/*.md, the documents graphify reads
+npm run graph:extract    # graphify, via CLIProxyAPI to a subscription Gemini model (never the free tier)
+npm run graph:index      # app/data/graphrag-index.json + public/knowledge/ (graph page, JSON, report)
+npm run build:semantic   # public/graphrag/: bge-small embeddings, thresholds picked by the routing eval
+```
+
+- `graph:extract` needs CLIProxyAPI running on Windows (reached from WSL at the default-gateway IP) and its key
+  in `CLIPROXY_API_KEY` or `~/.dsh/.credentials.yaml`. It proves the route with a real call before it starts.
+- `graph:index` merges graphify's entities onto the fifteen products and SoC2 by alias (graphify scopes ids to
+  their file, so one entity arrives from several files) and records which passages mention each entity.
+- Curated answers are in `app/data/themes.ts`. A theme writes no copy of its own: it names memorandum sections,
+  slides and products, and the engine quotes them. Example questions are in `app/data/theme-examples.ts`; the
+  held-out eval is `scripts/ask-routing-eval.json` (never copy it into the examples).
+- Every build runs `scripts/check-semantic.mjs` first. It fails if the index is stale against the page content,
+  the embeddings are stale against the index, a theme names a section that no longer exists, the model differs,
+  or the eval records a wrong or forced answer.

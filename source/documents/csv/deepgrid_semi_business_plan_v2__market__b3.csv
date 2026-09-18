@@ -1,0 +1,13 @@
+Product,FY2032 Units,Demand Pool and Market Size,Capture %,Source and Comment
+Smart Truck (AD2 kit),18000,MANDATORY: 0.5M new N2/N3 trucks/yr + 0.5M retrofit,0.018,MoRTH GSR 184(E) ADAS mandate on N2/N3
+AD0 Smart Mirror (mandate retrofit),54000,Existing 360 surround-view market $3.1B (already selling),0.009295600082627557,"Towards Automotive: $3.09B 2025, 10.7% CAGR"
+AD1 Indoor L4 kit,4200,Warehouse/industrial autonomy; part of $4.8B edge-AI,—,Dataintelo/GMI automotive edge-AI 2025
+Autonomous TaaS (fleet),100,India trucking 0.6-0.8M units/yr; fleet ops,0.00014285714285714287,Mobility Foresights; TheGlobalEconomy 952k CV
+Seaport AGV (port autonomy),50,Automated container terminal market $10.95B (2024),0.00022005246283882254,"SNS Insider: $10.95B 2024 -> $16.35B 2032, 5.2% CAGR"
+A100 compute box (3 SKUs),6000,Automotive edge-AI accelerator modules $4.8B (2025),0.0020013297872340428,"Dataintelo: $4.8B 2025 -> $22.6B 2034, 21% CAGR"
+Chipset OEM B2B (ASIC die),30000,India ADAS chip pool; $2.29B ADAS (2024),0.0025085942581064757,"EMR 2024: $2.29B, 20.6% CAGR"
+Thermal camera (aftermarket),3200,Automotive thermal camera $1.68B global (2025),0.0010131712259371835,"Verified Market Research: $1.68B 2025, 12% CAGR"
+4D radar pod (aftermarket),3000,4D imaging radar $2.75B global (2025),0.0002901353965183753,"Business Research Co./Mordor: ~$2.75B 2025, 13% CAGR"
+H100 driver-monitor wearable,20000,DDAWS mandate (AIS-184) + global DMS demand,—,MoRTH AIS-184; EU Reg 2021/267 (commercial DMS)
+Defence D-HUMR,150,Indian Army UGV/robotics procurement,—,MoD/Army programs (existing Rs1 Cr revenue)
+D100 drone SoC kit,400,India defence + commercial drone SoC,—,Edge-AI drones segment (Mordor 18% CAGR)

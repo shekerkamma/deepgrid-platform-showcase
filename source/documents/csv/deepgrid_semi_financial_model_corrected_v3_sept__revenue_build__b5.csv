@@ -1,0 +1,19 @@
+"Revenue (Rs Cr = units x ASP / 1e7, x scenario)",col2,Domain,col4,col5,col6,col7,col8,col9
+AD0 Smart Mirror (mandate retrofit),Systems,Outdoor,0.05,11,40,90,170,270
+AD1 Indoor L4 kit,Systems,Indoor,0,0.2,4,10,22,42
+Smart Truck (AD2 kit),Systems,Outdoor,0.075,2,35,100,225,450
+Autonomous TaaS,Systems,Outdoor,0,3.3,6.6,16.5,33,66
+Seaport AGV (port autonomy),Systems,Indoor,0,0.906,2.265,4.53,6.795,22.65
+Thermal camera (aftermarket),Sensors,Outdoor,0.2,0.75,2,4.5,9,16
+4D radar pod (aftermarket),Sensors,Outdoor,0.075,0.3,0.875,2,4,7.5
+H100 driver-monitor wearable,Sensors,Outdoor,0.1,0.4,1.1,2.5,5.5,10
+Chipset OEM B2B (ASIC die),Semiconductors,Outdoor,0,0.054,3.15,10.8,27,54
+A100 compute box 1ch +SDK (M.2),Systems,Compute,0,1.598,3.1875,6.375,12.75,25.5
+A100 compute box 2ch +SDK,Systems,Compute,0,1.808,3.6,7.2,14.4,28.8
+A100 compute box 4ch +SDK (PCIe),Systems,Compute,0,2.25,4.5,9,18,36
+T100 AI licence (SaaS),Semiconductors,Outdoor,0,0,2,6,18,50
+Defence D-HUMR,Robotics,Outdoor,1.2,3,4.6,9,17.6,30
+D100 drone SoC kit,Robotics,Outdoor,0,0.25,2.5,6.25,11.25,20
+TOTAL REVENUE (Rs Cr),,,1.7,27.816,115.3775,284.655,594.295,1128.45
+Growth % (YoY),,,,15.3623529411765,3.1478825136612,1.4671621416654,1.08777291809383,0.898804465795607
+Bottom-up: every line is units x ASP; nothing is plugged. Scenario multiplier from Assumptions.,,,,,,,,

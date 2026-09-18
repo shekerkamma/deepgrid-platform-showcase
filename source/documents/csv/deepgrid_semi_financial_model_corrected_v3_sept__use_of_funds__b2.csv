@@ -1,0 +1,7 @@
+Allocation,$M,Rs Cr,% of total,col6
+SoC2 tapeout NRE + IP (phased: MPW blocks -> full die -> dedicated mask),3.17,29.798,0.541781818181818,Equity-funded. See Tapeout Unit Economics tab
+Engineering (chip + firmware + defence),0.96,9.024,0.164072727272727,Equity-funded; ~18-mo runway to RTL->GDS
+AIS-162/188 certification + FPGA pilot,0.48,4.512,0.0820363636363636,Equity-funded; ARAI / ICAT + 100 pilot units
+Working capital / BD / inventory,1.24,11.656,0.211927272727273,Rs10 Cr CGTMSE loan + equity remainder
+Total,5.85,54.99,0.999818181818182,
+Silicon (NRE + IP) as % of equity round,0.662177777777778,,,Equity round is ~all silicon; loan covers working capital

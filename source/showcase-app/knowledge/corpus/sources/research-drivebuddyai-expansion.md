@@ -1,0 +1,19 @@
+# DeepGrid Semi — sources/research-drivebuddyai-expansion
+
+All figures are management projections from DeepGrid's fundraising materials.
+
+## Roadzen's drivebuddyAI Lands $5.3 Million Agreement to Equip 3,600 Electric Buses and Trucks in India with AI Safety
+
+June 23, 2026 07:30 ET\ Source: Roadzen Inc.FollowRoadzen Inc. Share - - Purchase orders from a leading fleet operator span electric buses and trucks across public transportation, seaport logistics, mining, and industrial transportation — including electric city bus fleets serving major Indian metros. - Second major order in FY 2027 from a fleet customer following last month's 3,000-truck award underscores drivebuddyAI's commercial momentum and the magnitude of the opportunity in India. - drivebuddyAI's six-camera solution gives bus drivers full AI-powered surround-view and blind-spot awareness on dense city roads, with onboard AI interpreting the scene in real time to detect vulnerable road users and alert drivers in time to prevent collisions. NEW YORK, June 23, 2026 (GLOBE NEWSWIRE) -- Roadzen Inc. (Nasdaq: RDZN), a global leader in AI at the convergence of insurance and mobility, today announced that its drivebuddyAI platform for safety and autonomy has entered into an agreement valued at approximately $5.3 million (approximately ₹50 crore) with one of India's leading electric commercial vehicle leasing and fleet operators. The deployment covers drivebuddyAI's six-camera ADAS solution across 3,600 electric buses and trucks operating in public transportation, seaport logistics
+
+## Tags
+
+ADASDriver SafetyComputer VisionAuto InsuranceArtificial IntelligenceMachine LearningRoad SafetyAIAI SafetyAutomotive GlobeNewswire Company ProfileRoadzen Inc.Industry: TechnologyWebsite: Press Release Actions - Print - Download PDF - Subscribe via RSS - Subscribe via ATOM - Javascript
+
+## Recommended Reading
+
+- August 13, 2026 16:05 ET\ Source: Roadzen Inc. Roadzen Delivers Best Quarter in Company History with Record Q1 FY2027 Revenue of $16.2 Million, Up 49% Year-Over-Year Record Revenue and Growth Underscore Adoption of Roadzen's AI Platform First quarter fiscal 2027 revenue increased 49% to $16.2 million from $10.9 million in the prior year’s first quarter — the... Read More - July 09, 2026 07:30 ET\ Source: Roadzen Inc. Roadzen Signs Definitive Agreement to Acquire a Leading European MGA Focused on Short-Term Car Rental Insurance The acquisition is expected to add a scaled, fully regulated European insurance platform powering over 800,000 policies annually, with approximately $18–20 million in revenue and approximately $1.6–2... Read More View More News
+
+## Explore
+
+Previous August 14, 2026 09:00 ET Somantra Launches Brand Engagement Score for AEO a... August 14, 2026 08:59 ET NurExone Reports New Preclinical Tissue-Analysis D... August 14, 2026 08:51 ET New Crypto: Pepeto Announces $10.65M Raised And Et... August 14, 2026 09:13 ET Money Counters for Dispensaries August 14, 2026 09:00 ET Macfox Launches the X2 Pro E-Bike With Wider Tires... August 14, 2026 09:00 ET Somantra Launches Brand Engagement Score for AEO a... August 14, 2026 08:59 ET NurExone Reports New Preclinical Tissue-Analysis D... August 14, 2026 08:51 ET New Crypto: Pepeto Announces $10.65M Raised And Et... August 14, 2026 09:13 ET Money Counters for Dispensaries August 14, 2026 09:00 ET Macfox Launches the X2 Pro E-Bike With Wider Tires... August 14, 2026 09:00 ET Somantra Launches Brand Engagement Score for AEO a... August 14, 2026 08:59 ET NurExone Reports New Preclinical Tissue-Analysis D... August 14, 2026 08:51 ET New Crypto: Pepeto Announces $10.65M Raised And Et... Next About Us GlobeNewswire is one of the world's largest newswire distribution networks, specializing in the delivery of corporate press releases, financial disclosures and multimedia content to media, investors, and consumers worldwide. Global News - English - Français - Deutsch Newswire Distribution Netw
