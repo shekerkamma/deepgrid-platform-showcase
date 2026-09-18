@@ -24,8 +24,8 @@ for(const [,ref] of html.matchAll(/(?:src|href)="([^"?#]+)"/g)){
  checked++;
 }
 for(let i=1;i<=104;i++)if(!fs.existsSync(path.join(output,`slides/slide_${String(i).padStart(2,'0')}.png`)))throw Error('Missing slide '+i);
-// Ask DeepGrid links its source documents and graph by literal ./downloads/ and ./graphrag/ paths.
+// Ask DeepGrid loads its knowledge graph and semantic index by literal ./knowledge/ and ./graphrag/ paths.
 const appSource=['app','app/data'].flatMap(d=>fs.readdirSync(path.join(root,d)).filter(f=>/\.(tsx?|css)$/.test(f)).map(f=>fs.readFileSync(path.join(root,d,f),'utf8'))).join('\n');
-const askAssets=[...new Set([...appSource.matchAll(/\.\/((?:downloads|graphrag)\/[\w./-]+\.(?:pdf|md|drawio|json|bin|html))/g)].map(m=>m[1]))];
+const askAssets=[...new Set([...appSource.matchAll(/\.\/((?:knowledge|graphrag)\/[\w./-]+\.(?:md|json|bin|html))/g)].map(m=>m[1]))];
 for(const rel of askAssets)if(!fs.existsSync(path.join(output,rel)))throw Error('Missing Ask DeepGrid asset: '+rel);
 console.log(`Pages package ready: ${checked} entry references, all 104 slides and ${askAssets.length} Ask DeepGrid assets verified.`);

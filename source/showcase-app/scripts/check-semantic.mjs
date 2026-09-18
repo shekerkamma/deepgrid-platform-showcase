@@ -20,12 +20,21 @@ const meta = JSON.parse(fs.readFileSync(path.join(ROOT, 'public/graphrag/semanti
 const bin = fs.readFileSync(path.join(ROOT, 'public/graphrag/semantic.bin'));
 
 const bundled = path.join(ROOT, 'node_modules/.cache/semantic-check.mjs');
-await esbuild.build({stdin: {contents: `export {semanticRowKey} from './app/data/graphrag-engine.ts';`, resolveDir: ROOT, loader: 'ts'},
+await esbuild.build({stdin: {contents: `export {semanticRowKey, missingThemeSections} from './app/data/graphrag-engine.ts';`, resolveDir: ROOT, loader: 'ts'},
   bundle: true, platform: 'node', format: 'esm', outfile: bundled, logLevel: 'warning'});
-const {semanticRowKey} = await import(bundled + '?t=' + Date.now());
+const {semanticRowKey, missingThemeSections} = await import(bundled + '?t=' + Date.now());
+const missing = missingThemeSections();
+if (missing.length) fail(`themes name memorandum sections that no longer exist (app/data/themes.ts):\n  ${missing.join('\n  ')}`);
 
+// the index must match the page: same passages, same text (else answers quote an older page)
+const {loadContent} = await import('./lib/showcase-content.mjs');
+const indexRaw = fs.readFileSync(path.join(ROOT, 'app/data/graphrag-index.json'), 'utf8');
+const indexed = JSON.parse(indexRaw).chunks.map(c => c.id + '\n' + c.text).join('\n');
+if (indexed !== loadContent().units.map(u => u.id + '\n' + u.text).join('\n'))
+  fail('the page content changed since the GraphRAG index was built.\n  Run: npm run graph:index && npm run build:semantic');
+if (sha(indexRaw) !== meta.indexSha256) fail('app/data/graphrag-index.json changed since it was embedded. Run: npm run build:semantic');
 if (sha(semanticRowKey()) !== meta.rowKeySha256)
-  fail('the graph, curated answers or their example questions changed since the index was built.\n  Run: npm run build:semantic');
+  fail('the graph, page content, themes or their example questions changed since the index was built.\n  Run: npm run graph:index && npm run build:semantic');
 const rows = meta.counts.nodes + meta.counts.chunks + meta.counts.themes + (meta.counts.examples || 0);
 if (bin.length !== rows * meta.dims) fail(`semantic.bin holds ${bin.length} bytes, expected ${rows * meta.dims}. Run: npm run build:semantic`);
 const modelFile = path.join(ROOT, 'public/models', meta.model, 'onnx/model_quantized.onnx');
@@ -38,5 +47,5 @@ const floor = JSON.parse(fs.readFileSync(path.join(ROOT, 'scripts/ask-routing-ev
 if (ev.wrong || ev.forced) fail(`the routing eval recorded ${ev.wrong} wrong and ${ev.forced} forced curated answers.`);
 if (ev.right / ev.positives < floor) fail(`the routing eval recorded ${ev.right}/${ev.positives} curated answers, under the ${floor} floor.`);
 
-console.log(`semantic index ok: ${meta.model}, routing eval ${ev.right}/${ev.positives} curated, 0 wrong, 0/${ev.negatives} forced` +
-  ` (min ${meta.themeMin} / gap ${meta.themeGap})`);
+console.log(`semantic index ok: ${meta.model}, routing eval ${ev.right}/${ev.positives} curated, 0 wrong, 0/${ev.negatives} forced, ` +
+  `${ev.offTopicCaught}/${ev.offTopic} off-topic unanswered (min ${meta.themeMin} / gap ${meta.themeGap} / lift ${meta.themeLift} / floor ${meta.floor})`);

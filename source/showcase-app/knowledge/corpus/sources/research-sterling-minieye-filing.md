@@ -1,0 +1,7 @@
+# DeepGrid Semi — sources/research-sterling-minieye-filing
+
+All figures are management projections from DeepGrid's fundraising materials.
+
+## Sterling Tools partners MINIEYE to accelerate ADAS and Driver Monitoring Solutions for India
+
+By Aman Shukla 4 min read·Published on Jan 19, 2026 · 6:25 AM IST·Updated Jul 14, 2026 · 12:37 PM IST Share on FacebookShare on XShare on LinkedInShare on WhatsAppShare by email Listen to this article Speed1.0x -Advertisement- Sterling Tools Limited (BSE: 530759 \ NSE: STERTOOLS), a leading automotive components and technology manufacturer, has partnered with MINIEYE, a China-based intelligent driving and in-cabin solutions provider listed on the Hong Kong Stock Exchange, to accelerate the deployment of Advanced Driver Assistance Systems and Driver Monitoring Systems tailored specifically for the Indian automotive market. The partnership is focused on adapting intelligent driving technologies to India’s unique and highly complex road environment. As part of the collaboration, Sterling Tools will support perception tuning and on-ground industry engagement, enabling ADAS and driver monitoring systems to be trained for India-specific road scenarios, mixed traffic conditions, and diverse driving patterns. This approach recognises that intelligent driving systems require deep data-driven perception development and application-level engineering to operate reliably in Indian conditions, rather than being direct replications of solutions deployed in global markets. The collaboration cent

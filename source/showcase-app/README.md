@@ -53,26 +53,31 @@ The root static snapshot remains available in Git history and the repository. Th
 
 ## Ask DeepGrid
 
-The Ask DeepGrid view (`#briefing`) is the DG32 site's GraphRAG console
-([shekerkamma/deepgrid-dr-silicon](https://github.com/shekerkamma/deepgrid-dr-silicon), `#ask`), copied
-here so both sites answer from the same graphify graph, curated themes, semantic index and routing
-thresholds. It runs entirely in the browser: TF-IDF plus graph traversal over the unified index, reranked
-by an in-browser embedding model (`Xenova/bge-small-en-v1.5`, self-hosted under `public/models/`). No
-server or API key is involved.
+The Ask DeepGrid view (`#briefing`) follows the DG32 site's graphify + GraphRAG pattern
+([deepgrid-dr-silicon](https://github.com/shekerkamma/deepgrid-dr-silicon) `#ask`) over this showcase's own
+materials. It runs entirely in the browser, with no server or API key at runtime.
 
-Edit it in the DG32 repository, rebuild its index there (`npm run build:semantic`), then copy it across:
+**Corpus (474 passages):** the page's products, 104 slides, use cases and investment memorandum, plus the
+primary sources behind them from `../original-platform/`: the 33-page Information Memorandum (OCR), the
+market research and document audits, and the competitor dossiers. `scripts/lib/showcase-content.mjs` defines
+it once for both the graph and the answers.
+
+**Pipeline** (run in order after changing any of that content):
 
 ```sh
-DR_SITE=/path/to/deepgrid-dr-site npm run sync:ask            # copy
-DR_SITE=/path/to/deepgrid-dr-site npm run sync:ask -- --check # exit 1 if anything differs
+npm run graph:corpus     # knowledge/corpus/*.md, the documents graphify reads
+npm run graph:extract    # graphify, via CLIProxyAPI to a subscription Gemini model (never the free tier)
+npm run graph:index      # app/data/graphrag-index.json + public/knowledge/ (graph page, JSON, report)
+npm run build:semantic   # public/graphrag/: bge-small embeddings, thresholds picked by the routing eval
 ```
 
-`scripts/sync-ask.mjs` lists every copied file. All of them are byte-for-byte copies except `app/ask.css`,
-which it generates from the DG32 stylesheets nested under `.dg-ask`, so they cannot restyle the rest of the
-showcase. `app/detail.tsx` is the one local shim (`SectionHead`). Links that name a DG32 view, such as
-architecture or pinout, open on the DG32 site.
-
-Every build runs `scripts/check-semantic.mjs` first. It fails when the index is stale against the graph or
-curated answers, the model files differ from the ones the index was built with, or the recorded routing eval
-shows a wrong or forced answer. `scripts/copy-runtime.mjs` copies the ONNX wasm runtime and vis-network from
-`node_modules` into the gitignored `public/ort/` and `public/vendor/`.
+- `graph:extract` needs CLIProxyAPI running on Windows (reached from WSL at the default-gateway IP) and its key
+  in `CLIPROXY_API_KEY` or `~/.dsh/.credentials.yaml`. It proves the route with a real call before it starts.
+- `graph:index` merges graphify's entities onto the fifteen products and SoC2 by alias (graphify scopes ids to
+  their file, so one entity arrives from several files) and records which passages mention each entity.
+- Curated answers are in `app/data/themes.ts`. A theme writes no copy of its own: it names memorandum sections,
+  slides and products, and the engine quotes them. Example questions are in `app/data/theme-examples.ts`; the
+  held-out eval is `scripts/ask-routing-eval.json` (never copy it into the examples).
+- Every build runs `scripts/check-semantic.mjs` first. It fails if the index is stale against the page content,
+  the embeddings are stale against the index, a theme names a section that no longer exists, the model differs,
+  or the eval records a wrong or forced answer.

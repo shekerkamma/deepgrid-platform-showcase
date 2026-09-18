@@ -13,8 +13,11 @@
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
     "build:pages": "node scripts/check-semantic.mjs && node scripts/copy-runtime.mjs && node scripts/build.mjs && node scripts/package-pages.mjs",
-    "sync:ask": "node scripts/sync-ask.mjs",
-    "check:semantic": "node scripts/check-semantic.mjs"
+    "check:semantic": "node scripts/check-semantic.mjs",
+    "graph:corpus": "node scripts/export-corpus.mjs",
+    "graph:extract": "bash scripts/graphify-extract.sh",
+    "graph:index": "node scripts/build-graphrag-index.mjs && node scripts/publish-graph.mjs",
+    "build:semantic": "node scripts/build-semantic-index.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
