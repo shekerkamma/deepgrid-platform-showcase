@@ -85,7 +85,7 @@ export function loadContent() {
   units.push(...passages(html.slice(0, bounds[0]), 'summary'));
   CHAPTERS.slice(1).forEach(([id], i) => units.push(...passages(html.slice(bounds[i], bounds[i + 1] ?? html.length), id)));
 
-  units.push(...sourceDocuments(), ...workbooks());
+  units.push(...sourceDocuments(), ...workbooks(), ...primaryDocuments());
   return {products, slides, useCases, site, units};
 }
 
@@ -114,4 +114,12 @@ function sourceDocuments() {
 export const WORKBOOKS = path.join(ROOT, 'knowledge/workbooks.json');
 function workbooks() {
   return JSON.parse(fs.readFileSync(WORKBOOKS, 'utf8')).units.map(u => ({...u, kind: 'document', keys: u.keys || []}));
+}
+
+// The primary documents (IM v2, BP1A, BP1B, the Shravan/Mayookh brief, the investor briefing, the ICP & GTM
+// strategy): scripts/ingest-documents.py (npm run graph:documents) writes knowledge/documents.json, with each
+// file's SHA-256. The files themselves stay out of this repository.
+export const DOCUMENTS = path.join(ROOT, 'knowledge/documents.json');
+function primaryDocuments() {
+  return JSON.parse(fs.readFileSync(DOCUMENTS, 'utf8')).units.map(u => ({...u, kind: 'document', keys: []}));
 }

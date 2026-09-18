@@ -5,8 +5,8 @@
  "scale": 127,
  "queryPrefix": "Represent this sentence for searching relevant passages: ",
  "counts": {
-  "nodes": 263,
-  "chunks": 538,
+  "nodes": 384,
+  "chunks": 764,
   "themes": 9,
   "examples": 45
  },
@@ -58,7 +58,7 @@
   8
  ],
  "themeMin": 0.6,
- "themeGap": 0.03,
+ "themeGap": 0.01,
  "themeLift": 0.02,
  "floor": 0.52,
  "eval": {
@@ -92,7 +92,7 @@
   "The revenue ramp",
   "The company and its founders"
  ],
- "indexSha256": "b647d9a8f420020b99a752f4f9e4f34fab02e19e793f33d01d68be7af0d1b51e",
- "rowKeySha256": "7cc0b2f4d4e4e7a0b0892b53986ae67b139f2c38184c497427dd4215068b2d06",
+ "indexSha256": "05abbb3464a446a7d6a440057da6b7a437e4c8f2ad6b6f9b4a9524c83801198d",
+ "rowKeySha256": "a9fca6800bf1e64538b695e0632a9b20f09345a0f9665d4711d043ea0cd5c3e7",
  "modelSha256": "6c9c6101a956d62dfb5e7190c538226c0c5bb9cb27b651234b6df063ee7dbfe4"
 }

@@ -21,6 +21,8 @@ for (const u of units) {
   if (s.kind === 'product') add(`products/${s.productId}.md`, `${u.title} (product dossier, source slide ${s.slide})`, u.text);
   else if (s.kind === 'usecase') add(`use-cases/${s.useCase || 'boundary'}.md`, u.title, u.text);
   else if (s.kind === 'slide') add(`deck/${String([...DECK].reverse().find(([n]) => s.slide >= n)[0]).padStart(3, '0')}-${[...DECK].reverse().find(([n]) => s.slide >= n)[1]}.md`, u.title, u.text);
+  // one corpus file per document, not per page: drop the " · p. 12" / section suffix of primary documents
+  else if (s.kind === 'document' && s.docKind === 'Primary document') add(`documents/${s.label.split(' · ')[0].toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}.md`, `${u.title} (${s.label})`, u.text);
   else if (s.kind === 'document') add(`sources/${s.label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60)}.md`, u.title, u.text);
   else add(`memorandum/${CHAPTERS.findIndex(c => c[0] === s.chapter) + 1}-${s.chapter}.md`, u.title, u.text);
 }
