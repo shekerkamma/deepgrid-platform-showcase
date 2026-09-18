@@ -35,7 +35,7 @@ export interface AskResult {
 }
 
 interface IndexNode extends Seed {description: string; aliases: string[]; mentions: number[]; vector: Record<string, number>}
-interface IndexChunk extends Passage {kind: string; keys: string[]; vector: Record<string, number>}
+interface IndexChunk extends Passage {kind: string; keys: string[]; noise?: number; vector: Record<string, number>}
 interface GraphIndex {
   graph: {nodes: number; edges: number; communities: number};
   nodes: IndexNode[]; edges: {from: string; to: string; label: string; confidence: string; weight: number}[];
@@ -57,6 +57,8 @@ export const SEMANTIC_THEME_MIN = 0.6;
 export const SEMANTIC_THEME_GAP = 0.04;
 export const SEMANTIC_LIFT = 0.02;
 export const SEMANTIC_FLOOR = 0.5;
+/** share of the TF-IDF score added to the embedding score when ranking passages */
+export const HYBRID_TFIDF = 0.3;
 const TFIDF_FLOOR = 0.08;
 
 /** The row order the semantic index must match; build and browser both hash it (see semantic.ts). */
@@ -90,13 +92,23 @@ const has = (q: string, kw: string) => new RegExp(`(^|[^a-z0-9])${kw.replace(/[.
 // Quoting: whole sentences, so an excerpt never ends mid-claim. OCR and table text can run for pages with
 // no sentence break; that is cut at a word and marked, rather than shown whole.
 function sentences(text: string, max: number): string {
-  const parts = text.match(/[^.!?]+[.!?]+(\s|$)|[^.!?]+$/g) || [text];
+  // break only where punctuation is followed by a space: "Rs 1.7 Cr" and "5.2%" are not sentence ends
+  const parts = text.split(/(?<=[.!?])\s+/).map(s => s + ' ');
   let out = '';
   for (const s of parts) { if (out && (out + s).length > max) break; out += s; }
   out = out.trim();
   return out.length <= max * 1.25 ? out : out.slice(0, max).replace(/\s+\S*$/, '') + ' …';
 }
 const clip = (t: string, n: number) => t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, '') + ' …';
+// A workbook passage is one row per line; lead with the rows that share the most words with the question.
+function rowsFor(c: IndexChunk, q: string, n = 2): string | null {
+  if (c.source.docKind !== 'Workbook') return null;
+  // rows with figures only: a section heading ("A. PHASED TAPEOUT PROGRAM:") answers nothing
+  const want = new Set(tokens(q)), rows = c.text.split('\n').filter(r => /\d/.test(r) && !r.trim().endsWith(':'));
+  const scored = rows.map((r, i) => ({r, i, s: tokens(r.split(' — ')[0]).filter(w => want.has(w)).length * 2 + tokens(r).filter(w => want.has(w)).length}))
+    .filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.i - b.i).slice(0, n).sort((a, b) => a.i - b.i);
+  return scored.length ? scored.map(x => x.r).join(' · ') : null;
+}
 const passage = (c: IndexChunk, max = 480): Passage => ({id: c.id, title: clip(c.title, 110), text: sentences(c.text, max), source: c.source});
 
 function traverse(seed: IndexNode) {
@@ -147,21 +159,26 @@ export function executeGraphRAG(raw: string, products: ProductLike[], sem?: Sema
   // 3. grounding: passages by similarity, lifted when they mention the seed or its neighbours
   const seedMentions = new Set(seedNode.mentions), nearMentions = new Set(neighbours.flatMap(n => n.mentions));
   const chunkSim = index.chunks.map((c, i) => useSem ? Math.max(0, sem!.chunks[i]) : dot(qv, c.vector));
-  const chunkRank = index.chunks.map((c, i) => ({c, s: chunkSim[i] + (seedMentions.has(i) ? 0.06 : 0) + (nearMentions.has(i) ? 0.02 : 0)}))
+  // ranking is hybrid: embeddings blur exact terms ("EBITDA", "CGTMSE"), so a share of the TF-IDF match is
+  // added. The relevance floor and the theme test below stay on the embedding score alone.
+  const rankSim = index.chunks.map((c, i) => useSem ? chunkSim[i] + HYBRID_TFIDF * dot(qv, c.vector) : chunkSim[i]);
+  // OCR-garbled passages (noise = % of garbage characters, measured by the source index) rank below clean ones
+  const chunkRank = index.chunks.map((c, i) => ({c, s: rankSim[i] + (seedMentions.has(i) ? 0.06 : 0) + (nearMentions.has(i) ? 0.02 : 0) - Math.min(0.08, (c.noise || 0) / 500)}))
     .sort((a, b) => b.s - a.s);
 
   // 4a. a curated theme: by keyword, or by meaning when the question clearly sits closest to one
+  // Keywords pick a theme only without embeddings (TF-IDF fallback). With them, keywords are ignored:
+  // "EBITDA in FY2032" names two revenue-ramp keywords, scores 0.690 on that theme and 0.691 on the P&L row,
+  // and the row is the answer. Measured 18 Sep 2026: even a +0.04 keyword nudge forced it into the essay.
+  const kwScore = themes.map(t => t.keywords.reduce((acc, kw) => acc + (has(q, kw) ? 15 + kw.length : 0), 0));
   let theme: Theme | null = null, best = 0;
-  for (const t of themes) {
-    const s = t.keywords.reduce((acc, kw) => acc + (has(q, kw) ? 15 + kw.length : 0), 0);
-    if (s > best) { best = s; theme = t; }
-  }
+  if (!useSem) kwScore.forEach((s, i) => { if (s > best) { best = s; theme = themes[i]; } });
   // By meaning, a theme must be close, clearly closer than the runner-up, and closer than the best single
   // passage by a margin: otherwise the question is narrower than any curated answer, and that passage is
   // the better answer. An off-topic question (best passage under the floor) never reaches a theme.
   const floor = useSem ? (sem!.floor ?? SEMANTIC_FLOOR) : TFIDF_FLOOR;
   const bestChunk = Math.max(0, ...chunkSim);
-  if (!named.length && !theme && useSem && bestChunk >= floor) {
+  if (!named.length && useSem && bestChunk >= floor) {
     const order = Array.from(sem!.themes, (v, i) => [v, i] as const).sort((a, b) => b[0] - a[0]);
     const min = sem!.themeMin ?? SEMANTIC_THEME_MIN, gap = sem!.themeGap ?? SEMANTIC_THEME_GAP, lift = sem!.themeLift ?? SEMANTIC_LIFT;
     if (order[0][0] >= min && order[0][0] - (order[1]?.[0] ?? 0) >= gap && order[0][0] >= bestChunk + lift) theme = themes[order[0][1]];
@@ -196,6 +213,6 @@ export function executeGraphRAG(raw: string, products: ProductLike[], sem?: Sema
   const productIds = [...new Set(top.flatMap(c => c.source.productId ? [c.source.productId] : [])
     .concat(seedNode.productId ? [seedNode.productId] : []))].slice(0, 3);
   return {...base, kind: 'search', theme: null, tag: (seedNode.community || 'DeepGrid').toUpperCase(), title: clip(top[0].title.replace(/^Slide \d+ · /, ''), 110),
-    answer: sentences(top[0].text, 520), passages: top.map(c => passage(c)), seeds, path, focus: seedNode.name, products: productIds,
+    answer: rowsFor(top[0], q) || sentences(top[0].text, 520), passages: top.map(c => passage(c)), seeds, path, focus: seedNode.name, products: productIds,
     facts: productIds.slice(0, 1).flatMap(id => productFacts(id, products)).slice(0, 3)};
 }

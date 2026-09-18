@@ -1,0 +1,8 @@
+Line Item,$,Rs. Cr,Comment
+"A100 block MPW (5mm2 x $13,800/mm2, 100 samples)",69000,0.6486,"muSemi shared block, TSMC 28nm; compute block"
+"R100 block MPW (5mm2 x $13,800/mm2, 100 samples)",69000,0.6486,muSemi shared block; radar DSP block
+Full 57mm2 MPW prototype (1p8m 8-metal),232000,2.1808,"muSemi full block $220k + 5 proto wafers @ $2,400"
+SmartSoC backend -> GDSII (PD / DFT / integration / signoff),1000000,9.4,After MPW blocks proven
+"Dedicated mask set (TSMC 28nm 1p8m, negotiable)",1000000,9.4,"Full production mask, separate foundry cost"
+IP — PrimeSoC MIPI + PCIe4 + LPDDR5X,300000,2.82,Controller IP bundle (one-time licence)
+IP — Terminus Circuits PHY,500000,4.7,"PHY IP; $400-600k negotiable, midpoint"

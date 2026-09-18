@@ -57,14 +57,17 @@ The Ask DeepGrid view (`#briefing`) follows the DG32 site's graphify + GraphRAG 
 ([deepgrid-dr-silicon](https://github.com/shekerkamma/deepgrid-dr-silicon) `#ask`) over this showcase's own
 materials. It runs entirely in the browser, with no server or API key at runtime.
 
-**Corpus (474 passages):** the page's products, 104 slides, use cases and investment memorandum, plus the
+**Corpus (538 passages):** the page's products, 104 slides, use cases and investment memorandum, plus the
 primary sources behind them from `../original-platform/`: the 33-page Information Memorandum (OCR), the
-market research and document audits, and the competitor dossiers. `scripts/lib/showcase-content.mjs` defines
+market research and document audits, the competitor dossiers, and the two financial workbooks in
+`../documents/` (Financial Model v3, Business Plan v2 — both indexed and labelled, since they disagree; Payroll
+and Cap Table are excluded from the public site). `scripts/lib/showcase-content.mjs` defines
 it once for both the graph and the answers.
 
 **Pipeline** (run in order after changing any of that content):
 
 ```sh
+npm run graph:workbooks  # ../documents/*.xlsx -> knowledge/workbooks.json + ../documents/csv/ (/excel-ingest header detection, per block)
 npm run graph:corpus     # knowledge/corpus/*.md, the documents graphify reads
 npm run graph:extract    # graphify, via CLIProxyAPI to a subscription Gemini model (never the free tier)
 npm run graph:index      # app/data/graphrag-index.json + public/knowledge/ (graph page, JSON, report)

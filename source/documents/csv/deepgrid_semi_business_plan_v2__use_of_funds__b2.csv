@@ -1,0 +1,5 @@
+Allocation,$ M,Rs. Cr,% OF Total,Comment
+SoC2 tapeout NRE + IP (phased: MPW blocks -> full die -> dedicated mask),3.17,29.798000000000002,0.5418803418803418,Equity-funded; see Tapeout tab
+Engineering (chip + firmware + defence),0.96,9.024,0.16410256410256407,Core platform R&D
+AIS-162/188 certification + FPGA pilot,0.48,4.512,0.08205128205128204,Mandate compliance + pilots
+Working capital / BD / inventory,1.24,11.656,0.21196581196581196,"L4+ stack, field units"

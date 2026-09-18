@@ -17,7 +17,8 @@
     "graph:corpus": "node scripts/export-corpus.mjs",
     "graph:extract": "bash scripts/graphify-extract.sh",
     "graph:index": "node scripts/build-graphrag-index.mjs && node scripts/publish-graph.mjs",
-    "build:semantic": "node scripts/build-semantic-index.mjs"
+    "build:semantic": "node scripts/build-semantic-index.mjs",
+    "graph:workbooks": "uv run --no-project --with pandas==2.2.3 --with openpyxl==3.1.5 python scripts/ingest-workbooks.py"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

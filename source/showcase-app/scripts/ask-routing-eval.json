@@ -121,7 +121,28 @@
   {
    "q": "How do I reset my email password?",
    "expect": "none"
+  },
+  {
+   "q": "What is the EBITDA in FY2032?",
+   "expect": null
+  },
+  {
+   "q": "What is the gross margin in the P&L?",
+   "expect": null
+  },
+  {
+   "q": "How much does the SoC2 tapeout cost?",
+   "expect": null
+  },
+  {
+   "q": "What is the cost per die at volume?",
+   "expect": null
+  },
+  {
+   "q": "What is the TAM for mandated ADAS in India?",
+   "expect": null
   }
  ],
- "_minRecall": "0.5, not the DG32 site's 0.7: there a miss falls back to generic text, here it falls back to the best-grounded passages. Measured 18 Sep 2026 (bge-small, examples written blind): 9/18 reach their theme, 0 wrong, 0/8 forced; of the 9 misses, 6 fall back to a passage from the expected theme's own section or slide (e.g. 'contradict each other' -> 'Ten things to test'). The floor guards against a regression below that, not a target to tune the example questions toward."
+ "_minRecall": "0.5, not the DG32 site's 0.7: there a miss falls back to generic text, here it falls back to the best-grounded passages. Measured 18 Sep 2026 (bge-small, examples written blind): 9/18 reach their theme, 0 wrong, 0/8 forced; of the 9 misses, 6 fall back to a passage from the expected theme's own section or slide (e.g. 'contradict each other' -> 'Ten things to test'). The floor guards against a regression below that, not a target to tune the example questions toward.",
+ "_added": "18 Sep 2026: five precise financial questions added as null cases after a browser run showed keyword routing answering them with a theme's prose instead of the workbook row. They guard that regression; they were not used to tune examples."
 }

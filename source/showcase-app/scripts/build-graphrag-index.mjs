@@ -70,7 +70,8 @@ for (const c of catalog.filter(c => c.kind === 'product')) {
 const edges = [...edgeKey.values()];
 
 // 3. Chunks: every citable unit of the page.
-const chunks = units.map(u => ({id: u.id, kind: u.kind, title: u.title, text: u.text, source: u.source, keys: u.keys || []}));
+const chunks = units.map(u => ({id: u.id, kind: u.kind, title: u.title, text: u.text, source: u.source, keys: u.keys || [],
+  ...(u.noise ? {noise: u.noise} : {})}));
 
 // 4. Mentions: which chunks name each node (by any alias, or a graphify label of 5+ characters).
 const lowered = chunks.map(c => `${c.title} ${c.text}`.toLowerCase());

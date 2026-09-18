@@ -1,0 +1,10 @@
+Overheads,Item,Comment
+SoC2 die area (mm2),57,"v7 single-die SoC2, TSMC 28nm HPC+"
+Wafer diameter (mm),300,Standard 300mm wafer
+Gross die per wafer (edge-corrected),1069,GDPW formula: pi*r^2/A - pi*2r/sqrt(A)
+Yield (mature 28nm),0.945,Murphy model at ~0.1/cm2 defect density
+Good die per wafer,1010,Gross die x yield
+28nm wafer cost ($/wafer),2400,Volume-committed price (~500k dies); TSMC 28nm
+Wafer cost per die ($),2.376237623762376,Wafer cost / good die
+"Assembly, test & packaging ($)",1.5,OSAT / QuikPak at volume
+Per-die cost at volume ($),3.876237623762376,Wafer/die + ATP

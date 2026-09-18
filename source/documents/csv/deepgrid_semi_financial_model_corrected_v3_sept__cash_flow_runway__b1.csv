@@ -1,0 +1,11 @@
+Fiscal year,FY2027,FY2028,FY2029,FY2030,FY2031,FY2032,col9
+Operating cash flow (NI + D&A),-0.39575,1.9326075,16.78271875,53.074875,133.5700625,296.55,
+Less: tapeout capex (one-time),-18,-10,-2,0,0,0,"SoC2 NRE+IP ~Rs30 Cr, mostly FY27-28"
+"Less: other capex (equipment, lab)",-1,-1.5,-2,-3,-4,-5,
+Memo: TaaS fleet debt outstanding (cumulative),0.6,3,6,15,30,60,
+Interest rate on fleet debt,0.15,,,,,,"Indian asset-backed lending, pre-profit startup"
+Less: TaaS debt interest,-0.09,-0.45,-0.9,-2.25,-4.5,-9,
+NWC as % of revenue,0.15,,,,,,Inventory + receivables - payables; Indian OEMs pay 60-90d
+Net working capital (balance),0.255,4.1724,17.306625,42.69825,89.14425,169.2675,
+Less: change in working capital,-0.255,-3.9174,-13.134225,-25.391625,-46.446,-80.12325,
+Net cash flow for the year,-19.74075,-13.9347925,-1.25150624999999,22.43325,78.6240625,202.42675,
