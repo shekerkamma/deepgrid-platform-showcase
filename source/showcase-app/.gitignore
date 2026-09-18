@@ -37,3 +37,7 @@ next-env.d.ts
 /outputs/
 /work/
 *.tsbuildinfo
+
+# ONNX runtime and vis-network for Ask DeepGrid, copied from node_modules at build (scripts/copy-runtime.mjs)
+/public/ort/
+/public/vendor/

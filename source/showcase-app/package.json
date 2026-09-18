@@ -7,15 +7,18 @@
   },
   "scripts": {
     "dev": "vinext dev",
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/check-semantic.mjs && node scripts/copy-runtime.mjs && node scripts/build.mjs",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
-    "build:pages": "node scripts/build.mjs && node scripts/package-pages.mjs"
+    "build:pages": "node scripts/check-semantic.mjs && node scripts/copy-runtime.mjs && node scripts/build.mjs && node scripts/package-pages.mjs",
+    "sync:ask": "node scripts/sync-ask.mjs",
+    "check:semantic": "node scripts/check-semantic.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
+    "@huggingface/transformers": "3.8.1",
     "@shadcn/react": "0.3.0",
     "@types/three": "^0.185.4",
     "class-variance-authority": "0.7.1",
@@ -52,6 +55,7 @@
     "oxlint-tsgolint": "7.0.2001",
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3",
+    "vis-network": "9.1.6",
     "vite": "8.0.13",
     "wrangler": "4.92.0"
   },
