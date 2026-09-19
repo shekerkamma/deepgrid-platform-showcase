@@ -243,14 +243,7 @@ export const executiveThemes: ExecutiveTheme[] = [
       { label: 'Explore 30 Industrial AI Tasks', hash: 'overview', description: 'Review the full 30 use cases and their physical compute envelopes.' },
       { label: 'Inspect 100 kHz Control Loop Budget', hash: 'control', description: 'Analyze cycle budgets showing 82% unburdened CPU headroom.' },
       { label: 'Review Dual-Core Lockstep Gate', hash: 'architecture', description: 'Inspect the hardware fault isolation gate that decouples advisory AI from tripping.' }
-    ],
-    visualEvidence: {
-      id: 'visual_sims_image2',
-      title: 'CWRU Bearing Fault Vibration Harmonic Spectrum',
-      type: 'SIMULATION WAVEFORM',
-      filePath: 'media/sims_image2.png',
-      caption: 'Discrete Fourier Transform and Goertzel algorithm harmonic peak extraction for outer race bearing defect detection on CWRU benchmark dataset.'
-    }
+    ]
   },
 
   // 2. Kurtosis Non-Monotonicity Trap
@@ -583,14 +576,7 @@ export const executiveThemes: ExecutiveTheme[] = [
     refLinks: [
       { label: 'Inspect QFN-64 Pinout & Layout Rules', hash: 'pinout', description: 'Review full 64-pin table and high-speed PCB routing rules.' },
       { label: 'Download QFN-64 Datasheet PDF', hash: 'library', description: 'Access the complete 24-page electrical and physical datasheet.' }
-    ],
-    visualEvidence: {
-      id: 'visual_lines_image5',
-      title: 'DG32-LITE QFN-64 Pin Group Distribution & Pad Ring',
-      type: 'HARDWARE PACKAGING SPEC',
-      filePath: 'media/lines_image5.png',
-      caption: 'Package layout showing 44 active signal pins grouped into 11 functional clusters with thermal paddle ground isolation.'
-    }
+    ]
   },
 
   // 13. Sovereign Supply Chain Immunity & Three-Factory Strategy
@@ -626,14 +612,7 @@ export const executiveThemes: ExecutiveTheme[] = [
       { label: 'Examine Three-Factory Roadmap', hash: 'roadmap', description: 'Review the multi-fab transition across SkyWater, IHP, and SCL Mohali.' },
       { label: 'Inspect DAP-2020 Defence Moats', hash: 'overview', description: 'Read statutory indigenisation requirements under Make-II rules.' },
       { label: 'Review 198-Day Execution Loop', hash: 'loop', description: 'Analyze the fast tape-out timeline enabled by open-source EDA.' }
-    ],
-    visualEvidence: {
-      id: 'visual_lines_image',
-      title: 'DeepGrid Three-Factory Geopolitical Semiconductor Map',
-      type: 'GEOPOLITICAL SUPPLY MAP',
-      filePath: 'media/lines_image.png',
-      caption: 'Geopolitical supply chain map illustrating DeepGrid 3-factory mature-node fabrication strategy across SkyWater, SCL Chandigarh, and domestic OSAT packaging.'
-    }
+    ]
     },
   {
     // Every figure below is on a cited page or in the site's own copy: checker core and store-by-store
@@ -671,10 +650,10 @@ export const executiveThemes: ExecutiveTheme[] = [
     ],
     visualEvidence: {
       id: 'visual_dg32-lite-architecture',
-      title: 'DG32-LITE Single-Domain Architecture Diagram',
-      type: 'ARCHITECTURE VECTOR DIAGRAM',
+      title: 'DG32-LITE system architecture',
+      type: 'ARCHITECTURE DIAGRAM',
       filePath: 'diagrams/dg32-lite-architecture.svg',
-      caption: 'Complete block diagram of DG32-LITE showing dual rv32imc cores in lockstep, cycle-by-cycle fault comparator, 32 KB SRAM, 64 KB ROM, 3-phase PWM, and DShot ESC engine.'
+      caption: 'Block diagram of DG32-LITE: safety core, memory and boot, supervision, motor drive, sensing and math, and connectivity on one 50 MHz clock domain, joined by an on-chip bus.'
     }
   }
 ];
@@ -1016,55 +995,24 @@ export function executeGraphRAG(rawQuery: string, sem?: SemanticScores | null): 
     description: `Relational link: [${s.source}] ──(${s.relation})──> [${s.target}]`
   }));
 
-  // Match fallback visual evidence based on query semantics
+  // A diagram only for its own chip. Keyword rules that attached simulator screenshots and a rendered die to unrelated
+  // questions were removed: every caption here is read off the image itself (knowledge/image-descriptions.json).
   let fallbackVisual: VisualEvidence | undefined;
-  if (/die|floorplan|layout|photo|silicon layout/.test(q)) {
-    fallbackVisual = {
-      id: 'visual_deepgrid_soc2_die',
-      title: 'DG32 SoC2 Hardened Silicon Die Microphotograph',
-      type: 'HARDENED SILICON DIE',
-      filePath: 'media/deepgrid_soc2_die.jpg',
-      caption: 'Microphotograph of the hardened 130 nm CMOS silicon die layout on SkyWater sky130A showing dual lockstep rv32imc cores, SRAM macro blocks, and perimeter I/O pad ring.'
-    };
-  } else if (/waveform|vibration|bearing|cwru|harmonic|fft|spectrum/.test(q)) {
-    fallbackVisual = {
-      id: 'visual_sims_image2',
-      title: 'CWRU Bearing Fault Vibration Harmonic Spectrum',
-      type: 'SIMULATION WAVEFORM',
-      filePath: 'media/sims_image2.png',
-      caption: 'Discrete Fourier Transform and Goertzel algorithm harmonic peak extraction for outer race bearing defect detection on CWRU benchmark dataset.'
-    };
-  } else if (/pinout|qfn|package|pad ring|paddle/.test(q)) {
-    fallbackVisual = {
-      id: 'visual_lines_image5',
-      title: 'DG32-LITE QFN-64 Pin Group Distribution & Pad Ring',
-      type: 'HARDWARE PACKAGING SPEC',
-      filePath: 'media/lines_image5.png',
-      caption: 'Package layout showing 44 active signal pins grouped into 11 functional clusters with thermal paddle ground isolation.'
-    };
-  } else if (/2dom|dual[- ]domain|attention|int8|cdc/.test(q)) {
+  if (/2dom|dual[- ]domain|attention engine|int8|clock[- ]domain/.test(q)) {
     fallbackVisual = {
       id: 'visual_dg32-2dom-architecture',
-      title: 'DG32-2DOM Dual-Domain Architecture Diagram',
-      type: 'ARCHITECTURE VECTOR DIAGRAM',
+      title: 'DG32-2DOM system architecture',
+      type: 'ARCHITECTURE DIAGRAM',
       filePath: 'diagrams/dg32-2dom-architecture.svg',
-      caption: 'Dual-clock domain architecture diagram showing 50 MHz deterministic motor control domain CDC-bridged to 114 MHz INT8 attention engine.'
+      caption: 'Block diagram of DG32-2DOM: a 50 MHz control domain, identical to DG32-LITE, bridged to a 114 MHz compute domain that holds the INT8 attention engine.'
     };
-  } else if (/lockstep|comparator|fault_n|fault injection|pwm|dshot|architecture|block diagram/.test(q)) {
+  } else if (/dg32|lockstep|comparator|fault_n|fault injection|block diagram/.test(q)) {
     fallbackVisual = {
       id: 'visual_dg32-lite-architecture',
-      title: 'DG32-LITE Single-Domain Architecture Diagram',
-      type: 'ARCHITECTURE VECTOR DIAGRAM',
+      title: 'DG32-LITE system architecture',
+      type: 'ARCHITECTURE DIAGRAM',
       filePath: 'diagrams/dg32-lite-architecture.svg',
-      caption: 'Complete block diagram of DG32-LITE showing dual rv32imc cores in lockstep, cycle-by-cycle fault comparator, 32 KB SRAM, 64 KB ROM, and 3-phase PWM.'
-    };
-  } else if (/supply chain|three-factory|sovereignty|foundry|scl/.test(q)) {
-    fallbackVisual = {
-      id: 'visual_lines_image',
-      title: 'DeepGrid Three-Factory Geopolitical Semiconductor Map',
-      type: 'GEOPOLITICAL SUPPLY MAP',
-      filePath: 'media/lines_image.png',
-      caption: 'Geopolitical supply chain map illustrating DeepGrid 3-factory mature-node fabrication strategy across SkyWater, SCL Chandigarh, and domestic OSAT packaging.'
+      caption: 'Block diagram of DG32-LITE: safety core, memory and boot, supervision, motor drive, sensing and math, and connectivity on one 50 MHz clock domain, joined by an on-chip bus.'
     };
   }
 
