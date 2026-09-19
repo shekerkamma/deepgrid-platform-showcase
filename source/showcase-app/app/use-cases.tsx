@@ -1,6 +1,8 @@
 'use client';
 import {ArrowLeft,ArrowRight,CheckCircle2,Users,Package,ShieldAlert} from 'lucide-react';
 import data from './use-cases.json';
+import Related from './related';
+import type { Go } from './shared';
 const summaries=[
  {title:'Forward-path perception',buyer:'Braking Tier-1s & commercial-vehicle OEMs',supply:'A tracked object list with confidence, range and time-to-collision.',group:'Road Autonomy'},
  {title:'Fewer nuisance alerts',buyer:'Validation teams & pilot fleets',supply:'An equal-scope benchmark of false alerts and detection performance.',group:'Road Autonomy'},
@@ -9,7 +11,7 @@ const summaries=[
  {title:'Lane departure warning',buyer:'ADAS integrators & highway fleets',supply:'A drivable-corridor estimate, departure alerts and an unavailable state.',group:'Road Autonomy'},
  {title:'Government & PSU fleets',buyer:'State transport, PSU & municipal procurement',supply:'An FPGA perception kit packaged for local-content procurement.',group:'Silicon & Compute'}
 ];
-export default function UseCases({selected,onSelect,onProducts}:{selected:string;onSelect:(id:string)=>void;onProducts:(category:string)=>void}){
+export default function UseCases({selected,onSelect,onProducts,go}:{selected:string;onSelect:(id:string)=>void;onProducts:(category:string)=>void;go:Go}){
  const i=data.cases.findIndex(c=>c.id===selected),item=data.cases[i],summary=summaries[i];
  return <section className="usecase-explorer" aria-label="Business use cases">
  {!item?<><header className="usecase-intro"><div><h2>Six customer applications</h2><p>Choose an application to see the buyer, deliverable and evidence required to move forward.</p></div><span>6 use cases</span></header>
@@ -22,6 +24,7 @@ export default function UseCases({selected,onSelect,onProducts}:{selected:string
  <div className="usecase-facts"><article><Users size={21}/><h3>Who buys it</h3><p>{summary.buyer}</p></article><article><Package size={21}/><h3>What DeepGrid supplies</h3><p>{item.supply}</p></article><article><CheckCircle2 size={21}/><h3>Acceptance gate</h3><p>{item.gate}</p></article><article><ShieldAlert size={21}/><h3>Main dependency or risk</h3><p>{item.risk}</p></article></div>
  <section className="usecase-workflow"><h3>How it works</h3><ol>{item.steps.map((step,n)=><li key={step}><span>{n+1}</span><p>{step}</p></li>)}</ol></section>
  <details className="usecase-source"><summary>Technical context & source evidence</summary><h3>Challenge</h3><p>{item.challenge}</p><dl><div><dt>Standard or procurement framework</dt><dd>{item.standard}</dd></div><div><dt>Timing stated in the source</dt><dd>{item.dates}</dd></div><div><dt>Stakeholders</dt><dd>{item.buyer}</dd></div><div><dt>Organisations</dt><dd>{item.organisations}</dd></div></dl><div className="usecase-source-metrics">{item.stats.map(stat=><div key={stat.label}><strong>{stat.value}</strong><span>{stat.label}</span><p>{stat.note}</p></div>)}</div><p className="usecase-source-note">Source: DeepGrid investment memorandum, Part III. Dates, requirements and performance claims retain their original management-source context.</p></details>
+ <Related item={'usecase:'+item.id} go={go} exclude={['memo:usecases']} title="This use case across the site"/>
  <nav className="usecase-pagination" aria-label="Adjacent use cases">{i>0?<button onClick={()=>onSelect(data.cases[i-1].id)}><ArrowLeft size={16}/>{summaries[i-1].title}</button>:<button onClick={()=>onSelect('')}><ArrowLeft size={16}/>All use cases</button>}{i<5&&<button onClick={()=>onSelect(data.cases[i+1].id)}>{summaries[i+1].title}<ArrowRight size={16}/></button>}</nav></>}
  </section>
 }

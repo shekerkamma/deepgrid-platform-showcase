@@ -1,4 +1,6 @@
 'use client';
+import Related from '../related';
+import type { Go } from '../shared';
 import { useEffect, useRef } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Download } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
@@ -31,9 +33,11 @@ const file = (n: number) => 'slide_' + String(n).padStart(2, '0');
 export default function Deck({
   slide,
   setSlide,
+  go,
 }: {
   slide: number;
   setSlide: (n: number) => void;
+  go: Go;
 }) {
   const ci = deckChapters.reduce((a, [n], i) => (slide >= n ? i : a), 0),
     [start, chapterTitle] = deckChapters[ci],
@@ -231,6 +235,11 @@ export default function Deck({
           <summary>Source notes and model references</summary>
           <p>{note.notes}</p>
         </details>
+        <Related
+          item={'slide:' + slide}
+          go={go}
+          title="This slide across the site"
+        />
       </section>
       <div className="deck-footer">
         <p className="disclaimer">

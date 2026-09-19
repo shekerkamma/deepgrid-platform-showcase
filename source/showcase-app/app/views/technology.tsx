@@ -6,6 +6,7 @@ import { SectionHead, domains, nb, productById, type Go } from '../shared';
 import story from '../data/tech-story.json';
 import slideNotes from '../slide-notes.json';
 import { films, siliconFilms, Player } from './films';
+import Related from '../related';
 
 // Technology: the silicon told as a story for executives and investors, in the Overview's shape. Each chapter has a
 // kicker, a verdict headline and a lede on why it matters, story pills, the component or film that shows it, and the
@@ -447,6 +448,12 @@ export default function Technology({
               <p>{nb(c.detail)}</p>
             </details>
             <References c={c} go={go} />
+            <Related
+              item={'tech:' + c.id}
+              go={go}
+              exclude={['slide', 'film']}
+              title="This chapter across the site"
+            />
           </>
         );
         const split = SPLIT[c.id];

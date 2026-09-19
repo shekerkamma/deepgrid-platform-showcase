@@ -1,4 +1,6 @@
 'use client';
+import Related from '../related';
+import type { Go } from '../shared';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Play } from 'lucide-react';
 import { SectionHead } from '../shared';
@@ -108,9 +110,11 @@ export const clock = (t: number) =>
 export default function Films({
   reduced,
   focus,
+  go,
 }: {
   reduced: boolean;
   focus?: { id: string; t: number };
+  go: Go;
 }) {
   useEffect(() => {
     if (!focus?.id) return;
@@ -151,6 +155,12 @@ export default function Films({
           <p>{master.sub}</p>
           <p className="num film-length">{master.length}</p>
           <Transcript id="master" />
+          <Related
+            item="film:master"
+            go={go}
+            exclude={['slide']}
+            title="The walkthrough, product by product"
+          />
         </div>
       </article>
       <h2 className="film-grid-title">Product films</h2>
@@ -164,6 +174,7 @@ export default function Films({
                 {f.sub} <span className="num">· {f.length}</span>
               </p>
               <Transcript id={f.id} />
+              <Related item={'film:' + f.id} go={go} />
             </div>
           </article>
         ))}
@@ -179,6 +190,7 @@ export default function Films({
                 {f.sub} <span className="num">· {f.length}</span>
               </p>
               <Transcript id={f.id} />
+              <Related item={'film:' + f.id} go={go} />
             </div>
           </article>
         ))}

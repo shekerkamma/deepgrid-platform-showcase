@@ -1,0 +1,180 @@
+{
+ "_note": "Links no data file states, each with its reason. Everything else in app/data/relations.json is derived (scripts/build-relations.mjs). Keep this list short: a link belongs here only when a reader of both items would agree they are about the same thing.",
+ "links": [
+  [
+   "film:computebox",
+   "tech:sensors",
+   "The Silicon platform places this film in Sensor to compute"
+  ],
+  [
+   "film:roadmap",
+   "tech:measured",
+   "The Silicon platform places this film in Measured, not claimed"
+  ],
+  [
+   "film:problem",
+   "tech:data",
+   "The Silicon platform places this film in Compute waits on data"
+  ],
+  [
+   "film:landscape",
+   "tech:data",
+   "The Silicon platform places this film in Compute waits on data"
+  ],
+  [
+   "film:cube",
+   "tech:cube",
+   "The Silicon platform places this film in The eight-layer cube"
+  ],
+  [
+   "film:mesh",
+   "tech:horizon",
+   "The Silicon platform places this film in The far horizon"
+  ],
+  [
+   "memo:technology",
+   "tech:domains",
+   "Memorandum section: Six chiplets, one 57 mm² die, six independent revenue lines"
+  ],
+  [
+   "memo:technology",
+   "tech:silicon",
+   "Memorandum section: Six chiplets, one 57 mm² die, six independent revenue lines"
+  ],
+  [
+   "memo:technology",
+   "tech:sensors",
+   "Memorandum section: Two retrofit mirror towers, and no blind spot left on the vehicle"
+  ],
+  [
+   "memo:technology",
+   "tech:measured",
+   "Memorandum section: Concept through validated silicon, what is already done"
+  ],
+  [
+   "memo:technology",
+   "tech:horizon",
+   "Memorandum section: The option the business buys you, deliberately not funded by this round"
+  ],
+  [
+   "memo:business",
+   "product:ad2",
+   "Memorandum section: AD2 Smart Truck kit"
+  ],
+  [
+   "memo:business",
+   "product:ad1",
+   "Memorandum section: AD1 Indoor autonomy"
+  ],
+  [
+   "memo:business",
+   "product:dhumr",
+   "Memorandum section: D-HUMR defence"
+  ],
+  [
+   "memo:business",
+   "product:t100",
+   "Memorandum section: T100 AI licence"
+  ],
+  [
+   "memo:business",
+   "slide:3",
+   "Slide 3 (Why now) and the memorandum section The demand is legislated, not forecast"
+  ],
+  [
+   "memo:summary",
+   "slide:4",
+   "Slide 4 (The move) and the memorandum summary One die, fifteen products"
+  ],
+  [
+   "memo:summary",
+   "slide:104",
+   "Slide 104 (The ask) is the round the summary states"
+  ],
+  [
+   "memo:summary",
+   "tech:silicon",
+   "The summary's case is one die, fifteen products"
+  ],
+  [
+   "memo:choice",
+   "slide:99",
+   "Slide 99 (Sequencing) and the memorandum's strategic options"
+  ],
+  [
+   "memo:numbers",
+   "slide:98",
+   "Slide 98 (Concentration) and the memorandum's risks"
+  ],
+  [
+   "memo:numbers",
+   "slide:101",
+   "Slide 101 (Margin) and the memorandum's financials"
+  ],
+  [
+   "memo:numbers",
+   "slide:104",
+   "Slide 104 (The ask) and the memorandum's use of funds"
+  ],
+  [
+   "tech:silicon",
+   "slide:102",
+   "Slide 102 (Headroom) is the frame-budget headroom the silicon chapter rests on"
+  ],
+  [
+   "tech:silicon",
+   "slide:6",
+   "Slide 6 (The portfolio) is the fifteen products on the one die"
+  ],
+  [
+   "memo:usecases",
+   "slide:100",
+   "Slide 100 (Where autonomy runs) and the memorandum's use cases"
+  ],
+  [
+   "slide:40",
+   "tech:data",
+   "Slide 40 (The memory spectrum) is the six-chip comparison of Compute waits on data"
+  ],
+  [
+   "slide:40",
+   "film:landscape",
+   "Slide 40 (The memory spectrum) is the film Six answers to one question"
+  ],
+  [
+   "film:truck",
+   "tech:sensors",
+   "The truck kit's sensors are the eleven inputs of Sensor to compute"
+  ],
+  [
+   "usecase:UC-05",
+   "product:ad2",
+   "AD2 brief: collision, lane-departure and blind-spot logic then decide whether a warning is required"
+  ],
+  [
+   "usecase:UC-02",
+   "product:thermal",
+   "Thermal Camera Pod brief: blind-spot and moving-off monitoring without high nuisance alert rates"
+  ],
+  [
+   "slide:1",
+   "memo:summary",
+   "Slide 1 (Fifteen products. One chip.) states the case the executive summary makes"
+  ],
+  [
+   "slide:2",
+   "slide:6",
+   "Slide 2 explains how each product's slides are laid out; slide 6 is the portfolio they cover"
+  ],
+  [
+   "slide:97",
+   "memo:numbers",
+   "Slide 97 opens Portfolio economics: concentration, margin and headroom, the memorandum's financials"
+  ],
+  [
+   "slide:97",
+   "memo:choice",
+   "Slide 97 opens Portfolio economics, including sequencing, the memorandum's strategic options"
+  ]
+ ]
+}

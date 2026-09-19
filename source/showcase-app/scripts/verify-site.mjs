@@ -499,6 +499,68 @@ for (const { tag, viewport } of [
   await p.close();
 }
 
+// 3d. cross-references: every section links to the related items in the others, labelled by destination, and a
+// link followed lands where it says. Slide 44 leads to the eight-layer cube chapter; the cube film leads back to it;
+// the memorandum's technology chapter leads to the Silicon platform; a use case leads to its product lines.
+{
+  const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+  watch(p, 'related');
+  const BARE = /^(read|open|open slide|pdf|download|more|link|source|watch)$/i;
+  for (const [hash, scope, expect] of [
+    ['slides?slide=44', '.slide-commentary .related', '#silicon?chapter=cube'],
+    ['film', '#film-cube .related', '#silicon?chapter=cube'],
+    ['film', '#film-truck .related', '#portfolio?product=ad2'],
+    [
+      'investment?chapter=technology',
+      '.record-reader .related',
+      '#silicon?chapter=domains',
+    ],
+    [
+      'investment?chapter=usecases&usecase=UC-04',
+      '.usecase-explorer .related',
+      '#portfolio?product=ad2',
+    ],
+    ['silicon', '#tech-sensors .related', '#portfolio?product=ad2'],
+  ]) {
+    await p.goto(BASE + '#' + hash, { waitUntil: 'networkidle' });
+    await p.waitForTimeout(400);
+    const m = await p.evaluate(
+      ([scope, expect]) => {
+        const links = [...document.querySelectorAll(scope + ' a')];
+        return {
+          n: links.length,
+          bare: links
+            .map((a) =>
+              (a.querySelector('strong')?.textContent || a.textContent).trim(),
+            )
+            .filter((t) => !t),
+          has: links.some((a) => a.getAttribute('href') === expect),
+        };
+      },
+      [scope, expect],
+    );
+    if (!m.n || m.bare.length || !m.has || m.bare.some((t) => BARE.test(t)))
+      fail(
+        `related on #${hash}: ${m.n} links, expected one to ${expect} (${m.has}), ${m.bare.length} unlabelled`,
+      );
+  }
+  // follow one: the cube film's related chapter opens the Silicon platform at that chapter
+  await p.goto(BASE + '#film', { waitUntil: 'networkidle' });
+  await p.click('#film-cube .related a[href="#silicon?chapter=cube"]');
+  await p.waitForTimeout(900);
+  const top = await p.evaluate(() =>
+    Math.round(
+      document.getElementById('tech-cube')?.getBoundingClientRect().top ?? -1,
+    ),
+  );
+  if (top < -5 || top > 200)
+    fail(`related link from the cube film landed with the chapter at ${top}px`);
+  console.log(
+    'related: 6 sections cross-link, and a followed link lands on its chapter',
+  );
+  await p.close();
+}
+
 // 4. slide deck: arrow keys step, filmstrip follows
 {
   const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
