@@ -366,6 +366,30 @@ function RampChart() {
   );
 }
 
+// The memorandum as published carries em dashes, film posters that open on a cover card claiming "proven on hardware",
+// no caption tracks, and a small rendering stretched to the column. Tidy it as it is shown, never in the source:
+// its masthead h1 becomes an h2; a lone dash marking an empty cell becomes an en dash, any other em dash a comma; each film takes the poster and the
+// reviewed captions the Demonstrations page uses; an image never grows past its own width.
+function tidy(html: string) {
+  return html
+    // the page has its own h1; the memorandum's masthead title sits beneath it
+    .replace(/<h1(\b[^>]*)>/g, '<h2$1>')
+    .replace(/<\/h1>/g, '</h2>')
+    .replace(/>\s*&mdash;\s*</g, '>&ndash;<')
+    .replace(/\s*&mdash;\s*/g, ', ')
+    .replace(/,\s*([.;:!?)])/g, '$1')
+    .replace(
+      /(<video\b[^>]*?)poster="[^"]*\/media\/([a-z]+)-poster\.png"([^>]*>)/g,
+      (_, a: string, id: string, b: string) =>
+        `${a}poster="./images/posters/${id}.webp"${b}<track kind="captions" src="./media/captions/${id}.vtt" srclang="en" label="English">`,
+    )
+    .replace(
+      /<img\b([^>]*?)width="(\d+)"/g,
+      (_, a: string, w: string) =>
+        `<img${a}style="max-width:${w}px" width="${w}"`,
+    );
+}
+
 function InvestmentRecord({
   chapter,
   onChapter,
@@ -377,7 +401,7 @@ function InvestmentRecord({
 }) {
   const [html, setHtml] = useState('');
   useEffect(() => {
-    const doc = new DOMParser().parseFromString(reportHtml, 'text/html');
+    const doc = new DOMParser().parseFromString(tidy(reportHtml), 'text/html');
     setHtml(
       chapter === 'summary'
         ? [

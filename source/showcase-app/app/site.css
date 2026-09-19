@@ -2916,3 +2916,300 @@ details > summary {
 .related-group.is-slide a:hover {
   border-color: var(--copper);
 }
+
+/* ---------- demonstrations: groups, chooser, stage (app/views/films.tsx) ---------- */
+.film-group {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  scroll-margin-top: 5rem;
+}
+.film-group-head {
+  max-width: 44rem;
+  margin-bottom: 1.5rem;
+}
+.film-group-head h2 {
+  font-size: var(--sc-t-section);
+  line-height: var(--sc-lh-section);
+  text-wrap: balance;
+  margin: 0 0 0.6rem;
+}
+.film-group-head p {
+  color: var(--ink-2);
+  text-wrap: pretty;
+  margin: 0;
+}
+.film-chooser {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.5rem;
+  scrollbar-width: thin;
+}
+.film-chooser button {
+  flex: 0 0 13.5rem;
+  scroll-snap-align: start;
+  display: grid;
+  gap: 0.5rem;
+  text-align: left;
+  padding: 0.5rem;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--sc-radius);
+  background: var(--surface);
+  color: var(--ink-2);
+  transition: border-color 0.15s var(--sc-ease-out), background-color 0.15s var(--sc-ease-out);
+}
+.film-chooser img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+.film-chooser strong {
+  display: block;
+  font-weight: 500;
+  font-size: var(--sc-t-control);
+  color: var(--ink);
+  line-height: 1.3;
+}
+.film-chooser small {
+  font-size: var(--sc-t-meta);
+  color: var(--ink-3);
+}
+.film-chooser button[aria-selected='true'] {
+  border-color: var(--copper);
+  background: var(--surface-2);
+}
+.film-chooser button:hover {
+  border-color: var(--line);
+}
+.film-chooser button:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+.film-stage {
+  scroll-margin-top: 5rem;
+}
+.film-stage > header h3 {
+  font-size: var(--sc-t-card);
+  margin: 0 0 0.3rem;
+}
+.film-stage > header p {
+  color: var(--ink-2);
+  margin: 0 0 1rem;
+}
+.film-walkthrough {
+  scroll-margin-top: 5rem;
+}
+
+/* ---------- storyboards (app/storyboard.tsx) ---------- */
+/* the query is on the parent: a container cannot restyle itself */
+.film-stage,
+.tech-film,
+.film-walkthrough {
+  container-type: inline-size;
+}
+.story-film {
+  display: grid;
+  gap: 1.25rem;
+}
+.story-film > * {
+  min-width: 0;
+}
+.storyboard {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+.storyboard > li {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  column-gap: 0.9rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--sc-radius);
+  border: 1px solid transparent;
+  transition: background-color 0.2s var(--sc-ease-out), border-color 0.2s var(--sc-ease-out);
+}
+.storyboard > li[aria-current='step'] {
+  background: var(--surface);
+  border-color: var(--line-soft);
+}
+.storyboard > li > button {
+  display: contents;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+}
+.storyboard .sb-time {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: start;
+  font-size: var(--sc-t-meta);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+}
+.storyboard > li[aria-current='step'] .sb-time {
+  color: var(--copper);
+  border-color: var(--copper);
+}
+.storyboard strong {
+  grid-column: 2;
+  grid-row: 1;
+  font-weight: 600;
+  font-size: var(--sc-t-control);
+  color: var(--ink);
+  text-wrap: balance;
+  padding-top: 0.15rem;
+}
+.storyboard > li > p {
+  grid-column: 2;
+  margin: 0.3rem 0 0;
+  font-size: var(--sc-t-control);
+  color: var(--ink-2);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.storyboard > li > button:hover strong {
+  color: var(--copper);
+}
+.storyboard > li:has(> button:focus-visible) {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+/* frames, where they read at thumbnail size: a grid of cards */
+.storyboard.has-thumbs {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+  gap: 0.75rem;
+}
+.storyboard.has-thumbs > li {
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-content: start;
+  border-color: var(--line-soft);
+  padding: 0.6rem;
+}
+.storyboard.has-thumbs img {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-bottom: 0.6rem;
+}
+.storyboard.has-thumbs .sb-time {
+  grid-row: 2;
+  margin-right: 0.6rem;
+}
+.storyboard.has-thumbs strong {
+  grid-row: 2;
+  align-self: center;
+}
+.storyboard.has-thumbs > li > p {
+  grid-column: 1 / -1;
+}
+.storyboard.is-chapters img {
+  aspect-ratio: 16 / 9;
+}
+.sb-lines {
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.sb-lines button {
+  min-height: 24px;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: var(--sc-t-meta);
+  color: var(--ink-2);
+}
+.sb-lines button .num {
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  margin-left: 0.25rem;
+}
+.sb-lines button:hover {
+  border-color: var(--copper);
+  color: var(--ink);
+}
+.sb-lines button:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+/* beside the player where the column is wide enough: the player leads, the story follows it */
+@container (min-width: 56rem) {
+  .story-film:not(.is-walkthrough) {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .story-film:not(.is-walkthrough) > .film-frame {
+    position: sticky;
+    top: 5.5rem;
+  }
+  .story-film:not(.is-walkthrough) > .storyboard.has-thumbs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- silicon platform: films and figures ---------- */
+.tech-films {
+  display: grid;
+  gap: 2rem;
+}
+.tech-film {
+  margin: 0;
+}
+.tech-film > figcaption {
+  margin-bottom: 0.75rem;
+  font-size: var(--sc-t-control);
+  color: var(--ink-2);
+}
+.tech-film > figcaption strong {
+  color: var(--ink);
+  font-weight: 600;
+  margin-right: 0.35rem;
+}
+.tech-figure figcaption {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 64ch;
+  margin-top: 0.75rem;
+}
+.tech-figure figcaption strong {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: var(--sc-t-control);
+}
+.tech-figure figcaption span {
+  color: var(--ink-2);
+  font-size: var(--sc-t-control);
+  line-height: 1.6;
+}
+.tech-figure figcaption small {
+  color: var(--ink-3);
+  font-size: var(--sc-t-meta);
+}
+@media (prefers-reduced-motion: reduce) {
+  .storyboard > li,
+  .film-chooser button {
+    transition: none;
+  }
+}

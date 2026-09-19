@@ -77,6 +77,12 @@ const routes = [
   'film',
   'slides',
   'investment',
+  // the memorandum's own chapters, rendered from its HTML: dashes, images and overflow are checked here too
+  'investment?chapter=summary',
+  'investment?chapter=business',
+  'investment?chapter=technology',
+  'investment?chapter=choice',
+  'investment?chapter=numbers',
 ];
 for (const { tag, viewport } of [
   { tag: 'desktop', viewport: { width: 1440, height: 900 } },
@@ -508,8 +514,8 @@ for (const { tag, viewport } of [
   const BARE = /^(read|open|open slide|pdf|download|more|link|source|watch)$/i;
   for (const [hash, scope, expect] of [
     ['slides?slide=44', '.slide-commentary .related', '#silicon?chapter=cube'],
-    ['film', '#film-cube .related', '#silicon?chapter=cube'],
-    ['film', '#film-truck .related', '#portfolio?product=ad2'],
+    ['film?v=cube', '#film-cube .related', '#silicon?chapter=cube'],
+    ['film?v=truck', '#film-truck .related', '#portfolio?product=ad2'],
     [
       'investment?chapter=technology',
       '.record-reader .related',
@@ -545,7 +551,7 @@ for (const { tag, viewport } of [
       );
   }
   // follow one: the cube film's related chapter opens the Silicon platform at that chapter
-  await p.goto(BASE + '#film', { waitUntil: 'networkidle' });
+  await p.goto(BASE + '#film?v=cube', { waitUntil: 'networkidle' });
   await p.click('#film-cube .related a[href="#silicon?chapter=cube"]');
   await p.waitForTimeout(900);
   const top = await p.evaluate(() =>
@@ -582,32 +588,103 @@ for (const { tag, viewport } of [
 {
   const p = await b.newPage();
   watch(p, 'assets');
+  // one film per group is on the stage at a time: choose each in turn and check the player it puts there
   await p.goto(BASE + '#film', { waitUntil: 'networkidle' });
-  const r = await p.evaluate(async () => {
-    const out = [];
-    for (const v of document.querySelectorAll('video')) {
-      const track = v.querySelector('track').src,
-        poster = v.poster;
+  const tabs = await p.evaluate(() =>
+    [...document.querySelectorAll('.film-chooser [role=tab]')].map((t) => t.id),
+  );
+  const r = [];
+  const check = async (scope) =>
+    p.evaluate(async (scope) => {
+      const v = document.querySelector(scope + ' video');
+      const track = v?.querySelector('track')?.src || '',
+        poster = v?.poster || '';
       const t = await fetch(track)
         .then((x) => x.text())
         .catch(() => '');
       const pr = await fetch(poster)
         .then((x) => x.status)
         .catch(() => 0);
-      out.push({
+      return {
         track,
         vtt: t.startsWith('WEBVTT') && t.includes('-->'),
         poster: pr,
-      });
-    }
-    return out;
-  });
+      };
+    }, scope);
+  r.push(await check('#film-master'));
+  for (const id of tabs) {
+    await p.click('#' + id);
+    await p.waitForTimeout(150);
+    r.push(
+      await check('#' + (await p.getAttribute('#' + id, 'aria-controls'))),
+    );
+  }
   if (r.length !== 12)
-    fail(`films: ${r.length} players on the Videos page, expected 12`);
+    fail(`films: ${r.length} films on the Demonstrations page, expected 12`);
   for (const f of r) {
     if (!f.vtt) fail(`films: caption track is not WebVTT: ${f.track}`);
     if (f.poster !== 200) fail(`films: poster ${f.poster} for ${f.track}`);
   }
+  // storyboards: every film tells its story in labelled beats; a beat starts the player; the walkthrough is told by
+  // chapter with each product line as its own moment
+  const boards = [];
+  for (const id of tabs) {
+    await p.click('#' + id);
+    await p.waitForTimeout(100);
+    boards.push(
+      await p.evaluate((id) => {
+        const stage = document.getElementById(
+          document.getElementById(id).getAttribute('aria-controls'),
+        );
+        const beats = [...stage.querySelectorAll('.storyboard > li > button')];
+        return {
+          id,
+          beats: beats.length,
+          labelled: beats.every((b) =>
+            /^Play from \d+:\d\d: \S/.test(b.getAttribute('aria-label') || ''),
+          ),
+          text: [...stage.querySelectorAll('.storyboard > li > p')].every(
+            (x) => x.textContent.trim().length > 30,
+          ),
+        };
+      }, id),
+    );
+  }
+  for (const s of boards)
+    if (s.beats < 4 || !s.labelled || !s.text)
+      fail(
+        `storyboard ${s.id}: ${s.beats} beats, labelled ${s.labelled}, narrative ${s.text}`,
+      );
+  const walk = await p.evaluate(() => ({
+    chapters: document.querySelectorAll('#film-master .storyboard > li').length,
+    lines: document.querySelectorAll('#film-master .sb-lines button').length,
+  }));
+  if (walk.chapters !== 7 || walk.lines < 12)
+    fail(
+      `walkthrough storyboard: ${walk.chapters} chapters, ${walk.lines} product-line moments`,
+    );
+  await p.goto(BASE + '#film?v=forklift', { waitUntil: 'networkidle' });
+  await p.waitForTimeout(500);
+  await p.click('#film-forklift .storyboard > li:nth-child(3) > button');
+  await p.waitForTimeout(600);
+  const played = await p.evaluate(
+    () => !!document.querySelector('#film-forklift .film-frame.is-started'),
+  );
+  if (!played) fail('storyboard: clicking a beat did not start the film');
+  console.log(
+    `storyboards: ${boards.length} films in beats, walkthrough in ${walk.chapters} chapters with ${walk.lines} product-line moments`,
+  );
+  // Silicon platform figures carry what they show and why it matters
+  await p.goto(BASE + '#silicon', { waitUntil: 'networkidle' });
+  const figs = await p.evaluate(() =>
+    [...document.querySelectorAll('.tech-figure figcaption')].map(
+      (c) => c.querySelectorAll('span').length,
+    ),
+  );
+  if (figs.length !== 4 || figs.some((n) => n < 2))
+    fail(
+      `silicon figures: ${JSON.stringify(figs)} (want 4, each with what it shows and why it matters)`,
+    );
   await p.goto(BASE + '#investment', { waitUntil: 'networkidle' });
   const docs = await p.evaluate(async () =>
     Promise.all(
