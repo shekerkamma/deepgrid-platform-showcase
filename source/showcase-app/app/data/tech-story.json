@@ -1,0 +1,366 @@
+{
+ "chapters": [
+  {
+   "id": "silicon",
+   "kicker": "The silicon",
+   "headline": "One 28 nm die, configured in firmware, becomes fifteen products.",
+   "lede": "DeepGrid Semi's SoC2 is a single monolithic die on TSMC 28 nm HPC+ that fuses eleven sensor channels in 8.6 ms of a 33.3 ms frame budget, leaving 74% of that budget unused. That headroom means every SKU in the portfolio, from a one-camera mirror unit to a full ADAS kit, is a firmware and front-end change, not a new chip programme.",
+   "pills": [
+    {
+     "value": "~57.1 mm²",
+     "label": "Die area"
+    },
+    {
+     "value": "39.3 TOPS INT8",
+     "label": "Peak compute (design target)"
+    },
+    {
+     "value": "102.4 GB/s",
+     "label": "LPDDR5 bandwidth"
+    },
+    {
+     "value": "8.6 ms / 33.3 ms",
+     "label": "Frame budget used"
+    },
+    {
+     "value": "74% free",
+     "label": "Frame headroom"
+    },
+    {
+     "value": "32,768 MACs",
+     "label": "Total multiply-accumulate units"
+    }
+   ],
+   "detail": "The die is a monolithic design, not a chiplet assembly, comprising 64 compute cubes each containing 512 multiply-accumulate units, clocked at 600 MHz; the 39.3 TOPS INT8 figure is derived as 64 × 512 × 600 MHz × 2 ÷ 10¹², not rounded up. Memory bandwidth of 102.4 GB/s via dual-channel LPDDR5 is the binding constraint for multi-camera sensor fusion, not raw compute throughput. The architecture includes hardware softmax and weight-stationary attention, operations the Information Memorandum describes as infeasible at frame rate on an FPGA, alongside lockstep cores and a hardware root of trust as the stated path toward an automotive safety rating. The 8.6 ms fusion figure and the 39.3 TOPS figure are described as simulation and feasibility results; the Information Memorandum notes a PrimeSoC feasibility assessment dated March 2026, and the die has not yet been fabricated in 28 nm. Because every lower-channel configuration sits well within the frame budget, the fifteen-SKU portfolio is presented as one tapeout rather than fifteen separate chip programmes.",
+   "slides": [
+    5
+   ],
+   "passages": [
+    {
+     "id": "sc_papers_information_memorandum_v2_aug_2026_pdf_11",
+     "doc": "Information Memorandum v2 (Aug 2026)",
+     "title": "Product architecture",
+     "page": "page 9",
+     "href": "./downloads/showcase/deepgrid-information-memorandum-v2-aug-2026.pdf#page=9",
+     "nav": ""
+    },
+    {
+     "id": "sc_papers_information_memorandum_v2_aug_2026_pdf_18",
+     "doc": "Information Memorandum v2 (Aug 2026)",
+     "title": "The six-domain die",
+     "page": "page 15",
+     "href": "./downloads/showcase/deepgrid-information-memorandum-v2-aug-2026.pdf#page=15",
+     "nav": ""
+    }
+   ],
+   "hash": "e77f456538f3ca6d",
+   "model": "claude-sonnet-4-6",
+   "sources": [
+    "sc_papers_information_memorandum_v2_aug_2026_pdf_11",
+    "sc_papers_information_memorandum_v2_aug_2026_pdf_18"
+   ]
+  },
+  {
+   "id": "domains",
+   "kicker": "Six domains",
+   "headline": "Six domains on one die means six addressable markets from one tapeout.",
+   "lede": "DeepGrid Semi's ~57.1 mm² die is partitioned into six compute domains, each targeting a distinct industry vertical and carrying its own revenue model. Because all six share a single tapeout, the company enters each market without the NRE burden of a dedicated chip programme.",
+   "pills": [
+    {
+     "value": "A100 · ~7 mm²",
+     "label": "AI / ADAS processor"
+    },
+    {
+     "value": "R100 · ~6 mm²",
+     "label": "Radar DSP"
+    },
+    {
+     "value": "T100 · ~7 mm²",
+     "label": "Edge AI, thermal and LiDAR"
+    },
+    {
+     "value": "D100 · ~8 mm²",
+     "label": "Defence secure compute"
+    },
+    {
+     "value": "S100 · ~7 mm²",
+     "label": "SDV and vehicle gateway"
+    },
+    {
+     "value": "H100 · ~7 mm²",
+     "label": "Health AI processor"
+    }
+   ],
+   "detail": "The A100 houses 64 PCOREs × 512 MACs (32,768 MACs total, a design-target 39.3 TOPS INT8) and supports six-camera MIPI CSI-2, making it the core compute for all autonomous-driving kit tiers. The R100 integrates a 12-bit native ADC for 77 GHz FMCW, 4D radar, and 60 GHz mmWave, with an FFT engine and CFAR detector; the sources state the TI AWR2243 is fully eliminated in RTL. The T100 combines a LiDAR point-cloud DSP, a thermal-camera ISP (LWIR MIPI), and an ONNX runtime, and is the inference engine for the autonomous truck edge product line as well as a licensable IP block carrying a stated 90% margin. The D100 is the largest domain at ~8 mm² and pairs an AES-256 secure enclave with lockstep RISC-V (ASIL-B) and ECC SRAM, targeting humanoid, UGV, and drone SoC applications; the sources note ₹1 Cr in institutional defence revenue received in Q1 2026. The S100 handles vehicle networking via CAN FD ×4, Ethernet TSN (IEEE 802.1Qbv), AUTOSAR Adaptive, OTA updates, and C-V2X/5G-NR, with AIS-140 telematics built in, while the H100 integrates a 24-bit bio-ADC for ECG/EEG/SpO2 inference at a design target of under 1 mW continuous, with driver-fatigue and AEB integration covered by Patent 14.",
+   "slides": [
+    5
+   ],
+   "sources": [
+    "sc_converted_showcase_investment_memorandum_md_16",
+    "sc_papers_information_memorandum_v2_aug_2026_pdf_18"
+   ],
+   "passages": [
+    {
+     "id": "sc_converted_showcase_investment_memorandum_md_16",
+     "doc": "Investment Memorandum",
+     "title": "Six chiplets, one 57 mm² die",
+     "page": "",
+     "href": "",
+     "nav": "investment?chapter=technology"
+    },
+    {
+     "id": "sc_papers_information_memorandum_v2_aug_2026_pdf_18",
+     "doc": "Information Memorandum v2 (Aug 2026)",
+     "title": "The six-domain die",
+     "page": "page 15",
+     "href": "./downloads/showcase/deepgrid-information-memorandum-v2-aug-2026.pdf#page=15",
+     "nav": ""
+    }
+   ],
+   "hash": "21b79d9c95ada325",
+   "model": "claude-sonnet-4-6"
+  },
+  {
+   "id": "sensors",
+   "kicker": "Sensor to compute",
+   "headline": "Eleven sensor streams fuse in 8.6 ms, leaving 74% of the frame budget spare.",
+   "lede": "DeepGrid Semi's in-cab compute part accepts seven RGB cameras, two thermal cameras and two radars, eleven configured inputs, and outputs a single fused AD2 perception stream. The reusable product is the compute and software platform; the sensor installation is one application of it, which matters commercially because the same semiconductor can serve multiple truck configurations.",
+   "pills": [
+    {
+     "value": "11 inputs",
+     "label": "configured sensor channels"
+    },
+    {
+     "value": "7 RGB cameras",
+     "label": "colour camera count"
+    },
+    {
+     "value": "2 thermal cameras",
+     "label": "thermal camera count"
+    },
+    {
+     "value": "8.6 ms",
+     "label": "frame budget used (design target)"
+    },
+    {
+     "value": "33.3 ms",
+     "label": "total frame budget"
+    },
+    {
+     "value": "74% headroom",
+     "label": "remaining frame budget (estimate)"
+    }
+   ],
+   "detail": "The seven RGB cameras are assigned distinct roles: road left and right, side left and right, a forward dashcam, a driver-monitoring camera and a rear camera. Each mirror tower combines a road-facing camera, a 120-degree side camera and a thermal camera, so the same quarter of the truck is observed in three different sensing modalities simultaneously. Front and rear 4D 77 GHz radars contribute range and relative-motion data at both ends of the vehicle, where cameras are weakest in rain and glare. The Information Memorandum (June 2026) states the design target is to fuse all eleven channels in 8.6 ms of the 33.3 ms frame, described as 74% headroom; the architecture illustration is labelled 'illustrative sensor-fusion timing, not a measured production latency.' The chip is not yet fabricated in 28 nm, so these figures require workload and implementation validation; calibration, occlusion, mounting tolerance and the final sensor bill of materials also remain to be confirmed.",
+   "slides": [
+    24,
+    25,
+    26
+   ],
+   "passages": [
+    {
+     "id": "sc_converted_information_memorandum_june_2026_md_11",
+     "doc": "Information Memorandum (June 2026)",
+     "title": "The compute box: 11 sensors in, AD2 out",
+     "page": "page 10",
+     "href": "./downloads/showcase/deepgrid-information-memorandum-june-2026.pdf#page=10",
+     "nav": ""
+    }
+   ],
+   "hash": "e8e82e810ae86b78",
+   "model": "claude-sonnet-4-6",
+   "sources": [
+    "sc_converted_information_memorandum_june_2026_md_11"
+   ]
+  },
+  {
+   "id": "measured",
+   "kicker": "Measured, not claimed",
+   "headline": "Key performance figures need staged hardware proof before investors should rely on them.",
+   "lede": "DeepGrid Semi's 8.6 ms processing claim and TOPS arithmetic peaks are management figures derived from architecture illustrations, not measurements from fabricated silicon. Investor confidence should be released in stages, FPGA demonstration, ASIC verification, and vehicle qualification, each answering different questions and each requiring reproducible hardware evidence.",
+   "pills": [
+    {
+     "value": "8.6 ms",
+     "label": "claimed processing slice"
+    },
+    {
+     "value": "33.3 ms",
+     "label": "frame budget (~30 fps)"
+    },
+    {
+     "value": "24.7 ms",
+     "label": "arithmetic remainder"
+    },
+    {
+     "value": "34.4 TOPS",
+     "label": "56-core config peak"
+    },
+    {
+     "value": "39.3 TOPS",
+     "label": "64-core config peak"
+    },
+    {
+     "value": "600 MHz",
+     "label": "arithmetic peak clock"
+    }
+   ],
+   "detail": "The 8.6 ms figure is a management claim against a 33.3 ms frame budget (approximately 30 frames per second); the 24.7 ms remainder is budget subtraction, not measured system headroom, and the measurement boundary, which acquisition, inference, and fusion stages are included, has not been fixed. Two separate compute configurations appear in the source material: a 56-core configuration with a 34.4 TOPS arithmetic peak and a 64-core configuration with a 39.3 TOPS arithmetic peak, both at 600 MHz; neither figure represents measured application throughput, and the sources state the two configurations should not silently stand in for each other. The chip has not been fabricated in 28 nm and no silicon measurements exist; the sources describe the architecture as illustrative, not independently measured silicon evidence. The development plan distinguishes an existing FPGA platform, which exercises software, interfaces, and prototype compute, from the proposed production ASIC, which must separately verify scaled compute, memory, clock, power, and area together. A production advantage depends on the complete platform, compute, memory scheduling, compiler, and integration, and the sources state that arithmetic peaks alone do not establish it.",
+   "slides": [
+    28,
+    29,
+    30,
+    46
+   ],
+   "passages": [],
+   "hash": "dfdf19ff86d5a4bd",
+   "model": "claude-sonnet-4-6",
+   "sources": []
+  },
+  {
+   "id": "data",
+   "kicker": "Compute waits on data",
+   "headline": "Per-core data engines proposed to end the queue that stalls arithmetic units",
+   "lede": "In the current shared-dispatch architecture, eight processing cores queue behind a single data-movement engine, leaving compute idle while data waits its turn. Replacing that bottleneck with an independent local DMA per core is the proposed fix, though results remain estimates awaiting testbench evidence.",
+   "pills": [
+    {
+     "value": "8 cores, 1 engine",
+     "label": "Shared-dispatch problem"
+    },
+    {
+     "value": "470 ms → 85 ms",
+     "label": "Estimate, not result"
+    },
+    {
+     "value": "16-entry descriptor table",
+     "label": "Per-core DMA design"
+    },
+    {
+     "value": "~600 LUTs each",
+     "label": "Implementation estimate"
+    },
+    {
+     "value": "~4,800 LUTs total",
+     "label": "Eight-engine estimate"
+    }
+   ],
+   "detail": "The shared-dispatch arrangement serialises data requests: all eight cores queue at one dispatch point, so adding more arithmetic units does not help when those units are waiting for data. The proposed local DMA design gives each core its own 16-entry descriptor table, a three-level address generator that walks tensor layouts without consulting a central dispatcher for every transfer, and a read FIFO that buffers arrivals between memory service and compute consumption. A frame-time reduction from 470 ms to 85 ms is cited as a proposal awaiting testbench evidence, the sources label it an estimate, not a measured result. The implementation cost is estimated at roughly 600 FPGA lookup tables per engine, or approximately 4,800 for eight engines before arbitration logic and firmware; these are engineering estimates, not finished implementation figures or production cost quotes, and the sources keep them distinct from any ASIC area or cost. Even with local dispatch, parallel requests still compete for finite shared memory-bank service capacity, and the sources note that differentiation would need to be demonstrated through workload results, compiler mapping and defensible implementation IP, not through the presence of a local DMA alone.",
+   "slides": [
+    36,
+    37,
+    38,
+    39
+   ],
+   "passages": [],
+   "hash": "7e11b9f178e864a9",
+   "model": "claude-sonnet-4-6",
+   "sources": []
+  },
+  {
+   "id": "cube",
+   "kicker": "The eight-layer cube",
+   "headline": "Eight hardware layers multiply arithmetic positions eightfold, but the data path decides real throughput",
+   "lede": "The 8×8×8 compute cube stacks eight 8×8 matrix layers to express reduction depth in hardware rather than software iteration, raising multiply-accumulate positions per cube from 64 to 512 in a single cycle. Two sources project different system-level arithmetic peaks depending on cube count, and both figures are design targets that require workload and implementation validation before they can be treated as measured results.",
+   "pills": [
+    {
+     "value": "512 MACs / cycle",
+     "label": "per cube, arithmetic peak"
+    },
+    {
+     "value": "34.4 TOPS (design target)",
+     "label": "portfolio deck, 56 cubes"
+    },
+    {
+     "value": "39.3 TOPS (design target)",
+     "label": "Information Memorandum, 64 cubes"
+    },
+    {
+     "value": "600 MHz",
+     "label": "clock rate assumed"
+    },
+    {
+     "value": "8 shared L2 banks",
+     "label": "memory service layer"
+    },
+    {
+     "value": "8× arithmetic ratio",
+     "label": "idealized K=8 comparison"
+    }
+   ],
+   "detail": "The flat 8×8 array holds 64 multiply-accumulate positions and processes reduction depth across successive iterations; the 8×8×8 cube holds 512 positions and expresses that same depth in hardware, so all eight layers fire in one cycle. The 8× arithmetic ratio is an idealized comparison on the same K=8 tile at the same precision and is not an application speedup. The portfolio deck states a system arithmetic peak of 34.4 TOPS, derived from 56 cubes × 512 MACs × 600 MHz × 2 operations; the Information Memorandum states 39.3 TOPS, derived from 64 cubes × 512 MACs at 600 MHz. Both figures are arithmetic ceilings, not benchmarks, and both sources state that targets and arithmetic peaks require workload and implementation validation. Sustained useful work also depends on tensor layout, address distribution across the eight shared L2 banks, arbitration, and compiler scheduling: the sources illustrate that routing all 56 requests to a single bank stalls the array even while seven banks sit idle, making the data path a co-equal design constraint alongside compute geometry.",
+   "slides": [
+    41,
+    42,
+    43,
+    44,
+    45
+   ],
+   "sources": [
+    "sc_papers_information_memorandum_v2_aug_2026_pdf_14"
+   ],
+   "passages": [
+    {
+     "id": "sc_papers_information_memorandum_v2_aug_2026_pdf_14",
+     "doc": "Information Memorandum v2 (Aug 2026)",
+     "title": "The 8×8×8 systolic cube",
+     "page": "page 12",
+     "href": "./downloads/showcase/deepgrid-information-memorandum-v2-aug-2026.pdf#page=12",
+     "nav": ""
+    }
+   ],
+   "hash": "2d7313ca2f7d7454",
+   "model": "claude-sonnet-4-6"
+  },
+  {
+   "id": "horizon",
+   "kicker": "The far horizon",
+   "headline": "SoC4-A is optionality this raise does not fund, not a commitment.",
+   "lede": "SoC4-A is a far-horizon chip, 1,024 tiles on a 4 nm process, assembled from published open PULP silicon IP, targeting a Q3 2029 tape-out and packaged into a four-chip, 4U rack-mount box called MicroDC-A1. It sits deliberately outside the current plan: SoC2 is the funded business; SoC4-A is the option that business buys investors.",
+   "pills": [
+    {
+     "value": "16.76 PFLOPS FP4",
+     "label": "Peak per chassis"
+    },
+    {
+     "value": "~12 PFLOPS FP4",
+     "label": "Sustained (projected)"
+    },
+    {
+     "value": "4,096 tiles total",
+     "label": "4 chips × 1,024"
+    },
+    {
+     "value": "Q3 2029",
+     "label": "Tape-out target"
+    },
+    {
+     "value": "1,120 W",
+     "label": "Power envelope"
+    },
+    {
+     "value": "256 GB LPDDR5X",
+     "label": "DRAM per chassis"
+    }
+   ],
+   "detail": "The MicroDC-A1 is a conceptual product: one 4U, 19-inch rack-mount chassis housing four SoC4-A chips, each carrying 1,024 tiles on a 4 nm process and drawing 280 W under cold-plate dielectric (3M Novec) cooling. Peak compute is 16.76 PFLOPS FP4 dense (4 chips × 4.19 PFLOPS); sustained throughput is projected at approximately 12 PFLOPS FP4, pending validation in the SoftHier simulator, all numbers are provisional pending first silicon. Memory totals 256 GB LPDDR5X-9600 across the chassis, with an aggregate bandwidth design target of approximately 1.84 TB/s, and network connectivity of 2× 400 GbE plus 2× 100 GbE. The Information Memorandum describes use cases including sovereign-AI inference (the ~12 PFLOPS sustained figure is cited as sufficient for approximately 50 concurrent users on a 70B-parameter LLM, or approximately 200 users on a 13B model), robotaxi fleet compute, and telecom edge inference, all described as conceptual. SoC4-A silicon targets a Q3 2029 tape-out; MicroDC-A1 chassis shipment is indicated as 2030 or later.",
+   "slides": [
+    103
+   ],
+   "passages": [
+    {
+     "id": "sc_papers_information_memorandum_v2_aug_2026_pdf_21",
+     "doc": "Information Memorandum v2 (Aug 2026)",
+     "title": "Roadmap: SoC4-A, FY30 and later",
+     "page": "page 17",
+     "href": "./downloads/showcase/deepgrid-information-memorandum-v2-aug-2026.pdf#page=17",
+     "nav": ""
+    }
+   ],
+   "hash": "c1f34249c5b03786",
+   "model": "claude-sonnet-4-6",
+   "sources": [
+    "sc_papers_information_memorandum_v2_aug_2026_pdf_21",
+    "sc_papers_information_memorandum_v2_aug_2026_pdf_22"
+   ]
+  }
+ ]
+}

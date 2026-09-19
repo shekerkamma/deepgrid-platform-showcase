@@ -1806,7 +1806,7 @@
      79
     ],
     "headline": "A sealed, all-weather radar pod built to feed the central compute box.",
-    "narrative": "The 4D Radar Pod is a weatherproof unit mounted forward or on vehicle corners to provide dependable spatial data under environmental extremes. Priced at ₹25,000, it packages an imaging front end with DeepGrid's native radar processing inside an automotive-grade housing. It monetizes silicon capabilities already engineered into the die without incurring standalone tapeout development costs.",
+    "narrative": "The 4D Radar Pod is a weatherproof unit mounted forward or on vehicle corners to provide dependable spatial data under environmental extremes. Priced at ₹25,000, it packages an imaging front end with DeepGrid's native radar processing inside an automotive-grade housing. It uses the radar block designed into the SoC2 die, so it needs no tapeout of its own.",
     "pills": [
      {
       "value": "₹25,000",
@@ -1956,7 +1956,7 @@
  "chipset": {
   "takeaways": [
    "Chipset OEM B2B delivers the highest gross margin in the portfolio at 94%, projected by management to generate ₹54.0 Cr on 30,000 units in FY2032 without requiring installation, certification, or warranty overhead.",
-   "Supplied as a bare 39.3 TOPS SoC2 die on TSMC 28 nm, the product serves Tier-1 suppliers and vehicle manufacturers seeking domestic silicon alternatives to costly imported modules.",
+   "Supplied as a bare SoC2 die designed for TSMC 28 nm, with a 39.3 TOPS design target, the product serves Tier-1 suppliers and vehicle manufacturers seeking domestic silicon alternatives to costly imported modules.",
    "Commercial execution depends entirely on qualified silicon emerging from tapeout and closing direct, high-commitment design-in cycles with automotive engineering teams."
   ],
   "chapters": [
@@ -2002,14 +2002,14 @@
      33
     ],
     "headline": "The SoC2 die executes perception compute within the customer's proprietary board architecture.",
-    "narrative": "External sensors feed the customer's board directly, where the SoC2 die processes incoming perception streams inside their proprietary hardware design. The customer's software determines vehicle actuation from that compute, allowing their finished product to ship with DeepGrid silicon inside. Fabricated on TSMC 28 nm, the roughly 57 mm² die provides 39.3 TOPS of compute and 102.4 GB/s memory bandwidth, leaving physical board integration entirely with the buyer.",
+    "narrative": "External sensors feed the customer's board directly, where the SoC2 die processes incoming perception streams inside their proprietary hardware design. The customer's software determines vehicle actuation from that compute, allowing their finished product to ship with DeepGrid silicon inside. Designed for TSMC 28 nm and not yet fabricated, the roughly 57 mm² die targets 39.3 TOPS of compute (a design target) and 102.4 GB/s memory bandwidth, leaving physical board integration entirely with the buyer.",
     "pills": [
      {
       "value": "TSMC 28 nm, roughly 57 mm²",
       "label": "Process and die area"
      },
      {
-      "value": "39.3 TOPS at 600 MHz",
+      "value": "39.3 TOPS design target",
       "label": "Perception compute"
      },
      {

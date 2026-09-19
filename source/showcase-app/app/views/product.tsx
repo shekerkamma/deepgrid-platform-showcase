@@ -1,6 +1,12 @@
 'use client';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Play } from 'lucide-react';
-import { products, productById, type Go, type Product } from '../shared';
+import {
+  products,
+  productById,
+  domains,
+  type Go,
+  type Product,
+} from '../shared';
 import briefs from '../data/product-briefs.json';
 import stories from '../data/product-stories.json';
 import slideNotes from '../slide-notes.json';
@@ -201,6 +207,33 @@ export default function ProductPage({
         storySlides.has(Number(l.hash.split('=')[1]))
       ),
   );
+  // where this product sits on the silicon: its domain on the Technology page, and the frame budget where the
+  // product's story rests on it, so a figure read here is explained there in the same words
+  const domain = domains.find((d) =>
+    (d.carries as readonly string[]).includes(p.id),
+  );
+  const silicon: Link[] = [
+    domain
+      ? {
+          label: `The ${domain.code} ${domain.name} on the SoC2 die`,
+          detail: 'Technology: six domains, one tapeout',
+          hash: `silicon?chapter=domains&domain=${domain.code}`,
+        }
+      : {
+          label: 'The SoC2 die under every product',
+          detail: 'Technology: the silicon',
+          hash: 'silicon?chapter=silicon',
+        },
+    ...(JSON.stringify(story || '').includes('8.6 ms')
+      ? [
+          {
+            label: 'How eleven sensors fit an 8.6 ms budget',
+            detail: 'Technology: sensor to compute',
+            hash: 'silicon?chapter=sensors',
+          },
+        ]
+      : []),
+  ];
   const ask = `Tell me about the ${p.name}`;
 
   return (
@@ -410,7 +443,7 @@ export default function ProductPage({
           )}
           <div>
             <h3>Read</h3>
-            {reading.map((l) => (
+            {[...silicon, ...reading].map((l) => (
               <Anchor key={l.label + l.detail} go={go} link={l} />
             ))}
             <Anchor

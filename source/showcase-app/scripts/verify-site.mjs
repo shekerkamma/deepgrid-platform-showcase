@@ -407,6 +407,95 @@ for (const { tag, viewport } of [
   await p.close();
 }
 
+// 3c. technology, told in chapters like the Overview: every chapter has a kicker, a verdict headline, a lede, 3 to 6
+// pills, technical detail and at least one reference, and every reference is labelled (never a bare verb) and goes
+// somewhere: deck slides open in the deck, memorandum pages as PDFs that exist.
+{
+  const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+  watch(p, 'technology');
+  await p.goto(BASE + '#silicon', { waitUntil: 'networkidle' });
+  const BARE = /^(read|open|open slide|pdf|download|more|link|source)$/i;
+  const chapters = await p.evaluate(async () =>
+    Promise.all(
+      [...document.querySelectorAll('.tech-chapter')].map(async (c) => ({
+        id: c.id,
+        kicker: c.querySelector('.kicker')?.textContent.trim() || '',
+        headline: c.querySelector('h2')?.textContent.trim() || '',
+        lede:
+          c
+            .querySelector('.ov-chapter-head > p:not(.kicker)')
+            ?.textContent.trim() || '',
+        pills: c.querySelectorAll('.pp-pills li').length,
+        detail:
+          c.querySelector('.tech-detail p')?.textContent.trim().length || 0,
+        refs: await Promise.all(
+          [...c.querySelectorAll('.tech-refs a')].map(async (a) => ({
+            label: a.textContent.trim(),
+            href: a.getAttribute('href'),
+            status: a.getAttribute('href').startsWith('#')
+              ? 200
+              : await fetch(a.href.split('#')[0], { method: 'HEAD' })
+                  .then((x) => x.status)
+                  .catch(() => 0),
+          })),
+        ),
+      })),
+    ),
+  );
+  if (chapters.length !== 7)
+    fail(`technology: ${chapters.length} chapters, expected 7`);
+  for (const c of chapters) {
+    const bad = c.refs.filter(
+      (r) => BARE.test(r.label) || !r.href || r.status !== 200,
+    );
+    if (
+      !c.kicker ||
+      !c.headline ||
+      !c.lede ||
+      c.pills < 3 ||
+      c.pills > 6 ||
+      c.detail < 80 ||
+      !c.refs.length ||
+      bad.length
+    )
+      fail(
+        `technology ${c.id}: kicker "${c.kicker}", ${c.pills} pills, detail ${c.detail} chars, ${c.refs.length} refs, bad [${bad.map((r) => r.label + ' ' + r.status)}]`,
+      );
+  }
+  // a deck reference opens that slide
+  await p.click('#tech-cube .tech-refs a[href^="#slides?slide="]');
+  await p.waitForTimeout(500);
+  if (!(await p.evaluate(() => location.hash.startsWith('#slides?slide='))))
+    fail('technology: a deck reference did not open the deck');
+  // a product page links to its domain on the die: the Radar Pod opens Six domains with R100 selected, in view
+  await p.goto(BASE + '#portfolio?product=radar', { waitUntil: 'networkidle' });
+  await p
+    .click('.pp-more a[href="#silicon?chapter=domains&domain=R100"]', {
+      timeout: 5000,
+    })
+    .catch(() =>
+      fail('radar page: no link to its domain on the Technology page'),
+    );
+  await p.waitForTimeout(800);
+  const landed = await p.evaluate(() => ({
+    tab:
+      document.querySelector('#tech-domains [role=tab][aria-selected=true]')
+        ?.textContent || '',
+    top: Math.round(
+      document.getElementById('tech-domains')?.getBoundingClientRect().top ??
+        -1,
+    ),
+  }));
+  if (!landed.tab.includes('R100') || landed.top < -5 || landed.top > 200)
+    fail(
+      `radar -> technology: tab "${landed.tab}", chapter top ${landed.top}px`,
+    );
+  console.log(
+    `technology: ${chapters.length} chapters, ${chapters.reduce((n, c) => n + c.refs.length, 0)} labelled references`,
+  );
+  await p.close();
+}
+
 // 4. slide deck: arrow keys step, filmstrip follows
 {
   const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
@@ -448,6 +537,8 @@ for (const { tag, viewport } of [
     }
     return out;
   });
+  if (r.length !== 12)
+    fail(`films: ${r.length} players on the Videos page, expected 12`);
   for (const f of r) {
     if (!f.vtt) fail(`films: caption track is not WebVTT: ${f.track}`);
     if (f.poster !== 200) fail(`films: poster ${f.poster} for ${f.track}`);

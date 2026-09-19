@@ -61,6 +61,44 @@ export const films = [
   src: origin + 'media/' + f.id + '.mp4',
   poster: './images/posters/' + f.id + '.webp',
 }));
+// The silicon films: how the chip moves data and why the 28 nm part is built the way it is. Posters are frames from
+// each film; mesh and roadmap open on a title card, so their poster is a frame from the chapter itself.
+export const siliconFilms = [
+  {
+    id: 'problem',
+    title: 'Compute waits on data',
+    sub: 'Eight cores behind one data engine, then an engine per core',
+    length: '0:55',
+  },
+  {
+    id: 'cube',
+    title: 'From flat matrix to cube',
+    sub: 'The same arithmetic, eight layers deep in one cycle',
+    length: '0:51',
+  },
+  {
+    id: 'landscape',
+    title: 'Six answers to one question',
+    sub: 'Where six chips keep their data, and where DeepGrid lands',
+    length: '1:15',
+  },
+  {
+    id: 'roadmap',
+    title: 'Nine steps of silicon',
+    sub: 'From SoC 1.0 on an FPGA to the 28 nm part this raise funds',
+    length: '0:57',
+  },
+  {
+    id: 'mesh',
+    title: 'The far horizon',
+    sub: 'SoC4-A, a 1,024-tile mesh the raise does not fund',
+    length: '0:57',
+  },
+].map((f) => ({
+  ...f,
+  src: origin + 'media/' + f.id + '.mp4',
+  poster: './images/posters/' + f.id + '.webp',
+}));
 export type Film = typeof master;
 export const clock = (t: number) =>
   `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
@@ -90,7 +128,7 @@ export default function Films({
         copy="The full narrated walkthrough of the portfolio, and short films of the products running in simulation. Every film has captions and a transcript."
       />
       <nav className="film-navigation" aria-label="Jump to a film">
-        {[master, ...films].map((f) => (
+        {[master, ...films, ...siliconFilms].map((f) => (
           <a
             key={f.id}
             href={'#film-' + f.id}
@@ -130,9 +168,25 @@ export default function Films({
           </article>
         ))}
       </div>
+      <h2 className="film-grid-title">Silicon films</h2>
+      <div className="film-grid">
+        {siliconFilms.map((f) => (
+          <article key={f.id} id={'film-' + f.id}>
+            <Player film={f} startAt={at(f.id)} />
+            <div>
+              <h3>{f.title}</h3>
+              <p>
+                {f.sub} <span className="num">· {f.length}</span>
+              </p>
+              <Transcript id={f.id} />
+            </div>
+          </article>
+        ))}
+      </div>
       <p className="disclaimer">
         Product films show the DeepGrid simulators, not road or site footage.
-        The walkthrough can also be{' '}
+        Silicon films are animated explanations of the design, not recordings of
+        a fabricated 28&nbsp;nm chip. The walkthrough can also be{' '}
         <a
           className="inline-link"
           href="https://drive.google.com/file/d/1pVlhAll8U9Y2N2pW-WG-Lm6N9R3CRm10/view"

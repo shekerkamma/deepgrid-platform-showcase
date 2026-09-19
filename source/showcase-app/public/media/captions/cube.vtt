@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:01.170 --> 00:00:06.670
+Two units computing exactly the same arithmetic, with different geometry.
+
+00:00:06.670 --> 00:00:13.830
+On the left, the flat 8x8 matrix unit, as it runs today on the FPGA, 64 multiply accumulates
+
+00:00:13.830 --> 00:00:18.710
+per cycle, with the k reduction iterated in software, so it takes 8 cycles to consume
+
+00:00:18.710 --> 00:00:20.190
+one tile.
+
+00:00:20.190 --> 00:00:27.070
+On the right, the 8x8x8 cube that the 28-nanometer part carries, k becomes hardware depth, so
+
+00:00:27.070 --> 00:00:29.590
+all 8 layers fire simultaneously.
+
+00:00:29.590 --> 00:00:35.250
+512 multiply accumulates per cycle, one tile retired per cycle.
+
+00:00:35.250 --> 00:00:37.850
+Watch the tile counters diverge as they run.
+
+00:00:37.850 --> 00:00:41.850
+That gap is the 8x figure, shown rather than asserted.
+
+00:00:41.850 --> 00:00:46.530
+And this is the operation that forces a custom chip, because the cube, together with per-core
+
+00:00:46.530 --> 00:00:49.070
+memory access, does not fit on the FPGA.
