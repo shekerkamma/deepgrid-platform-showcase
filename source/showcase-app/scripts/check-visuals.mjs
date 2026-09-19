@@ -24,5 +24,11 @@ for (const c of cards) {
   for (const [kind, re] of Object.entries(CLAIMS))
     if (re.test(c.caption) && d.kind !== kind) fails.push(`${c.file}: caption claims a ${kind} ("${c.caption.match(re)[0]}") but the image is a ${d.kind}`);
 }
+// images chosen from the catalog (app/data/image-catalog.json) carry the vision description itself as their caption
+const catalog = fs.existsSync('app/data/image-catalog.json') ? JSON.parse(fs.readFileSync('app/data/image-catalog.json', 'utf8')).images : [];
+for (const e of catalog) {
+  const d = described['public/' + e.file];
+  if (!d || d.shows !== e.caption) fails.push(`${e.file}: catalog caption is not the image's own description`);
+}
 if (fails.length) { console.error('visual evidence check failed:\n  ' + fails.join('\n  ')); process.exit(1); }
-console.log(`visual evidence ok: ${cards.length} captions, every image described and captioned as what it is`);
+console.log(`visual evidence ok: ${cards.length} captions and ${catalog.length} catalog images, every image described and captioned as what it is`);

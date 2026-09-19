@@ -22,7 +22,8 @@
     "graph:themes": "node scripts/build-showcase-themes.mjs",
     "verify": "node scripts/verify-site.mjs",
     "graph:products": "node scripts/build-product-briefs.mjs",
-    "graph:stories": "node scripts/build-product-stories.mjs"
+    "graph:stories": "node scripts/build-product-stories.mjs",
+    "graph:images": "uv run --no-project --with pillow python scripts/build-image-manifest.py && uv run --no-project --with pillow --with pyyaml python scripts/describe-images.py && uv run --no-project --with pillow python scripts/build-image-links.py && node scripts/build-image-catalog.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

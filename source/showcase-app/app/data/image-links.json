@@ -1,0 +1,3283 @@
+{
+ "model": "nvidia/llama-nemotron-embed-vl-1b-v2",
+ "themeTop1": 0.342,
+ "dims": 2048,
+ "threshold": 0.619,
+ "sceneThreshold": 0.351,
+ "answerKey": {
+  "slides": 104,
+  "ownFirst": 0.99,
+  "ownTop5": 0.99,
+  "frames": 58,
+  "frameOwnSlideFirst": 0.948
+ },
+ "images": [
+  {
+   "image": "slide-001",
+   "file": "slides/slide_01.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_1",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 1",
+     "score": 0.649
+    }
+   ]
+  },
+  {
+   "image": "slide-002",
+   "file": "slides/slide_02.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_2",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 2",
+     "score": 0.745
+    }
+   ]
+  },
+  {
+   "image": "slide-003",
+   "file": "slides/slide_03.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_3",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 3",
+     "score": 0.746
+    }
+   ]
+  },
+  {
+   "image": "slide-004",
+   "file": "slides/slide_04.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_4",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 4",
+     "score": 0.724
+    }
+   ]
+  },
+  {
+   "image": "slide-005",
+   "file": "slides/slide_05.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_5",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 5",
+     "score": 0.684
+    }
+   ]
+  },
+  {
+   "image": "slide-006",
+   "file": "slides/slide_06.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_6",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 6",
+     "score": 0.763
+    }
+   ]
+  },
+  {
+   "image": "slide-007",
+   "file": "slides/slide_07.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_7",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 7",
+     "score": 0.624
+    }
+   ]
+  },
+  {
+   "image": "slide-008",
+   "file": "slides/slide_08.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_8",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 8",
+     "score": 0.735
+    }
+   ]
+  },
+  {
+   "image": "slide-009",
+   "file": "slides/slide_09.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_9",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 9",
+     "score": 0.737
+    }
+   ]
+  },
+  {
+   "image": "slide-010",
+   "file": "slides/slide_10.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_10",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 10",
+     "score": 0.719
+    }
+   ]
+  },
+  {
+   "image": "slide-011",
+   "file": "slides/slide_11.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_11",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 11",
+     "score": 0.678
+    }
+   ]
+  },
+  {
+   "image": "slide-012",
+   "file": "slides/slide_12.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_12",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 12",
+     "score": 0.781
+    }
+   ]
+  },
+  {
+   "image": "slide-013",
+   "file": "slides/slide_13.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_13",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 13",
+     "score": 0.739
+    }
+   ]
+  },
+  {
+   "image": "slide-014",
+   "file": "slides/slide_14.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_14",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 14",
+     "score": 0.747
+    }
+   ]
+  },
+  {
+   "image": "slide-015",
+   "file": "slides/slide_15.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_15",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 15",
+     "score": 0.723
+    }
+   ]
+  },
+  {
+   "image": "slide-016",
+   "file": "slides/slide_16.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_16",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 16",
+     "score": 0.75
+    }
+   ]
+  },
+  {
+   "image": "slide-017",
+   "file": "slides/slide_17.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.714
+    }
+   ]
+  },
+  {
+   "image": "slide-018",
+   "file": "slides/slide_18.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_18",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 18",
+     "score": 0.771
+    }
+   ]
+  },
+  {
+   "image": "slide-019",
+   "file": "slides/slide_19.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_19",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 19",
+     "score": 0.743
+    }
+   ]
+  },
+  {
+   "image": "slide-020",
+   "file": "slides/slide_20.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_20",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 20",
+     "score": 0.727
+    }
+   ]
+  },
+  {
+   "image": "slide-021",
+   "file": "slides/slide_21.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_21",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 21",
+     "score": 0.721
+    }
+   ]
+  },
+  {
+   "image": "slide-022",
+   "file": "slides/slide_22.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.76
+    }
+   ]
+  },
+  {
+   "image": "slide-023",
+   "file": "slides/slide_23.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.711
+    }
+   ]
+  },
+  {
+   "image": "slide-024",
+   "file": "slides/slide_24.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_24",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 24",
+     "score": 0.731
+    }
+   ]
+  },
+  {
+   "image": "slide-025",
+   "file": "slides/slide_25.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_110",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 25",
+     "score": 0.626
+    }
+   ]
+  },
+  {
+   "image": "slide-026",
+   "file": "slides/slide_26.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.737
+    }
+   ]
+  },
+  {
+   "image": "slide-027",
+   "file": "slides/slide_27.png",
+   "links": []
+  },
+  {
+   "image": "slide-028",
+   "file": "slides/slide_28.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_28",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 28",
+     "score": 0.656
+    }
+   ]
+  },
+  {
+   "image": "slide-029",
+   "file": "slides/slide_29.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_30",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 29",
+     "score": 0.637
+    }
+   ]
+  },
+  {
+   "image": "slide-030",
+   "file": "slides/slide_30.png",
+   "links": []
+  },
+  {
+   "image": "slide-031",
+   "file": "slides/slide_31.png",
+   "links": []
+  },
+  {
+   "image": "slide-032",
+   "file": "slides/slide_32.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_33",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 32",
+     "score": 0.746
+    }
+   ]
+  },
+  {
+   "image": "slide-033",
+   "file": "slides/slide_33.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_34",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 33",
+     "score": 0.721
+    }
+   ]
+  },
+  {
+   "image": "slide-034",
+   "file": "slides/slide_34.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_35",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 34",
+     "score": 0.726
+    }
+   ]
+  },
+  {
+   "image": "slide-035",
+   "file": "slides/slide_35.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_36",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 35",
+     "score": 0.695
+    }
+   ]
+  },
+  {
+   "image": "slide-036",
+   "file": "slides/slide_36.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_37",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 36",
+     "score": 0.685
+    }
+   ]
+  },
+  {
+   "image": "slide-037",
+   "file": "slides/slide_37.png",
+   "links": []
+  },
+  {
+   "image": "slide-038",
+   "file": "slides/slide_38.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_39",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 38",
+     "score": 0.707
+    }
+   ]
+  },
+  {
+   "image": "slide-039",
+   "file": "slides/slide_39.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_41",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 39",
+     "score": 0.703
+    }
+   ]
+  },
+  {
+   "image": "slide-040",
+   "file": "slides/slide_40.png",
+   "links": []
+  },
+  {
+   "image": "slide-041",
+   "file": "slides/slide_41.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_43",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 41",
+     "score": 0.739
+    }
+   ]
+  },
+  {
+   "image": "slide-042",
+   "file": "slides/slide_42.png",
+   "links": []
+  },
+  {
+   "image": "slide-043",
+   "file": "slides/slide_43.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_45",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 43",
+     "score": 0.668
+    }
+   ]
+  },
+  {
+   "image": "slide-044",
+   "file": "slides/slide_44.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_47",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 44",
+     "score": 0.719
+    }
+   ]
+  },
+  {
+   "image": "slide-045",
+   "file": "slides/slide_45.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_49",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 45",
+     "score": 0.646
+    }
+   ]
+  },
+  {
+   "image": "slide-046",
+   "file": "slides/slide_46.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_51",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 46",
+     "score": 0.682
+    }
+   ]
+  },
+  {
+   "image": "slide-047",
+   "file": "slides/slide_47.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_53",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 47",
+     "score": 0.763
+    }
+   ]
+  },
+  {
+   "image": "slide-048",
+   "file": "slides/slide_48.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_54",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 48",
+     "score": 0.741
+    }
+   ]
+  },
+  {
+   "image": "slide-049",
+   "file": "slides/slide_49.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_55",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 49",
+     "score": 0.698
+    }
+   ]
+  },
+  {
+   "image": "slide-050",
+   "file": "slides/slide_50.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_56",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 50",
+     "score": 0.699
+    }
+   ]
+  },
+  {
+   "image": "slide-051",
+   "file": "slides/slide_51.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_57",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 51",
+     "score": 0.756
+    }
+   ]
+  },
+  {
+   "image": "slide-052",
+   "file": "slides/slide_52.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_58",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 52",
+     "score": 0.741
+    }
+   ]
+  },
+  {
+   "image": "slide-053",
+   "file": "slides/slide_53.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_59",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 53",
+     "score": 0.709
+    }
+   ]
+  },
+  {
+   "image": "slide-054",
+   "file": "slides/slide_54.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_60",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 54",
+     "score": 0.707
+    }
+   ]
+  },
+  {
+   "image": "slide-055",
+   "file": "slides/slide_55.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_61",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 55",
+     "score": 0.756
+    }
+   ]
+  },
+  {
+   "image": "slide-056",
+   "file": "slides/slide_56.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_62",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 56",
+     "score": 0.745
+    }
+   ]
+  },
+  {
+   "image": "slide-057",
+   "file": "slides/slide_57.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_63",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 57",
+     "score": 0.699
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_59",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 53",
+     "score": 0.666
+    }
+   ]
+  },
+  {
+   "image": "slide-058",
+   "file": "slides/slide_58.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_64",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 58",
+     "score": 0.708
+    }
+   ]
+  },
+  {
+   "image": "slide-059",
+   "file": "slides/slide_59.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_65",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 59",
+     "score": 0.768
+    }
+   ]
+  },
+  {
+   "image": "slide-060",
+   "file": "slides/slide_60.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_66",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 60",
+     "score": 0.73
+    }
+   ]
+  },
+  {
+   "image": "slide-061",
+   "file": "slides/slide_61.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_67",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 61",
+     "score": 0.735
+    }
+   ]
+  },
+  {
+   "image": "slide-062",
+   "file": "slides/slide_62.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_68",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 62",
+     "score": 0.67
+    }
+   ]
+  },
+  {
+   "image": "slide-063",
+   "file": "slides/slide_63.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_69",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 63",
+     "score": 0.619
+    }
+   ]
+  },
+  {
+   "image": "slide-064",
+   "file": "slides/slide_64.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_70",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 64",
+     "score": 0.786
+    }
+   ]
+  },
+  {
+   "image": "slide-065",
+   "file": "slides/slide_65.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_71",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 65",
+     "score": 0.772
+    }
+   ]
+  },
+  {
+   "image": "slide-066",
+   "file": "slides/slide_66.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_72",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 66",
+     "score": 0.747
+    }
+   ]
+  },
+  {
+   "image": "slide-067",
+   "file": "slides/slide_67.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_73",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 67",
+     "score": 0.699
+    }
+   ]
+  },
+  {
+   "image": "slide-068",
+   "file": "slides/slide_68.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_74",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 68",
+     "score": 0.753
+    }
+   ]
+  },
+  {
+   "image": "slide-069",
+   "file": "slides/slide_69.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_75",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 69",
+     "score": 0.757
+    }
+   ]
+  },
+  {
+   "image": "slide-070",
+   "file": "slides/slide_70.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_76",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 70",
+     "score": 0.722
+    }
+   ]
+  },
+  {
+   "image": "slide-071",
+   "file": "slides/slide_71.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_77",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 71",
+     "score": 0.701
+    }
+   ]
+  },
+  {
+   "image": "slide-072",
+   "file": "slides/slide_72.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_78",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 72",
+     "score": 0.75
+    }
+   ]
+  },
+  {
+   "image": "slide-073",
+   "file": "slides/slide_73.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.675
+    }
+   ]
+  },
+  {
+   "image": "slide-074",
+   "file": "slides/slide_74.png",
+   "links": []
+  },
+  {
+   "image": "slide-075",
+   "file": "slides/slide_75.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_81",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 75",
+     "score": 0.754
+    }
+   ]
+  },
+  {
+   "image": "slide-076",
+   "file": "slides/slide_76.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_82",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 76",
+     "score": 0.759
+    }
+   ]
+  },
+  {
+   "image": "slide-077",
+   "file": "slides/slide_77.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_83",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 77",
+     "score": 0.753
+    }
+   ]
+  },
+  {
+   "image": "slide-078",
+   "file": "slides/slide_78.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_84",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 78",
+     "score": 0.742
+    }
+   ]
+  },
+  {
+   "image": "slide-079",
+   "file": "slides/slide_79.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_85",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 79",
+     "score": 0.761
+    }
+   ]
+  },
+  {
+   "image": "slide-080",
+   "file": "slides/slide_80.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_86",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 80",
+     "score": 0.748
+    }
+   ]
+  },
+  {
+   "image": "slide-081",
+   "file": "slides/slide_81.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_87",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 81",
+     "score": 0.757
+    }
+   ]
+  },
+  {
+   "image": "slide-082",
+   "file": "slides/slide_82.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_88",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 82",
+     "score": 0.726
+    }
+   ]
+  },
+  {
+   "image": "slide-083",
+   "file": "slides/slide_83.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_89",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 83",
+     "score": 0.74
+    }
+   ]
+  },
+  {
+   "image": "slide-084",
+   "file": "slides/slide_84.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_90",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 84",
+     "score": 0.718
+    }
+   ]
+  },
+  {
+   "image": "slide-085",
+   "file": "slides/slide_85.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_91",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 85",
+     "score": 0.723
+    }
+   ]
+  },
+  {
+   "image": "slide-086",
+   "file": "slides/slide_86.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_92",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 86",
+     "score": 0.675
+    }
+   ]
+  },
+  {
+   "image": "slide-087",
+   "file": "slides/slide_87.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_93",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 87",
+     "score": 0.754
+    }
+   ]
+  },
+  {
+   "image": "slide-088",
+   "file": "slides/slide_88.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_94",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 88",
+     "score": 0.751
+    }
+   ]
+  },
+  {
+   "image": "slide-089",
+   "file": "slides/slide_89.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_95",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 89",
+     "score": 0.744
+    }
+   ]
+  },
+  {
+   "image": "slide-090",
+   "file": "slides/slide_90.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_96",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 90",
+     "score": 0.73
+    }
+   ]
+  },
+  {
+   "image": "slide-091",
+   "file": "slides/slide_91.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.778
+    }
+   ]
+  },
+  {
+   "image": "slide-092",
+   "file": "slides/slide_92.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.753
+    }
+   ]
+  },
+  {
+   "image": "slide-093",
+   "file": "slides/slide_93.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_99",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 93",
+     "score": 0.753
+    }
+   ]
+  },
+  {
+   "image": "slide-094",
+   "file": "slides/slide_94.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_100",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 94",
+     "score": 0.774
+    }
+   ]
+  },
+  {
+   "image": "slide-095",
+   "file": "slides/slide_95.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_101",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 95",
+     "score": 0.756
+    }
+   ]
+  },
+  {
+   "image": "slide-096",
+   "file": "slides/slide_96.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_102",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 96",
+     "score": 0.704
+    }
+   ]
+  },
+  {
+   "image": "slide-097",
+   "file": "slides/slide_97.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_103",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 97",
+     "score": 0.639
+    }
+   ]
+  },
+  {
+   "image": "slide-098",
+   "file": "slides/slide_98.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_104",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 98",
+     "score": 0.714
+    }
+   ]
+  },
+  {
+   "image": "slide-099",
+   "file": "slides/slide_99.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_105",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 99",
+     "score": 0.736
+    }
+   ]
+  },
+  {
+   "image": "slide-100",
+   "file": "slides/slide_100.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_106",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 100",
+     "score": 0.77
+    }
+   ]
+  },
+  {
+   "image": "slide-101",
+   "file": "slides/slide_101.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_107",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 101",
+     "score": 0.773
+    }
+   ]
+  },
+  {
+   "image": "slide-102",
+   "file": "slides/slide_102.png",
+   "links": []
+  },
+  {
+   "image": "slide-103",
+   "file": "slides/slide_103.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_114",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 103",
+     "score": 0.668
+    }
+   ]
+  },
+  {
+   "image": "slide-104",
+   "file": "slides/slide_104.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_109",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 104",
+     "score": 0.713
+    }
+   ]
+  },
+  {
+   "image": "img-computebox",
+   "file": "images/computebox.png",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.612
+    }
+   ]
+  },
+  {
+   "image": "img-cube",
+   "file": "images/cube.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_43",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 41",
+     "score": 0.495
+    }
+   ]
+  },
+  {
+   "image": "img-ddrive",
+   "file": "images/ddrive.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.4
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.388
+    }
+   ]
+  },
+  {
+   "image": "img-figure-01",
+   "file": "images/figure-01.webp",
+   "links": []
+  },
+  {
+   "image": "img-figure-02",
+   "file": "images/figure-02.webp",
+   "links": [
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_4",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), T H E P L A T F O R M",
+     "score": 0.563
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_5",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 5",
+     "score": 0.549
+    }
+   ]
+  },
+  {
+   "image": "img-figure-03",
+   "file": "images/figure-03.webp",
+   "links": [
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_12",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 4 . G O - T O - M A R K E T, P R I C I N G",
+     "score": 0.645
+    }
+   ]
+  },
+  {
+   "image": "img-figure-04",
+   "file": "images/figure-04.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_29",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 29",
+     "score": 0.652
+    }
+   ]
+  },
+  {
+   "image": "img-figure-05",
+   "file": "images/figure-05.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_14",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 15",
+     "score": 0.659
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_14",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 5 . C H I P L E T A R C H I T E C T U R E, S I X - C H I P L E T C O M B O D I E",
+     "score": 0.642
+    }
+   ]
+  },
+  {
+   "image": "img-figure-06",
+   "file": "images/figure-06.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 12",
+     "score": 0.502
+    }
+   ]
+  },
+  {
+   "image": "img-figure-07",
+   "file": "images/figure-07.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.585
+    }
+   ]
+  },
+  {
+   "image": "img-figure-08",
+   "file": "images/figure-08.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 11",
+     "score": 0.47
+    }
+   ]
+  },
+  {
+   "image": "img-figure-09",
+   "file": "images/figure-09.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_19",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 20",
+     "score": 0.578
+    }
+   ]
+  },
+  {
+   "image": "img-figure-10",
+   "file": "images/figure-10.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_16",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 18",
+     "score": 0.515
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_17",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 8 . P R O O F O F E X E C U T I O N",
+     "score": 0.508
+    }
+   ]
+  },
+  {
+   "image": "img-figure-11",
+   "file": "images/figure-11.webp",
+   "links": [
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_16",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 7 . R O A D M A P, F U T U R E G E N E R A T I O N ( S O C 4 - A , F Y 3 0 + )",
+     "score": 0.359
+    }
+   ]
+  },
+  {
+   "image": "img-figure-12",
+   "file": "images/figure-12.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_22",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 23",
+     "score": 0.611
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_21",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 1 0 . F I N A N C I A L O V E R V I E W \u2013 R E V E N U E & A N A L Y S I S",
+     "score": 0.576
+    }
+   ]
+  },
+  {
+   "image": "img-figure-13",
+   "file": "images/figure-13.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_25",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 26",
+     "score": 0.632
+    }
+   ]
+  },
+  {
+   "image": "img-forklift",
+   "file": "images/forklift.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.408
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_16",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 16",
+     "score": 0.362
+    }
+   ]
+  },
+  {
+   "image": "img-computebox",
+   "file": "images/posters/computebox.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.612
+    }
+   ]
+  },
+  {
+   "image": "img-ddrive",
+   "file": "images/posters/ddrive.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.4
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.388
+    }
+   ]
+  },
+  {
+   "image": "img-forklift",
+   "file": "images/posters/forklift.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.408
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_16",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 16",
+     "score": 0.362
+    }
+   ]
+  },
+  {
+   "image": "img-sentinel",
+   "file": "images/posters/sentinel.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.467
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.46
+    }
+   ]
+  },
+  {
+   "image": "img-truck",
+   "file": "images/posters/truck.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.565
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 11",
+     "score": 0.55
+    }
+   ]
+  },
+  {
+   "image": "img-yard",
+   "file": "images/posters/yard.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.485
+    }
+   ]
+  },
+  {
+   "image": "img-semiconductor-hero",
+   "file": "images/semiconductor-hero.png",
+   "links": []
+  },
+  {
+   "image": "img-sentinel",
+   "file": "images/sentinel.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.467
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.46
+    }
+   ]
+  },
+  {
+   "image": "img-truck",
+   "file": "images/truck.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.565
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 11",
+     "score": 0.55
+    }
+   ]
+  },
+  {
+   "image": "img-yard",
+   "file": "images/yard.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.485
+    }
+   ]
+  },
+  {
+   "image": "media-computebox-poster",
+   "file": "media/computebox-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 6",
+     "score": 0.512
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
+     "score": 0.479
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
+     "score": 0.467
+    }
+   ]
+  },
+  {
+   "image": "media-cube-poster",
+   "file": "media/cube-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_43",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 41",
+     "score": 0.495
+    }
+   ]
+  },
+  {
+   "image": "media-ddrive-poster",
+   "file": "media/ddrive-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.381
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.364
+    }
+   ]
+  },
+  {
+   "image": "media-deepgrid_defence",
+   "file": "media/deepgrid_defence.jpg",
+   "links": []
+  },
+  {
+   "image": "media-deepgrid_logistics",
+   "file": "media/deepgrid_logistics.jpg",
+   "links": []
+  },
+  {
+   "image": "media-deepgrid_robotics",
+   "file": "media/deepgrid_robotics.jpg",
+   "links": []
+  },
+  {
+   "image": "media-deepgrid_soc2_die",
+   "file": "media/deepgrid_soc2_die.jpg",
+   "links": []
+  },
+  {
+   "image": "media-deepgrid_truck",
+   "file": "media/deepgrid_truck.jpg",
+   "links": []
+  },
+  {
+   "image": "media-dg32-2dom-architecture-poster",
+   "file": "media/dg32-2dom-architecture-poster.jpg",
+   "links": [
+    {
+     "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p1",
+     "type": "passage",
+     "label": "DG32-2DOM Preliminary Datasheet, Page 1",
+     "score": 0.543
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p13",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 13",
+     "score": 0.541
+    }
+   ]
+  },
+  {
+   "image": "media-dg32-2dom-datasheet-poster",
+   "file": "media/dg32-2dom-datasheet-poster.jpg",
+   "links": [
+    {
+     "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p1",
+     "type": "passage",
+     "label": "DG32-2DOM Preliminary Datasheet, Page 1",
+     "score": 0.534
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p13",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 13",
+     "score": 0.527
+    },
+    {
+     "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p2",
+     "type": "passage",
+     "label": "DG32-2DOM Preliminary Datasheet, Page 2",
+     "score": 0.524
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p14",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 14",
+     "score": 0.491
+    },
+    {
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p1",
+     "type": "passage",
+     "label": "DG32-2DOM System Architecture, Page 1",
+     "score": 0.487
+    }
+   ]
+  },
+  {
+   "image": "media-dg32-lite-architecture-poster",
+   "file": "media/dg32-lite-architecture-poster.jpg",
+   "links": [
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p1",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 1",
+     "score": 0.515
+    },
+    {
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p1",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, Page 1",
+     "score": 0.502
+    }
+   ]
+  },
+  {
+   "image": "media-dg32-lite-datasheet-poster",
+   "file": "media/dg32-lite-datasheet-poster.jpg",
+   "links": [
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p1",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 1",
+     "score": 0.514
+    },
+    {
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p1",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, Page 1",
+     "score": 0.482
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p13",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 13",
+     "score": 0.478
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p17",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, 4 Electrical characteristics",
+     "score": 0.464
+    }
+   ]
+  },
+  {
+   "image": "media-dg32-lite-tapein-poster",
+   "file": "media/dg32-lite-tapein-poster.jpg",
+   "links": [
+    {
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p2",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, Page 2",
+     "score": 0.44
+    },
+    {
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p1",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, Page 1",
+     "score": 0.429
+    },
+    {
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p5",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, 4 Electrical characteristics",
+     "score": 0.424
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p1",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 1",
+     "score": 0.417
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p2",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 2",
+     "score": 0.416
+    },
+    {
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p4",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, Page 4",
+     "score": 0.406
+    }
+   ]
+  },
+  {
+   "image": "media-forklift-poster",
+   "file": "media/forklift-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.393
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_16",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 16",
+     "score": 0.355
+    }
+   ]
+  },
+  {
+   "image": "media-landscape-poster",
+   "file": "media/landscape-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_41",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 39",
+     "score": 0.439
+    },
+    {
+     "target": "sc_markdown_narration_portfolio_104_md_9",
+     "type": "passage",
+     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Portfolio, 104 slides",
+     "score": 0.432
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_47",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 44",
+     "score": 0.421
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_37",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 36",
+     "score": 0.409
+    }
+   ]
+  },
+  {
+   "image": "media-lines_image",
+   "file": "media/lines_image.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.393
+    }
+   ]
+  },
+  {
+   "image": "media-lines_image2",
+   "file": "media/lines_image2.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.39
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.38
+    }
+   ]
+  },
+  {
+   "image": "media-lines_image3",
+   "file": "media/lines_image3.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.564
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 11",
+     "score": 0.54
+    }
+   ]
+  },
+  {
+   "image": "media-lines_image4",
+   "file": "media/lines_image4.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_43",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 41",
+     "score": 0.491
+    }
+   ]
+  },
+  {
+   "image": "media-lines_image5",
+   "file": "media/lines_image5.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.458
+    }
+   ]
+  },
+  {
+   "image": "media-lines_image6",
+   "file": "media/lines_image6.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.487
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.464
+    }
+   ]
+  },
+  {
+   "image": "media-lines_image7",
+   "file": "media/lines_image7.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_37",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 36",
+     "score": 0.365
+    }
+   ]
+  },
+  {
+   "image": "media-lines_image8",
+   "file": "media/lines_image8.png",
+   "links": [
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_16",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 7 . R O A D M A P, F U T U R E G E N E R A T I O N ( S O C 4 - A , F Y 3 0 + )",
+     "score": 0.439
+    },
+    {
+     "target": "sc_markdown_storyboard_sku_explainer_md_8",
+     "type": "passage",
+     "label": "Deck narration, Evidence added from the supplied sources",
+     "score": 0.417
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_5",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 5",
+     "score": 0.41
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_30",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 29",
+     "score": 0.405
+    },
+    {
+     "target": "sc_markdown_narration_portfolio_104_md_7",
+     "type": "passage",
+     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Portfolio, 104 slides",
+     "score": 0.399
+    },
+    {
+     "target": "theme:SoC2: six chiplets on one 57 mm\u00b2 die",
+     "type": "theme",
+     "label": "SoC2: six chiplets on one 57 mm\u00b2 die",
+     "score": 0.389
+    }
+   ]
+  },
+  {
+   "image": "media-lines_image9",
+   "file": "media/lines_image9.png",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.614
+    }
+   ]
+  },
+  {
+   "image": "media-mesh-poster",
+   "file": "media/mesh-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 6",
+     "score": 0.51
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
+     "score": 0.481
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
+     "score": 0.465
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_3",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 3",
+     "score": 0.464
+    }
+   ]
+  },
+  {
+   "image": "media-problem-poster",
+   "file": "media/problem-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_37",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 36",
+     "score": 0.432
+    },
+    {
+     "target": "sc_markdown_narration_portfolio_104_md_8",
+     "type": "passage",
+     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Portfolio, 104 slides",
+     "score": 0.402
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_47",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 44",
+     "score": 0.393
+    }
+   ]
+  },
+  {
+   "image": "media-roadmap-poster",
+   "file": "media/roadmap-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 6",
+     "score": 0.514
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
+     "score": 0.477
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
+     "score": 0.468
+    }
+   ]
+  },
+  {
+   "image": "media-sentinel-poster",
+   "file": "media/sentinel-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.467
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.46
+    }
+   ]
+  },
+  {
+   "image": "media-sims_image",
+   "file": "media/sims_image.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.411
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.367
+    }
+   ]
+  },
+  {
+   "image": "media-sims_image2",
+   "file": "media/sims_image2.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.381
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.364
+    }
+   ]
+  },
+  {
+   "image": "media-sims_image3",
+   "file": "media/sims_image3.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.485
+    }
+   ]
+  },
+  {
+   "image": "media-sims_image4",
+   "file": "media/sims_image4.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.467
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.46
+    }
+   ]
+  },
+  {
+   "image": "media-truck-poster",
+   "file": "media/truck-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.565
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 11",
+     "score": 0.55
+    }
+   ]
+  },
+  {
+   "image": "media-yard-poster",
+   "file": "media/yard-poster.png",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.485
+    }
+   ]
+  },
+  {
+   "image": "diagram-dg32-2dom-architecture",
+   "file": "diagrams/dg32-2dom-architecture.svg",
+   "links": [
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p13",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 13",
+     "score": 0.541
+    },
+    {
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p3",
+     "type": "passage",
+     "label": "DG32-2DOM System Architecture, 3 Top-level block diagram",
+     "score": 0.538
+    },
+    {
+     "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p1",
+     "type": "passage",
+     "label": "DG32-2DOM Preliminary Datasheet, Page 1",
+     "score": 0.526
+    },
+    {
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p11",
+     "type": "passage",
+     "label": "DG32-2DOM System Architecture, 4.18 INT8 attention engine",
+     "score": 0.517
+    },
+    {
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p16",
+     "type": "passage",
+     "label": "DG32-2DOM System Architecture, 7 Communication matrix",
+     "score": 0.503
+    },
+    {
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p12",
+     "type": "passage",
+     "label": "DG32-2DOM System Architecture, Page 12",
+     "score": 0.497
+    }
+   ]
+  },
+  {
+   "image": "diagram-dg32-lite-architecture",
+   "file": "diagrams/dg32-lite-architecture.svg",
+   "links": [
+    {
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p3",
+     "type": "passage",
+     "label": "DG32-2DOM System Architecture, 3 Top-level block diagram",
+     "score": 0.527
+    },
+    {
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p1",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, Page 1",
+     "score": 0.508
+    },
+    {
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p12",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, 9 Board design guidance (hardware / PCB)",
+     "score": 0.506
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p1",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 1",
+     "score": 0.503
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p12",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, 9 Board design guidance (hardware / PCB)",
+     "score": 0.492
+    },
+    {
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p7",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, 7 Memory map",
+     "score": 0.48
+    }
+   ]
+  },
+  {
+   "image": "frame-computebox-003",
+   "file": "media/keyframes/computebox-003.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 6",
+     "score": 0.508
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
+     "score": 0.478
+    },
+    {
+     "target": "sc_markdown_narration_sku_explainer_87_md_3",
+     "type": "passage",
+     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Lines, fifteen SKUs explained",
+     "score": 0.462
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
+     "score": 0.46
+    }
+   ]
+  },
+  {
+   "image": "frame-computebox-009",
+   "file": "media/keyframes/computebox-009.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.578
+    }
+   ]
+  },
+  {
+   "image": "frame-computebox-015",
+   "file": "media/keyframes/computebox-015.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.594
+    }
+   ]
+  },
+  {
+   "image": "frame-computebox-021",
+   "file": "media/keyframes/computebox-021.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.591
+    }
+   ]
+  },
+  {
+   "image": "frame-computebox-027",
+   "file": "media/keyframes/computebox-027.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.593
+    }
+   ]
+  },
+  {
+   "image": "frame-computebox-033",
+   "file": "media/keyframes/computebox-033.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.611
+    }
+   ]
+  },
+  {
+   "image": "frame-computebox-039",
+   "file": "media/keyframes/computebox-039.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.608
+    }
+   ]
+  },
+  {
+   "image": "frame-computebox-045",
+   "file": "media/keyframes/computebox-045.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.6
+    }
+   ]
+  },
+  {
+   "image": "frame-computebox-051",
+   "file": "media/keyframes/computebox-051.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 10",
+     "score": 0.6
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-003",
+   "file": "media/keyframes/ddrive-003.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.383
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.374
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-009",
+   "file": "media/keyframes/ddrive-009.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.367
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.367
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-015",
+   "file": "media/keyframes/ddrive-015.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.395
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.383
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-021",
+   "file": "media/keyframes/ddrive-021.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.383
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.373
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-027",
+   "file": "media/keyframes/ddrive-027.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.383
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.383
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-033",
+   "file": "media/keyframes/ddrive-033.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.398
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.378
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-039",
+   "file": "media/keyframes/ddrive-039.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.383
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.377
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-045",
+   "file": "media/keyframes/ddrive-045.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.372
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.367
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-051",
+   "file": "media/keyframes/ddrive-051.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.383
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.378
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-057",
+   "file": "media/keyframes/ddrive-057.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.385
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.375
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-063",
+   "file": "media/keyframes/ddrive-063.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.362
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.359
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-069",
+   "file": "media/keyframes/ddrive-069.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.381
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.377
+    }
+   ]
+  },
+  {
+   "image": "frame-ddrive-075",
+   "file": "media/keyframes/ddrive-075.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_22",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 22",
+     "score": 0.396
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_23",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 23",
+     "score": 0.395
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-003",
+   "file": "media/keyframes/forklift-003.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.351
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-009",
+   "file": "media/keyframes/forklift-009.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.379
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-015",
+   "file": "media/keyframes/forklift-015.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.389
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-021",
+   "file": "media/keyframes/forklift-021.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.399
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_16",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 16",
+     "score": 0.356
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-027",
+   "file": "media/keyframes/forklift-027.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.382
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-033",
+   "file": "media/keyframes/forklift-033.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.385
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-039",
+   "file": "media/keyframes/forklift-039.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.397
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-045",
+   "file": "media/keyframes/forklift-045.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.418
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_16",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 16",
+     "score": 0.383
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.376
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-051",
+   "file": "media/keyframes/forklift-051.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.417
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_16",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 16",
+     "score": 0.384
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.372
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-057",
+   "file": "media/keyframes/forklift-057.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.403
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_16",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 16",
+     "score": 0.377
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_13",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 13",
+     "score": 0.354
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-063",
+   "file": "media/keyframes/forklift-063.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.374
+    }
+   ]
+  },
+  {
+   "image": "frame-forklift-069",
+   "file": "media/keyframes/forklift-069.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_17",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 17",
+     "score": 0.421
+    }
+   ]
+  },
+  {
+   "image": "frame-sentinel-003",
+   "file": "media/keyframes/sentinel-003.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.482
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.462
+    }
+   ]
+  },
+  {
+   "image": "frame-sentinel-009",
+   "file": "media/keyframes/sentinel-009.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.482
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.454
+    }
+   ]
+  },
+  {
+   "image": "frame-sentinel-015",
+   "file": "media/keyframes/sentinel-015.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.476
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.46
+    }
+   ]
+  },
+  {
+   "image": "frame-sentinel-021",
+   "file": "media/keyframes/sentinel-021.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.475
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.449
+    }
+   ]
+  },
+  {
+   "image": "frame-sentinel-027",
+   "file": "media/keyframes/sentinel-027.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.499
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.464
+    }
+   ]
+  },
+  {
+   "image": "frame-sentinel-033",
+   "file": "media/keyframes/sentinel-033.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.496
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.466
+    }
+   ]
+  },
+  {
+   "image": "frame-sentinel-039",
+   "file": "media/keyframes/sentinel-039.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.451
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.435
+    }
+   ]
+  },
+  {
+   "image": "frame-sentinel-045",
+   "file": "media/keyframes/sentinel-045.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_98",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 92",
+     "score": 0.447
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_97",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 91",
+     "score": 0.431
+    }
+   ]
+  },
+  {
+   "image": "frame-truck-003",
+   "file": "media/keyframes/truck-003.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 6",
+     "score": 0.51
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
+     "score": 0.472
+    },
+    {
+     "target": "sc_markdown_narration_sku_explainer_87_md_3",
+     "type": "passage",
+     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Lines, fifteen SKUs explained",
+     "score": 0.466
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
+     "score": 0.462
+    }
+   ]
+  },
+  {
+   "image": "frame-truck-009",
+   "file": "media/keyframes/truck-009.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.559
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 11",
+     "score": 0.536
+    }
+   ]
+  },
+  {
+   "image": "frame-truck-015",
+   "file": "media/keyframes/truck-015.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.563
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 11",
+     "score": 0.538
+    }
+   ]
+  },
+  {
+   "image": "frame-truck-021",
+   "file": "media/keyframes/truck-021.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.547
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 11",
+     "score": 0.541
+    }
+   ]
+  },
+  {
+   "image": "frame-truck-027",
+   "file": "media/keyframes/truck-027.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.554
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 11",
+     "score": 0.538
+    }
+   ]
+  },
+  {
+   "image": "frame-truck-033",
+   "file": "media/keyframes/truck-033.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.563
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 11",
+     "score": 0.518
+    }
+   ]
+  },
+  {
+   "image": "frame-truck-039",
+   "file": "media/keyframes/truck-039.webp",
+   "links": [
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 6",
+     "score": 0.505
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
+     "score": 0.473
+    },
+    {
+     "target": "sc_markdown_narration_sku_explainer_87_md_3",
+     "type": "passage",
+     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Lines, fifteen SKUs explained",
+     "score": 0.463
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
+     "score": 0.457
+    },
+    {
+     "target": "sc_converted_information_memorandum_june_2026_md_3",
+     "type": "passage",
+     "label": "Information Memorandum (June 2026), Page 3",
+     "score": 0.456
+    }
+   ]
+  },
+  {
+   "image": "frame-yard-003",
+   "file": "media/keyframes/yard-003.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.446
+    }
+   ]
+  },
+  {
+   "image": "frame-yard-009",
+   "file": "media/keyframes/yard-009.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.462
+    }
+   ]
+  },
+  {
+   "image": "frame-yard-015",
+   "file": "media/keyframes/yard-015.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.47
+    }
+   ]
+  },
+  {
+   "image": "frame-yard-021",
+   "file": "media/keyframes/yard-021.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.481
+    }
+   ]
+  },
+  {
+   "image": "frame-yard-027",
+   "file": "media/keyframes/yard-027.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.484
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_78",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 72",
+     "score": 0.439
+    }
+   ]
+  },
+  {
+   "image": "frame-yard-033",
+   "file": "media/keyframes/yard-033.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.477
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_78",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 72",
+     "score": 0.432
+    }
+   ]
+  },
+  {
+   "image": "frame-yard-039",
+   "file": "media/keyframes/yard-039.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.47
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_78",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 72",
+     "score": 0.431
+    }
+   ]
+  },
+  {
+   "image": "frame-yard-045",
+   "file": "media/keyframes/yard-045.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.46
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_78",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 72",
+     "score": 0.427
+    }
+   ]
+  },
+  {
+   "image": "frame-yard-051",
+   "file": "media/keyframes/yard-051.webp",
+   "links": [
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_79",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 73",
+     "score": 0.457
+    },
+    {
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_78",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 72",
+     "score": 0.418
+    }
+   ]
+  }
+ ]
+}

@@ -1,5 +1,5 @@
 'use client';
-import {useEffect,useState} from 'react';
+import { useEffect, useState } from 'react';
 import {
   FileText,
   Download,
@@ -9,10 +9,10 @@ import {
   BookOpen,
   Network,
   Sparkles,
-  ExternalLink
+  ExternalLink,
 } from 'lucide-react';
-import {executeGraphRAG,type SemanticScores} from './data/graphrag-engine';
-import {getSemantic} from './data/semantic';
+import { executeGraphRAG, type SemanticScores } from './data/graphrag-engine';
+import { getSemantic } from './data/semantic';
 
 interface GroundedAnswerViewProps {
   query: string;
@@ -27,22 +27,38 @@ const DEFAULT_QUESTION = 'Why invest in DeepGrid?';
 // Ask opens; each question is embedded 250 ms after typing pauses, so fast typing costs nothing. Until
 // then (or if the model cannot load) this returns null and the engine answers by TF-IDF.
 function useSemanticScores(question: string): SemanticScores | null {
-  const [state, setState] = useState<{q: string; s: SemanticScores} | null>(null);
-  useEffect(() => { void getSemantic(); }, []);
+  const [state, setState] = useState<{ q: string; s: SemanticScores } | null>(
+    null,
+  );
+  useEffect(() => {
+    void getSemantic();
+  }, []);
   useEffect(() => {
     if (question.trim().length < 3) return;
     let live = true;
     const t = setTimeout(async () => {
       const sem = await getSemantic();
       if (!sem || !live) return;
-      try { const s = await sem.scores(question); if (live) setState({q: question, s}); } catch { /* stay on TF-IDF */ }
+      try {
+        const s = await sem.scores(question);
+        if (live) setState({ q: question, s });
+      } catch {
+        /* stay on TF-IDF */
+      }
     }, 250);
-    return () => { live = false; clearTimeout(t); };
+    return () => {
+      live = false;
+      clearTimeout(t);
+    };
   }, [question]);
   return state && state.q === question ? state.s : null;
 }
 
-export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedAnswerViewProps) {
+export default function GroundedAnswerView({
+  query,
+  onSelectQuery,
+  go,
+}: GroundedAnswerViewProps) {
   const [showTechnical, setShowTechnical] = useState(false);
   const question = query || DEFAULT_QUESTION;
   const sem = useSemanticScores(question);
@@ -59,10 +75,13 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
             <span className="mono dr-domain-tag">{result.domainTag}</span>
           </div>
           <span className="mono dr-answer-body">
-            {['07', '08', '09'].includes(result.citation.documentNum) ? 'DeepGrid investor materials' : 'DG32 technical documents'}
+            {['07', '08', '09'].includes(result.citation.documentNum)
+              ? 'DeepGrid investor materials'
+              : 'DG32 technical documents'}
           </span>
           <span className="dr-answer-source-ref">
-            Grounded in {result.citation.documentTitle}{result.citation.page ? ` (${result.citation.page})` : ''}
+            Grounded in {result.citation.documentTitle}
+            {result.citation.page ? ` (${result.citation.page})` : ''}
           </span>
         </div>
 
@@ -81,7 +100,9 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
 
         {/* Key Strategic & Operational Metrics */}
         <div className="dr-answer-facts">
-          <span className="mono dr-facts-heading">KEY STRATEGIC & OPERATIONAL METRICS:</span>
+          <span className="mono dr-facts-heading">
+            KEY STRATEGIC & OPERATIONAL METRICS:
+          </span>
           <ul className="dr-facts-list">
             {result.keyBusinessFacts.map((fact, idx) => (
               <li key={idx}>
@@ -95,7 +116,9 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
         {/* Further References & Deep Dives */}
         <div className="dr-answer-references">
           <div className="dr-ref-header">
-            <span className="mono dr-ref-title">FURTHER REFERENCES & DEEP-DIVE SECTIONS:</span>
+            <span className="mono dr-ref-title">
+              FURTHER REFERENCES & DEEP-DIVE SECTIONS:
+            </span>
           </div>
 
           <div className="dr-ref-links-grid">
@@ -119,10 +142,12 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
           <div className="dr-citation-card">
             <div className="dr-citation-content">
               <div className="dr-citation-icon-wrap">
-                <FileText size={20} style={{color: 'var(--copper)'}} />
+                <FileText size={20} style={{ color: 'var(--copper)' }} />
               </div>
               <div className="dr-citation-meta">
-                <span className="mono dr-citation-tag">OFFICIAL PRIMARY SOURCE</span>
+                <span className="mono dr-citation-tag">
+                  OFFICIAL PRIMARY SOURCE
+                </span>
                 <strong className="dr-citation-title">
                   {result.citation.documentTitle} · {result.citation.section}
                 </strong>
@@ -140,18 +165,39 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
                     title={`Download ${result.citation.documentTitle}${result.citation.pdfSize ? ` (${result.citation.pdfSize})` : ''}`}
                   >
                     <Download size={14} />
-                    <span>{/\.pdf$/i.test(result.citation.pdfPath) ? 'Download PDF' : /\.xlsx$/i.test(result.citation.pdfPath) ? 'Download workbook' : /\.pptx$/i.test(result.citation.pdfPath) ? 'Download deck' : 'Download document'}{result.citation.pdfSize ? ` (${result.citation.pdfSize})` : ''}</span>
+                    <span>
+                      {/\.pdf$/i.test(result.citation.pdfPath)
+                        ? 'Download PDF'
+                        : /\.xlsx$/i.test(result.citation.pdfPath)
+                          ? 'Download workbook'
+                          : /\.pptx$/i.test(result.citation.pdfPath)
+                            ? 'Download deck'
+                            : 'Download document'}
+                      {result.citation.pdfSize
+                        ? ` (${result.citation.pdfSize})`
+                        : ''}
+                    </span>
                   </a>
                 )}
                 {result.citation.specPath && (
-                  <a href={result.citation.specPath} download className="dr-citation-btn outline" title="Download full Markdown specification">
+                  <a
+                    href={result.citation.specPath}
+                    download
+                    className="dr-citation-btn outline"
+                    title="Download full Markdown specification"
+                  >
                     <BookOpen size={14} />
                     <span>Full Spec</span>
                   </a>
                 )}
                 {result.citation.nav && (
-                  <button type="button" className={`dr-citation-btn ${result.citation.pdfPath ? 'outline' : 'primary'}`} onClick={() => go(result.citation.nav!)}>
-                    <ArrowUpRight size={14} /><span>Open in this site</span>
+                  <button
+                    type="button"
+                    className={`dr-citation-btn ${result.citation.pdfPath ? 'outline' : 'primary'}`}
+                    onClick={() => go(result.citation.nav!)}
+                  >
+                    <ArrowUpRight size={14} />
+                    <span>Open in this site</span>
                   </button>
                 )}
               </div>
@@ -168,16 +214,18 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
               <span className="dr-visual-chip">
                 <Sparkles size={12} /> {result.visualEvidence.type}
               </span>
-              <span className="dr-visual-title">{result.visualEvidence.title}</span>
+              <span className="dr-visual-title">
+                {result.visualEvidence.title}
+              </span>
             </div>
             <a
               href={`./${result.visualEvidence.filePath}`}
               target="_blank"
               rel="noopener noreferrer"
               className="dr-visual-link-btn"
-              title="Open full resolution in new tab"
+              title="Open the full image in a new tab"
             >
-              <span>Full Resolution</span>
+              <span>Open the full image</span>
               <ExternalLink size={13} />
             </a>
           </div>
@@ -186,6 +234,8 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
             <img
               src={`./${result.visualEvidence.filePath}`}
               alt={result.visualEvidence.title}
+              width={result.visualEvidence.size?.[0] ?? 1600}
+              height={result.visualEvidence.size?.[1] ?? 900}
               className="dr-visual-img"
               loading="lazy"
             />
@@ -195,6 +245,18 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
             <p className="dr-visual-caption">
               <strong>Figure:</strong> {result.visualEvidence.caption}
             </p>
+            {result.visualEvidence.source?.hash && (
+              <a
+                className="dr-visual-source"
+                href={'#' + result.visualEvidence.source.hash}
+                onClick={(e) => {
+                  e.preventDefault();
+                  go(result.visualEvidence!.source!.hash);
+                }}
+              >
+                {result.visualEvidence.source.label} →
+              </a>
+            )}
           </div>
         </section>
       )}
@@ -202,23 +264,35 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
       {/* 2. Progressive Disclosure: Deeper Technical Specifications */}
       {result.technicalDetails && (
         <div className="dr-tech-disclosure">
-          <button 
+          <button
             type="button"
             className="dr-tech-toggle-btn"
             onClick={() => setShowTechnical(!showTechnical)}
             aria-expanded={showTechnical}
           >
-            <span>{result.citation.pdfPath ? 'Need deeper engineering details, pinouts, or cycle timing?' : 'Need the underlying sources?'}</span>
+            <span>
+              {result.citation.pdfPath
+                ? 'Need deeper engineering details, pinouts, or cycle timing?'
+                : 'Need the underlying sources?'}
+            </span>
             <span className="dr-tech-toggle-label">
-              {showTechnical ? 'Hide Technical Details' : 'View Technical Specifications'}
-              {showTechnical ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              {showTechnical
+                ? 'Hide Technical Details'
+                : 'View Technical Specifications'}
+              {showTechnical ? (
+                <ChevronUp size={16} />
+              ) : (
+                <ChevronDown size={16} />
+              )}
             </span>
           </button>
 
           {showTechnical && (
             <div className="dr-tech-panel">
               <div className="dr-tech-specs">
-                <span className="mono dr-specs-heading">SILICON SPECIFICATIONS & CONSTRAINTS:</span>
+                <span className="mono dr-specs-heading">
+                  SILICON SPECIFICATIONS & CONSTRAINTS:
+                </span>
                 <ul className="dr-specs-list">
                   {result.technicalDetails.specPoints.map((spec, i) => (
                     <li key={i}>{spec}</li>
@@ -230,9 +304,15 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
                 <button
                   type="button"
                   className="primary"
-                  onClick={() => go(result.technicalDetails!.deepLink.hash, result.technicalDetails!.deepLink.label)}
+                  onClick={() =>
+                    go(
+                      result.technicalDetails!.deepLink.hash,
+                      result.technicalDetails!.deepLink.label,
+                    )
+                  }
                 >
-                  {result.technicalDetails.deepLink.label} <ArrowUpRight size={16} />
+                  {result.technicalDetails.deepLink.label}{' '}
+                  <ArrowUpRight size={16} />
                 </button>
                 <span className="dr-tech-action-context">
                   {result.technicalDetails.deepLink.context}
@@ -245,7 +325,9 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
 
       {/* 3. Suggested Follow-Up Questions */}
       <div className="dr-related-wrap">
-        <span className="mono dr-related-heading">RELATED STRATEGIC QUESTIONS:</span>
+        <span className="mono dr-related-heading">
+          RELATED STRATEGIC QUESTIONS:
+        </span>
         <div className="dr-related-chips">
           {result.relatedTopics.map((topic, i) => (
             <button

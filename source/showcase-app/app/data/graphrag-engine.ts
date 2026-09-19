@@ -14,6 +14,7 @@ import { groundedDocuments, GroundedDoc } from '../documents-data';
 // Showcase: executive themes for this site's content (Doc #7-#9), written in the same shape by
 // scripts/build-showcase-themes.mjs and checked figure by figure against their sources.
 import showcaseThemesRaw from './showcase-themes.json';
+import { imageFor, imageForTheme } from './image-evidence';
 
 export interface TraversedEdge {
   fromNode: GraphNode;
@@ -36,6 +37,10 @@ export interface VisualEvidence {
   type: string;
   filePath: string;
   caption: string;
+  /** where the image comes from on this site: a deck slide, or a film at a second */
+  source?: { label: string; hash: string };
+  /** intrinsic width and height, so the card reserves its space */
+  size?: [number, number];
 }
 
 export interface GraphRAGResult {
@@ -858,7 +863,7 @@ export function executeGraphRAG(rawQuery: string, sem?: SemanticScores | null): 
       answer: matchedTheme.lead,
       explanation: matchedTheme.explanation,
       keyBusinessFacts: matchedTheme.facts,
-      visualEvidence: matchedTheme.visualEvidence,
+      visualEvidence: matchedTheme.visualEvidence ?? imageForTheme(matchedTheme.title),
       referenceLinks: matchedTheme.refLinks,
       citation: {
         documentTitle: matchedTheme.docTitle,
@@ -913,6 +918,7 @@ export function executeGraphRAG(rawQuery: string, sem?: SemanticScores | null): 
     const quote = (c: UnifiedChunk) => `${c.docTitle} (${c.section}${c.pageLabel ? `, ${c.pageLabel}` : ''}): "${cleanExtractedText(c.text).slice(0, 420)}…"`;
     const primaryDoc = groundedDocuments.find(d => d.docNum === bestChunk.docNum) || groundedDocuments[0];
     return {
+      visualEvidence: imageFor([...(showcaseItem ? ['product:' + showcaseItem.id.replace(/^sc-/, '')] : []), ...topChunks.map(c => c.id)]),
       query: rawQuery,
       domainTag: (showcaseItem ? 'PRODUCT PORTFOLIO' : primarySeed.communityName || 'DEEPGRID').toUpperCase(),
       contextualTitle: showcaseItem ? showcaseItem.name : (bestChunk.section.length > 70 ? bestChunk.section.slice(0, 67) + '…' : bestChunk.section),
@@ -1032,7 +1038,7 @@ export function executeGraphRAG(rawQuery: string, sem?: SemanticScores | null): 
     answer,
     explanation,
     keyBusinessFacts,
-    visualEvidence: fallbackVisual,
+    visualEvidence: fallbackVisual ?? imageFor(scoredChunks.slice(0, 4).map(s => s.chunk.id)),
     referenceLinks,
     citation: {
       documentTitle: bestChunk.docTitle,
