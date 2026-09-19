@@ -49,6 +49,35 @@ SC_DOCS = {
     'converted/product-portfolio-deck-104-slides.md': ('Product Portfolio Deck (104 slides)', '07'),
 }
 CHAPTERS = {'Executive summary': 'summary'}
+# this site's source documents, published as downloads (./downloads/showcase/), so a showcase answer offers its
+# file the way a DG32 answer offers its PDF. The business plan is the copy without Payroll and Cap Table.
+DOWNLOADS = {
+    'papers/information-memorandum-v2-aug-2026.pdf': 'deepgrid-information-memorandum-v2-aug-2026.pdf',
+    'papers/bp1a-india-autonomous-trucking-plan.pdf': 'deepgrid-bp1a-india-autonomous-trucking-plan.pdf',
+    'papers/bp1b-usa-proposal.pdf': 'deepgrid-bp1b-usa-proposal.pdf',
+    'papers/deepgrid-brief-shravan-mayookh.pdf': 'deepgrid-brief-shravan-mayookh.pdf',
+    'office/icp-and-gtm-strategy-jul-2026.docx': 'deepgrid-icp-and-gtm-strategy-jul-2026.docx',
+    'office/financial-model-v3-sept-2026.xlsx': 'deepgrid-financial-model-v3-sept-2026.xlsx',
+    'office/business-plan-v2.xlsx': 'deepgrid-business-plan-v2.xlsx',
+}
+
+
+def human(n):
+    return f'{n / 1048576:.1f} MB' if n >= 1048576 else f'{max(1, round(n / 1024))} KB'
+
+
+def publish_downloads():
+    import shutil
+    out = ROOT / 'public/downloads/showcase'
+    out.mkdir(parents=True, exist_ok=True)
+    published = {}
+    for rel, name in DOWNLOADS.items():
+        src = SRC / rel
+        if src.exists():
+            shutil.copyfile(src, out / name)
+        if (out / name).exists():
+            published[rel] = (f'./downloads/showcase/{name}', human((out / name).stat().st_size))
+    return published
 
 
 def pdf_pages(path):
@@ -161,11 +190,16 @@ def main():
 
     per_doc = {}
 
+    downloads = publish_downloads()
+    office_key = {'financial-model': 'office/financial-model-v3-sept-2026.xlsx', 'business-plan': 'office/business-plan-v2.xlsx',
+                  'icp-and-gtm': 'office/icp-and-gtm-strategy-jul-2026.docx'}
+
     def add(doc_key, title, num, section, page_label, text, nav=''):
         # stable ids: numbered within their own document, so editing one document never renumbers another
         slug = re.sub(r'[^a-z0-9]+', '_', doc_key.lower())
         per_doc[slug] = per_doc.get(slug, 0) + 1
-        chunks.append({'id': f"sc_{slug}_{per_doc[slug]}", 'docTitle': title, 'docNum': num, 'pdfPath': '', 'pdfSize': '',
+        file = downloads.get(doc_key) or downloads.get(next((v for k, v in office_key.items() if k in doc_key), ''), ('', ''))
+        chunks.append({'id': f"sc_{slug}_{per_doc[slug]}", 'docTitle': title, 'docNum': num, 'pdfPath': file[0], 'pdfSize': file[1],
                        'specPath': '', 'pageLabel': page_label, 'section': section, 'text': text, 'nav': nav})
 
     for rel, (title, num) in SC_DOCS.items():
@@ -188,6 +222,7 @@ def main():
         name = next((v for k, v in title.items() if side.name.startswith(k)), side.stem)
         for head, body in md_sections(side):
             add(f'office/{side.name}', name, '08' if name.startswith('ICP') else '09', head[:90], '', body)
+    print(f"Downloads published: {len(downloads)}; chunks with a download: {sum(1 for c in chunks if c['pdfPath'].startswith('./downloads/showcase/'))}")
     print(f"Chunks: {len(chunks)} ({sum(1 for c in chunks if c['id'].startswith('pdf_'))} DG32 PDF pages, "
           f"{sum(1 for c in chunks if c['id'].startswith('sc_'))} showcase)")
 

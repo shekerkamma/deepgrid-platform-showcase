@@ -127,32 +127,32 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
               </div>
             </div>
 
-            {!result.citation.pdfPath ? (
-              result.citation.nav ? <div className="dr-citation-actions">
-                <button type="button" className="dr-citation-btn primary" onClick={() => go(result.citation.nav!)}>
-                  <ArrowUpRight size={14} /><span>Open in this site</span>
-                </button>
-              </div> : null
-            ) : <div className="dr-citation-actions">
-              <a 
-                href={result.citation.pdfPath}
-                download
-                className="dr-citation-btn primary"
-                title={`Download official whitepaper PDF (${result.citation.pdfSize})`}
-              >
-                <Download size={14} />
-                <span>Download PDF ({result.citation.pdfSize})</span>
-              </a>
-              <a 
-                href={result.citation.specPath}
-                download
-                className="dr-citation-btn outline"
-                title="Download full Markdown specification"
-              >
-                <BookOpen size={14} />
-                <span>Full Spec</span>
-              </a>
-            </div>}
+            {(result.citation.pdfPath || result.citation.nav) && (
+              <div className="dr-citation-actions">
+                {result.citation.pdfPath && (
+                  <a
+                    href={result.citation.pdfPath}
+                    download
+                    className="dr-citation-btn primary"
+                    title={`Download ${result.citation.documentTitle}${result.citation.pdfSize ? ` (${result.citation.pdfSize})` : ''}`}
+                  >
+                    <Download size={14} />
+                    <span>{/\.pdf$/i.test(result.citation.pdfPath) ? 'Download PDF' : /\.xlsx$/i.test(result.citation.pdfPath) ? 'Download workbook' : 'Download document'}{result.citation.pdfSize ? ` (${result.citation.pdfSize})` : ''}</span>
+                  </a>
+                )}
+                {result.citation.specPath && (
+                  <a href={result.citation.specPath} download className="dr-citation-btn outline" title="Download full Markdown specification">
+                    <BookOpen size={14} />
+                    <span>Full Spec</span>
+                  </a>
+                )}
+                {result.citation.nav && (
+                  <button type="button" className={`dr-citation-btn ${result.citation.pdfPath ? 'outline' : 'primary'}`} onClick={() => go(result.citation.nav!)}>
+                    <ArrowUpRight size={14} /><span>Open in this site</span>
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </article>
