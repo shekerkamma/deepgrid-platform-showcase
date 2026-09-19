@@ -50,7 +50,6 @@ next-env.d.ts
 # every DeepGrid document, assembled for graphify (holds confidential originals; knowledge/sources.json is the manifest)
 /knowledge/sources/
 verify-shots/
-app/data/.multimodal_embed_cache.json
 *.tmp
 
 # gemini-embedding-2 vectors, cached by content hash (scripts/build-image-links.py)
