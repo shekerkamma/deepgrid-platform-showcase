@@ -1,0 +1,204 @@
+{
+ "_about": "Where images added with the DG32 visual assets come from, established on 2026-09-19 by matching SHA-256 against the owner's folders (Downloads, the Antigravity deepgrid-platform project, OneDrive Desktop) and, for the renders, by their signed C2PA content credentials. scripts/build-image-manifest.py reads this; an image absent here stays held back.",
+ "images": {
+  "public/media/computebox-poster.png": {
+   "source": "Poster frame of the computebox simulation film on the DeepGrid platform site",
+   "sha256": "4187111559920fa5c1264bd2ea53bcfde0d489c4df6335b00a88df15ca76506c",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/computebox-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/computebox-poster.png"
+  },
+  "public/media/cube-poster.png": {
+   "source": "Poster frame of the cube simulation film on the DeepGrid platform site",
+   "sha256": "380020d705e429245b705320a3d0c6aff0fd7266ac063b89d8de1687feff6d4b",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/cube-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/cube-poster.png"
+  },
+  "public/media/ddrive-poster.png": {
+   "source": "Poster frame of the ddrive simulation film on the DeepGrid platform site",
+   "sha256": "c740dae2212a9c4781238e827d4808b638be8918cff22ad8f0289e5cb8e0d659",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/ddrive-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/ddrive-poster.png"
+  },
+  "public/media/deepgrid_defence.jpg": {
+   "source": "Generated illustration: Google generative AI, C2PA credentials and SynthID watermark, 2026-09-01 (DeepGrid platform deck_assets); not a photograph",
+   "sha256": "32d4d3a236e2c89152eba5ba43ac6500f679d79ff992e00efd2be9ef17e64c74",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/deepgrid_sentinel_defence_1788242118139.jpg",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/deepgrid_sentinel_defence_1788242118139.jpg"
+  },
+  "public/media/deepgrid_logistics.jpg": {
+   "source": "Generated illustration: Google generative AI, C2PA credentials and SynthID watermark, 2026-09-01 (DeepGrid platform deck_assets); not a photograph",
+   "sha256": "b09ae4e1bd3151d04d47a03481494ce71cd6cc73a53935b55e045bae49f80915",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/deepgrid_yard_logistics_1788242137873.jpg",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/deepgrid_yard_logistics_1788242137873.jpg"
+  },
+  "public/media/deepgrid_robotics.jpg": {
+   "source": "Generated illustration: Google generative AI, C2PA credentials and SynthID watermark, 2026-09-01 (DeepGrid platform deck_assets); not a photograph",
+   "sha256": "a57951623fed45d05698c161879fed217e7c9dd9891e8c3ea898f65403eec2cb",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/deepgrid_forklift_robotics_1788242097930.jpg",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/deepgrid_forklift_robotics_1788242097930.jpg"
+  },
+  "public/media/deepgrid_soc2_die.jpg": {
+   "source": "Generated illustration: Google generative AI, C2PA credentials and SynthID watermark, 2026-09-01 (DeepGrid platform deck_assets); not a photograph",
+   "sha256": "e389c10ad3ce4a60f76405a56bbb5cbdc2e2b869b36513312e46c015e275c155",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/deepgrid_soc2_die_1788242053668.jpg",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/deepgrid_soc2_die_1788242053668.jpg"
+  },
+  "public/media/deepgrid_truck.jpg": {
+   "source": "Generated illustration: Google generative AI, C2PA credentials and SynthID watermark, 2026-09-01 (DeepGrid platform deck_assets); not a photograph",
+   "sha256": "49516bcc62557fc74f9ed3edcbba15e7c840e27b2840185ca9418801f322755e",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/deepgrid_smart_mirror_truck_1788242074245.jpg",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/deepgrid_smart_mirror_truck_1788242074245.jpg"
+  },
+  "public/media/dg32-2dom-architecture-poster.jpg": {
+   "source": "DG32 film poster (Downloads/DG32-Architecture-Package/Posters)",
+   "sha256": "17f89a3493b8eb428d6e81fe31578e3b4f6ccb9c9daf4df893ee624500867116",
+   "original": "C:/Users/sheke/Downloads/DG32-Architecture-Package/Posters/DG32-2DOM-Architecture-Poster.jpg"
+  },
+  "public/media/dg32-2dom-datasheet-poster.jpg": {
+   "source": "DG32 film poster (Downloads/DG32-Architecture-Package/Posters)",
+   "sha256": "40ed2bc45c0759bfc0c41459c1f898da58fed4c2570ce85a592cadbe4808d2ae",
+   "original": "C:/Users/sheke/Downloads/DG32-Architecture-Package/Posters/DG32-2DOM-Datasheet-Poster.jpg"
+  },
+  "public/media/dg32-lite-architecture-poster.jpg": {
+   "source": "DG32 film poster (Downloads/DG32-Architecture-Package/Posters)",
+   "sha256": "27f151286f4dfb1ba8e4a02a1cf8074a701905f444ebe35c4d8855dff7b854ef",
+   "original": "C:/Users/sheke/Downloads/DG32-Architecture-Package/Posters/DG32-LITE-Architecture-Poster.jpg"
+  },
+  "public/media/dg32-lite-datasheet-poster.jpg": {
+   "source": "DG32 film poster (Downloads/DG32-Architecture-Package/Posters)",
+   "sha256": "f192bdb0d20d51ede3d3219249c58303c20832bdb52661767318c287b9074b6c",
+   "original": "C:/Users/sheke/Downloads/DG32-Architecture-Package/Posters/DG32-LITE-Datasheet-Poster.jpg"
+  },
+  "public/media/dg32-lite-tapein-poster.jpg": {
+   "source": "DG32 film poster (Downloads/DG32-Architecture-Package/Posters)",
+   "sha256": "a706bbf383eb85190ec757276f0db86f2e64b744124dc1bbd44929c202b2bb76",
+   "original": "C:/Users/sheke/Downloads/DG32-Architecture-Package/Posters/DG32-LITE-TapeIn-Block-Diagram-Poster.jpg"
+  },
+  "public/media/forklift-poster.png": {
+   "source": "Poster frame of the forklift simulation film on the DeepGrid platform site",
+   "sha256": "afe78a149f2927d5779bfe4c9a46cf651c89a2e0724d8e6b9062444ff258d6bb",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/forklift-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/forklift-poster.png"
+  },
+  "public/media/landscape-poster.png": {
+   "source": "Poster frame of the landscape simulation film on the DeepGrid platform site",
+   "sha256": "83c4cb266ad92bc3a3d74b4b25aa74345d92e446b600b3a5a14899147126410b",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/landscape-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/landscape-poster.png"
+  },
+  "public/media/lines_image.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "51c5ebd8e5b52922c19f26ecb6c08a921e37f647704a6c915fed205525b992b2",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/lines_image.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image.png"
+  },
+  "public/media/lines_image2.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "66daa43c1a030d5960d62aae00906b8fcbf149ac5942d2694c77c6f36d3cc020",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/lines_image2.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image2.png"
+  },
+  "public/media/lines_image3.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "018bb5f71bba25f5a932133d64792a0aea4ecb2402db58b5ad7a61dc17574781",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/lines_image3.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image3.png"
+  },
+  "public/media/lines_image4.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "841bf777c2619dd6e62d3143b9db68d53110fa62385b772f3d6cda8c8614f863",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/lines_image4.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image4.png"
+  },
+  "public/media/lines_image5.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "be7b23febaf9634b4edb3dfec062ff3b92dc466b89fde91af67ff0bb859a270f",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/lines_image5.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image5.png"
+  },
+  "public/media/lines_image6.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "dab4b5b72ce6ceec7cc0df73c8b29dc575a18604256172302df884cb13f9f453",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/lines_image6.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image6.png"
+  },
+  "public/media/lines_image7.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "67790089b4b576f5d586c95b909c5a02307e85d245bedca87259e21f5fa8103b",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/lines_image7.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image7.png"
+  },
+  "public/media/lines_image8.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "6d68c26937652ea49cba66b52bfbfdcf974f7c13817267815bd57dd03eb84f03",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/lines_image8.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image8.png"
+  },
+  "public/media/lines_image9.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "31a6f85a64ee8c66fd81a33569e7e0ae51c957fdb0c04370237fde090c591bc3",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/lines_image9.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image9.png"
+  },
+  "public/media/mesh-poster.png": {
+   "source": "Poster frame of the mesh simulation film on the DeepGrid platform site",
+   "sha256": "6038382dedbf8d627c3723d52006bbd54ed2e28f2a10b26dbe689cb4c8e4dfce",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/mesh-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/mesh-poster.png"
+  },
+  "public/media/problem-poster.png": {
+   "source": "Poster frame of the problem simulation film on the DeepGrid platform site",
+   "sha256": "76f8e08ff950757b185f9296c366f1a4212538c98dd516728477526dae562dd0",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/problem-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/problem-poster.png"
+  },
+  "public/media/roadmap-poster.png": {
+   "source": "Poster frame of the roadmap simulation film on the DeepGrid platform site",
+   "sha256": "c4765cc1d0057a27001369dca886d68796e18ac72d8d5be5e217eaad2db318a4",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/roadmap-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/roadmap-poster.png"
+  },
+  "public/media/sentinel-poster.png": {
+   "source": "Poster frame of the sentinel simulation film on the DeepGrid platform site",
+   "sha256": "52a05b24ebd743fed860c3737ea7415e7485da8987492385159c85343009147e",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/sentinel-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/sentinel-poster.png"
+  },
+  "public/media/sims_image.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "dc365ba64d901a95bfa3371fe453f1bf2bc14d43527132a71a7a9539bcc9e782",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/dist/deck_assets/sims_image.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/sims_image.png"
+  },
+  "public/media/sims_image2.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "c740dae2212a9c4781238e827d4808b638be8918cff22ad8f0289e5cb8e0d659",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/ddrive-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/ddrive-poster.png"
+  },
+  "public/media/sims_image3.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "4f16326f6053efca9bc23558b7bcf8aa2adbf82c429296f2a07257d0909a2b42",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/yard-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/yard-poster.png"
+  },
+  "public/media/sims_image4.png": {
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "sha256": "52a05b24ebd743fed860c3737ea7415e7485da8987492385159c85343009147e",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/sentinel-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/sentinel-poster.png"
+  },
+  "public/media/truck-poster.png": {
+   "source": "Poster frame of the truck simulation film on the DeepGrid platform site",
+   "sha256": "7a1419a18821dbcb1484a2bfadb4ae0516a93749ce43b3b9fa4be73818bb4f07",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/truck-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/truck-poster.png"
+  },
+  "public/media/yard-poster.png": {
+   "source": "Poster frame of the yard simulation film on the DeepGrid platform site",
+   "sha256": "4f16326f6053efca9bc23558b7bcf8aa2adbf82c429296f2a07257d0909a2b42",
+   "original": "D:/New folder/Antigravity-test/deepgrid-platform/public/media/yard-poster.png",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/yard-poster.png"
+  }
+ }
+}
