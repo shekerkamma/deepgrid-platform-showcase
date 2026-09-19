@@ -156,7 +156,8 @@
   "examples": [
    "What is the TAM, SAM and SOM?",
    "How large is the Indian ADAS market?",
-   "What share of the market does the plan need?"
+   "What share of the market does the plan need?",
+   "How many vehicles are in the pool DeepGrid can address?"
   ],
   "sources": [
    "sc_papers_information_memorandum_v2_aug_2026_pdf_182",
@@ -745,7 +746,8 @@
   "examples": [
    "What is the cash runway?",
    "How long does the money last?",
-   "What is the cash position by year?"
+   "What is the cash position by year?",
+   "Is the raise enough to carry DeepGrid to positive cash flow?"
   ],
   "sources": [
    "sc_office_financial_model_v3_sept_2026_58e1956b_md_809",

@@ -180,7 +180,6 @@ export default function Home() {
             key={product.id}
             product={product}
             go={go}
-            openSlide={openSlide}
             back={() => setProduct(null)}
           />
         )}
@@ -237,7 +236,7 @@ export default function Home() {
             go={go}
           />
         )}
-        {view !== 'overview' && (
+        {view !== 'overview' && !(view === 'portfolio' && product) && (
           <nav className="section-pagination" aria-label="Section navigation">
             {viewIndex > 0 ? (
               <a
