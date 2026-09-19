@@ -320,7 +320,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 26",
-     "score": 0.737
+     "score": 0.74
     }
    ]
   },
@@ -337,7 +337,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_28",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 28",
-     "score": 0.656
+     "score": 0.665
     }
    ]
   },
@@ -349,7 +349,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_30",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 29",
-     "score": 0.637
+     "score": 0.649
     }
    ]
   },
@@ -419,7 +419,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_37",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 36",
-     "score": 0.685
+     "score": 0.691
     }
    ]
   },
@@ -436,7 +436,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_39",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 38",
-     "score": 0.707
+     "score": 0.703
     }
    ]
   },
@@ -448,7 +448,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_41",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 39",
-     "score": 0.703
+     "score": 0.7
     }
    ]
   },
@@ -482,7 +482,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_45",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 43",
-     "score": 0.668
+     "score": 0.669
     }
    ]
   },
@@ -494,7 +494,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_47",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 44",
-     "score": 0.719
+     "score": 0.726
     }
    ]
   },
@@ -506,7 +506,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_49",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 45",
-     "score": 0.646
+     "score": 0.645
     }
    ]
   },
@@ -518,7 +518,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_51",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 46",
-     "score": 0.682
+     "score": 0.687
     }
    ]
   },
@@ -1215,7 +1215,7 @@
    "file": "images/computebox.png",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.612
@@ -1262,16 +1262,22 @@
    "file": "images/figure-02.webp",
    "links": [
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_4",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_7",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), T H E P L A T F O R M",
      "score": 0.563
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_5",
+     "target": "sc_converted_information_memorandum_june_2026_md_6",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 5",
      "score": 0.549
+    },
+    {
+     "target": "sc_papers_deepgrid_brief_shravan_mayookh_pdf_7",
+     "type": "passage",
+     "label": "DeepGrid Brief (Shravan, Mayookh), T H E I N V E S T M E N T, D G R I D A L P H A \u00b7 T S M C 2 8 N M",
+     "score": 0.523
     }
    ]
   },
@@ -1280,7 +1286,7 @@
    "file": "images/figure-03.webp",
    "links": [
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_12",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_15",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 4 . G O - T O - M A R K E T, P R I C I N G",
      "score": 0.645
@@ -1292,10 +1298,10 @@
    "file": "images/figure-04.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_29",
+     "target": "sc_converted_information_memorandum_june_2026_md_30",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 29",
-     "score": 0.652
+     "score": 0.66
     }
    ]
   },
@@ -1304,13 +1310,13 @@
    "file": "images/figure-05.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_14",
+     "target": "sc_converted_information_memorandum_june_2026_md_15",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 15",
      "score": 0.659
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_14",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_18",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 5 . C H I P L E T A R C H I T E C T U R E, S I X - C H I P L E T C O M B O D I E",
      "score": 0.642
@@ -1322,7 +1328,7 @@
    "file": "images/figure-06.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_12",
+     "target": "sc_converted_information_memorandum_june_2026_md_13",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 12",
      "score": 0.502
@@ -1334,7 +1340,7 @@
    "file": "images/figure-07.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.585
@@ -1346,7 +1352,7 @@
    "file": "images/figure-08.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 11",
      "score": 0.47
@@ -1358,7 +1364,7 @@
    "file": "images/figure-09.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_19",
+     "target": "sc_converted_information_memorandum_june_2026_md_20",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 20",
      "score": 0.578
@@ -1370,13 +1376,13 @@
    "file": "images/figure-10.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_16",
+     "target": "sc_converted_information_memorandum_june_2026_md_17",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 18",
      "score": 0.515
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_17",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_23",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 8 . P R O O F O F E X E C U T I O N",
      "score": 0.508
@@ -1388,10 +1394,10 @@
    "file": "images/figure-11.webp",
    "links": [
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_16",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_21",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 7 . R O A D M A P, F U T U R E G E N E R A T I O N ( S O C 4 - A , F Y 3 0 + )",
-     "score": 0.359
+     "score": 0.358
     }
    ]
   },
@@ -1400,13 +1406,13 @@
    "file": "images/figure-12.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_22",
+     "target": "sc_converted_information_memorandum_june_2026_md_23",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 23",
      "score": 0.611
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_21",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_28",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 1 0 . F I N A N C I A L O V E R V I E W \u2013 R E V E N U E & A N A L Y S I S",
      "score": 0.576
@@ -1418,7 +1424,7 @@
    "file": "images/figure-13.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_25",
+     "target": "sc_converted_information_memorandum_june_2026_md_26",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 26",
      "score": 0.632
@@ -1448,7 +1454,7 @@
    "file": "images/posters/computebox.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.612
@@ -1517,10 +1523,10 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 26",
-     "score": 0.565
+     "score": 0.567
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 11",
      "score": 0.55
@@ -1570,10 +1576,10 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 26",
-     "score": 0.565
+     "score": 0.567
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 11",
      "score": 0.55
@@ -1597,19 +1603,25 @@
    "file": "media/computebox-poster.png",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "target": "sc_converted_information_memorandum_june_2026_md_7",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 6",
      "score": 0.512
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "target": "sc_papers_deepgrid_brief_shravan_mayookh_pdf_6",
+     "type": "passage",
+     "label": "DeepGrid Brief (Shravan, Mayookh), I N D U S T R Y 1 O F 3, A D A S \u00b7 V E H I C L E S A F E T Y",
+     "score": 0.484
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_6",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
      "score": 0.479
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_8",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
      "score": 0.467
@@ -1669,29 +1681,18 @@
   {
    "image": "media-deepgrid_truck",
    "file": "media/deepgrid_truck.jpg",
-   "links": []
-  },
-  {
-   "image": "media-dg32-2dom-architecture-poster",
-   "file": "media/dg32-2dom-architecture-poster.jpg",
    "links": [
     {
-     "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p1",
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
-     "label": "DG32-2DOM Preliminary Datasheet, Page 1",
-     "score": 0.543
-    },
-    {
-     "target": "pdf_deepgrid-datasheets-qfn64_p13",
-     "type": "passage",
-     "label": "DG32 QFN-64 Engineering Datasheet, Page 13",
-     "score": 0.541
+     "label": "Product Portfolio Deck (104 slides), Slide 26",
+     "score": 0.351
     }
    ]
   },
   {
-   "image": "media-dg32-2dom-datasheet-poster",
-   "file": "media/dg32-2dom-datasheet-poster.jpg",
+   "image": "media-dg32-2dom-architecture-poster",
+   "file": "media/dg32-2dom-architecture-poster.jpg",
    "links": [
     {
      "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p1",
@@ -1703,25 +1704,49 @@
      "target": "pdf_deepgrid-datasheets-qfn64_p13",
      "type": "passage",
      "label": "DG32 QFN-64 Engineering Datasheet, Page 13",
+     "score": 0.534
+    }
+   ]
+  },
+  {
+   "image": "media-dg32-2dom-datasheet-poster",
+   "file": "media/dg32-2dom-datasheet-poster.jpg",
+   "links": [
+    {
+     "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p1",
+     "type": "passage",
+     "label": "DG32-2DOM Preliminary Datasheet, Page 1",
      "score": 0.527
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p13",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 13",
+     "score": 0.524
     },
     {
      "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p2",
      "type": "passage",
      "label": "DG32-2DOM Preliminary Datasheet, Page 2",
-     "score": 0.524
+     "score": 0.502
+    },
+    {
+     "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p12_2",
+     "type": "passage",
+     "label": "DG32-2DOM Preliminary Datasheet, 9 Board design guidance (hardware / PCB)",
+     "score": 0.5
     },
     {
      "target": "pdf_deepgrid-datasheets-qfn64_p14",
      "type": "passage",
      "label": "DG32 QFN-64 Engineering Datasheet, Page 14",
-     "score": 0.491
+     "score": 0.49
     },
     {
      "target": "pdf_deepgrid-dg32-2dom-system-architecture_p1",
      "type": "passage",
      "label": "DG32-2DOM System Architecture, Page 1",
-     "score": 0.487
+     "score": 0.485
     }
    ]
   },
@@ -1733,13 +1758,13 @@
      "target": "pdf_deepgrid-datasheets-qfn64_p1",
      "type": "passage",
      "label": "DG32 QFN-64 Engineering Datasheet, Page 1",
-     "score": 0.515
+     "score": 0.498
     },
     {
      "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p1",
      "type": "passage",
      "label": "DG32-LITE Preliminary Datasheet, Page 1",
-     "score": 0.502
+     "score": 0.482
     }
    ]
   },
@@ -1751,25 +1776,37 @@
      "target": "pdf_deepgrid-datasheets-qfn64_p1",
      "type": "passage",
      "label": "DG32 QFN-64 Engineering Datasheet, Page 1",
-     "score": 0.514
+     "score": 0.507
     },
     {
-     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p1",
+     "target": "pdf_deepgrid-datasheets-qfn64_p12_2",
      "type": "passage",
-     "label": "DG32-LITE Preliminary Datasheet, Page 1",
-     "score": 0.482
+     "label": "DG32 QFN-64 Engineering Datasheet, 9 Board design guidance (hardware / PCB)",
+     "score": 0.493
     },
     {
      "target": "pdf_deepgrid-datasheets-qfn64_p13",
      "type": "passage",
      "label": "DG32 QFN-64 Engineering Datasheet, Page 13",
-     "score": 0.478
+     "score": 0.486
     },
     {
-     "target": "pdf_deepgrid-datasheets-qfn64_p17",
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p12_2",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, 9 Board design guidance (hardware / PCB)",
+     "score": 0.482
+    },
+    {
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p1",
+     "type": "passage",
+     "label": "DG32-LITE Preliminary Datasheet, Page 1",
+     "score": 0.476
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p5",
      "type": "passage",
      "label": "DG32 QFN-64 Engineering Datasheet, 4 Electrical characteristics",
-     "score": 0.464
+     "score": 0.459
     }
    ]
   },
@@ -1778,40 +1815,40 @@
    "file": "media/dg32-lite-tapein-poster.jpg",
    "links": [
     {
-     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p2",
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p5",
      "type": "passage",
-     "label": "DG32-LITE Preliminary Datasheet, Page 2",
-     "score": 0.44
+     "label": "DG32-LITE Preliminary Datasheet, 4 Electrical characteristics",
+     "score": 0.422
     },
     {
      "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p1",
      "type": "passage",
      "label": "DG32-LITE Preliminary Datasheet, Page 1",
-     "score": 0.429
+     "score": 0.419
     },
     {
-     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p5",
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p2",
      "type": "passage",
-     "label": "DG32-LITE Preliminary Datasheet, 4 Electrical characteristics",
-     "score": 0.424
+     "label": "DG32-LITE Preliminary Datasheet, Page 2",
+     "score": 0.415
     },
     {
      "target": "pdf_deepgrid-datasheets-qfn64_p1",
      "type": "passage",
      "label": "DG32 QFN-64 Engineering Datasheet, Page 1",
-     "score": 0.417
+     "score": 0.415
     },
     {
-     "target": "pdf_deepgrid-datasheets-qfn64_p2",
+     "target": "pdf_deepgrid-datasheets-qfn64_p5",
      "type": "passage",
-     "label": "DG32 QFN-64 Engineering Datasheet, Page 2",
-     "score": 0.416
+     "label": "DG32 QFN-64 Engineering Datasheet, 4 Electrical characteristics",
+     "score": 0.408
     },
     {
-     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p4",
+     "target": "pdf_deepgrid-datasheets-qfn64_p13",
      "type": "passage",
-     "label": "DG32-LITE Preliminary Datasheet, Page 4",
-     "score": 0.406
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 13",
+     "score": 0.401
     }
    ]
   },
@@ -1841,25 +1878,25 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_41",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 39",
-     "score": 0.439
-    },
-    {
-     "target": "sc_markdown_narration_portfolio_104_md_9",
-     "type": "passage",
-     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Portfolio, 104 slides",
-     "score": 0.432
+     "score": 0.441
     },
     {
      "target": "sc_converted_product_portfolio_deck_104_slides_md_47",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 44",
-     "score": 0.421
+     "score": 0.422
+    },
+    {
+     "target": "sc_markdown_narration_portfolio_104_md_10",
+     "type": "passage",
+     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Portfolio, 104 slides",
+     "score": 0.422
     },
     {
      "target": "sc_converted_product_portfolio_deck_104_slides_md_37",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 36",
-     "score": 0.409
+     "score": 0.414
     }
    ]
   },
@@ -1901,10 +1938,10 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 26",
-     "score": 0.564
+     "score": 0.566
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 11",
      "score": 0.54
@@ -1961,7 +1998,7 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_37",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 36",
-     "score": 0.365
+     "score": 0.366
     }
    ]
   },
@@ -1970,10 +2007,16 @@
    "file": "media/lines_image8.png",
    "links": [
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_16",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_21",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 7 . R O A D M A P, F U T U R E G E N E R A T I O N ( S O C 4 - A , F Y 3 0 + )",
-     "score": 0.439
+     "score": 0.438
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_22",
+     "type": "passage",
+     "label": "Information Memorandum v2 (Aug 2026), 7 . R O A D M A P, F U T U R E G E N E R A T I O N ( S O C 4 - A , F Y 3 0 + )",
+     "score": 0.427
     },
     {
      "target": "sc_markdown_storyboard_sku_explainer_md_8",
@@ -1988,22 +2031,16 @@
      "score": 0.41
     },
     {
-     "target": "sc_converted_product_portfolio_deck_104_slides_md_30",
-     "type": "passage",
-     "label": "Product Portfolio Deck (104 slides), Slide 29",
-     "score": 0.405
-    },
-    {
      "target": "sc_markdown_narration_portfolio_104_md_7",
      "type": "passage",
      "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Portfolio, 104 slides",
-     "score": 0.399
+     "score": 0.405
     },
     {
-     "target": "theme:SoC2: six chiplets on one 57 mm\u00b2 die",
-     "type": "theme",
-     "label": "SoC2: six chiplets on one 57 mm\u00b2 die",
-     "score": 0.389
+     "target": "sc_converted_product_portfolio_deck_104_slides_md_30",
+     "type": "passage",
+     "label": "Product Portfolio Deck (104 slides), Slide 29",
+     "score": 0.401
     }
    ]
   },
@@ -2012,7 +2049,7 @@
    "file": "media/lines_image9.png",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.614
@@ -2024,25 +2061,31 @@
    "file": "media/mesh-poster.png",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "target": "sc_converted_information_memorandum_june_2026_md_7",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 6",
      "score": 0.51
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_6",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
      "score": 0.481
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "target": "sc_papers_deepgrid_brief_shravan_mayookh_pdf_6",
+     "type": "passage",
+     "label": "DeepGrid Brief (Shravan, Mayookh), I N D U S T R Y 1 O F 3, A D A S \u00b7 V E H I C L E S A F E T Y",
+     "score": 0.479
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_8",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
      "score": 0.465
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_3",
+     "target": "sc_converted_information_memorandum_june_2026_md_4",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 3",
      "score": 0.464
@@ -2057,19 +2100,19 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_37",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 36",
-     "score": 0.432
+     "score": 0.434
     },
     {
-     "target": "sc_markdown_narration_portfolio_104_md_8",
+     "target": "sc_markdown_narration_portfolio_104_md_9",
      "type": "passage",
      "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Portfolio, 104 slides",
-     "score": 0.402
+     "score": 0.43
     },
     {
      "target": "sc_converted_product_portfolio_deck_104_slides_md_47",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 44",
-     "score": 0.393
+     "score": 0.398
     }
    ]
   },
@@ -2078,19 +2121,25 @@
    "file": "media/roadmap-poster.png",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "target": "sc_converted_information_memorandum_june_2026_md_7",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 6",
      "score": 0.514
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "target": "sc_papers_deepgrid_brief_shravan_mayookh_pdf_6",
+     "type": "passage",
+     "label": "DeepGrid Brief (Shravan, Mayookh), I N D U S T R Y 1 O F 3, A D A S \u00b7 V E H I C L E S A F E T Y",
+     "score": 0.48
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_6",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
      "score": 0.477
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_8",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
      "score": 0.468
@@ -2189,10 +2238,10 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 26",
-     "score": 0.565
+     "score": 0.567
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 11",
      "score": 0.55
@@ -2216,40 +2265,40 @@
    "file": "diagrams/dg32-2dom-architecture.svg",
    "links": [
     {
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p11_2",
+     "type": "passage",
+     "label": "DG32-2DOM System Architecture, 4.18 INT8 attention engine",
+     "score": 0.553
+    },
+    {
      "target": "pdf_deepgrid-datasheets-qfn64_p13",
      "type": "passage",
      "label": "DG32 QFN-64 Engineering Datasheet, Page 13",
-     "score": 0.541
-    },
-    {
-     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p3",
-     "type": "passage",
-     "label": "DG32-2DOM System Architecture, 3 Top-level block diagram",
-     "score": 0.538
-    },
-    {
-     "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p1",
-     "type": "passage",
-     "label": "DG32-2DOM Preliminary Datasheet, Page 1",
-     "score": 0.526
+     "score": 0.534
     },
     {
      "target": "pdf_deepgrid-dg32-2dom-system-architecture_p11",
      "type": "passage",
      "label": "DG32-2DOM System Architecture, 4.18 INT8 attention engine",
-     "score": 0.517
+     "score": 0.527
     },
     {
-     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p16",
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p3",
      "type": "passage",
-     "label": "DG32-2DOM System Architecture, 7 Communication matrix",
-     "score": 0.503
+     "label": "DG32-2DOM System Architecture, 3 Top-level block diagram",
+     "score": 0.522
     },
     {
-     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p12",
+     "target": "pdf_deepgrid-dg32-2dom-preliminary-datasheet_p1",
      "type": "passage",
-     "label": "DG32-2DOM System Architecture, Page 12",
-     "score": 0.497
+     "label": "DG32-2DOM Preliminary Datasheet, Page 1",
+     "score": 0.521
+    },
+    {
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p2",
+     "type": "passage",
+     "label": "DG32-2DOM System Architecture, Page 2",
+     "score": 0.507
     }
    ]
   },
@@ -2258,40 +2307,40 @@
    "file": "diagrams/dg32-lite-architecture.svg",
    "links": [
     {
-     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p3",
-     "type": "passage",
-     "label": "DG32-2DOM System Architecture, 3 Top-level block diagram",
-     "score": 0.527
-    },
-    {
-     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p1",
-     "type": "passage",
-     "label": "DG32-LITE Preliminary Datasheet, Page 1",
-     "score": 0.508
-    },
-    {
      "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p12",
      "type": "passage",
      "label": "DG32-LITE Preliminary Datasheet, 9 Board design guidance (hardware / PCB)",
-     "score": 0.506
+     "score": 0.513
     },
     {
-     "target": "pdf_deepgrid-datasheets-qfn64_p1",
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p3",
      "type": "passage",
-     "label": "DG32 QFN-64 Engineering Datasheet, Page 1",
-     "score": 0.503
+     "label": "DG32-2DOM System Architecture, 3 Top-level block diagram",
+     "score": 0.508
     },
     {
      "target": "pdf_deepgrid-datasheets-qfn64_p12",
      "type": "passage",
      "label": "DG32 QFN-64 Engineering Datasheet, 9 Board design guidance (hardware / PCB)",
-     "score": 0.492
+     "score": 0.502
     },
     {
-     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p7",
+     "target": "pdf_deepgrid-dg32-lite-preliminary-datasheet_p1",
      "type": "passage",
-     "label": "DG32-LITE Preliminary Datasheet, 7 Memory map",
-     "score": 0.48
+     "label": "DG32-LITE Preliminary Datasheet, Page 1",
+     "score": 0.502
+    },
+    {
+     "target": "pdf_deepgrid-datasheets-qfn64_p1",
+     "type": "passage",
+     "label": "DG32 QFN-64 Engineering Datasheet, Page 1",
+     "score": 0.5
+    },
+    {
+     "target": "pdf_deepgrid-dg32-2dom-system-architecture_p4",
+     "type": "passage",
+     "label": "DG32-2DOM System Architecture, 4 Block internals",
+     "score": 0.489
     }
    ]
   },
@@ -2300,25 +2349,25 @@
    "file": "media/keyframes/computebox-003.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "target": "sc_converted_information_memorandum_june_2026_md_7",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 6",
      "score": 0.508
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_6",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
      "score": 0.478
     },
     {
-     "target": "sc_markdown_narration_sku_explainer_87_md_3",
+     "target": "sc_papers_deepgrid_brief_shravan_mayookh_pdf_6",
      "type": "passage",
-     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Lines, fifteen SKUs explained",
-     "score": 0.462
+     "label": "DeepGrid Brief (Shravan, Mayookh), I N D U S T R Y 1 O F 3, A D A S \u00b7 V E H I C L E S A F E T Y",
+     "score": 0.472
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_8",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
      "score": 0.46
@@ -2330,7 +2379,7 @@
    "file": "media/keyframes/computebox-009.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.578
@@ -2342,7 +2391,7 @@
    "file": "media/keyframes/computebox-015.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.594
@@ -2354,7 +2403,7 @@
    "file": "media/keyframes/computebox-021.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.591
@@ -2366,7 +2415,7 @@
    "file": "media/keyframes/computebox-027.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.593
@@ -2378,7 +2427,7 @@
    "file": "media/keyframes/computebox-033.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.611
@@ -2390,7 +2439,7 @@
    "file": "media/keyframes/computebox-039.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.608
@@ -2402,7 +2451,7 @@
    "file": "media/keyframes/computebox-045.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.6
@@ -2414,7 +2463,7 @@
    "file": "media/keyframes/computebox-051.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_10",
+     "target": "sc_converted_information_memorandum_june_2026_md_11",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 10",
      "score": 0.6
@@ -2580,6 +2629,12 @@
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 22",
      "score": 0.378
+    },
+    {
+     "target": "sc_markdown_narration_portfolio_104_md_5",
+     "type": "passage",
+     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Portfolio, 104 slides",
+     "score": 0.355
     }
    ]
   },
@@ -2990,25 +3045,25 @@
    "file": "media/keyframes/truck-003.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "target": "sc_converted_information_memorandum_june_2026_md_7",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 6",
      "score": 0.51
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "target": "sc_papers_deepgrid_brief_shravan_mayookh_pdf_6",
+     "type": "passage",
+     "label": "DeepGrid Brief (Shravan, Mayookh), I N D U S T R Y 1 O F 3, A D A S \u00b7 V E H I C L E S A F E T Y",
+     "score": 0.479
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_6",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
      "score": 0.472
     },
     {
-     "target": "sc_markdown_narration_sku_explainer_87_md_3",
-     "type": "passage",
-     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Lines, fifteen SKUs explained",
-     "score": 0.466
-    },
-    {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_8",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
      "score": 0.462
@@ -3023,10 +3078,10 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 26",
-     "score": 0.559
+     "score": 0.56
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 11",
      "score": 0.536
@@ -3041,10 +3096,10 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 26",
-     "score": 0.563
+     "score": 0.566
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 11",
      "score": 0.538
@@ -3059,10 +3114,10 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 26",
-     "score": 0.547
+     "score": 0.549
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 11",
      "score": 0.541
@@ -3077,10 +3132,10 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 26",
-     "score": 0.554
+     "score": 0.556
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 11",
      "score": 0.538
@@ -3095,10 +3150,10 @@
      "target": "sc_converted_product_portfolio_deck_104_slides_md_25",
      "type": "passage",
      "label": "Product Portfolio Deck (104 slides), Slide 26",
-     "score": 0.563
+     "score": 0.565
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_11",
+     "target": "sc_converted_information_memorandum_june_2026_md_12",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 11",
      "score": 0.518
@@ -3110,31 +3165,31 @@
    "file": "media/keyframes/truck-039.webp",
    "links": [
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_6",
+     "target": "sc_converted_information_memorandum_june_2026_md_7",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 6",
      "score": 0.505
     },
     {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+     "target": "sc_papers_deepgrid_brief_shravan_mayookh_pdf_6",
+     "type": "passage",
+     "label": "DeepGrid Brief (Shravan, Mayookh), I N D U S T R Y 1 O F 3, A D A S \u00b7 V E H I C L E S A F E T Y",
+     "score": 0.481
+    },
+    {
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_6",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), W H A T D E E P G R I D I S",
      "score": 0.473
     },
     {
-     "target": "sc_markdown_narration_sku_explainer_87_md_3",
-     "type": "passage",
-     "label": "Deck narration, Narration script, DeepGrid Semi \u00b7 Product Lines, fifteen SKUs explained",
-     "score": 0.463
-    },
-    {
-     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_5",
+     "target": "sc_papers_information_memorandum_v2_aug_2026_pdf_8",
      "type": "passage",
      "label": "Information Memorandum v2 (Aug 2026), 1 . I N V E S T M E N T T H E S I S",
      "score": 0.457
     },
     {
-     "target": "sc_converted_information_memorandum_june_2026_md_3",
+     "target": "sc_converted_information_memorandum_june_2026_md_4",
      "type": "passage",
      "label": "Information Memorandum (June 2026), Page 3",
      "score": 0.456

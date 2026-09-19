@@ -106,6 +106,32 @@ def pdf_pages(path):
             yield i + 1, text
 
 
+def pack(text, limit=1800):
+    """Split text into passages of at most `limit` characters without losing any of it: break at sentence ends, and
+    split a longer sentence at a space, never inside a word or a figure. (Passages used to be cut at exactly 1,800
+    characters: PDF pages lost everything after that, about 94,000 characters across 124 pages, and Markdown sections
+    were split mid-number, turning "-Rs 5.81 Cr" into "-Rs 5.")"""
+    text = re.sub(r'\s+', ' ', text).strip()
+    parts, cur = [], ''
+    for seg in re.split(r'(?<=[.!?])\s+(?=[A-Z0-9(₹$|])', text):
+        while len(seg) > limit:
+            cut = seg.rfind(' ', 0, limit)
+            cut = cut if cut > limit // 2 else limit
+            if cur:
+                parts.append(cur)
+                cur = ''
+            parts.append(seg[:cut].strip())
+            seg = seg[cut:].strip()
+        if cur and len(cur) + 1 + len(seg) > limit:
+            parts.append(cur)
+            cur = seg
+        else:
+            cur = f'{cur} {seg}'.strip()
+    if cur:
+        parts.append(cur)
+    return parts
+
+
 def md_sections(path):
     """'## ' sections without their heading line, packed to ~1,800 characters. Lines of scraped page furniture
     (link lists, app promos, share buttons) are dropped: they are not the document's content."""
@@ -120,8 +146,8 @@ def md_sections(path):
         body = re.sub(r'\s+', ' ', ' '.join(l.lstrip('#').strip() for l in body_lines)).strip()
         if len(body) < 60 or junk.search(head):
             continue
-        for k in range(0, len(body), 1800):
-            yield head or path.stem, body[k:k + 1800]
+        for part in pack(body):
+            yield head or path.stem, part
 
 
 def main():
@@ -193,8 +219,11 @@ def main():
         for page, text in pdf_pages(p):
             lines = [l.strip() for l in text.splitlines() if len(l.strip()) > 3]
             section = next((l for l in lines[:5] if re.match(r"^[0-9]+(\.[0-9]+)*\s+[A-Z]", l) or 'Section' in l or 'Specification' in l), f'Page {page}')
-            chunks.append({'id': f'pdf_{p.stem}_p{page}', 'docTitle': meta['title'], 'docNum': meta['docNum'], 'pdfPath': f'./downloads/docs/{p.name}',
-                           'pdfSize': meta['size'], 'specPath': meta['spec'], 'pageLabel': f'p. {page}', 'section': section, 'text': text[:1800]})
+            # a long page becomes several passages; the first keeps the page's id so existing references hold
+            for n, part in enumerate(pack(text), 1):
+                chunks.append({'id': f'pdf_{p.stem}_p{page}' + (f'_{n}' if n > 1 else ''), 'docTitle': meta['title'], 'docNum': meta['docNum'],
+                               'pdfPath': f'./downloads/docs/{p.name}', 'pdfSize': meta['size'], 'specPath': meta['spec'],
+                               'pageLabel': f'p. {page}', 'section': section, 'text': part})
 
     # part 2: every showcase document
     page_units = json.loads(subprocess.run(['node', '-e', "import('./scripts/lib/showcase-content.mjs').then(m=>process.stdout.write(JSON.stringify(m.loadContent().units.filter(u=>['memo','product','usecase','slide'].includes(u.kind)))))"],
@@ -238,7 +267,8 @@ def main():
         if rel.endswith('.pdf'):
             for page, text in pdf_pages(path):
                 head = next((l.strip() for l in text.splitlines() if len(l.strip()) > 8), f'Page {page}')[:90]
-                add(rel, title, num, head, f'p. {page}', re.sub(r'\s+', ' ', text)[:1800])
+                for part in pack(text):
+                    add(rel, title, num, head, f'p. {page}', part)
         else:
             for head, body in md_sections(path):
                 m = re.match(r'Slide (\d+)', head)
