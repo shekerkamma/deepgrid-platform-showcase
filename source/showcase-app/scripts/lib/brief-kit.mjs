@@ -16,11 +16,11 @@ def walk(o, p=''):
 print(next(walk(d), ''))
 PY`).toString().trim();
 
-export async function llm(messages, maxTokens = 4000) {
+export async function llm(messages, maxTokens = 4000, model = MODEL) {
   for (let attempt = 1; attempt <= 8; attempt++) {
     const res = await fetch(`http://${GW}:8317/v1/chat/completions`, {method: 'POST',
       headers: {'Authorization': `Bearer ${KEY}`, 'Content-Type': 'application/json'},
-      body: JSON.stringify({model: MODEL, temperature: 0.2, max_tokens: maxTokens, messages})});
+      body: JSON.stringify({model, temperature: 0.2, max_tokens: maxTokens, messages})});
     const body = await res.json().catch(() => ({}));
     if (res.ok && body.choices?.[0]?.message?.content) return body.choices[0].message.content;
     console.error(`  model call ${attempt} failed: ${res.status} ${JSON.stringify(body.error || body).slice(0, 160)}`);
@@ -44,8 +44,8 @@ export async function write(messages, check, done, tries = 3) {
     dropped = check(t);
     if (done(t)) return {t, dropped};
     messages.push({role: 'assistant', content: raw}, {role: 'user', content:
-      `These statements carry figures that do not appear in the source text:\n- ${dropped.join('\n- ')}\n` +
-      'Rewrite the whole JSON using only figures that appear verbatim in the source text.'});
+      `The gates found these problems:\n- ${dropped.join('\n- ')}\n` +
+      'Rewrite the whole JSON fixing every one; use only figures that appear verbatim in the source text.'});
   }
   return {t: null, dropped};
 }

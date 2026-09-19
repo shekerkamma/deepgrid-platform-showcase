@@ -7,6 +7,13 @@ import story from '../data/tech-story.json';
 import slideNotes from '../slide-notes.json';
 import { films, siliconFilms, Player } from './films';
 import Related from '../related';
+import { StoryFilm } from '../storyboard';
+import boards from '../data/storyboards.json';
+const figureNotes = (
+  boards as unknown as {
+    figures: Record<string, { title: string; shows: string; matters: string }>;
+  }
+).figures;
 
 // Technology: the silicon told as a story for executives and investors, in the Overview's shape. Each chapter has a
 // kicker, a verdict headline and a lede on why it matters, story pills, the component or film that shows it, and the
@@ -58,41 +65,53 @@ function FilmRow({ ids }: { ids: string[] }) {
     .map((id) => allFilms.find((f) => f.id === id))
     .filter((f): f is (typeof allFilms)[number] => !!f);
   return (
-    <div className={'pp-films' + (list.length === 1 ? ' is-single' : '')}>
+    <div className="tech-films">
       {list.map((f) => (
-        <figure key={f.id}>
-          <Player film={f} />
+        <figure key={f.id} className="tech-film">
           <figcaption>
             <strong>{f.title}</strong> {f.sub}
             <span className="num"> · {f.length}</span>
           </figcaption>
+          <StoryFilm film={f} />
         </figure>
       ))}
     </div>
   );
 }
 
+// A figure with what it shows and why it matters (scripts/build-storyboards.mjs), and where it comes from.
 function Figure({
-  src,
+  id,
   size,
   alt,
-  children,
+  from,
 }: {
-  src: string;
+  id: string;
   size: [number, number];
   alt: string;
-  children: ReactNode;
+  from: string;
 }) {
+  const note = figureNotes[id];
   return (
     <figure className="tech-figure">
       <img
-        src={src}
+        src={'./images/' + id + '.webp'}
         alt={alt}
         width={size[0]}
         height={size[1]}
         loading="lazy"
+        style={{ maxWidth: size[0] }}
       />
-      <figcaption>{children}</figcaption>
+      <figcaption>
+        {note ? (
+          <>
+            <strong>{nb(note.title)}</strong>
+            <span>{nb(note.shows)}</span>
+            <span className="tech-figure-matters">{nb(note.matters)}</span>
+          </>
+        ) : null}
+        <small>{from}</small>
+      </figcaption>
     </figure>
   );
 }
@@ -256,13 +275,11 @@ function Showing({
         <>
           <Domains go={go} initial={domain} />
           <Figure
-            src="./images/figure-05.webp"
+            id="figure-05"
             size={[1600, 740]}
             alt="Specification table of the 57.1 mm² combo die on TSMC 28 nm HPC+, one row per domain: A100, R100, T100, D100, S100 and H100"
-          >
-            The six domains of the 57.1 mm² combo die, with the area and
-            function of each. Table from the Information Memorandum.
-          </Figure>
+            from="Table from the Information Memorandum"
+          />
         </>
       );
     case 'sensors':
@@ -271,13 +288,11 @@ function Showing({
           <FrameBudget />
           <FilmRow ids={['computebox']} />
           <Figure
-            src="./images/figure-07.webp"
+            id="figure-07"
             size={[1500, 564]}
             alt="Diagram of seven RGB cameras, two thermal cameras and two 4D radars routed into the in-cab compute box, whose DeepGrid SoC outputs one fused AD2 perception stream"
-          >
-            Eleven sensors in, one AD2 perception stream out. Diagram from the
-            June 2026 Information Memorandum.
-          </Figure>
+            from="Diagram from the Information Memorandum, June 2026"
+          />
         </>
       );
     case 'measured':
@@ -300,14 +315,11 @@ function Showing({
         <>
           <FilmRow ids={['cube']} />
           <Figure
-            src="./images/figure-06.webp"
+            id="figure-06"
             size={[1300, 856]}
             alt="Diagram of the 8 by 8 by 8 tensor cube: an activation slab streams through the cube, completing 512 multiply-accumulates per cycle"
-          >
-            An activation slab streams through the 8×8×8 cube: 512
-            multiply-accumulates per cycle, eight times the flat 8×8 unit.
-            Diagram from the June 2026 Information Memorandum.
-          </Figure>
+            from="Diagram from the Information Memorandum, June 2026"
+          />
         </>
       );
     case 'horizon':
@@ -315,13 +327,11 @@ function Showing({
         <>
           <FilmRow ids={['mesh']} />
           <Figure
-            src="./images/figure-11.webp"
+            id="figure-11"
             size={[760, 488]}
             alt="Rendering of the MicroDC-A1, a 4U 19-inch rack unit holding four SoC4-A modules"
-          >
-            Rendering of the MicroDC-A1 chassis, a conceptual product, not
-            hardware that exists. From the Information Memorandum.
-          </Figure>
+            from="Rendering from the Information Memorandum: a conceptual product, not hardware that exists"
+          />
         </>
       );
     default:

@@ -1,5 +1,6 @@
 'use client';
 import Related from '../related';
+import { StoryFilm, WalkthroughFilm } from '../storyboard';
 import type { Go } from '../shared';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight, Play } from 'lucide-react';
@@ -107,6 +108,117 @@ export const clock = (t: number) =>
 
 // #film?v=master&t=325 opens a film at a moment (product pages link to their section of the walkthrough):
 // the page scrolls to it and its play button starts from there.
+// The films grouped by what they show the business, each group a stage: choose a film, watch it, or read its story in
+// beats and play it from any moment. #film?v=cube&t=35 opens the group holding that film with it chosen.
+const GROUPS = [
+  {
+    id: 'products',
+    title: 'Product lines in simulation',
+    copy: 'The DeepGrid simulators running each product line: what it senses, how it decides and what it hands to the operator. Simulator runs, not road or site footage.',
+    list: films,
+  },
+  {
+    id: 'silicon',
+    title: 'The silicon platform, animated',
+    copy: 'How the 28\u00a0nm part moves data and computes, and where the roadmap goes. Animated explanations of the design, not recordings of a fabricated chip.',
+    list: siliconFilms,
+  },
+];
+
+function FilmGroup({
+  group,
+  focus,
+  go,
+}: {
+  group: (typeof GROUPS)[number];
+  focus?: { id: string; t: number };
+  go: Go;
+}) {
+  const inGroup = (id?: string) => group.list.some((f) => f.id === id);
+  const [selected, setSelected] = useState(
+    inGroup(focus?.id) ? focus!.id : group.list[0].id,
+  );
+  useEffect(() => {
+    if (inGroup(focus?.id)) setSelected(focus!.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [focus?.id]);
+  const f = group.list.find((x) => x.id === selected)!;
+  return (
+    <section
+      className="film-group"
+      id={'films-' + group.id}
+      aria-labelledby={'films-' + group.id + '-title'}
+    >
+      <header className="film-group-head">
+        <h2 id={'films-' + group.id + '-title'}>{group.title}</h2>
+        <p>{group.copy}</p>
+      </header>
+      <div className="film-chooser" role="tablist" aria-label={group.title}>
+        {group.list.map((x) => (
+          <button
+            key={x.id}
+            type="button"
+            role="tab"
+            id={'tab-' + x.id}
+            aria-selected={x.id === selected}
+            aria-controls={'film-' + x.id}
+            tabIndex={x.id === selected ? 0 : -1}
+            onClick={() => setSelected(x.id)}
+            onKeyDown={(e) => {
+              const i = group.list.findIndex((y) => y.id === selected);
+              const n =
+                e.key === 'ArrowRight'
+                  ? i + 1
+                  : e.key === 'ArrowLeft'
+                    ? i - 1
+                    : -9;
+              if (n === -9) return;
+              e.preventDefault();
+              const next =
+                group.list[(n + group.list.length) % group.list.length];
+              setSelected(next.id);
+              document.getElementById('tab-' + next.id)?.focus();
+            }}
+          >
+            <img
+              src={x.poster}
+              width={160}
+              height={90}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <span>
+              <strong>{x.title}</strong>
+              <small className="num">{x.length}</small>
+            </span>
+          </button>
+        ))}
+      </div>
+      <article
+        className="film-stage"
+        id={'film-' + f.id}
+        role="tabpanel"
+        aria-labelledby={'tab-' + f.id}
+      >
+        <header>
+          <h3>{f.title}</h3>
+          <p>
+            {f.sub} <span className="num">· {f.length}</span>
+          </p>
+        </header>
+        <StoryFilm
+          key={f.id}
+          film={f}
+          startAt={focus?.id === f.id ? focus.t : 0}
+        />
+        <Transcript key={'tx-' + f.id} id={f.id} />
+        <Related item={'film:' + f.id} go={go} />
+      </article>
+    </section>
+  );
+}
+
 export default function Films({
   reduced,
   focus,
@@ -116,85 +228,66 @@ export default function Films({
   focus?: { id: string; t: number };
   go: Go;
 }) {
+  // land on the film a link names, one frame after navigation restores the scroll position (use-navigation.ts)
   useEffect(() => {
     if (!focus?.id) return;
-    requestAnimationFrame(() =>
+    const land = () =>
       document
         .getElementById('film-' + focus.id)
-        ?.scrollIntoView({ behavior: 'instant', block: 'start' }),
+        ?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => requestAnimationFrame(land)),
     );
   }, [focus?.id, focus?.t]);
-  const at = (id: string) => (focus?.id === id ? focus.t : 0);
   return (
     <section className="page-wrap">
       <SectionHead
-        title="Video library"
-        copy="The full narrated walkthrough of the portfolio, and short films of the products running in simulation. Every film has captions and a transcript."
+        title="Demonstrations"
+        copy="The portfolio narrated end to end, the product lines running in their simulators, and the silicon animated. Every film is told as a storyboard: read the moments, or play from any one of them. Every film has captions and a transcript."
       />
-      <nav className="film-navigation" aria-label="Jump to a film">
-        {[master, ...films, ...siliconFilms].map((f) => (
+      <nav className="film-navigation" aria-label="Film groups">
+        {[
+          ['film-master', 'The narrated portfolio'],
+          ['films-products', 'Product lines in simulation'],
+          ['films-silicon', 'The silicon platform, animated'],
+        ].map(([id, label]) => (
           <a
-            key={f.id}
-            href={'#film-' + f.id}
+            key={id}
+            href={'#' + id}
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById('film-' + f.id)?.scrollIntoView({
+              document.getElementById(id)?.scrollIntoView({
                 behavior: reduced ? 'instant' : 'smooth',
                 block: 'start',
               });
             }}
           >
-            {f.id === 'master' ? 'Full walkthrough' : f.title}
+            {label}
           </a>
         ))}
       </nav>
-      <article className="master-player" id="film-master">
-        <Player film={master} startAt={at('master')} />
-        <div>
-          <h2>{master.title}</h2>
-          <p>{master.sub}</p>
-          <p className="num film-length">{master.length}</p>
-          <Transcript id="master" />
-          <Related
-            item="film:master"
-            go={go}
-            exclude={['slide']}
-            title="The walkthrough, product by product"
-          />
-        </div>
+      <article
+        className="film-group film-walkthrough"
+        id="film-master"
+        aria-labelledby="film-master-title"
+      >
+        <header className="film-group-head">
+          <h2 id="film-master-title">The narrated portfolio</h2>
+          <p>
+            The 104-slide portfolio, narrated end to end in {master.length}.
+            Choose a chapter, or a product line inside it, to play from that
+            moment.
+          </p>
+        </header>
+        <WalkthroughFilm
+          film={master}
+          startAt={focus?.id === 'master' ? focus.t : 0}
+        />
+        <Transcript id="master" />
       </article>
-      <h2 className="film-grid-title">Product films</h2>
-      <div className="film-grid">
-        {films.map((f) => (
-          <article key={f.id} id={'film-' + f.id}>
-            <Player film={f} startAt={at(f.id)} />
-            <div>
-              <h3>{f.title}</h3>
-              <p>
-                {f.sub} <span className="num">· {f.length}</span>
-              </p>
-              <Transcript id={f.id} />
-              <Related item={'film:' + f.id} go={go} />
-            </div>
-          </article>
-        ))}
-      </div>
-      <h2 className="film-grid-title">Silicon films</h2>
-      <div className="film-grid">
-        {siliconFilms.map((f) => (
-          <article key={f.id} id={'film-' + f.id}>
-            <Player film={f} startAt={at(f.id)} />
-            <div>
-              <h3>{f.title}</h3>
-              <p>
-                {f.sub} <span className="num">· {f.length}</span>
-              </p>
-              <Transcript id={f.id} />
-              <Related item={'film:' + f.id} go={go} />
-            </div>
-          </article>
-        ))}
-      </div>
+      {GROUPS.map((g) => (
+        <FilmGroup key={g.id} group={g} focus={focus} go={go} />
+      ))}
       <p className="disclaimer">
         Product films show the DeepGrid simulators, not road or site footage.
         Silicon films are animated explanations of the design, not recordings of
@@ -218,16 +311,39 @@ export default function Films({
 export function Player({
   film,
   startAt = 0,
+  seek,
+  onTime,
 }: {
   film: Film;
   startAt?: number;
+  // a storyboard plays the film from a beat: it is handed the function that does it
+  seek?: { current: ((t: number) => void) | null };
+  onTime?: (t: number) => void;
 }) {
   const ref = useRef<HTMLVideoElement>(null),
     [started, setStarted] = useState(false);
+  if (seek)
+    seek.current = (t: number) => {
+      const v = ref.current;
+      if (!v) return;
+      setStarted(true);
+      const play = () => {
+        v.currentTime = t;
+        v.play().catch(() => {}); // a play cut short by switching films is not an error
+      };
+      if (v.readyState >= 1) play();
+      else {
+        v.addEventListener('loadedmetadata', play, { once: true });
+        v.load();
+      }
+    };
   return (
     <div className={'film-frame' + (started ? ' is-started' : '')}>
       <video
         ref={ref}
+        onTimeUpdate={
+          onTime ? (e) => onTime(e.currentTarget.currentTime) : undefined
+        }
         controls={started}
         preload="none"
         poster={film.poster}
@@ -258,7 +374,7 @@ export function Player({
           }
           onClick={() => {
             setStarted(true);
-            void ref.current?.play();
+            ref.current?.play().catch(() => {});
           }}
         >
           <span>

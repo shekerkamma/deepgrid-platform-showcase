@@ -19,13 +19,14 @@ import slideNotes from '../slide-notes.json';
 // downloads from this site.
 
 const TOTAL = 104;
+// each chapter starts at the deck's own part divider ("Part three, Fleet and mobility" is slide 63)
 export const deckChapters = [
   [1, 'Overview'],
   [7, 'Road autonomy'],
   [24, 'Frame budget & sensors'],
   [31, 'Silicon & compute'],
-  [49, 'Fleet & mobility'],
-  [66, 'Sensors & robotics'],
+  [63, 'Fleet & mobility'],
+  [74, 'Sensors & robotics'],
   [97, 'Portfolio economics'],
 ] as const;
 const file = (n: number) => 'slide_' + String(n).padStart(2, '0');

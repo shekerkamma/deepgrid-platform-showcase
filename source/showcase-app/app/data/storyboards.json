@@ -1,0 +1,739 @@
+{
+ "films": {
+  "computebox": {
+   "chapter": "sensors",
+   "beats": [
+    {
+     "t": 1.1,
+     "title": "11 inputs, one clean output",
+     "text": "The animation opens with 11 sensor channels feeding into a single unit and one perception result coming out. That simplicity is the core design promise.",
+     "frame": "media/storyboard/computebox-0011.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 6.2
+    },
+    {
+     "t": 7.1,
+     "title": "Nine cameras across the vehicle",
+     "text": "Seven RGB cameras at 8 megapixels over GMSL2 cover road left, road right, 120-degree sides, dash, driver monitoring, and rear. Two thermal cameras add coverage beyond visible light.",
+     "frame": "media/storyboard/computebox-0071.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 14.9
+    },
+    {
+     "t": 20.1,
+     "title": "Radar completes the sensor suite",
+     "text": "Front and rear 4D radar at 77 GHz join the camera array, giving the system active sensing alongside passive imaging.",
+     "frame": "media/storyboard/computebox-0201.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 23.7
+    },
+    {
+     "t": 26.1,
+     "title": "All 11 sensors fused in real time",
+     "text": "The animation shows all 9 cameras and 2 radars converging on the processor and producing a single AD2 perception output in real time. This is a simulated demonstration of the design target, not measured silicon.",
+     "frame": "media/storyboard/computebox-0261.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 31.5
+    },
+    {
+     "t": 35.1,
+     "title": "8.6 ms used of a 33.3 ms frame",
+     "text": "A progress bar shows the design target: the full perception workload consumes 8.6 milliseconds out of a 33.3-millisecond frame budget, figures from simulation on an FPGA-based SoC 1.x generation.",
+     "frame": "media/storyboard/computebox-0351.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 39.9
+    },
+    {
+     "t": 43.1,
+     "title": "74% headroom enables 15 products",
+     "text": "With 74% of every frame left unused as a design target, one tapeout can address 15 products rather than requiring 15 separate development programs.",
+     "frame": "media/storyboard/computebox-0431.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 49.4
+    }
+   ],
+   "hash": "d498e6e38439d4c3",
+   "model": "claude-sonnet-4-6"
+  },
+  "roadmap": {
+   "chapter": "measured",
+   "beats": [
+    {
+     "t": 1.1,
+     "title": "Five of nine steps done",
+     "text": "The roadmap has 9 steps, and 5 are already complete. That progress reduces execution risk for the remaining work.",
+     "frame": "media/storyboard/roadmap-0011.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 6.4
+    },
+    {
+     "t": 5.4,
+     "title": "SoC 1.0: the starting point",
+     "text": "The first generation ran 64 multiply-accumulates on an Artix-7 FPGA at 125 MHz, producing 3.3 frames per second on a whole frame, with defense revenue supporting it.",
+     "frame": "media/storyboard/roadmap-0054.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 12.9
+    },
+    {
+     "t": 17.9,
+     "title": "One addition per rung",
+     "text": "Each subsequent FPGA generation adds exactly one capability and then measures the result, keeping risk contained and progress verifiable at every step.",
+     "frame": "media/storyboard/roadmap-0179.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 25.5
+    },
+    {
+     "t": 30.6,
+     "title": "Frame rate climbs the ladder",
+     "text": "An animation shows frame rate bars rising with each generation, illustrating how the disciplined one-thing-at-a-time approach compounds into meaningful performance gains.",
+     "frame": "media/storyboard/roadmap-0306.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 32.6
+    },
+    {
+     "t": 33.9,
+     "title": "SoC 2: this raise's target",
+     "text": "SoC 2, funded by this raise, is designed for 32,768 multiply-accumulates at 600 MHz, targeting 39.3 TOPS and approximately 41 frames per second on AD2, with tapeout planned in Q4 2026.",
+     "frame": "media/storyboard/roadmap-0339.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 44.2
+    },
+    {
+     "t": 51,
+     "title": "SoC 3 removed deliberately",
+     "text": "SoC 3 was taken off the roadmap on purpose, a deliberate simplification worth noting as a sign of disciplined planning rather than scope creep.",
+     "frame": "media/storyboard/roadmap-0510.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 54.3
+    }
+   ],
+   "hash": "0e882202e14e6bbf",
+   "model": "claude-sonnet-4-6"
+  },
+  "problem": {
+   "chapter": "data",
+   "beats": [
+    {
+     "t": 1.2,
+     "title": "Same work, two memory paths",
+     "text": "The animation runs the same workload twice, side by side, changing only how each core reaches memory. That single difference drives everything that follows.",
+     "frame": "media/storyboard/problem-0012.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 6.2
+    },
+    {
+     "t": 9.6,
+     "title": "Today: one engine, eight waiting cores",
+     "text": "The current arrangement puts eight processing cores behind a single data engine that fetches one descriptor at a time, so seven cores sit idle while one is fed.",
+     "frame": "media/storyboard/problem-0096.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 15.2
+    },
+    {
+     "t": 19,
+     "title": "Utilization never clears 12%",
+     "text": "The utilization column on the left never clears 12%, and most cores sit at almost nothing for the entire run, showing how much compute is wasted by the bottleneck.",
+     "frame": "media/storyboard/problem-0190.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 28.6
+    },
+    {
+     "t": 35,
+     "title": "One change: each core owns its engine",
+     "text": "On the right, the only change is that every core now owns its own load engine and pulls from banked static memory in parallel, with no other modification to the design.",
+     "frame": "media/storyboard/problem-0350.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 39.3
+    },
+    {
+     "t": 42.2,
+     "title": "All eight cores climb to 59%",
+     "text": "All eight cores climb to around 59% utilization and hold there, reached by nothing more than opening the path to memory.",
+     "frame": "media/storyboard/problem-0422.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 46.3
+    },
+    {
+     "t": 49,
+     "title": "470 ms frame lands in about 85 ms",
+     "text": "The frame that costs 470 milliseconds in the current arrangement lands in about 85 milliseconds in the parallel-engine simulation, a direct result of the memory path change alone.",
+     "frame": "media/storyboard/problem-0490.webp",
+     "size": [
+      800,
+      506
+     ],
+     "at": 52.8
+    }
+   ],
+   "hash": "813c08eec4bbe1ec",
+   "model": "claude-sonnet-4-6"
+  },
+  "landscape": {
+   "chapter": "data",
+   "hash": "9b22c28b35d3ea52",
+   "model": "claude-sonnet-4-6 (restored from the reviewed run, six sentences edited to the narration)",
+   "beats": [
+    {
+     "t": 1.1,
+     "title": "Six chips, one core question",
+     "text": "Six competing processors are shown side by side, each representing a different answer to where data lives and what controls its movement.",
+     "frame": "media/storyboard/landscape-0011.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 7.8,
+     "title": "DeepGrid SoC 1.1 on FPGA today",
+     "text": "The leftmost position shows DeepGrid's own SoC 1.1, running today on an FPGA, with 8 cores queuing behind a single DMA engine.",
+     "frame": "media/storyboard/landscape-0078.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 22.1,
+     "title": "NVIDIA Orin: brute force at 60 watts",
+     "text": "NVIDIA's Orin answers the scheduling question with 2048 CUDA cores and per streaming multiprocessor shared memory, at a cost of 60 watts.",
+     "frame": "media/storyboard/landscape-0221.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 43.3,
+     "title": "Tesla and Hailo: extreme private memory",
+     "text": "Tesla's Dojo D1 gives each of its 354 cores private SRAM and no on-die DRAM, the most extreme position on the spectrum, though Tesla disbanded the project in 2025; Hailo sits nearby with a distributed memory fabric efficient only across a narrow band of workloads.",
+     "frame": "media/storyboard/landscape-0433.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 61.6,
+     "title": "The industry converges in the middle",
+     "text": "The roadmap points to per-core DMA against a shared L2 cache, one engine for every core with memory still shared, and that is where most of the industry already sits.",
+     "frame": "media/storyboard/landscape-0616.webp",
+     "size": [
+      800,
+      506
+     ]
+    }
+   ]
+  },
+  "cube": {
+   "chapter": "cube",
+   "hash": "5892c79b4fdebd68",
+   "model": "claude-sonnet-4-6 (restored from the reviewed run, six sentences edited to the narration)",
+   "beats": [
+    {
+     "t": 1.2,
+     "title": "Same math, two different shapes",
+     "text": "The screen shows two computing units side by side, both doing identical arithmetic but arranged differently. The contrast sets up exactly why the chip design matters.",
+     "frame": "media/storyboard/cube-0012.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 6.7,
+     "title": "Today's FPGA flat matrix unit",
+     "text": "The left side shows the 8x8 matrix unit as it runs today on the FPGA, delivering 64 multiply-accumulates per cycle. Because the k reduction is handled in software, it takes 8 cycles to consume one tile.",
+     "frame": "media/storyboard/cube-0067.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 20.2,
+     "title": "The cube: k becomes hardware depth",
+     "text": "The right side shows the 8x8x8 cube targeted for the 28-nanometer design, where k is handled in hardware so all 8 layers fire at once, reaching 512 multiply-accumulates per cycle and retiring one tile per cycle.",
+     "frame": "media/storyboard/cube-0202.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 35.3,
+     "title": "Tile counters diverge in real time",
+     "text": "An animation runs both units simultaneously and the tile counters pull apart, making the 8x throughput difference visible rather than just stated.",
+     "frame": "media/storyboard/cube-0353.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 41.9,
+     "title": "Why a custom chip is required",
+     "text": "The cube, combined with per-core memory access, cannot fit on the FPGA, and that constraint is what drives the move to a custom 28-nanometer part.",
+     "frame": "media/storyboard/cube-0419.webp",
+     "size": [
+      800,
+      504
+     ]
+    }
+   ]
+  },
+  "mesh": {
+   "chapter": "horizon",
+   "hash": "62d9c5632fee3542",
+   "model": "claude-sonnet-4-6 (restored from the reviewed run, six sentences edited to the narration)",
+   "beats": [
+    {
+     "t": 1,
+     "title": "A deliberate addition to the plan",
+     "text": "SoC4-A sits outside the roadmap just presented, introduced here as a separate horizon. It shows investors what the current business is ultimately building toward.",
+     "frame": "media/storyboard/mesh-0010.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 9.4,
+     "title": "1024 tiles at 4 petaflops",
+     "text": "The design places 1024 tiles in a 32x32 mesh on TSMC's 4nm process, targeting 4 petaflops at FP4. These are design parameters shown through animation, not measured silicon.",
+     "frame": "media/storyboard/mesh-0094.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 19.9,
+     "title": "A wavefront crosses the array",
+     "text": "An animated diagonal wavefront moves across the full grid, illustrating a store propagating from one edge to the other. Moving data efficiently at this scale is the central engineering challenge the mesh must solve.",
+     "frame": "media/storyboard/mesh-0199.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 31.6,
+     "title": "Tiles built from published components",
+     "text": "Each tile is a 5-port router with a safety wrapper, and its internal blocks come from the open PULP platform. FlooNoC, Spatz, ITA, and IDMA are all published, silicon-proven designs, not original sketches.",
+     "frame": "media/storyboard/mesh-0316.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 48.7,
+     "title": "SoC2 funds the business today",
+     "text": "SoC4-A does not raise the current round; SoC2 is the product that does. The mesh is the long-term option that a successful SoC2 business makes possible.",
+     "frame": "media/storyboard/mesh-0487.webp",
+     "size": [
+      800,
+      506
+     ]
+    }
+   ]
+  },
+  "truck": {
+   "chapter": null,
+   "hash": "4768878dfcd1d498",
+   "model": "claude-sonnet-4-6 (restored from the reviewed run, six sentences edited to the narration)",
+   "beats": [
+    {
+     "t": 1.1,
+     "title": "Full sensor layout introduced",
+     "text": "The animation opens on the truck kit's complete sensor architecture, the first system designed to run on the box. This establishes what the hardware covers before any individual component is explained.",
+     "frame": "media/storyboard/truck-0011.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 7.2,
+     "title": "Mirror towers carry three cameras",
+     "text": "Two retrofit mirror towers, one above each wing mirror, each hold a thermal camera, a road-facing camera, and a 120-degree side camera. Together they cover the long flanks of the vehicle that drivers cannot easily see.",
+     "frame": "media/storyboard/truck-0072.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 17.5,
+     "title": "Cab cameras handle cab events",
+     "text": "Inside the cab, a forward dash cam records events ahead while a driver monitoring camera watches for fatigue. These two sensors address risk that originates with the driver rather than the road.",
+     "frame": "media/storyboard/truck-0175.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 25.1,
+     "title": "4D radar in rain, dust and glare",
+     "text": "Front and rear 4D radar give range and velocity at both ends of the truck in rain, dust and glare, the conditions in which cameras alone see least.",
+     "frame": "media/storyboard/truck-0251.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 31.8,
+     "title": "Where the coverage cones overlap",
+     "text": "The animation sweeps the coverage cones. Where radar and camera fields overlap is where a cyclist or an animal is picked up and held across frames.",
+     "frame": "media/storyboard/truck-0318.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 39.2,
+     "title": "No quarter left unobserved",
+     "text": "The layout makes one simple claim: no quarter of a heavy truck is left unobserved.",
+     "frame": "media/storyboard/truck-0392.webp",
+     "size": [
+      800,
+      506
+     ]
+    }
+   ]
+  },
+  "ddrive": {
+   "chapter": null,
+   "hash": "0462bdfb05686352",
+   "model": "claude-sonnet-4-6 (restored from the reviewed run, six sentences edited to the narration)",
+   "beats": [
+    {
+     "t": 1.1,
+     "title": "Live physics, not a recording",
+     "text": "The D-Drive perception stack runs against three road profiles in sequence. The vehicle model is solved in real time, not played back from a pre-recorded drive.",
+     "frame": "media/storyboard/ddrive-0011.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 12.1,
+     "title": "Real vehicle parameters drive the sim",
+     "text": "The simulation uses 550 kilograms, a 2.1 meter wheelbase, and a tire friction coefficient of 0.75, so steering angle and lateral acceleration follow from physics rather than a scripted animation path.",
+     "frame": "media/storyboard/ddrive-0121.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 24.6,
+     "title": "Three panels, one fused picture",
+     "text": "The center panel shows the planner's bird's eye view, redrawn from the fused object list. On the right, the perception rail names each classified object and gives its range in meters, including a motorbike, an auto rickshaw, and a pedestrian.",
+     "frame": "media/storyboard/ddrive-0246.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 40.6,
+     "title": "Three scenarios, zero retuning",
+     "text": "The scenario shifts from Market Street to Single Carriageway Highway to a deliberate stress test. Nothing is reloaded between them and no parameters are retuned.",
+     "frame": "media/storyboard/ddrive-0406.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 54.6,
+     "title": "One pipeline across three profiles",
+     "text": "The same perception pipeline handles all three road profiles without a reload, which is the point the demonstration is making.",
+     "frame": "media/storyboard/ddrive-0546.webp",
+     "size": [
+      800,
+      506
+     ]
+    }
+   ]
+  },
+  "forklift": {
+   "chapter": null,
+   "hash": "73bb251302006d01",
+   "model": "claude-sonnet-4-6 (restored from the reviewed run, six sentences edited to the narration)",
+   "beats": [
+    {
+     "t": 1.1,
+     "title": "Indoor autonomy in the simulator",
+     "text": "A forklift runs a simulated warehouse floor without a driver, steering, accelerating and braking itself: the indoor autonomy stack closing the loop rather than advising.",
+     "frame": "media/storyboard/forklift-0011.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 17.1,
+     "title": "Sensors fuse into one view",
+     "text": "A 24-meter LiDAR at 5 Hz and a 57-degree camera combine into the occupancy view shown on the right, giving the vehicle a continuous picture of its surroundings.",
+     "frame": "media/storyboard/forklift-0171.webp",
+     "size": [
+      800,
+      504
+     ]
+    },
+    {
+     "t": 24.1,
+     "title": "Safety zone controls speed",
+     "text": "The red ring traveling with the truck is not decoration: it gates the speed, and when a person enters it the truck stops and speaks an audible alert.",
+     "frame": "media/storyboard/forklift-0241.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 38.1,
+     "title": "Alert policy is site-configurable",
+     "text": "Operators choose horn, voice, both, or silent, because that is an operations decision for each site to make, not a fixed product choice.",
+     "frame": "media/storyboard/forklift-0381.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 46.1,
+     "title": "Peak hour is the real test",
+     "text": "The peak-hour scenario is what decides whether a site can actually run the system, with workers, peer vehicles, trolleys and spills all present at once.",
+     "frame": "media/storyboard/forklift-0461.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 56.1,
+     "title": "Recovery is automatic and explicit",
+     "text": "When the truck is stuck, it reroutes after a set stuck time rather than waiting for someone to notice.",
+     "frame": "media/storyboard/forklift-0561.webp",
+     "size": [
+      800,
+      506
+     ]
+    }
+   ]
+  },
+  "yard": {
+   "chapter": null,
+   "hash": "997cdb9cd3e8dae1",
+   "model": "claude-sonnet-4-6 (restored from the reviewed run, six sentences edited to the narration)",
+   "beats": [
+    {
+     "t": 1.1,
+     "title": "A full terminal twin, live",
+     "text": "The simulation is a working digital twin of a container terminal, built for the PS18 program. It is the environment where three critical capabilities are put to the test.",
+     "frame": "media/storyboard/yard-0011.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 10.4,
+     "title": "Positioning holds under the cranes",
+     "text": "Two confidence bars show the fusion estimate staying stable as a vehicle moves into the container canyon, where satellite positioning degrades, achieving 7 cm accuracy in the open and 22 cm under the crane.",
+     "frame": "media/storyboard/yard-0104.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 25.1,
+     "title": "Navigation through congested stacks",
+     "text": "The system routes vehicles between stacks with awareness of congestion and brings them to obstacle-safe stops in mixed traffic, without human input.",
+     "frame": "media/storyboard/yard-0251.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 32.6,
+     "title": "Scheduling drives crane productivity",
+     "text": "A dispatch toggle switches between first-in first-out and predictive arrival time, and crane idle moves respond immediately, which is the metric a terminal operator is measured and paid on.",
+     "frame": "media/storyboard/yard-0326.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 41.6,
+     "title": "Shadow mode: advise before control",
+     "text": "The system runs in shadow mode, meaning it advises operators before it is handed any control. This is the adoption path a real port can accept.",
+     "frame": "media/storyboard/yard-0416.webp",
+     "size": [
+      800,
+      506
+     ]
+    }
+   ]
+  },
+  "sentinel": {
+   "chapter": null,
+   "hash": "886c5da135a3a5ab",
+   "model": "claude-sonnet-4-6 (restored from the reviewed run, six sentences edited to the narration)",
+   "beats": [
+    {
+     "t": 1.1,
+     "title": "Fusion stack turned outward",
+     "text": "The same sensor fusion software used for forward-facing detection is pointed outward as the PS-16 perimeter console, reusing that stack rather than starting from scratch.",
+     "frame": "media/storyboard/sentinel-0011.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 8.1,
+     "title": "Three sensors, one picture",
+     "text": "Radar, thermal, and camera tracks along the fence line are each classified on their own and then correlated together, so no single sensor's weakness decides the outcome.",
+     "frame": "media/storyboard/sentinel-0081.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 14.1,
+     "title": "Two contacts become one threat",
+     "text": "A vehicle loitering on the access road and a person who dismounts and approaches the fence are linked into a single threat. Separately, neither contact would raise an alarm.",
+     "frame": "media/storyboard/sentinel-0141.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 25.1,
+     "title": "Intent forms before breach",
+     "text": "A ladder on screen shows escalating states: loiter, approach, breach risk. The operator sees intent forming rather than an alarm at the moment of breach.",
+     "frame": "media/storyboard/sentinel-0251.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 35.1,
+     "title": "The console explains its reasoning",
+     "text": "The system states in plain words why it has reached each conclusion. The design priority is restraint: benign tracks are held and never escalated.",
+     "frame": "media/storyboard/sentinel-0351.webp",
+     "size": [
+      800,
+      506
+     ]
+    },
+    {
+     "t": 41.1,
+     "title": "Low false alarms keep systems running",
+     "text": "A high false alarm rate is what gets a perimeter system switched off, so restraint is the feature that keeps the product in service.",
+     "frame": "media/storyboard/sentinel-0411.webp",
+     "size": [
+      800,
+      506
+     ]
+    }
+   ]
+  }
+ },
+ "figures": {
+  "figure-05": {
+   "chapter": "domains",
+   "kind": "slide",
+   "title": "57.1 mm² combo die: six chiplets, one tapeout",
+   "shows": "A specification table for a conceptual 57.1 mm² combo die on TSMC 28 nm HPC+ process, listing six sub-processors (A100, R100, T100, D100, S100, H100) with their approximate die areas, business units, and key technical features. The die has not yet been fabricated.",
+   "matters": "One tapeout produces six independently revenue-generating chiplets across mobility, defence, health, and systems markets, avoiding the cost and schedule risk of six separate programmes. The architecture fuses eleven sensor channels in 8.6 ms of a 33.3 ms frame, leaving headroom that allows firmware and front-end changes to configure the same die across fifteen SKUs without a new design."
+  },
+  "figure-07": {
+   "chapter": "sensors",
+   "kind": "diagram",
+   "title": "Eleven sensor inputs routed to one in-cab compute unit",
+   "shows": "A conceptual architecture diagram showing seven RGB cameras, two thermal cameras, and two radars converging on an in-cab compute unit containing the DGrid SoC, with a single fused AD2 perception output leaving it.",
+   "matters": "The compute platform and software are the reusable product; the eleven-input sensor installation is one application of that platform, not eleven separate integrations. The chip is not yet fabricated in 28 nm, and targets require workload and implementation validation."
+  },
+  "figure-06": {
+   "chapter": "cube",
+   "kind": "diagram",
+   "title": "8×8×8 compute cube versus flat 8×8 grid",
+   "shows": "A conceptual diagram of an 8×8×8 computation cube positioned between an activation slab and an output column, illustrating how stacking eight 8×8 layers expands multiply-accumulate positions from 64 to 512 per cycle for the same K=8 tile.",
+   "matters": "The cube geometry is the basis for the stated 8x arithmetic peak comparison; expressing reduction depth in hardware rather than across iterations is the core architectural distinction the 28 nm chip design is built around, though pipeline fill, tensor shapes, data reuse, and memory delivery all affect realized throughput."
+  },
+  "figure-11": {
+   "chapter": "horizon",
+   "kind": "render",
+   "title": "MicroDC-A1: a conceptual 4U rack-mount server",
+   "shows": "A conceptual rendering of the DGRID MicroDC-A1, a 4U 19-inch rack-mount chassis housing four SoC4-A processor modules with cold-plate liquid cooling, network interfaces, and status indicators on the front panel.",
+   "matters": "The MicroDC-A1 is a roadmap option, with SoC4-A silicon targeting a Q3 2029 tape-out and chassis shipments in 2030 and beyond; it packages four SoC4-A chips for 16.76 PFLOPS FP4 peak per chassis and sits outside the current raise."
+  }
+ }
+}
