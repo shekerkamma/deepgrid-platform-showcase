@@ -1298,172 +1298,201 @@
   {
    "id": "media-computebox-poster",
    "file": "public/media/computebox-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the computebox simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/computebox-poster.png"
   },
   {
    "id": "media-cube-poster",
    "file": "public/media/cube-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the cube simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/cube-poster.png"
   },
   {
    "id": "media-ddrive-poster",
    "file": "public/media/ddrive-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the ddrive simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/ddrive-poster.png"
   },
   {
    "id": "media-deepgrid_defence",
    "file": "public/media/deepgrid_defence.jpg",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Generated illustration: Google generative AI, C2PA credentials and SynthID watermark, 2026-09-01 (DeepGrid platform deck_assets); not a photograph",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/deepgrid_sentinel_defence_1788242118139.jpg"
   },
   {
    "id": "media-deepgrid_logistics",
    "file": "public/media/deepgrid_logistics.jpg",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Generated illustration: Google generative AI, C2PA credentials and SynthID watermark, 2026-09-01 (DeepGrid platform deck_assets); not a photograph",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/deepgrid_yard_logistics_1788242137873.jpg"
   },
   {
    "id": "media-deepgrid_robotics",
    "file": "public/media/deepgrid_robotics.jpg",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Generated illustration: Google generative AI, C2PA credentials and SynthID watermark, 2026-09-01 (DeepGrid platform deck_assets); not a photograph",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/deepgrid_forklift_robotics_1788242097930.jpg"
   },
   {
    "id": "media-deepgrid_soc2_die",
    "file": "public/media/deepgrid_soc2_die.jpg",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Generated illustration: Google generative AI, C2PA credentials and SynthID watermark, 2026-09-01 (DeepGrid platform deck_assets); not a photograph",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/deepgrid_soc2_die_1788242053668.jpg"
   },
   {
    "id": "media-deepgrid_truck",
    "file": "public/media/deepgrid_truck.jpg",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Generated illustration: Google generative AI, C2PA credentials and SynthID watermark, 2026-09-01 (DeepGrid platform deck_assets); not a photograph",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/deepgrid_smart_mirror_truck_1788242074245.jpg"
   },
   {
    "id": "media-dg32-2dom-architecture-poster",
    "file": "public/media/dg32-2dom-architecture-poster.jpg",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "DG32 film poster (Downloads/DG32-Architecture-Package/Posters)"
   },
   {
    "id": "media-dg32-2dom-datasheet-poster",
    "file": "public/media/dg32-2dom-datasheet-poster.jpg",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "DG32 film poster (Downloads/DG32-Architecture-Package/Posters)"
   },
   {
    "id": "media-dg32-lite-architecture-poster",
    "file": "public/media/dg32-lite-architecture-poster.jpg",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "DG32 film poster (Downloads/DG32-Architecture-Package/Posters)"
   },
   {
    "id": "media-dg32-lite-datasheet-poster",
    "file": "public/media/dg32-lite-datasheet-poster.jpg",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "DG32 film poster (Downloads/DG32-Architecture-Package/Posters)"
   },
   {
    "id": "media-dg32-lite-tapein-poster",
    "file": "public/media/dg32-lite-tapein-poster.jpg",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "DG32 film poster (Downloads/DG32-Architecture-Package/Posters)"
   },
   {
    "id": "media-forklift-poster",
    "file": "public/media/forklift-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the forklift simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/forklift-poster.png"
   },
   {
    "id": "media-landscape-poster",
    "file": "public/media/landscape-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the landscape simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/landscape-poster.png"
   },
   {
    "id": "media-lines_image",
    "file": "public/media/lines_image.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image.png"
   },
   {
    "id": "media-lines_image2",
    "file": "public/media/lines_image2.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image2.png"
   },
   {
    "id": "media-lines_image3",
    "file": "public/media/lines_image3.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image3.png"
   },
   {
    "id": "media-lines_image4",
    "file": "public/media/lines_image4.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image4.png"
   },
   {
    "id": "media-lines_image5",
    "file": "public/media/lines_image5.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image5.png"
   },
   {
    "id": "media-lines_image6",
    "file": "public/media/lines_image6.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image6.png"
   },
   {
    "id": "media-lines_image7",
    "file": "public/media/lines_image7.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image7.png"
   },
   {
    "id": "media-lines_image8",
    "file": "public/media/lines_image8.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image8.png"
   },
   {
    "id": "media-lines_image9",
    "file": "public/media/lines_image9.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/lines_image9.png"
   },
   {
    "id": "media-mesh-poster",
    "file": "public/media/mesh-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the mesh simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/mesh-poster.png"
   },
   {
    "id": "media-problem-poster",
    "file": "public/media/problem-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the problem simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/problem-poster.png"
   },
   {
    "id": "media-roadmap-poster",
    "file": "public/media/roadmap-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the roadmap simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/roadmap-poster.png"
   },
   {
    "id": "media-sentinel-poster",
    "file": "public/media/sentinel-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the sentinel simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/sentinel-poster.png"
   },
   {
    "id": "media-sims_image",
    "file": "public/media/sims_image.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/deck_assets/sims_image.png"
   },
   {
    "id": "media-sims_image2",
    "file": "public/media/sims_image2.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/ddrive-poster.png"
   },
   {
    "id": "media-sims_image3",
    "file": "public/media/sims_image3.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/yard-poster.png"
   },
   {
    "id": "media-sims_image4",
    "file": "public/media/sims_image4.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Screenshot or slide from the DeepGrid platform site (deck_assets)",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/sentinel-poster.png"
   },
   {
    "id": "media-truck-poster",
    "file": "public/media/truck-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the truck simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/truck-poster.png"
   },
   {
    "id": "media-yard-poster",
    "file": "public/media/yard-poster.png",
-   "source": "Added with the DG32 visual assets (provenance not recorded)"
+   "source": "Poster frame of the yard simulation film on the DeepGrid platform site",
+   "url": "https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/yard-poster.png"
   },
   {
    "id": "diagram-dg32-2dom-architecture",

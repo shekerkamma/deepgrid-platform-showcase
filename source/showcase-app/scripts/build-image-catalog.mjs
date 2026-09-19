@@ -22,18 +22,25 @@ films.master = 'The narrated portfolio walkthrough';
 const clock = t => `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}`;
 const KIND = {photograph: 'Photograph', render: 'Rendering', screenshot: 'Simulator screenshot', slide: 'Deck slide', diagram: 'Diagram', chart: 'Chart'};
 
-const out = [], held = [];
+const out = [], held = [], seen = new Map();
+// byte-identical copies (a poster also saved as sims_image2.png) are catalogued once
+import crypto from 'node:crypto';
+const digest = f => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 for (const m of manifest) {
   const d = described[m.file], l = links[m.id] || [];
   if (!d || !l.length) continue;
   if (/provenance not recorded/.test(m.source)) { held.push(m.file); continue; }
+  const h = digest(m.file);
+  if (seen.has(h)) continue;
+  seen.set(h, m.id);
   const source = m.slide
     ? {label: `Portfolio deck, slide ${m.slide}: ${m.title.split(' · ').slice(1).join(' · ') || m.title}`, hash: m.nav}
     : m.film && m.t
       ? {label: `Film: ${films[m.film] || m.film}, at ${clock(m.t)}`, hash: m.filmNav}
       : m.film
         ? {label: `Film: ${films[m.film] || m.film}`, hash: m.filmNav}
-        : {label: m.source, hash: m.nav || ''};
+        : /^Generated illustration/.test(m.source) ? {label: 'Generated illustration (Google generative AI)', hash: ''}
+        : {label: m.source.replace(/ \(.*\)$/, ''), hash: m.nav || ''};
   out.push({id: m.id, file: m.file.replace(/^public\//, ''), size: size(m.file), kind: KIND[d.kind] || d.kind, caption: d.shows,
     source, links: l.map(x => [x.target, x.score])});
 }

@@ -12,3 +12,12 @@ Prompt: Premium cinematic conceptual semiconductor SoC hero inspired by DeepGrid
 The seven product poster images are from the existing user-provided DeepGrid platform: https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/ (truck, ddrive, forklift, yard, sentinel, cube and computebox posters). They are retained as DeepGrid product visualizations.
 
 `figure-01.webp` through `figure-13.webp` were extracted from images already embedded in the DeepGrid investment memorandum on that page. Their original captions and source references remain attached in the full source record.
+
+## Images added with the DG32 visual assets (public/media)
+
+Recorded in `knowledge/image-provenance.json` (19 Sep 2026), each matched by SHA-256 to an original on the owner's disks:
+
+- `dg32-*-poster.jpg`: poster frames of the DG32 site's films, from `Downloads/DG32-Architecture-Package/Posters`.
+- `*-poster.png`: poster frames of the simulator films on the DeepGrid platform site (the Antigravity `deepgrid-platform` project, served at https://shekerkamma.github.io/content-ideas/deepgrid-platform/media/).
+- `lines_image*.png`, `sims_image*.png`: simulator screenshots and deck slides from that site's `deck_assets`. Three `sims_image` files are byte-identical copies of posters and are catalogued once.
+- `deepgrid_*.jpg`: generated illustrations. Their signed C2PA content credentials read "Created by Google Generative AI" and "Applied imperceptible SynthID watermark" (created 2026-09-01). They are not photographs and are never captioned as such.

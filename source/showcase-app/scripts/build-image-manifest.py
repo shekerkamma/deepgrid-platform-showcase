@@ -69,9 +69,13 @@ for f in sorted((PUB / 'images').rglob('*')):
     else:
         entry = {'source': 'DeepGrid product visualisation (IMAGE-SOURCES.md)'}
     images.append({'id': 'img-' + f.stem, 'file': rel, **entry})
+provenance = json.loads((ROOT / 'knowledge/image-provenance.json').read_text())['images'] if (ROOT / 'knowledge/image-provenance.json').exists() else {}
 for f in sorted((PUB / 'media').glob('*')):
     if f.suffix.lower() in ('.png', '.jpg', '.webp'):
-        images.append({'id': 'media-' + f.stem, 'file': str(f.relative_to(ROOT)), 'source': 'Added with the DG32 visual assets (provenance not recorded)'})
+        rel = str(f.relative_to(ROOT))
+        p = provenance.get(rel)
+        images.append({'id': 'media-' + f.stem, 'file': rel, 'source': p['source'] if p else 'Added with the DG32 visual assets (provenance not recorded)',
+                       **({'url': p['url']} if p and p.get('url') else {})})
 for f in sorted((PUB / 'diagrams').glob('*.svg')):
     images.append({'id': 'diagram-' + f.stem, 'file': str(f.relative_to(ROOT)), 'source': 'DG32 architecture diagram (draw.io)'})
 
