@@ -1,0 +1,46 @@
+WEBVTT
+
+00:00:01.200 --> 00:00:06.680
+Two runs of the same workload, separated only by how memory is reached.
+
+00:00:06.680 --> 00:00:09.560
+On the left, the arrangement as it stands today.
+
+00:00:09.560 --> 00:00:13.200
+Eight processing cores behind a single data engine.
+
+00:00:13.200 --> 00:00:19.040
+That engine fetches one descriptor at a time, so seven cores wait while one is fed.
+
+00:00:19.040 --> 00:00:21.120
+Watch the utilization column on the left.
+
+00:00:21.120 --> 00:00:26.960
+It never clears 12%, and most of the cores sit at almost nothing for the whole run.
+
+00:00:26.960 --> 00:00:29.120
+On the right, the same silicon.
+
+00:00:29.120 --> 00:00:31.160
+The same multiply-accumulate count.
+
+00:00:31.160 --> 00:00:33.440
+The same 28-nanometer process.
+
+00:00:33.440 --> 00:00:34.960
+The same clock.
+
+00:00:34.960 --> 00:00:40.120
+The only change is that every core now owns its own load engine and pulls from banked static
+
+00:00:40.120 --> 00:00:42.200
+memory in parallel.
+
+00:00:42.200 --> 00:00:46.280
+All eight climb to around 59% and hold there.
+
+00:00:46.280 --> 00:00:48.960
+Nothing has been added but the path to memory.
+
+00:00:48.960 --> 00:00:53.960
+The frame that costs 470 milliseconds today lands in about 85.

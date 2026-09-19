@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:01.040 --> 00:00:06.080
+One more part, and it is deliberately not in the plan you have just seen.
+
+00:00:06.080 --> 00:00:09.360
+SoC4-A is the far horizon.
+
+00:00:09.360 --> 00:00:19.920
+1024 tiles on TSMC's 4nm process arranged as a 32x32 mesh, reaching 4 petaflops at FP4.
+
+00:00:19.920 --> 00:00:22.880
+Watch the diagonal wavefront cross the array.
+
+00:00:22.880 --> 00:00:26.240
+That is a store propagating from one edge to the other,
+
+00:00:26.240 --> 00:00:30.960
+and moving data that way efficiently is the whole problem a mesh this size has to solve.
+
+00:00:31.600 --> 00:00:37.440
+Each tile is a 5-port router with a safety wrapper, and the blocks inside it are not sketches.
+
+00:00:37.440 --> 00:00:42.880
+The FlooNoC network on chip, the Spatz vector unit, the ITA attention accelerator,
+
+00:00:42.880 --> 00:00:48.080
+and the IDMA mover are published silicon-proven designs from the open PULP platform.
+
+00:00:48.720 --> 00:00:50.800
+None of this is what the raise funds.
+
+00:00:50.800 --> 00:00:52.960
+SoC2 is the business.
+
+00:00:52.960 --> 00:00:55.280
+This is the option that the business buys you.

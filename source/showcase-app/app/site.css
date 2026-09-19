@@ -2650,3 +2650,92 @@ dd {
     border-radius: 12px;
   }
 }
+
+/* ---------- technology: story chapters ---------- */
+.tech-nav {
+  margin-bottom: 0;
+}
+.tech-chapter {
+  max-width: none;
+  padding: clamp(3.5rem, 7vw, 6rem) 0 0;
+  scroll-margin-top: 5rem;
+}
+.tech-chapter .ov-chapter-head {
+  margin-bottom: 0;
+}
+.tech-chapter .ov-chapter-head h2 {
+  text-wrap: balance;
+  max-width: 28ch;
+}
+.tech-chapter .ov-chapter-head > p:not(.kicker) {
+  text-wrap: pretty;
+}
+.tech-showing {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.tech-showing .frame-budget {
+  margin-top: 0;
+}
+.tech-showing .pp-films {
+  margin: 0;
+}
+.tech-die {
+  max-width: 56rem;
+}
+.tech-domains {
+  max-width: 56rem;
+}
+.tech-domains .domain-detail h3 {
+  font-size: var(--sc-t-card);
+  margin: 0.4rem 0 0.6rem;
+}
+.tech-figure {
+  margin: 0;
+  max-width: 56rem;
+}
+.tech-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--sc-radius);
+  border: 1px solid var(--line-soft);
+}
+.tech-figure figcaption,
+.tech-note {
+  margin-top: 0.6rem;
+  font-size: var(--sc-t-control);
+  color: var(--ink-3);
+  max-width: 60ch;
+}
+.tech-showing .pp-steps li strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+.tech-detail {
+  margin-top: 1.75rem;
+  max-width: 72ch;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 0.9rem;
+}
+.tech-detail summary {
+  cursor: pointer;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  font-size: var(--sc-t-control);
+  font-weight: 600;
+  color: var(--copper);
+}
+.tech-detail summary:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+.tech-detail p {
+  color: var(--ink-2);
+  line-height: 1.7;
+  margin: 0.5rem 0 0;
+}

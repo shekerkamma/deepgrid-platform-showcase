@@ -1,14 +1,18 @@
 'use client';
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Layers } from 'lucide-react';
 import Silicon from '../silicon';
 import { SectionHead, domains, productById, type Go } from '../shared';
+import story from '../data/tech-story.json';
+import slideNotes from '../slide-notes.json';
+import { films, siliconFilms, Player } from './films';
 
-// Technology: the die, its six domains, the headline specifications and the frame budget.
-// Selecting a domain highlights it on the 3D model. The frame budget replaces a static list of
-// arrows: it shows the one timing the materials state (8.6 ms of fusion in a 33.3 ms frame) and
-// what the rest of the frame is left for.
+// Technology: the silicon told as a story for executives and investors, in the Overview's shape. Each chapter has a
+// kicker, a verdict headline and a lede on why it matters, story pills, the component or film that shows it, and the
+// technical detail beneath with labelled references to the deck slides and memorandum pages it was written from.
+// The copy is generated and gated by scripts/build-tech-story.mjs (every figure must appear in the chapter's sources).
 
+type Chapter = (typeof story.chapters)[number];
 const FRAME = 33.3,
   FUSION = 8.6;
 const channels = [
@@ -16,6 +20,336 @@ const channels = [
   ['2', 'thermal cameras', 'left and right towers'],
   ['2', '4D radar', '77 GHz, front and rear'],
 ];
+const stages = [
+  [
+    'FPGA demonstration',
+    'Exercise the software, interfaces and prototype compute.',
+  ],
+  [
+    'Production ASIC',
+    'Verify scaled compute, memory, clock, power and area together.',
+  ],
+  [
+    'Vehicle integration',
+    'Test thermal behaviour, safety path and operational conditions.',
+  ],
+  [
+    'Capital-release gate',
+    'Reproducible measurements on the intended configuration.',
+  ],
+];
+const allFilms = [...films, ...siliconFilms];
+const slideName = (n: number) => {
+  const t = slideNotes[n - 1]?.title || '';
+  return t.includes(' · ') ? t.split(' · ').slice(1).join(' · ') : t;
+};
+
+function FilmRow({ ids }: { ids: string[] }) {
+  const list = ids
+    .map((id) => allFilms.find((f) => f.id === id))
+    .filter((f): f is (typeof allFilms)[number] => !!f);
+  return (
+    <div className={'pp-films' + (list.length === 1 ? ' is-single' : '')}>
+      {list.map((f) => (
+        <figure key={f.id}>
+          <Player film={f} />
+          <figcaption>
+            <strong>{f.title}</strong> {f.sub}
+            <span className="num"> · {f.length}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
+function Figure({
+  src,
+  size,
+  alt,
+  children,
+}: {
+  src: string;
+  size: [number, number];
+  alt: string;
+  children: ReactNode;
+}) {
+  return (
+    <figure className="tech-figure">
+      <img
+        src={src}
+        alt={alt}
+        width={size[0]}
+        height={size[1]}
+        loading="lazy"
+      />
+      <figcaption>{children}</figcaption>
+    </figure>
+  );
+}
+
+function Die({ reduced }: { reduced: boolean }) {
+  const [exploded, setExploded] = useState(false),
+    [motion, setMotion] = useState(!reduced);
+  return (
+    <div className="architecture-stage tech-die">
+      <div className="stage-top">
+        <span className="mono">SoC2 architectural model</span>
+        <button
+          aria-pressed={motion}
+          onClick={() => setMotion(!motion)}
+          className="small-button"
+        >
+          Motion {motion ? 'on' : 'off'}
+        </button>
+      </div>
+      <Silicon selected={0} exploded={exploded} reduced={!motion} />
+      <div className="stage-bottom">
+        <span>Drag to rotate. Conceptual, not a mask layout.</span>
+        <button
+          className="small-button"
+          onClick={() => setExploded(!exploded)}
+          aria-pressed={exploded}
+        >
+          <Layers size={14} aria-hidden="true" />
+          {exploded ? 'Assemble layers' : 'Separate layers'}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Domains({ go }: { go: Go }) {
+  const [domain, setDomain] = useState(0);
+  const d = domains[domain];
+  return (
+    <div className="domain-panel tech-domains">
+      <div className="domain-tabs" role="tablist" aria-label="Compute domains">
+        {domains.map((x, i) => (
+          <button
+            key={x.code}
+            role="tab"
+            aria-selected={domain === i}
+            aria-controls="domain-detail"
+            onClick={() => setDomain(i)}
+          >
+            <x.Icon size={16} aria-hidden="true" />
+            <span className="num">{x.code}</span>
+            <strong>{x.name}</strong>
+          </button>
+        ))}
+      </div>
+      <div id="domain-detail" role="tabpanel" className="domain-detail">
+        <p className="num domain-code">
+          {d.code} · {d.type}
+        </p>
+        <h3>{d.name}</h3>
+        <p>{d.desc}</p>
+        <p className="domain-carries-label">Products that rely on it</p>
+        <ul>
+          {d.carries.map((id) => {
+            const p = productById(id);
+            return p ? (
+              <li key={id}>
+                <a
+                  href={'#portfolio?product=' + id}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    go('portfolio?product=' + id);
+                  }}
+                >
+                  {p.name}
+                </a>
+              </li>
+            ) : null;
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+function FrameBudget() {
+  const left = Math.round(((FRAME - FUSION) / FRAME) * 100);
+  return (
+    <div className="frame-budget">
+      <div className="fb-flow">
+        <ul className="fb-inputs" aria-label="Sensor inputs">
+          {channels.map(([n, what, where]) => (
+            <li key={what}>
+              <strong className="num">{n}</strong>
+              <span>
+                {what}
+                <small>{where}</small>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <div className="fb-chip" aria-hidden="true">
+          <span>SoC2</span>
+          <small>one fused perception pass</small>
+        </div>
+        <div className="fb-out">
+          <span>Objects, range and velocity</span>
+          <small>to warnings and vehicle control</small>
+        </div>
+      </div>
+      <div
+        className="fb-bar"
+        role="img"
+        aria-label={`Frame budget: fusion ${FUSION} ms of a ${FRAME} ms frame, ${left}% left`}
+      >
+        <div
+          className="fb-used"
+          style={{ ['--w' as string]: (FUSION / FRAME) * 100 + '%' }}
+        >
+          <span className="num">{FUSION} ms fusion</span>
+        </div>
+        <div className="fb-free">
+          <span className="num">
+            {(FRAME - FUSION).toFixed(1)} ms left · {left}%
+          </span>
+        </div>
+      </div>
+      <div className="fb-scale num" aria-hidden="true">
+        <span>0 ms</span>
+        <span>33.3 ms, one frame at 30 fps</span>
+      </div>
+      <p className="tech-note">
+        8.6 ms is a design target, not a measured production latency.
+      </p>
+    </div>
+  );
+}
+
+// what each chapter shows beside its pills
+function Showing({
+  id,
+  reduced,
+  go,
+}: {
+  id: string;
+  reduced: boolean;
+  go: Go;
+}) {
+  switch (id) {
+    case 'silicon':
+      return <Die reduced={reduced} />;
+    case 'domains':
+      return (
+        <>
+          <Domains go={go} />
+          <Figure
+            src="./images/figure-05.webp"
+            size={[1600, 740]}
+            alt="Specification table of the 57.1 mm² combo die on TSMC 28 nm HPC+, one row per domain: A100, R100, T100, D100, S100 and H100"
+          >
+            The six domains of the 57.1 mm² combo die, with the area and
+            function of each. Table from the Information Memorandum.
+          </Figure>
+        </>
+      );
+    case 'sensors':
+      return (
+        <>
+          <FrameBudget />
+          <FilmRow ids={['computebox']} />
+          <Figure
+            src="./images/figure-07.webp"
+            size={[1500, 564]}
+            alt="Diagram of seven RGB cameras, two thermal cameras and two 4D radars routed into the in-cab compute box, whose DeepGrid SoC outputs one fused AD2 perception stream"
+          >
+            Eleven sensors in, one AD2 perception stream out. Diagram from the
+            June 2026 Information Memorandum.
+          </Figure>
+        </>
+      );
+    case 'measured':
+      return (
+        <>
+          <ol className="pp-steps" aria-label="Stages of proof">
+            {stages.map(([t, d]) => (
+              <li key={t}>
+                <strong>{t}</strong> {d}
+              </li>
+            ))}
+          </ol>
+          <FilmRow ids={['roadmap']} />
+        </>
+      );
+    case 'data':
+      return <FilmRow ids={['problem', 'landscape']} />;
+    case 'cube':
+      return (
+        <>
+          <FilmRow ids={['cube']} />
+          <Figure
+            src="./images/figure-06.webp"
+            size={[1300, 856]}
+            alt="Diagram of the 8 by 8 by 8 tensor cube: an activation slab streams through the cube, completing 512 multiply-accumulates per cycle"
+          >
+            An activation slab streams through the 8×8×8 cube: 512
+            multiply-accumulates per cycle, eight times the flat 8×8 unit.
+            Diagram from the June 2026 Information Memorandum.
+          </Figure>
+        </>
+      );
+    case 'horizon':
+      return (
+        <>
+          <FilmRow ids={['mesh']} />
+          <Figure
+            src="./images/figure-11.webp"
+            size={[760, 488]}
+            alt="Rendering of the MicroDC-A1, a 4U 19-inch rack unit holding four SoC4-A modules"
+          >
+            Rendering of the MicroDC-A1 chassis, a conceptual product, not
+            hardware that exists. From the Information Memorandum.
+          </Figure>
+        </>
+      );
+    default:
+      return null;
+  }
+}
+
+function References({ c, go }: { c: Chapter; go: Go }) {
+  return (
+    <p className="pp-chapter-source tech-refs">
+      {c.slides.map((n) => (
+        <a
+          key={'s' + n}
+          href={'#slides?slide=' + n}
+          onClick={(e) => {
+            e.preventDefault();
+            go('slides?slide=' + n);
+          }}
+        >
+          Portfolio deck, slide {n}: {slideName(n)}
+        </a>
+      ))}
+      {c.passages.map((p) =>
+        p.href ? (
+          <a key={p.id} href={p.href} target="_blank" rel="noreferrer">
+            {p.doc}
+            {p.page ? ', ' + p.page : ''}: {p.title}
+          </a>
+        ) : p.nav ? (
+          <a
+            key={p.id}
+            href={'#' + p.nav}
+            onClick={(e) => {
+              e.preventDefault();
+              go(p.nav);
+            }}
+          >
+            {p.doc}: {p.title}
+          </a>
+        ) : null,
+      )}
+    </p>
+  );
+}
 
 export default function Technology({
   reduced,
@@ -24,176 +358,62 @@ export default function Technology({
   reduced: boolean;
   go: Go;
 }) {
-  const [domain, setDomain] = useState(0),
-    [exploded, setExploded] = useState(false),
-    [motion, setMotion] = useState(!reduced);
-  const d = domains[domain];
   return (
-    <section className="page-wrap">
+    <section className="page-wrap tech-page">
       <SectionHead
-        title="Six compute domains on one 57 mm² die"
-        copy="SoC2 is a monolithic 28 nm chip. Each domain is a block of the same silicon, and firmware decides which of them a product uses."
+        title="The silicon behind every product"
+        copy="One 28 nm chip, SoC2, carries the whole portfolio. Seven short chapters on what it is, why it is built this way, and what still has to be proven. The chip is not yet fabricated: its figures are design targets and derivations."
       />
-      <div className="architecture">
-        <div className="architecture-stage">
-          <div className="stage-top">
-            <span className="mono">SoC2 architectural model</span>
-            <button
-              aria-pressed={motion}
-              onClick={() => setMotion(!motion)}
-              className="small-button"
-            >
-              Motion {motion ? 'on' : 'off'}
-            </button>
-          </div>
-          <Silicon selected={domain} exploded={exploded} reduced={!motion} />
-          <div className="stage-bottom">
-            <span>Drag to rotate. Conceptual, not a mask layout.</span>
-            <button
-              className="small-button"
-              onClick={() => setExploded(!exploded)}
-              aria-pressed={exploded}
-            >
-              <Layers size={14} aria-hidden="true" />
-              {exploded ? 'Assemble layers' : 'Separate layers'}
-            </button>
-          </div>
-        </div>
-        <div className="domain-panel">
-          <div
-            className="domain-tabs"
-            role="tablist"
-            aria-label="Compute domains"
+      <nav
+        className="film-navigation tech-nav"
+        aria-label="Technology chapters"
+      >
+        {story.chapters.map((c) => (
+          <a
+            key={c.id}
+            href={'#tech-' + c.id}
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('tech-' + c.id)?.scrollIntoView({
+                behavior: reduced ? 'instant' : 'smooth',
+                block: 'start',
+              });
+            }}
           >
-            {domains.map((x, i) => (
-              <button
-                key={x.code}
-                role="tab"
-                aria-selected={domain === i}
-                aria-controls="domain-detail"
-                onClick={() => setDomain(i)}
-              >
-                <x.Icon size={16} aria-hidden="true" />
-                <span className="num">{x.code}</span>
-                <strong>{x.name}</strong>
-              </button>
-            ))}
-          </div>
-          <div id="domain-detail" role="tabpanel" className="domain-detail">
-            <p className="num domain-code">
-              {d.code} · {d.type}
-            </p>
-            <h2>{d.name}</h2>
-            <p>{d.desc}</p>
-            <p className="domain-carries-label">Products that rely on it</p>
-            <ul>
-              {d.carries.map((id) => {
-                const p = productById(id);
-                return p ? (
-                  <li key={id}>
-                    <a
-                      href={'#portfolio?product=' + id}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        go('portfolio?product=' + id);
-                      }}
-                    >
-                      {p.name}
-                    </a>
-                  </li>
-                ) : null;
-              })}
-            </ul>
-          </div>
-        </div>
-      </div>
-      <dl className="spec-grid">
-        {[
-          ['TSMC 28 nm', 'Process'],
-          ['57 mm²', 'Die area'],
-          ['39.3 TOPS', 'Derived INT8 compute'],
-          ['600 MHz', 'Design frequency'],
-          ['11 channels', 'Sensor inputs'],
-          ['8.6 ms', 'Fusion target'],
-        ].map(([v, k]) => (
-          <div key={k}>
-            <dt>{k}</dt>
-            <dd className="num">{v}</dd>
-          </div>
+            {c.kicker}
+          </a>
         ))}
-      </dl>
-      <p className="disclaimer">
-        Architecture figures are design targets. 39.3 TOPS is derived from the
-        stated compute architecture, not measured on fabricated 28 nm silicon.
-      </p>
-
-      <section className="frame-budget" aria-labelledby="fb-title">
-        <header>
-          <h2 id="fb-title">Eleven sensors, fused in a quarter of a frame.</h2>
-          <p>
-            At 30 frames a second each frame lasts 33.3 ms. The design fuses all
-            eleven channels in 8.6 ms, which leaves about three quarters of the
-            frame for planning, control and warnings.
-          </p>
-        </header>
-        <div className="fb-flow">
-          <ul className="fb-inputs" aria-label="Sensor inputs">
-            {channels.map(([n, what, where]) => (
-              <li key={what}>
-                <strong className="num">{n}</strong>
-                <span>
-                  {what}
-                  <small>{where}</small>
-                </span>
+      </nav>
+      {story.chapters.map((c) => (
+        <section
+          key={c.id}
+          id={'tech-' + c.id}
+          className={'ov-chapter tech-chapter tech-ch-' + c.id}
+          aria-labelledby={'tech-h-' + c.id}
+        >
+          <header className="ov-chapter-head">
+            <p className="kicker">{c.kicker}</p>
+            <h2 id={'tech-h-' + c.id}>{c.headline}</h2>
+            <p>{c.lede}</p>
+          </header>
+          <ul className="pp-pills" aria-label={c.kicker + ': key figures'}>
+            {c.pills.map((x) => (
+              <li key={x.value + x.label}>
+                <strong>{x.value}</strong>
+                <span>{x.label}</span>
               </li>
             ))}
           </ul>
-          <div className="fb-chip" aria-hidden="true">
-            <span>SoC2</span>
-            <small>one fused perception pass</small>
+          <div className="tech-showing">
+            <Showing id={c.id} reduced={reduced} go={go} />
           </div>
-          <div className="fb-out">
-            <span>Objects, range and velocity</span>
-            <small>to warnings and vehicle control</small>
-          </div>
-        </div>
-        <div
-          className="fb-bar"
-          role="img"
-          aria-label={`Frame budget: fusion ${FUSION} ms of a ${FRAME} ms frame, ${Math.round(((FRAME - FUSION) / FRAME) * 100)}% left`}
-        >
-          <div
-            className="fb-used"
-            style={{ ['--w' as string]: (FUSION / FRAME) * 100 + '%' }}
-          >
-            <span className="num">{FUSION} ms fusion</span>
-          </div>
-          <div className="fb-free">
-            <span className="num">
-              {(FRAME - FUSION).toFixed(1)} ms left ·{' '}
-              {Math.round(((FRAME - FUSION) / FRAME) * 100)}%
-            </span>
-          </div>
-        </div>
-        <div className="fb-scale num" aria-hidden="true">
-          <span>0 ms</span>
-          <span>33.3 ms, one frame at 30 fps</span>
-        </div>
-        <figure className="fb-figure">
-          <img
-            src="./images/figure-06.webp"
-            alt="Diagram of the 8 by 8 by 8 tensor cube: an activation slab streams through the cube, completing 512 multiply-accumulates per cycle"
-            width={1300}
-            height={856}
-            loading="lazy"
-          />
-          <figcaption>
-            The compute behind the budget: an 8×8×8 tensor cube completes 512
-            multiply-accumulates per cycle, eight times the flat 8×8 unit.
-            Diagram from the June 2026 Information Memorandum.
-          </figcaption>
-        </figure>
-      </section>
+          <details className="tech-detail">
+            <summary>Technical detail</summary>
+            <p>{c.detail}</p>
+          </details>
+          <References c={c} go={go} />
+        </section>
+      ))}
     </section>
   );
 }

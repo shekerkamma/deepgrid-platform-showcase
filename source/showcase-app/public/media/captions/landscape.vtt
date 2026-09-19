@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:01.100 --> 00:00:07.780
+6 chips, and 6 answers to the same question. Who schedules the movement of data, and where
+
+00:00:07.780 --> 00:00:14.620
+does that data live? On the left is our own SoC 1.1, as it runs today. 8 cores queuing
+
+00:00:14.620 --> 00:00:22.060
+behind a single DMA engine. Next, Mobileye EyeQ, where VLIW cores share an L2 through a
+
+00:00:22.060 --> 00:00:28.420
+multi-channel DMA. Better than one engine, still memory shared. Then NVIDIA's Orin,
+
+00:00:28.420 --> 00:00:34.780
+which answers the question with brute force. 2048 CUDA cores, and per streaming multiprocessor
+
+00:00:34.780 --> 00:00:43.300
+shared memory, at 60 watts. At the far right, Tesla's Dojo D1. 354 cores, each with its
+
+00:00:43.300 --> 00:00:49.580
+own private SRAM, and no DRAM on the die at all. The most extreme position on the spectrum,
+
+00:00:49.580 --> 00:00:55.820
+and a project Tesla disbanded in 2025. Halo sits near it, with a distributed memory fabric,
+
+00:00:55.820 --> 00:01:01.620
+and no external DRAM, extremely efficient across a narrow band of workloads. Now watch
+
+00:01:01.620 --> 00:01:08.580
+the middle. Per core DMA against a shared L2 cache, an engine for every core, memory still
+
+00:01:08.580 --> 00:01:13.500
+shared, is where the roadmap goes, and it is where most of the industry already sits.
