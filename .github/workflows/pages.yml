@@ -27,6 +27,21 @@ jobs:
       - run: npm ci --ignore-scripts --no-audit --no-fund
       - run: npm run typecheck
       - run: npm run build:pages
+      # The browser gate (scripts/verify-site.mjs) on the built site, served under the same base path
+      # Pages uses. A red gate stops the deploy.
+      - run: npx playwright install --with-deps chromium
+      - name: Serve the build
+        run: |
+          mkdir -p "$RUNNER_TEMP/srv"
+          ln -s "$PWD/dist/pages" "$RUNNER_TEMP/srv/deepgrid-platform-showcase"
+          python3 -m http.server 8771 --directory "$RUNNER_TEMP/srv" >/dev/null 2>&1 &
+          until curl -sf http://127.0.0.1:8771/deepgrid-platform-showcase/ >/dev/null; do sleep 1; done
+      - run: npm run verify -- http://127.0.0.1:8771/deepgrid-platform-showcase/ verify-shots
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-shots
+          path: source/showcase-app/verify-shots
       - uses: actions/upload-pages-artifact@v4
         with:
           path: source/showcase-app/dist/pages
@@ -44,3 +59,35 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+  # The same gate against the live site, once Pages serves this commit (build-info.json carries the SHA).
+  verify-live:
+    if: github.event_name != 'pull_request'
+    needs: deploy
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: source/showcase-app
+    env:
+      SITE: https://shekerkamma.github.io/deepgrid-platform-showcase/
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: source/showcase-app/package-lock.json
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Wait for Pages to serve this commit
+        run: |
+          for i in $(seq 60); do
+            curl -sf "${SITE}build-info.json?$i" | grep -q "$GITHUB_SHA" && exit 0
+            sleep 10
+          done
+          echo "Pages did not serve $GITHUB_SHA within 10 minutes"; exit 1
+      - run: npm run verify -- "$SITE" verify-shots
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-live-shots
+          path: source/showcase-app/verify-shots
