@@ -22,7 +22,7 @@ shared memory, at 60 watts. At the far right, Tesla's Dojo D1. 354 cores, each w
 own private SRAM, and no DRAM on the die at all. The most extreme position on the spectrum,
 
 00:00:49.580 --> 00:00:55.820
-and a project Tesla disbanded in 2025. Halo sits near it, with a distributed memory fabric,
+and a project Tesla disbanded in 2025. Hailo sits near it, with a distributed memory fabric,
 
 00:00:55.820 --> 00:01:01.620
 and no external DRAM, extremely efficient across a narrow band of workloads. Now watch

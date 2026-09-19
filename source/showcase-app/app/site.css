@@ -2823,3 +2823,96 @@ details > summary {
 .tech-close h2 {
   text-wrap: balance;
 }
+
+/* ---------- related across the site (app/related.tsx) ---------- */
+.related {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line-soft);
+  max-width: 72rem;
+}
+.related .related-title {
+  font-family: var(--font-text);
+  font-size: var(--sc-t-control);
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 1rem;
+}
+.related-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1.25rem 2rem;
+}
+.related-group h3,
+.related-group h4 {
+  font-family: var(--font-text);
+  font-size: var(--sc-t-meta);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--sc-track-meta);
+  color: var(--ink-3);
+  margin: 0 0 0.5rem;
+}
+.related-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+.related-group a {
+  display: block;
+  min-height: 24px;
+  padding: 0.2rem 0;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+.related-group a strong {
+  display: block;
+  font-weight: 500;
+  font-size: var(--sc-t-control);
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+}
+.related-group a small {
+  font-size: var(--sc-t-meta);
+  color: var(--ink-3);
+  line-height: 1.45;
+  margin-top: 0.1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.related-group a:hover strong {
+  color: var(--copper);
+  text-decoration-color: var(--copper);
+}
+.related-group a:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+/* slides are many and short: a wrapping row of chips */
+.related-group.is-slide {
+  grid-column: 1 / -1;
+}
+.related-group.is-slide ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.related-group.is-slide a {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.related-group.is-slide a strong {
+  text-decoration: none;
+  font-size: var(--sc-t-meta);
+}
+.related-group.is-slide a:hover {
+  border-color: var(--copper);
+}

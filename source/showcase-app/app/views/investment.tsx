@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, Download, Minus, Plus } from 'lucide-react';
 import { SectionHead, type Go } from '../shared';
 import { reportHtml } from '../report-content';
 import UseCases from '../use-cases';
+import Related from '../related';
 import {
   round,
   useOfFunds,
@@ -276,6 +277,7 @@ export default function Investment({
           </nav>
           {chapter === 'usecases' ? (
             <UseCases
+              go={go}
               selected={usecase}
               onSelect={(id) => {
                 update({ usecase: id || undefined }, false);
@@ -295,7 +297,11 @@ export default function Investment({
               }
             />
           ) : (
-            <InvestmentRecord chapter={chapter} onChapter={setChapter} />
+            <InvestmentRecord
+              chapter={chapter}
+              onChapter={setChapter}
+              go={go}
+            />
           )}
         </>
       )}
@@ -363,9 +369,11 @@ function RampChart() {
 function InvestmentRecord({
   chapter,
   onChapter,
+  go,
 }: {
   chapter: string;
   onChapter: (id: string) => void;
+  go: Go;
 }) {
   const [html, setHtml] = useState('');
   useEffect(() => {
@@ -395,6 +403,12 @@ function InvestmentRecord({
           }
         }}
         dangerouslySetInnerHTML={{ __html: html }}
+      />
+      <Related
+        item={'memo:' + chapter}
+        go={go}
+        title="This chapter across the site"
+        level={2}
       />
       <nav className="record-pagination" aria-label="Memorandum chapters">
         {i > 1 && (

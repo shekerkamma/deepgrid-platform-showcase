@@ -17,13 +17,14 @@ export type Product = (typeof products)[number];
 export type Go = (hash: string, replace?: boolean) => void;
 
 export const navigation = [
-  ['overview', 'Overview'],
-  ['portfolio', 'Products'],
-  ['silicon', 'Technology'],
-  ['briefing', 'Ask DeepGrid'],
-  ['film', 'Videos'],
-  ['slides', 'Slide deck'],
-  ['investment', 'Investment'],
+  // named for what each section covers for the business, not for its format; the route ids stay, so links hold
+  ['overview', 'The opportunity'],
+  ['portfolio', 'Product lines'],
+  ['silicon', 'Silicon platform'],
+  ['film', 'Demonstrations'],
+  ['slides', 'Portfolio narrative'],
+  ['investment', 'Investment case'],
+  ['briefing', 'Diligence Q&A'],
 ] as const;
 
 export const groups = [

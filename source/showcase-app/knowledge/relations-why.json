@@ -1,0 +1,2604 @@
+{
+ "product:ad2": {
+  "slide:18": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 18 is in the AD2 section of the portfolio narrative"
+  ],
+  "slide:19": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 19 is in the AD2 section of the portfolio narrative"
+  ],
+  "slide:20": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 20 is in the AD2 section of the portfolio narrative"
+  ],
+  "slide:21": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 21 is in the AD2 section of the portfolio narrative"
+  ],
+  "slide:22": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 22 is in the AD2 section of the portfolio narrative"
+  ],
+  "slide:23": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 23 is in the AD2 section of the portfolio narrative"
+  ],
+  "slide:27": [
+   "the product brief cites it"
+  ],
+  "usecase:UC-04": [
+   "the product brief cites it"
+  ],
+  "slide:98": [
+   "the product brief cites it"
+  ],
+  "slide:6": [
+   "the product brief cites it"
+  ],
+  "slide:24": [
+   "the product brief cites it"
+  ],
+  "film:truck": [
+   "the product page shows this film"
+  ],
+  "film:ddrive": [
+   "the product page shows this film"
+  ],
+  "film:computebox": [
+   "the product page shows this film"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "tech:sensors": [
+   "the product's story rests on the 8.6 ms frame budget"
+  ],
+  "slide:7": [
+   "slide 7 opens the part of the portfolio narrative this product is in"
+  ],
+  "memo:business": [
+   "Memorandum section: AD2 Smart Truck kit"
+  ],
+  "usecase:UC-05": [
+   "AD2 brief: collision, lane-departure and blind-spot logic then decide whether a warning is required"
+  ]
+ },
+ "product:ad0": {
+  "slide:8": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 8 is in the AD0 section of the portfolio narrative"
+  ],
+  "slide:9": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 9 is in the AD0 section of the portfolio narrative"
+  ],
+  "slide:10": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 10 is in the AD0 section of the portfolio narrative"
+  ],
+  "slide:11": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 11 is in the AD0 section of the portfolio narrative"
+  ],
+  "slide:98": [
+   "the product brief cites it"
+  ],
+  "slide:6": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:7": [
+   "slide 7 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:taas": {
+  "slide:64": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 64 is in the TaaS section of the portfolio narrative"
+  ],
+  "slide:65": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 65 is in the TaaS section of the portfolio narrative"
+  ],
+  "slide:66": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 66 is in the TaaS section of the portfolio narrative"
+  ],
+  "slide:67": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 67 is in the TaaS section of the portfolio narrative"
+  ],
+  "slide:6": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:63": [
+   "slide 63 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:chipset": {
+  "slide:32": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 32 is in the Chipset OEM section of the portfolio narrative"
+  ],
+  "slide:33": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 33 is in the Chipset OEM section of the portfolio narrative"
+  ],
+  "slide:34": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 34 is in the Chipset OEM section of the portfolio narrative"
+  ],
+  "slide:35": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 35 is in the Chipset OEM section of the portfolio narrative"
+  ],
+  "memo:usecases": [
+   "the product brief cites it"
+  ],
+  "usecase:UC-06": [
+   "the product brief cites it"
+  ],
+  "film:computebox": [
+   "the product page shows this film"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:silicon": [
+   "the chipset is the die itself"
+  ],
+  "slide:31": [
+   "slide 31 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:t100": {
+  "slide:59": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 59 is in the T100 licence section of the portfolio narrative"
+  ],
+  "slide:60": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 60 is in the T100 licence section of the portfolio narrative"
+  ],
+  "slide:61": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 61 is in the T100 licence section of the portfolio narrative"
+  ],
+  "slide:62": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 62 is in the T100 licence section of the portfolio narrative"
+  ],
+  "memo:usecases": [
+   "the product brief cites it"
+  ],
+  "memo:business": [
+   "the product brief cites it",
+   "Memorandum section: T100 AI licence"
+  ],
+  "memo:choice": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:31": [
+   "slide 31 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:ad1": {
+  "slide:12": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 12 is in the AD1 section of the portfolio narrative"
+  ],
+  "slide:13": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 13 is in the AD1 section of the portfolio narrative"
+  ],
+  "slide:14": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 14 is in the AD1 section of the portfolio narrative"
+  ],
+  "slide:15": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 15 is in the AD1 section of the portfolio narrative"
+  ],
+  "slide:16": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 16 is in the AD1 section of the portfolio narrative"
+  ],
+  "slide:17": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 17 is in the AD1 section of the portfolio narrative"
+  ],
+  "slide:100": [
+   "the product brief cites it"
+  ],
+  "memo:business": [
+   "the product brief cites it",
+   "Memorandum section: AD1 Indoor autonomy"
+  ],
+  "slide:6": [
+   "the product brief cites it"
+  ],
+  "film:forklift": [
+   "the product page shows this film"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:7": [
+   "slide 7 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:a100-4": {
+  "slide:55": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 55 is in the A100 four-channel section of the portfolio narrative"
+  ],
+  "slide:56": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 56 is in the A100 four-channel section of the portfolio narrative"
+  ],
+  "slide:57": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 57 is in the A100 four-channel section of the portfolio narrative"
+  ],
+  "slide:58": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 58 is in the A100 four-channel section of the portfolio narrative"
+  ],
+  "slide:6": [
+   "the product brief cites it"
+  ],
+  "slide:99": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:31": [
+   "slide 31 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:dhumr": {
+  "slide:87": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 87 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "slide:88": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 88 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "slide:89": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 89 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "slide:90": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 90 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "slide:91": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 91 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "slide:92": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 92 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "memo:choice": [
+   "the product brief cites it"
+  ],
+  "film:sentinel": [
+   "the product page shows this film"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:74": [
+   "slide 74 opens the part of the portfolio narrative this product is in"
+  ],
+  "memo:business": [
+   "Memorandum section: D-HUMR defence"
+  ]
+ },
+ "product:a100-2": {
+  "slide:51": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 51 is in the A100 two-channel section of the portfolio narrative"
+  ],
+  "slide:52": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 52 is in the A100 two-channel section of the portfolio narrative"
+  ],
+  "slide:53": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 53 is in the A100 two-channel section of the portfolio narrative"
+  ],
+  "slide:54": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 54 is in the A100 two-channel section of the portfolio narrative"
+  ],
+  "slide:6": [
+   "the product brief cites it"
+  ],
+  "slide:99": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:31": [
+   "slide 31 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:a100-1": {
+  "slide:47": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 47 is in the A100 one-channel section of the portfolio narrative"
+  ],
+  "slide:48": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 48 is in the A100 one-channel section of the portfolio narrative"
+  ],
+  "slide:49": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 49 is in the A100 one-channel section of the portfolio narrative"
+  ],
+  "slide:50": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 50 is in the A100 one-channel section of the portfolio narrative"
+  ],
+  "usecase:UC-01": [
+   "the product brief cites it"
+  ],
+  "memo:usecases": [
+   "the product brief cites it"
+  ],
+  "slide:6": [
+   "the product brief cites it"
+  ],
+  "slide:99": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:31": [
+   "slide 31 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:agv": {
+  "slide:68": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 68 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "slide:69": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 69 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "slide:70": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 70 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "slide:71": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 71 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "slide:72": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 72 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "slide:73": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 73 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "memo:business": [
+   "the product brief cites it"
+  ],
+  "film:yard": [
+   "the product page shows this film"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:63": [
+   "slide 63 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:d100": {
+  "slide:93": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 93 is in the D100 drone section of the portfolio narrative"
+  ],
+  "slide:94": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 94 is in the D100 drone section of the portfolio narrative"
+  ],
+  "slide:95": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 95 is in the D100 drone section of the portfolio narrative"
+  ],
+  "slide:96": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 96 is in the D100 drone section of the portfolio narrative"
+  ],
+  "memo:business": [
+   "the product brief cites it"
+  ],
+  "slide:6": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:74": [
+   "slide 74 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:thermal": {
+  "slide:75": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 75 is in the Thermal camera section of the portfolio narrative"
+  ],
+  "slide:76": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 76 is in the Thermal camera section of the portfolio narrative"
+  ],
+  "slide:77": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 77 is in the Thermal camera section of the portfolio narrative"
+  ],
+  "slide:78": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 78 is in the Thermal camera section of the portfolio narrative"
+  ],
+  "memo:usecases": [
+   "the product brief cites it"
+  ],
+  "usecase:UC-03": [
+   "the product brief cites it"
+  ],
+  "slide:26": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:74": [
+   "slide 74 opens the part of the portfolio narrative this product is in"
+  ],
+  "usecase:UC-02": [
+   "Thermal Camera Pod brief: blind-spot and moving-off monitoring without high nuisance alert rates"
+  ]
+ },
+ "product:h100": {
+  "slide:83": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 83 is in the H100 wearable section of the portfolio narrative"
+  ],
+  "slide:84": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 84 is in the H100 wearable section of the portfolio narrative"
+  ],
+  "slide:85": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 85 is in the H100 wearable section of the portfolio narrative"
+  ],
+  "slide:86": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 86 is in the H100 wearable section of the portfolio narrative"
+  ],
+  "usecase:UC-04": [
+   "the product brief cites it"
+  ],
+  "memo:business": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:74": [
+   "slide 74 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "product:radar": {
+  "slide:79": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 79 is in the 4D radar section of the portfolio narrative"
+  ],
+  "slide:80": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 80 is in the 4D radar section of the portfolio narrative"
+  ],
+  "slide:81": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 81 is in the 4D radar section of the portfolio narrative"
+  ],
+  "slide:82": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 82 is in the 4D radar section of the portfolio narrative"
+  ],
+  "memo:usecases": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "tech:domains": [
+   "the product runs on a domain of the die"
+  ],
+  "slide:74": [
+   "slide 74 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "tech:silicon": {
+  "slide:5": [
+   "the chapter is written from it"
+  ],
+  "product:chipset": [
+   "the chipset is the die itself"
+  ],
+  "memo:technology": [
+   "Memorandum section: Six chiplets, one 57 mm² die, six independent revenue lines"
+  ],
+  "memo:summary": [
+   "The summary's case is one die, fifteen products"
+  ],
+  "slide:102": [
+   "Slide 102 (Headroom) is the frame-budget headroom the silicon chapter rests on"
+  ],
+  "slide:6": [
+   "Slide 6 (The portfolio) is the fifteen products on the one die"
+  ]
+ },
+ "tech:domains": {
+  "slide:5": [
+   "the chapter is written from it"
+  ],
+  "memo:technology": [
+   "the chapter cites it",
+   "Memorandum section: Six chiplets, one 57 mm² die, six independent revenue lines"
+  ],
+  "product:ad2": [
+   "the product runs on a domain of the die"
+  ],
+  "product:ad0": [
+   "the product runs on a domain of the die"
+  ],
+  "product:ad1": [
+   "the product runs on a domain of the die"
+  ],
+  "product:a100-1": [
+   "the product runs on a domain of the die"
+  ],
+  "product:a100-2": [
+   "the product runs on a domain of the die"
+  ],
+  "product:a100-4": [
+   "the product runs on a domain of the die"
+  ],
+  "product:radar": [
+   "the product runs on a domain of the die"
+  ],
+  "product:t100": [
+   "the product runs on a domain of the die"
+  ],
+  "product:thermal": [
+   "the product runs on a domain of the die"
+  ],
+  "product:dhumr": [
+   "the product runs on a domain of the die"
+  ],
+  "product:d100": [
+   "the product runs on a domain of the die"
+  ],
+  "product:taas": [
+   "the product runs on a domain of the die"
+  ],
+  "product:agv": [
+   "the product runs on a domain of the die"
+  ],
+  "product:h100": [
+   "the product runs on a domain of the die"
+  ]
+ },
+ "tech:sensors": {
+  "slide:24": [
+   "the chapter is written from it"
+  ],
+  "slide:25": [
+   "the chapter is written from it"
+  ],
+  "slide:26": [
+   "the chapter is written from it"
+  ],
+  "product:ad2": [
+   "the product's story rests on the 8.6 ms frame budget"
+  ],
+  "film:computebox": [
+   "The Silicon platform places this film in Sensor to compute"
+  ],
+  "memo:technology": [
+   "Memorandum section: Two retrofit mirror towers, and no blind spot left on the vehicle"
+  ],
+  "film:truck": [
+   "The truck kit's sensors are the eleven inputs of Sensor to compute"
+  ]
+ },
+ "tech:measured": {
+  "slide:28": [
+   "the chapter is written from it"
+  ],
+  "slide:29": [
+   "the chapter is written from it"
+  ],
+  "slide:30": [
+   "the chapter is written from it"
+  ],
+  "slide:46": [
+   "the chapter is written from it"
+  ],
+  "film:roadmap": [
+   "The Silicon platform places this film in Measured, not claimed"
+  ],
+  "memo:technology": [
+   "Memorandum section: Concept through validated silicon, what is already done"
+  ]
+ },
+ "tech:data": {
+  "slide:36": [
+   "the chapter is written from it"
+  ],
+  "slide:37": [
+   "the chapter is written from it"
+  ],
+  "slide:38": [
+   "the chapter is written from it"
+  ],
+  "slide:39": [
+   "the chapter is written from it"
+  ],
+  "film:problem": [
+   "The Silicon platform places this film in Compute waits on data"
+  ],
+  "film:landscape": [
+   "The Silicon platform places this film in Compute waits on data"
+  ],
+  "slide:40": [
+   "Slide 40 (The memory spectrum) is the six-chip comparison of Compute waits on data"
+  ]
+ },
+ "tech:cube": {
+  "slide:41": [
+   "the chapter is written from it"
+  ],
+  "slide:42": [
+   "the chapter is written from it"
+  ],
+  "slide:43": [
+   "the chapter is written from it"
+  ],
+  "slide:44": [
+   "the chapter is written from it"
+  ],
+  "slide:45": [
+   "the chapter is written from it"
+  ],
+  "film:cube": [
+   "The Silicon platform places this film in The eight-layer cube"
+  ]
+ },
+ "tech:horizon": {
+  "slide:103": [
+   "the chapter is written from it"
+  ],
+  "film:mesh": [
+   "The Silicon platform places this film in The far horizon"
+  ],
+  "memo:technology": [
+   "Memorandum section: The option the business buys you, deliberately not funded by this round"
+  ]
+ },
+ "film:master": {
+  "product:ad2": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:ad0": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:taas": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:chipset": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:t100": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:ad1": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:a100-4": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:dhumr": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:a100-2": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:a100-1": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:agv": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:d100": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:thermal": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:h100": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "product:radar": [
+   "the product's section of the narrated walkthrough"
+  ],
+  "slide:1": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:2": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:3": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:4": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:6": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:7": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:8": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:9": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:10": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:12": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:13": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:14": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:15": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:16": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:17": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:18": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:19": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:20": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:22": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:23": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:24": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:25": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:26": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:27": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:28": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:29": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:30": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:31": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:32": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:33": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:34": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:35": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:36": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:37": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:38": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:39": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:40": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:41": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:42": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:43": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:44": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:45": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:46": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:47": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:48": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:49": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:51": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:52": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:53": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:54": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:55": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:56": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:57": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:58": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:59": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:60": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:61": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:62": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:63": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:64": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:65": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:66": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:67": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:68": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:69": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:70": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:71": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:72": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:73": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:75": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:76": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:77": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:78": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:79": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:80": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:81": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:82": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:83": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:84": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:85": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:86": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:87": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:88": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:89": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:90": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:91": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:92": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:93": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:94": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:95": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:96": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:97": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:98": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:99": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:100": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:101": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:102": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:103": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:104": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "film:truck": {
+  "product:ad2": [
+   "the product page shows this film"
+  ],
+  "tech:sensors": [
+   "The truck kit's sensors are the eleven inputs of Sensor to compute"
+  ],
+  "slide:24": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ],
+  "slide:25": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ],
+  "slide:26": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ]
+ },
+ "film:computebox": {
+  "product:ad2": [
+   "the product page shows this film"
+  ],
+  "product:chipset": [
+   "the product page shows this film"
+  ],
+  "tech:sensors": [
+   "The Silicon platform places this film in Sensor to compute"
+  ],
+  "slide:24": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ],
+  "slide:25": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ],
+  "slide:26": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ]
+ },
+ "film:ddrive": {
+  "product:ad2": [
+   "the product page shows this film"
+  ]
+ },
+ "film:forklift": {
+  "product:ad1": [
+   "the product page shows this film"
+  ]
+ },
+ "film:yard": {
+  "product:agv": [
+   "the product page shows this film"
+  ]
+ },
+ "film:sentinel": {
+  "product:dhumr": [
+   "the product page shows this film"
+  ]
+ },
+ "film:problem": {
+  "tech:data": [
+   "The Silicon platform places this film in Compute waits on data"
+  ],
+  "slide:36": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "slide:37": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "slide:38": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "slide:39": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "slide:40": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ]
+ },
+ "film:cube": {
+  "tech:cube": [
+   "The Silicon platform places this film in The eight-layer cube"
+  ],
+  "slide:41": [
+   "the film explains the The eight-layer cube chapter, which is written from this slide"
+  ],
+  "slide:42": [
+   "the film explains the The eight-layer cube chapter, which is written from this slide"
+  ],
+  "slide:43": [
+   "the film explains the The eight-layer cube chapter, which is written from this slide"
+  ],
+  "slide:44": [
+   "the film explains the The eight-layer cube chapter, which is written from this slide"
+  ],
+  "slide:45": [
+   "the film explains the The eight-layer cube chapter, which is written from this slide"
+  ]
+ },
+ "film:landscape": {
+  "tech:data": [
+   "The Silicon platform places this film in Compute waits on data"
+  ],
+  "slide:40": [
+   "Slide 40 (The memory spectrum) is the film Six answers to one question",
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "slide:36": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "slide:37": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "slide:38": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "slide:39": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ]
+ },
+ "film:roadmap": {
+  "tech:measured": [
+   "The Silicon platform places this film in Measured, not claimed"
+  ],
+  "slide:28": [
+   "the film explains the Measured, not claimed chapter, which is written from this slide"
+  ],
+  "slide:29": [
+   "the film explains the Measured, not claimed chapter, which is written from this slide"
+  ],
+  "slide:30": [
+   "the film explains the Measured, not claimed chapter, which is written from this slide"
+  ],
+  "slide:46": [
+   "the film explains the Measured, not claimed chapter, which is written from this slide"
+  ]
+ },
+ "film:mesh": {
+  "tech:horizon": [
+   "The Silicon platform places this film in The far horizon"
+  ],
+  "slide:103": [
+   "the film explains the The far horizon chapter, which is written from this slide"
+  ]
+ },
+ "slide:1": {
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "memo:summary": [
+   "Slide 1 (Fifteen products. One chip.) states the case the executive summary makes"
+  ]
+ },
+ "slide:2": {
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "slide:6": [
+   "Slide 2 explains how each product's slides are laid out; slide 6 is the portfolio they cover"
+  ]
+ },
+ "slide:3": {
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "memo:business": [
+   "Slide 3 (Why now) and the memorandum section The demand is legislated, not forecast"
+  ]
+ },
+ "slide:4": {
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "memo:summary": [
+   "Slide 4 (The move) and the memorandum summary One die, fifteen products"
+  ]
+ },
+ "slide:5": {
+  "tech:silicon": [
+   "the chapter is written from it"
+  ],
+  "tech:domains": [
+   "the chapter is written from it"
+  ]
+ },
+ "slide:6": {
+  "product:ad2": [
+   "the product brief cites it"
+  ],
+  "product:ad0": [
+   "the product brief cites it"
+  ],
+  "product:taas": [
+   "the product brief cites it"
+  ],
+  "product:ad1": [
+   "the product brief cites it"
+  ],
+  "product:a100-4": [
+   "the product brief cites it"
+  ],
+  "product:a100-2": [
+   "the product brief cites it"
+  ],
+  "product:a100-1": [
+   "the product brief cites it"
+  ],
+  "product:d100": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "tech:silicon": [
+   "Slide 6 (The portfolio) is the fifteen products on the one die"
+  ],
+  "slide:2": [
+   "Slide 2 explains how each product's slides are laid out; slide 6 is the portfolio they cover"
+  ]
+ },
+ "slide:7": {
+  "product:ad2": [
+   "slide 7 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:ad0": [
+   "slide 7 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:ad1": [
+   "slide 7 opens the part of the portfolio narrative this product is in"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:8": {
+  "product:ad0": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 8 is in the AD0 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:9": {
+  "product:ad0": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 9 is in the AD0 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:10": {
+  "product:ad0": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 10 is in the AD0 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:11": {
+  "product:ad0": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 11 is in the AD0 section of the portfolio narrative"
+  ]
+ },
+ "slide:12": {
+  "product:ad1": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 12 is in the AD1 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:13": {
+  "product:ad1": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 13 is in the AD1 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:14": {
+  "product:ad1": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 14 is in the AD1 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:15": {
+  "product:ad1": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 15 is in the AD1 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:16": {
+  "product:ad1": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 16 is in the AD1 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:17": {
+  "product:ad1": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 17 is in the AD1 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:18": {
+  "product:ad2": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 18 is in the AD2 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:19": {
+  "product:ad2": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 19 is in the AD2 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:20": {
+  "product:ad2": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 20 is in the AD2 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:21": {
+  "product:ad2": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 21 is in the AD2 section of the portfolio narrative"
+  ]
+ },
+ "slide:22": {
+  "product:ad2": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 22 is in the AD2 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:23": {
+  "product:ad2": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 23 is in the AD2 section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:24": {
+  "product:ad2": [
+   "the product brief cites it"
+  ],
+  "tech:sensors": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:truck": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ],
+  "film:computebox": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ]
+ },
+ "slide:25": {
+  "tech:sensors": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:truck": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ],
+  "film:computebox": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ]
+ },
+ "slide:26": {
+  "product:thermal": [
+   "the product brief cites it"
+  ],
+  "tech:sensors": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:truck": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ],
+  "film:computebox": [
+   "the film explains the Sensor to compute chapter, which is written from this slide"
+  ]
+ },
+ "slide:27": {
+  "product:ad2": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:28": {
+  "tech:measured": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:roadmap": [
+   "the film explains the Measured, not claimed chapter, which is written from this slide"
+  ]
+ },
+ "slide:29": {
+  "tech:measured": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:roadmap": [
+   "the film explains the Measured, not claimed chapter, which is written from this slide"
+  ]
+ },
+ "slide:30": {
+  "tech:measured": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:roadmap": [
+   "the film explains the Measured, not claimed chapter, which is written from this slide"
+  ]
+ },
+ "slide:31": {
+  "product:chipset": [
+   "slide 31 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:t100": [
+   "slide 31 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:a100-4": [
+   "slide 31 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:a100-2": [
+   "slide 31 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:a100-1": [
+   "slide 31 opens the part of the portfolio narrative this product is in"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:32": {
+  "product:chipset": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 32 is in the Chipset OEM section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:33": {
+  "product:chipset": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 33 is in the Chipset OEM section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:34": {
+  "product:chipset": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 34 is in the Chipset OEM section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:35": {
+  "product:chipset": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 35 is in the Chipset OEM section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:36": {
+  "tech:data": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:problem": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "film:landscape": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ]
+ },
+ "slide:37": {
+  "tech:data": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:problem": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "film:landscape": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ]
+ },
+ "slide:38": {
+  "tech:data": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:problem": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "film:landscape": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ]
+ },
+ "slide:39": {
+  "tech:data": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:problem": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "film:landscape": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ]
+ },
+ "slide:40": {
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "tech:data": [
+   "Slide 40 (The memory spectrum) is the six-chip comparison of Compute waits on data"
+  ],
+  "film:landscape": [
+   "Slide 40 (The memory spectrum) is the film Six answers to one question",
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ],
+  "film:problem": [
+   "the film explains the Compute waits on data chapter, which is written from this slide"
+  ]
+ },
+ "slide:41": {
+  "tech:cube": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:cube": [
+   "the film explains the The eight-layer cube chapter, which is written from this slide"
+  ]
+ },
+ "slide:42": {
+  "tech:cube": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:cube": [
+   "the film explains the The eight-layer cube chapter, which is written from this slide"
+  ]
+ },
+ "slide:43": {
+  "tech:cube": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:cube": [
+   "the film explains the The eight-layer cube chapter, which is written from this slide"
+  ]
+ },
+ "slide:44": {
+  "tech:cube": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:cube": [
+   "the film explains the The eight-layer cube chapter, which is written from this slide"
+  ]
+ },
+ "slide:45": {
+  "tech:cube": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:cube": [
+   "the film explains the The eight-layer cube chapter, which is written from this slide"
+  ]
+ },
+ "slide:46": {
+  "tech:measured": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:roadmap": [
+   "the film explains the Measured, not claimed chapter, which is written from this slide"
+  ]
+ },
+ "slide:47": {
+  "product:a100-1": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 47 is in the A100 one-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:48": {
+  "product:a100-1": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 48 is in the A100 one-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:49": {
+  "product:a100-1": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 49 is in the A100 one-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:50": {
+  "product:a100-1": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 50 is in the A100 one-channel section of the portfolio narrative"
+  ]
+ },
+ "slide:51": {
+  "product:a100-2": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 51 is in the A100 two-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:52": {
+  "product:a100-2": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 52 is in the A100 two-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:53": {
+  "product:a100-2": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 53 is in the A100 two-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:54": {
+  "product:a100-2": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 54 is in the A100 two-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:55": {
+  "product:a100-4": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 55 is in the A100 four-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:56": {
+  "product:a100-4": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 56 is in the A100 four-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:57": {
+  "product:a100-4": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 57 is in the A100 four-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:58": {
+  "product:a100-4": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 58 is in the A100 four-channel section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:59": {
+  "product:t100": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 59 is in the T100 licence section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:60": {
+  "product:t100": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 60 is in the T100 licence section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:61": {
+  "product:t100": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 61 is in the T100 licence section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:62": {
+  "product:t100": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 62 is in the T100 licence section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:63": {
+  "product:taas": [
+   "slide 63 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:agv": [
+   "slide 63 opens the part of the portfolio narrative this product is in"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:64": {
+  "product:taas": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 64 is in the TaaS section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:65": {
+  "product:taas": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 65 is in the TaaS section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:66": {
+  "product:taas": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 66 is in the TaaS section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:67": {
+  "product:taas": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 67 is in the TaaS section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:68": {
+  "product:agv": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 68 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:69": {
+  "product:agv": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 69 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:70": {
+  "product:agv": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 70 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:71": {
+  "product:agv": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 71 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:72": {
+  "product:agv": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 72 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:73": {
+  "product:agv": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 73 is in the Seaport AGV section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:74": {
+  "product:dhumr": [
+   "slide 74 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:d100": [
+   "slide 74 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:thermal": [
+   "slide 74 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:h100": [
+   "slide 74 opens the part of the portfolio narrative this product is in"
+  ],
+  "product:radar": [
+   "slide 74 opens the part of the portfolio narrative this product is in"
+  ]
+ },
+ "slide:75": {
+  "product:thermal": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 75 is in the Thermal camera section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:76": {
+  "product:thermal": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 76 is in the Thermal camera section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:77": {
+  "product:thermal": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 77 is in the Thermal camera section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:78": {
+  "product:thermal": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 78 is in the Thermal camera section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:79": {
+  "product:radar": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 79 is in the 4D radar section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:80": {
+  "product:radar": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 80 is in the 4D radar section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:81": {
+  "product:radar": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 81 is in the 4D radar section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:82": {
+  "product:radar": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 82 is in the 4D radar section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:83": {
+  "product:h100": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 83 is in the H100 wearable section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:84": {
+  "product:h100": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 84 is in the H100 wearable section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:85": {
+  "product:h100": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 85 is in the H100 wearable section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:86": {
+  "product:h100": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 86 is in the H100 wearable section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:87": {
+  "product:dhumr": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 87 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:88": {
+  "product:dhumr": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 88 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:89": {
+  "product:dhumr": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 89 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:90": {
+  "product:dhumr": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 90 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:91": {
+  "product:dhumr": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 91 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:92": {
+  "product:dhumr": [
+   "the product brief cites it",
+   "the product story's Proven in a simulator chapter is told from it",
+   "slide 92 is in the D-HUMR section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:93": {
+  "product:d100": [
+   "the product brief cites it",
+   "the product story's What it is chapter is told from it",
+   "slide 93 is in the D100 drone section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:94": {
+  "product:d100": [
+   "the product brief cites it",
+   "the product story's How it works chapter is told from it",
+   "slide 94 is in the D100 drone section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:95": {
+  "product:d100": [
+   "the product brief cites it",
+   "the product story's Who buys it, and why now chapter is told from it",
+   "slide 95 is in the D100 drone section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:96": {
+  "product:d100": [
+   "the product brief cites it",
+   "the product story's How it fits the plan chapter is told from it",
+   "slide 96 is in the D100 drone section of the portfolio narrative"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ]
+ },
+ "slide:97": {
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "memo:numbers": [
+   "Slide 97 opens Portfolio economics: concentration, margin and headroom, the memorandum's financials"
+  ],
+  "memo:choice": [
+   "Slide 97 opens Portfolio economics, including sequencing, the memorandum's strategic options"
+  ]
+ },
+ "slide:98": {
+  "product:ad2": [
+   "the product brief cites it"
+  ],
+  "product:ad0": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "memo:numbers": [
+   "Slide 98 (Concentration) and the memorandum's risks"
+  ]
+ },
+ "slide:99": {
+  "product:a100-4": [
+   "the product brief cites it"
+  ],
+  "product:a100-2": [
+   "the product brief cites it"
+  ],
+  "product:a100-1": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "memo:choice": [
+   "Slide 99 (Sequencing) and the memorandum's strategic options"
+  ]
+ },
+ "slide:100": {
+  "product:ad1": [
+   "the product brief cites it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "memo:usecases": [
+   "Slide 100 (Where autonomy runs) and the memorandum's use cases"
+  ]
+ },
+ "slide:101": {
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "memo:numbers": [
+   "Slide 101 (Margin) and the memorandum's financials"
+  ]
+ },
+ "slide:102": {
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "tech:silicon": [
+   "Slide 102 (Headroom) is the frame-budget headroom the silicon chapter rests on"
+  ]
+ },
+ "slide:103": {
+  "tech:horizon": [
+   "the chapter is written from it"
+  ],
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "film:mesh": [
+   "the film explains the The far horizon chapter, which is written from this slide"
+  ]
+ },
+ "slide:104": {
+  "film:master": [
+   "the slide in the narrated walkthrough"
+  ],
+  "memo:summary": [
+   "Slide 104 (The ask) is the round the summary states"
+  ],
+  "memo:numbers": [
+   "Slide 104 (The ask) and the memorandum's use of funds"
+  ]
+ },
+ "memo:summary": {
+  "slide:4": [
+   "Slide 4 (The move) and the memorandum summary One die, fifteen products"
+  ],
+  "slide:104": [
+   "Slide 104 (The ask) is the round the summary states"
+  ],
+  "tech:silicon": [
+   "The summary's case is one die, fifteen products"
+  ],
+  "slide:1": [
+   "Slide 1 (Fifteen products. One chip.) states the case the executive summary makes"
+  ]
+ },
+ "memo:business": {
+  "product:t100": [
+   "the product brief cites it",
+   "Memorandum section: T100 AI licence"
+  ],
+  "product:ad1": [
+   "the product brief cites it",
+   "Memorandum section: AD1 Indoor autonomy"
+  ],
+  "product:agv": [
+   "the product brief cites it"
+  ],
+  "product:d100": [
+   "the product brief cites it"
+  ],
+  "product:h100": [
+   "the product brief cites it"
+  ],
+  "product:ad2": [
+   "Memorandum section: AD2 Smart Truck kit"
+  ],
+  "product:dhumr": [
+   "Memorandum section: D-HUMR defence"
+  ],
+  "slide:3": [
+   "Slide 3 (Why now) and the memorandum section The demand is legislated, not forecast"
+  ]
+ },
+ "memo:technology": {
+  "tech:domains": [
+   "the chapter cites it",
+   "Memorandum section: Six chiplets, one 57 mm² die, six independent revenue lines"
+  ],
+  "tech:silicon": [
+   "Memorandum section: Six chiplets, one 57 mm² die, six independent revenue lines"
+  ],
+  "tech:sensors": [
+   "Memorandum section: Two retrofit mirror towers, and no blind spot left on the vehicle"
+  ],
+  "tech:measured": [
+   "Memorandum section: Concept through validated silicon, what is already done"
+  ],
+  "tech:horizon": [
+   "Memorandum section: The option the business buys you, deliberately not funded by this round"
+  ]
+ },
+ "memo:usecases": {
+  "product:chipset": [
+   "the product brief cites it"
+  ],
+  "product:t100": [
+   "the product brief cites it"
+  ],
+  "product:a100-1": [
+   "the product brief cites it"
+  ],
+  "product:thermal": [
+   "the product brief cites it"
+  ],
+  "product:radar": [
+   "the product brief cites it"
+  ],
+  "usecase:UC-01": [
+   "the use case is part of this chapter"
+  ],
+  "usecase:UC-02": [
+   "the use case is part of this chapter"
+  ],
+  "usecase:UC-03": [
+   "the use case is part of this chapter"
+  ],
+  "usecase:UC-04": [
+   "the use case is part of this chapter"
+  ],
+  "usecase:UC-05": [
+   "the use case is part of this chapter"
+  ],
+  "usecase:UC-06": [
+   "the use case is part of this chapter"
+  ],
+  "slide:100": [
+   "Slide 100 (Where autonomy runs) and the memorandum's use cases"
+  ]
+ },
+ "memo:choice": {
+  "product:t100": [
+   "the product brief cites it"
+  ],
+  "product:dhumr": [
+   "the product brief cites it"
+  ],
+  "slide:99": [
+   "Slide 99 (Sequencing) and the memorandum's strategic options"
+  ],
+  "slide:97": [
+   "Slide 97 opens Portfolio economics, including sequencing, the memorandum's strategic options"
+  ]
+ },
+ "memo:numbers": {
+  "slide:98": [
+   "Slide 98 (Concentration) and the memorandum's risks"
+  ],
+  "slide:101": [
+   "Slide 101 (Margin) and the memorandum's financials"
+  ],
+  "slide:104": [
+   "Slide 104 (The ask) and the memorandum's use of funds"
+  ],
+  "slide:97": [
+   "Slide 97 opens Portfolio economics: concentration, margin and headroom, the memorandum's financials"
+  ]
+ },
+ "usecase:UC-01": {
+  "product:a100-1": [
+   "the product brief cites it"
+  ],
+  "memo:usecases": [
+   "the use case is part of this chapter"
+  ]
+ },
+ "usecase:UC-02": {
+  "memo:usecases": [
+   "the use case is part of this chapter"
+  ],
+  "product:thermal": [
+   "Thermal Camera Pod brief: blind-spot and moving-off monitoring without high nuisance alert rates"
+  ]
+ },
+ "usecase:UC-03": {
+  "product:thermal": [
+   "the product brief cites it"
+  ],
+  "memo:usecases": [
+   "the use case is part of this chapter"
+  ]
+ },
+ "usecase:UC-04": {
+  "product:ad2": [
+   "the product brief cites it"
+  ],
+  "product:h100": [
+   "the product brief cites it"
+  ],
+  "memo:usecases": [
+   "the use case is part of this chapter"
+  ]
+ },
+ "usecase:UC-05": {
+  "memo:usecases": [
+   "the use case is part of this chapter"
+  ],
+  "product:ad2": [
+   "AD2 brief: collision, lane-departure and blind-spot logic then decide whether a warning is required"
+  ]
+ },
+ "usecase:UC-06": {
+  "product:chipset": [
+   "the product brief cites it"
+  ],
+  "memo:usecases": [
+   "the use case is part of this chapter"
+  ]
+ }
+}

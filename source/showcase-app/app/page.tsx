@@ -27,12 +27,12 @@ const AskDeepGrid = lazy(() => import('./ask'));
 
 const titles: Record<string, string> = {
   overview: 'DeepGrid Semi: one silicon, fifteen products',
-  portfolio: 'Products · DeepGrid Semi',
-  silicon: 'Technology · DeepGrid Semi',
-  briefing: 'Ask DeepGrid · DeepGrid Semi',
-  film: 'Videos · DeepGrid Semi',
-  slides: 'Slide deck · DeepGrid Semi',
-  investment: 'Investment · DeepGrid Semi',
+  portfolio: 'Product lines · DeepGrid Semi',
+  silicon: 'Silicon platform · DeepGrid Semi',
+  briefing: 'Diligence Q&A · DeepGrid Semi',
+  film: 'Demonstrations · DeepGrid Semi',
+  slides: 'Portfolio narrative · DeepGrid Semi',
+  investment: 'Investment case · DeepGrid Semi',
 };
 
 export default function Home() {
@@ -223,6 +223,7 @@ export default function Home() {
         {view === 'film' && (
           <Films
             reduced={reduced}
+            go={go}
             focus={
               params.get('v')
                 ? { id: params.get('v')!, t: Number(params.get('t')) || 0 }
@@ -231,7 +232,11 @@ export default function Home() {
           />
         )}
         {view === 'slides' && (
-          <Deck slide={slide} setSlide={(n) => update({ slide: String(n) })} />
+          <Deck
+            slide={slide}
+            setSlide={(n) => update({ slide: String(n) })}
+            go={go}
+          />
         )}
         {view === 'investment' && (
           <Investment
