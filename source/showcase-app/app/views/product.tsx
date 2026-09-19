@@ -1,37 +1,178 @@
 'use client';
-import {
-  ArrowLeft,
-  ArrowRight,
-  ArrowUpRight,
-  Download,
-  MessageSquare,
-  Play,
-} from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Play } from 'lucide-react';
 import { products, productById, type Go, type Product } from '../shared';
 import briefs from '../data/product-briefs.json';
+import stories from '../data/product-stories.json';
 import slideNotes from '../slide-notes.json';
 import { films as filmList, master, Player, clock } from './films';
+import { chapters as memoChapters } from './investment';
 
-// One product, as an investor would read it: what it is used for first, then the product running (its films and
-// its own slides), how it works, how it makes money, what has to go right, and every source behind the text.
-// The text is written from the GraphRAG index by scripts/build-product-briefs.mjs and figure-gated there; the
-// slide range, films, walkthrough time and related products are derived, not written.
+// One product, read the way an executive reads it: the case in three lines, what it is used for, the product's story
+// told from its own chapter of the portfolio deck (a headline, a short narrative and data pills per chapter, with the
+// simulator film where there is one), what has to go right, and further reading. Every link names its destination.
+// Story: scripts/build-product-stories.mjs. Use cases and risks: scripts/build-product-briefs.mjs. Both are written
+// from the GraphRAG index and gated on figures and maturity claims; slide ranges, films and ramps are derived.
 
 type Brief = (typeof briefs.products)[keyof typeof briefs.products];
-const slideFile = (n: number) => 'slide_' + String(n).padStart(2, '0');
+type Chapter = {
+  kind: string;
+  title: string;
+  slides: number[];
+  headline: string;
+  narrative: string;
+  pills: { value: string; label: string }[];
+  ramp?: { years: string[]; units: number[]; revenue: number[] };
+};
+type Story = { takeaways: string[]; chapters: Chapter[] };
+type Source = Brief['sources'][number];
+type Link = { label: string; detail?: string; hash?: string; href?: string };
+
+const slideName = (n: number) => {
+  const t = slideNotes[n - 1]?.title || '';
+  return t.includes(' · ') ? t.split(' · ').slice(1).join(' · ') : t;
+};
+
+// A source becomes a link only if it goes somewhere, and its label says where.
+function linkFor(s: Source): Link | null {
+  const nav = s.nav || '';
+  if (nav.startsWith('slides?slide=')) {
+    const n = Number(nav.split('=')[1]);
+    return {
+      label: `Portfolio deck, slide ${n}`,
+      detail: slideName(n),
+      hash: nav,
+    };
+  }
+  if (nav.includes('usecase=UC-')) {
+    const [id, ...rest] = s.section.split(' ');
+    return {
+      label: `Commercial use case ${id}`,
+      detail: rest.join(' '),
+      hash: nav,
+    };
+  }
+  if (nav.startsWith('investment?chapter=')) {
+    const ch = nav.split('chapter=')[1].split('&')[0];
+    const title = memoChapters.find((c) => c[0] === ch)?.[1] || 'Overview';
+    return {
+      label: `Investment memorandum: ${title}`,
+      detail: s.section,
+      hash: nav,
+    };
+  }
+  if (s.href) {
+    const page =
+      /#page=(\d+)/.exec(s.href)?.[1] || /^p\. (\d+)$/.exec(s.section)?.[1];
+    const kind = s.href.endsWith('.xlsx')
+      ? 'workbook'
+      : s.href.endsWith('.docx')
+        ? 'document'
+        : page
+          ? `page ${page}`
+          : 'PDF';
+    return { label: `${s.doc}, ${kind}`, detail: s.section, href: s.href };
+  }
+  return null;
+}
+const dedupe = (list: Link[]) => [
+  ...new Map(list.map((l) => [l.label + '|' + (l.detail || ''), l])).values(),
+];
+
+function Anchor({
+  link,
+  go,
+  className = 'pp-link',
+}: {
+  link: Link;
+  go: Go;
+  className?: string;
+}) {
+  const body = (
+    <>
+      <span>
+        <strong>{link.label}</strong>
+        {link.detail && <small>{link.detail}</small>}
+      </span>
+      {link.href ? (
+        <ArrowUpRight size={15} aria-hidden="true" />
+      ) : (
+        <ArrowRight size={15} aria-hidden="true" />
+      )}
+    </>
+  );
+  return link.href ? (
+    <a className={className} href={link.href} target="_blank" rel="noreferrer">
+      {body}
+    </a>
+  ) : (
+    <a
+      className={className}
+      href={'#' + link.hash}
+      onClick={(e) => {
+        e.preventDefault();
+        go(link.hash!);
+      }}
+    >
+      {body}
+    </a>
+  );
+}
+
+function Ramp({ ramp }: { ramp: NonNullable<Chapter['ramp']> }) {
+  const max = Math.max(...ramp.revenue, 1);
+  return (
+    <figure className="pp-ramp">
+      <figcaption>Revenue and units by year (management projection)</figcaption>
+      <ol>
+        {ramp.years.map((y, i) => (
+          <li key={y}>
+            <span className="pp-ramp-value num">
+              ₹{ramp.revenue[i].toLocaleString('en-IN')} Cr
+            </span>
+            <span
+              className="pp-ramp-bar"
+              style={{
+                ['--h' as string]: `${Math.max(2, (ramp.revenue[i] / max) * 100)}%`,
+              }}
+            />
+            <span className="pp-ramp-year num">{y}</span>
+            <span className="pp-ramp-units num">
+              {ramp.units[i].toLocaleString('en-IN')} units
+            </span>
+          </li>
+        ))}
+      </ol>
+    </figure>
+  );
+}
+
+function Films({ films }: { films: typeof filmList }) {
+  return (
+    <div className={'pp-films' + (films.length === 1 ? ' is-single' : '')}>
+      {films.map((f) => (
+        <figure key={f.id}>
+          <Player film={f} />
+          <figcaption>
+            <strong>{f.title}</strong> {f.sub}
+            <span className="num"> · {f.length}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
 
 export default function ProductPage({
   product: p,
   go,
-  openSlide,
   back,
 }: {
   product: Product;
   go: Go;
-  openSlide: (n: number) => void;
   back: () => void;
 }) {
   const b = (briefs.products as Record<string, Brief>)[p.id];
+  const story = (stories as Record<string, Story>)[p.id];
   const line = products.filter((x) => x.category === p.category),
     i = line.findIndex((x) => x.id === p.id),
     prev = line[i - 1],
@@ -39,16 +180,28 @@ export default function ProductPage({
   const films = filmList.filter((f) =>
     (b?.films as string[] | undefined)?.includes(f.id),
   );
-  const cite = (list: number[]) =>
-    list.length ? (
-      <sup className="cite">
-        {list.map((n) => (
-          <a key={n} href={'#src-' + n} aria-label={'Source ' + n}>
-            {n}
-          </a>
-        ))}
-      </sup>
-    ) : null;
+  const hasProof = !!story?.chapters.some((c) => c.kind === 'proof');
+  const risk = b?.sections.find((s) => /go right/i.test(s.label));
+  const cited = (ids: number[]) =>
+    dedupe(
+      ids
+        .map((n) => b?.sources[n - 1])
+        .filter(Boolean)
+        .map((s) => linkFor(s!))
+        .filter(Boolean) as Link[],
+    );
+  const storySlides = new Set(story?.chapters.flatMap((c) => c.slides) || []);
+  // further reading: every linked source, except slides the story already links chapter by chapter
+  const reading = dedupe(
+    (b?.sources.map(linkFor).filter(Boolean) as Link[]) || [],
+  ).filter(
+    (l) =>
+      !(
+        l.hash?.startsWith('slides?slide=') &&
+        storySlides.has(Number(l.hash.split('=')[1]))
+      ),
+  );
+  const ask = `Tell me about the ${p.name}`;
 
   return (
     <article className="page-wrap product-page">
@@ -82,266 +235,195 @@ export default function ProductPage({
             </div>
           ))}
         </dl>
-        <nav className="product-jump" aria-label="On this page">
-          {[
-            ['pp-uses', 'Use cases'],
-            ['pp-see', 'See it'],
-            ['pp-how', 'How it works'],
-            ['pp-sources', 'Sources'],
-          ].map(([id, label]) => (
-            <a
-              key={id}
-              href={'#' + id}
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById(id)?.scrollIntoView({ block: 'start' });
-              }}
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
       </header>
 
+      {story && (
+        <section className="pp-block pp-case" aria-labelledby="pp-case-title">
+          <h2 id="pp-case-title">The case in brief</h2>
+          <ul>
+            {story.takeaways.map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {b && (
-        <section
-          className="pp-block"
-          id="pp-uses"
-          aria-labelledby="pp-uses-title"
-        >
+        <section className="pp-block" aria-labelledby="pp-uses-title">
           <h2 id="pp-uses-title">What it is used for</h2>
           <div className="pp-usecases">
-            {b.useCases.map((u) => (
-              <article key={u.title} className="pp-usecase">
-                <h3>{u.title}</h3>
-                <dl>
-                  <div>
-                    <dt>Buyer</dt>
-                    <dd>{u.buyer}</dd>
-                  </div>
-                  <div>
-                    <dt>The job</dt>
-                    <dd>{u.problem}</dd>
-                  </div>
-                  <div>
-                    <dt>What DeepGrid supplies</dt>
-                    <dd>
-                      {u.delivers}
-                      {cite(u.sources)}
-                    </dd>
-                  </div>
-                </dl>
-                {u.detail && (
-                  <a
-                    className="text-link pp-usecase-more"
-                    href={'#' + u.detail.nav}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      go(u.detail!.nav);
-                    }}
-                  >
-                    Full use case {u.detail.id}: {u.detail.title}{' '}
-                    <ArrowRight size={15} aria-hidden="true" />
-                  </a>
-                )}
-              </article>
-            ))}
+            {b.useCases.map((u) => {
+              const refs = cited(u.sources).filter(
+                (l) => !(u.detail && l.hash === u.detail.nav),
+              );
+              return (
+                <article key={u.title} className="pp-usecase">
+                  <h3>{u.title}</h3>
+                  <dl>
+                    <div>
+                      <dt>Buyer</dt>
+                      <dd>{u.buyer}</dd>
+                    </div>
+                    <div>
+                      <dt>The job</dt>
+                      <dd>{u.problem}</dd>
+                    </div>
+                    <div>
+                      <dt>What DeepGrid supplies</dt>
+                      <dd>{u.delivers}</dd>
+                    </div>
+                  </dl>
+                  {(u.detail || refs.length > 0) && (
+                    <div className="pp-usecase-links">
+                      {u.detail && (
+                        <Anchor
+                          go={go}
+                          className="pp-link is-primary"
+                          link={{
+                            label: `Full use case ${u.detail.id}`,
+                            detail: u.detail.title,
+                            hash: u.detail.nav,
+                          }}
+                        />
+                      )}
+                      {refs.slice(0, 2).map((l) => (
+                        <Anchor key={l.label + l.detail} go={go} link={l} />
+                      ))}
+                    </div>
+                  )}
+                </article>
+              );
+            })}
           </div>
         </section>
       )}
 
-      <section className="pp-block" id="pp-see" aria-labelledby="pp-see-title">
-        <h2 id="pp-see-title">See it</h2>
-        {films.length > 0 && (
-          <div
-            className={'pp-films' + (films.length === 1 ? ' is-single' : '')}
-          >
-            {films.map((f) => (
-              <figure key={f.id}>
-                <Player film={f} />
-                <figcaption>
-                  <strong>{f.title}</strong> {f.sub}
-                  <span className="num"> · {f.length}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        )}
-        {b?.walkthrough != null && (
-          <a
-            className="pp-walkthrough"
-            href={`#film?v=master&t=${b.walkthrough}`}
-            onClick={(e) => {
-              e.preventDefault();
-              go(`film?v=master&t=${b.walkthrough}`);
-            }}
-          >
-            <span className="pp-walk-icon" aria-hidden="true">
-              <Play size={16} fill="currentColor" />
-            </span>
-            <span>
-              <strong>{p.name} in the narrated walkthrough</strong>
-              <small>
-                {master.title} Starts at{' '}
-                <span className="num">{clock(b.walkthrough)}</span>
-              </small>
-            </span>
-            <ArrowRight size={17} aria-hidden="true" />
-          </a>
-        )}
-        {b && b.slides.length > 0 && (
-          <>
-            <h3 className="pp-sub">
-              Its {b.slides.length} slides in the portfolio deck
-            </h3>
-            <ol className="pp-slides">
-              {b.slides.map((n) => (
-                <li key={n}>
-                  <button
-                    onClick={() => openSlide(n)}
-                    aria-label={`Open slide ${n}: ${slideNotes[n - 1].title}`}
+      {story && (
+        <section className="pp-block pp-story" aria-labelledby="pp-story-title">
+          <h2 id="pp-story-title">The story</h2>
+          {story.chapters.map((c) => (
+            <section
+              key={c.kind}
+              className={'pp-chapter pp-chapter-' + c.kind}
+              aria-labelledby={'pp-ch-' + c.kind}
+            >
+              <p className="kicker">{c.title}</p>
+              <h3 id={'pp-ch-' + c.kind}>{c.headline}</h3>
+              <p className="pp-narrative">{c.narrative}</p>
+              <ul className="pp-pills" aria-label={c.title + ': key points'}>
+                {c.pills.map((x) => (
+                  <li key={x.value + x.label}>
+                    <strong>{x.value}</strong>
+                    <span>{x.label}</span>
+                  </li>
+                ))}
+              </ul>
+              {c.kind === 'how' && (
+                <ol className="pp-steps" aria-label="From sensing to action">
+                  {p.signalChain.map((s) => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ol>
+              )}
+              {c.kind === 'fits' && c.ramp && <Ramp ramp={c.ramp} />}
+              {c.kind === 'proof' && films.length > 0 && (
+                <Films films={films} />
+              )}
+              <p className="pp-chapter-source">
+                {c.slides.map((n) => (
+                  <a
+                    key={n}
+                    href={'#slides?slide=' + n}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      go('slides?slide=' + n);
+                    }}
                   >
-                    <img
-                      src={'./slides/thumbs/' + slideFile(n) + '.webp'}
-                      alt=""
-                      width={240}
-                      height={134}
-                      loading="lazy"
-                    />
-                    <span>
-                      <span className="num">{n}</span>{' '}
-                      {slideNotes[n - 1].title
-                        .split(' · ')
-                        .slice(1)
-                        .join(' · ')}
-                    </span>
-                  </button>
-                </li>
-              ))}
-            </ol>
-          </>
-        )}
-      </section>
+                    Portfolio deck, slide {n}: {slideName(n)}
+                  </a>
+                ))}
+              </p>
+            </section>
+          ))}
+          {!hasProof && films.length > 0 && (
+            <section className="pp-chapter" aria-labelledby="pp-ch-films">
+              <p className="kicker">See it running</p>
+              <h3 id="pp-ch-films">
+                The platform behind this product, running in simulation.
+              </h3>
+              <Films films={films} />
+            </section>
+          )}
+        </section>
+      )}
 
-      <section
-        className="pp-block pp-brief"
-        id="pp-how"
-        aria-labelledby="pp-how-title"
-      >
-        <h2 id="pp-how-title" className="sr-only">
-          How it works, why now and the economics
-        </h2>
-        <div className="pp-chain">
-          <h3>From sensing to action</h3>
-          <ol className="signal-chain">
-            {p.signalChain.map((s) => (
-              <li key={s}>{s}</li>
-            ))}
-          </ol>
-        </div>
-        {b?.sections.map((s) => (
-          <section key={s.label} className="pp-section">
-            <h3>{s.label}</h3>
-            <p>
-              {s.text}
-              {cite(s.sources)}
-            </p>
-          </section>
-        ))}
-        {b && (
-          <ul className="pp-facts">
-            {b.facts.map((f) => {
-              const [label, ...rest] = f.text.split(': ');
-              return (
-                <li key={f.text}>
-                  <strong>{rest.length ? label : ''}</strong>
+      {(risk || p.dependsOn) && (
+        <section className="pp-block pp-risk" aria-labelledby="pp-risk-title">
+          <h2 id="pp-risk-title">What has to go right</h2>
+          {risk && <p>{risk.text}</p>}
+          <p className="pp-dependency">
+            <strong>Key dependency</strong> {p.dependsOn}
+          </p>
+        </section>
+      )}
+
+      <section className="pp-block" aria-labelledby="pp-more-title">
+        <h2 id="pp-more-title">Further reading and viewing</h2>
+        <div className="pp-more">
+          {(b?.walkthrough != null || films.length > 0) && (
+            <div>
+              <h3>Watch</h3>
+              {b?.walkthrough != null && (
+                <a
+                  className="pp-link is-primary"
+                  href={`#film?v=master&t=${b.walkthrough}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    go(`film?v=master&t=${b.walkthrough}`);
+                  }}
+                >
                   <span>
-                    {rest.length ? rest.join(': ') : f.text}
-                    {cite(f.sources)}
+                    <strong>
+                      <Play size={12} fill="currentColor" aria-hidden="true" />{' '}
+                      The {p.name} in the narrated walkthrough
+                    </strong>
+                    <small>
+                      {master.title} From{' '}
+                      <span className="num">{clock(b.walkthrough)}</span>
+                    </small>
                   </span>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-        <div className="dependency">
-          <h3>Key dependency</h3>
-          <p>{p.dependsOn}</p>
-        </div>
-      </section>
-
-      <section
-        className="pp-block"
-        id="pp-sources"
-        aria-labelledby="pp-src-title"
-      >
-        <h2 id="pp-src-title">Sources and further reading</h2>
-        {b && (
-          <ol className="pp-sources">
-            {b.sources.map((s, n) => (
-              <li key={s.id} id={'src-' + (n + 1)}>
-                <span className="num pp-src-n">{n + 1}</span>
-                <span className="pp-src-body">
-                  <strong>{s.doc}</strong>
-                  <small>
-                    {s.section}
-                    {s.page &&
-                    !s.section.toLowerCase().startsWith(s.page.toLowerCase())
-                      ? ` · ${s.page}`
-                      : ''}
-                  </small>
-                </span>
-                <span className="pp-src-links">
-                  {s.nav && !s.nav.startsWith('portfolio?product=') && (
-                    <a
-                      href={'#' + s.nav}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        go(s.nav);
-                      }}
-                    >
-                      {s.nav.startsWith('slides')
-                        ? 'Open slide'
-                        : s.nav.startsWith('investment')
-                          ? 'Read'
-                          : 'Open'}
-                    </a>
-                  )}
-                  {s.href && !s.href.endsWith('.pptx') && (
-                    <a
-                      href={s.href}
-                      download={!s.href.includes('.pdf') || undefined}
-                      target={s.href.includes('.pdf') ? '_blank' : undefined}
-                      rel="noreferrer"
-                    >
-                      {s.href.includes('.pdf') ? 'PDF' : 'Download'}{' '}
-                      <Download size={13} aria-hidden="true" />
-                    </a>
-                  )}
-                </span>
-              </li>
+                  <ArrowRight size={15} aria-hidden="true" />
+                </a>
+              )}
+              {films.map((f) => (
+                <Anchor
+                  key={f.id}
+                  go={go}
+                  link={{
+                    label: `Film: ${f.title}`,
+                    detail: `${f.sub} · ${f.length}`,
+                    hash: `film?v=${f.id}`,
+                  }}
+                />
+              ))}
+            </div>
+          )}
+          <div>
+            <h3>Read</h3>
+            {reading.map((l) => (
+              <Anchor key={l.label + l.detail} go={go} link={l} />
             ))}
-          </ol>
-        )}
-        <a
-          className="pp-ask"
-          href={
-            '#briefing?q=' + encodeURIComponent(`Tell me about the ${p.name}`)
-          }
-          onClick={(e) => {
-            e.preventDefault();
-            go(
-              'briefing?q=' + encodeURIComponent(`Tell me about the ${p.name}`),
-            );
-          }}
-        >
-          <MessageSquare size={18} aria-hidden="true" />
-          <span>
-            <strong>Ask DeepGrid about the {p.name}</strong>
-            <small>Any question, answered from the same documents</small>
-          </span>
-          <ArrowUpRight size={17} aria-hidden="true" />
-        </a>
+            <Anchor
+              go={go}
+              className="pp-link is-ask"
+              link={{
+                label: `Ask DeepGrid about the ${p.name}`,
+                detail: 'Any question, answered from the same documents',
+                hash: 'briefing?q=' + encodeURIComponent(ask),
+              }}
+            />
+          </div>
+        </div>
       </section>
 
       {b && b.related.length > 0 && (
@@ -410,8 +492,8 @@ export default function ProductPage({
       </nav>
       <p className="disclaimer">
         Prices, volumes, revenues and margins are management projections. The
-        text above is written from the source documents listed, and every figure
-        in it appears in the source it cites.
+        text is written from the linked documents, and every figure in it
+        appears in the source it came from.
       </p>
     </article>
   );

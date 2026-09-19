@@ -21,7 +21,8 @@
     "graph:sources": "uv run --no-project --with openpyxl==3.1.5 python scripts/assemble-sources.py",
     "graph:themes": "node scripts/build-showcase-themes.mjs",
     "verify": "node scripts/verify-site.mjs",
-    "graph:products": "node scripts/build-product-briefs.mjs"
+    "graph:products": "node scripts/build-product-briefs.mjs",
+    "graph:stories": "node scripts/build-product-stories.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

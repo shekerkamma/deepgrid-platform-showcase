@@ -220,6 +220,19 @@ def main():
         chunks.append({'id': f"sc_{slug}_{per_doc[slug]}", 'docTitle': title, 'docNum': num, 'pdfPath': file[0], 'pdfSize': file[1],
                        'specPath': '', 'pageLabel': page_label, 'section': section, 'text': text, 'nav': nav})
 
+    # The converted deck numbers only the slides that carry text, so after the first video-only slide its "Slide N"
+    # falls behind the real slide (and the slide images). knowledge/deck-slides.json is the deck itself, read with
+    # python-pptx; each deck section is placed on the slide whose text it shares most (all 114 matched at 0.6 or more).
+    deck_slides = json.loads((ROOT / 'knowledge/deck-slides.json').read_text()) if (ROOT / 'knowledge/deck-slides.json').exists() else []
+    words = lambda t: set(w for w in re.findall(r'[a-z0-9]+', t.lower()) if len(w) > 2)
+    deck_words = [words(d['text'] + ' ' + d['notes']) for d in deck_slides]
+    def true_slide(text):
+        if not deck_words: return None
+        t = words(text)
+        score = [len(t & d) / max(1, len(t)) for d in deck_words]
+        best = max(range(len(score)), key=score.__getitem__)
+        return str(best + 1) if score[best] >= 0.6 else None
+
     for rel, (title, num) in SC_DOCS.items():
         path = SRC / rel
         if rel.endswith('.pdf'):
@@ -229,8 +242,10 @@ def main():
         else:
             for head, body in md_sections(path):
                 m = re.match(r'Slide (\d+)', head)
-                nav = f'slides?slide={m.group(1)}' if m else nav_by_title.get(head, '')
-                add(rel, title, num, head[:90], (f'slide {m.group(1)}' if m else ''), body, nav)
+                n = m and (true_slide(body) or m.group(1))
+                if n: head = f'Slide {n}'
+                nav = f'slides?slide={n}' if n else nav_by_title.get(head, '')
+                add(rel, title, num, head[:90], (f'slide {n}' if n else ''), body, nav)
     for md in sorted((SRC / 'markdown').glob('*.md')):
         title = 'Deck narration' if md.name.startswith(('narration', 'storyboard')) else f"Research — {md.stem.replace('-', ' ')}"
         for head, body in md_sections(md):

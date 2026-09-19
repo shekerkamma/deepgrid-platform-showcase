@@ -13,9 +13,10 @@
 //   scrolls (more events on at each of four positions, all eight at the end, the bridge laid last).
 //   On a phone it becomes one chronological list; under reduced motion the chart is not pinned.
 //   Either way every event is visible at once.
-// - Products switch to the comparison table and it sorts; a row opens the product's page on its own slides.
-// - Every product page leads with use cases, shows its slides and sources, and no citation points at a missing
-//   source; the walkthrough link lands on the film at the product's time; Ask opens on a linked question.
+// - Products switch to the comparison table and it sorts; a row opens that product's page.
+// - Every product page opens with the case in brief and its use cases, tells its story in chapters with data
+//   pills, shows no slide images, and labels every link with its destination; the walkthrough link lands on the
+//   film at the product's time; Ask opens on a linked question.
 // - The slide deck steps with the arrow keys and its filmstrip marks the current slide.
 // - Every film has a poster that loads and a caption track that returns WebVTT, and every document
 //   in the Investment list downloads (HTTP 200, non-empty).
@@ -220,7 +221,7 @@ for (const { tag, viewport } of [
   }
 }
 
-// 3. products: comparison table sorts, dossier opens with its source slide
+// 3. products: the comparison table sorts, and a row opens that product's page
 {
   const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
   watch(p, 'products');
@@ -234,53 +235,37 @@ for (const { tag, viewport } of [
   const byPrice = await first();
   if (byRevenue === byPrice)
     fail(`products: sorting by price left ${byRevenue} first`);
-  // a row opens that product's page, and its first slide thumbnail is the product's own "What it is" slide
+  // the page's story starts from the product's own "What it is" slide, so the row opened the right product
   const rowName = await first();
   await p.click('.compare-table tbody .row-link');
   const opened = await p
-    .waitForSelector('.product-page .pp-slides img', { timeout: 8000 })
+    .waitForSelector('.product-page .pp-chapter-source a', { timeout: 8000 })
     .then(
       () => true,
       () => false,
     );
   const page = await p.evaluate(() => ({
     h1: document.querySelector('main h1')?.textContent,
-    slide: document
-      .querySelector('.pp-slides button')
-      ?.getAttribute('aria-label'),
+    slide: document.querySelector('.pp-chapter-source a')?.textContent,
   }));
   if (!opened || page.h1 !== rowName || !/What it is$/.test(page.slide || ''))
     fail(
-      `products: row "${rowName}" opened "${page.h1}", first slide "${page.slide}"`,
+      `products: row "${rowName}" opened "${page.h1}", first chapter cites "${page.slide}"`,
     );
-  const ok = !opened
-    ? true
-    : await p.evaluate(() => {
-        const i = document.querySelector('.pp-slides img');
-        i.loading = 'eager';
-        return new Promise((res) => {
-          if (i.complete && i.naturalWidth) res(true);
-          else {
-            i.onload = () => res(true);
-            i.onerror = () => res(false);
-          }
-        });
-      });
-  if (!ok) fail('products: product slide thumbnail did not load');
   await p.close();
 }
 
-// 3b. product pages: every product has use cases first, its slides, sources, and working links out
+// 3b. product pages, as an executive reads them: the case in brief first, then use cases, then the story in chapters
+// with data pills; no slide images; and no link labelled with a bare verb ("Read", "Open slide", "PDF") or going nowhere.
 {
   const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
   watch(p, 'product');
-  const ids = await (async () => {
-    await p.goto(BASE + '#portfolio', { waitUntil: 'networkidle' });
-    return p.evaluate(
-      () => document.querySelectorAll('.catalog-list .product-card').length,
-    );
-  })();
-  if (ids !== 15) fail(`products: ${ids} cards, expected 15`);
+  await p.goto(BASE + '#portfolio', { waitUntil: 'networkidle' });
+  const cards = await p.evaluate(
+    () => document.querySelectorAll('.catalog-list .product-card').length,
+  );
+  if (cards !== 15) fail(`products: ${cards} cards, expected 15`);
+  const BARE = /^(read|open|open slide|pdf|download|more|link|source)$/i;
   for (const id of [
     'ad2',
     'ad0',
@@ -302,34 +287,43 @@ for (const { tag, viewport } of [
       waitUntil: 'networkidle',
     });
     const m = await p.evaluate(() => ({
-      h1: document.querySelector('main h1')?.textContent,
+      blocks: [...document.querySelectorAll('.product-page > .pp-block')].map(
+        (s) => s.querySelector('h2')?.textContent,
+      ),
+      takeaways: document.querySelectorAll('.pp-case li').length,
       uses: document.querySelectorAll('.pp-usecase').length,
-      firstBlock: document.querySelector('.pp-block')?.id,
-      slides: document.querySelectorAll('.pp-slides li').length,
-      sources: document.querySelectorAll('.pp-sources li').length,
-      cites: [...document.querySelectorAll('.cite a')].map((a) =>
-        a.getAttribute('href'),
+      chapters: [...document.querySelectorAll('.pp-chapter')].filter(
+        (c) => c.querySelectorAll('.pp-pills li').length >= 2,
+      ).length,
+      images: document.querySelectorAll('.product-page img').length,
+      labels: [...document.querySelectorAll('.product-page a')].map((a) =>
+        (a.querySelector('strong')?.textContent || a.textContent).trim(),
       ),
-      targets: [...document.querySelectorAll('.pp-sources li')].map(
-        (l) => '#' + l.id,
-      ),
+      dead: [...document.querySelectorAll('.product-page a')].filter(
+        (a) => !a.getAttribute('href') || a.getAttribute('href') === '#',
+      ).length,
+      pager: !!document.querySelector('main > .section-pagination'),
     }));
-    const dangling = m.cites.filter((h) => !m.targets.includes(h));
+    const bare = m.labels.filter((t) => BARE.test(t));
     if (
+      m.blocks[0] !== 'The case in brief' ||
+      m.blocks[1] !== 'What it is used for' ||
+      m.takeaways < 2 ||
       m.uses < 2 ||
-      m.firstBlock !== 'pp-uses' ||
-      m.slides < 4 ||
-      m.sources < 5 ||
-      dangling.length
+      m.chapters < 4 ||
+      m.images ||
+      bare.length ||
+      m.dead ||
+      m.pager
     )
       fail(
-        `product ${id}: ${m.uses} use cases (first block ${m.firstBlock}), ${m.slides} slides, ${m.sources} sources, ${dangling.length} dangling citations`,
+        `product ${id}: ${m.blocks.slice(0, 2).join(' > ')}; ${m.takeaways} takeaways, ${m.uses} use cases, ${m.chapters} chapters with pills, ${m.images} images, bare [${bare}], ${m.dead} dead links, site pager ${m.pager}`,
       );
   }
   // the walkthrough link lands on the master film at the product's moment
   await p.goto(BASE + '#portfolio?product=ad2', { waitUntil: 'networkidle' });
   await p
-    .click('.pp-walkthrough', { timeout: 5000 })
+    .click('.pp-more a[href^="#film?v=master"]', { timeout: 5000 })
     .catch(() => fail('walkthrough link missing on the AD2 page'));
   await p.waitForTimeout(400);
   const w = await p.evaluate(() => ({
@@ -342,7 +336,7 @@ for (const { tag, viewport } of [
     !w.src.includes('#t=' + w.hash.split('t=')[1])
   )
     fail(`walkthrough link: ${w.hash} -> ${w.src}`);
-  // Ask opens on the question the product page sends
+  // Ask opens on the question a product page sends
   await p.goto(
     BASE + '#briefing?q=' + encodeURIComponent('Tell me about the Seaport AGV'),
     { waitUntil: 'networkidle' },

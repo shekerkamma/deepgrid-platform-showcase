@@ -1,0 +1,2660 @@
+{
+ "ad2": {
+  "takeaways": [
+   "The ADAS mandate makes demand for the AD2 kit a compliance floor, not a forecast: 0.5 million new N2/N3 trucks per year plus 0.5 million retrofit units must be equipped, and DeepGrid's FY2032 target of 18,000 units is only 1.80% capture of that pool (management assumption).",
+   "At a management-projected ₹450 Cr and 89% gross margin by FY2032, this single SKU represents 39.9% of group revenue, making ARAI or ICAT certification the decisive gate for the entire portfolio.",
+   "The SoC2 compute box completes eleven-channel sensor fusion in 8.6 ms of a 33.3 ms frame, leaving 74% of the frame budget unused, the headroom that holds price flat at ₹2.50 L while sustaining 89% gross margin against imported alternatives."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     18
+    ],
+    "headline": "The AD2 kit is a complete commercial-vehicle ADAS system sold at ₹2.50 L into the Indian N2/N3 truck market.",
+    "narrative": "Smart Truck is a bolt-on ADAS kit comprising a forward camera, 4D radar, SoC2 compute box, driver interface display and vehicle bus harness, everything needed to bring a commercial truck into compliance in a single fitment. At ₹2.50 L it is the largest SKU in the DeepGrid portfolio, with first revenue targeted in FY2027. Management describes it as the reason the portfolio carries a demand floor rather than a demand forecast.",
+    "pills": [
+     {
+      "value": "₹2.50 L",
+      "label": "unit price"
+     },
+     {
+      "value": "Systems",
+      "label": "segment"
+     },
+     {
+      "value": "Outdoor",
+      "label": "operating domain"
+     },
+     {
+      "value": "FY2027",
+      "label": "first revenue"
+     },
+     {
+      "value": "Forward camera + 4D radar",
+      "label": "sensor components"
+     },
+     {
+      "value": "SoC2 compute box",
+      "label": "compute component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     19
+    ],
+    "headline": "Camera and radar feed a single fused object list in 8.6 ms, giving the decision layer range and closing speed before a braking window closes.",
+    "narrative": "The forward camera and 4D radar monitor the truck's forward path and blind quarters simultaneously; the SoC2 box fuses both streams into one object list carrying range and closing speed for every detected target, completing that work in 8.6 ms of a 33.3 ms frame. Collision, lane-departure and blind-spot logic then decide whether to warn, alerting the driver visually and acoustically and signalling the brake interface where the vehicle supports it. The 74% of frame budget left unused is what allows one hardware part to serve every sensor configuration below it in the product family.",
+    "pills": [
+     {
+      "value": "11 inputs simultaneously",
+      "label": "compute channels"
+     },
+     {
+      "value": "7 × 8MP RGB, GMSL2",
+      "label": "camera inputs"
+     },
+     {
+      "value": "2 thermal cameras",
+      "label": "thermal inputs"
+     },
+     {
+      "value": "8.6 ms fusion latency",
+      "label": "sensor fusion time"
+     },
+     {
+      "value": "74% frame budget unused",
+      "label": "compute headroom"
+     },
+     {
+      "value": "ARAI or ICAT",
+      "label": "certification gate"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     20
+    ],
+    "headline": "Fleet operators and truck OEMs must buy, the ADAS mandate makes this a compliance obligation, not a discretionary purchase.",
+    "narrative": "The ADAS mandate imposes driver-drowsiness, blind-spot and lane-departure obligations on N2/N3 commercial vehicles, so the buying decision for fleet operators and truck OEMs is which supplier to use and on what date, not whether to act. DeepGrid reaches fleets directly and through retrofit installers now, with OEM line-fit as the higher-volume route over time. The combined demand pool, 0.5 million new N2/N3 trucks per year plus 0.5 million retrofit units, is drawn from third-party published estimates; the FY2032 volume target of 18,000 units represents a management assumption of 1.80% capture of that pool.",
+    "pills": [
+     {
+      "value": "Fleet operators + truck OEMs",
+      "label": "buyer"
+     },
+     {
+      "value": "Compliance-led",
+      "label": "purchase trigger"
+     },
+     {
+      "value": "Fleet direct + retrofit installers",
+      "label": "near-term channel"
+     },
+     {
+      "value": "OEM line-fit",
+      "label": "longer-term channel"
+     },
+     {
+      "value": "0.5M new N2/N3 trucks/yr",
+      "label": "new-vehicle pool"
+     },
+     {
+      "value": "0.5M retrofit units",
+      "label": "retrofit pool"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     21
+    ],
+    "headline": "One SKU accounts for 39.9% of group FY2032 revenue at 89% gross margin, the concentration is the portfolio's largest single bet.",
+    "narrative": "At a management projection of ₹450 Cr by FY2032, the AD2 kit is the largest line in the plan and the anchor of the group's demand floor. The 89% gross margin is a management projection, and the unit price is held flat across all plan years, so any margin expansion comes from replacing FPGA-era bill-of-materials costs with the owned 28 nm SoC2 die. Certification through ARAI or ICAT is the gate that converts regulatory demand into bookable orders; without it the OEM line-fit channel, which is the volume engine, cannot open.",
+    "pills": [
+     {
+      "value": "18,000 units",
+      "label": "FY2032 units (mgmt proj.)"
+     },
+     {
+      "value": "₹450 Cr",
+      "label": "FY2032 revenue (mgmt proj.)"
+     },
+     {
+      "value": "39.9% of group revenue",
+      "label": "portfolio share"
+     },
+     {
+      "value": "89% gross margin",
+      "label": "margin (mgmt proj.)"
+     },
+     {
+      "value": "ARAI or ICAT cert.",
+      "label": "primary volume gate"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      3,
+      80,
+      1400,
+      4000,
+      9000,
+      18000
+     ],
+     "revenue": [
+      0.07,
+      2,
+      35,
+      100,
+      225,
+      450
+     ]
+    }
+   },
+   {
+    "kind": "proof",
+    "title": "Proven in a simulator",
+    "slides": [
+     22,
+     23
+    ],
+    "headline": "The production perception stack runs against three road profiles in a live dynamics simulator, simulation, not a fielded deployment.",
+    "narrative": "D-DRIVE · ADAS Sim v2 runs the same perception stack across a market street, a single-carriageway highway and a deliberate stress-test scenario without reloading between them; the bird's-eye planner view redraws continuously from the fused object list, not from a scripted animation path. The vehicle plant model uses a 550 kg mass, 2.10 m wheelbase and tyre friction of μ 0.75, with steering angle and lateral acceleration solved rather than scripted. The perception rail names detected classes with live range, a motorbike and an auto-rickshaw, metres out, showing the decision layer a buyer is actually purchasing before any truck is fitted.",
+    "pills": [
+     {
+      "value": "D-DRIVE · ADAS Sim v2",
+      "label": "demonstrator"
+     },
+     {
+      "value": "3 road profiles, 1 stack",
+      "label": "scenario coverage"
+     },
+     {
+      "value": "550 kg mass",
+      "label": "plant model mass"
+     },
+     {
+      "value": "2.10 m wheelbase",
+      "label": "plant model wheelbase"
+     },
+     {
+      "value": "μ 0.75 tyre friction",
+      "label": "plant model friction"
+     },
+     {
+      "value": "Simulation, not fielded deployment",
+      "label": "evidence status"
+     }
+    ]
+   }
+  ],
+  "hash": "a87717ba5b16f3f3",
+  "model": "claude-sonnet-4-6"
+ },
+ "taas": {
+  "takeaways": [
+   "Autonomous TaaS generates the highest unit revenue in the portfolio at ₹66.00 L per vehicle, capturing an 89% operating gross margin instead of hardware margin.",
+   "The model converts the AD2 autonomy stack into contracted transport services billed per trip or per tonne on surveyed, fixed freight corridors.",
+   "Management projects ₹66.0 Cr in FY2032 revenue across 100 deployed vehicles, funded through asset finance debt rather than equity capital."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     64
+    ],
+    "headline": "A contracted transport service operating company-owned autonomous vehicles on fixed routes.",
+    "narrative": "Autonomous TaaS is a service model rather than a hardware sale, providing transport capacity on dedicated corridors where customers pay for freight movement rather than the vehicle. By owning and operating the fleet under multi-year contracts, the business captures ongoing operating margin rather than a one-time equipment margin. It delivers the portfolio's highest revenue per unit at ₹66.00 L by packaging the complete vehicle, autonomy stack, remote operations link, and route commissioning.",
+    "pills": [
+     {
+      "value": "₹66.00 L",
+      "label": "unit price"
+     },
+     {
+      "value": "Systems",
+      "label": "segment"
+     },
+     {
+      "value": "Outdoor",
+      "label": "operating domain"
+     },
+     {
+      "value": "FY2028",
+      "label": "first revenue"
+     },
+     {
+      "value": "Vehicle with AD2 sensor set",
+      "label": "component"
+     },
+     {
+      "value": "SoC2 autonomy stack",
+      "label": "component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     65
+    ],
+    "headline": "Identical AD2 autonomy silicon paired with fleet scheduling and remote intervention links.",
+    "narrative": "The vehicle relies on a pre-surveyed route model evaluated by SoC2 running the standard autonomy stack. Centralized fleet logic routes the truck and hands off control to a remote operations center whenever edge cases exceed onboard limits. The service is metered and billed per trip or per tonne, relying on asset financing against the trucks rather than equity capital alongside route-level regulatory permissions.",
+    "pills": [
+     {
+      "value": "Pre-surveyed route reading",
+      "label": "signal chain stage 1"
+     },
+     {
+      "value": "SoC2 autonomy execution",
+      "label": "signal chain stage 2"
+     },
+     {
+      "value": "Fleet scheduling and hand-off",
+      "label": "signal chain stage 3"
+     },
+     {
+      "value": "Trip or tonne billing",
+      "label": "signal chain stage 4"
+     },
+     {
+      "value": "Truck asset finance",
+      "label": "dependency"
+     },
+     {
+      "value": "Route regulatory permission",
+      "label": "dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     66
+    ],
+    "headline": "Logistics operators facing driver shortages on dedicated commercial corridors.",
+    "narrative": "Buyers are logistics operators managing repeatable freight lanes who need to lower cost per tonne-kilometre against conventional driver-operated alternatives. On many critical corridors, severe driver shortages make driver availability the primary constraint rather than direct labor cost. DeepGrid secures these operations through direct commercial contracts negotiated lane by lane, targeting 100 units by FY2032.",
+    "pills": [
+     {
+      "value": "Logistics operators",
+      "label": "buyer"
+     },
+     {
+      "value": "Direct commercial contracts",
+      "label": "channel"
+     },
+     {
+      "value": "Cost per tonne-km and driver availability",
+      "label": "trigger"
+     },
+     {
+      "value": "0.6-0.8M units/yr",
+      "label": "demand pool"
+     },
+     {
+      "value": "0.01%",
+      "label": "FY2032 capture rate"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     67
+    ],
+    "headline": "High-margin operational scale contributing ₹66.0 Cr by FY2032.",
+    "narrative": "Autonomous TaaS scales to ₹66.0 Cr in revenue by FY2032, representing 5.8% of group revenue while maintaining an 89% gross margin. While managing vehicle ownership introduces operational uptime obligations, it yields the highest revenue per vehicle across the portfolio. Deployment expansion requires securing non-dilutive truck asset financing and local corridor operating clearances.",
+    "pills": [
+     {
+      "value": "100 units",
+      "label": "FY2032 units (management projection)"
+     },
+     {
+      "value": "₹66.0 Cr",
+      "label": "FY2032 revenue (management projection)"
+     },
+     {
+      "value": "5.8%",
+      "label": "share of group"
+     },
+     {
+      "value": "89%",
+      "label": "gross margin"
+     },
+     {
+      "value": "₹66 lakh per vehicle",
+      "label": "revenue per unit"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      0,
+      5,
+      10,
+      25,
+      50,
+      100
+     ],
+     "revenue": [
+      0,
+      3.3,
+      6.6,
+      16.5,
+      33,
+      66
+     ]
+    }
+   }
+  ],
+  "hash": "ce91e6935794a4e2",
+  "model": "gemini-3.8-flash-high"
+ },
+ "ad0": {
+  "takeaways": [
+   "Management projects the AD0 Smart Mirror will generate ₹270 Cr in FY2032 revenue at an 89% gross margin, representing 23.9% of total group revenue across 54,000 units.",
+   "The product operates on current-generation SoC2 hardware and requires no regulatory mandate, tapping an existing $3.1B aftermarket demand pool for vehicle visibility and parking safety.",
+   "Carrying the lowest installation complexity and highest unit volume in the portfolio, AD0 establishes the distribution network and fitter reach that higher-complexity autonomy products will later leverage."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     8
+    ],
+    "headline": "AD0 Smart Mirror is an aftermarket surround-view safety system packaged into a replacement display mirror.",
+    "narrative": "The system combines a replacement rear-view mirror display, four exterior surround cameras, and a dedicated wiring loom designed for rapid aftermarket installation. Operating on current-generation SoC2 silicon, it serves as the portfolio's volume ramp without dependency on custom ASIC timelines. Its straightforward fitment establishes channel distribution ahead of more complex vehicle retrofits.",
+    "pills": [
+     {
+      "value": "₹50,000",
+      "label": "Unit price"
+     },
+     {
+      "value": "Systems",
+      "label": "Segment"
+     },
+     {
+      "value": "Outdoor",
+      "label": "Operating domain"
+     },
+     {
+      "value": "FY2027",
+      "label": "First revenue"
+     },
+     {
+      "value": "Four surround cameras",
+      "label": "Hardware component"
+     },
+     {
+      "value": "Mirror-format display head unit",
+      "label": "Hardware component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     9
+    ],
+    "headline": "Onboard perception silicon stitches four camera feeds into a unified 360-degree display with directional proximity warnings.",
+    "narrative": "Four exterior cameras monitor the vehicle's blind quarters and feed real-time video directly into the mirror-format head unit. DeepGrid's SoC2 silicon runs perception firmware that stitches these inputs into a 360-degree surround image while proximity logic flags hazards entering danger zones. The system informs the driver through an integrated display feed and directional audio alerts without intervening in steering or braking.",
+    "pills": [
+     {
+      "value": "Four blind-quarter cameras",
+      "label": "Signal chain step 1"
+     },
+     {
+      "value": "SoC2 360° image stitching",
+      "label": "Signal chain step 2"
+     },
+     {
+      "value": "Proximity and motion logic",
+      "label": "Signal chain step 3"
+     },
+     {
+      "value": "Directional alert and display",
+      "label": "Signal chain step 4"
+     },
+     {
+      "value": "Current-generation hardware",
+      "label": "Hardware architecture"
+     },
+     {
+      "value": "Distribution reach and ₹50k price",
+      "label": "Key dependencies"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     10
+    ],
+    "headline": "Vehicle owners and small commercial fleets buy the system for immediate visibility and parking protection without waiting for regulation.",
+    "narrative": "Because no mandate applies, adoption is driven entirely by consumer and fleet demand for blind-spot mitigation and parking ease. Sales flow through aftermarket accessory retailers, fitment workshops, and OEM accessory catalogues rather than protracted factory vehicle programs. Management models capturing 0.93% of the existing $3.1B global surround-view market by FY2032.",
+    "pills": [
+     {
+      "value": "Vehicle owners and small fleets",
+      "label": "Target buyer"
+     },
+     {
+      "value": "Aftermarket retail and OEM catalogues",
+      "label": "Distribution channel"
+     },
+     {
+      "value": "No mandate applies",
+      "label": "Regulatory trigger"
+     },
+     {
+      "value": "Visibility and parking safety",
+      "label": "Purchase driver"
+     },
+     {
+      "value": "$3.1B existing market",
+      "label": "Total demand pool"
+     },
+     {
+      "value": "0.93% at FY2032",
+      "label": "Management projected capture rate"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     11
+    ],
+    "headline": "AD0 provides high-margin commercial volume that seeds the installer and retail network for future autonomy products.",
+    "narrative": "Management projects AD0 to scale to ₹270 Cr in revenue by FY2032, delivering 23.9% of company turnover at an 89% gross margin. Its low fitment complexity and lack of ASIC gating allow rapid volume expansion across accessory retail channels. The commercial scale built by this unit creates the installer network required to deploy DeepGrid's subsequent road autonomy products.",
+    "pills": [
+     {
+      "value": "54,000 units in FY2032",
+      "label": "Management projected units"
+     },
+     {
+      "value": "₹270 Cr in FY2032",
+      "label": "Management projected revenue"
+     },
+     {
+      "value": "23.9%",
+      "label": "Management projected group share"
+     },
+     {
+      "value": "89%",
+      "label": "Management projected gross margin"
+     },
+     {
+      "value": "Volume ramp across portfolio",
+      "label": "Portfolio role"
+     },
+     {
+      "value": "Distribution reach and ₹50k price",
+      "label": "Commercial dependency"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      10,
+      2200,
+      8000,
+      18000,
+      34000,
+      54000
+     ],
+     "revenue": [
+      0.05,
+      11,
+      40,
+      90,
+      170,
+      270
+     ]
+    }
+   }
+  ],
+  "hash": "3ccfd4eca4b54acf",
+  "model": "gemini-3.8-flash-high"
+ },
+ "t100": {
+  "takeaways": [
+   "The T100 AI Licence is a zero-BOM software offering projected to deliver ₹50.0 Cr at 94% gross margin by FY2032, treated as strategic optionality without a separately sized demand pool.",
+   "Commercialization relies on licensing proprietary India-road perception models and runtime toolchains to OEMs deploying their own compute hardware and sensors.",
+   "First revenue begins in FY2029 and depends on establishing an operational track record and securing signed customer licences, neither of which is evidenced yet."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     59
+    ],
+    "headline": "A pure-software licence delivering trained India-road perception models and toolchains directly to third-party platforms.",
+    "narrative": "The T100 AI Licence delivers DeepGrid's trained perception models, runtime toolchain, and ongoing update stream without physical hardware. Priced per deployment at ₹100.00 L, it enables customers to run India-specific perception on their own hardware architectures. Management models ₹50 Cr on pure margin with no unit cost, treating the line as portfolio optionality rather than base case.",
+    "pills": [
+     {
+      "value": "₹100.00 L",
+      "label": "unit price"
+     },
+     {
+      "value": "Semiconductors",
+      "label": "segment"
+     },
+     {
+      "value": "Outdoor",
+      "label": "operating domain"
+     },
+     {
+      "value": "FY2029",
+      "label": "first revenue"
+     },
+     {
+      "value": "Trained India-road perception models",
+      "label": "component"
+     },
+     {
+      "value": "Toolchain and deployment runtime",
+      "label": "component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     60
+    ],
+    "headline": "Models execute perception inside the customer's runtime while running on their own sensors and hardware.",
+    "narrative": "Customers deploy their own compute platforms and sensor suites, using DeepGrid's models to handle the perception layer. The customer's system retains control over downstream decision and actuation pipelines, shipping finished vehicles under their own brand. Because the product delivers software without a physical board, it carries no bill of materials and prices entirely on value.",
+    "pills": [
+     {
+      "value": "Customer sensors and hardware",
+      "label": "input stage"
+     },
+     {
+      "value": "DeepGrid runtime perception",
+      "label": "compute stage"
+     },
+     {
+      "value": "Customer decision and action",
+      "label": "downstream stage"
+     },
+     {
+      "value": "Zero BOM",
+      "label": "hardware cost"
+     },
+     {
+      "value": "Defensible model advantage",
+      "label": "dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     61
+    ],
+    "headline": "Automotive OEMs and platform partners seeking localized India-road perception without multi-year data collection.",
+    "narrative": "The offering targets teams that need perception tuned for Indian traffic patterns, lane discipline, and lighting without spending years gathering local training datasets. Sales are negotiated directly per customer engagement to support custom platform integration. No separate demand pool is modelled for this line, leaving its adoption scheduled purely as management optionality.",
+    "pills": [
+     {
+      "value": "OEMs and platform partners",
+      "label": "buyer"
+     },
+     {
+      "value": "Direct licensing",
+      "label": "channel"
+     },
+     {
+      "value": "Bypassing local dataset collection",
+      "label": "trigger"
+     },
+     {
+      "value": "None separately sized",
+      "label": "demand pool"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     62
+    ],
+    "headline": "A 94% gross margin line scaling to ₹50.0 Cr in FY2032 to monetize proprietary dataset investments.",
+    "narrative": "Revenue commences in FY2029 following the establishment of an on-road perception track record, scaling from 2 units to 50 units by FY2032. The product contributes 4.4% of group revenue at a 94% gross margin, representing management projections without an underlying sized demand pool. Commercial delivery depends on converting model performance advantages into signed licensing agreements.",
+    "pills": [
+     {
+      "value": "50 units",
+      "label": "FY2032 units projection"
+     },
+     {
+      "value": "₹50.0 Cr",
+      "label": "FY2032 revenue projection"
+     },
+     {
+      "value": "4.4%",
+      "label": "share of group projection"
+     },
+     {
+      "value": "94%",
+      "label": "gross margin projection"
+     },
+     {
+      "value": "Portfolio optionality",
+      "label": "strategic role"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      0,
+      0,
+      2,
+      6,
+      18,
+      50
+     ],
+     "revenue": [
+      0,
+      0,
+      2,
+      6,
+      18,
+      50
+     ]
+    }
+   }
+  ],
+  "hash": "e48ffd7362189722",
+  "model": "gemini-3.8-flash-high"
+ },
+ "ad1": {
+  "takeaways": [
+   "AD1 deploys closed-loop Level-4 autonomy on SoC2 years before public-road legality by retrofitting existing indoor industrial fleets exempt from automotive homologation.",
+   "The kit generates ₹42.0 Cr at 89% gross margin by FY2032 as a management projection, acting as the live technical proof point for the road autonomy roadmap.",
+   "Commercial scaling is governed by field services throughput for site mapping and commissioning rather than silicon production constraints."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     12
+    ],
+    "headline": "A self-driving retrofit kit bringing closed-loop Level-4 autonomy to existing indoor utility vehicles.",
+    "narrative": "AD1 converts existing forklifts and tugs into autonomous systems that never leave private industrial buildings. The retrofit package combines camera and depth sensing, an SoC2 compute box, and a drive-by-wire actuation interface at a unit price of ₹1.00 L. It allows DeepGrid to ship operational Level-4 behaviour years before public-road legality using the exact silicon architecture planned for automotive deployment.",
+    "pills": [
+     {
+      "value": "₹1.00 L",
+      "label": "Unit price"
+     },
+     {
+      "value": "Systems",
+      "label": "Segment"
+     },
+     {
+      "value": "Indoor",
+      "label": "Operating domain"
+     },
+     {
+      "value": "FY2028",
+      "label": "First revenue"
+     },
+     {
+      "value": "Camera and depth sensing head",
+      "label": "Sensor component"
+     },
+     {
+      "value": "Drive-by-wire interface",
+      "label": "Actuation component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     13
+    ],
+    "headline": "A closed-loop signal chain executes sensing, onboard compute, planning, and drive-by-wire actuation.",
+    "narrative": "Depth sensing and cameras fuse into a single bird's-eye occupancy view, monitoring aisles, cargo, and pedestrians. The SoC2 compute box localises the vehicle against an onboard site map, while an integrated planner establishes paths and speeds up to 1.5 m/s within a moving safety zone. The drive-by-wire interface executes direct steer, throttle, and brake commands, operating the vehicle entirely without a driver.",
+    "pills": [
+     {
+      "value": "24 m at 5 Hz",
+      "label": "LiDAR specification"
+     },
+     {
+      "value": "57°",
+      "label": "Camera field of view"
+     },
+     {
+      "value": "Up to 1.5 m/s",
+      "label": "Closed-loop speed"
+     },
+     {
+      "value": "Closed-loop steer, throttle, brake",
+      "label": "Drive-by-wire actuation"
+     },
+     {
+      "value": "Site mapping and commissioning",
+      "label": "Operational dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     14
+    ],
+    "headline": "Warehouse and industrial operators deploy indoor autonomy under purely commercial procurement decisions.",
+    "narrative": "Because private industrial sites operate outside automotive homologation frameworks, fleet automation remains an immediate commercial decision rather than a regulatory process. DeepGrid reaches site operators automating repetitive internal movements both directly and via material-handling integrators. The deployment addresses the warehouse and industrial autonomy segment within the broader $4.8B edge-AI market.",
+    "pills": [
+     {
+      "value": "Warehouse and industrial operators",
+      "label": "Target buyer"
+     },
+     {
+      "value": "Direct and handling integrators",
+      "label": "Distribution channel"
+     },
+     {
+      "value": "Exempt from homologation",
+      "label": "Commercial trigger"
+     },
+     {
+      "value": "$4.8B edge-AI pool",
+      "label": "Market demand pool"
+     },
+     {
+      "value": "4,200 units (management projection)",
+      "label": "FY2032 volume"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     15
+    ],
+    "headline": "AD1 delivers high-margin systems revenue while validating the silicon roadmap for public-road autonomy.",
+    "narrative": "AD1 scales to ₹42.0 Cr in FY2032, representing 3.7% of group revenue at an 89% gross margin under management projections. While modest in top-line share, it validates the production perception stack and decision layer on SoC2 in an environment where closed-loop control is legally viable today. Growth is gated by services capacity for site mapping and commissioning rather than silicon supply.",
+    "pills": [
+     {
+      "value": "4,200 units (management projection)",
+      "label": "FY2032 volume"
+     },
+     {
+      "value": "₹42.0 Cr (management projection)",
+      "label": "FY2032 revenue"
+     },
+     {
+      "value": "3.7% (management projection)",
+      "label": "Share of group"
+     },
+     {
+      "value": "89% (management projection)",
+      "label": "Gross margin"
+     },
+     {
+      "value": "Road roadmap proof point",
+      "label": "Portfolio role"
+     },
+     {
+      "value": "Services capacity throughput",
+      "label": "Scaling dependency"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      0,
+      20,
+      400,
+      1000,
+      2200,
+      4200
+     ],
+     "revenue": [
+      0,
+      0.2,
+      4,
+      10,
+      22,
+      42
+     ]
+    }
+   },
+   {
+    "kind": "proof",
+    "title": "Proven in a simulator",
+    "slides": [
+     16,
+     17
+    ],
+    "headline": "A warehouse simulator validates the production perception stack and real-world hazard resolution.",
+    "narrative": "DeepGrid evaluated the decision stack across dark-store scenarios encompassing inbound put-away, pick runs, and dense peak-hour floor operations. The planner resolves obstacles including workers, peer automated guided vehicles, trolleys, and spills, using configurable graded alerts ranging from honks to silent operation. When routes are blocked, an explicit stuck-time threshold triggers automatic rerouting in simulation, not a fielded deployment.",
+    "pills": [
+     {
+      "value": "Simulation, not a fielded deployment",
+      "label": "Validation status"
+     },
+     {
+      "value": "AMR Forklift Dark-Store Sim",
+      "label": "Demonstrator platform"
+     },
+     {
+      "value": "Put-away, pick, peak floor",
+      "label": "Simulated scenarios"
+     },
+     {
+      "value": "Configurable honk, voice, silent",
+      "label": "Alert policy"
+     },
+     {
+      "value": "Auto-reroute on stuck-time",
+      "label": "Deadlock recovery"
+     }
+    ]
+   }
+  ],
+  "hash": "76d8fadf172787ca",
+  "model": "gemini-3.8-flash-high"
+ },
+ "a100-2": {
+  "takeaways": [
+   "At ₹1.60 L and 89% gross margin, the A100 2ch is the volume centre of the compute line, with management projecting ₹28.8 Cr revenue at 1,800 units by FY2032.",
+   "Two channels is the first configuration where cross-view fusion demands purpose-built transformer hardware, giving the SoC2 a defensible technical justification over general-purpose processors.",
+   "All FY2028 revenue is gated by the SoC2 tapeout, and the 1,800-unit FY2032 target rests on a 0.20% capture of a third-party market estimate, with capture rates as management assumptions."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     51
+    ],
+    "headline": "A dual-channel compute board with SDK, priced at ₹1.60 L and aimed at the volume centre of the compute line.",
+    "narrative": "The A100 Compute Box 2ch is a board-level module combining two camera inputs, a single SoC2 die, camera input harnessing, and the SDK and model toolchain in one self-contained unit. It sits at ₹1.60 L, roughly double the single-channel entry SKU for twice the channels, and is positioned as the highest-volume product in DeepGrid's compute-box ladder. First revenue is expected in FY2028, the year the SoC2 ASIC era begins across the portfolio.",
+    "pills": [
+     {
+      "value": "₹1.60 L",
+      "label": "Unit price"
+     },
+     {
+      "value": "Systems",
+      "label": "Segment"
+     },
+     {
+      "value": "Compute",
+      "label": "Operating domain"
+     },
+     {
+      "value": "FY2028",
+      "label": "First revenue"
+     },
+     {
+      "value": "Two-channel SoC2 board",
+      "label": "Component 1"
+     },
+     {
+      "value": "Camera input harnessing",
+      "label": "Component 2"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     52
+    ],
+    "headline": "Two streams processed in parallel on one SoC2 produce a fused object list, the first configuration that justifies purpose-built transformer hardware.",
+    "narrative": "The signal chain follows DeepGrid's four-stage pattern: two cameras cover either a wider combined field or a stereo pair, the board runs perception on both streams simultaneously on a single SoC2, a fused output is returned to the customer's host application, and that application acts on it. Two channels is the threshold at which reconciling two views of the same scene into one object list becomes necessary, making the hardware transformer path built into the SoC2 the right tool rather than a general-purpose processor. The board shares the same toolchain and SDK as the single-channel entry SKU, so no additional certification path is required.",
+    "pills": [
+     {
+      "value": "Two cameras, wider field or stereo",
+      "label": "Stage 1: Sense"
+     },
+     {
+      "value": "Both streams on one SoC2",
+      "label": "Stage 2: Compute"
+     },
+     {
+      "value": "Fused output to host app",
+      "label": "Stage 3: Decide"
+     },
+     {
+      "value": "Customer system acts",
+      "label": "Stage 4: Act"
+     },
+     {
+      "value": "Hardware transformer path",
+      "label": "Silicon approach"
+     },
+     {
+      "value": "Same toolchain as entry SKU",
+      "label": "Certification dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     53
+    ],
+    "headline": "Integrators who need more than one camera view but not a full surround system, reached direct and through electronics distribution.",
+    "narrative": "The buyer is a systems integrator building multi-camera perception, reversing with side detection, a two-camera inspection rig, a compact autonomous platform, who would find a four-channel surround card wasteful and a single-channel module insufficient. DeepGrid reaches them directly and through electronics distribution, avoiding the installation and warranty logistics that compress margins on system-level products. The addressed pool is the automotive edge-AI accelerator modules market, sized at $4.8B in 2025 and projected by Dataintelo at $22.6B by 2034 at a 21% CAGR; the FY2032 volume of 1,800 units represents a 0.20% capture rate, which is a management assumption against that third-party estimate.",
+    "pills": [
+     {
+      "value": "Integrators, multi-camera perception",
+      "label": "Buyer"
+     },
+     {
+      "value": "Direct & electronics distribution",
+      "label": "Channel"
+     },
+     {
+      "value": "More than one view needed",
+      "label": "Purchase trigger"
+     },
+     {
+      "value": "$4.8B (2025)",
+      "label": "Market pool size"
+     },
+     {
+      "value": "$22.6B by 2034, 21% CAGR",
+      "label": "Pool growth (Dataintelo)"
+     },
+     {
+      "value": "0.20% at FY2032",
+      "label": "Capture rate (mgmt proj.)"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     54
+    ],
+    "headline": "Management projects ₹28.8 Cr at 89% gross margin by FY2032, contributing 2.5% of group revenue as the volume centre of the compute ladder.",
+    "narrative": "At 1,800 units and ₹28.8 Cr in FY2032, the A100 2ch is a mid-tier group contributor rather than a standalone destination; its strategic role is to let one SoC2 die address multiple price points across the compute-box line simultaneously. The 89% gross margin is consistent with the broader silicon-and-compute segment, and the shared toolchain with the single-channel SKU keeps the incremental cost of this rung low. The revenue ramp doubles each year from FY2028 through FY2031 before reaching the plan target, all figures being management projections.",
+    "pills": [
+     {
+      "value": "1,800 units",
+      "label": "FY2032 units (mgmt proj.)"
+     },
+     {
+      "value": "₹28.8 Cr",
+      "label": "FY2032 revenue (mgmt proj.)"
+     },
+     {
+      "value": "2.5% of group",
+      "label": "Revenue share (mgmt proj.)"
+     },
+     {
+      "value": "89%",
+      "label": "Gross margin (mgmt proj.)"
+     },
+     {
+      "value": "Volume centre, compute line",
+      "label": "Portfolio role"
+     },
+     {
+      "value": "No added certification path",
+      "label": "Toolchain dependency"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      0,
+      113,
+      225,
+      450,
+      900,
+      1800
+     ],
+     "revenue": [
+      0,
+      1.81,
+      3.6,
+      7.2,
+      14.4,
+      28.8
+     ]
+    }
+   }
+  ],
+  "hash": "de00d6cb6bacaf94",
+  "model": "claude-sonnet-4-6"
+ },
+ "a100-1": {
+  "takeaways": [
+   "At ₹85,000 and 89% gross margin, the A100 Compute Box 1ch M.2 is the lowest-friction, lowest-cost entry point into DeepGrid's SoC2 platform, designed to convert integrators who cannot design around a bare die into paying customers.",
+   "Management projects ₹25.5 Cr in FY2032 revenue at 89% gross margin from 3,000 units, representing 0.20% capture of a $4.8B (2025) addressable pool, these are management assumptions against third-party pool estimates.",
+   "Every unit depends on the SoC2 tapeout completing on schedule; first revenue is FY2028, and the module shares this single gate with all other FY2028 SKUs across the portfolio."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     47
+    ],
+    "headline": "The A100 Compute Box 1ch M.2 is an M.2 module carrying the SoC2 die, the cheapest way to adopt DeepGrid perception without designing a board around bare silicon.",
+    "narrative": "Priced at ₹85,000, the module packages the same SoC2 die used across the portfolio into an M.2 form factor that drops into a customer's existing carrier board. It ships with an SDK and model toolchain and reference carrier documentation, so an integrator can complete a design-in without hardware engineering support from DeepGrid. It sits at the widest top of the compute funnel: the entry point for customers who want the platform but not the board-design commitment.",
+    "pills": [
+     {
+      "value": "₹85,000",
+      "label": "Unit price"
+     },
+     {
+      "value": "Systems",
+      "label": "Segment"
+     },
+     {
+      "value": "Compute",
+      "label": "Operating domain"
+     },
+     {
+      "value": "FY2028",
+      "label": "First revenue"
+     },
+     {
+      "value": "M.2 SoC2 module",
+      "label": "Component 1"
+     },
+     {
+      "value": "SDK & model toolchain",
+      "label": "Component 2"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     48
+    ],
+    "headline": "One camera in, one perception stream out, the SoC2 runs the customer's model on the M.2 module and returns results over a standard bus interface.",
+    "narrative": "The signal chain has four stages: one camera feeds the customer's carrier board; the M.2 module runs the customer's model on the SoC2; results return over the bus to their application; and their product acts on the output. Because the customer already owns the enclosure and the sensor, the integration surface is narrow, the M.2 interface and the software toolchain. That self-serve model makes toolchain quality and documentation the primary technical dependency, not hands-on hardware support from DeepGrid.",
+    "pills": [
+     {
+      "value": "One camera channel",
+      "label": "Input"
+     },
+     {
+      "value": "SoC2 on M.2",
+      "label": "Compute element"
+     },
+     {
+      "value": "Standard bus interface",
+      "label": "Output path"
+     },
+     {
+      "value": "Customer's carrier board",
+      "label": "Host hardware"
+     },
+     {
+      "value": "Toolchain & documentation",
+      "label": "Key dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     49
+    ],
+    "headline": "Integrators prototyping or building single-camera products buy this module to access the SoC2 platform without forming a hardware team.",
+    "narrative": "The target buyer is a product team that wants the silicon and toolchain but cannot justify designing a board around a bare die, the module converts what would otherwise be a semiconductor sale into a self-serve design-in. The channel is direct and through electronics distribution. The ADAS mandate creates near-term demand pull among Tier-1 integrators seeking perception-capable compute for existing enclosures.",
+    "pills": [
+     {
+      "value": "Integrators & prototypers",
+      "label": "Buyer"
+     },
+     {
+      "value": "Direct & distribution",
+      "label": "Channel"
+     },
+     {
+      "value": "No board-design team",
+      "label": "Purchase trigger"
+     },
+     {
+      "value": "$4.8B (2025)",
+      "label": "Pool size (3rd party)"
+     },
+     {
+      "value": "0.20% at FY2032",
+      "label": "Capture rate (mgmt. proj.)"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     50
+    ],
+    "headline": "At ₹25.5 Cr and 89% gross margin by FY2032, the module is a modest but high-margin funnel entry that pulls customers toward higher-channel SKUs.",
+    "narrative": "Management projects 3,000 units in FY2032 generating ₹25.5 Cr, equal to 2.3% of group revenue, at an 89% gross margin, these are management projections. Its portfolio role is explicit: the lowest-cost adoption path, designed to bring in customers who would not buy at all without a module option, and to migrate them toward higher-value SKUs over time. The critical gate shared with all FY2028 SKUs is the SoC2 tapeout; no silicon means no module and no first revenue.",
+    "pills": [
+     {
+      "value": "3,000 units",
+      "label": "FY2032 units (mgmt. proj.)"
+     },
+     {
+      "value": "₹25.5 Cr",
+      "label": "FY2032 revenue (mgmt. proj.)"
+     },
+     {
+      "value": "2.3% of group",
+      "label": "Revenue share (mgmt. proj.)"
+     },
+     {
+      "value": "89%",
+      "label": "Gross margin (mgmt. proj.)"
+     },
+     {
+      "value": "SoC2 tapeout",
+      "label": "Gating dependency"
+     },
+     {
+      "value": "Funnel entry point",
+      "label": "Portfolio role"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      0,
+      188,
+      375,
+      750,
+      1500,
+      3000
+     ],
+     "revenue": [
+      0,
+      1.6,
+      3.19,
+      6.38,
+      12.75,
+      25.5
+     ]
+    }
+   }
+  ],
+  "hash": "296d37082715e07f",
+  "model": "claude-sonnet-4-6"
+ },
+ "agv": {
+  "takeaways": [
+   "Backed by external proof from a live order at Vizag Container Terminal, Seaport AGV sells at ₹45.30 L per unit at an 89% gross margin.",
+   "Dynamic fusion on SoC2 holds 7 cm accuracy in the open and 22 cm under quay cranes where satellite positioning falls away, enabling crane-synchronised dispatch.",
+   "Management projects ₹22.6 Cr in FY2032 revenue across 50 units, capturing an assumed 0.02% of the automated container terminal market pool."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     68
+    ],
+    "headline": "An autonomous container-yard vehicle operating inside a port perimeter.",
+    "narrative": "The vehicle platform automates container movement between quay cranes and yard stacks across controlled terminal sites. Operating amid tight lanes and heavy overhead equipment, the system integrates surround sensing, SoC2 compute, and terminal software to prevent positioning errors. The product establishes external proof through a live order at Vizag Container Terminal.",
+    "pills": [
+     {
+      "value": "₹45.30 L",
+      "label": "Unit price"
+     },
+     {
+      "value": "Systems",
+      "label": "Segment"
+     },
+     {
+      "value": "Indoor",
+      "label": "Operating domain"
+     },
+     {
+      "value": "FY2028",
+      "label": "First revenue"
+     },
+     {
+      "value": "Vehicle platform with surround sensing",
+      "label": "Component"
+     },
+     {
+      "value": "SoC2 compute and autonomy stack",
+      "label": "Component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     69
+    ],
+    "headline": "Dynamic fusion on SoC2 holds 7 cm in the open and 22 cm under the crane.",
+    "narrative": "Surround sensing reads containers, cranes, lanes, and people in the yard, feeding raw data to SoC2 to localise against the yard map and track moving obstacles. Under quay cranes where satellite positioning degrades and RTK-GNSS alone falls away, dynamic fusion maintains positioning accuracy to enable crane-synchronised dispatch. Delivery depends on bespoke terminal integration work and berth-level commissioning.",
+    "pills": [
+     {
+      "value": "7 cm",
+      "label": "In the open"
+     },
+     {
+      "value": "22 cm",
+      "label": "Under the crane"
+     },
+     {
+      "value": "SoC2",
+      "label": "Autonomy compute"
+     },
+     {
+      "value": "Terminal integration work",
+      "label": "Product dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     70
+    ],
+    "headline": "Port and terminal operators adopt automation to improve throughput and labour cost.",
+    "narrative": "Inside controlled, geofenced sites, customer adoption is driven by operational confidence rather than public-road homologation. DeepGrid sells directly to terminal operators, typically deploying into a pilot berth first before expanding across the terminal. Management projects 50 units at FY2032, capturing an assumed 0.02% of the $10.95B automated container terminal market pool.",
+    "pills": [
+     {
+      "value": "Port and terminal operators",
+      "label": "The buyer"
+     },
+     {
+      "value": "Direct to terminal operators",
+      "label": "The channel"
+     },
+     {
+      "value": "Throughput and labour cost",
+      "label": "Demand trigger"
+     },
+     {
+      "value": "$10.95B",
+      "label": "Market pool 2024"
+     },
+     {
+      "value": "0.02%",
+      "label": "FY2032 capture rate"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     71
+    ],
+    "headline": "Seaport AGV reaches ₹22.6 Cr at FY2032, representing 2.0% of group revenue at an 89% gross margin.",
+    "narrative": "Priced at ₹45.3 lakh each, Seaport AGV generates material revenue on low unit volume across the portfolio. Management projections scale shipments to 50 units by FY2032, backed by concrete external proof from a live order at Vizag Container Terminal. Revenue growth depends on berth-level commissioning and yard-management system integration.",
+    "pills": [
+     {
+      "value": "₹22.6 Cr",
+      "label": "FY2032 revenue (management projection)"
+     },
+     {
+      "value": "50 units",
+      "label": "FY2032 units (management projection)"
+     },
+     {
+      "value": "2.0%",
+      "label": "Share of group"
+     },
+     {
+      "value": "89%",
+      "label": "Gross margin"
+     },
+     {
+      "value": "Vizag Container Terminal",
+      "label": "Live order proof"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      0,
+      2,
+      5,
+      10,
+      15,
+      50
+     ],
+     "revenue": [
+      0,
+      0.91,
+      2.27,
+      4.53,
+      6.79,
+      22.65
+     ]
+    }
+   },
+   {
+    "kind": "proof",
+    "title": "Proven in a simulator",
+    "slides": [
+     72,
+     73
+    ],
+    "headline": "A working terminal twin proves positioning, routing, and scheduling in simulation.",
+    "narrative": "In a simulation, not a fielded deployment, DGrid Yard OS demonstrates that dynamic fusion holds vehicle tracking as satellite signals fall away inside container canyons. The simulator runs congestion-aware routing in mixed traffic and uses predictive ETA dispatch to collapse crane idle time. The platform operates in shadow mode alongside the existing terminal system before receiving operational control.",
+    "pills": [
+     {
+      "value": "DGrid Yard OS",
+      "label": "Live terminal twin"
+     },
+     {
+      "value": "Simulation, not a fielded deployment",
+      "label": "Proof status"
+     },
+     {
+      "value": "9 percent",
+      "label": "Arrival time error"
+     },
+     {
+      "value": "Shadow mode first",
+      "label": "Adoption path"
+     }
+    ]
+   }
+  ],
+  "hash": "ae81148ebaa5bf4e",
+  "model": "gemini-3.8-flash-high"
+ },
+ "thermal": {
+  "takeaways": [
+   "Management projects the Thermal Camera Pod to generate ₹16.0 Cr in FY2032 revenue across 3,200 units, representing a 1.4% group revenue share at a 50% gross margin.",
+   "Positioned as an aftermarket capability attach priced at ₹50,000, the pod feeds the SoC2 compute box to sustain detection when optical cameras fail in night, monsoon, dust, or smoke.",
+   "The product functions as a portfolio defense rather than a core margin driver, carrying its primary operational risk in imported thermal sensor supply."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     75
+    ],
+    "headline": "A bolt-on long-wave infrared sensor pod that feeds existing compute boxes to resolve zero-visibility conditions.",
+    "narrative": "The Thermal Camera Pod packages a long-wave infrared sensor, a dedicated lens, and an integrated heater inside a weatherised outdoor housing. Designed as an aftermarket capability upgrade priced at ₹50,000, the module connects directly via harness into the SoC2 compute box. It closes severe operating gaps where primary optical sensors degrade, with first revenue scheduled for FY2027.",
+    "pills": [
+     {
+      "value": "₹50,000",
+      "label": "Unit price"
+     },
+     {
+      "value": "Sensors",
+      "label": "Segment"
+     },
+     {
+      "value": "Outdoor",
+      "label": "Operating domain"
+     },
+     {
+      "value": "FY2027",
+      "label": "First revenue"
+     },
+     {
+      "value": "LWIR sensor and lens",
+      "label": "Hardware component"
+     },
+     {
+      "value": "Weatherised housing, lens heater",
+      "label": "Hardware component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     76
+    ],
+    "headline": "Emitted heat detection allows SoC2 to classify vulnerable road users and merge detections into the primary object list.",
+    "narrative": "The LWIR sensor reads emitted heat rather than reflected light, making pedestrians and animals stand out against cold road surfaces through unlit conditions, glare, dust, and smoke. The SoC2 processor executes detection on the thermal stream, classifies obstacles away from roadside clutter, and routes them into the common object list alongside optical feeds. Thermal sensor supply is imported, representing the primary bill-of-materials risk in the sensor group.",
+    "pills": [
+     {
+      "value": "Emitted heat detection",
+      "label": "Sensing principle"
+     },
+     {
+      "value": "SoC2 thermal detection",
+      "label": "Compute processing"
+     },
+     {
+      "value": "People and animal classification",
+      "label": "Classification stage"
+     },
+     {
+      "value": "Common object list",
+      "label": "Data fusion"
+     },
+     {
+      "value": "Imported thermal sensor supply",
+      "label": "Primary supply dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     77
+    ],
+    "headline": "Commercial vehicle fleets attach thermal pods as aftermarket upgrades for night and monsoon haulage.",
+    "narrative": "Purchasing is driven by fleets running high-risk night and monsoon operations where camera-only perception degrades sharply. DeepGrid distributes the pod through aftermarket channels, offering it as an add-on attach alongside AD0 and AD2 retrofits at the same fitment. Management assumes 0.10% capture of the $1.68B global automotive thermal camera market by FY2032.",
+    "pills": [
+     {
+      "value": "Fleets upgrading existing vehicles",
+      "label": "Target buyer"
+     },
+     {
+      "value": "Attach alongside AD0/AD2",
+      "label": "Sales model"
+     },
+     {
+      "value": "Aftermarket",
+      "label": "Distribution channel"
+     },
+     {
+      "value": "Night and monsoon operation",
+      "label": "Adoption trigger"
+     },
+     {
+      "value": "$1.68B global (2025)",
+      "label": "Demand pool"
+     },
+     {
+      "value": "0.10% (management projection)",
+      "label": "FY2032 pool capture"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     78
+    ],
+    "headline": "A 50% gross margin capability line designed to harden the broader system rather than drive group margins.",
+    "narrative": "Management projects the Thermal Camera Pod to generate ₹16.0 Cr in FY2032 from 3,200 annual units, representing 1.4% of total group turnover. The unit operates at a 50% gross margin, below corporate average, reflecting substantial physical sensor component costs. Its strategic role is to eliminate edge-case failure modes for higher-tier systems, with volume expansion governed by imported sensor supply.",
+    "pills": [
+     {
+      "value": "₹16.0 Cr (management projection)",
+      "label": "FY2032 revenue"
+     },
+     {
+      "value": "3,200 units (management projection)",
+      "label": "FY2032 volume"
+     },
+     {
+      "value": "1.4% (management projection)",
+      "label": "Group revenue share"
+     },
+     {
+      "value": "50% (management projection)",
+      "label": "Gross margin"
+     },
+     {
+      "value": "Capability line, not profit",
+      "label": "Portfolio role"
+     },
+     {
+      "value": "Imported thermal sensor supply",
+      "label": "Critical dependency"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      40,
+      150,
+      400,
+      900,
+      1800,
+      3200
+     ],
+     "revenue": [
+      0.2,
+      0.75,
+      2,
+      4.5,
+      9,
+      16
+     ]
+    }
+   }
+  ],
+  "hash": "9b6c6378d1ea6b8a",
+  "model": "gemini-3.8-flash-high"
+ },
+ "h100": {
+  "takeaways": [
+   "The H100 Driver Monitor offers a non-optical, wearable alternative to in-cabin video surveillance for commercial fleets complying with driver drowsiness mandates.",
+   "Priced at ₹5,000 as DeepGrid's lowest-cost hardware SKU, it serves as a direct fleet acquisition channel projected to deliver ₹10.0 Cr at a 50% gross margin in FY2032.",
+   "Commercial success depends on fleet operational discipline and driver adoption rather than core perception silicon development."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     83
+    ],
+    "headline": "A wrist-worn driver monitoring band delivering physiological fatigue tracking without cabin cameras.",
+    "narrative": "The H100 driver monitor integrates on-body photoplethysmography and motion sensing with a direct radio connection to the vehicle alert network. It enables fleet operators to satisfy mandatory drowsiness monitoring requirements without installing intrusive video cameras pointed at drivers. At a unit price of ₹5,000, it functions primarily as an accessible entry point to build direct commercial fleet relationships.",
+    "pills": [
+     {
+      "value": "₹5,000",
+      "label": "Unit price"
+     },
+     {
+      "value": "Sensors",
+      "label": "Segment"
+     },
+     {
+      "value": "Outdoor",
+      "label": "Operating domain"
+     },
+     {
+      "value": "FY2027",
+      "label": "First revenue"
+     },
+     {
+      "value": "PPG and motion sensing band",
+      "label": "Hardware component"
+     },
+     {
+      "value": "On-device fatigue model",
+      "label": "Software component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     84
+    ],
+    "headline": "An on-device bio-signal processing chain scores driver fatigue locally on shared SoC2 silicon.",
+    "narrative": "The band continuously captures pulse and movement, using an edge fatigue algorithm to score alertness locally without transmitting raw physiological data. When measured fatigue crosses a safety threshold, the device interfaces with the vehicle alert system to warn the operator and flag dispatch. By evaluating driver physiology directly, the system flags fatigue before lane departure occurs, relying on enrolment discipline rather than complex vehicle retrofit.",
+    "pills": [
+     {
+      "value": "Continuous pulse and motion sensing",
+      "label": "Signal chain stage 1"
+     },
+     {
+      "value": "On-device alertness scoring",
+      "label": "Signal chain stage 2"
+     },
+     {
+      "value": "Drowsiness threshold crossing",
+      "label": "Signal chain stage 3"
+     },
+     {
+      "value": "Vehicle alert and fleet notice",
+      "label": "Signal chain stage 4"
+     },
+     {
+      "value": "Shared SoC2 perception silicon",
+      "label": "Compute platform"
+     },
+     {
+      "value": "Driver acceptance and enrolment discipline",
+      "label": "Operational dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     85
+    ],
+    "headline": "Commercial transport operators adopt wearable monitoring to meet safety mandates without driver friction.",
+    "narrative": "Fleets must address driver drowsiness mandates, including AIS-184 under the ADAS mandate and international standards like EU Reg 2021/267. Transport operators frequently select the wearable band over cabin-mounted optical systems to bypass driver pushback regarding continuous video recording. DeepGrid sells directly to fleets, using the low-cost hardware purchase as an initial gateway into wider account relationships.",
+    "pills": [
+     {
+      "value": "Fleets avoiding cabin cameras",
+      "label": "Target buyer"
+     },
+     {
+      "value": "Fleet direct",
+      "label": "Distribution channel"
+     },
+     {
+      "value": "Driver-drowsiness obligations",
+      "label": "Purchase trigger"
+     },
+     {
+      "value": "AIS-184 and EU Reg 2021/267",
+      "label": "Regulatory standard"
+     },
+     {
+      "value": "20,000 units",
+      "label": "FY2032 volume projection"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     86
+    ],
+    "headline": "A strategic channel SKU that opens commercial fleet accounts at 50% gross margin.",
+    "narrative": "Management projects the H100 to scale to 20,000 units and generate ₹10.0 Cr in FY2032, accounting for 0.9% of group revenue at a 50% gross margin. Designed as a channel line rather than a high-volume profit driver, it secures account penetration with transport operators for higher-tier compliance and software services. The product provides a direct commercial hedge for fleets unable or unwilling to deploy cabin-facing vision sensors.",
+    "pills": [
+     {
+      "value": "20,000 units",
+      "label": "FY2032 units (management projection)"
+     },
+     {
+      "value": "₹10.0 Cr",
+      "label": "FY2032 revenue (management projection)"
+     },
+     {
+      "value": "0.9%",
+      "label": "Group share (management projection)"
+     },
+     {
+      "value": "50%",
+      "label": "Gross margin"
+     },
+     {
+      "value": "Channel line for fleet entry",
+      "label": "Portfolio role"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      200,
+      800,
+      2200,
+      5000,
+      11000,
+      20000
+     ],
+     "revenue": [
+      0.1,
+      0.4,
+      1.1,
+      2.5,
+      5.5,
+      10
+     ]
+    }
+   }
+  ],
+  "hash": "3f2dfa2084304021",
+  "model": "gemini-3.8-flash-high"
+ },
+ "radar": {
+  "takeaways": [
+   "By delivering direct physical measurement of closing speed through rain, dust, and glare, the pod provides the defensible inputs required for automated braking decisions where camera-only setups degrade.",
+   "Projected at ₹7.50 Cr by FY2032 (3,000 units, 0.7% of group revenue), the pod functions primarily to complete the surround-sensing architecture for flagship compute systems rather than as an independent volume driver."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     79
+    ],
+    "headline": "A sealed, all-weather radar pod built to feed the central compute box.",
+    "narrative": "The 4D Radar Pod is a weatherproof unit mounted forward or on vehicle corners to provide dependable spatial data under environmental extremes. Priced at ₹25,000, it packages an imaging front end with DeepGrid's native radar processing inside an automotive-grade housing. It monetizes silicon capabilities already engineered into the die without incurring standalone tapeout development costs.",
+    "pills": [
+     {
+      "value": "₹25,000",
+      "label": "Unit price"
+     },
+     {
+      "value": "Sensors",
+      "label": "Segment"
+     },
+     {
+      "value": "Outdoor",
+      "label": "Operating domain"
+     },
+     {
+      "value": "FY2027",
+      "label": "First revenue"
+     },
+     {
+      "value": "4D imaging radar front end",
+      "label": "Component"
+     },
+     {
+      "value": "R100 radar DSP processing",
+      "label": "Component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     80
+    ],
+    "headline": "Hardware-level tracking directly measures closing speed in adverse operating conditions.",
+    "narrative": "The pod illuminates the scene and processes raw returns through the on-die R100 block into range, velocity, and elevation. Persistent tracks are maintained across frames through dense dust, heavy rain, and harsh glare where vision sensors fail. These tracks fuse with the camera object list to supply the definitive closing speed required for emergency braking actions.",
+    "pills": [
+     {
+      "value": "Range, velocity, elevation",
+      "label": "Calculated outputs"
+     },
+     {
+      "value": "Measured closing speed",
+      "label": "Decisive metric"
+     },
+     {
+      "value": "Rain, dust, glare resilience",
+      "label": "Operating advantage"
+     },
+     {
+      "value": "Front-end supply qualification",
+      "label": "Key dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     81
+    ],
+    "headline": "Fleets and integrators upgrading camera-only fitments for defensible safety records.",
+    "narrative": "Commercial fleet operators and retrofit integrators purchase the pod to resolve critical camera blind spots created by weather, road spray, and dust. A measured radar closing speed withstands post-incident scrutiny where camera-estimated distances cannot. The offering addresses a $2.75B global market pool, requiring negligible market capture to fulfill its production plan.",
+    "pills": [
+     {
+      "value": "Fleets and integrators",
+      "label": "Target buyer"
+     },
+     {
+      "value": "Aftermarket and integrator supply",
+      "label": "Channel"
+     },
+     {
+      "value": "Camera degradation in weather",
+      "label": "Adoption trigger"
+     },
+     {
+      "value": "$2.75B global (2025)",
+      "label": "Demand pool"
+     },
+     {
+      "value": "0.03% at FY2032",
+      "label": "Management capture projection"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     82
+    ],
+    "headline": "A high-margin sensor complement designed to unlock complete compute-suite deployments.",
+    "narrative": "Generating a projected ₹7.50 Cr at 3,000 units by FY2032, the radar pod accounts for 0.7% of group revenue at a 50% gross margin. It exists because the flagship compute platform requires surround sensing, and the processing block is already paid for on the SoC2 die. The commercial business carries bounded liability by delivering raw sensor inputs directly into integrator-owned braking safety cases.",
+    "pills": [
+     {
+      "value": "3,000 units",
+      "label": "FY2032 volume projection"
+     },
+     {
+      "value": "₹7.50 Cr",
+      "label": "FY2032 revenue projection"
+     },
+     {
+      "value": "0.7%",
+      "label": "Group revenue share"
+     },
+     {
+      "value": "50%",
+      "label": "Gross margin projection"
+     },
+     {
+      "value": "No incremental silicon cost",
+      "label": "Portfolio role"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      30,
+      120,
+      350,
+      800,
+      1600,
+      3000
+     ],
+     "revenue": [
+      0.07,
+      0.3,
+      0.88,
+      2,
+      4,
+      7.5
+     ]
+    }
+   }
+  ],
+  "hash": "9fe9aa2caa28dbeb",
+  "model": "gemini-3.8-flash-high"
+ },
+ "chipset": {
+  "takeaways": [
+   "Chipset OEM B2B delivers the highest gross margin in the portfolio at 94%, projected by management to generate ₹54.0 Cr on 30,000 units in FY2032 without requiring installation, certification, or warranty overhead.",
+   "Supplied as a bare 39.3 TOPS SoC2 die on TSMC 28 nm, the product serves Tier-1 suppliers and vehicle manufacturers seeking domestic silicon alternatives to costly imported modules.",
+   "Commercial execution depends entirely on qualified silicon emerging from tapeout and closing direct, high-commitment design-in cycles with automotive engineering teams."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     32
+    ],
+    "headline": "Bare SoC2 silicon supplied directly for customer board integration at portfolio-leading gross margins.",
+    "narrative": "DeepGrid supplies the bare SoC2 die in tray or reel with reference designs and toolchain access for customers to mount onto their own hardware. The product eliminates enclosures, cabling, and installation services, providing tested silicon alongside integration documentation so the buyer handles the rest. Selling at ₹18,000, this line delivers the most profitable revenue in the business plan at a 94% gross margin.",
+    "pills": [
+     {
+      "value": "₹18,000",
+      "label": "Unit price"
+     },
+     {
+      "value": "94%",
+      "label": "Gross margin"
+     },
+     {
+      "value": "Semiconductors",
+      "label": "Segment"
+     },
+     {
+      "value": "Outdoor",
+      "label": "Operating domain"
+     },
+     {
+      "value": "FY2028",
+      "label": "First revenue"
+     },
+     {
+      "value": "SoC2 die, tested and binned",
+      "label": "Delivered component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     33
+    ],
+    "headline": "The SoC2 die executes perception compute within the customer's proprietary board architecture.",
+    "narrative": "External sensors feed the customer's board directly, where the SoC2 die processes incoming perception streams inside their proprietary hardware design. The customer's software determines vehicle actuation from that compute, allowing their finished product to ship with DeepGrid silicon inside. Fabricated on TSMC 28 nm, the roughly 57 mm² die provides 39.3 TOPS of compute and 102.4 GB/s memory bandwidth, leaving physical board integration entirely with the buyer.",
+    "pills": [
+     {
+      "value": "TSMC 28 nm, roughly 57 mm²",
+      "label": "Process and die area"
+     },
+     {
+      "value": "39.3 TOPS at 600 MHz",
+      "label": "Perception compute"
+     },
+     {
+      "value": "32,768 MACs",
+      "label": "Compute architecture"
+     },
+     {
+      "value": "102.4 GB/s dual-channel LPDDR5",
+      "label": "Memory bandwidth"
+     },
+     {
+      "value": "Working, qualified silicon",
+      "label": "Critical dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     34
+    ],
+    "headline": "Tier-1 suppliers and OEMs choose domestic silicon to satisfy localization priorities and internal engineering needs.",
+    "narrative": "The buyer base comprises Tier-1 automotive suppliers and OEMs with in-house hardware teams capable of board-level integration. Procurement policies favoring Indian-designed silicon and domestic supply drive customers away from imported modules, supported by the ADAS mandate. Engaging this market requires direct design-in relationships, targeting a management-projected 0.25% capture of an India ADAS chip pool estimated at $2.29B in 2024.",
+    "pills": [
+     {
+      "value": "Tier-1 suppliers and OEMs",
+      "label": "Target buyer"
+     },
+     {
+      "value": "Direct design-in engagements",
+      "label": "Sales channel"
+     },
+     {
+      "value": "Domestic supply over imports",
+      "label": "Purchase trigger"
+     },
+     {
+      "value": "0.25% at FY2032",
+      "label": "Management projected capture"
+     },
+     {
+      "value": "$2.29B at 20.6% CAGR",
+      "label": "2024 ADAS chip pool"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     35
+    ],
+    "headline": "Chipset OEM adds high-margin revenue to the portfolio without consuming field operations capacity.",
+    "narrative": "Management projects Chipset OEM B2B to generate ₹54.0 Cr on 30,000 units by FY2032, accounting for 4.8% of group revenue at a 94% gross margin. Because customers manage board assembly, vehicle certification, and field service, revenue expands without demanding internal installation or warranty infrastructure. Every unit in this line remains strictly downstream of successful tapeout qualification.",
+    "pills": [
+     {
+      "value": "₹54.0 Cr",
+      "label": "FY2032 projected revenue"
+     },
+     {
+      "value": "30,000 units",
+      "label": "FY2032 projected volume"
+     },
+     {
+      "value": "94%",
+      "label": "Gross margin"
+     },
+     {
+      "value": "4.8%",
+      "label": "Share of group revenue"
+     },
+     {
+      "value": "Working, qualified silicon",
+      "label": "Critical dependency"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      0,
+      30,
+      1750,
+      6000,
+      15000,
+      30000
+     ],
+     "revenue": [
+      0,
+      0.05,
+      3.15,
+      10.8,
+      27,
+      54
+     ]
+    }
+   }
+  ],
+  "hash": "3399b1798666bf44",
+  "model": "gemini-3.8-flash-high"
+ },
+ "a100-4": {
+  "takeaways": [
+   "At ₹3,00,000 per unit and 89% gross margin, the A100 4ch PCIe is the highest-priced compute SKU in the portfolio, making the FY2032 revenue case dependent on margin rather than volume.",
+   "Management projects ₹36 Cr at 1,200 units by FY2032, a consistent annual doubling from FY2028, against a $4.8B addressable market requiring only 0.20% capture, per management assumptions.",
+   "The card's dependency on host thermal and power budget narrows the addressable pool to integrators with sufficient platform headroom, concentrating early revenue in a small number of direct design-in accounts."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     55
+    ],
+    "headline": "The A100 4ch PCIe is a four-camera SoC2 card that drops full surround perception into a customer's own host architecture.",
+    "narrative": "The A100 Compute Box 4ch PCIe is a PCIe card carrying DeepGrid's SoC2 with four camera inputs, an SDK, and a model toolchain. The host system provides the enclosure and power; the card provides the perception compute. At ₹3.00 L it is the highest-priced compute SKU in the portfolio and the closest the module line gets to being a complete system.",
+    "pills": [
+     {
+      "value": "₹3.00 L",
+      "label": "unit price"
+     },
+     {
+      "value": "Systems",
+      "label": "segment"
+     },
+     {
+      "value": "Compute",
+      "label": "operating domain"
+     },
+     {
+      "value": "FY2028",
+      "label": "first revenue"
+     },
+     {
+      "value": "Four-channel SoC2 PCIe card",
+      "label": "core component"
+     },
+     {
+      "value": "Camera input harnessing",
+      "label": "component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     56
+    ],
+    "headline": "Four parallel camera streams run perception on the SoC2 and deliver structured results to the host over PCIe.",
+    "narrative": "Four cameras provide full surround coverage; the SoC2 runs perception across all four streams simultaneously, with each compute cube maintaining its own local DMA against an eight-bank L2 cache, the architecture that keeps utilisation high rather than starving on a single shared memory path. Structured results pass to the host over PCIe, and the integrator builds its own product on top. The binding constraint is the host system's thermal and power budget, which determines which customers can adopt the card.",
+    "pills": [
+     {
+      "value": "Four cameras",
+      "label": "surround coverage"
+     },
+     {
+      "value": "Per-cube local DMA",
+      "label": "memory access"
+     },
+     {
+      "value": "Eight-bank L2",
+      "label": "cache architecture"
+     },
+     {
+      "value": "Results over PCIe",
+      "label": "host interface"
+     },
+     {
+      "value": "Host thermal & power",
+      "label": "key dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     57
+    ],
+    "headline": "OEMs and integrators building multi-camera perception into their own platforms buy this card to avoid custom silicon work.",
+    "narrative": "The buyer is an OEM or integrator already running a host machine who needs to add full surround perception without designing a custom board, robotics platforms, industrial vehicles, and infrastructure monitoring deployments where the host receives processed object lists rather than raw video. The channel is direct design-in with larger integrators. The FY2032 volume of 1,200 units represents a 0.20% capture of the automotive edge-AI accelerator modules market, sized at $4.8B in 2025; capture rates are management assumptions and pool sizes are third-party published estimates (Dataintelo: $4.8B 2025 to $22.6B 2034 at 21% CAGR).",
+    "pills": [
+     {
+      "value": "OEMs & integrators",
+      "label": "buyer"
+     },
+     {
+      "value": "Direct design-in",
+      "label": "channel"
+     },
+     {
+      "value": "$4.8B (2025)",
+      "label": "addressable pool"
+     },
+     {
+      "value": "21% CAGR to 2034",
+      "label": "pool growth"
+     },
+     {
+      "value": "0.20% capture FY2032",
+      "label": "management assumption"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     58
+    ],
+    "headline": "Management projects ₹36 Cr at 89% gross margin by FY2032, making this the largest revenue contributor in the compute-box family.",
+    "narrative": "The A100 4ch PCIe is management-projected to reach ₹36 Cr at 1,200 units in FY2032, representing 3.2% of group revenue at an 89% gross margin, the largest of the three compute-box SKUs. Revenue doubles each year from FY2028, reflecting design-in cycles rather than a consumer volume ramp. The card requires no vehicle integration, no installer, and no homologation.",
+    "pills": [
+     {
+      "value": "1,200 units",
+      "label": "FY2032 units (mgmt proj.)"
+     },
+     {
+      "value": "₹36.0 Cr",
+      "label": "FY2032 revenue (mgmt proj.)"
+     },
+     {
+      "value": "3.2% of group",
+      "label": "revenue share"
+     },
+     {
+      "value": "89%",
+      "label": "gross margin"
+     },
+     {
+      "value": "Host thermal & power",
+      "label": "adoption constraint"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      0,
+      75,
+      150,
+      300,
+      600,
+      1200
+     ],
+     "revenue": [
+      0,
+      2.25,
+      4.5,
+      9,
+      18,
+      36
+     ]
+    }
+   }
+  ],
+  "hash": "58c55578f4ab1a81",
+  "model": "claude-sonnet-4-6"
+ },
+ "dhumr": {
+  "takeaways": [
+   "Defence D-HUMR provides sovereign validation and early revenue independent of commercial automotive mandates, scaling to ₹30.0 Cr at a 68% gross margin by FY2032.",
+   "The ruggedised unmanned ground vehicle commands a ₹20.00 L unit price, leveraging SoC2 outward perimeter fusion to execute logistics and reconnaissance in hazardous terrain.",
+   "The platform has already achieved initial external revenue validation on FPGA hardware, with commercial ramp pacing tied to multi-year defence procurement cycles."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     87
+    ],
+    "headline": "An unmanned ground vehicle for defence logistics and reconnaissance.",
+    "narrative": "Defence D-HUMR is DeepGrid's highest unit-price line and the only portfolio product selling directly to government defence buyers. Built for outdoor logistics and reconnaissance tasks where deploying robotics is preferable to risking personnel, the system operates on multi-year procurement cycles rather than commercial automotive timelines. It serves as the portfolio's earliest external validation, having already secured initial revenue on FPGA hardware ahead of production silicon rollout.",
+    "pills": [
+     {
+      "value": "₹20.00 L",
+      "label": "Unit price"
+     },
+     {
+      "value": "Robotics",
+      "label": "Segment"
+     },
+     {
+      "value": "Outdoor",
+      "label": "Operating domain"
+     },
+     {
+      "value": "FY2027",
+      "label": "First revenue"
+     },
+     {
+      "value": "UGV platform",
+      "label": "Surround sensing component"
+     },
+     {
+      "value": "SoC2 compute",
+      "label": "Autonomy stack component"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     88
+    ],
+    "headline": "Outward-facing perimeter fusion across radar, thermal, and camera tracks.",
+    "narrative": "The platform runs DeepGrid's core fusion stack outward along perimeters rather than forward along highways. Surround sensing captures terrain, obstacles, and personnel, while SoC2 classifies individual sensor tracks, builds a local traversable map, and correlates distinct events like access-road loitering and fence-line movement into unified threat assessments. Autonomy drives the vehicle with integrated teleoperation override, executing payload delivery while dependent primarily on sovereign procurement timelines rather than technical milestones.",
+    "pills": [
+     {
+      "value": "Sense, compute, decide, act",
+      "label": "Signal chain architecture"
+     },
+     {
+      "value": "Terrain, obstacles, people",
+      "label": "Surround sensing inputs"
+     },
+     {
+      "value": "Local map and routing",
+      "label": "SoC2 compute task"
+     },
+     {
+      "value": "Autonomous with teleoperation link",
+      "label": "Drive execution"
+     },
+     {
+      "value": "Mission payload interface",
+      "label": "Destination action"
+     },
+     {
+      "value": "Slow, lumpy procurement cycles",
+      "label": "Key dependency"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     89
+    ],
+    "headline": "Indian military procurement replacing personnel with autonomous systems in hazardous zones.",
+    "narrative": "Purchasing is driven by the Indian Army and Ministry of Defence procurement programmes seeking unmanned systems for hazardous perimeter, reconnaissance, and transport missions. Channels include direct institutional acquisition and Government e-Marketplace (GeM) contracting frameworks. Although defence qualification timelines are slow and cycles are multi-year, secured platform incumbency creates exceptionally durable market defensibility against displacement.",
+    "pills": [
+     {
+      "value": "Indian Army and MoD",
+      "label": "Target buyer"
+     },
+     {
+      "value": "Logistics and reconnaissance missions",
+      "label": "Buying trigger"
+     },
+     {
+      "value": "GeM and government tenders",
+      "label": "Channel"
+     },
+     {
+      "value": "Indian Army robotics procurement",
+      "label": "Demand pool"
+     },
+     {
+      "value": "Existing Rs1 Cr revenue",
+      "label": "Source validation"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     90
+    ],
+    "headline": "A high-margin sovereign revenue stream independent of automotive mandates.",
+    "narrative": "Defence D-HUMR scales from 6 units in FY2027 to 150 units in FY2032, generating ₹30.0 Cr in revenue at a 68% gross margin as management projections. While representing 2.7% of group revenue, its strategic importance lies in customer diversification through sovereign defence budgets that operate completely free of passenger vehicle regulations. Prior revenue earned on FPGA implementations provides early external commercial validation for the underlying architecture.",
+    "pills": [
+     {
+      "value": "150 units",
+      "label": "FY2032 volume projection"
+     },
+     {
+      "value": "₹30.0 Cr",
+      "label": "FY2032 revenue projection"
+     },
+     {
+      "value": "2.7%",
+      "label": "Group revenue share"
+     },
+     {
+      "value": "68%",
+      "label": "Gross margin"
+     },
+     {
+      "value": "FPGA early revenue",
+      "label": "Portfolio role"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      6,
+      15,
+      23,
+      45,
+      88,
+      150
+     ],
+     "revenue": [
+      1.2,
+      3,
+      4.6,
+      9,
+      17.6,
+      30
+     ]
+    }
+   },
+   {
+    "kind": "proof",
+    "title": "Proven in a simulator",
+    "slides": [
+     91,
+     92
+    ],
+    "headline": "Intelligent threat correlation demonstrated through the DGrid Sentinel console.",
+    "narrative": "Perimeter decision logic has been verified using the DGrid Sentinel demonstrator, a live console running the production perception stack against a simulated environment. The system fuses disparate camera, radar, and thermal inputs along an escalation ladder from loitering to approach and breach risk, handing tracks across ground units, drones, and maritime buoys. The demonstrator proves the decision layer in simulation, not a fielded deployment, emphasising false-alarm restraint by holding benign tracks without generating disruptive false alarms.",
+    "pills": [
+     {
+      "value": "DGrid Sentinel",
+      "label": "Perimeter threat fusion"
+     },
+     {
+      "value": "Simulation, not a fielded deployment",
+      "label": "Validation status"
+     },
+     {
+      "value": "Loiter, approach, breach risk",
+      "label": "Timed escalation ladder"
+     },
+     {
+      "value": "Vehicle and human tracks",
+      "label": "Correlation mechanism"
+     },
+     {
+      "value": "Ground, drone, buoy",
+      "label": "Track hand-off targets"
+     },
+     {
+      "value": "False-alarm restraint",
+      "label": "Core decision feature"
+     }
+    ]
+   }
+  ],
+  "hash": "92f56391189cbec0",
+  "model": "gemini-3.8-flash-high"
+ },
+ "d100": {
+  "takeaways": [
+   "The D100 Drone SoC Kit leverages DeepGrid's existing silicon to deliver a management-projected ₹20.0 Cr in FY2032 revenue at a 68% gross margin without incremental tape-out capital expenditure.",
+   "The platform addresses defence and commercial airframe builders requiring deterministic, onboard visual perception and odometry when communication links or GPS signals fail.",
+   "This robotics product opens an independent procurement cycle ahead of automotive timelines, constrained strictly by airborne weight and power budgets."
+  ],
+  "chapters": [
+   {
+    "kind": "what",
+    "title": "What it is",
+    "slides": [
+     93
+    ],
+    "headline": "A flight-capable compute and perception kit designed specifically for airframe builders.",
+    "narrative": "The D100 Drone SoC Kit adapts DeepGrid's unified silicon die for the outdoor robotics market, entering commercial revenue in FY2028 at a unit price of ₹5.00 L. It packages flight-weight perception compute, sensors, and flight-controller integration for airframes where space and power are constrained. This configuration enters an independent procurement cycle with minimal engineering by applying automotive perception algorithms with ground assumptions removed.",
+    "pills": [
+     {
+      "value": "₹5.00 L",
+      "label": "Unit price"
+     },
+     {
+      "value": "Robotics",
+      "label": "Segment"
+     },
+     {
+      "value": "FY2028",
+      "label": "First revenue"
+     },
+     {
+      "value": "Flight-weight SoC2 compute module",
+      "label": "Compute hardware"
+     },
+     {
+      "value": "Camera and IMU sensing set",
+      "label": "Sensing set"
+     },
+     {
+      "value": "SDK for airborne perception",
+      "label": "Software interface"
+     }
+    ]
+   },
+   {
+    "kind": "how",
+    "title": "How it works",
+    "slides": [
+     94
+    ],
+    "headline": "A deterministic four-stage signal chain executes visual odometry and navigation directly on the aircraft.",
+    "narrative": "Sensors and an inertial measurement unit feed real-time scene information and platform dynamics directly into the SoC2 compute module. The chip executes flight-specific perception firmware and visual odometry locally, allowing the planner to chart waypoints and avoidance manoeuvres without external radio reliance. The flight controller executes these commands directly, operating within strict airborne power and payload weight limits.",
+    "pills": [
+     {
+      "value": "Cameras and IMU",
+      "label": "Stage 1 sensing"
+     },
+     {
+      "value": "SoC2 perception and visual odometry",
+      "label": "Stage 2 compute"
+     },
+     {
+      "value": "Waypoint and avoidance planning",
+      "label": "Stage 3 planner"
+     },
+     {
+      "value": "Flight controller execution",
+      "label": "Stage 4 actuation"
+     },
+     {
+      "value": "Weight and power budget",
+      "label": "Operating constraint"
+     }
+    ]
+   },
+   {
+    "kind": "who",
+    "title": "Who buys it, and why now",
+    "slides": [
+     95
+    ],
+    "headline": "Airframe builders adopt onboard compute to sustain autonomy in environments where radio links fail.",
+    "narrative": "Sales are transacted directly with defence and commercial drone manufacturers building platforms for inspection, surveying, and contested flight operations. These customers source modular compute to achieve deterministic autonomy when electronic interference or physical obstructions eliminate ground communications. The product targets the India defence and commercial drone SoC pool within an edge-AI drone segment expanding at an 18% CAGR according to Mordor Intelligence.",
+    "pills": [
+     {
+      "value": "Defence, commercial drone manufacturers",
+      "label": "Target buyer"
+     },
+     {
+      "value": "Direct to airframe builders",
+      "label": "Sales channel"
+     },
+     {
+      "value": "Unreliable radio link environments",
+      "label": "Adoption trigger"
+     },
+     {
+      "value": "India defence, commercial drone SoC",
+      "label": "Demand pool"
+     },
+     {
+      "value": "Mordor 18% CAGR",
+      "label": "Segment growth source"
+     },
+     {
+      "value": "400 units (management projection)",
+      "label": "FY2032 volume"
+     }
+    ]
+   },
+   {
+    "kind": "fits",
+    "title": "How it fits the plan",
+    "slides": [
+     96
+    ],
+    "headline": "A high-margin robotics entry that diversifies revenue streams without new silicon development.",
+    "narrative": "The D100 kit provides high-margin strategic optionality by commercialising DeepGrid's core die across an alternative customer base. Management projects the product to generate ₹20.0 Cr in FY2032 revenue on 400 unit shipments, delivering a 68% gross margin and accounting for 1.8% of total group revenue. Continued operational performance depends on managing thermal and electrical power budgets within compact airframes.",
+    "pills": [
+     {
+      "value": "₹20.0 Cr (management projection)",
+      "label": "FY2032 revenue"
+     },
+     {
+      "value": "400 units (management projection)",
+      "label": "FY2032 volume"
+     },
+     {
+      "value": "1.8% (management projection)",
+      "label": "Share of group"
+     },
+     {
+      "value": "68% (management projection)",
+      "label": "Gross margin"
+     },
+     {
+      "value": "Weight and power budget",
+      "label": "Operational dependency"
+     }
+    ],
+    "ramp": {
+     "years": [
+      "FY27",
+      "FY28",
+      "FY29",
+      "FY30",
+      "FY31",
+      "FY32"
+     ],
+     "units": [
+      0,
+      5,
+      50,
+      125,
+      225,
+      400
+     ],
+     "revenue": [
+      0,
+      0.25,
+      2.5,
+      6.25,
+      11.25,
+      20
+     ]
+    }
+   }
+  ],
+  "hash": "e940b082d6495dac",
+  "model": "gemini-3.8-flash-high"
+ }
+}

@@ -8,7 +8,7 @@
   "nodes": 831,
   "chunks": 803,
   "themes": 38,
-  "examples": 160
+  "examples": 162
  },
  "exampleTheme": [
   0,
@@ -92,6 +92,7 @@
   16,
   16,
   16,
+  16,
   17,
   17,
   17,
@@ -127,6 +128,7 @@
   25,
   25,
   25,
+  26,
   26,
   26,
   26,
@@ -173,16 +175,15 @@
   37
  ],
  "themeMin": 0.65,
- "themeGap": 0.05,
+ "themeGap": 0.04,
  "eval": {
   "positives": 33,
   "negatives": 11,
-  "right": 24,
+  "right": 25,
   "wrong": 0,
   "forced": 0,
   "missed": [
    "What diagnostic jobs can the entry chip handle in a factory?",
-   "How will the seed money be spent and how long will it last?",
    "What makes this company worth backing?",
    "How many trucks could DeepGrid sell into?",
    "Explain the product range and how it shares one die",
@@ -232,7 +233,7 @@
   "The US opportunity",
   "Defence and robotics"
  ],
- "indexSha256": "fb2d93e8161e1ce8cec756a123fdcb545747da6e801416f6332f646d9adac785",
- "rowKeySha256": "fba3993b1fb8cca21385ef2671d179d403055b5f666829999a7c3f3b90219ec3",
+ "indexSha256": "10ae643aef2ae0f569e12e75535c026f084b388c2180d79b153555bc40ef45a5",
+ "rowKeySha256": "8fec644f46549cdc47e6c891a34e9e72d8ad3478e2d7670222620b712cc158f4",
  "modelSha256": "6c9c6101a956d62dfb5e7190c538226c0c5bb9cb27b651234b6df063ee7dbfe4"
 }

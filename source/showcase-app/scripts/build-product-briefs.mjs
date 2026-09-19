@@ -22,6 +22,7 @@ import crypto from 'node:crypto';
 import {execSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {pipeline, env} from '@huggingface/transformers';
+import {overclaims, presentationTalk} from './lib/brief-kit.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MODEL = process.env.THEME_MODEL || 'claude-sonnet-4-6';
@@ -183,6 +184,9 @@ Rules:
 - Each section is 3-4 sentences. Explain why, not only what. If passages disagree on a figure, say which says which.
 - Exactly 4 facts. Copy figures exactly as the passages give them; never add, subtract or derive totals. Label
   forecasts as management projections.
+- Describe this product's own hardware only. A "Commercial Use Cases" passage is written for the whole portfolio and
+  may describe other hardware (a cabin camera, say); cite it for the buyer's obligation, never to give this product
+  hardware it does not have. The product's own slides and dossier say what it is.
 - The operative rule is G.S.R. 834(E) as amended by G.S.R. 862(E); G.S.R. 184(E), which some passages cite, was the
   superseded draft. Call it "the ADAS mandate" or name the standard (AIS-162, AIS-184...), never "GSR 184(E)".
 - No outside knowledge, no hype words, no mention of passages, sources or how this was written.`;
@@ -221,12 +225,17 @@ function repair(x, ev, text) {
 }
 function gate(t, ev) {
   const dropped = [];
-  const keep = (list, textOf) => (list || []).filter(x => { const ok = repair(x, ev, textOf(x)); if (!ok) dropped.push(textOf(x)); return ok; });
+  const all = ev.map(passageText).join(' ');
+  // maturity words ("validated", "silicon-proven") must be the documents' own, not the model's (lib/brief-kit.mjs)
+  const keep = (list, textOf) => (list || []).filter(x => {
+    const claims = [...overclaims(textOf(x), all), presentationTalk(textOf(x))].filter(Boolean), ok = !claims.length && repair(x, ev, textOf(x));
+    if (!ok) dropped.push((claims.length ? `(${claims.join(', ')} not in any passage) ` : '') + textOf(x));
+    return ok;
+  });
   t.useCases = keep(t.useCases, x => [x.title, x.buyer, x.problem, x.delivers].join(' '));
   t.sections = keep(t.sections, x => x.text);
   t.facts = keep(t.facts, x => x.text);
-  const all = ev.map(passageText).join(' ');
-  const missing = nums(t.lead || '').filter(f => !supported(f, all));
+  const missing = [...nums(t.lead || '').filter(f => !supported(f, all)), ...overclaims(t.lead || '', all), presentationTalk(t.lead || '')].filter(Boolean);
   if (missing.length) { dropped.push(`LEAD (${missing.join(', ')} not in any passage): ${t.lead}`); t.lead = null; }
   return dropped;
 }

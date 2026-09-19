@@ -4,12 +4,12 @@
     "name": "Smart Truck (AD2 kit)",
     "slideTitle": "AD2 SMART TRUCK",
     "price": "₹2,50,000",
-    "description": "Forward camera, radar, compute box, driver display and the harness that talks to the vehicle. The biggest single line in the plan and the one the mandate is written for.",
+    "description": "A commercial-vehicle ADAS kit: forward camera, radar, compute box, driver display and harness.",
     "signalChain": [
       "Camera and radar watch the forward path and the blind quarters",
-      "SoC2 fuses both into one object list carrying range and closing speed",
-      "Collision, lane and blind-spot logic decides whether to warn",
-      "Driver is warned; where vehicle supports it, brake interface is signalled"
+      "SoC2 fuses both into one object list with range and closing speed",
+      "Collision, lane and blind-spot logic decide whether to warn",
+      "Driver is warned, and the brake interface is signalled where fitted"
     ],
     "revenue": "₹450 Cr",
     "revenueNum": 450,
@@ -30,7 +30,7 @@
     "name": "AD0 Smart Mirror",
     "slideTitle": "AD0 SMART MIRROR",
     "price": "₹50,000",
-    "description": "A replacement rear-view mirror with an integrated display, four body cameras and a wiring loom. Fitted in an afternoon, the least sophisticated thing we make, and it ships first.",
+    "description": "A replacement mirror unit with an integrated display, four body cameras and a wiring loom.",
     "signalChain": [
       "Four cameras cover the vehicle's blind quarters",
       "SoC2 stitches the views into one 360° surround image",
@@ -55,12 +55,12 @@
     "name": "Autonomous TaaS",
     "slideTitle": "AUTONOMOUS TAAS",
     "price": "₹66.00 L",
-    "description": "Transport-as-a-Service: contracted autonomous operations, DeepGrid provides the vehicle, stack and driver replacement as a metered service.",
+    "description": "Not a product sold to a customer: a vehicle we own, operated under contract on a fixed route.",
     "signalChain": [
-      "Route plan set by fleet management system",
-      "SoC2 handles full perception and planning stack",
-      "Vehicle drives autonomously within geofenced route",
-      "Fleet dashboard monitors all units in real time"
+      "The vehicle's full sensor set reads a route we have already surveyed",
+      "SoC2 runs the autonomy stack against that route model",
+      "Fleet logic schedules, routes and hands off to a remote operator when needed",
+      "The vehicle drives, and the customer is billed per trip or per tonne"
     ],
     "revenue": "₹66 Cr",
     "revenueNum": 66,
@@ -80,12 +80,12 @@
     "name": "Chipset OEM B2B",
     "slideTitle": "CHIPSET OEM",
     "price": "₹18,000",
-    "description": "The bare die, in tray or reel, for a customer to place on their own board. No enclosure, no cables, no fitting, silicon and a datasheet.",
+    "description": "The bare SoC2 die, supplied in tray or reel for the customer to place on their own board.",
     "signalChain": [
-      "Customer's own sensors feed their own board",
-      "Our die does the perception compute inside their design",
+      "The customer's own sensors feed their own board",
+      "The SoC2 die does the perception compute inside their design",
       "Their software decides what to do with the result",
-      "Their product ships with our silicon inside it"
+      "Their product ships, with our silicon inside it"
     ],
     "revenue": "₹54 Cr",
     "revenueNum": 54,
@@ -105,12 +105,12 @@
     "name": "T100 AI Licence",
     "slideTitle": "T100 SOFTWARE LICENCE",
     "price": "₹100.00 L",
-    "description": "Indian road perception models, toolchain and continuous model updates licensed to third-party compute platforms.",
+    "description": "Not hardware: a licence to the trained perception models and the toolchain around them.",
     "signalChain": [
-      "Customer integrates perception SDK on their hardware",
-      "Models trained on Indian road conditions run inference",
-      "Continuous model updates delivered via licence subscription",
-      "Customer product ships with DeepGrid perception layer"
+      "The customer runs their own hardware and their own sensors",
+      "Our models do the perception work inside their runtime",
+      "Their system decides and acts",
+      "They ship under their own brand, with our perception inside"
     ],
     "revenue": "₹50 Cr",
     "revenueNum": 50,
@@ -130,7 +130,7 @@
     "name": "AD1 Indoor L4 Kit",
     "slideTitle": "AD1 INDOOR L4 KIT",
     "price": "₹1,00,000",
-    "description": "Self-driving retrofit kit for indoor vehicles: sensor head, compute box and drive-by-wire interface. Fitted to forklifts and tugs a site already owns.",
+    "description": "A self-driving retrofit kit for indoor vehicles: sensor head, compute box and a drive-by-wire interface.",
     "signalChain": [
       "Cameras and depth sensing read the aisle, load and people",
       "SoC2 localises the vehicle against a site map it holds onboard",
@@ -156,12 +156,12 @@
     "name": "A100 Compute Box 4ch PCIe",
     "slideTitle": "A100 4-CHANNEL",
     "price": "₹3,00,000",
-    "description": "Four-channel PCIe compute card for multi-camera deployments, industrial inspection, security and infrastructure monitoring.",
+    "description": "A PCIe card carrying the SoC2 with four camera inputs, for a host system.",
     "signalChain": [
-      "Up to four camera feeds enter via PCIe interface",
-      "SoC2 runs parallel perception on all four channels",
-      "Object lists and alerts output to host system",
-      "Customer software consumes structured perception data"
+      "Four cameras give full surround coverage",
+      "The card runs perception across all four streams",
+      "Results go to the host over PCIe",
+      "The host system builds its own product on top"
     ],
     "revenue": "₹36 Cr",
     "revenueNum": 36,
@@ -181,12 +181,12 @@
     "name": "Defence D-HUMR",
     "slideTitle": "DEFENCE D-HUMR",
     "price": "₹20,00,000",
-    "description": "Defence-grade unmanned ground reconnaissance platform. Hardened compute, encrypted comms and ruggedised sensor suite.",
+    "description": "An unmanned ground vehicle for defence logistics and reconnaissance.",
     "signalChain": [
-      "Ruggedised camera and thermal sensors scan terrain",
-      "SoC2 runs perception with military-grade encryption",
-      "Autonomous navigation in GPS-denied environments",
-      "Secure data relay to command post"
+      "Surround sensing reads terrain, obstacles and people",
+      "SoC2 builds a local map and plans a traversable route",
+      "Autonomy drives, with a teleoperator able to take control",
+      "Mission payload does its job at the destination"
     ],
     "revenue": "₹30 Cr",
     "revenueNum": 30,
@@ -207,12 +207,12 @@
     "name": "A100 Compute Box 2ch",
     "slideTitle": "A100 2-CHANNEL",
     "price": "₹1,60,000",
-    "description": "Dual-channel compute board for stereo vision and dual-camera applications.",
+    "description": "A board-level compute module with two camera inputs and the SDK.",
     "signalChain": [
-      "Two camera inputs",
-      "Dual-stream perception",
-      "Fused output",
-      "Host integration"
+      "Two cameras cover a wider field or a stereo pair",
+      "The board runs perception on both streams on one SoC2",
+      "Fused output is returned to the customer's application",
+      "Their system acts on it"
     ],
     "revenue": "₹28.8 Cr",
     "revenueNum": 28.8,
@@ -232,12 +232,12 @@
     "name": "A100 Compute Box 1ch M.2",
     "slideTitle": "A100 1-CHANNEL",
     "price": "₹85,000",
-    "description": "Single-channel M.2 module, the smallest configuration the part supports. Same die, running less.",
+    "description": "An M.2 module carrying the SoC2, sized to drop into a customer's existing carrier board.",
     "signalChain": [
-      "One camera in",
-      "One perception stream out",
-      "Standard M.2 interface",
-      "Drop-in to existing enclosure"
+      "One camera feeds the customer's carrier board",
+      "The M.2 module runs their model on the SoC2",
+      "Results return over the bus to their application",
+      "Their product acts on the output"
     ],
     "revenue": "₹25.5 Cr",
     "revenueNum": 25.5,
@@ -257,12 +257,12 @@
     "name": "Seaport AGV",
     "slideTitle": "SEAPORT AGV",
     "price": "₹45,30,000",
-    "description": "Autonomous container yard vehicle, 7cm open positioning, 22cm under crane. Moves containers between quay crane and yard block.",
+    "description": "An autonomous container-yard vehicle operating inside a port perimeter.",
     "signalChain": [
-      "GPS-RTK and vision provide centimetre-level localisation",
-      "SoC2 plans path through dynamic yard traffic",
-      "Autonomous steer/throttle/brake in open and under-crane zones",
-      "Yard management system dispatches and monitors fleet"
+      "Surround sensing reads containers, cranes, lanes and people in the yard",
+      "SoC2 localises against the yard map and tracks moving obstacles",
+      "Planner sequences the pick, the move and the drop against the yard schedule",
+      "The vehicle executes and reports back to the terminal system"
     ],
     "revenue": "₹22.6 Cr",
     "revenueNum": 22.6,
@@ -283,12 +283,12 @@
     "name": "D100 Drone SoC Kit",
     "slideTitle": "D100 DRONE SOC",
     "price": "₹5,00,000",
-    "description": "Aerial inspection and surveillance compute kit, same SoC2 in a drone-optimised form factor.",
+    "description": "A flight-capable compute and perception kit for an airframe builder.",
     "signalChain": [
-      "Gimbal camera + thermal sensor",
-      "SoC2 runs airborne perception",
-      "Object detection and tracking",
-      "Telemetry relay to ground station"
+      "Cameras and IMU read the scene and the airframe's own motion",
+      "SoC2 runs perception and visual odometry in flight",
+      "Planner produces waypoints or avoidance manoeuvres",
+      "The flight controller executes them"
     ],
     "revenue": "₹20 Cr",
     "revenueNum": 20,
@@ -308,12 +308,12 @@
     "name": "Thermal Camera Pod",
     "slideTitle": "THERMAL CAMERA",
     "price": "₹50,000",
-    "description": "LWIR thermal camera sensor module for night and monsoon conditions, the perception layer that cameras alone cannot provide.",
+    "description": "A bolt-on long-wave infrared camera pod with its own lens and heater, feeding the existing compute box.",
     "signalChain": [
-      "LWIR sensor captures thermal scene",
-      "SoC2 fuses thermal with visible camera",
-      "Enhanced detection in low/no visibility",
-      "Alert output to vehicle safety system"
+      "The LWIR sensor reads emitted heat rather than reflected light",
+      "SoC2 runs detection on the thermal image, where a person is bright against cold road",
+      "Classification separates people and animals from roadside clutter",
+      "Detections join the same object list the cameras feed"
     ],
     "revenue": "₹16 Cr",
     "revenueNum": 16,
@@ -333,12 +333,12 @@
     "name": "H100 Driver Monitor",
     "slideTitle": "H100 DRIVER MONITOR",
     "price": "₹5,000",
-    "description": "In-cabin driver monitoring unit, drowsiness, distraction and seatbelt detection. Mandate-listed safety function.",
+    "description": "A wrist-worn band with an on-body sensor set and a radio link to the vehicle.",
     "signalChain": [
-      "IR camera watches driver face",
-      "SoC2 runs drowsiness/distraction model",
-      "Alert escalation chain triggered",
-      "Event log for fleet compliance"
+      "The band reads pulse and movement continuously on the driver",
+      "An on-device model scores alertness without sending raw data anywhere",
+      "A drowsiness state crosses a threshold",
+      "The vehicle alert chain warns the driver and the fleet is notified"
     ],
     "revenue": "₹10 Cr",
     "revenueNum": 10,
@@ -358,12 +358,12 @@
     "name": "4D Radar Pod",
     "slideTitle": "4D RADAR POD",
     "price": "₹25,000",
-    "description": "4D imaging radar module providing range, velocity, azimuth and elevation, the sensor that camera-only ADAS cannot replace.",
+    "description": "A sealed radar pod, mounted forward or on the corner, feeding the compute box.",
     "signalChain": [
-      "4D radar scans forward scene",
-      "Range + velocity + angle data output",
-      "SoC2 fuses radar with camera object list",
-      "Closing-speed data enables braking decisions"
+      "The radar illuminates the scene and reads the returns",
+      "The R100 block on the die turns returns into range, velocity and elevation",
+      "Tracks are formed and held across frames, including through rain and dust",
+      "Tracks fuse with the camera object list to confirm or reject detections"
     ],
     "revenue": "₹7.5 Cr",
     "revenueNum": 7.5,
