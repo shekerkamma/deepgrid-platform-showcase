@@ -20,7 +20,8 @@
     "graph:documents": "uv run --no-project --with rapidocr_onnxruntime==1.4.4 --with python-docx==1.2.0 --with wordninja==2.0.0 python scripts/ingest-documents.py",
     "graph:sources": "uv run --no-project --with openpyxl==3.1.5 python scripts/assemble-sources.py",
     "graph:themes": "node scripts/build-showcase-themes.mjs",
-    "verify": "node scripts/verify-site.mjs"
+    "verify": "node scripts/verify-site.mjs",
+    "graph:products": "node scripts/build-product-briefs.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",

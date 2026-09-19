@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { SectionHead, groups, products, type Product } from '../shared';
+import briefs from '../data/product-briefs.json';
 
 // Products: the fifteen lines as cards to browse or as a table to compare. Cards carry no
 // imagery: the simulator screenshots that used to sit on them were cropped slide captures that
@@ -107,7 +108,7 @@ export default function Portfolio({
     <section className="page-wrap">
       <SectionHead
         title="Fifteen products, one die"
-        copy="The same silicon, packaged for different buyers. Compare prices, volumes and FY2032 revenue, or open a product for its signal chain and its key dependency."
+        copy="Four product lines on the same silicon. Open a product for what it is used for, the product running in its films and slides, how it makes money, and the documents behind every figure."
       />
       <div className="filter-line">
         <Tabs value={category} onValueChange={(v) => setCategory(String(v))}>
@@ -218,34 +219,104 @@ export default function Portfolio({
           </table>
         </div>
       ) : (
-        <div className="product-grid catalog-list">
-          {visible.map((p) => (
-            <button className="product-card" key={p.id} onClick={() => open(p)}>
-              <span className="product-meta">
-                {p.category}
-                <span className="num">{p.id.toUpperCase()}</span>
-              </span>
-              <h3>{p.name}</h3>
-              <p>{firstSentence(p.description)}</p>
-              <dl>
-                <div>
-                  <dt>Listed price</dt>
-                  <dd className="num">{p.price}</dd>
-                </div>
-                <div>
-                  <dt>FY2032 revenue</dt>
-                  <dd className="num">{p.revenue}</dd>
-                </div>
-                <div>
-                  <dt>Gross margin</dt>
-                  <dd className="num">{p.margin}</dd>
-                </div>
-              </dl>
-              <span className="open-product">
-                Open dossier <ArrowRight size={16} aria-hidden="true" />
-              </span>
-            </button>
-          ))}
+        <div className="product-lines">
+          {groups
+            .filter(
+              (g) =>
+                g !== 'All products' && visible.some((p) => p.category === g),
+            )
+            .map((g) => {
+              const line = (
+                briefs.lines as Record<
+                  string,
+                  { lead: string; total: string; share: string }
+                >
+              )[g];
+              const members = visible.filter((p) => p.category === g);
+              return (
+                <section
+                  className="product-line"
+                  key={g}
+                  aria-labelledby={'line-' + g.replace(/\W+/g, '-')}
+                >
+                  <header className="product-line-head">
+                    <h2 id={'line-' + g.replace(/\W+/g, '-')}>{g}</h2>
+                    {line && (
+                      <p className="num product-line-figure">
+                        {line.total} FY2032 · {line.share} of plan
+                      </p>
+                    )}
+                    {line && <p className="product-line-lead">{line.lead}</p>}
+                  </header>
+                  <div className="product-grid catalog-list">
+                    {members.map((p) => {
+                      const b = (
+                        briefs.products as Record<
+                          string,
+                          {
+                            useCases: { title: string }[];
+                            films: string[];
+                            slides: number[];
+                          }
+                        >
+                      )[p.id];
+                      return (
+                        <button
+                          className="product-card"
+                          key={p.id}
+                          onClick={() => open(p)}
+                        >
+                          <span className="product-meta">
+                            {p.category}
+                            <span className="num">{p.id.toUpperCase()}</span>
+                          </span>
+                          <h3>{p.name}</h3>
+                          <p>{firstSentence(p.description)}</p>
+                          {b?.useCases.length ? (
+                            <p className="card-usecases">
+                              <span>Used for</span>{' '}
+                              {b.useCases.map((u) => u.title).join(' · ')}
+                            </p>
+                          ) : null}
+                          <dl>
+                            <div>
+                              <dt>Listed price</dt>
+                              <dd className="num">{p.price}</dd>
+                            </div>
+                            <div>
+                              <dt>FY2032 revenue</dt>
+                              <dd className="num">{p.revenue}</dd>
+                            </div>
+                            <div>
+                              <dt>Gross margin</dt>
+                              <dd className="num">{p.margin}</dd>
+                            </div>
+                          </dl>
+                          <span className="open-product">
+                            <span>
+                              Open product{' '}
+                              <ArrowRight size={16} aria-hidden="true" />
+                            </span>
+                            <span className="card-media num">
+                              {[
+                                b?.films.length
+                                  ? `${b.films.length} film${b.films.length > 1 ? 's' : ''}`
+                                  : '',
+                                b?.slides.length
+                                  ? `${b.slides.length} slides`
+                                  : '',
+                              ]
+                                .filter(Boolean)
+                                .join(' · ')}
+                            </span>
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </section>
+              );
+            })}
         </div>
       )}
       {!visible.length && (

@@ -13,7 +13,9 @@
 //   scrolls (more events on at each of four positions, all eight at the end, the bridge laid last).
 //   On a phone it becomes one chronological list; under reduced motion the chart is not pinned.
 //   Either way every event is visible at once.
-// - Products switch to the comparison table and it sorts; a product dossier opens with its slide.
+// - Products switch to the comparison table and it sorts; a row opens the product's page on its own slides.
+// - Every product page leads with use cases, shows its slides and sources, and no citation points at a missing
+//   source; the walkthrough link lands on the film at the product's time; Ask opens on a linked question.
 // - The slide deck steps with the arrow keys and its filmstrip marks the current slide.
 // - Every film has a poster that loads and a caption track that returns WebVTT, and every document
 //   in the Investment list downloads (HTTP 200, non-empty).
@@ -232,19 +234,125 @@ for (const { tag, viewport } of [
   const byPrice = await first();
   if (byRevenue === byPrice)
     fail(`products: sorting by price left ${byRevenue} first`);
+  // a row opens that product's page, and its first slide thumbnail is the product's own "What it is" slide
+  const rowName = await first();
   await p.click('.compare-table tbody .row-link');
-  await p.waitForSelector('.product-dialog .detail-slide img');
-  const ok = await p.evaluate(() => {
-    const i = document.querySelector('.detail-slide img');
-    return new Promise((res) => {
-      if (i.complete) res(i.naturalWidth > 0);
-      else {
-        i.onload = () => res(true);
-        i.onerror = () => res(false);
-      }
+  const opened = await p
+    .waitForSelector('.product-page .pp-slides img', { timeout: 8000 })
+    .then(
+      () => true,
+      () => false,
+    );
+  const page = await p.evaluate(() => ({
+    h1: document.querySelector('main h1')?.textContent,
+    slide: document
+      .querySelector('.pp-slides button')
+      ?.getAttribute('aria-label'),
+  }));
+  if (!opened || page.h1 !== rowName || !/What it is$/.test(page.slide || ''))
+    fail(
+      `products: row "${rowName}" opened "${page.h1}", first slide "${page.slide}"`,
+    );
+  const ok = !opened
+    ? true
+    : await p.evaluate(() => {
+        const i = document.querySelector('.pp-slides img');
+        i.loading = 'eager';
+        return new Promise((res) => {
+          if (i.complete && i.naturalWidth) res(true);
+          else {
+            i.onload = () => res(true);
+            i.onerror = () => res(false);
+          }
+        });
+      });
+  if (!ok) fail('products: product slide thumbnail did not load');
+  await p.close();
+}
+
+// 3b. product pages: every product has use cases first, its slides, sources, and working links out
+{
+  const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+  watch(p, 'product');
+  const ids = await (async () => {
+    await p.goto(BASE + '#portfolio', { waitUntil: 'networkidle' });
+    return p.evaluate(
+      () => document.querySelectorAll('.catalog-list .product-card').length,
+    );
+  })();
+  if (ids !== 15) fail(`products: ${ids} cards, expected 15`);
+  for (const id of [
+    'ad2',
+    'ad0',
+    'taas',
+    'chipset',
+    't100',
+    'ad1',
+    'a100-4',
+    'dhumr',
+    'a100-2',
+    'a100-1',
+    'agv',
+    'd100',
+    'thermal',
+    'h100',
+    'radar',
+  ]) {
+    await p.goto(BASE + '#portfolio?product=' + id, {
+      waitUntil: 'networkidle',
     });
-  });
-  if (!ok) fail('products: dossier slide image did not load');
+    const m = await p.evaluate(() => ({
+      h1: document.querySelector('main h1')?.textContent,
+      uses: document.querySelectorAll('.pp-usecase').length,
+      firstBlock: document.querySelector('.pp-block')?.id,
+      slides: document.querySelectorAll('.pp-slides li').length,
+      sources: document.querySelectorAll('.pp-sources li').length,
+      cites: [...document.querySelectorAll('.cite a')].map((a) =>
+        a.getAttribute('href'),
+      ),
+      targets: [...document.querySelectorAll('.pp-sources li')].map(
+        (l) => '#' + l.id,
+      ),
+    }));
+    const dangling = m.cites.filter((h) => !m.targets.includes(h));
+    if (
+      m.uses < 2 ||
+      m.firstBlock !== 'pp-uses' ||
+      m.slides < 4 ||
+      m.sources < 5 ||
+      dangling.length
+    )
+      fail(
+        `product ${id}: ${m.uses} use cases (first block ${m.firstBlock}), ${m.slides} slides, ${m.sources} sources, ${dangling.length} dangling citations`,
+      );
+  }
+  // the walkthrough link lands on the master film at the product's moment
+  await p.goto(BASE + '#portfolio?product=ad2', { waitUntil: 'networkidle' });
+  await p
+    .click('.pp-walkthrough', { timeout: 5000 })
+    .catch(() => fail('walkthrough link missing on the AD2 page'));
+  await p.waitForTimeout(400);
+  const w = await p.evaluate(() => ({
+    hash: location.hash,
+    src:
+      document.querySelector('#film-master source')?.getAttribute('src') || '',
+  }));
+  if (
+    !w.hash.startsWith('#film?v=master&t=') ||
+    !w.src.includes('#t=' + w.hash.split('t=')[1])
+  )
+    fail(`walkthrough link: ${w.hash} -> ${w.src}`);
+  // Ask opens on the question the product page sends
+  await p.goto(
+    BASE + '#briefing?q=' + encodeURIComponent('Tell me about the Seaport AGV'),
+    { waitUntil: 'networkidle' },
+  );
+  await p.waitForTimeout(800);
+  const q = await p.evaluate(
+    () => document.querySelector('.dr-ask-input')?.value,
+  );
+  if (q !== 'Tell me about the Seaport AGV')
+    fail(`ask deep link: input holds "${q}"`);
   await p.close();
 }
 

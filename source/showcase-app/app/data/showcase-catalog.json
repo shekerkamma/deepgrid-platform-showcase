@@ -65,15 +65,15 @@
    "From sensing to action: Route plan set by fleet management system → SoC2 handles full perception and planning stack → Vehicle drives autonomously within geofenced route → Fleet dashboard monitors all units in real time.",
    "Key dependency: Regulatory clearance for autonomous operation in controlled corridors."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 42",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 64",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=taas"
    },
    {
-    "label": "Source slide 42",
-    "target": "slides?slide=42"
+    "label": "Source slide 64",
+    "target": "slides?slide=64"
    }
   ]
  },
@@ -91,15 +91,15 @@
    "From sensing to action: Customer's own sensors feed their own board → Our die does the perception compute inside their design → Their software decides what to do with the result → Their product ships with our silicon inside it.",
    "Key dependency: ASIC tapeout completion and qualification."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 26",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 32",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=chipset"
    },
    {
-    "label": "Source slide 26",
-    "target": "slides?slide=26"
+    "label": "Source slide 32",
+    "target": "slides?slide=32"
    }
   ]
  },
@@ -117,15 +117,15 @@
    "From sensing to action: Customer integrates perception SDK on their hardware → Models trained on Indian road conditions run inference → Continuous model updates delivered via licence subscription → Customer product ships with DeepGrid perception layer.",
    "Key dependency: Maturity of the Indian road perception stack, starts FY29."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 36",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 59",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=t100"
    },
    {
-    "label": "Source slide 36",
-    "target": "slides?slide=36"
+    "label": "Source slide 59",
+    "target": "slides?slide=59"
    }
   ]
  },
@@ -169,15 +169,15 @@
    "From sensing to action: Up to four camera feeds enter via PCIe interface → SoC2 runs parallel perception on all four channels → Object lists and alerts output to host system → Customer software consumes structured perception data.",
    "Key dependency: ASIC tapeout and PCIe interface validation."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 34",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 55",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=a100-4"
    },
    {
-    "label": "Source slide 34",
-    "target": "slides?slide=34"
+    "label": "Source slide 55",
+    "target": "slides?slide=55"
    }
   ]
  },
@@ -195,15 +195,15 @@
    "From sensing to action: Ruggedised camera and thermal sensors scan terrain → SoC2 runs perception with military-grade encryption → Autonomous navigation in GPS-denied environments → Secure data relay to command post.",
    "Key dependency: Defence procurement cycle and security clearances."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 56",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 87",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=dhumr"
    },
    {
-    "label": "Source slide 56",
-    "target": "slides?slide=56"
+    "label": "Source slide 87",
+    "target": "slides?slide=87"
    }
   ]
  },
@@ -221,15 +221,15 @@
    "From sensing to action: Two camera inputs → Dual-stream perception → Fused output → Host integration.",
    "Key dependency: ASIC tapeout."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 32",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 51",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=a100-2"
    },
    {
-    "label": "Source slide 32",
-    "target": "slides?slide=32"
+    "label": "Source slide 51",
+    "target": "slides?slide=51"
    }
   ]
  },
@@ -247,15 +247,15 @@
    "From sensing to action: One camera in → One perception stream out → Standard M.2 interface → Drop-in to existing enclosure.",
    "Key dependency: ASIC tapeout."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 31",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 47",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=a100-1"
    },
    {
-    "label": "Source slide 31",
-    "target": "slides?slide=31"
+    "label": "Source slide 47",
+    "target": "slides?slide=47"
    }
   ]
  },
@@ -273,15 +273,15 @@
    "From sensing to action: GPS-RTK and vision provide centimetre-level localisation → SoC2 plans path through dynamic yard traffic → Autonomous steer/throttle/brake in open and under-crane zones → Yard management system dispatches and monitors fleet.",
    "Key dependency: Port authority partnerships and certification."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 46",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 68",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=agv"
    },
    {
-    "label": "Source slide 46",
-    "target": "slides?slide=46"
+    "label": "Source slide 68",
+    "target": "slides?slide=68"
    }
   ]
  },
@@ -299,15 +299,15 @@
    "From sensing to action: Gimbal camera + thermal sensor → SoC2 runs airborne perception → Object detection and tracking → Telemetry relay to ground station.",
    "Key dependency: Drone regulation and form-factor development."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 58",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 93",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=d100"
    },
    {
-    "label": "Source slide 58",
-    "target": "slides?slide=58"
+    "label": "Source slide 93",
+    "target": "slides?slide=93"
    }
   ]
  },
@@ -325,15 +325,15 @@
    "From sensing to action: LWIR sensor captures thermal scene → SoC2 fuses thermal with visible camera → Enhanced detection in low/no visibility → Alert output to vehicle safety system.",
    "Key dependency: LWIR sensor sourcing and calibration pipeline."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 60",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 75",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=thermal"
    },
    {
-    "label": "Source slide 60",
-    "target": "slides?slide=60"
+    "label": "Source slide 75",
+    "target": "slides?slide=75"
    }
   ]
  },
@@ -351,15 +351,15 @@
    "From sensing to action: IR camera watches driver face → SoC2 runs drowsiness/distraction model → Alert escalation chain triggered → Event log for fleet compliance.",
    "Key dependency: Mandate enforcement timeline."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 62",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 83",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=h100"
    },
    {
-    "label": "Source slide 62",
-    "target": "slides?slide=62"
+    "label": "Source slide 83",
+    "target": "slides?slide=83"
    }
   ]
  },
@@ -377,15 +377,15 @@
    "From sensing to action: 4D radar scans forward scene → Range + velocity + angle data output → SoC2 fuses radar with camera object list → Closing-speed data enables braking decisions.",
    "Key dependency: Radar block verification on the ASIC."
   ],
-  "citation": "DeepGrid Product Portfolio, product dossier, source slide 64",
+  "citation": "DeepGrid Product Portfolio, product dossier, source slide 79",
   "actions": [
    {
     "label": "Open product dossier",
     "target": "portfolio?product=radar"
    },
    {
-    "label": "Source slide 64",
-    "target": "slides?slide=64"
+    "label": "Source slide 79",
+    "target": "slides?slide=79"
    }
   ]
  },
