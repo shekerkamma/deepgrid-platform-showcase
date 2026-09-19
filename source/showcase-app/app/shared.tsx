@@ -88,6 +88,13 @@ export const domains = [
   },
 ] as const;
 
+// A figure never breaks from its unit at a line end: "8.6 ms", "57 mm²", "39.3 TOPS", "₹45 Cr".
+export const nb = (s: string) =>
+  s.replace(
+    /(\d)\s+(ms|s|MHz|GHz|mm²|mm|nm|TOPS|PFLOPS|GB\/s|TB\/s|GB|MB|W|fps|Cr|L|K|M|MACs?|tiles|cores|units|%)(?![\w²])/g,
+    '$1\u00a0$2',
+  );
+
 export const productById = (id: string) => products.find((p) => p.id === id);
 
 export function Brand() {

@@ -1995,7 +1995,7 @@ html{scrollbar-color:#46504a #101212;caret-color:var(--copper)}
   padding: 3px 8px;
   border-radius: 3px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s var(--sc-ease-out, ease-out), border-color 0.15s var(--sc-ease-out, ease-out), color 0.15s var(--sc-ease-out, ease-out), box-shadow 0.15s var(--sc-ease-out, ease-out), transform 0.15s var(--sc-ease-out, ease-out);
 }
 .dr-focus-chip:hover {
   border-color: var(--copper);
@@ -2012,7 +2012,7 @@ html{scrollbar-color:#46504a #101212;caret-color:var(--copper)}
   align-items: center;
   gap: 6px;
   font-weight: 500;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s var(--sc-ease-out, ease-out), border-color 0.15s var(--sc-ease-out, ease-out), color 0.15s var(--sc-ease-out, ease-out), box-shadow 0.15s var(--sc-ease-out, ease-out), transform 0.15s var(--sc-ease-out, ease-out);
 }
 .dr-graphify-btn.outline {
   background: #141917;
@@ -2298,7 +2298,7 @@ input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-sea
   border-radius: 4px;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s var(--sc-ease-out, ease-out), border-color 0.15s var(--sc-ease-out, ease-out), color 0.15s var(--sc-ease-out, ease-out), box-shadow 0.15s var(--sc-ease-out, ease-out), transform 0.15s var(--sc-ease-out, ease-out);
   border: 1px solid transparent;
 }
 .dr-dossier-action-btn.primary {
@@ -2428,7 +2428,7 @@ input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-sea
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s var(--sc-ease-out, ease-out), border-color 0.15s var(--sc-ease-out, ease-out), color 0.15s var(--sc-ease-out, ease-out), box-shadow 0.15s var(--sc-ease-out, ease-out), transform 0.15s var(--sc-ease-out, ease-out);
 }
 .dr-view-toggle-btn.active {
   background: #1c2621;
@@ -2447,7 +2447,7 @@ input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-sea
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s var(--sc-ease-out, ease-out), border-color 0.15s var(--sc-ease-out, ease-out), color 0.15s var(--sc-ease-out, ease-out), box-shadow 0.15s var(--sc-ease-out, ease-out), transform 0.15s var(--sc-ease-out, ease-out);
 }
 .dr-dossier-expand-toggle-btn:hover {
   background: #19221d;
@@ -2472,7 +2472,7 @@ input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-sea
   font-size: 0.70rem;
   color: #9eb1a3;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s var(--sc-ease-out, ease-out), border-color 0.15s var(--sc-ease-out, ease-out), color 0.15s var(--sc-ease-out, ease-out), box-shadow 0.15s var(--sc-ease-out, ease-out), transform 0.15s var(--sc-ease-out, ease-out);
 }
 .dr-card-accordion-btn:hover {
   background: #151c18;
@@ -2570,7 +2570,7 @@ input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-sea
   padding: 3px 8px;
   border-radius: 3px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s var(--sc-ease-out, ease-out), border-color 0.15s var(--sc-ease-out, ease-out), color 0.15s var(--sc-ease-out, ease-out), box-shadow 0.15s var(--sc-ease-out, ease-out), transform 0.15s var(--sc-ease-out, ease-out);
 }
 .dr-matrix-btn:hover {
   background: #23332a;
@@ -2589,7 +2589,7 @@ input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-sea
   padding: 3px 8px;
   border-radius: 3px;
   text-decoration: none;
-  transition: all 0.15s ease;
+  transition: background-color 0.15s var(--sc-ease-out, ease-out), border-color 0.15s var(--sc-ease-out, ease-out), color 0.15s var(--sc-ease-out, ease-out), box-shadow 0.15s var(--sc-ease-out, ease-out), transform 0.15s var(--sc-ease-out, ease-out);
 }
 .dr-matrix-pdf-link:hover {
   background: #d4a36e18;

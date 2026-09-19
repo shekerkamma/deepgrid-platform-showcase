@@ -245,7 +245,7 @@ export default function Overview({
             >
               <strong>{title}</strong>
               <span>{sub}</span>
-              <ArrowRight size={18} />
+              <ArrowRight size={18} aria-hidden="true" />
             </a>
           ))}
         </nav>
