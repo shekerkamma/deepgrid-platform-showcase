@@ -44,16 +44,12 @@
    "Summarise the opportunity for an investor"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_335",
-   "sc_markdown_narration_product_lines_md_712",
-   "sc_markdown_narration_script_md_716",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_271",
-   "sc_converted_showcase_investment_memorandum_md_334",
-   "sc_office_icp_and_gtm_strategy_jul_2026_ee0ff9b7_md_832",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_268",
-   "sc_office_icp_and_gtm_strategy_jul_2026_ee0ff9b7_md_830",
-   "sc_converted_showcase_investment_memorandum_md_379",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_269"
+   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_4",
+   "sc_converted_showcase_investment_memorandum_md_1",
+   "sc_office_icp_and_gtm_strategy_jul_2026_ee0ff9b7_md_18",
+   "sc_converted_showcase_investment_memorandum_md_2",
+   "sc_converted_information_memorandum_june_2026_md_6",
+   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_1"
   ],
   "evidenceHash": "a83fb1a1b7369c40",
   "model": "claude-sonnet-4-6",
@@ -106,14 +102,11 @@
    "Which standards create the need for these systems?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_338",
-   "sc_markdown_india_adas_dates_md_666",
-   "sc_markdown_india_adas_dates_md_665",
-   "sc_papers_information_memorandum_v2_aug_2026_pdf_182",
-   "sc_converted_information_memorandum_june_2026_md_282",
-   "sc_converted_showcase_product_dossiers_md_397",
-   "sc_markdown_brief_md_530",
-   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_229"
+   "sc_converted_showcase_investment_memorandum_md_5",
+   "sc_markdown_brief_md_6",
+   "sc_converted_showcase_product_dossiers_md_2",
+   "sc_markdown_india_adas_dates_md_2",
+   "sc_papers_information_memorandum_v2_aug_2026_pdf_6"
   ],
   "evidenceHash": "b1a77a951dfebd90",
   "model": "claude-sonnet-4-6",
@@ -160,15 +153,15 @@
    "How many vehicles are in the pool DeepGrid can address?"
   ],
   "sources": [
-   "sc_papers_information_memorandum_v2_aug_2026_pdf_182",
-   "sc_converted_information_memorandum_june_2026_md_282",
-   "sc_office_business_plan_v2_54a22726_md_781",
-   "sc_converted_information_memorandum_june_2026_md_289",
-   "sc_papers_information_memorandum_v2_aug_2026_pdf_189",
-   "sc_office_business_plan_v2_54a22726_md_779",
-   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_208",
-   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_229",
-   "sc_converted_showcase_product_dossiers_md_396"
+   "sc_papers_information_memorandum_v2_aug_2026_pdf_6",
+   "sc_papers_information_memorandum_v2_aug_2026_pdf_13",
+   "sc_converted_information_memorandum_june_2026_md_13",
+   "sc_office_business_plan_v2_54a22726_md_13",
+   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_6",
+   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_27",
+   "sc_markdown_narration_portfolio_104_md_20",
+   "sc_converted_information_memorandum_june_2026_md_7",
+   "sc_office_business_plan_v2_54a22726_md_15"
   ],
   "evidenceHash": "dd2f85e1d28efc00",
   "model": "claude-sonnet-4-6",
@@ -224,19 +217,14 @@
    "How does DeepGrid sell to fleets, OEMs and government?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_353",
-   "sc_converted_showcase_investment_memorandum_md_354",
-   "sc_converted_showcase_investment_memorandum_md_355",
-   "sc_converted_showcase_investment_memorandum_md_356",
-   "sc_office_icp_and_gtm_strategy_jul_2026_ee0ff9b7_md_827",
-   "sc_converted_showcase_investment_memorandum_md_361",
-   "sc_converted_showcase_investment_memorandum_md_366",
-   "sc_converted_showcase_investment_memorandum_md_362",
-   "sc_converted_showcase_use_cases_md_395",
-   "sc_converted_product_portfolio_deck_104_slides_md_479",
-   "sc_markdown_narration_product_lines_md_714",
-   "sc_converted_showcase_product_dossiers_md_398",
-   "sc_converted_showcase_product_dossiers_md_396"
+   "sc_converted_showcase_investment_memorandum_md_22",
+   "sc_converted_showcase_investment_memorandum_md_33",
+   "sc_converted_showcase_investment_memorandum_md_28",
+   "sc_office_icp_and_gtm_strategy_jul_2026_ee0ff9b7_md_15",
+   "sc_converted_product_portfolio_deck_104_slides_md_69",
+   "sc_converted_showcase_product_dossiers_md_3",
+   "sc_converted_showcase_product_dossiers_md_1",
+   "sc_office_icp_and_gtm_strategy_jul_2026_ee0ff9b7_md_2"
   ],
   "evidenceHash": "e6095f00c044b510",
   "model": "claude-sonnet-4-6",
@@ -293,15 +281,13 @@
    "Which buyers does each product line reach?"
   ],
   "sources": [
-   "sc_converted_product_portfolio_deck_104_slides_md_412",
-   "sc_converted_showcase_investment_memorandum_md_335",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_269",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_271",
-   "sc_converted_showcase_investment_memorandum_md_339",
-   "sc_converted_showcase_investment_memorandum_md_340",
-   "sc_converted_showcase_investment_memorandum_md_334",
-   "sc_converted_showcase_product_dossiers_md_396",
-   "sc_converted_showcase_product_dossiers_md_397"
+   "sc_converted_showcase_investment_memorandum_md_2",
+   "sc_converted_showcase_investment_memorandum_md_1",
+   "sc_converted_product_portfolio_deck_104_slides_md_2",
+   "sc_converted_showcase_investment_memorandum_md_6",
+   "sc_converted_showcase_product_dossiers_md_1",
+   "sc_converted_showcase_product_dossiers_md_2",
+   "sc_markdown_storyboard_sku_explainer_md_2"
   ],
   "evidenceHash": "35fd22646515417b",
   "model": "claude-sonnet-4-6",
@@ -350,11 +336,11 @@
    "What is the architecture of the DeepGrid silicon?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_349",
-   "sc_papers_information_memorandum_v2_aug_2026_pdf_179",
-   "sc_converted_information_memorandum_june_2026_md_279",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_271",
-   "sc_markdown_narration_portfolio_104_md_698"
+   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_4",
+   "sc_converted_showcase_investment_memorandum_md_16",
+   "sc_converted_information_memorandum_june_2026_md_4",
+   "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+   "sc_markdown_narration_sku_explainer_87_md_6"
   ],
   "evidenceHash": "babc3dcc0dd9e2bc",
   "model": "claude-sonnet-4-6",
@@ -409,11 +395,11 @@
    "What stage is the technology at?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_351",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_271",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_269",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_272",
-   "sc_converted_showcase_investment_memorandum_md_361"
+   "sc_converted_showcase_investment_memorandum_md_18",
+   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_4",
+   "sc_converted_showcase_investment_memorandum_md_28",
+   "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+   "sc_converted_showcase_investment_memorandum_md_48"
   ],
   "evidenceHash": "a08bbdbdc1341a22",
   "model": "claude-sonnet-4-6",
@@ -463,14 +449,11 @@
    "Why can't others copy the chip?"
   ],
   "sources": [
-   "sc_converted_investor_briefing_jul_2026_md_322",
-   "sc_converted_information_memorandum_june_2026_md_298",
-   "sc_office_icp_and_gtm_strategy_jul_2026_ee0ff9b7_md_832",
-   "sc_papers_information_memorandum_v2_aug_2026_pdf_179",
-   "sc_converted_showcase_product_dossiers_md_400",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_269",
-   "sc_converted_information_memorandum_june_2026_md_281",
-   "sc_converted_showcase_product_dossiers_md_399"
+   "sc_converted_investor_briefing_jul_2026_md_7",
+   "sc_converted_showcase_product_dossiers_md_5",
+   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_2",
+   "sc_markdown_dossier_gap_register_md_6",
+   "sc_converted_information_memorandum_june_2026_md_6"
   ],
   "evidenceHash": "a57d979e009950d2",
   "model": "claude-sonnet-4-6",
@@ -528,14 +511,14 @@
    "Which lines carry the revenue?"
   ],
   "sources": [
-   "sc_papers_information_memorandum_v2_aug_2026_pdf_179",
-   "sc_markdown_narration_script_md_717",
-   "sc_office_financial_model_v3_sept_2026_58e1956b_md_797",
-   "sc_converted_showcase_investment_memorandum_md_337",
-   "sc_converted_showcase_product_dossiers_md_396",
-   "sc_converted_showcase_product_dossiers_md_397",
-   "sc_converted_showcase_investment_memorandum_md_340",
-   "sc_office_financial_model_v3_sept_2026_58e1956b_md_798"
+   "sc_papers_information_memorandum_v2_aug_2026_pdf_3",
+   "sc_office_financial_model_v3_sept_2026_58e1956b_md_5",
+   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_4",
+   "sc_office_financial_model_v3_sept_2026_58e1956b_md_4",
+   "sc_converted_information_memorandum_june_2026_md_4",
+   "sc_converted_product_portfolio_deck_104_slides_md_107",
+   "sc_converted_showcase_product_dossiers_md_1",
+   "sc_converted_showcase_product_dossiers_md_2"
   ],
   "evidenceHash": "a7559223d69f67eb",
   "model": "claude-sonnet-4-6",
@@ -580,13 +563,11 @@
    "How much does the tapeout cost?"
   ],
   "sources": [
-   "sc_office_financial_model_v3_sept_2026_58e1956b_md_806",
-   "sc_converted_investor_briefing_jul_2026_md_328",
-   "sc_office_business_plan_v2_54a22726_md_790",
-   "sc_converted_information_memorandum_june_2026_md_301",
-   "sc_papers_information_memorandum_v2_aug_2026_pdf_198",
-   "sc_office_financial_model_v3_sept_2026_58e1956b_md_805",
-   "sc_converted_showcase_product_dossiers_md_399"
+   "sc_office_business_plan_v2_54a22726_md_24",
+   "sc_office_financial_model_v3_sept_2026_58e1956b_md_13",
+   "sc_converted_product_portfolio_deck_104_slides_md_34",
+   "sc_office_financial_model_v3_sept_2026_58e1956b_md_12",
+   "sc_converted_showcase_product_dossiers_md_4"
   ],
   "evidenceHash": "ccb67036115723d0",
   "model": "claude-sonnet-4-6",
@@ -646,16 +627,25 @@
    "What is the revenue by year?"
   ],
   "sources": [
-   "sc_office_business_plan_v2_54a22726_md_788",
-   "sc_converted_showcase_investment_memorandum_md_381",
-   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_227",
-   "sc_office_business_plan_v2_54a22726_md_774",
-   "sc_converted_information_memorandum_june_2026_md_300",
-   "sc_converted_showcase_product_dossiers_md_396",
-   "sc_converted_showcase_product_dossiers_md_397",
-   "sc_converted_product_portfolio_deck_104_slides_md_446",
-   "sc_converted_product_portfolio_deck_104_slides_md_478",
-   "sc_converted_product_portfolio_deck_104_slides_md_498"
+   "sc_markdown_model_review_findings_md_1",
+   "sc_markdown_model_review_findings_md_2",
+   "sc_converted_information_memorandum_june_2026_md_21",
+   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_25",
+   "sc_papers_information_memorandum_v2_aug_2026_pdf_21",
+   "sc_converted_showcase_investment_memorandum_md_48",
+   "sc_office_business_plan_v2_54a22726_md_3",
+   "sc_markdown_model_review_extract_md_1",
+   "sc_office_business_plan_v2_54a22726_md_8",
+   "sc_converted_showcase_product_dossiers_md_1",
+   "sc_converted_showcase_product_dossiers_md_2",
+   "sc_converted_showcase_investment_memorandum_md_13",
+   "sc_converted_product_portfolio_deck_104_slides_md_36",
+   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_12",
+   "sc_converted_product_portfolio_deck_104_slides_md_92",
+   "sc_converted_product_portfolio_deck_104_slides_md_88",
+   "sc_converted_product_portfolio_deck_104_slides_md_60",
+   "sc_office_business_plan_v2_54a22726_md_22",
+   "sc_markdown_brief_md_7"
   ],
   "evidenceHash": "c428d68293124e3f",
   "model": "claude-sonnet-4-6",
@@ -699,10 +689,11 @@
    "When does net income turn positive?"
   ],
   "sources": [
-   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_231",
-   "sc_converted_product_portfolio_deck_104_slides_md_446",
-   "sc_markdown_narration_script_md_718",
-   "sc_markdown_model_review_findings_md_679"
+   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_29",
+   "sc_converted_product_portfolio_deck_104_slides_md_36",
+   "sc_markdown_model_review_findings_md_1",
+   "sc_markdown_model_review_findings_md_2",
+   "sc_markdown_model_review_story_pack_md_4"
   ],
   "evidenceHash": "13769785246e7260",
   "model": "claude-sonnet-4-6",
@@ -750,13 +741,11 @@
    "Is the raise enough to carry DeepGrid to positive cash flow?"
   ],
   "sources": [
-   "sc_office_financial_model_v3_sept_2026_58e1956b_md_809",
-   "sc_office_financial_model_v3_sept_2026_58e1956b_md_808",
-   "sc_markdown_narration_script_md_719",
-   "sc_markdown_narration_script_md_720",
-   "sc_converted_showcase_investment_memorandum_md_374",
-   "sc_converted_showcase_investment_memorandum_md_375",
-   "sc_converted_showcase_investment_memorandum_md_365"
+   "sc_converted_showcase_investment_memorandum_md_41",
+   "sc_converted_showcase_investment_memorandum_md_42",
+   "sc_office_financial_model_v3_sept_2026_58e1956b_md_16",
+   "sc_office_financial_model_v3_sept_2026_58e1956b_md_15",
+   "sc_converted_showcase_investment_memorandum_md_32"
   ],
   "evidenceHash": "1afab9b6d0c31331",
   "model": "claude-sonnet-4-6",
@@ -811,12 +800,13 @@
    "What is the CGTMSE loan for?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_382",
-   "sc_markdown_narration_script_md_716",
-   "sc_office_financial_model_v3_sept_2026_58e1956b_md_803",
-   "sc_office_business_plan_v2_54a22726_md_778",
-   "sc_converted_showcase_investment_memorandum_md_374",
-   "sc_converted_showcase_investment_memorandum_md_375"
+   "sc_converted_showcase_investment_memorandum_md_49",
+   "sc_papers_bp1b_usa_proposal_pdf_12",
+   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_4",
+   "sc_office_financial_model_v3_sept_2026_58e1956b_md_10",
+   "sc_converted_showcase_investment_memorandum_md_41",
+   "sc_office_business_plan_v2_54a22726_md_12",
+   "sc_converted_showcase_investment_memorandum_md_42"
   ],
   "evidenceHash": "5449f1d11f70120c",
   "model": "claude-sonnet-4-6",
@@ -868,12 +858,12 @@
    "What are the terms of the round?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_382",
-   "sc_markdown_narration_script_md_716",
-   "sc_converted_showcase_investment_memorandum_md_383",
-   "sc_converted_showcase_investment_memorandum_md_374",
-   "sc_converted_showcase_investment_memorandum_md_386",
-   "sc_markdown_accept_case_corrected_note_md_556"
+   "sc_converted_showcase_investment_memorandum_md_49",
+   "sc_markdown_accept_case_corrected_note_md_1",
+   "sc_converted_showcase_investment_memorandum_md_41",
+   "sc_converted_showcase_investment_memorandum_md_50",
+   "sc_converted_showcase_investment_memorandum_md_53",
+   "sc_papers_bp1b_usa_proposal_pdf_14"
   ],
   "evidenceHash": "4b814033b3e53a39",
   "model": "claude-sonnet-4-6",
@@ -929,10 +919,12 @@
    "What are the key milestones and dates?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_382",
-   "sc_converted_showcase_investment_memorandum_md_363",
-   "sc_converted_showcase_investment_memorandum_md_351",
-   "sc_converted_showcase_investment_memorandum_md_335"
+   "sc_converted_showcase_investment_memorandum_md_37",
+   "sc_converted_showcase_investment_memorandum_md_2",
+   "sc_converted_showcase_investment_memorandum_md_30",
+   "sc_converted_product_portfolio_deck_104_slides_md_4",
+   "sc_markdown_narration_script_md_3",
+   "sc_converted_showcase_investment_memorandum_md_49"
   ],
   "evidenceHash": "415b3688ba162719",
   "model": "claude-sonnet-4-6",
@@ -983,8 +975,9 @@
    "What experience does the management have?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_337",
-   "sc_converted_showcase_investment_memorandum_md_348"
+   "sc_converted_showcase_investment_memorandum_md_4",
+   "sc_converted_showcase_investment_memorandum_md_15",
+   "sc_converted_information_memorandum_june_2026_md_26"
   ],
   "evidenceHash": "b68bfea2f2dd357a",
   "model": "claude-sonnet-4-6",
@@ -1030,13 +1023,10 @@
    "Which Indian companies compete?"
   ],
   "sources": [
-   "sc_converted_investor_briefing_jul_2026_md_322",
-   "sc_office_icp_and_gtm_strategy_jul_2026_ee0ff9b7_md_823",
-   "sc_office_icp_and_gtm_strategy_jul_2026_ee0ff9b7_md_830",
-   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_271",
-   "sc_converted_information_memorandum_june_2026_md_298",
-   "sc_converted_showcase_investment_memorandum_md_356",
-   "sc_converted_showcase_investment_memorandum_md_357"
+   "sc_converted_investor_briefing_jul_2026_md_7",
+   "sc_office_icp_and_gtm_strategy_jul_2026_ee0ff9b7_md_18",
+   "sc_papers_deepgrid_brief_shravan_mayookh_pdf_4",
+   "sc_converted_showcase_investment_memorandum_md_23"
   ],
   "evidenceHash": "2ec72528e369f65e",
   "model": "claude-sonnet-4-6",
@@ -1094,15 +1084,14 @@
    "What could go wrong?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_384",
-   "sc_converted_showcase_investment_memorandum_md_385",
-   "sc_converted_showcase_investment_memorandum_md_380",
-   "sc_converted_showcase_investment_memorandum_md_378",
-   "sc_converted_showcase_investment_memorandum_md_386",
-   "sc_converted_showcase_investment_memorandum_md_376",
-   "sc_converted_showcase_product_dossiers_md_396",
-   "sc_converted_showcase_product_dossiers_md_397",
-   "sc_converted_showcase_investment_memorandum_md_387"
+   "sc_office_business_plan_v2_54a22726_md_16",
+   "sc_converted_showcase_investment_memorandum_md_52",
+   "sc_converted_showcase_investment_memorandum_md_51",
+   "sc_converted_showcase_investment_memorandum_md_53",
+   "sc_markdown_im_review_stage1_audit_md_9",
+   "sc_converted_showcase_product_dossiers_md_1",
+   "sc_converted_showcase_product_dossiers_md_2",
+   "sc_converted_showcase_investment_memorandum_md_54"
   ],
   "evidenceHash": "87603f6874e160de",
   "model": "claude-sonnet-4-6",
@@ -1147,11 +1136,15 @@
    "What does the reconciliation show?"
   ],
   "sources": [
-   "sc_markdown_model_review_extract_md_677",
-   "sc_converted_showcase_investment_memorandum_md_386",
-   "sc_markdown_reconciliation_md_544",
-   "sc_converted_showcase_investment_memorandum_md_385",
-   "sc_converted_showcase_investment_memorandum_md_387"
+   "sc_converted_showcase_investment_memorandum_md_53",
+   "sc_markdown_narration_script_md_4",
+   "sc_markdown_model_review_extract_md_8",
+   "sc_converted_showcase_investment_memorandum_md_52",
+   "sc_converted_information_memorandum_june_2026_md_21",
+   "sc_office_financial_model_v3_sept_2026_58e1956b_md_13",
+   "sc_markdown_exa_findings_deck_contradictions_md_2",
+   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_25",
+   "sc_converted_showcase_investment_memorandum_md_54"
   ],
   "evidenceHash": "1c7291bc8333e48c",
   "model": "claude-sonnet-4-6",
@@ -1209,16 +1202,14 @@
    "How sensitive is the plan to delays?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_378",
-   "sc_converted_showcase_investment_memorandum_md_380",
-   "sc_markdown_tapeout_decision_memo_md_555",
-   "sc_markdown_tapeout_decision_memo_md_549",
-   "sc_markdown_exa_findings_deck_contradictions_md_536",
-   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_217",
-   "sc_converted_showcase_investment_memorandum_md_383",
-   "sc_converted_showcase_investment_memorandum_md_375",
-   "sc_converted_showcase_investment_memorandum_md_334",
-   "sc_markdown_tapeout_decision_memo_md_553"
+   "sc_converted_showcase_investment_memorandum_md_45",
+   "sc_converted_showcase_investment_memorandum_md_50",
+   "sc_markdown_exa_findings_deck_contradictions_md_3",
+   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_15",
+   "sc_converted_showcase_investment_memorandum_md_42",
+   "sc_converted_showcase_investment_memorandum_md_1",
+   "sc_converted_showcase_investment_memorandum_md_37",
+   "sc_markdown_tapeout_decision_memo_md_6"
   ],
   "evidenceHash": "e7715d5068e3631b",
   "model": "claude-sonnet-4-6",
@@ -1276,15 +1267,14 @@
    "Why not just sprint to the tapeout?"
   ],
   "sources": [
-   "sc_converted_showcase_investment_memorandum_md_371",
-   "sc_converted_showcase_investment_memorandum_md_356",
-   "sc_converted_showcase_investment_memorandum_md_361",
-   "sc_converted_showcase_investment_memorandum_md_372",
-   "sc_converted_showcase_product_dossiers_md_400",
-   "sc_converted_showcase_product_dossiers_md_403",
-   "sc_converted_showcase_investment_memorandum_md_373",
-   "sc_converted_showcase_investment_memorandum_md_355",
-   "sc_converted_showcase_investment_memorandum_md_365"
+   "sc_converted_showcase_investment_memorandum_md_38",
+   "sc_converted_showcase_investment_memorandum_md_23",
+   "sc_converted_showcase_investment_memorandum_md_22",
+   "sc_converted_showcase_product_dossiers_md_5",
+   "sc_converted_showcase_investment_memorandum_md_40",
+   "sc_converted_showcase_investment_memorandum_md_33",
+   "sc_converted_showcase_product_dossiers_md_8",
+   "sc_converted_showcase_investment_memorandum_md_32"
   ],
   "evidenceHash": "6a61edf159f6fe73",
   "model": "claude-sonnet-4-6",
@@ -1324,14 +1314,13 @@
    "What is proposed for US autonomous trucking?"
   ],
   "sources": [
-   "sc_papers_bp1b_usa_proposal_pdf_245",
-   "sc_papers_bp1b_usa_proposal_pdf_247",
-   "sc_papers_bp1b_usa_proposal_pdf_252",
-   "sc_papers_bp1b_usa_proposal_pdf_256",
-   "sc_papers_bp1b_usa_proposal_pdf_257",
-   "sc_papers_bp1b_usa_proposal_pdf_265",
-   "sc_papers_bp1b_usa_proposal_pdf_260",
-   "sc_papers_bp1b_usa_proposal_pdf_262"
+   "sc_papers_bp1b_usa_proposal_pdf_14",
+   "sc_papers_bp1b_usa_proposal_pdf_9",
+   "sc_papers_bp1b_usa_proposal_pdf_15",
+   "sc_papers_bp1b_usa_proposal_pdf_23",
+   "sc_papers_bp1b_usa_proposal_pdf_3",
+   "sc_papers_bp1a_india_autonomous_trucking_plan_pdf_40",
+   "sc_papers_bp1b_usa_proposal_pdf_5"
   ],
   "evidenceHash": "31e479af8daa3d25",
   "model": "claude-sonnet-4-6",
@@ -1387,20 +1376,16 @@
    "What is D100 used for?"
   ],
   "sources": [
-   "sc_converted_product_portfolio_deck_104_slides_md_490",
-   "sc_converted_showcase_product_dossiers_md_403",
-   "sc_converted_showcase_product_dossiers_md_407",
-   "sc_converted_showcase_investment_memorandum_md_368",
-   "sc_converted_showcase_investment_memorandum_md_345",
-   "sc_converted_product_portfolio_deck_104_slides_md_509",
-   "sc_converted_product_portfolio_deck_104_slides_md_504",
-   "sc_converted_investor_briefing_jul_2026_md_319",
-   "sc_markdown_narration_portfolio_104_md_709",
-   "sc_markdown_narration_sku_explainer_87_md_732",
-   "sc_converted_product_portfolio_deck_104_slides_md_505",
-   "sc_converted_showcase_investment_memorandum_md_335",
-   "sc_papers_information_memorandum_v2_aug_2026_pdf_193",
-   "sc_converted_product_portfolio_deck_104_slides_md_503"
+   "sc_converted_showcase_product_dossiers_md_8",
+   "sc_converted_product_portfolio_deck_104_slides_md_80",
+   "sc_converted_product_portfolio_deck_104_slides_md_93",
+   "sc_converted_product_portfolio_deck_104_slides_md_99",
+   "sc_converted_showcase_investment_memorandum_md_35",
+   "sc_converted_showcase_investment_memorandum_md_12",
+   "sc_converted_showcase_product_dossiers_md_12",
+   "sc_converted_product_portfolio_deck_104_slides_md_94",
+   "sc_converted_product_portfolio_deck_104_slides_md_95",
+   "sc_markdown_im_review_stage2_gaps_md_3"
   ],
   "evidenceHash": "416f35ec425621ef",
   "model": "claude-sonnet-4-6",
