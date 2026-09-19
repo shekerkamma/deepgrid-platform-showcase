@@ -305,11 +305,11 @@ export const groundedDocuments: GroundedDoc[] = [
   },
 ];
 
-// --- Showcase content (this site): Doc #7-#9. Their source files are not published, so they carry no PDF;
-// answers link to the place on this page that shows each passage instead.
+// --- Showcase content (this site): Doc #7-#9. Their source files are published under ./downloads/showcase/;
+// answers also link to the place on this page that shows each passage.
 const showcaseDoc = (id: 'doc7' | 'doc8' | 'doc9', docNum: string, title: string, subtitle: string, subsystem: string, summary: string,
-  highlights: string[], defaultQuery: string): GroundedDoc => ({id, badge: `DOC #${Number(docNum)} · ${subsystem.toUpperCase()}`, docNum, title, subtitle,
-  group: 'core', subsystem, specFile: '', specFileName: '', pdfFile: '', pdfFileName: '', fileSizeMd: '', fileSizePdf: '', pdfPageCount: '',
+  highlights: string[], defaultQuery: string, file = '', size = '', pages = ''): GroundedDoc => ({id, badge: `DOC #${Number(docNum)} · ${subsystem.toUpperCase()}`, docNum, title, subtitle,
+  group: 'core', subsystem, specFile: '', specFileName: '', pdfFile: file ? `./downloads/showcase/${file}` : '', pdfFileName: file, fileSizeMd: '', fileSizePdf: size, pdfPageCount: pages,
   stats: [], summary, highlights, defaultQuery, queryDocId: id});
 groundedDocuments.push(
   showcaseDoc('doc7', '07', 'Product Portfolio (15 Products, 104-Slide Deck)', 'Fifteen products on one 28 nm SoC2 die', 'Product Portfolio',
@@ -318,7 +318,9 @@ groundedDocuments.push(
     'How do the fifteen products fit together?'),
   showcaseDoc('doc8', '08', 'Investment & Information Memoranda', 'Thesis, demand, strategy, the round and the risks', 'Investment Case',
     'The investment memorandum, the Information Memoranda (June and v2), the BP1A India and BP1B USA plans, and the research and audits behind them.',
-    ['Legislated ADAS demand for Indian commercial vehicles', 'The strategic choice and where the documents disagree'], 'Why invest in DeepGrid?'),
+    ['Legislated ADAS demand for Indian commercial vehicles', 'The strategic choice and where the documents disagree'], 'Why invest in DeepGrid?',
+    'deepgrid-information-memorandum-v2-aug-2026.pdf', '1.5 MB', '27 pages'),
   showcaseDoc('doc9', '09', 'Financial Model & Business Plan', 'Revenue, margins, use of funds and runway', 'Financials',
     'Financial Model v3 (Sept 2026) and Business Plan v2: revenue build, P&L, use of funds, tapeout unit economics and cash runway. Management projections.',
-    ['₹45 Cr equity plus ₹10 Cr CGTMSE debt', 'The two workbooks disagree on FY2032 revenue'], 'How does revenue grow to FY2032?'));
+    ['₹45 Cr equity plus ₹10 Cr CGTMSE debt', 'The two workbooks disagree on FY2032 revenue'], 'How does revenue grow to FY2032?',
+    'deepgrid-financial-model-v3-sept-2026.xlsx', '31 KB', '7 sheets'));

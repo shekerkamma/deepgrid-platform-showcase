@@ -648,6 +648,9 @@ export const executiveThemes: ExecutiveTheme[] = [
  */
 executiveThemes.push(...(showcaseThemesRaw as unknown as ExecutiveTheme[]));
 const isShowcaseDoc = (docNum: string) => ['07', '08', '09'].includes(docNum);
+// a showcase document's published file (./downloads/showcase/), found from any of its chunks
+const showcaseFile = new Map<string, {path: string; size: string}>();
+graphIndex.chunks.forEach(c => { if (isShowcaseDoc(c.docNum) && c.pdfPath && !showcaseFile.has(c.docTitle)) showcaseFile.set(c.docTitle, {path: c.pdfPath, size: c.pdfSize}); });
 const SHOWCASE_RELATED = [
   { label: 'Why Invest in DeepGrid', query: 'Why invest in DeepGrid?' },
   { label: 'The Round & Use of Funds', query: 'How much is DeepGrid raising, and what does it fund?' },
@@ -844,8 +847,8 @@ export function executeGraphRAG(rawQuery: string, sem?: SemanticScores | null): 
         documentNum: matchedTheme.docNum,
         section: matchedTheme.section,
         page: matchedTheme.page,
-        pdfPath: matchedTheme.pdfPath,
-        pdfSize: matchedTheme.pdfSize,
+        pdfPath: matchedTheme.pdfPath || showcaseFile.get(matchedTheme.docTitle)?.path || '',
+        pdfSize: matchedTheme.pdfSize || showcaseFile.get(matchedTheme.docTitle)?.size || '',
         specPath: matchedTheme.specPath,
         nav: matchedTheme.nav
       },
@@ -907,7 +910,7 @@ export function executeGraphRAG(rawQuery: string, sem?: SemanticScores | null): 
       referenceLinks: showcaseItem?.actions ? showcaseItem.actions.map(a => ({ label: a.label, hash: a.target, description: showcaseItem.citation })) : pageLinks,
       citation: {
         documentTitle: bestChunk.docTitle, documentNum: bestChunk.docNum, section: bestChunk.section, page: bestChunk.pageLabel,
-        pdfPath: '', pdfSize: '', specPath: '', nav: bestChunk.nav
+        pdfPath: bestChunk.pdfPath, pdfSize: bestChunk.pdfSize, specPath: '', nav: bestChunk.nav
       },
       technicalDetails: {
         summary: 'Where this is discussed:',
