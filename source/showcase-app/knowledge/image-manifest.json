@@ -1,0 +1,1943 @@
+{
+ "images": [
+  {
+   "id": "slide-001",
+   "file": "public/slides/slide_01.png",
+   "source": "Product portfolio deck",
+   "slide": 1,
+   "title": "Cover",
+   "nav": "slides?slide=1",
+   "film": "master",
+   "t": 0,
+   "filmNav": "film?v=master&t=0"
+  },
+  {
+   "id": "slide-002",
+   "file": "public/slides/slide_02.png",
+   "source": "Product portfolio deck",
+   "slide": 2,
+   "title": "How to read this deck",
+   "nav": "slides?slide=2",
+   "film": "master",
+   "t": 13,
+   "filmNav": "film?v=master&t=13"
+  },
+  {
+   "id": "slide-003",
+   "file": "public/slides/slide_03.png",
+   "source": "Product portfolio deck",
+   "slide": 3,
+   "title": "Why now",
+   "nav": "slides?slide=3",
+   "film": "master",
+   "t": 33,
+   "filmNav": "film?v=master&t=33"
+  },
+  {
+   "id": "slide-004",
+   "file": "public/slides/slide_04.png",
+   "source": "Product portfolio deck",
+   "slide": 4,
+   "title": "The move",
+   "nav": "slides?slide=4",
+   "film": "master",
+   "t": 55,
+   "filmNav": "film?v=master&t=55"
+  },
+  {
+   "id": "slide-005",
+   "file": "public/slides/slide_05.png",
+   "source": "Product portfolio deck",
+   "slide": 5,
+   "title": "The silicon",
+   "nav": "slides?slide=5"
+  },
+  {
+   "id": "slide-006",
+   "file": "public/slides/slide_06.png",
+   "source": "Product portfolio deck",
+   "slide": 6,
+   "title": "The portfolio",
+   "nav": "slides?slide=6",
+   "film": "master",
+   "t": 105,
+   "filmNav": "film?v=master&t=105"
+  },
+  {
+   "id": "slide-007",
+   "file": "public/slides/slide_07.png",
+   "source": "Product portfolio deck",
+   "slide": 7,
+   "title": "Part one, Road autonomy",
+   "nav": "slides?slide=7",
+   "film": "master",
+   "t": 129,
+   "filmNav": "film?v=master&t=129"
+  },
+  {
+   "id": "slide-008",
+   "file": "public/slides/slide_08.png",
+   "source": "Product portfolio deck",
+   "slide": 8,
+   "title": "AD0 \u00b7 What it is",
+   "nav": "slides?slide=8",
+   "film": "master",
+   "t": 145,
+   "filmNav": "film?v=master&t=145"
+  },
+  {
+   "id": "slide-009",
+   "file": "public/slides/slide_09.png",
+   "source": "Product portfolio deck",
+   "slide": 9,
+   "title": "AD0 \u00b7 How it works",
+   "nav": "slides?slide=9",
+   "film": "master",
+   "t": 159,
+   "filmNav": "film?v=master&t=159"
+  },
+  {
+   "id": "slide-010",
+   "file": "public/slides/slide_10.png",
+   "source": "Product portfolio deck",
+   "slide": 10,
+   "title": "AD0 \u00b7 Who buys it",
+   "nav": "slides?slide=10",
+   "film": "master",
+   "t": 178,
+   "filmNav": "film?v=master&t=178"
+  },
+  {
+   "id": "slide-011",
+   "file": "public/slides/slide_11.png",
+   "source": "Product portfolio deck",
+   "slide": 11,
+   "title": "AD0 \u00b7 How it fits",
+   "nav": "slides?slide=11"
+  },
+  {
+   "id": "slide-012",
+   "file": "public/slides/slide_12.png",
+   "source": "Product portfolio deck",
+   "slide": 12,
+   "title": "AD1 \u00b7 What it is",
+   "nav": "slides?slide=12",
+   "film": "master",
+   "t": 211,
+   "filmNav": "film?v=master&t=211"
+  },
+  {
+   "id": "slide-013",
+   "file": "public/slides/slide_13.png",
+   "source": "Product portfolio deck",
+   "slide": 13,
+   "title": "AD1 \u00b7 How it works",
+   "nav": "slides?slide=13",
+   "film": "master",
+   "t": 225,
+   "filmNav": "film?v=master&t=225"
+  },
+  {
+   "id": "slide-014",
+   "file": "public/slides/slide_14.png",
+   "source": "Product portfolio deck",
+   "slide": 14,
+   "title": "AD1 \u00b7 Who buys it",
+   "nav": "slides?slide=14",
+   "film": "master",
+   "t": 252,
+   "filmNav": "film?v=master&t=252"
+  },
+  {
+   "id": "slide-015",
+   "file": "public/slides/slide_15.png",
+   "source": "Product portfolio deck",
+   "slide": 15,
+   "title": "AD1 \u00b7 How it fits",
+   "nav": "slides?slide=15",
+   "film": "master",
+   "t": 271,
+   "filmNav": "film?v=master&t=271"
+  },
+  {
+   "id": "slide-016",
+   "file": "public/slides/slide_16.png",
+   "source": "Product portfolio deck",
+   "slide": 16,
+   "title": "AD1 \u00b7 Proven in a simulator",
+   "nav": "slides?slide=16",
+   "film": "master",
+   "t": 285,
+   "filmNav": "film?v=master&t=285"
+  },
+  {
+   "id": "slide-017",
+   "file": "public/slides/slide_17.png",
+   "source": "Product portfolio deck",
+   "slide": 17,
+   "title": "AD1 \u00b7 The simulator, running",
+   "nav": "slides?slide=17",
+   "film": "master",
+   "t": 309,
+   "filmNav": "film?v=master&t=309"
+  },
+  {
+   "id": "slide-018",
+   "file": "public/slides/slide_18.png",
+   "source": "Product portfolio deck",
+   "slide": 18,
+   "title": "AD2 \u00b7 What it is",
+   "nav": "slides?slide=18",
+   "film": "master",
+   "t": 325,
+   "filmNav": "film?v=master&t=325"
+  },
+  {
+   "id": "slide-019",
+   "file": "public/slides/slide_19.png",
+   "source": "Product portfolio deck",
+   "slide": 19,
+   "title": "AD2 \u00b7 How it works",
+   "nav": "slides?slide=19",
+   "film": "master",
+   "t": 340,
+   "filmNav": "film?v=master&t=340"
+  },
+  {
+   "id": "slide-020",
+   "file": "public/slides/slide_20.png",
+   "source": "Product portfolio deck",
+   "slide": 20,
+   "title": "AD2 \u00b7 Who buys it",
+   "nav": "slides?slide=20",
+   "film": "master",
+   "t": 370,
+   "filmNav": "film?v=master&t=370"
+  },
+  {
+   "id": "slide-021",
+   "file": "public/slides/slide_21.png",
+   "source": "Product portfolio deck",
+   "slide": 21,
+   "title": "AD2 \u00b7 How it fits",
+   "nav": "slides?slide=21"
+  },
+  {
+   "id": "slide-022",
+   "file": "public/slides/slide_22.png",
+   "source": "Product portfolio deck",
+   "slide": 22,
+   "title": "AD2 \u00b7 Proven in a simulator",
+   "nav": "slides?slide=22",
+   "film": "master",
+   "t": 399,
+   "filmNav": "film?v=master&t=399"
+  },
+  {
+   "id": "slide-023",
+   "file": "public/slides/slide_23.png",
+   "source": "Product portfolio deck",
+   "slide": 23,
+   "title": "AD2 \u00b7 The simulator, running",
+   "nav": "slides?slide=23",
+   "film": "master",
+   "t": 421,
+   "filmNav": "film?v=master&t=421"
+  },
+  {
+   "id": "slide-024",
+   "file": "public/slides/slide_24.png",
+   "source": "Product portfolio deck",
+   "slide": 24,
+   "title": "Sensor to compute \u00b7 Eleven inputs",
+   "nav": "slides?slide=24",
+   "film": "master",
+   "t": 437,
+   "filmNav": "film?v=master&t=437"
+  },
+  {
+   "id": "slide-025",
+   "file": "public/slides/slide_25.png",
+   "source": "Product portfolio deck",
+   "slide": 25,
+   "title": "Sensor to compute \u00b7 The compute box, running",
+   "nav": "slides?slide=25",
+   "film": "master",
+   "t": 476,
+   "filmNav": "film?v=master&t=476"
+  },
+  {
+   "id": "slide-026",
+   "file": "public/slides/slide_26.png",
+   "source": "Product portfolio deck",
+   "slide": 26,
+   "title": "Sensor to compute \u00b7 Each sensor's job",
+   "nav": "slides?slide=26",
+   "film": "master",
+   "t": 498,
+   "filmNav": "film?v=master&t=498"
+  },
+  {
+   "id": "slide-027",
+   "file": "public/slides/slide_27.png",
+   "source": "Product portfolio deck",
+   "slide": 27,
+   "title": "AD2 \u00b7 G \u00b7 Sensor coverage",
+   "nav": "slides?slide=27",
+   "film": "master",
+   "t": 523,
+   "filmNav": "film?v=master&t=523"
+  },
+  {
+   "id": "slide-028",
+   "file": "public/slides/slide_28.png",
+   "source": "Product portfolio deck",
+   "slide": 28,
+   "title": "Sensor to compute \u00b7 Define the measurement",
+   "nav": "slides?slide=28",
+   "film": "master",
+   "t": 549,
+   "filmNav": "film?v=master&t=549"
+  },
+  {
+   "id": "slide-029",
+   "file": "public/slides/slide_29.png",
+   "source": "Product portfolio deck",
+   "slide": 29,
+   "title": "Sensor to compute \u00b7 Prove it in stages",
+   "nav": "slides?slide=29",
+   "film": "master",
+   "t": 578,
+   "filmNav": "film?v=master&t=578"
+  },
+  {
+   "id": "slide-030",
+   "file": "public/slides/slide_30.png",
+   "source": "Product portfolio deck",
+   "slide": 30,
+   "title": "Sensor to compute \u00b7 The ladder, running",
+   "nav": "slides?slide=30",
+   "film": "master",
+   "t": 612,
+   "filmNav": "film?v=master&t=612"
+  },
+  {
+   "id": "slide-031",
+   "file": "public/slides/slide_31.png",
+   "source": "Product portfolio deck",
+   "slide": 31,
+   "title": "Part two, Silicon and compute",
+   "nav": "slides?slide=31",
+   "film": "master",
+   "t": 638,
+   "filmNav": "film?v=master&t=638"
+  },
+  {
+   "id": "slide-032",
+   "file": "public/slides/slide_32.png",
+   "source": "Product portfolio deck",
+   "slide": 32,
+   "title": "Chipset OEM \u00b7 What it is",
+   "nav": "slides?slide=32",
+   "film": "master",
+   "t": 653,
+   "filmNav": "film?v=master&t=653"
+  },
+  {
+   "id": "slide-033",
+   "file": "public/slides/slide_33.png",
+   "source": "Product portfolio deck",
+   "slide": 33,
+   "title": "Chipset OEM \u00b7 How it works",
+   "nav": "slides?slide=33",
+   "film": "master",
+   "t": 670,
+   "filmNav": "film?v=master&t=670"
+  },
+  {
+   "id": "slide-034",
+   "file": "public/slides/slide_34.png",
+   "source": "Product portfolio deck",
+   "slide": 34,
+   "title": "Chipset OEM \u00b7 Who buys it",
+   "nav": "slides?slide=34",
+   "film": "master",
+   "t": 687,
+   "filmNav": "film?v=master&t=687"
+  },
+  {
+   "id": "slide-035",
+   "file": "public/slides/slide_35.png",
+   "source": "Product portfolio deck",
+   "slide": 35,
+   "title": "Chipset OEM \u00b7 How it fits",
+   "nav": "slides?slide=35",
+   "film": "master",
+   "t": 696,
+   "filmNav": "film?v=master&t=696"
+  },
+  {
+   "id": "slide-036",
+   "file": "public/slides/slide_36.png",
+   "source": "Product portfolio deck",
+   "slide": 36,
+   "title": "Compute and data \u00b7 Compute waits",
+   "nav": "slides?slide=36",
+   "film": "master",
+   "t": 710,
+   "filmNav": "film?v=master&t=710"
+  },
+  {
+   "id": "slide-037",
+   "file": "public/slides/slide_37.png",
+   "source": "Product portfolio deck",
+   "slide": 37,
+   "title": "Compute and data \u00b7 Shared engine, running",
+   "nav": "slides?slide=37",
+   "film": "master",
+   "t": 740,
+   "filmNav": "film?v=master&t=740"
+  },
+  {
+   "id": "slide-038",
+   "file": "public/slides/slide_38.png",
+   "source": "Product portfolio deck",
+   "slide": 38,
+   "title": "Compute and data \u00b7 Inside one local DMA",
+   "nav": "slides?slide=38",
+   "film": "master",
+   "t": 760,
+   "filmNav": "film?v=master&t=760"
+  },
+  {
+   "id": "slide-039",
+   "file": "public/slides/slide_39.png",
+   "source": "Product portfolio deck",
+   "slide": 39,
+   "title": "Compute and data \u00b7 Placement is a choice",
+   "nav": "slides?slide=39",
+   "film": "master",
+   "t": 792,
+   "filmNav": "film?v=master&t=792"
+  },
+  {
+   "id": "slide-040",
+   "file": "public/slides/slide_40.png",
+   "source": "Product portfolio deck",
+   "slide": 40,
+   "title": "Compute and data \u00b7 The memory spectrum",
+   "nav": "slides?slide=40",
+   "film": "master",
+   "t": 825,
+   "filmNav": "film?v=master&t=825"
+  },
+  {
+   "id": "slide-041",
+   "file": "public/slides/slide_41.png",
+   "source": "Product portfolio deck",
+   "slide": 41,
+   "title": "Compute and data \u00b7 Eight layers",
+   "nav": "slides?slide=41",
+   "film": "master",
+   "t": 856,
+   "filmNav": "film?v=master&t=856"
+  },
+  {
+   "id": "slide-042",
+   "file": "public/slides/slide_42.png",
+   "source": "Product portfolio deck",
+   "slide": 42,
+   "title": "Chipset \u00b7 E \u00b7 The compute",
+   "nav": "slides?slide=42",
+   "film": "master",
+   "t": 880,
+   "filmNav": "film?v=master&t=880"
+  },
+  {
+   "id": "slide-043",
+   "file": "public/slides/slide_43.png",
+   "source": "Product portfolio deck",
+   "slide": 43,
+   "title": "Compute and data \u00b7 A stronger data path",
+   "nav": "slides?slide=43",
+   "film": "master",
+   "t": 912,
+   "filmNav": "film?v=master&t=912"
+  },
+  {
+   "id": "slide-044",
+   "file": "public/slides/slide_44.png",
+   "source": "Product portfolio deck",
+   "slide": 44,
+   "title": "Compute and data \u00b7 Follow one tile",
+   "nav": "slides?slide=44",
+   "film": "master",
+   "t": 941,
+   "filmNav": "film?v=master&t=941"
+  },
+  {
+   "id": "slide-045",
+   "file": "public/slides/slide_45.png",
+   "source": "Product portfolio deck",
+   "slide": 45,
+   "title": "Compute and data \u00b7 A hot bank",
+   "nav": "slides?slide=45",
+   "film": "master",
+   "t": 966,
+   "filmNav": "film?v=master&t=966"
+  },
+  {
+   "id": "slide-046",
+   "file": "public/slides/slide_46.png",
+   "source": "Product portfolio deck",
+   "slide": 46,
+   "title": "Compute and data \u00b7 Freeze, then measure",
+   "nav": "slides?slide=46",
+   "film": "master",
+   "t": 998,
+   "filmNav": "film?v=master&t=998"
+  },
+  {
+   "id": "slide-047",
+   "file": "public/slides/slide_47.png",
+   "source": "Product portfolio deck",
+   "slide": 47,
+   "title": "A100 one-channel \u00b7 What it is",
+   "nav": "slides?slide=47",
+   "film": "master",
+   "t": 1027,
+   "filmNav": "film?v=master&t=1027"
+  },
+  {
+   "id": "slide-048",
+   "file": "public/slides/slide_48.png",
+   "source": "Product portfolio deck",
+   "slide": 48,
+   "title": "A100 one-channel \u00b7 How it works",
+   "nav": "slides?slide=48",
+   "film": "master",
+   "t": 1037,
+   "filmNav": "film?v=master&t=1037"
+  },
+  {
+   "id": "slide-049",
+   "file": "public/slides/slide_49.png",
+   "source": "Product portfolio deck",
+   "slide": 49,
+   "title": "A100 one-channel \u00b7 Who buys it",
+   "nav": "slides?slide=49",
+   "film": "master",
+   "t": 1050,
+   "filmNav": "film?v=master&t=1050"
+  },
+  {
+   "id": "slide-050",
+   "file": "public/slides/slide_50.png",
+   "source": "Product portfolio deck",
+   "slide": 50,
+   "title": "A100 one-channel \u00b7 How it fits",
+   "nav": "slides?slide=50"
+  },
+  {
+   "id": "slide-051",
+   "file": "public/slides/slide_51.png",
+   "source": "Product portfolio deck",
+   "slide": 51,
+   "title": "A100 two-channel \u00b7 What it is",
+   "nav": "slides?slide=51",
+   "film": "master",
+   "t": 1072,
+   "filmNav": "film?v=master&t=1072"
+  },
+  {
+   "id": "slide-052",
+   "file": "public/slides/slide_52.png",
+   "source": "Product portfolio deck",
+   "slide": 52,
+   "title": "A100 two-channel \u00b7 How it works",
+   "nav": "slides?slide=52",
+   "film": "master",
+   "t": 1083,
+   "filmNav": "film?v=master&t=1083"
+  },
+  {
+   "id": "slide-053",
+   "file": "public/slides/slide_53.png",
+   "source": "Product portfolio deck",
+   "slide": 53,
+   "title": "A100 two-channel \u00b7 Who buys it",
+   "nav": "slides?slide=53",
+   "film": "master",
+   "t": 1102,
+   "filmNav": "film?v=master&t=1102"
+  },
+  {
+   "id": "slide-054",
+   "file": "public/slides/slide_54.png",
+   "source": "Product portfolio deck",
+   "slide": 54,
+   "title": "A100 two-channel \u00b7 How it fits",
+   "nav": "slides?slide=54",
+   "film": "master",
+   "t": 1117,
+   "filmNav": "film?v=master&t=1117"
+  },
+  {
+   "id": "slide-055",
+   "file": "public/slides/slide_55.png",
+   "source": "Product portfolio deck",
+   "slide": 55,
+   "title": "A100 four-channel \u00b7 What it is",
+   "nav": "slides?slide=55",
+   "film": "master",
+   "t": 1124,
+   "filmNav": "film?v=master&t=1124"
+  },
+  {
+   "id": "slide-056",
+   "file": "public/slides/slide_56.png",
+   "source": "Product portfolio deck",
+   "slide": 56,
+   "title": "A100 four-channel \u00b7 How it works",
+   "nav": "slides?slide=56",
+   "film": "master",
+   "t": 1142,
+   "filmNav": "film?v=master&t=1142"
+  },
+  {
+   "id": "slide-057",
+   "file": "public/slides/slide_57.png",
+   "source": "Product portfolio deck",
+   "slide": 57,
+   "title": "A100 four-channel \u00b7 Who buys it",
+   "nav": "slides?slide=57",
+   "film": "master",
+   "t": 1162,
+   "filmNav": "film?v=master&t=1162"
+  },
+  {
+   "id": "slide-058",
+   "file": "public/slides/slide_58.png",
+   "source": "Product portfolio deck",
+   "slide": 58,
+   "title": "A100 four-channel \u00b7 How it fits",
+   "nav": "slides?slide=58",
+   "film": "master",
+   "t": 1178,
+   "filmNav": "film?v=master&t=1178"
+  },
+  {
+   "id": "slide-059",
+   "file": "public/slides/slide_59.png",
+   "source": "Product portfolio deck",
+   "slide": 59,
+   "title": "T100 licence \u00b7 What it is",
+   "nav": "slides?slide=59",
+   "film": "master",
+   "t": 1187,
+   "filmNav": "film?v=master&t=1187"
+  },
+  {
+   "id": "slide-060",
+   "file": "public/slides/slide_60.png",
+   "source": "Product portfolio deck",
+   "slide": 60,
+   "title": "T100 licence \u00b7 How it works",
+   "nav": "slides?slide=60",
+   "film": "master",
+   "t": 1200,
+   "filmNav": "film?v=master&t=1200"
+  },
+  {
+   "id": "slide-061",
+   "file": "public/slides/slide_61.png",
+   "source": "Product portfolio deck",
+   "slide": 61,
+   "title": "T100 licence \u00b7 Who buys it",
+   "nav": "slides?slide=61",
+   "film": "master",
+   "t": 1212,
+   "filmNav": "film?v=master&t=1212"
+  },
+  {
+   "id": "slide-062",
+   "file": "public/slides/slide_62.png",
+   "source": "Product portfolio deck",
+   "slide": 62,
+   "title": "T100 licence \u00b7 How it fits",
+   "nav": "slides?slide=62",
+   "film": "master",
+   "t": 1228,
+   "filmNav": "film?v=master&t=1228"
+  },
+  {
+   "id": "slide-063",
+   "file": "public/slides/slide_63.png",
+   "source": "Product portfolio deck",
+   "slide": 63,
+   "title": "Part three, Fleet and mobility",
+   "nav": "slides?slide=63",
+   "film": "master",
+   "t": 1242,
+   "filmNav": "film?v=master&t=1242"
+  },
+  {
+   "id": "slide-064",
+   "file": "public/slides/slide_64.png",
+   "source": "Product portfolio deck",
+   "slide": 64,
+   "title": "TaaS \u00b7 What it is",
+   "nav": "slides?slide=64",
+   "film": "master",
+   "t": 1254,
+   "filmNav": "film?v=master&t=1254"
+  },
+  {
+   "id": "slide-065",
+   "file": "public/slides/slide_65.png",
+   "source": "Product portfolio deck",
+   "slide": 65,
+   "title": "TaaS \u00b7 How it works",
+   "nav": "slides?slide=65",
+   "film": "master",
+   "t": 1267,
+   "filmNav": "film?v=master&t=1267"
+  },
+  {
+   "id": "slide-066",
+   "file": "public/slides/slide_66.png",
+   "source": "Product portfolio deck",
+   "slide": 66,
+   "title": "TaaS \u00b7 Who buys it",
+   "nav": "slides?slide=66",
+   "film": "master",
+   "t": 1288,
+   "filmNav": "film?v=master&t=1288"
+  },
+  {
+   "id": "slide-067",
+   "file": "public/slides/slide_67.png",
+   "source": "Product portfolio deck",
+   "slide": 67,
+   "title": "TaaS \u00b7 How it fits",
+   "nav": "slides?slide=67",
+   "film": "master",
+   "t": 1298,
+   "filmNav": "film?v=master&t=1298"
+  },
+  {
+   "id": "slide-068",
+   "file": "public/slides/slide_68.png",
+   "source": "Product portfolio deck",
+   "slide": 68,
+   "title": "Seaport AGV \u00b7 What it is",
+   "nav": "slides?slide=68",
+   "film": "master",
+   "t": 1315,
+   "filmNav": "film?v=master&t=1315"
+  },
+  {
+   "id": "slide-069",
+   "file": "public/slides/slide_69.png",
+   "source": "Product portfolio deck",
+   "slide": 69,
+   "title": "Seaport AGV \u00b7 How it works",
+   "nav": "slides?slide=69",
+   "film": "master",
+   "t": 1328,
+   "filmNav": "film?v=master&t=1328"
+  },
+  {
+   "id": "slide-070",
+   "file": "public/slides/slide_70.png",
+   "source": "Product portfolio deck",
+   "slide": 70,
+   "title": "Seaport AGV \u00b7 Who buys it",
+   "nav": "slides?slide=70",
+   "film": "master",
+   "t": 1345,
+   "filmNav": "film?v=master&t=1345"
+  },
+  {
+   "id": "slide-071",
+   "file": "public/slides/slide_71.png",
+   "source": "Product portfolio deck",
+   "slide": 71,
+   "title": "Seaport AGV \u00b7 How it fits",
+   "nav": "slides?slide=71",
+   "film": "master",
+   "t": 1358,
+   "filmNav": "film?v=master&t=1358"
+  },
+  {
+   "id": "slide-072",
+   "file": "public/slides/slide_72.png",
+   "source": "Product portfolio deck",
+   "slide": 72,
+   "title": "Seaport AGV \u00b7 Proven in a simulator",
+   "nav": "slides?slide=72",
+   "film": "master",
+   "t": 1374,
+   "filmNav": "film?v=master&t=1374"
+  },
+  {
+   "id": "slide-073",
+   "file": "public/slides/slide_73.png",
+   "source": "Product portfolio deck",
+   "slide": 73,
+   "title": "Seaport AGV \u00b7 The simulator, running",
+   "nav": "slides?slide=73",
+   "film": "master",
+   "t": 1391,
+   "filmNav": "film?v=master&t=1391"
+  },
+  {
+   "id": "slide-074",
+   "file": "public/slides/slide_74.png",
+   "source": "Product portfolio deck",
+   "slide": 74,
+   "title": "Part four, Sensors and robotics",
+   "nav": "slides?slide=74"
+  },
+  {
+   "id": "slide-075",
+   "file": "public/slides/slide_75.png",
+   "source": "Product portfolio deck",
+   "slide": 75,
+   "title": "Thermal camera \u00b7 What it is",
+   "nav": "slides?slide=75",
+   "film": "master",
+   "t": 1427,
+   "filmNav": "film?v=master&t=1427"
+  },
+  {
+   "id": "slide-076",
+   "file": "public/slides/slide_76.png",
+   "source": "Product portfolio deck",
+   "slide": 76,
+   "title": "Thermal camera \u00b7 How it works",
+   "nav": "slides?slide=76",
+   "film": "master",
+   "t": 1440,
+   "filmNav": "film?v=master&t=1440"
+  },
+  {
+   "id": "slide-077",
+   "file": "public/slides/slide_77.png",
+   "source": "Product portfolio deck",
+   "slide": 77,
+   "title": "Thermal camera \u00b7 Who buys it",
+   "nav": "slides?slide=77",
+   "film": "master",
+   "t": 1458,
+   "filmNav": "film?v=master&t=1458"
+  },
+  {
+   "id": "slide-078",
+   "file": "public/slides/slide_78.png",
+   "source": "Product portfolio deck",
+   "slide": 78,
+   "title": "Thermal camera \u00b7 How it fits",
+   "nav": "slides?slide=78",
+   "film": "master",
+   "t": 1476,
+   "filmNav": "film?v=master&t=1476"
+  },
+  {
+   "id": "slide-079",
+   "file": "public/slides/slide_79.png",
+   "source": "Product portfolio deck",
+   "slide": 79,
+   "title": "4D radar \u00b7 What it is",
+   "nav": "slides?slide=79",
+   "film": "master",
+   "t": 1484,
+   "filmNav": "film?v=master&t=1484"
+  },
+  {
+   "id": "slide-080",
+   "file": "public/slides/slide_80.png",
+   "source": "Product portfolio deck",
+   "slide": 80,
+   "title": "4D radar \u00b7 How it works",
+   "nav": "slides?slide=80",
+   "film": "master",
+   "t": 1498,
+   "filmNav": "film?v=master&t=1498"
+  },
+  {
+   "id": "slide-081",
+   "file": "public/slides/slide_81.png",
+   "source": "Product portfolio deck",
+   "slide": 81,
+   "title": "4D radar \u00b7 Who buys it",
+   "nav": "slides?slide=81",
+   "film": "master",
+   "t": 1516,
+   "filmNav": "film?v=master&t=1516"
+  },
+  {
+   "id": "slide-082",
+   "file": "public/slides/slide_82.png",
+   "source": "Product portfolio deck",
+   "slide": 82,
+   "title": "4D radar \u00b7 How it fits",
+   "nav": "slides?slide=82",
+   "film": "master",
+   "t": 1530,
+   "filmNav": "film?v=master&t=1530"
+  },
+  {
+   "id": "slide-083",
+   "file": "public/slides/slide_83.png",
+   "source": "Product portfolio deck",
+   "slide": 83,
+   "title": "H100 wearable \u00b7 What it is",
+   "nav": "slides?slide=83",
+   "film": "master",
+   "t": 1540,
+   "filmNav": "film?v=master&t=1540"
+  },
+  {
+   "id": "slide-084",
+   "file": "public/slides/slide_84.png",
+   "source": "Product portfolio deck",
+   "slide": 84,
+   "title": "H100 wearable \u00b7 How it works",
+   "nav": "slides?slide=84",
+   "film": "master",
+   "t": 1559,
+   "filmNav": "film?v=master&t=1559"
+  },
+  {
+   "id": "slide-085",
+   "file": "public/slides/slide_85.png",
+   "source": "Product portfolio deck",
+   "slide": 85,
+   "title": "H100 wearable \u00b7 Who buys it",
+   "nav": "slides?slide=85",
+   "film": "master",
+   "t": 1569,
+   "filmNav": "film?v=master&t=1569"
+  },
+  {
+   "id": "slide-086",
+   "file": "public/slides/slide_86.png",
+   "source": "Product portfolio deck",
+   "slide": 86,
+   "title": "H100 wearable \u00b7 How it fits",
+   "nav": "slides?slide=86",
+   "film": "master",
+   "t": 1585,
+   "filmNav": "film?v=master&t=1585"
+  },
+  {
+   "id": "slide-087",
+   "file": "public/slides/slide_87.png",
+   "source": "Product portfolio deck",
+   "slide": 87,
+   "title": "D-HUMR \u00b7 What it is",
+   "nav": "slides?slide=87",
+   "film": "master",
+   "t": 1592,
+   "filmNav": "film?v=master&t=1592"
+  },
+  {
+   "id": "slide-088",
+   "file": "public/slides/slide_88.png",
+   "source": "Product portfolio deck",
+   "slide": 88,
+   "title": "D-HUMR \u00b7 How it works",
+   "nav": "slides?slide=88",
+   "film": "master",
+   "t": 1604,
+   "filmNav": "film?v=master&t=1604"
+  },
+  {
+   "id": "slide-089",
+   "file": "public/slides/slide_89.png",
+   "source": "Product portfolio deck",
+   "slide": 89,
+   "title": "D-HUMR \u00b7 Who buys it",
+   "nav": "slides?slide=89",
+   "film": "master",
+   "t": 1620,
+   "filmNav": "film?v=master&t=1620"
+  },
+  {
+   "id": "slide-090",
+   "file": "public/slides/slide_90.png",
+   "source": "Product portfolio deck",
+   "slide": 90,
+   "title": "D-HUMR \u00b7 How it fits",
+   "nav": "slides?slide=90",
+   "film": "master",
+   "t": 1640,
+   "filmNav": "film?v=master&t=1640"
+  },
+  {
+   "id": "slide-091",
+   "file": "public/slides/slide_91.png",
+   "source": "Product portfolio deck",
+   "slide": 91,
+   "title": "D-HUMR \u00b7 Proven in a simulator",
+   "nav": "slides?slide=91",
+   "film": "master",
+   "t": 1648,
+   "filmNav": "film?v=master&t=1648"
+  },
+  {
+   "id": "slide-092",
+   "file": "public/slides/slide_92.png",
+   "source": "Product portfolio deck",
+   "slide": 92,
+   "title": "D-HUMR \u00b7 The simulator, running",
+   "nav": "slides?slide=92",
+   "film": "master",
+   "t": 1674,
+   "filmNav": "film?v=master&t=1674"
+  },
+  {
+   "id": "slide-093",
+   "file": "public/slides/slide_93.png",
+   "source": "Product portfolio deck",
+   "slide": 93,
+   "title": "D100 drone \u00b7 What it is",
+   "nav": "slides?slide=93",
+   "film": "master",
+   "t": 1696,
+   "filmNav": "film?v=master&t=1696"
+  },
+  {
+   "id": "slide-094",
+   "file": "public/slides/slide_94.png",
+   "source": "Product portfolio deck",
+   "slide": 94,
+   "title": "D100 drone \u00b7 How it works",
+   "nav": "slides?slide=94",
+   "film": "master",
+   "t": 1708,
+   "filmNav": "film?v=master&t=1708"
+  },
+  {
+   "id": "slide-095",
+   "file": "public/slides/slide_95.png",
+   "source": "Product portfolio deck",
+   "slide": 95,
+   "title": "D100 drone \u00b7 Who buys it",
+   "nav": "slides?slide=95",
+   "film": "master",
+   "t": 1726,
+   "filmNav": "film?v=master&t=1726"
+  },
+  {
+   "id": "slide-096",
+   "file": "public/slides/slide_96.png",
+   "source": "Product portfolio deck",
+   "slide": 96,
+   "title": "D100 drone \u00b7 How it fits",
+   "nav": "slides?slide=96",
+   "film": "master",
+   "t": 1741,
+   "filmNav": "film?v=master&t=1741"
+  },
+  {
+   "id": "slide-097",
+   "file": "public/slides/slide_97.png",
+   "source": "Product portfolio deck",
+   "slide": 97,
+   "title": "Part five, Portfolio economics",
+   "nav": "slides?slide=97",
+   "film": "master",
+   "t": 1753,
+   "filmNav": "film?v=master&t=1753"
+  },
+  {
+   "id": "slide-098",
+   "file": "public/slides/slide_98.png",
+   "source": "Product portfolio deck",
+   "slide": 98,
+   "title": "Concentration",
+   "nav": "slides?slide=98",
+   "film": "master",
+   "t": 1766,
+   "filmNav": "film?v=master&t=1766"
+  },
+  {
+   "id": "slide-099",
+   "file": "public/slides/slide_99.png",
+   "source": "Product portfolio deck",
+   "slide": 99,
+   "title": "Sequencing",
+   "nav": "slides?slide=99",
+   "film": "master",
+   "t": 1785,
+   "filmNav": "film?v=master&t=1785"
+  },
+  {
+   "id": "slide-100",
+   "file": "public/slides/slide_100.png",
+   "source": "Product portfolio deck",
+   "slide": 100,
+   "title": "Where autonomy runs",
+   "nav": "slides?slide=100",
+   "film": "master",
+   "t": 1809,
+   "filmNav": "film?v=master&t=1809"
+  },
+  {
+   "id": "slide-101",
+   "file": "public/slides/slide_101.png",
+   "source": "Product portfolio deck",
+   "slide": 101,
+   "title": "Margin",
+   "nav": "slides?slide=101",
+   "film": "master",
+   "t": 1831,
+   "filmNav": "film?v=master&t=1831"
+  },
+  {
+   "id": "slide-102",
+   "file": "public/slides/slide_102.png",
+   "source": "Product portfolio deck",
+   "slide": 102,
+   "title": "Headroom",
+   "nav": "slides?slide=102",
+   "film": "master",
+   "t": 1854,
+   "filmNav": "film?v=master&t=1854"
+  },
+  {
+   "id": "slide-103",
+   "file": "public/slides/slide_103.png",
+   "source": "Product portfolio deck",
+   "slide": 103,
+   "title": "Far horizon \u00b7 SoC4-A",
+   "nav": "slides?slide=103",
+   "film": "master",
+   "t": 1877,
+   "filmNav": "film?v=master&t=1877"
+  },
+  {
+   "id": "slide-104",
+   "file": "public/slides/slide_104.png",
+   "source": "Product portfolio deck",
+   "slide": 104,
+   "title": "The ask",
+   "nav": "slides?slide=104",
+   "film": "master",
+   "t": 1908,
+   "filmNav": "film?v=master&t=1908"
+  },
+  {
+   "id": "img-computebox",
+   "file": "public/images/computebox.png",
+   "source": "DeepGrid product visualisation (IMAGE-SOURCES.md)"
+  },
+  {
+   "id": "img-cube",
+   "file": "public/images/cube.png",
+   "source": "DeepGrid product visualisation (IMAGE-SOURCES.md)"
+  },
+  {
+   "id": "img-ddrive",
+   "file": "public/images/ddrive.png",
+   "source": "DeepGrid product visualisation (IMAGE-SOURCES.md)"
+  },
+  {
+   "id": "img-figure-01",
+   "file": "public/images/figure-01.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-02",
+   "file": "public/images/figure-02.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-03",
+   "file": "public/images/figure-03.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-04",
+   "file": "public/images/figure-04.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-05",
+   "file": "public/images/figure-05.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-06",
+   "file": "public/images/figure-06.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-07",
+   "file": "public/images/figure-07.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-08",
+   "file": "public/images/figure-08.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-09",
+   "file": "public/images/figure-09.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-10",
+   "file": "public/images/figure-10.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-11",
+   "file": "public/images/figure-11.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-12",
+   "file": "public/images/figure-12.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-figure-13",
+   "file": "public/images/figure-13.webp",
+   "source": "Information Memorandum (figure)",
+   "nav": "investment?chapter=summary"
+  },
+  {
+   "id": "img-forklift",
+   "file": "public/images/forklift.png",
+   "source": "DeepGrid product visualisation (IMAGE-SOURCES.md)"
+  },
+  {
+   "id": "img-computebox",
+   "file": "public/images/posters/computebox.webp",
+   "source": "Product film (poster frame)",
+   "film": "computebox",
+   "t": 0,
+   "filmNav": "film?v=computebox"
+  },
+  {
+   "id": "img-ddrive",
+   "file": "public/images/posters/ddrive.webp",
+   "source": "Product film (poster frame)",
+   "film": "ddrive",
+   "t": 0,
+   "filmNav": "film?v=ddrive"
+  },
+  {
+   "id": "img-forklift",
+   "file": "public/images/posters/forklift.webp",
+   "source": "Product film (poster frame)",
+   "film": "forklift",
+   "t": 0,
+   "filmNav": "film?v=forklift"
+  },
+  {
+   "id": "img-sentinel",
+   "file": "public/images/posters/sentinel.webp",
+   "source": "Product film (poster frame)",
+   "film": "sentinel",
+   "t": 0,
+   "filmNav": "film?v=sentinel"
+  },
+  {
+   "id": "img-truck",
+   "file": "public/images/posters/truck.webp",
+   "source": "Product film (poster frame)",
+   "film": "truck",
+   "t": 0,
+   "filmNav": "film?v=truck"
+  },
+  {
+   "id": "img-yard",
+   "file": "public/images/posters/yard.webp",
+   "source": "Product film (poster frame)",
+   "film": "yard",
+   "t": 0,
+   "filmNav": "film?v=yard"
+  },
+  {
+   "id": "img-semiconductor-hero",
+   "file": "public/images/semiconductor-hero.png",
+   "source": "Generated illustration (IMAGE-SOURCES.md), not a photograph"
+  },
+  {
+   "id": "img-sentinel",
+   "file": "public/images/sentinel.png",
+   "source": "DeepGrid product visualisation (IMAGE-SOURCES.md)"
+  },
+  {
+   "id": "img-truck",
+   "file": "public/images/truck.png",
+   "source": "DeepGrid product visualisation (IMAGE-SOURCES.md)"
+  },
+  {
+   "id": "img-yard",
+   "file": "public/images/yard.png",
+   "source": "DeepGrid product visualisation (IMAGE-SOURCES.md)"
+  },
+  {
+   "id": "media-computebox-poster",
+   "file": "public/media/computebox-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-cube-poster",
+   "file": "public/media/cube-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-ddrive-poster",
+   "file": "public/media/ddrive-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-deepgrid_defence",
+   "file": "public/media/deepgrid_defence.jpg",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-deepgrid_logistics",
+   "file": "public/media/deepgrid_logistics.jpg",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-deepgrid_robotics",
+   "file": "public/media/deepgrid_robotics.jpg",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-deepgrid_soc2_die",
+   "file": "public/media/deepgrid_soc2_die.jpg",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-deepgrid_truck",
+   "file": "public/media/deepgrid_truck.jpg",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-dg32-2dom-architecture-poster",
+   "file": "public/media/dg32-2dom-architecture-poster.jpg",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-dg32-2dom-datasheet-poster",
+   "file": "public/media/dg32-2dom-datasheet-poster.jpg",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-dg32-lite-architecture-poster",
+   "file": "public/media/dg32-lite-architecture-poster.jpg",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-dg32-lite-datasheet-poster",
+   "file": "public/media/dg32-lite-datasheet-poster.jpg",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-dg32-lite-tapein-poster",
+   "file": "public/media/dg32-lite-tapein-poster.jpg",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-forklift-poster",
+   "file": "public/media/forklift-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-landscape-poster",
+   "file": "public/media/landscape-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-lines_image",
+   "file": "public/media/lines_image.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-lines_image2",
+   "file": "public/media/lines_image2.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-lines_image3",
+   "file": "public/media/lines_image3.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-lines_image4",
+   "file": "public/media/lines_image4.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-lines_image5",
+   "file": "public/media/lines_image5.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-lines_image6",
+   "file": "public/media/lines_image6.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-lines_image7",
+   "file": "public/media/lines_image7.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-lines_image8",
+   "file": "public/media/lines_image8.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-lines_image9",
+   "file": "public/media/lines_image9.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-mesh-poster",
+   "file": "public/media/mesh-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-problem-poster",
+   "file": "public/media/problem-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-roadmap-poster",
+   "file": "public/media/roadmap-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-sentinel-poster",
+   "file": "public/media/sentinel-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-sims_image",
+   "file": "public/media/sims_image.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-sims_image2",
+   "file": "public/media/sims_image2.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-sims_image3",
+   "file": "public/media/sims_image3.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-sims_image4",
+   "file": "public/media/sims_image4.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-truck-poster",
+   "file": "public/media/truck-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "media-yard-poster",
+   "file": "public/media/yard-poster.png",
+   "source": "Added with the DG32 visual assets (provenance not recorded)"
+  },
+  {
+   "id": "diagram-dg32-2dom-architecture",
+   "file": "public/diagrams/dg32-2dom-architecture.svg",
+   "source": "DG32 architecture diagram (draw.io)"
+  },
+  {
+   "id": "diagram-dg32-lite-architecture",
+   "file": "public/diagrams/dg32-lite-architecture.svg",
+   "source": "DG32 architecture diagram (draw.io)"
+  },
+  {
+   "id": "frame-computebox-003",
+   "file": "public/media/keyframes/computebox-003.webp",
+   "source": "Product film (keyframe)",
+   "film": "computebox",
+   "t": 3,
+   "filmNav": "film?v=computebox&t=3"
+  },
+  {
+   "id": "frame-computebox-009",
+   "file": "public/media/keyframes/computebox-009.webp",
+   "source": "Product film (keyframe)",
+   "film": "computebox",
+   "t": 9,
+   "filmNav": "film?v=computebox&t=9"
+  },
+  {
+   "id": "frame-computebox-015",
+   "file": "public/media/keyframes/computebox-015.webp",
+   "source": "Product film (keyframe)",
+   "film": "computebox",
+   "t": 15,
+   "filmNav": "film?v=computebox&t=15"
+  },
+  {
+   "id": "frame-computebox-021",
+   "file": "public/media/keyframes/computebox-021.webp",
+   "source": "Product film (keyframe)",
+   "film": "computebox",
+   "t": 21,
+   "filmNav": "film?v=computebox&t=21"
+  },
+  {
+   "id": "frame-computebox-027",
+   "file": "public/media/keyframes/computebox-027.webp",
+   "source": "Product film (keyframe)",
+   "film": "computebox",
+   "t": 27,
+   "filmNav": "film?v=computebox&t=27"
+  },
+  {
+   "id": "frame-computebox-033",
+   "file": "public/media/keyframes/computebox-033.webp",
+   "source": "Product film (keyframe)",
+   "film": "computebox",
+   "t": 33,
+   "filmNav": "film?v=computebox&t=33"
+  },
+  {
+   "id": "frame-computebox-039",
+   "file": "public/media/keyframes/computebox-039.webp",
+   "source": "Product film (keyframe)",
+   "film": "computebox",
+   "t": 39,
+   "filmNav": "film?v=computebox&t=39"
+  },
+  {
+   "id": "frame-computebox-045",
+   "file": "public/media/keyframes/computebox-045.webp",
+   "source": "Product film (keyframe)",
+   "film": "computebox",
+   "t": 45,
+   "filmNav": "film?v=computebox&t=45"
+  },
+  {
+   "id": "frame-computebox-051",
+   "file": "public/media/keyframes/computebox-051.webp",
+   "source": "Product film (keyframe)",
+   "film": "computebox",
+   "t": 51,
+   "filmNav": "film?v=computebox&t=51"
+  },
+  {
+   "id": "frame-ddrive-003",
+   "file": "public/media/keyframes/ddrive-003.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 3,
+   "filmNav": "film?v=ddrive&t=3"
+  },
+  {
+   "id": "frame-ddrive-009",
+   "file": "public/media/keyframes/ddrive-009.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 9,
+   "filmNav": "film?v=ddrive&t=9"
+  },
+  {
+   "id": "frame-ddrive-015",
+   "file": "public/media/keyframes/ddrive-015.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 15,
+   "filmNav": "film?v=ddrive&t=15"
+  },
+  {
+   "id": "frame-ddrive-021",
+   "file": "public/media/keyframes/ddrive-021.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 21,
+   "filmNav": "film?v=ddrive&t=21"
+  },
+  {
+   "id": "frame-ddrive-027",
+   "file": "public/media/keyframes/ddrive-027.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 27,
+   "filmNav": "film?v=ddrive&t=27"
+  },
+  {
+   "id": "frame-ddrive-033",
+   "file": "public/media/keyframes/ddrive-033.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 33,
+   "filmNav": "film?v=ddrive&t=33"
+  },
+  {
+   "id": "frame-ddrive-039",
+   "file": "public/media/keyframes/ddrive-039.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 39,
+   "filmNav": "film?v=ddrive&t=39"
+  },
+  {
+   "id": "frame-ddrive-045",
+   "file": "public/media/keyframes/ddrive-045.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 45,
+   "filmNav": "film?v=ddrive&t=45"
+  },
+  {
+   "id": "frame-ddrive-051",
+   "file": "public/media/keyframes/ddrive-051.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 51,
+   "filmNav": "film?v=ddrive&t=51"
+  },
+  {
+   "id": "frame-ddrive-057",
+   "file": "public/media/keyframes/ddrive-057.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 57,
+   "filmNav": "film?v=ddrive&t=57"
+  },
+  {
+   "id": "frame-ddrive-063",
+   "file": "public/media/keyframes/ddrive-063.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 63,
+   "filmNav": "film?v=ddrive&t=63"
+  },
+  {
+   "id": "frame-ddrive-069",
+   "file": "public/media/keyframes/ddrive-069.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 69,
+   "filmNav": "film?v=ddrive&t=69"
+  },
+  {
+   "id": "frame-ddrive-075",
+   "file": "public/media/keyframes/ddrive-075.webp",
+   "source": "Product film (keyframe)",
+   "film": "ddrive",
+   "t": 75,
+   "filmNav": "film?v=ddrive&t=75"
+  },
+  {
+   "id": "frame-forklift-003",
+   "file": "public/media/keyframes/forklift-003.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 3,
+   "filmNav": "film?v=forklift&t=3"
+  },
+  {
+   "id": "frame-forklift-009",
+   "file": "public/media/keyframes/forklift-009.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 9,
+   "filmNav": "film?v=forklift&t=9"
+  },
+  {
+   "id": "frame-forklift-015",
+   "file": "public/media/keyframes/forklift-015.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 15,
+   "filmNav": "film?v=forklift&t=15"
+  },
+  {
+   "id": "frame-forklift-021",
+   "file": "public/media/keyframes/forklift-021.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 21,
+   "filmNav": "film?v=forklift&t=21"
+  },
+  {
+   "id": "frame-forklift-027",
+   "file": "public/media/keyframes/forklift-027.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 27,
+   "filmNav": "film?v=forklift&t=27"
+  },
+  {
+   "id": "frame-forklift-033",
+   "file": "public/media/keyframes/forklift-033.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 33,
+   "filmNav": "film?v=forklift&t=33"
+  },
+  {
+   "id": "frame-forklift-039",
+   "file": "public/media/keyframes/forklift-039.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 39,
+   "filmNav": "film?v=forklift&t=39"
+  },
+  {
+   "id": "frame-forklift-045",
+   "file": "public/media/keyframes/forklift-045.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 45,
+   "filmNav": "film?v=forklift&t=45"
+  },
+  {
+   "id": "frame-forklift-051",
+   "file": "public/media/keyframes/forklift-051.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 51,
+   "filmNav": "film?v=forklift&t=51"
+  },
+  {
+   "id": "frame-forklift-057",
+   "file": "public/media/keyframes/forklift-057.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 57,
+   "filmNav": "film?v=forklift&t=57"
+  },
+  {
+   "id": "frame-forklift-063",
+   "file": "public/media/keyframes/forklift-063.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 63,
+   "filmNav": "film?v=forklift&t=63"
+  },
+  {
+   "id": "frame-forklift-069",
+   "file": "public/media/keyframes/forklift-069.webp",
+   "source": "Product film (keyframe)",
+   "film": "forklift",
+   "t": 69,
+   "filmNav": "film?v=forklift&t=69"
+  },
+  {
+   "id": "frame-sentinel-003",
+   "file": "public/media/keyframes/sentinel-003.webp",
+   "source": "Product film (keyframe)",
+   "film": "sentinel",
+   "t": 3,
+   "filmNav": "film?v=sentinel&t=3"
+  },
+  {
+   "id": "frame-sentinel-009",
+   "file": "public/media/keyframes/sentinel-009.webp",
+   "source": "Product film (keyframe)",
+   "film": "sentinel",
+   "t": 9,
+   "filmNav": "film?v=sentinel&t=9"
+  },
+  {
+   "id": "frame-sentinel-015",
+   "file": "public/media/keyframes/sentinel-015.webp",
+   "source": "Product film (keyframe)",
+   "film": "sentinel",
+   "t": 15,
+   "filmNav": "film?v=sentinel&t=15"
+  },
+  {
+   "id": "frame-sentinel-021",
+   "file": "public/media/keyframes/sentinel-021.webp",
+   "source": "Product film (keyframe)",
+   "film": "sentinel",
+   "t": 21,
+   "filmNav": "film?v=sentinel&t=21"
+  },
+  {
+   "id": "frame-sentinel-027",
+   "file": "public/media/keyframes/sentinel-027.webp",
+   "source": "Product film (keyframe)",
+   "film": "sentinel",
+   "t": 27,
+   "filmNav": "film?v=sentinel&t=27"
+  },
+  {
+   "id": "frame-sentinel-033",
+   "file": "public/media/keyframes/sentinel-033.webp",
+   "source": "Product film (keyframe)",
+   "film": "sentinel",
+   "t": 33,
+   "filmNav": "film?v=sentinel&t=33"
+  },
+  {
+   "id": "frame-sentinel-039",
+   "file": "public/media/keyframes/sentinel-039.webp",
+   "source": "Product film (keyframe)",
+   "film": "sentinel",
+   "t": 39,
+   "filmNav": "film?v=sentinel&t=39"
+  },
+  {
+   "id": "frame-sentinel-045",
+   "file": "public/media/keyframes/sentinel-045.webp",
+   "source": "Product film (keyframe)",
+   "film": "sentinel",
+   "t": 45,
+   "filmNav": "film?v=sentinel&t=45"
+  },
+  {
+   "id": "frame-truck-003",
+   "file": "public/media/keyframes/truck-003.webp",
+   "source": "Product film (keyframe)",
+   "film": "truck",
+   "t": 3,
+   "filmNav": "film?v=truck&t=3"
+  },
+  {
+   "id": "frame-truck-009",
+   "file": "public/media/keyframes/truck-009.webp",
+   "source": "Product film (keyframe)",
+   "film": "truck",
+   "t": 9,
+   "filmNav": "film?v=truck&t=9"
+  },
+  {
+   "id": "frame-truck-015",
+   "file": "public/media/keyframes/truck-015.webp",
+   "source": "Product film (keyframe)",
+   "film": "truck",
+   "t": 15,
+   "filmNav": "film?v=truck&t=15"
+  },
+  {
+   "id": "frame-truck-021",
+   "file": "public/media/keyframes/truck-021.webp",
+   "source": "Product film (keyframe)",
+   "film": "truck",
+   "t": 21,
+   "filmNav": "film?v=truck&t=21"
+  },
+  {
+   "id": "frame-truck-027",
+   "file": "public/media/keyframes/truck-027.webp",
+   "source": "Product film (keyframe)",
+   "film": "truck",
+   "t": 27,
+   "filmNav": "film?v=truck&t=27"
+  },
+  {
+   "id": "frame-truck-033",
+   "file": "public/media/keyframes/truck-033.webp",
+   "source": "Product film (keyframe)",
+   "film": "truck",
+   "t": 33,
+   "filmNav": "film?v=truck&t=33"
+  },
+  {
+   "id": "frame-truck-039",
+   "file": "public/media/keyframes/truck-039.webp",
+   "source": "Product film (keyframe)",
+   "film": "truck",
+   "t": 39,
+   "filmNav": "film?v=truck&t=39"
+  },
+  {
+   "id": "frame-yard-003",
+   "file": "public/media/keyframes/yard-003.webp",
+   "source": "Product film (keyframe)",
+   "film": "yard",
+   "t": 3,
+   "filmNav": "film?v=yard&t=3"
+  },
+  {
+   "id": "frame-yard-009",
+   "file": "public/media/keyframes/yard-009.webp",
+   "source": "Product film (keyframe)",
+   "film": "yard",
+   "t": 9,
+   "filmNav": "film?v=yard&t=9"
+  },
+  {
+   "id": "frame-yard-015",
+   "file": "public/media/keyframes/yard-015.webp",
+   "source": "Product film (keyframe)",
+   "film": "yard",
+   "t": 15,
+   "filmNav": "film?v=yard&t=15"
+  },
+  {
+   "id": "frame-yard-021",
+   "file": "public/media/keyframes/yard-021.webp",
+   "source": "Product film (keyframe)",
+   "film": "yard",
+   "t": 21,
+   "filmNav": "film?v=yard&t=21"
+  },
+  {
+   "id": "frame-yard-027",
+   "file": "public/media/keyframes/yard-027.webp",
+   "source": "Product film (keyframe)",
+   "film": "yard",
+   "t": 27,
+   "filmNav": "film?v=yard&t=27"
+  },
+  {
+   "id": "frame-yard-033",
+   "file": "public/media/keyframes/yard-033.webp",
+   "source": "Product film (keyframe)",
+   "film": "yard",
+   "t": 33,
+   "filmNav": "film?v=yard&t=33"
+  },
+  {
+   "id": "frame-yard-039",
+   "file": "public/media/keyframes/yard-039.webp",
+   "source": "Product film (keyframe)",
+   "film": "yard",
+   "t": 39,
+   "filmNav": "film?v=yard&t=39"
+  },
+  {
+   "id": "frame-yard-045",
+   "file": "public/media/keyframes/yard-045.webp",
+   "source": "Product film (keyframe)",
+   "film": "yard",
+   "t": 45,
+   "filmNav": "film?v=yard&t=45"
+  },
+  {
+   "id": "frame-yard-051",
+   "file": "public/media/keyframes/yard-051.webp",
+   "source": "Product film (keyframe)",
+   "film": "yard",
+   "t": 51,
+   "filmNav": "film?v=yard&t=51"
+  }
+ ]
+}

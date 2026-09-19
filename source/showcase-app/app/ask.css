@@ -2614,3 +2614,4 @@ input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-sea
 .dr-ask-dossier .mono{font-size:.7rem;color:var(--copper);letter-spacing:.6px}
 .dr-answer-body{font-size:.68rem;letter-spacing:.8px;text-transform:uppercase;color:#93a582;border:1px solid var(--rule);border-radius:3px;padding:2px 8px}
 }
+.dg-ask .dr-visual-source { display: inline-block; margin-top: 0.5rem; font-size: 0.875rem; color: var(--copper); text-decoration: underline; text-underline-offset: 3px; }

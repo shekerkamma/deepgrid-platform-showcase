@@ -1,0 +1,113 @@
+{
+ "_about": "Images for the curated themes, chosen by hand from the images' own descriptions (knowledge/image-descriptions.json) on 19 Sep 2026. The first listed image is shown beside the theme's answer; [] means no image fits and none is shown. Themes use this map rather than embeddings because scripts/build-image-links.py measured embedding matches for themes at 34% correct (themeTop1 in app/data/image-links.json), against 99% for deck slides and 95% for film frames. Add a theme here to give it an image.",
+ "themes": {
+  "The investment case": [
+   "slide-003",
+   "slide-004",
+   "slide-006",
+   "slide-104"
+  ],
+  "The demand is legislated, not forecast": [
+   "slide-003",
+   "slide-020"
+  ],
+  "Market size": [
+   "slide-003",
+   "slide-020"
+  ],
+  "Customers and go-to-market": [
+   "slide-020"
+  ],
+  "One chip, fifteen products": [
+   "slide-005",
+   "slide-006",
+   "img-figure-02",
+   "img-figure-03"
+  ],
+  "SoC2: six chiplets on one 57 mm² die": [
+   "img-figure-05",
+   "img-figure-06",
+   "slide-005"
+  ],
+  "What is already built": [
+   "img-figure-10"
+  ],
+  "Defensibility and IP": [
+   "img-figure-09"
+  ],
+  "Business model": [
+   "slide-006",
+   "img-figure-02"
+  ],
+  "Chip unit economics": [
+   "slide-032",
+   "slide-035"
+  ],
+  "The revenue ramp": [
+   "img-figure-12"
+  ],
+  "Margins and profitability": [
+   "slide-101",
+   "img-figure-12"
+  ],
+  "Cash and runway": [],
+  "The round and what it funds": [
+   "slide-104",
+   "img-figure-13"
+  ],
+  "Valuation and terms": [
+   "slide-104"
+  ],
+  "Milestones the capital unlocks": [
+   "img-figure-13",
+   "img-figure-10"
+  ],
+  "The company and its founders": [
+   "img-figure-04"
+  ],
+  "Competition": [
+   "img-figure-09"
+  ],
+  "The investment risks": [
+   "slide-098"
+  ],
+  "Where the documents disagree": [],
+  "If the chip slips": [],
+  "The strategic choice: run A for B": [
+   "slide-099",
+   "slide-004"
+  ],
+  "The US opportunity": [],
+  "Defence and robotics": [
+   "slide-087",
+   "slide-091",
+   "slide-092"
+  ],
+  "Goertzel Recurrence vs. 8 MB FFT for Broken Rotor Bar Detection": [],
+  "The Kurtosis Non-Monotonicity Trap in Bearing Health Alarms": [],
+  "DG32-LITE AI Compute Envelope (No Accelerator)": [
+   "diagram-dg32-lite-architecture"
+  ],
+  "Academic Benchmark Audit: CWRU Bearing Dataset Leakage": [],
+  "DAP-2020 Buy (Indian-IDDM) & Make-II Statutory Defence Moats": [],
+  "50 MHz Operating Frequency: Lockstep Margin & Physical Timing Closure": [
+   "diagram-dg32-lite-architecture"
+  ],
+  "DG32 vs. STM32G0: Hardware Lockstep, BOM Cost & Latency Benchmark": [
+   "diagram-dg32-lite-architecture"
+  ],
+  "Hardware Lockstep: How DG32 Catches a Faulty Computation": [
+   "diagram-dg32-lite-architecture"
+  ],
+  "30 Industrial Diagnostics & Observers on a 50 MHz Scalar Core": [
+   "diagram-dg32-lite-architecture"
+  ],
+  "₹10 Cr Capital Waterfall & 24-Month Seed Runway": [],
+  "Chinese Price Crash Stress Test & Operational Stop Rules S1–S4": [],
+  "DG32 64-Pin QFN Physical Pin Map & Packaging Specification": [],
+  "Sovereign Supply Chain Immunity: The Three-Factory & 100% Domestic Architecture": [],
+  "Hardware DShot Receive (dgrid_dshot_rx) & Zero-Jitter Motor Telemetry": [
+   "diagram-dg32-lite-architecture"
+  ]
+ }
+}

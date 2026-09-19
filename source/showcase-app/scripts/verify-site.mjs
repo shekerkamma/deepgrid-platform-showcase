@@ -17,6 +17,8 @@
 // - Every product page opens with the case in brief and its use cases, tells its story in chapters with data
 //   pills, shows no slide images, and labels every link with its destination; the walkthrough link lands on the
 //   film at the product's time; Ask opens on a linked question.
+// - Ask answers show the image linked to what they rest on, captioned from the image, with a named source link; a
+//   question no image fits shows none.
 // - The slide deck steps with the arrow keys and its filmstrip marks the current slide.
 // - Every film has a poster that loads and a caption track that returns WebVTT, and every document
 //   in the Investment list downloads (HTTP 200, non-empty).
@@ -341,12 +343,67 @@ for (const { tag, viewport } of [
     BASE + '#briefing?q=' + encodeURIComponent('Tell me about the Seaport AGV'),
     { waitUntil: 'networkidle' },
   );
-  await p.waitForTimeout(800);
+  await p
+    .waitForFunction(
+      () => document.querySelector('.dr-ask-input')?.value,
+      null,
+      { timeout: 15000 },
+    )
+    .catch(() => {});
   const q = await p.evaluate(
     () => document.querySelector('.dr-ask-input')?.value,
   );
   if (q !== 'Tell me about the Seaport AGV')
     fail(`ask deep link: input holds "${q}"`);
+  await p.close();
+}
+
+// 3c. images beside Ask answers: the right image or none. Linked images carry the vision model's description as caption
+// and a source link naming where they come from; a question no image fits shows none (a road simulator was once shown as
+// a "bearing vibration spectrum").
+{
+  const p = await b.newPage({ viewport: { width: 1440, height: 1000 } });
+  watch(p, 'ask-images');
+  for (const [q, want] of [
+    ['What is the Seaport AGV?', 'slides/slide_68.png'],
+    ['What is the revenue ramp to FY2032?', 'images/figure-12.webp'],
+    ['Why does kurtosis stop rising as a bearing degrades?', null],
+  ]) {
+    await p.goto(BASE + '#briefing?q=' + encodeURIComponent(q), {
+      waitUntil: 'networkidle',
+    });
+    // Ask answers by keywords first and re-answers once the in-browser model is loaded; judge the settled answer
+    await p
+      .waitForSelector('.dr-grounded-answer-wrap[data-semantic="on"]', {
+        timeout: 20000,
+      })
+      .catch(() => fail(`ask "${q}": semantic ranking never came on`));
+    await p.waitForTimeout(300);
+    const c = await p.evaluate(() => {
+      const card = document.querySelector('.dr-visual-evidence-card');
+      return card
+        ? {
+            img: card.querySelector('img')?.getAttribute('src'),
+            source: card
+              .querySelector('.dr-visual-source')
+              ?.textContent?.trim(),
+            caption: card.querySelector('.dr-visual-caption')?.textContent,
+          }
+        : null;
+    });
+    if (
+      want === null
+        ? c
+        : !c ||
+          !c.img?.endsWith(want) ||
+          !c.source ||
+          /^(read|open|source)/i.test(c.source) ||
+          (c.caption || '').length < 40
+    )
+      fail(
+        `ask image for "${q}": expected ${want || 'none'}, got ${JSON.stringify(c)}`,
+      );
+  }
   await p.close();
 }
 

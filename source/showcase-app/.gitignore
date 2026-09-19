@@ -52,3 +52,8 @@ next-env.d.ts
 verify-shots/
 app/data/.multimodal_embed_cache.json
 *.tmp
+
+# gemini-embedding-2 vectors, cached by content hash (scripts/build-image-links.py)
+/knowledge/.embedding-cache/
+__pycache__/
+*.pyc
