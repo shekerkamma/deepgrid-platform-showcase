@@ -10,7 +10,22 @@ import {
   SelectItem,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { SectionHead, groups, products, type Product } from '../shared';
+import {
+  SectionHead,
+  Scene,
+  groups,
+  products,
+  type Product,
+  type SceneId,
+} from '../shared';
+
+// One concept render per product line, shown as the line's banner.
+const lineScene: Record<string, SceneId> = {
+  'Road Autonomy': 'truck',
+  'Silicon & Compute': 'die',
+  'Fleet & Mobility': 'port',
+  'Sensors & Robotics': 'defence',
+};
 import briefs from '../data/product-briefs.json';
 
 // Products: the fifteen lines as cards to browse or as a table to compare. Cards carry no
@@ -239,6 +254,15 @@ export default function Portfolio({
                   key={g}
                   aria-labelledby={'line-' + g.replace(/\W+/g, '-')}
                 >
+                  {lineScene[g] && (
+                    <figure className="product-line-scene">
+                      <Scene
+                        id={lineScene[g]}
+                        sizes="(min-width: 1200px) 1140px, 100vw"
+                      />
+                      <figcaption>Concept render</figcaption>
+                    </figure>
+                  )}
                   <header className="product-line-head">
                     <h2 id={'line-' + g.replace(/\W+/g, '-')}>{g}</h2>
                     {line && (

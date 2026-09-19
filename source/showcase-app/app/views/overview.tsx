@@ -2,7 +2,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ArrowUpRight, Play } from 'lucide-react';
 import Silicon from '../silicon';
-import { domains, productById, type Go } from '../shared';
+import {
+  domains,
+  productById,
+  Scene,
+  scenes,
+  type Go,
+  type SceneId,
+} from '../shared';
 import {
   lawRows,
   lawEvents,
@@ -77,6 +84,58 @@ export default function Overview({
           </div>
         ))}
       </dl>
+
+      <section className="ov-chapter ov-where" aria-labelledby="ov-where-title">
+        <header className="ov-chapter-head">
+          <h2 id="ov-where-title">Four places the chip goes to work.</h2>
+          <p>
+            The same die drives a truck on the highway, a hauler in a port, a
+            forklift in an aisle and a tower on a border. Each scene below is a
+            product line you can open.
+          </p>
+        </header>
+        <ul className="ov-where-rail">
+          {(
+            [
+              ['truck', ['ad2', 'ad0']],
+              ['port', ['agv', 'taas']],
+              ['warehouse', ['ad1']],
+              ['defence', ['dhumr', 'd100', 'thermal']],
+            ] as [SceneId, string[]][]
+          ).map(([id, ids]) => (
+            <li key={id} className="ov-where-card">
+              <a
+                href={
+                  '#portfolio?category=' + encodeURIComponent(scenes[id].line)
+                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  go(
+                    'portfolio?category=' + encodeURIComponent(scenes[id].line),
+                  );
+                }}
+              >
+                <Scene
+                  id={id}
+                  sizes="(min-width: 1100px) 26vw, (min-width: 700px) 45vw, 82vw"
+                />
+                <span className="ov-where-copy">
+                  <strong>{scenes[id].place}</strong>
+                  <span>
+                    {ids
+                      .map((x) => productById(x)?.name)
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p className="ov-source">
+          Concept renders, not photographs of shipped hardware.
+        </p>
+      </section>
 
       <section className="ov-chapter ov-law" aria-labelledby="ov-law-title">
         <header className="ov-chapter-head">

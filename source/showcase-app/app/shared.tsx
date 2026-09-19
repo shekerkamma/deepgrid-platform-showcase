@@ -133,3 +133,61 @@ export function SectionHead({
     </header>
   );
 }
+
+// Five DeepGrid scene renders. They are concept art, not photographs of shipped hardware, so every
+// place that shows one says so. Each is published at 1376 and 760 px (public/images/scenes/).
+export const scenes = {
+  truck: {
+    alt: 'Concept render of a DeepGrid-liveried truck on a wet highway at dusk, a camera-mirror display beside the cab',
+    place: 'Highways',
+    line: 'Road Autonomy',
+  },
+  port: {
+    alt: 'Concept render of a container terminal at dusk with autonomous haulers and cranes traced in tracking overlays',
+    place: 'Seaports and yards',
+    line: 'Fleet & Mobility',
+  },
+  warehouse: {
+    alt: 'Concept render of an autonomous forklift in a warehouse aisle, its LiDAR beams sweeping the racks',
+    place: 'Warehouses and plants',
+    line: 'Road Autonomy',
+  },
+  defence: {
+    alt: 'Concept render of a border surveillance tower seen from an operator cabin, with tracked targets on the glass',
+    place: 'Borders and bases',
+    line: 'Sensors & Robotics',
+  },
+  die: {
+    alt: 'Concept render of the DeepGrid SoC2 package on a circuit board, marked 28 nm and 39.3 TOPS',
+    place: 'The chip',
+    line: 'Silicon & Compute',
+  },
+} as const;
+export type SceneId = keyof typeof scenes;
+
+export function Scene({
+  id,
+  className = '',
+  sizes = '(min-width: 900px) 50vw, 100vw',
+  eager = false,
+}: {
+  id: SceneId;
+  className?: string;
+  sizes?: string;
+  eager?: boolean;
+}) {
+  const base = './images/scenes/' + id;
+  return (
+    <img
+      className={'scene-img ' + className}
+      src={base + '-1376.webp'}
+      srcSet={base + '-760.webp 760w, ' + base + '-1376.webp 1376w'}
+      sizes={sizes}
+      alt={scenes[id].alt}
+      width={1376}
+      height={768}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+    />
+  );
+}

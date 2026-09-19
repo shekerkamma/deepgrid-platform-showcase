@@ -2,7 +2,14 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { ArrowRight, Layers } from 'lucide-react';
 import Silicon from '../silicon';
-import { SectionHead, domains, nb, productById, type Go } from '../shared';
+import {
+  SectionHead,
+  Scene,
+  domains,
+  nb,
+  productById,
+  type Go,
+} from '../shared';
 import story from '../data/tech-story.json';
 import slideNotes from '../slide-notes.json';
 import { films, siliconFilms, Player } from './films';
@@ -408,6 +415,13 @@ export default function Technology({
           'One 28 nm chip, SoC2, carries the whole portfolio. Seven short chapters on what it is, why it is built this way, and what still has to be proven. The chip is not yet fabricated: its figures are design targets and derivations.',
         )}
       />
+      <figure className="tech-hero-scene">
+        <Scene id="die" sizes="(min-width: 1200px) 1140px, 100vw" eager />
+        <figcaption>
+          SoC2 as it is meant to ship. Concept render, not the floorplan;
+          39.3&nbsp;TOPS is a design target.
+        </figcaption>
+      </figure>
       <nav
         className="film-navigation tech-nav"
         aria-label="Technology chapters"

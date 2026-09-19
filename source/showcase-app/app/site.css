@@ -3213,3 +3213,165 @@ details > summary {
     transition: none;
   }
 }
+
+/* ---------- scene renders (Overview rail, product-line banners, Technology hero) ---------- */
+.scene-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--surface);
+}
+.ov-where-rail {
+  list-style: none;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+.ov-where-card a {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  color: var(--ink);
+  text-decoration: none;
+  isolation: isolate;
+}
+.ov-where-card .scene-img {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.02);
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+/* the scrim sits only under the words, not across the picture */
+.ov-where-card a::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 58%;
+  background: linear-gradient(to top, #0b0e0dee 0%, #0b0e0d99 45%, transparent);
+  z-index: 1;
+}
+.ov-where-copy {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 2;
+  padding: 1rem 1.1rem 1.15rem;
+  display: grid;
+  gap: 0.3rem;
+}
+.ov-where-copy strong {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-wrap: balance;
+}
+.ov-where-copy span {
+  font-size: var(--sc-t-control);
+  color: var(--ink-2);
+  line-height: 1.45;
+  min-height: 2.9em; /* two lines, so every card's title sits on one baseline */
+}
+.ov-where-card a:hover .scene-img,
+.ov-where-card a:focus-visible .scene-img {
+  transform: scale(1.07);
+}
+.ov-where-card a:hover,
+.ov-where-card a:focus-visible {
+  border-color: var(--copper);
+}
+.ov-where-card a:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+}
+
+.product-line-scene {
+  position: relative;
+  margin: 0 0 1.25rem;
+  aspect-ratio: 32 / 9;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--line-soft);
+}
+.product-line-scene figcaption,
+.tech-hero-scene figcaption {
+  font-size: var(--sc-t-meta);
+  letter-spacing: var(--sc-track-meta);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.product-line-scene figcaption {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.6rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  background: #0b0e0dcc;
+  color: var(--ink-2);
+}
+.product-line-scene + .product-line-head {
+  border-top: 0;
+  padding-top: 0;
+}
+.tech-hero-scene {
+  margin: 1.5rem 0 2rem;
+}
+.tech-hero-scene .scene-img {
+  aspect-ratio: 21 / 9;
+  border-radius: 6px;
+  border: 1px solid var(--line-soft);
+}
+.tech-hero-scene figcaption {
+  margin-top: 0.6rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: var(--sc-t-control);
+}
+
+@media (max-width: 1100px) {
+  .ov-where-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ov-where-card a {
+    aspect-ratio: 4 / 3;
+  }
+}
+/* on a phone the four scenes become a sideways rail you swipe, snapping card by card */
+@media (max-width: 699px) {
+  .ov-where-rail {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 82%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    padding-bottom: 0.5rem;
+    margin-right: calc(-1 * var(--gutter));
+    padding-right: var(--gutter);
+  }
+  .ov-where-card {
+    scroll-snap-align: start;
+  }
+  .ov-where-card a {
+    aspect-ratio: 4 / 5;
+  }
+  .product-line-scene {
+    aspect-ratio: 16 / 9;
+  }
+  .tech-hero-scene .scene-img {
+    aspect-ratio: 16 / 9;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ov-where-card .scene-img {
+    transition: none;
+  }
+  .ov-where-card a:hover .scene-img,
+  .ov-where-card a:focus-visible .scene-img {
+    transform: scale(1.02);
+  }
+}
