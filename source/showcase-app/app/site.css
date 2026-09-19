@@ -2739,3 +2739,87 @@ dd {
   line-height: 1.7;
   margin: 0.5rem 0 0;
 }
+
+/* ---------- interaction floor (scroll-craft taste floor + web interface guidelines) ---------- */
+:root {
+  --sc-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+/* hover motion only where a real pointer hovers: touch fires a false hover on tap and leaves cards lifted */
+@media not all and (hover: hover) and (pointer: fine) {
+  .ov-routes a:hover svg,
+  .catalog-list > .product-card:hover,
+  .film-play:hover span,
+  .feature-card:hover > img,
+  .product-card:hover,
+  .tr-interactive:hover,
+  .dr-doc-link-btn.primary:hover,
+  .dr-graph-node-group:hover .dr-node-dot,
+  .dr-doc-card:hover,
+  .dr-ref-link-card:hover,
+  .dr-exec-card:hover,
+  .dr-hub-card:hover,
+  .dr-gist-card:hover,
+  .dr-whitepaper-card:hover {
+    transform: none;
+  }
+}
+/* press feedback on what is pressable */
+.small-button:active:not(:disabled),
+.pp-link:active,
+.context-back:active,
+.domain-tabs button:active,
+.film-navigation a:active {
+  transform: translateY(1px);
+}
+/* link lists are targets, not prose: at least 24 px tall (WCAG 2.5.8) */
+.breadcrumbs a,
+.product-crumbs .inline-link,
+.pp-chapter-source a,
+.ov-die-carries a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+details > summary {
+  min-height: 24px;
+  padding-block: 2px;
+}
+.pp-chapter-source {
+  row-gap: 0.25rem;
+}
+
+/* technology: two chapters side by side, so seven chapters do not share one stacked shape */
+@media (min-width: 1000px) {
+  .tech-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: start;
+  }
+  .tech-split.is-trail {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+  .tech-split.is-trail > .tech-showing {
+    order: -1;
+  }
+  .tech-split > .tech-showing {
+    margin-top: 0;
+    position: sticky;
+    top: 5.5rem;
+  }
+  .tech-split .ov-chapter-head h2 {
+    max-width: 22ch;
+  }
+  .tech-split .pp-films.is-single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.tech-close {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+.tech-close h2 {
+  text-wrap: balance;
+}

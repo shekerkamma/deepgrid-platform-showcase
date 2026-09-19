@@ -4,6 +4,7 @@ import {
   products,
   productById,
   domains,
+  nb,
   type Go,
   type Product,
 } from '../shared';
@@ -275,7 +276,7 @@ export default function ProductPage({
           <h2 id="pp-case-title">The case in brief</h2>
           <ul>
             {story.takeaways.map((t) => (
-              <li key={t}>{t}</li>
+              <li key={t}>{nb(t)}</li>
             ))}
           </ul>
         </section>
@@ -299,11 +300,11 @@ export default function ProductPage({
                     </div>
                     <div>
                       <dt>The job</dt>
-                      <dd>{u.problem}</dd>
+                      <dd>{nb(u.problem)}</dd>
                     </div>
                     <div>
                       <dt>What DeepGrid supplies</dt>
-                      <dd>{u.delivers}</dd>
+                      <dd>{nb(u.delivers)}</dd>
                     </div>
                   </dl>
                   {(u.detail || refs.length > 0) && (
@@ -340,14 +341,13 @@ export default function ProductPage({
               className={'pp-chapter pp-chapter-' + c.kind}
               aria-labelledby={'pp-ch-' + c.kind}
             >
-              <p className="kicker">{c.title}</p>
-              <h3 id={'pp-ch-' + c.kind}>{c.headline}</h3>
-              <p className="pp-narrative">{c.narrative}</p>
+              <h3 id={'pp-ch-' + c.kind}>{nb(c.headline)}</h3>
+              <p className="pp-narrative">{nb(c.narrative)}</p>
               <ul className="pp-pills" aria-label={c.title + ': key points'}>
                 {c.pills.map((x) => (
                   <li key={x.value + x.label}>
-                    <strong>{x.value}</strong>
-                    <span>{x.label}</span>
+                    <strong>{nb(x.value)}</strong>
+                    <span>{nb(x.label)}</span>
                   </li>
                 ))}
               </ul>

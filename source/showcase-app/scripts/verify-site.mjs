@@ -407,7 +407,7 @@ for (const { tag, viewport } of [
   await p.close();
 }
 
-// 3c. technology, told in chapters like the Overview: every chapter has a kicker, a verdict headline, a lede, 3 to 6
+// 3c. technology, told in chapters like the Overview: every chapter is named in the chapter nav, has a verdict headline, a lede, 3 to 6
 // pills, technical detail and at least one reference, and every reference is labelled (never a bare verb) and goes
 // somewhere: deck slides open in the deck, memorandum pages as PDFs that exist.
 {
@@ -419,7 +419,10 @@ for (const { tag, viewport } of [
     Promise.all(
       [...document.querySelectorAll('.tech-chapter')].map(async (c) => ({
         id: c.id,
-        kicker: c.querySelector('.kicker')?.textContent.trim() || '',
+        kicker:
+          document
+            .querySelector(`.tech-nav a[href="#${c.id}"]`)
+            ?.textContent.trim() || '',
         headline: c.querySelector('h2')?.textContent.trim() || '',
         lede:
           c

@@ -1,8 +1,8 @@
 'use client';
 import { useEffect, useState, type ReactNode } from 'react';
-import { Layers } from 'lucide-react';
+import { ArrowRight, Layers } from 'lucide-react';
 import Silicon from '../silicon';
-import { SectionHead, domains, productById, type Go } from '../shared';
+import { SectionHead, domains, nb, productById, type Go } from '../shared';
 import story from '../data/tech-story.json';
 import slideNotes from '../slide-notes.json';
 import { films, siliconFilms, Player } from './films';
@@ -13,6 +13,14 @@ import { films, siliconFilms, Player } from './films';
 // The copy is generated and gated by scripts/build-tech-story.mjs (every figure must appear in the chapter's sources).
 
 type Chapter = (typeof story.chapters)[number];
+// Two chapters are laid out side by side, so the page does not repeat one stacked shape seven times: the die beside
+// the case for it, and the cube (the differentiator) with its film leading. Only the turns carry a kicker: the
+// scroll-craft floor allows one eyebrow per three sections, and the chapter nav already names every chapter.
+const SPLIT: Record<string, 'lead' | 'trail'> = {
+  silicon: 'lead',
+  cube: 'trail',
+};
+const SIGNPOSTS = new Set(['measured', 'horizon']);
 const FRAME = 33.3,
   FUSION = 8.6;
 const channels = [
@@ -385,7 +393,9 @@ export default function Technology({
     <section className="page-wrap tech-page">
       <SectionHead
         title="The silicon behind every product"
-        copy="One 28 nm chip, SoC2, carries the whole portfolio. Seven short chapters on what it is, why it is built this way, and what still has to be proven. The chip is not yet fabricated: its figures are design targets and derivations."
+        copy={nb(
+          'One 28 nm chip, SoC2, carries the whole portfolio. Seven short chapters on what it is, why it is built this way, and what still has to be proven. The chip is not yet fabricated: its figures are design targets and derivations.',
+        )}
       />
       <nav
         className="film-navigation tech-nav"
@@ -407,36 +417,111 @@ export default function Technology({
           </a>
         ))}
       </nav>
-      {story.chapters.map((c) => (
-        <section
-          key={c.id}
-          id={'tech-' + c.id}
-          className={'ov-chapter tech-chapter tech-ch-' + c.id}
-          aria-labelledby={'tech-h-' + c.id}
-        >
-          <header className="ov-chapter-head">
-            <p className="kicker">{c.kicker}</p>
-            <h2 id={'tech-h-' + c.id}>{c.headline}</h2>
-            <p>{c.lede}</p>
-          </header>
-          <ul className="pp-pills" aria-label={c.kicker + ': key figures'}>
-            {c.pills.map((x) => (
-              <li key={x.value + x.label}>
-                <strong>{x.value}</strong>
-                <span>{x.label}</span>
-              </li>
-            ))}
-          </ul>
+      {story.chapters.map((c) => {
+        const copy = (
+          <>
+            <header className="ov-chapter-head">
+              {SIGNPOSTS.has(c.id) && <p className="kicker">{c.kicker}</p>}
+              <h2 id={'tech-h-' + c.id}>{nb(c.headline)}</h2>
+              <p>{nb(c.lede)}</p>
+            </header>
+            <ul className="pp-pills" aria-label={c.kicker + ': key figures'}>
+              {c.pills.map((x) => (
+                <li key={x.value + x.label}>
+                  <strong>{nb(x.value)}</strong>
+                  <span>{nb(x.label)}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        );
+        const showing = (
           <div className="tech-showing">
             <Showing id={c.id} reduced={reduced} go={go} domain={domain} />
           </div>
-          <details className="tech-detail">
-            <summary>Technical detail</summary>
-            <p>{c.detail}</p>
-          </details>
-          <References c={c} go={go} />
-        </section>
-      ))}
+        );
+        const detail = (
+          <>
+            <details className="tech-detail">
+              <summary>Technical detail</summary>
+              <p>{nb(c.detail)}</p>
+            </details>
+            <References c={c} go={go} />
+          </>
+        );
+        const split = SPLIT[c.id];
+        return (
+          <section
+            key={c.id}
+            id={'tech-' + c.id}
+            className={
+              'ov-chapter tech-chapter tech-ch-' +
+              c.id +
+              (split ? ' tech-split is-' + split : '')
+            }
+            aria-labelledby={'tech-h-' + c.id}
+          >
+            {split ? (
+              <>
+                <div className="tech-copy">
+                  {copy}
+                  {detail}
+                </div>
+                {showing}
+              </>
+            ) : (
+              <>
+                {copy}
+                {showing}
+                {detail}
+              </>
+            )}
+          </section>
+        );
+      })}
+      <section
+        className="ov-close tech-close"
+        aria-labelledby="tech-close-title"
+      >
+        <h2 id="tech-close-title">SoC2 is the business.</h2>
+        <p>
+          Every product on this site runs on one 28&nbsp;nm die. What the round
+          buys is the step from a working FPGA to production silicon; SoC4-A is
+          the option that business buys.
+        </p>
+        <nav className="ov-routes" aria-label="Where to go next">
+          {[
+            [
+              'portfolio',
+              'The fifteen products',
+              'What each one does with the die',
+            ],
+            [
+              'investment',
+              'The investment case',
+              'Round, use of funds, tapeout gates and risks',
+            ],
+            [
+              'film',
+              'The silicon films',
+              'Data movement, the cube and the roadmap, narrated',
+            ],
+          ].map(([id, title, sub]) => (
+            <a
+              key={id}
+              href={'#' + id}
+              onClick={(e) => {
+                e.preventDefault();
+                go(id);
+              }}
+            >
+              <strong>{title}</strong>
+              <span>{sub}</span>
+              <ArrowRight size={18} aria-hidden="true" />
+            </a>
+          ))}
+        </nav>
+      </section>
     </section>
   );
 }
