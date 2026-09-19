@@ -137,7 +137,7 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
                     title={`Download ${result.citation.documentTitle}${result.citation.pdfSize ? ` (${result.citation.pdfSize})` : ''}`}
                   >
                     <Download size={14} />
-                    <span>{/\.pdf$/i.test(result.citation.pdfPath) ? 'Download PDF' : /\.xlsx$/i.test(result.citation.pdfPath) ? 'Download workbook' : 'Download document'}{result.citation.pdfSize ? ` (${result.citation.pdfSize})` : ''}</span>
+                    <span>{/\.pdf$/i.test(result.citation.pdfPath) ? 'Download PDF' : /\.xlsx$/i.test(result.citation.pdfPath) ? 'Download workbook' : /\.pptx$/i.test(result.citation.pdfPath) ? 'Download deck' : 'Download document'}{result.citation.pdfSize ? ` (${result.citation.pdfSize})` : ''}</span>
                   </a>
                 )}
                 {result.citation.specPath && (

@@ -59,6 +59,16 @@ DOWNLOADS = {
     'office/icp-and-gtm-strategy-jul-2026.docx': 'deepgrid-icp-and-gtm-strategy-jul-2026.docx',
     'office/financial-model-v3-sept-2026.xlsx': 'deepgrid-financial-model-v3-sept-2026.xlsx',
     'office/business-plan-v2.xlsx': 'deepgrid-business-plan-v2.xlsx',
+    # documents indexed from converted text (image-only PDFs via OCR, the deck via slide text): the originals
+    'converted/information-memorandum-june-2026.md': 'deepgrid-information-memorandum-june-2026.pdf',
+    'converted/investor-briefing-jul-2026.md': 'deepgrid-investor-briefing-jul-2026.pdf',
+    'converted/product-portfolio-deck-104-slides.md': 'deepgrid-product-portfolio-104-slides.pptx',
+}
+# where those originals come from (the rest are copied from knowledge/sources/)
+ORIGINALS = {
+    'converted/information-memorandum-june-2026.md': Path('/mnt/c/Users/sheke/OneDrive/Desktop/DeepGrid_Semi_-Aravind.pdf'),
+    'converted/investor-briefing-jul-2026.md': Path('/mnt/c/Users/sheke/Downloads/DeepGrid_Semi_Investor_Briefing.pdf'),
+    'converted/product-portfolio-deck-104-slides.md': ROOT.parent / 'documents/DeepGrid-Semi-Product-Portfolio-104-Slides-Embedded-reviewed.pptx',
 }
 
 
@@ -72,7 +82,7 @@ def publish_downloads():
     out.mkdir(parents=True, exist_ok=True)
     published = {}
     for rel, name in DOWNLOADS.items():
-        src = SRC / rel
+        src = ORIGINALS.get(rel, SRC / rel)
         if src.exists():
             shutil.copyfile(src, out / name)
         if (out / name).exists():
