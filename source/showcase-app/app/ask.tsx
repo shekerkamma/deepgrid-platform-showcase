@@ -1,6 +1,6 @@
 'use client';
 /* oxlint-disable jsx-a11y/no-noninteractive-element-interactions */
-import {useState, useMemo, useRef} from 'react';
+import {useState, useMemo, useRef, useEffect} from 'react';
 import {
   Search, ArrowUpRight, ArrowRight, ShieldCheck, 
   BookOpen, X, Check, Network, LayoutGrid, RotateCcw,
@@ -86,7 +86,7 @@ export function resolveItemDocument(item?: DeepGridItem | null): GroundedDoc {
   return groundedDocuments.find(d => d.id === 'doc5') || groundedDocuments[4];
 }
 
-export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
+export default function AskDeepGrid({go, initialQuery = ''}: {go: (hash: string) => void; initialQuery?: string}) {
   const [query, setQuery] = useState('');
   const [selectedDocId, setSelectedDocId] = useState<string>('all');
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -237,6 +237,9 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
     pinout: 'What is the complete 64-pin QFN pin assignment and packaging specification for DG32?',
     roadmap: 'What is the 3-phase node roadmap and arithmetic check?',
   };
+  // #briefing?q=... (product pages link here) opens Ask on that question
+  useEffect(() => { if (initialQuery) handleQuerySelect(initialQuery); }, [initialQuery]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const askHere = (q: string) => {
     handleQuerySelect(q);
     setActiveView('council');

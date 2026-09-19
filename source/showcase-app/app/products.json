@@ -73,7 +73,7 @@
     "domain": "Outdoor",
     "role": "Highest revenue per unit we sell. Proof that the same silicon running in a kit can run an entire operation.",
     "dependsOn": "Regulatory clearance for autonomous operation in controlled corridors.",
-    "slideNum": 42
+    "slideNum": 64
   },
   {
     "id": "chipset",
@@ -98,7 +98,7 @@
     "domain": "Any",
     "role": "Fifty-four crore at ninety-four percent gross margin, the highest in the portfolio. Every rupee arrives without installation capacity or warranty logistics.",
     "dependsOn": "ASIC tapeout completion and qualification.",
-    "slideNum": 26
+    "slideNum": 32
   },
   {
     "id": "t100",
@@ -123,7 +123,7 @@
     "domain": "Any",
     "role": "Pure software revenue at 94% margin. Converts the IP investment in Indian road models into a recurring stream independent of hardware.",
     "dependsOn": "Maturity of the Indian road perception stack, starts FY29.",
-    "slideNum": 36
+    "slideNum": 59
   },
   {
     "id": "ad1",
@@ -174,7 +174,7 @@
     "domain": "Any",
     "role": "The highest-capacity compute form factor, serves customers who need multi-camera perception without building their own board.",
     "dependsOn": "ASIC tapeout and PCIe interface validation.",
-    "slideNum": 34
+    "slideNum": 55
   },
   {
     "id": "dhumr",
@@ -199,7 +199,7 @@
     "domain": "Outdoor",
     "role": "Highest price point in the portfolio, opens defence procurement channel and validates ruggedised silicon.",
     "dependsOn": "Defence procurement cycle and security clearances.",
-    "slideNum": 56,
+    "slideNum": 87,
     "simulatorId": "sentinel"
   },
   {
@@ -225,7 +225,7 @@
     "domain": "Any",
     "role": "Mid-tier compute module serving stereo vision applications.",
     "dependsOn": "ASIC tapeout.",
-    "slideNum": 32
+    "slideNum": 51
   },
   {
     "id": "a100-1",
@@ -250,7 +250,7 @@
     "domain": "Any",
     "role": "Entry-level compute module, lowest-cost path to adding DeepGrid perception to an existing product.",
     "dependsOn": "ASIC tapeout.",
-    "slideNum": 31
+    "slideNum": 47
   },
   {
     "id": "agv",
@@ -275,7 +275,7 @@
     "domain": "Outdoor",
     "role": "Second-highest revenue per unit after TaaS, validates the silicon in port infrastructure.",
     "dependsOn": "Port authority partnerships and certification.",
-    "slideNum": 46,
+    "slideNum": 68,
     "simulatorId": "yard"
   },
   {
@@ -301,7 +301,7 @@
     "domain": "Aerial",
     "role": "Opens aerial perception as a silicon market, same die, different firmware.",
     "dependsOn": "Drone regulation and form-factor development.",
-    "slideNum": 58
+    "slideNum": 93
   },
   {
     "id": "thermal",
@@ -326,7 +326,7 @@
     "domain": "Outdoor",
     "role": "The perception layer that enables night and monsoon operation, differentiator for the Smart Truck kit.",
     "dependsOn": "LWIR sensor sourcing and calibration pipeline.",
-    "slideNum": 60
+    "slideNum": 75
   },
   {
     "id": "h100",
@@ -351,7 +351,7 @@
     "domain": "Indoor",
     "role": "Highest volume sensor SKU, mandate requires it in every commercial vehicle.",
     "dependsOn": "Mandate enforcement timeline.",
-    "slideNum": 62
+    "slideNum": 83
   },
   {
     "id": "radar",
@@ -376,6 +376,6 @@
     "domain": "Outdoor",
     "role": "Radar matters because closing speed is what a braking decision actually turns on, camera alone cannot measure it.",
     "dependsOn": "Radar block verification on the ASIC.",
-    "slideNum": 64
+    "slideNum": 79
   }
 ]

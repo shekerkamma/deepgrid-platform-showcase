@@ -2,12 +2,6 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 import { ArrowUpRight, ArrowRight, ArrowLeft, Menu } from 'lucide-react';
 import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-} from '@/components/ui/dialog';
-import {
   Sheet,
   SheetContent,
   SheetTitle,
@@ -18,6 +12,7 @@ import { useReveal, useScrollVars } from './motion';
 import { Brand, groups, navigation, products, type Product } from './shared';
 import Overview from './views/overview';
 import Portfolio from './views/portfolio';
+import ProductPage from './views/product';
 import Technology from './views/technology';
 import Films from './views/films';
 import Deck from './views/deck';
@@ -63,7 +58,9 @@ export default function Home() {
     setMenu(false);
     changeView(v);
   };
-  const setProduct = (p: Product | null) => update({ product: p?.id }, !p);
+  // a product is its own page (#portfolio?product=ad2), so opening one is a navigation the back button undoes
+  const setProduct = (p: Product | null) =>
+    p ? go('portfolio?product=' + p.id) : changeView('portfolio');
   const setChapter = (id: string) => {
     update({ chapter: id || undefined }, false);
     requestAnimationFrame(() =>
@@ -87,7 +84,8 @@ export default function Home() {
   useReveal(
     view +
       (view === 'portfolio' ? params.get('layout') || '' : '') +
-      (view === 'investment' ? chapter : ''),
+      (view === 'investment' ? chapter : '') +
+      (view === 'portfolio' ? params.get('product') || '' : ''),
   );
 
   const viewIndex = navigation.findIndex((n) => n[0] === view),
@@ -177,7 +175,16 @@ export default function Home() {
         {view === 'overview' && (
           <Overview navigate={navigate} go={go} reduced={reduced} />
         )}
-        {view === 'portfolio' && (
+        {view === 'portfolio' && product && (
+          <ProductPage
+            key={product.id}
+            product={product}
+            go={go}
+            openSlide={openSlide}
+            back={() => setProduct(null)}
+          />
+        )}
+        {view === 'portfolio' && !product && (
           <Portfolio
             category={category}
             query={query}
@@ -203,11 +210,20 @@ export default function Home() {
                 </section>
               }
             >
-              <AskDeepGrid go={go} />
+              <AskDeepGrid go={go} initialQuery={params.get('q') || ''} />
             </Suspense>
           </div>
         )}
-        {view === 'film' && <Films reduced={reduced} />}
+        {view === 'film' && (
+          <Films
+            reduced={reduced}
+            focus={
+              params.get('v')
+                ? { id: params.get('v')!, t: Number(params.get('t')) || 0 }
+                : undefined
+            }
+          />
+        )}
         {view === 'slides' && (
           <Deck slide={slide} setSlide={(n) => update({ slide: String(n) })} />
         )}
@@ -293,130 +309,6 @@ export default function Home() {
           <nav>{navLinks}</nav>
         </SheetContent>
       </Sheet>
-      <Dialog
-        open={!!product}
-        onOpenChange={(o) => {
-          if (!o) setProduct(null);
-        }}
-      >
-        <DialogContent
-          className="product-dialog"
-          initialFocus={() =>
-            document.querySelector<HTMLElement>('.product-dialog')
-          }
-          tabIndex={-1}
-        >
-          {product && (
-            <>
-              <div className="detail-nav">
-                <button onClick={() => setProduct(null)}>
-                  <ArrowLeft size={17} aria-hidden="true" />
-                  Back to {view === 'portfolio' ? 'products' : 'the answer'}
-                </button>
-                <span>{product.category}</span>
-              </div>
-              <div className="detail-body">
-                <p className="product-meta">
-                  {product.category}
-                  <span className="num">{product.id.toUpperCase()}</span>
-                </p>
-                <DialogTitle>{product.name}</DialogTitle>
-                <DialogDescription>{product.description}</DialogDescription>
-                <dl className="detail-stats">
-                  <div>
-                    <dt>Listed price</dt>
-                    <dd className="num">{product.price}</dd>
-                  </div>
-                  <div>
-                    <dt>FY2032 revenue</dt>
-                    <dd className="num">{product.revenue}</dd>
-                  </div>
-                  <div>
-                    <dt>Volume plan</dt>
-                    <dd className="num">{product.units}</dd>
-                  </div>
-                  <div>
-                    <dt>Gross margin</dt>
-                    <dd className="num">{product.margin}</dd>
-                  </div>
-                  <div>
-                    <dt>Share of plan</dt>
-                    <dd className="num">{product.share}</dd>
-                  </div>
-                  <div>
-                    <dt>First revenue</dt>
-                    <dd className="num">{product.firstRevenue}</dd>
-                  </div>
-                </dl>
-                <h3>Role in the portfolio</h3>
-                <p>{product.role}</p>
-                <h3>From sensing to action</h3>
-                <ol className="signal-chain">
-                  {product.signalChain.map((s) => (
-                    <li key={s}>{s}</li>
-                  ))}
-                </ol>
-                <div className="dependency">
-                  <h3>Key dependency</h3>
-                  <p>{product.dependsOn}</p>
-                </div>
-                <figure className="detail-slide">
-                  <button
-                    onClick={() => openSlide(product.slideNum)}
-                    aria-label={
-                      'Open source slide ' +
-                      product.slideNum +
-                      ' in the slide deck'
-                    }
-                  >
-                    <img
-                      src={
-                        './slides/slide_' +
-                        String(product.slideNum).padStart(2, '0') +
-                        '.png'
-                      }
-                      alt={
-                        'Source slide ' +
-                        product.slideNum +
-                        ' for ' +
-                        product.name
-                      }
-                      width={1136}
-                      height={635}
-                      loading="lazy"
-                    />
-                  </button>
-                  <figcaption>
-                    Source slide {product.slideNum} of the portfolio deck.{' '}
-                    <button
-                      className="inline-link"
-                      onClick={() => openSlide(product.slideNum)}
-                    >
-                      Open it in the deck
-                    </button>
-                  </figcaption>
-                </figure>
-                <div className="detail-actions">
-                  <button
-                    className="text-link"
-                    onClick={() => {
-                      setProduct(null);
-                      navigate('silicon');
-                    }}
-                  >
-                    See the shared silicon{' '}
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </button>
-                </div>
-                <p className="disclaimer">
-                  Prices and financial values are management projections from
-                  the original portfolio.
-                </p>
-              </div>
-            </>
-          )}
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
