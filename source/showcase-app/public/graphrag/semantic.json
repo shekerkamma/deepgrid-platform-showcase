@@ -6,7 +6,7 @@
  "queryPrefix": "Represent this sentence for searching relevant passages: ",
  "counts": {
   "nodes": 831,
-  "chunks": 803,
+  "chunks": 958,
   "themes": 38,
   "examples": 162
  },
@@ -233,7 +233,7 @@
   "The US opportunity",
   "Defence and robotics"
  ],
- "indexSha256": "10ae643aef2ae0f569e12e75535c026f084b388c2180d79b153555bc40ef45a5",
- "rowKeySha256": "8fec644f46549cdc47e6c891a34e9e72d8ad3478e2d7670222620b712cc158f4",
+ "indexSha256": "0f95b73d125891bda21ff14568ecb0a0ad8805fdb1270bed35d8397ec62135a5",
+ "rowKeySha256": "f126badb751ed3fae4cdf212499e60a200c7a02f2e6f84abd9c4556e856db1ba",
  "modelSha256": "6c9c6101a956d62dfb5e7190c538226c0c5bb9cb27b651234b6df063ee7dbfe4"
 }
