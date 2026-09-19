@@ -467,6 +467,29 @@ for (const { tag, viewport } of [
   await p.waitForTimeout(500);
   if (!(await p.evaluate(() => location.hash.startsWith('#slides?slide='))))
     fail('technology: a deck reference did not open the deck');
+  // a product page links to its domain on the die: the Radar Pod opens Six domains with R100 selected, in view
+  await p.goto(BASE + '#portfolio?product=radar', { waitUntil: 'networkidle' });
+  await p
+    .click('.pp-more a[href="#silicon?chapter=domains&domain=R100"]', {
+      timeout: 5000,
+    })
+    .catch(() =>
+      fail('radar page: no link to its domain on the Technology page'),
+    );
+  await p.waitForTimeout(800);
+  const landed = await p.evaluate(() => ({
+    tab:
+      document.querySelector('#tech-domains [role=tab][aria-selected=true]')
+        ?.textContent || '',
+    top: Math.round(
+      document.getElementById('tech-domains')?.getBoundingClientRect().top ??
+        -1,
+    ),
+  }));
+  if (!landed.tab.includes('R100') || landed.top < -5 || landed.top > 200)
+    fail(
+      `radar -> technology: tab "${landed.tab}", chapter top ${landed.top}px`,
+    );
   console.log(
     `technology: ${chapters.length} chapters, ${chapters.reduce((n, c) => n + c.refs.length, 0)} labelled references`,
   );

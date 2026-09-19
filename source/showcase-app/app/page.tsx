@@ -199,7 +199,14 @@ export default function Home() {
             open={setProduct}
           />
         )}
-        {view === 'silicon' && <Technology reduced={reduced} go={go} />}
+        {view === 'silicon' && (
+          <Technology
+            reduced={reduced}
+            go={go}
+            chapter={chapter}
+            domain={params.get('domain') || ''}
+          />
+        )}
         {view === 'briefing' && (
           <div className="dg-ask">
             <Suspense

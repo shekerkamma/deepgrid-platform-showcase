@@ -35,11 +35,12 @@ export const groups = [
 ];
 
 // The six compute domains on SoC2. `carries` names the business each domain serves, from the
-// memorandum's die card (figure 5 of the June 2026 IM).
+// memorandum's die card (figure 5 of the June 2026 IM). Names are the memorandum's (IM v2, page 15); the Technology
+// story's domain pills and the product pages use the same names, and scripts/check-tech-story.mjs holds them to it.
 export const domains = [
   {
     code: 'A100',
-    name: 'Neural processing',
+    name: 'AI / ADAS processor',
     type: 'NPU',
     Icon: Cpu,
     desc: 'Parallel perception for camera feeds and edge-AI workloads. The core compute in every AD kit.',
@@ -47,7 +48,7 @@ export const domains = [
   },
   {
     code: 'R100',
-    name: 'Radar processing',
+    name: 'Radar DSP',
     type: 'DSP',
     Icon: Radio,
     desc: 'Dedicated hardware DSP for radar point clouds. Replaces the third-party radar processor.',
@@ -55,7 +56,7 @@ export const domains = [
   },
   {
     code: 'T100',
-    name: 'AI core',
+    name: 'Edge AI, thermal and LiDAR',
     type: 'AI',
     Icon: ScanLine,
     desc: 'India-tuned perception for thermal and LiDAR, and a licensable AI software stack.',
@@ -63,7 +64,7 @@ export const domains = [
   },
   {
     code: 'D100',
-    name: 'Secure compute',
+    name: 'Defence secure compute',
     type: 'SEC',
     Icon: ShieldCheck,
     desc: 'Lockstep RISC-V, AES-256 and ECC SRAM for defence, humanoid and drone systems.',
@@ -71,15 +72,15 @@ export const domains = [
   },
   {
     code: 'S100',
-    name: 'Vehicle control',
-    type: 'VCU',
+    name: 'SDV and vehicle gateway',
+    type: 'GW',
     Icon: Activity,
     desc: 'Vehicle gateway, CAN FD, telematics and over-the-air updates for fleets.',
     carries: ['taas', 'agv'],
   },
   {
     code: 'H100',
-    name: 'Driver monitoring',
+    name: 'Health AI processor',
     type: 'HLT',
     Icon: Thermometer,
     desc: 'Driver fatigue and health monitoring at under a milliwatt.',

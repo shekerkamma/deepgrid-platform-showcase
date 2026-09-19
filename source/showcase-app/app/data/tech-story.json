@@ -63,12 +63,12 @@
   {
    "id": "domains",
    "kicker": "Six domains",
-   "headline": "Six domains on one die means six revenue lines from one tapeout.",
-   "lede": "The ~57.1 mm² die is partitioned into six named compute domains, each targeting a distinct market and sold as its own product line. Because all six share a single tapeout, a competitor wishing to replicate the portfolio would need six separate tapeout programmes.",
+   "headline": "Six domains on one die means six addressable markets from one tapeout.",
+   "lede": "DeepGrid Semi's ~57.1 mm² die is partitioned into six compute domains, each targeting a distinct industry vertical and carrying its own revenue model. Because all six share a single tapeout, the company enters each market without the NRE burden of a dedicated chip programme.",
    "pills": [
     {
      "value": "A100 · ~7 mm²",
-     "label": "AI / ADAS compute"
+     "label": "AI / ADAS processor"
     },
     {
      "value": "R100 · ~6 mm²",
@@ -76,7 +76,7 @@
     },
     {
      "value": "T100 · ~7 mm²",
-     "label": "Edge AI / LiDAR / Thermal"
+     "label": "Edge AI, thermal and LiDAR"
     },
     {
      "value": "D100 · ~8 mm²",
@@ -84,16 +84,20 @@
     },
     {
      "value": "S100 · ~7 mm²",
-     "label": "SDV / vehicle gateway"
+     "label": "SDV and vehicle gateway"
     },
     {
      "value": "H100 · ~7 mm²",
      "label": "Health AI processor"
     }
    ],
-   "detail": "The A100 houses 64 PCOREs × 512 MACs (32,768 MACs total, 39.3 TOPS INT8, architecture arithmetic and not a silicon measurement) and supports six-camera MIPI CSI-2, forming the core compute for all AD0–AD4 mobility kits. The R100 integrates a 12-bit native radar ADC for 77 GHz FMCW, 4D radar, and 60 GHz mmWave, with an FFT engine and CFAR detector; the Information Memorandum states the TI AWR2243 is fully eliminated in RTL. The T100 combines a LiDAR point cloud DSP with a thermal camera ISP (LWIR MIPI) and an ONNX runtime, targeting autonomous truck edge inference and an IP-licensing SaaS model described as carrying 90% margin. The D100 provides an AES-256 secure enclave, lockstep RISC-V targeting ASIL-B, and ECC SRAM for humanoid, UGV, and drone applications; the Information Memorandum states ₹1 Cr in institutional defence revenue was received in Q1 2026. The S100 handles vehicle networking via CAN FD ×4, Ethernet TSN (IEEE 802.1Qbv), AUTOSAR Adaptive, an OTA update engine, C-V2X/5G-NR, and AIS-140 telematics, while the H100 runs ECG, EEG, and SpO2 inference from a 24-bit bio-ADC at a design target of under 1 mW continuous, with driver-fatigue and AEB integration covered by Patent 14.",
+   "detail": "The A100 houses 64 PCOREs × 512 MACs (32,768 MACs total, a design-target 39.3 TOPS INT8) and supports six-camera MIPI CSI-2, making it the core compute for all autonomous-driving kit tiers. The R100 integrates a 12-bit native ADC for 77 GHz FMCW, 4D radar, and 60 GHz mmWave, with an FFT engine and CFAR detector; the sources state the TI AWR2243 is fully eliminated in RTL. The T100 combines a LiDAR point-cloud DSP, a thermal-camera ISP (LWIR MIPI), and an ONNX runtime, and is the inference engine for the autonomous truck edge product line as well as a licensable IP block carrying a stated 90% margin. The D100 is the largest domain at ~8 mm² and pairs an AES-256 secure enclave with lockstep RISC-V (ASIL-B) and ECC SRAM, targeting humanoid, UGV, and drone SoC applications; the sources note ₹1 Cr in institutional defence revenue received in Q1 2026. The S100 handles vehicle networking via CAN FD ×4, Ethernet TSN (IEEE 802.1Qbv), AUTOSAR Adaptive, OTA updates, and C-V2X/5G-NR, with AIS-140 telematics built in, while the H100 integrates a 24-bit bio-ADC for ECG/EEG/SpO2 inference at a design target of under 1 mW continuous, with driver-fatigue and AEB integration covered by Patent 14.",
    "slides": [
     5
+   ],
+   "sources": [
+    "sc_converted_showcase_investment_memorandum_md_16",
+    "sc_papers_information_memorandum_v2_aug_2026_pdf_18"
    ],
    "passages": [
     {
@@ -113,12 +117,8 @@
      "nav": ""
     }
    ],
-   "hash": "03c7096ebe450220",
-   "model": "claude-sonnet-4-6",
-   "sources": [
-    "sc_converted_showcase_investment_memorandum_md_16",
-    "sc_papers_information_memorandum_v2_aug_2026_pdf_18"
-   ]
+   "hash": "21b79d9c95ada325",
+   "model": "claude-sonnet-4-6"
   },
   {
    "id": "sensors",

@@ -1,5 +1,5 @@
 'use client';
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Layers } from 'lucide-react';
 import Silicon from '../silicon';
 import { SectionHead, domains, productById, type Go } from '../shared';
@@ -119,8 +119,13 @@ function Die({ reduced }: { reduced: boolean }) {
   );
 }
 
-function Domains({ go }: { go: Go }) {
-  const [domain, setDomain] = useState(0);
+function Domains({ go, initial }: { go: Go; initial: string }) {
+  const [domain, setDomain] = useState(
+    Math.max(
+      0,
+      domains.findIndex((x) => x.code === initial),
+    ),
+  );
   const d = domains[domain];
   return (
     <div className="domain-panel tech-domains">
@@ -227,10 +232,12 @@ function Showing({
   id,
   reduced,
   go,
+  domain,
 }: {
   id: string;
   reduced: boolean;
   go: Go;
+  domain: string;
 }) {
   switch (id) {
     case 'silicon':
@@ -238,7 +245,7 @@ function Showing({
     case 'domains':
       return (
         <>
-          <Domains go={go} />
+          <Domains go={go} initial={domain} />
           <Figure
             src="./images/figure-05.webp"
             size={[1600, 740]}
@@ -354,10 +361,26 @@ function References({ c, go }: { c: Chapter; go: Go }) {
 export default function Technology({
   reduced,
   go,
+  chapter = '',
+  domain = '',
 }: {
   reduced: boolean;
   go: Go;
+  chapter?: string;
+  domain?: string;
 }) {
+  // #silicon?chapter=domains&domain=R100 (from a product page) opens at that chapter with that domain selected.
+  // Navigation restores the scroll position two frames after a route change (use-navigation.ts), so land a frame later.
+  useEffect(() => {
+    if (!chapter) return;
+    const land = () =>
+      document
+        .getElementById('tech-' + chapter)
+        ?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => requestAnimationFrame(land)),
+    );
+  }, [chapter]);
   return (
     <section className="page-wrap tech-page">
       <SectionHead
@@ -405,7 +428,7 @@ export default function Technology({
             ))}
           </ul>
           <div className="tech-showing">
-            <Showing id={c.id} reduced={reduced} go={go} />
+            <Showing id={c.id} reduced={reduced} go={go} domain={domain} />
           </div>
           <details className="tech-detail">
             <summary>Technical detail</summary>

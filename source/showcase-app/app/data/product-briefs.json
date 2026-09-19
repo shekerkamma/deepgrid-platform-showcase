@@ -901,7 +901,7 @@
    "sections": [
     {
      "label": "How it works",
-     "text": "The product operates across a four-stage signal chain where the customer's own sensors feed their own board, the SoC2 die executes perception compute inside their design, their software decides what to do with the result, and their product ships with DeepGrid silicon inside. The physical silicon is manufactured on TSMC 28 nm with a die area of roughly 57 mm², running 32,768 MACs at 600 MHz for 39.3 TOPS against 102.4 GB/s of dual-channel LPDDR5. DeepGrid delivers tested and binned silicon in tray or reel alongside reference design documentation and toolchain access, providing no enclosure, cables, or fitting. Because the buyer builds their own board and carries their own integration, DeepGrid provides bounded perception compute without absorbing vehicle-level engineering.",
+     "text": "The product operates across a four-stage signal chain where the customer's own sensors feed their own board, the SoC2 die executes perception compute inside their design, their software decides what to do with the result, and their product ships with DeepGrid silicon inside. The silicon is designed for TSMC 28 nm with a die area of roughly 57 mm², running 32,768 MACs at 600 MHz for a derived 39.3 TOPS design target against 102.4 GB/s of dual-channel LPDDR5. DeepGrid delivers tested and binned silicon in tray or reel alongside reference design documentation and toolchain access, providing no enclosure, cables, or fitting. Because the buyer builds their own board and carries their own integration, DeepGrid provides bounded perception compute without absorbing vehicle-level engineering.",
      "sources": [
       1,
       2,
@@ -946,7 +946,7 @@
      ]
     },
     {
-     "text": "Silicon hardware specifications: TSMC 28 nm, roughly 57 mm², 32,768 MACs at 600 MHz for 39.3 TOPS, against 102.4 GB/s of dual-channel LPDDR5.",
+     "text": "Silicon design specifications: TSMC 28 nm, roughly 57 mm², 32,768 MACs at 600 MHz for a derived 39.3 TOPS design target, against 102.4 GB/s of dual-channel LPDDR5.",
      "sources": [
       3
      ]
@@ -2990,7 +2990,7 @@
   },
   "radar": {
    "id": "radar",
-   "lead": "The 4D Radar Pod is a sealed automotive radar module delivering range, velocity, azimuth and elevation at ₹25,000 per unit, sold into the aftermarket and integrator channel. Its commercial rationale rests on a single engineering fact: the R100 radar block is already on the SoC2 die, so the tapeout cost has already been paid across the broader portfolio.",
+   "lead": "The 4D Radar Pod is a sealed automotive radar module delivering range, velocity, azimuth and elevation at ₹25,000 per unit, sold into the aftermarket and integrator channel. Its commercial rationale rests on a single engineering fact: the R100 radar block is designed into the SoC2 die, so the one tapeout that carries the portfolio carries it too.",
    "useCases": [
     {
      "title": "Fleet radar upgrade on camera-only fitments",
@@ -3050,7 +3050,7 @@
     },
     {
      "label": "How it makes money",
-     "text": "The pod is priced at ₹25,000 and sold through aftermarket and integrator supply channels, with management projecting ₹7.5 Cr revenue at 3,000 units by FY2032 at a 50% gross margin. The sensors segment gross margin starts at 30% in FY2027, reflecting hardware bill-of-materials and assembly costs, and rises to 50% by FY2032 as volume grows and supplier terms improve. The product's financial justification within the portfolio is explicit: the radar block is already on the die and the tapeout has been paid for across fifteen products, so incremental revenue from the pod carries no additional silicon development cost. At ₹7.5 Cr it is the smallest line in the plan at 0.7% of group FY2032 revenue, and its role is described as supporting the flagship compute products rather than carrying the plan independently.",
+     "text": "The pod is priced at ₹25,000 and sold through aftermarket and integrator supply channels, with management projecting ₹7.5 Cr revenue at 3,000 units by FY2032 at a 50% gross margin. The sensors segment gross margin starts at 30% in FY2027, reflecting hardware bill-of-materials and assembly costs, and rises to 50% by FY2032 as volume grows and supplier terms improve. The product's financial justification within the portfolio is explicit: the radar block is on the same die as the rest of the portfolio, so one tapeout carries all fifteen products, so incremental revenue from the pod carries no additional silicon development cost. At ₹7.5 Cr it is the smallest line in the plan at 0.7% of group FY2032 revenue, and its role is described as supporting the flagship compute products rather than carrying the plan independently.",
      "sources": [
       1,
       2,
