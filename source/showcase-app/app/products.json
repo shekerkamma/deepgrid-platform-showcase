@@ -20,7 +20,7 @@
     "category": "Road Autonomy",
     "segment": "Systems",
     "domain": "Outdoor",
-    "role": "Forty percent of group revenue from one SKU. That is the concentration to underwrite — also why the portfolio has a demand floor rather than a forecast.",
+    "role": "Forty percent of group revenue from one SKU. That is the concentration to underwrite, also why the portfolio has a demand floor rather than a forecast.",
     "dependsOn": "AIS-mandate compliance, installation channel capacity, and radar verification milestones.",
     "slideNum": 18,
     "simulatorId": "adas"
@@ -30,7 +30,7 @@
     "name": "AD0 Smart Mirror",
     "slideTitle": "AD0 SMART MIRROR",
     "price": "₹50,000",
-    "description": "A replacement rear-view mirror with an integrated display, four body cameras and a wiring loom. Fitted in an afternoon — the least sophisticated thing we make, and it ships first.",
+    "description": "A replacement rear-view mirror with an integrated display, four body cameras and a wiring loom. Fitted in an afternoon, the least sophisticated thing we make, and it ships first.",
     "signalChain": [
       "Four cameras cover the vehicle's blind quarters",
       "SoC2 stitches the views into one 360° surround image",
@@ -46,8 +46,8 @@
     "category": "Road Autonomy",
     "segment": "Systems",
     "domain": "Outdoor",
-    "role": "Volume ramp of the portfolio: highest unit count and lowest fitment complexity — scales channel reach that harder products inherit.",
-    "dependsOn": "Distribution reach and price holding at ₹50k. Runs on current-generation hardware — not gated on the ASIC.",
+    "role": "Volume ramp of the portfolio: highest unit count and lowest fitment complexity, scales channel reach that harder products inherit.",
+    "dependsOn": "Distribution reach and price holding at ₹50k. Runs on current-generation hardware, not gated on the ASIC.",
     "slideNum": 8
   },
   {
@@ -55,7 +55,7 @@
     "name": "Autonomous TaaS",
     "slideTitle": "AUTONOMOUS TAAS",
     "price": "₹66.00 L",
-    "description": "Transport-as-a-Service: contracted autonomous operations — DeepGrid provides the vehicle, stack and driver replacement as a metered service.",
+    "description": "Transport-as-a-Service: contracted autonomous operations, DeepGrid provides the vehicle, stack and driver replacement as a metered service.",
     "signalChain": [
       "Route plan set by fleet management system",
       "SoC2 handles full perception and planning stack",
@@ -80,7 +80,7 @@
     "name": "Chipset OEM B2B",
     "slideTitle": "CHIPSET OEM",
     "price": "₹18,000",
-    "description": "The bare die, in tray or reel, for a customer to place on their own board. No enclosure, no cables, no fitting — silicon and a datasheet.",
+    "description": "The bare die, in tray or reel, for a customer to place on their own board. No enclosure, no cables, no fitting, silicon and a datasheet.",
     "signalChain": [
       "Customer's own sensors feed their own board",
       "Our die does the perception compute inside their design",
@@ -96,7 +96,7 @@
     "category": "Silicon & Compute",
     "segment": "Components",
     "domain": "Any",
-    "role": "Fifty-four crore at ninety-four percent gross margin — the highest in the portfolio. Every rupee arrives without installation capacity or warranty logistics.",
+    "role": "Fifty-four crore at ninety-four percent gross margin, the highest in the portfolio. Every rupee arrives without installation capacity or warranty logistics.",
     "dependsOn": "ASIC tapeout completion and qualification.",
     "slideNum": 26
   },
@@ -122,7 +122,7 @@
     "segment": "Software",
     "domain": "Any",
     "role": "Pure software revenue at 94% margin. Converts the IP investment in Indian road models into a recurring stream independent of hardware.",
-    "dependsOn": "Maturity of the Indian road perception stack — starts FY29.",
+    "dependsOn": "Maturity of the Indian road perception stack, starts FY29.",
     "slideNum": 36
   },
   {
@@ -146,8 +146,8 @@
     "category": "Road Autonomy",
     "segment": "Systems",
     "domain": "Indoor",
-    "role": "Where L4 behaviour ships years before it is legal on a public road — the technical proof point for the road roadmap.",
-    "dependsOn": "Site mapping and commissioning throughput — services capacity rather than product.",
+    "role": "Where L4 behaviour ships years before it is legal on a public road, the technical proof point for the road roadmap.",
+    "dependsOn": "Site mapping and commissioning throughput, services capacity rather than product.",
     "slideNum": 12,
     "simulatorId": "forklift"
   },
@@ -156,7 +156,7 @@
     "name": "A100 Compute Box 4ch PCIe",
     "slideTitle": "A100 4-CHANNEL",
     "price": "₹3,00,000",
-    "description": "Four-channel PCIe compute card for multi-camera deployments — industrial inspection, security and infrastructure monitoring.",
+    "description": "Four-channel PCIe compute card for multi-camera deployments, industrial inspection, security and infrastructure monitoring.",
     "signalChain": [
       "Up to four camera feeds enter via PCIe interface",
       "SoC2 runs parallel perception on all four channels",
@@ -172,7 +172,7 @@
     "category": "Silicon & Compute",
     "segment": "Modules",
     "domain": "Any",
-    "role": "The highest-capacity compute form factor — serves customers who need multi-camera perception without building their own board.",
+    "role": "The highest-capacity compute form factor, serves customers who need multi-camera perception without building their own board.",
     "dependsOn": "ASIC tapeout and PCIe interface validation.",
     "slideNum": 34
   },
@@ -197,7 +197,7 @@
     "category": "Sensors & Robotics",
     "segment": "Systems",
     "domain": "Outdoor",
-    "role": "Highest price point in the portfolio — opens defence procurement channel and validates ruggedised silicon.",
+    "role": "Highest price point in the portfolio, opens defence procurement channel and validates ruggedised silicon.",
     "dependsOn": "Defence procurement cycle and security clearances.",
     "slideNum": 56,
     "simulatorId": "sentinel"
@@ -232,7 +232,7 @@
     "name": "A100 Compute Box 1ch M.2",
     "slideTitle": "A100 1-CHANNEL",
     "price": "₹85,000",
-    "description": "Single-channel M.2 module — the smallest configuration the part supports. Same die, running less.",
+    "description": "Single-channel M.2 module, the smallest configuration the part supports. Same die, running less.",
     "signalChain": [
       "One camera in",
       "One perception stream out",
@@ -248,7 +248,7 @@
     "category": "Silicon & Compute",
     "segment": "Modules",
     "domain": "Any",
-    "role": "Entry-level compute module — lowest-cost path to adding DeepGrid perception to an existing product.",
+    "role": "Entry-level compute module, lowest-cost path to adding DeepGrid perception to an existing product.",
     "dependsOn": "ASIC tapeout.",
     "slideNum": 31
   },
@@ -257,7 +257,7 @@
     "name": "Seaport AGV",
     "slideTitle": "SEAPORT AGV",
     "price": "₹45,30,000",
-    "description": "Autonomous container yard vehicle — 7cm open positioning, 22cm under crane. Moves containers between quay crane and yard block.",
+    "description": "Autonomous container yard vehicle, 7cm open positioning, 22cm under crane. Moves containers between quay crane and yard block.",
     "signalChain": [
       "GPS-RTK and vision provide centimetre-level localisation",
       "SoC2 plans path through dynamic yard traffic",
@@ -273,7 +273,7 @@
     "category": "Fleet & Mobility",
     "segment": "Systems",
     "domain": "Outdoor",
-    "role": "Second-highest revenue per unit after TaaS — validates the silicon in port infrastructure.",
+    "role": "Second-highest revenue per unit after TaaS, validates the silicon in port infrastructure.",
     "dependsOn": "Port authority partnerships and certification.",
     "slideNum": 46,
     "simulatorId": "yard"
@@ -283,7 +283,7 @@
     "name": "D100 Drone SoC Kit",
     "slideTitle": "D100 DRONE SOC",
     "price": "₹5,00,000",
-    "description": "Aerial inspection and surveillance compute kit — same SoC2 in a drone-optimised form factor.",
+    "description": "Aerial inspection and surveillance compute kit, same SoC2 in a drone-optimised form factor.",
     "signalChain": [
       "Gimbal camera + thermal sensor",
       "SoC2 runs airborne perception",
@@ -299,7 +299,7 @@
     "category": "Sensors & Robotics",
     "segment": "Modules",
     "domain": "Aerial",
-    "role": "Opens aerial perception as a silicon market — same die, different firmware.",
+    "role": "Opens aerial perception as a silicon market, same die, different firmware.",
     "dependsOn": "Drone regulation and form-factor development.",
     "slideNum": 58
   },
@@ -308,7 +308,7 @@
     "name": "Thermal Camera Pod",
     "slideTitle": "THERMAL CAMERA",
     "price": "₹50,000",
-    "description": "LWIR thermal camera sensor module for night and monsoon conditions — the perception layer that cameras alone cannot provide.",
+    "description": "LWIR thermal camera sensor module for night and monsoon conditions, the perception layer that cameras alone cannot provide.",
     "signalChain": [
       "LWIR sensor captures thermal scene",
       "SoC2 fuses thermal with visible camera",
@@ -324,7 +324,7 @@
     "category": "Sensors & Robotics",
     "segment": "Components",
     "domain": "Outdoor",
-    "role": "The perception layer that enables night and monsoon operation — differentiator for the Smart Truck kit.",
+    "role": "The perception layer that enables night and monsoon operation, differentiator for the Smart Truck kit.",
     "dependsOn": "LWIR sensor sourcing and calibration pipeline.",
     "slideNum": 60
   },
@@ -333,7 +333,7 @@
     "name": "H100 Driver Monitor",
     "slideTitle": "H100 DRIVER MONITOR",
     "price": "₹5,000",
-    "description": "In-cabin driver monitoring unit — drowsiness, distraction and seatbelt detection. Mandate-listed safety function.",
+    "description": "In-cabin driver monitoring unit, drowsiness, distraction and seatbelt detection. Mandate-listed safety function.",
     "signalChain": [
       "IR camera watches driver face",
       "SoC2 runs drowsiness/distraction model",
@@ -349,7 +349,7 @@
     "category": "Sensors & Robotics",
     "segment": "Components",
     "domain": "Indoor",
-    "role": "Highest volume sensor SKU — mandate requires it in every commercial vehicle.",
+    "role": "Highest volume sensor SKU, mandate requires it in every commercial vehicle.",
     "dependsOn": "Mandate enforcement timeline.",
     "slideNum": 62
   },
@@ -358,7 +358,7 @@
     "name": "4D Radar Pod",
     "slideTitle": "4D RADAR POD",
     "price": "₹25,000",
-    "description": "4D imaging radar module providing range, velocity, azimuth and elevation — the sensor that camera-only ADAS cannot replace.",
+    "description": "4D imaging radar module providing range, velocity, azimuth and elevation, the sensor that camera-only ADAS cannot replace.",
     "signalChain": [
       "4D radar scans forward scene",
       "Range + velocity + angle data output",
@@ -374,7 +374,7 @@
     "category": "Sensors & Robotics",
     "segment": "Components",
     "domain": "Outdoor",
-    "role": "Radar matters because closing speed is what a braking decision actually turns on — camera alone cannot measure it.",
+    "role": "Radar matters because closing speed is what a braking decision actually turns on, camera alone cannot measure it.",
     "dependsOn": "Radar block verification on the ASIC.",
     "slideNum": 64
   }

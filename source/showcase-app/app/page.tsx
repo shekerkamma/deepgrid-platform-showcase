@@ -1,74 +1,422 @@
 'use client';
-import {useEffect,useState,lazy,Suspense} from 'react';
-import {ArrowUpRight,ArrowRight,ArrowLeft,Play,Plus,Minus,Search,Send,Menu,Layers,Cpu,ScanLine,ShieldCheck,Radio,Thermometer,Activity,FileText,Volume2,Maximize,RotateCcw} from 'lucide-react';
-import {Tabs,TabsList,TabsTrigger} from '@/components/ui/tabs';
-import {Dialog,DialogContent,DialogTitle,DialogDescription} from '@/components/ui/dialog';
-import {Sheet,SheetContent,SheetTitle,SheetDescription} from '@/components/ui/sheet';
-import {Input} from '@/components/ui/input';
-import {Select,SelectTrigger,SelectValue,SelectContent,SelectItem} from '@/components/ui/select';
-import {Slider} from '@/components/ui/slider';
-import Silicon from './silicon';
-import products from './products.json';
+import { useEffect, useState, lazy, Suspense } from 'react';
+import { ArrowUpRight, ArrowRight, ArrowLeft, Menu } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog';
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetDescription,
+} from '@/components/ui/sheet';
+import { useNavigation } from './use-navigation';
+import { useReveal, useScrollVars } from './motion';
+import { Brand, groups, navigation, products, type Product } from './shared';
+import Overview from './views/overview';
+import Portfolio from './views/portfolio';
+import Technology from './views/technology';
+import Films from './views/films';
+import Deck from './views/deck';
+import Investment from './views/investment';
 import siteContent from './site-content.json';
-import {reportHtml} from './report-content';
-import {useNavigation} from './use-navigation';
-import slideNotes from './slide-notes.json';
-import UseCases from './use-cases';
-// Ask DeepGrid: GraphRAG over this page's materials (app/ask.tsx). It carries a 1.3 MB index and the
-// in-browser embedding loader, so it loads only when the Ask view opens.
-const AskDeepGrid=lazy(()=>import('./ask'));
-type Product=typeof products[number];
-const origin='https://shekerkamma.github.io/content-ideas/deepgrid-platform/';
-const navigation=[['overview','Overview'],['portfolio','Products'],['silicon','Technology'],['briefing','Ask DeepGrid'],['film','Videos'],['slides','Slide deck'],['investment','Investment']];
-const chapters=[['','Investment overview'],['summary','Executive summary'],['business','Business'],['technology','Technology'],['usecases','Use cases'],['choice','Strategy & economics'],['numbers','Financials & risks']];
-const deckChapters=[[1,'Overview'],[7,'Road autonomy'],[24,'Frame budget & sensors'],[31,'Silicon & compute'],[49,'Fleet & mobility'],[66,'Sensors & robotics'],[97,'Portfolio economics']] as const;
-const domains=[['A100','Neural processing','Parallel perception for camera feeds and edge-AI workloads.','NPU',Cpu],['R100','Radar processing','Dedicated hardware DSP for radar point-cloud processing.','DSP',Radio],['T100','AI core','India-tuned perception and a licensable AI software stack.','AI',ScanLine],['D100','Secure compute','Lockstep RISC-V, AES-256 and ECC SRAM for secure systems.','SEC',ShieldCheck],['S100','Vehicle control','Vehicle interfaces, telematics and control on the common platform.','VCU',Activity],['H100','Driver monitoring','Driver-health and monitoring workloads on the same silicon.','HLT',Thermometer]] as const;
-const mediaFor=(p:Product)=>p.id==='ad0'?'ddrive':p.id==='ad1'?'forklift':p.id==='agv'?'yard':p.id==='dhumr'||p.id==='d100'?'sentinel':p.id.startsWith('a100')?'computebox':p.id==='ad2'||p.id==='taas'?'truck':'cube';
-const groups=['All products','Road Autonomy','Silicon & Compute','Fleet & Mobility','Sensors & Robotics'];
-const projections=siteContent.projections;
-function Brand(){return <><span className="brand-mark"><i/><i/><i/><i/></span><span className="wordmark">deepgrid<span>SEMI</span></span></>}
-function Eyebrow({children}:{children:React.ReactNode}){return <p className="eyebrow"><span/> {children}</p>}
-function SectionHead({tag,title,copy}:{tag:string;title:string;copy:string}){return <header className="section-head"><div><Eyebrow>{tag}</Eyebrow><h1>{title}</h1></div><p>{copy}</p></header>}
-function MetaImage({src,alt,className=''}:{src:string;alt:string;className?:string}){return <img className={className} src={src} alt={alt} loading="lazy"/>}
-export default function Home(){
- const {route,navigate:changeView,go,update,openSlide}=useNavigation();
- const view=route.view,category=groups.includes(route.params.get('category')||'')?route.params.get('category')!:'All products',query=route.params.get('q')||'',product=products.find(p=>p.id===route.params.get('product'))||null,slide=Math.max(1,Math.min(104,Number(route.params.get('slide'))||1)),chapter=route.params.get('chapter')||'',report=!!chapter;
- const [menu,setMenu]=useState(false),[reduced,setReduced]=useState(false),[domain,setDomain]=useState(0),[exploded,setExploded]=useState(false);
- const navigate=(v:string)=>{setMenu(false);changeView(v);};
- const setCategory=(v:string)=>update({category:v==='All products'?undefined:v});const setQuery=(v:string)=>update({q:v||undefined});
- const setProduct=(p:Product|null)=>update({product:p?.id},!p);const setSlide=(n:number)=>update({slide:String(n)});const setReport=(b:boolean)=>update({chapter:b?'summary':undefined},false);
- const setChapter=(id:string)=>{update({chapter:id||undefined},false);requestAnimationFrame(()=>document.querySelector('.chapter-navigation')?.scrollIntoView({block:'start'}));};
- useEffect(()=>{const q=matchMedia('(prefers-reduced-motion: reduce)');setReduced(q.matches);const motion=()=>setReduced(q.matches);q.addEventListener('change',motion);return()=>q.removeEventListener('change',motion);},[]);
- const viewIndex=navigation.findIndex(n=>n[0]===view),returnTo=route.params.get('from'),returnProduct=returnTo?products.find(p=>p.id===new URLSearchParams(returnTo.split('?')[1]).get('product')):null;
- const visible=products.filter(p=>(category==='All products'||p.category===category)&&`${p.id} ${p.name} ${p.category} ${p.description}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>groups.indexOf(a.category)-groups.indexOf(b.category));
- const navLinks=<>{navigation.map(([id,title])=><a href={'#'+id} key={id} className={view===id?'active':''} onClick={e=>{e.preventDefault();navigate(id)}} aria-current={view===id?'page':undefined}>{title}</a>)}</>;
- return <div className={"site-shell view-"+view}><a className="skip-link" href="#main" onClick={e=>{e.preventDefault();document.getElementById('main')?.focus();document.getElementById('main')?.scrollIntoView()}}>Skip to content</a><header className="topbar"><button className="brand" onClick={()=>navigate('overview')} aria-label="DeepGrid home"><Brand/></button><div className="topline"><span>ENGINEERED IN INDIA. BUILT FOR THE WORLD.</span><span className="status-dot">PRE-SERIES A · 2026</span></div><button className="contact-link" onClick={()=>navigate('investment')}>Explore the investment <ArrowUpRight size={17}/></button><button className="mobile-menu" aria-label="Open navigation" onClick={()=>setMenu(true)}><span>{navigation[viewIndex][1]}</span><Menu/></button></header>
- <nav className="main-nav" aria-label="Primary navigation">{navLinks}</nav>
- <main id="main" tabIndex={-1}>
- {view!=='overview'&&<nav className="breadcrumbs" aria-label="Breadcrumb"><a href="#overview" onClick={e=>{e.preventDefault();navigate('overview')}}>Home</a><span>/</span><span aria-current="page">{navigation[viewIndex][1]}</span>{returnTo&&<button className="context-back" onClick={()=>go(returnTo)}><ArrowLeft size={16}/>{returnProduct?'Back to '+returnProduct.name:'Back to '+(navigation.find(n=>n[0]===returnTo.split('?')[0])?.[1]||'previous section')}</button>}</nav>}
- {view==='overview'&&<>
- <section className="hero"><img className="hero-image" src="./images/semiconductor-hero.png" alt="Conceptual DeepGrid semiconductor package with six compute domains and copper circuit traces" fetchPriority="high"/><div className="hero-shade"/><div className="hero-copy"><Eyebrow>THE DEEPGRID PLATFORM</Eyebrow><h1>One silicon.<br/><em>Infinite</em><br/>possibilities.</h1><p>A sovereign intelligence platform.<br/>Fifteen products. One monolithic die.<br/>From the silicon up.</p><div className="hero-actions"><button className="primary" onClick={()=>navigate('silicon')}>Explore the silicon <ArrowUpRight size={19}/></button><button className="text-button" onClick={()=>navigate('film')}><span className="play-circle"><Play size={12} fill="currentColor"/></span>Watch the story</button></div></div><div className="hero-annotation"><span className="cross">+</span><div>SoC2 MONOLITHIC PLATFORM<small>28nm · 57mm² · SIX COMPUTE DOMAINS</small></div></div><p className="image-disclaimer">ARCHITECTURAL VISUALIZATION</p><div className="hero-bottom"><span>DEEPGRID SEMI PVT LTD / HYDERABAD, INDIA</span></div></section>
- <section className="metrics-strip">{projections.map(([v,l])=><div key={l}><strong>{v}</strong><span>{l}</span></div>)}<p>One architecture.<br/>A shared foundation for autonomy.</p></section>
- <section className="content-section"><div className="section-label"><Eyebrow>01 / THE PLATFORM THESIS</Eyebrow><span>ONE TAPEOUT. MANY APPLICATIONS.</span></div><div className="thesis-heading"><h2>Intelligence starts<br/><em>at the source.</em></h2><div><p>DeepGrid builds the silicon beneath its autonomous systems. Cameras, radar, compute, vehicle control and AI work together on one common platform.</p><p className="muted">Dedicated firmware turns that foundation into fifteen product paths across four markets.</p><button className="text-link" onClick={()=>navigate('portfolio')}>Meet the portfolio <ArrowUpRight size={18}/></button></div></div>
- <div className="feature-grid"><button className="feature-card" onClick={()=>navigate('portfolio')}><MetaImage src="./images/truck.png" alt="DeepGrid AD2 smart-truck visualization"/><div className="feature-content"><span>01 / ROAD AUTONOMY</span><h3>Intelligence.<br/>On the move.</h3><p>AD2 Smart Truck · AD0 Smart Mirror · AD1</p><ArrowUpRight/></div></button><button className="feature-card" onClick={()=>navigate('silicon')}><MetaImage src="./images/computebox.png" alt="DeepGrid compute-system visualization"/><div className="feature-content"><span>02 / SILICON & COMPUTE</span><h3>A platform.<br/>From the core.</h3><p>OEM silicon · A100 compute · T100 licence</p><ArrowUpRight/></div></button><button className="feature-card" onClick={()=>{go('portfolio?category='+encodeURIComponent('Sensors & Robotics'))}}><MetaImage src="./images/sentinel.png" alt="DeepGrid defence robotics visualization"/><div className="feature-content"><span>03 / SENSORS & ROBOTICS</span><h3>Perception.<br/>Beyond the road.</h3><p>D-HUMR · D100 · Radar · Thermal · H100</p><ArrowUpRight/></div></button></div><p className="asset-note">Product visualizations from the existing DeepGrid platform.</p></section>
- <section className="silicon-teaser"><div><Eyebrow>THE ARCHITECTURE / EXPLORABLE IN 3D</Eyebrow><h2>Six domains.<br/><em>One shared die.</em></h2><p>Neural processing. Radar. AI. Security. Vehicle control. Driver monitoring. Explore how the platform fits together.</p><button className="primary" onClick={()=>navigate('silicon')}>Inside the architecture <ArrowUpRight size={19}/></button></div><div className="teaser-canvas"><Silicon reduced={reduced}/><span className="canvas-caption">DRAG TO ROTATE · CONCEPTUAL LAYOUT</span></div></section>
- <section className="proof-section"><Eyebrow>FROM THE DEEPGRID MATERIALS</Eyebrow><h2>The platform behind <em>the promise.</em></h2><MetaImage src="./images/figure-01.webp" alt="DeepGrid platform imagery: AD2 truck, radar and thermal output, A100 compute and D-HUMR robot"/><div className="proof-bottom"><p>Platform imagery reproduced from the DeepGrid information memorandum. FPGA demonstration: YOLOv11n at 40 fps, as reported in the source materials.</p><button className="text-link" onClick={()=>navigate('investment')}>Read the evidence <ArrowUpRight size={18}/></button></div></section>
- </>}
- {view==='portfolio'&&<section className="page-wrap"><SectionHead tag="02 / THE PRODUCT PORTFOLIO" title="Product portfolio" copy="The same silicon, shaped for different buyers. Explore the products, their signal chains, and the assumptions behind the plan."/><div className="filter-line"><Tabs value={category} onValueChange={v=>setCategory(String(v))}><TabsList className="filters">{groups.map(g=><TabsTrigger value={g} key={g}>{g}<span className="filter-count">{g==='All products'?products.length:products.filter(p=>p.category===g).length}</span></TabsTrigger>)}</TabsList></Tabs><div className="mobile-picker"><Select value={category} onValueChange={v=>setCategory(String(v))}><SelectTrigger aria-label="Product category"><SelectValue>{category}</SelectValue></SelectTrigger><SelectContent className="ux-select-menu">{groups.map(g=><SelectItem key={g} value={g}>{g} ({g==='All products'?products.length:products.filter(p=>p.category===g).length})</SelectItem>)}</SelectContent></Select></div><label className="search"><Search size={16}/><Input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Find a product" aria-label="Find a product"/></label></div><div className="results-line"><span>{visible.length} of {products.length} products{category!=='All products'?' · '+category:''}</span>{(query||category!=='All products')&&<button onClick={()=>update({q:undefined,category:undefined})}>Clear filters</button>}<span>PRICES & FY2032 FIGURES FROM MANAGEMENT MATERIALS</span></div><div className="product-grid catalog-list">{visible.map((p,i)=><button className="product-card" key={p.id} onClick={()=>setProduct(p)}><div className="product-visual"><MetaImage src={'./images/'+mediaFor(p)+'.png'} alt={p.name+' visualization'}/><span>{p.category}</span></div><div className="product-info"><span className="mono">{p.category} · {p.id.toUpperCase()}</span><h3>{p.name}</h3><p>{p.description}</p><div><span>{p.price}<small>LISTED PRICE</small></span><span>{p.revenue}<small>FY2032 PROJECTION</small></span></div><span className="open-product">View details <ArrowRight size={16}/></span></div></button>)}</div>{!visible.length&&<div className="empty-result"><Search/><h3>No products match your search.</h3><button className="text-link" onClick={()=>{update({q:undefined,category:undefined})}}>Clear filters <ArrowRight size={16}/></button></div>}<p className="disclaimer">Prices, volumes, revenues and margins are management projections, not audited results or guaranteed outcomes.</p></section>}
- {view==='silicon'&&<section className="page-wrap"><SectionHead tag="03 / SILICON ARCHITECTURE" title="Silicon architecture" copy="SoC2 brings six compute domains together on a 57mm² monolithic die. Explore the architecture behind the product family."/><div className="architecture"><div className="architecture-stage"><div className="stage-top"><span className="mono">SoC2 / ARCHITECTURAL MODEL</span><button aria-pressed={reduced} onClick={()=>setReduced(!reduced)} className="small-button">Motion {reduced?'off':'on'}</button></div><Silicon selected={domain} exploded={exploded} reduced={reduced}/><div className="stage-bottom"><span>DRAG TO ROTATE · CONCEPTUAL, NOT A MASK LAYOUT</span><button className="small-button" onClick={()=>setExploded(!exploded)} aria-expanded={exploded}><Layers size={14}/>{exploded?'Assemble layers':'Separate layers'}</button></div></div><aside className="domain-panel"><Eyebrow>SIX COMPUTE DOMAINS</Eyebrow>{domains.map(([code,name,desc,type,Icon],i)=><button className={domain===i?'selected':''} key={code} onClick={()=>setDomain(i)} aria-pressed={domain===i}><Icon size={18}/><div><span>{code}<b>{type}</b></span><strong>{name}</strong>{domain===i&&<p>{desc}</p>}</div><ArrowUpRight size={16}/></button>)}</aside></div><div className="spec-grid">{[['TSMC 28nm','PROCESS'],['57 mm²','FOOTPRINT'],['39.3 TOPS','DERIVED COMPUTE'],['600 MHz','DESIGN FREQUENCY'],['11 channels','SENSOR INPUTS'],['8.6 ms','FUSION TARGET']].map(([v,k])=><div key={k}><span>{k}</span><strong>{v}</strong></div>)}</div><p className="disclaimer">Architecture figures are design targets. 39.3 TOPS is derived from the stated compute architecture, not a measurement on fabricated 28nm silicon.</p><div className="split-section"><div><Eyebrow>THE SENSOR-FUSION PATH</Eyebrow><h2>See more.<br/><em>Decide together.</em></h2><p>Seven RGB, two thermal and two radar channels converge into a unified perception path. The design allocates 8.6 ms inside a 33.3 ms frame.</p></div><div className="pipeline">{[['01','SENSE','RGB · THERMAL · RADAR'],['02','FUSE','SHARED PERCEPTION CORE'],['03','UNDERSTAND','OBJECTS · RANGE · VELOCITY'],['04','ACT','WARNINGS · VEHICLE CONTROL']].map(([n,t,d])=><div key={n}><span>{n}</span><div><h3>{t}</h3><p>{d}</p></div><ArrowDown/></div>)}</div></div></section>}
- {view==='briefing'&&<div className="dg-ask"><Suspense fallback={<section className="page-wrap"><p className="disclaimer">Loading Ask DeepGrid…</p></section>}><AskDeepGrid go={go}/></Suspense></div>}
- {view==='film'&&<section className="page-wrap"><SectionHead tag="05 / THE MASTER FILM" title="Video library" copy="From the silicon architecture to fifteen product paths. Watch the full platform walkthrough, or explore a product film."/><nav className="film-navigation" aria-label="Video selection">{[['master','Full walkthrough'],['truck','AD2 Truck'],['ddrive','AD0 Mirror'],['forklift','AD1 Indoor'],['yard','Seaport AGV'],['sentinel','D-HUMR'],['computebox','A100 Compute']].map(([id,title])=><button key={id} onClick={()=>document.getElementById('film-'+id)?.scrollIntoView({behavior:reduced?'instant':'smooth',block:'start'})}>{title}</button>)}</nav><div className="master-player" id="film-master"><video controls preload="none" poster="./images/semiconductor-hero.png" src={origin+'deck_assets/DeepGrid-Semi-Product-Portfolio-104-Slide-Explainer.mp4'} playsInline><a href="https://drive.google.com/file/d/1pVlhAll8U9Y2N2pW-WG-Lm6N9R3CRm10/view">Open the master film</a></video><div><span className="mono">FEATURE 001 / DEEPGRID SEMI</span><h2>One silicon. The full story.</h2><p>104-slide product portfolio · Complete narrated walkthrough</p><a className="text-link" href="https://drive.google.com/file/d/1pVlhAll8U9Y2N2pW-WG-Lm6N9R3CRm10/view" target="_blank" rel="noreferrer">Open on Google Drive <ArrowUpRight size={17}/></a></div></div><div className="section-label"><Eyebrow>PRODUCT FILMS</Eyebrow><span>EXPLORE THE APPLICATIONS</span></div><div className="film-grid">{[['truck','AD2 Smart Truck'],['ddrive','AD0 Smart Mirror'],['forklift','AD1 Indoor Autonomy'],['yard','Seaport AGV'],['sentinel','D-HUMR Defence'],['computebox','A100 Compute']].map(([id,title])=><article key={id} id={'film-'+id}><video controls preload="none" poster={'./images/'+id+'.png'} src={origin+'media/'+id+'.mp4'} playsInline/><div><span className="mono">DEEPGRID / PRODUCT SIMULATION</span><h3>{title}</h3></div></article>)}</div></section>}
- {view==='slides'&&<section className="page-wrap"><SectionHead tag="06 / THE 104-SLIDE WALKTHROUGH" title="104-slide presentation" copy="Explore the original product portfolio deck. Jump to a product, step through the slides, or open the full presentation."/><div className="mobile-picker deck-picker"><Select value={String([...deckChapters].reverse().find(([n])=>slide>=n)?.[0]||1)} onValueChange={v=>setSlide(Number(v))}><SelectTrigger aria-label="Presentation chapter"><SelectValue>{[...deckChapters].reverse().find(([n])=>slide>=n)?.[1]}</SelectValue></SelectTrigger><SelectContent className="ux-select-menu">{deckChapters.map(([n,title])=><SelectItem key={n} value={String(n)}>{title} · slide {n}</SelectItem>)}</SelectContent></Select></div><nav className="deck-chapters" aria-label="Presentation chapters">{deckChapters.map(([n,title],i)=><button key={n} className={slide>=n&&(i===deckChapters.length-1||slide<deckChapters[i+1][0])?'active':''} onClick={()=>setSlide(n)}>{title}<small>{n}–{i===deckChapters.length-1?104:deckChapters[i+1][0]-1}</small></button>)}</nav><div className="deck-layout"><div className="deck-main"><div className="deck-stage"><img key={slide} src={'./slides/slide_'+String(slide).padStart(2,'0')+'.png'} alt={'DeepGrid original presentation, slide '+slide}/></div><div className="deck-controls"><button aria-label="Previous slide" disabled={slide===1} onClick={()=>setSlide(slide-1)}><ArrowLeft size={19}/></button><label className="slide-number">Slide <Input aria-label="Go to slide" type="number" min={1} max={104} value={slide} onChange={e=>{const n=Number(e.target.value);if(n>=1&&n<=104)setSlide(n)}}/> of 104</label><Slider value={[slide]} min={1} max={104} step={1} onValueChange={v=>setSlide(Array.isArray(v)?v[0]:v)} aria-label="Slide number"/><button aria-label="Next slide" disabled={slide===104} onClick={()=>setSlide(slide+1)}><ArrowRight size={19}/></button></div></div><aside className="deck-index"><Eyebrow>JUMP TO A PRODUCT</Eyebrow>{products.map(p=><button key={p.id} onClick={()=>setSlide(p.slideNum)} className={slide===p.slideNum?'active':''}><span>{String(p.slideNum).padStart(2,'0')}</span>{p.name}<ArrowUpRight size={14}/></button>)}</aside></div><section className="slide-commentary"><h2>{slideNotes[slide-1].title}</h2><p>{slideNotes[slide-1].script}</p><details><summary>Source notes & model references</summary><p>{slideNotes[slide-1].notes}</p></details></section><div className="deck-footer"><p className="disclaimer">Original management presentation. Figures and claims retain their original context.</p><a className="primary" href="https://docs.google.com/presentation/d/1qpq13INORqRjcYna1MQa_NMeorkAW_gk/edit" target="_blank" rel="noreferrer">Open presentation <ArrowUpRight size={18}/></a></div></section>}
- {view==='investment'&&<section className={'page-wrap investment-page'+(report?' has-chapter':'')}><SectionHead tag="07 / INVESTMENT & DILIGENCE" title="Investment & diligence" copy="The opportunity, the economics and the work still ahead. Read the capital case alongside its dependencies and underwriting risks."/><nav className="chapter-navigation" aria-label="Investment chapters">{chapters.map(([id,title])=><button key={id} onClick={()=>setChapter(id)} aria-current={chapter===id?'page':undefined}>{title}</button>)}</nav><div className="investment-hero"><img src="./images/semiconductor-hero.png" alt="Conceptual semiconductor architecture"/><div><Eyebrow>PRE-SERIES A / AUGUST 2026 MATERIALS</Eyebrow><h2>Build the silicon.<br/><em>Unlock the platform.</em></h2><div className="raise"><strong>₹45 Cr</strong><span>EQUITY ROUND<br/>₹204 Cr PRE-MONEY</span></div></div></div><div className="investment-stats">{siteContent.investmentStats.map(([v,t])=><div key={t}><strong>{v}</strong><span>{t}</span></div>)}</div><p className="disclaimer">Management projections prepared for fundraising. The source materials contain unreconciled differences; review the full diligence record before relying on them.</p><div className="investment-grid"><div><Eyebrow>WHAT THE ROUND UNDERWRITES</Eyebrow><h2>Capital follows<br/><em>the milestones.</em></h2><p>The next phase depends on working silicon, product qualification and paying customers. The forecast is the consequence of those gates.</p></div><div className="risk-list">{[['01','Concentration','AD2 and AD0 account for ₹720 Cr, or 63.8% of projected FY2032 revenue. They serve overlapping buyer groups.'],['02','Timing','Qualified silicon is planned for H1 2028. The near-term plan depends on the FPGA business and its customer channels.'],['03','Claim controls','The source record flags conflicting revenue totals, tapeout costs and regulatory timelines. Those differences need reconciliation.'],['04','Qualification','Certification, functional safety, design-in timelines and installation capacity remain material dependencies.']].map(([n,t,c])=><div key={n}><span>{n}</span><div><h3>{t}</h3><p>{c}</p></div></div>)}</div></div><div className="report-toggle"><div><Eyebrow>THE COMPLETE SOURCE RECORD</Eyebrow><h3>Investment memorandum & underwriting</h3><p>Business, technology, markets, strategic choices, economics and risk.</p></div><button className="primary" onClick={()=>setReport(!report)} aria-expanded={report}>{report?'Close full record':'Read full record'} {report?<Minus size={18}/>:<Plus size={18}/>}</button></div>{report&&(chapter==="usecases"?<UseCases selected={route.params.get("usecase")||""} onSelect={id=>{update({usecase:id||undefined},false);requestAnimationFrame(()=>document.querySelector(".usecase-explorer")?.scrollIntoView({block:"start"}));}} onProducts={category=>go("portfolio?category="+encodeURIComponent(category)+"&from="+encodeURIComponent("investment?"+route.params.toString()))}/>:<InvestmentRecord chapter={chapter} onChapter={setChapter}/>)}</section>}
- <nav className="section-pagination" aria-label="Section navigation">{viewIndex>0?<a href={'#'+navigation[viewIndex-1][0]} onClick={e=>{e.preventDefault();navigate(navigation[viewIndex-1][0])}}><ArrowLeft size={19}/><span><small>Previous section</small>{navigation[viewIndex-1][1]}</span></a>:<span/>}{viewIndex<navigation.length-1&&<a href={'#'+navigation[viewIndex+1][0]} onClick={e=>{e.preventDefault();navigate(navigation[viewIndex+1][0])}}><span><small>Next section</small>{navigation[viewIndex+1][1]}</span><ArrowRight size={19}/></a>}</nav>
- </main>
- <footer className="footer"><div className="footer-top"><button className="brand" onClick={()=>navigate('overview')}><Brand/></button><h2>Intelligence.<br/><em>Made foundational.</em></h2><button className="text-link" onClick={()=>navigate('briefing')}>Ask the platform <ArrowUpRight size={20}/></button></div><div className="footer-bottom"><span>© 2026 DEEPGRID SEMI PVT LTD</span><span>T-HUB, HYDERABAD · INDIA</span><span>MANAGEMENT MATERIALS · FIGURES ARE PROJECTIONS</span><a href={siteContent.sourceGuide} target="_blank" rel="noreferrer">Source data & documents ↗</a></div></footer>
- <Sheet open={menu} onOpenChange={setMenu}><SheetContent className="navigation-sheet"><SheetTitle><span className="wordmark">deepgrid</span></SheetTitle><SheetDescription>Explore the DeepGrid platform</SheetDescription><nav>{navLinks}</nav></SheetContent></Sheet>
- <Dialog open={!!product} onOpenChange={o=>{if(!o)setProduct(null)}}><DialogContent className="product-dialog" initialFocus={() => document.querySelector<HTMLElement>(".product-dialog")} tabIndex={-1}>{product&&<><div className="detail-nav"><button onClick={()=>setProduct(null)}><ArrowLeft size={17}/>Back to {view==='portfolio'?'products':'briefing'}</button><span>{product.category}</span></div><div className="detail-visual"><img src={'./images/'+mediaFor(product)+'.png'} alt={product.name+' visualization'}/><span>{product.category}</span></div><div className="detail-body"><p className="mono">{product.id.toUpperCase()} / PRODUCT DOSSIER</p><DialogTitle>{product.name}</DialogTitle><DialogDescription>{product.description}</DialogDescription><div className="detail-actions"><button className="primary" onClick={()=>openSlide(product.slideNum)}>View source slide {product.slideNum} <ArrowUpRight size={16}/></button><button className="text-link" onClick={()=>{setProduct(null);navigate('silicon')}}>Explore shared silicon <ArrowRight size={16}/></button></div><div className="detail-stats"><div><strong>{product.price}</strong><small>LISTED PRICE</small></div><div><strong>{product.revenue}</strong><small>FY2032 PROJECTION</small></div><div><strong>{product.units}</strong><small>VOLUME PLAN</small></div></div><h3>Role in the portfolio</h3><p>{product.role}</p><p className="detail-context">First revenue: {product.firstRevenue} · Gross margin: {product.margin} · Revenue share: {product.share}</p><h3>From sensing to action</h3><ol className="signal-chain">{product.signalChain.map((s,i)=><li key={s}><span>0{i+1}</span>{s}</li>)}</ol><div className="dependency"><span className="mono">KEY DEPENDENCY</span><p>{product.dependsOn}</p></div><button className="text-link" onClick={()=>openSlide(product.slideNum)}>Open source slide {product.slideNum} <ArrowUpRight size={18}/></button><p className="disclaimer">Pricing and financial values are management projections from the original portfolio.</p></div></>}</DialogContent></Dialog>
- </div>
+
+// The site shell: header, section navigation, the current view, pagination, footer, the mobile
+// menu and the product dossier. Each view lives in app/views/.
+// Ask DeepGrid carries a 1.3 MB index and the in-browser embedding loader, so it loads only when
+// its view opens.
+const AskDeepGrid = lazy(() => import('./ask'));
+
+const titles: Record<string, string> = {
+  overview: 'DeepGrid Semi: one silicon, fifteen products',
+  portfolio: 'Products · DeepGrid Semi',
+  silicon: 'Technology · DeepGrid Semi',
+  briefing: 'Ask DeepGrid · DeepGrid Semi',
+  film: 'Videos · DeepGrid Semi',
+  slides: 'Slide deck · DeepGrid Semi',
+  investment: 'Investment · DeepGrid Semi',
+};
+
+export default function Home() {
+  const {
+    route,
+    navigate: changeView,
+    go,
+    update,
+    openSlide,
+  } = useNavigation();
+  const view = route.view,
+    params = route.params,
+    category = groups.includes(params.get('category') || '')
+      ? params.get('category')!
+      : 'All products',
+    query = params.get('q') || '',
+    product = products.find((p) => p.id === params.get('product')) || null,
+    slide = Math.max(1, Math.min(104, Number(params.get('slide')) || 1)),
+    chapter = params.get('chapter') || '';
+  const [menu, setMenu] = useState(false),
+    [reduced, setReduced] = useState(false);
+  const navigate = (v: string) => {
+    setMenu(false);
+    changeView(v);
+  };
+  const setProduct = (p: Product | null) => update({ product: p?.id }, !p);
+  const setChapter = (id: string) => {
+    update({ chapter: id || undefined }, false);
+    requestAnimationFrame(() =>
+      document
+        .querySelector('.report-toggle')
+        ?.scrollIntoView({ block: 'start' }),
+    );
+  };
+
+  useEffect(() => {
+    const q = matchMedia('(prefers-reduced-motion: reduce)');
+    setReduced(q.matches);
+    const motion = () => setReduced(q.matches);
+    q.addEventListener('change', motion);
+    return () => q.removeEventListener('change', motion);
+  }, []);
+  useEffect(() => {
+    document.title = titles[view] || titles.overview;
+  }, [view]);
+  useScrollVars();
+  useReveal(
+    view +
+      (view === 'portfolio' ? params.get('layout') || '' : '') +
+      (view === 'investment' ? chapter : ''),
+  );
+
+  const viewIndex = navigation.findIndex((n) => n[0] === view),
+    returnTo = params.get('from'),
+    returnProduct = returnTo
+      ? products.find(
+          (p) =>
+            p.id === new URLSearchParams(returnTo.split('?')[1]).get('product'),
+        )
+      : null;
+  const navLinks = navigation.map(([id, title]) => (
+    <a
+      href={'#' + id}
+      key={id}
+      className={view === id ? 'active' : ''}
+      onClick={(e) => {
+        e.preventDefault();
+        navigate(id);
+      }}
+      aria-current={view === id ? 'page' : undefined}
+    >
+      {title}
+    </a>
+  ));
+
+  return (
+    <div className={'site-shell view-' + view}>
+      <a
+        className="skip-link"
+        href="#main"
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById('main')?.focus();
+          document.getElementById('main')?.scrollIntoView();
+        }}
+      >
+        Skip to content
+      </a>
+      <header className="topbar">
+        <button
+          className="brand"
+          onClick={() => navigate('overview')}
+          aria-label="DeepGrid home"
+        >
+          <Brand />
+        </button>
+        <p className="topline">Pre-Series A · Hyderabad, India</p>
+        <button
+          className="mobile-menu"
+          aria-label="Open navigation"
+          onClick={() => setMenu(true)}
+        >
+          <span>{navigation[viewIndex][1]}</span>
+          <Menu aria-hidden="true" />
+        </button>
+      </header>
+      <nav className="main-nav" aria-label="Primary navigation">
+        {navLinks}
+      </nav>
+      <main id="main" tabIndex={-1}>
+        {view !== 'overview' && (
+          <nav className="breadcrumbs" aria-label="Breadcrumb">
+            <a
+              href="#overview"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('overview');
+              }}
+            >
+              Home
+            </a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{navigation[viewIndex][1]}</span>
+            {returnTo && (
+              <button className="context-back" onClick={() => go(returnTo)}>
+                <ArrowLeft size={16} aria-hidden="true" />
+                {returnProduct
+                  ? 'Back to ' + returnProduct.name
+                  : 'Back to ' +
+                    (navigation.find(
+                      (n) => n[0] === returnTo.split('?')[0],
+                    )?.[1] || 'previous section')}
+              </button>
+            )}
+          </nav>
+        )}
+        {view === 'overview' && (
+          <Overview navigate={navigate} go={go} reduced={reduced} />
+        )}
+        {view === 'portfolio' && (
+          <Portfolio
+            category={category}
+            query={query}
+            layout={params.get('layout') === 'table' ? 'table' : 'cards'}
+            setCategory={(v) =>
+              update({ category: v === 'All products' ? undefined : v })
+            }
+            setQuery={(v) => update({ q: v || undefined })}
+            setLayout={(v) =>
+              update({ layout: v === 'table' ? 'table' : undefined })
+            }
+            clear={() => update({ q: undefined, category: undefined })}
+            open={setProduct}
+          />
+        )}
+        {view === 'silicon' && <Technology reduced={reduced} go={go} />}
+        {view === 'briefing' && (
+          <div className="dg-ask">
+            <Suspense
+              fallback={
+                <section className="page-wrap">
+                  <p className="disclaimer">Loading Ask DeepGrid…</p>
+                </section>
+              }
+            >
+              <AskDeepGrid go={go} />
+            </Suspense>
+          </div>
+        )}
+        {view === 'film' && <Films reduced={reduced} />}
+        {view === 'slides' && (
+          <Deck slide={slide} setSlide={(n) => update({ slide: String(n) })} />
+        )}
+        {view === 'investment' && (
+          <Investment
+            chapter={chapter}
+            usecase={params.get('usecase') || ''}
+            params={params}
+            setChapter={setChapter}
+            update={update}
+            go={go}
+          />
+        )}
+        {view !== 'overview' && (
+          <nav className="section-pagination" aria-label="Section navigation">
+            {viewIndex > 0 ? (
+              <a
+                href={'#' + navigation[viewIndex - 1][0]}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(navigation[viewIndex - 1][0]);
+                }}
+              >
+                <ArrowLeft size={19} aria-hidden="true" />
+                <span>
+                  <small>Previous</small>
+                  {navigation[viewIndex - 1][1]}
+                </span>
+              </a>
+            ) : (
+              <span />
+            )}
+            {viewIndex < navigation.length - 1 && (
+              <a
+                href={'#' + navigation[viewIndex + 1][0]}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(navigation[viewIndex + 1][0]);
+                }}
+              >
+                <span>
+                  <small>Next</small>
+                  {navigation[viewIndex + 1][1]}
+                </span>
+                <ArrowRight size={19} aria-hidden="true" />
+              </a>
+            )}
+          </nav>
+        )}
+      </main>
+      <footer className="footer">
+        <div className="footer-top">
+          <button
+            className="brand"
+            onClick={() => navigate('overview')}
+            aria-label="DeepGrid home"
+          >
+            <Brand />
+          </button>
+          <p className="footer-line">
+            Intelligence, <em>made foundational.</em>
+          </p>
+          <button className="text-link" onClick={() => navigate('briefing')}>
+            Ask a question <ArrowUpRight size={18} aria-hidden="true" />
+          </button>
+        </div>
+        <div className="footer-bottom">
+          <span>© 2026 DeepGrid Semi Pvt Ltd</span>
+          <span>T-Hub, Hyderabad, India</span>
+          <span>Management materials. Figures are projections.</span>
+          <a href={siteContent.sourceGuide} target="_blank" rel="noreferrer">
+            Source data and documents{' '}
+            <ArrowUpRight size={13} aria-hidden="true" />
+          </a>
+        </div>
+      </footer>
+      <Sheet open={menu} onOpenChange={setMenu}>
+        <SheetContent className="navigation-sheet">
+          <SheetTitle>
+            <span className="wordmark">deepgrid</span>
+          </SheetTitle>
+          <SheetDescription>Explore the DeepGrid platform</SheetDescription>
+          <nav>{navLinks}</nav>
+        </SheetContent>
+      </Sheet>
+      <Dialog
+        open={!!product}
+        onOpenChange={(o) => {
+          if (!o) setProduct(null);
+        }}
+      >
+        <DialogContent
+          className="product-dialog"
+          initialFocus={() =>
+            document.querySelector<HTMLElement>('.product-dialog')
+          }
+          tabIndex={-1}
+        >
+          {product && (
+            <>
+              <div className="detail-nav">
+                <button onClick={() => setProduct(null)}>
+                  <ArrowLeft size={17} aria-hidden="true" />
+                  Back to {view === 'portfolio' ? 'products' : 'the answer'}
+                </button>
+                <span>{product.category}</span>
+              </div>
+              <div className="detail-body">
+                <p className="product-meta">
+                  {product.category}
+                  <span className="num">{product.id.toUpperCase()}</span>
+                </p>
+                <DialogTitle>{product.name}</DialogTitle>
+                <DialogDescription>{product.description}</DialogDescription>
+                <dl className="detail-stats">
+                  <div>
+                    <dt>Listed price</dt>
+                    <dd className="num">{product.price}</dd>
+                  </div>
+                  <div>
+                    <dt>FY2032 revenue</dt>
+                    <dd className="num">{product.revenue}</dd>
+                  </div>
+                  <div>
+                    <dt>Volume plan</dt>
+                    <dd className="num">{product.units}</dd>
+                  </div>
+                  <div>
+                    <dt>Gross margin</dt>
+                    <dd className="num">{product.margin}</dd>
+                  </div>
+                  <div>
+                    <dt>Share of plan</dt>
+                    <dd className="num">{product.share}</dd>
+                  </div>
+                  <div>
+                    <dt>First revenue</dt>
+                    <dd className="num">{product.firstRevenue}</dd>
+                  </div>
+                </dl>
+                <h3>Role in the portfolio</h3>
+                <p>{product.role}</p>
+                <h3>From sensing to action</h3>
+                <ol className="signal-chain">
+                  {product.signalChain.map((s) => (
+                    <li key={s}>{s}</li>
+                  ))}
+                </ol>
+                <div className="dependency">
+                  <h3>Key dependency</h3>
+                  <p>{product.dependsOn}</p>
+                </div>
+                <figure className="detail-slide">
+                  <button
+                    onClick={() => openSlide(product.slideNum)}
+                    aria-label={
+                      'Open source slide ' +
+                      product.slideNum +
+                      ' in the slide deck'
+                    }
+                  >
+                    <img
+                      src={
+                        './slides/slide_' +
+                        String(product.slideNum).padStart(2, '0') +
+                        '.png'
+                      }
+                      alt={
+                        'Source slide ' +
+                        product.slideNum +
+                        ' for ' +
+                        product.name
+                      }
+                      width={1136}
+                      height={635}
+                      loading="lazy"
+                    />
+                  </button>
+                  <figcaption>
+                    Source slide {product.slideNum} of the portfolio deck.{' '}
+                    <button
+                      className="inline-link"
+                      onClick={() => openSlide(product.slideNum)}
+                    >
+                      Open it in the deck
+                    </button>
+                  </figcaption>
+                </figure>
+                <div className="detail-actions">
+                  <button
+                    className="text-link"
+                    onClick={() => {
+                      setProduct(null);
+                      navigate('silicon');
+                    }}
+                  >
+                    See the shared silicon{' '}
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </button>
+                </div>
+                <p className="disclaimer">
+                  Prices and financial values are management projections from
+                  the original portfolio.
+                </p>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
 }
-function ArrowDown(){return <span className="pipeline-arrow">↓</span>}
-function InvestmentRecord({chapter,onChapter}:{chapter:string;onChapter:(id:string)=>void}){const [html,setHtml]=useState('');useEffect(()=>{const doc=new DOMParser().parseFromString(reportHtml,'text/html');setHtml(chapter==='summary'?[doc.querySelector('.masthead')?.outerHTML,doc.querySelector('.summary')?.outerHTML].filter(Boolean).join(''):doc.getElementById(chapter)?.outerHTML||'');},[chapter]);const i=chapters.findIndex(c=>c[0]===chapter);return <div className="record-reader"><article className="source-report" onClick={e=>{const a=(e.target as HTMLElement).closest('a');const h=a?.getAttribute('href');if(h?.startsWith('#')&&chapters.some(c=>c[0]===h.slice(1))){e.preventDefault();onChapter(h.slice(1));}}} dangerouslySetInnerHTML={{__html:html}}/><nav className="record-pagination" aria-label="Record chapters"><button onClick={()=>onChapter(chapters[Math.max(0,i-1)][0])}><ArrowLeft size={16}/>{chapters[Math.max(0,i-1)][1]}</button>{i<chapters.length-1&&<button onClick={()=>onChapter(chapters[i+1][0])}>{chapters[i+1][1]}<ArrowRight size={16}/></button>}</nav></div>}
-
-
-

@@ -18,7 +18,8 @@ interface GroundedAnswerViewProps {
   go: (hash: string, label?: string) => void;
 }
 
-const DEFAULT_QUESTION = 'What makes DeepGrid silicon immune to supply chain disruption?';
+// Investors land here first, so the opening answer is the investment case rather than a DG32 paper.
+const DEFAULT_QUESTION = 'Why invest in DeepGrid?';
 
 // Semantic scores for the question on screen, once the in-browser model has them. Loading starts when
 // Ask opens; each question is embedded 250 ms after typing pauses, so fast typing costs nothing. Until

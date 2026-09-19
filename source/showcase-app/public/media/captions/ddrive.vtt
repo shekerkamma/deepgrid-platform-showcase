@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:01.100 --> 00:00:06.600
+This is the D-Drive perception stack running against three road profiles in sequence.
+
+00:00:06.600 --> 00:00:09.600
+What you are looking at is not a recording of a drive.
+
+00:00:09.600 --> 00:00:12.100
+The vehicle model is solved in real time.
+
+00:00:12.100 --> 00:00:19.100
+550 kilograms, a 2.1 meter wheelbase, and a tire friction coefficient of 0.75.
+
+00:00:19.100 --> 00:00:24.600
+Steering angle and lateral acceleration follow from that physics, not from an animation path.
+
+00:00:24.600 --> 00:00:27.100
+The center panel is the planner's bird's eye view,
+
+00:00:27.100 --> 00:00:30.600
+and it redraws from the fused object list rather than from the scene.
+
+00:00:31.600 --> 00:00:37.100
+On the right, the perception rail names each object it has classified and gives its range in meters.
+
+00:00:37.100 --> 00:00:40.600
+A motorbike, an auto rickshaw, a pedestrian.
+
+00:00:40.600 --> 00:00:46.100
+Watch the scenario change from Market Street to Single Carriageway Highway to the deliberate stress test.
+
+00:00:46.100 --> 00:00:48.600
+The same stack handles all three.
+
+00:00:48.600 --> 00:00:52.600
+Nothing is reloaded between them and no parameters are retuned.
+
+00:00:52.600 --> 00:00:54.600
+That is the point of the demonstration.
+
+00:00:54.600 --> 00:01:00.600
+One perception pipeline on one chip across the road conditions an Indian commercial vehicle actually meets.
