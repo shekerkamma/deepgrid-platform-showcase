@@ -1,0 +1,606 @@
+{
+ "files": [
+  {
+   "file": "dr/README.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/README.md",
+   "sha256": "971c6bed1dcb66e8b051e5e1ad5599d51c9640f814ef0d690cd0a5991b060f8e",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/deepgrid-2dom-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/deepgrid-2dom-architecture.md",
+   "sha256": "23e9ba3560cb67740533088db5b5cd441d04229bb01a607000fbe591fc1fe317",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/deepgrid-d100-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/deepgrid-d100-architecture.md",
+   "sha256": "51fab7e268582f4a5bbb7c1f6a4f2c20d06fcfef567c6fc7728554c92e27ff08",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/deepgrid-d100-notebooklm-briefing.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/deepgrid-d100-notebooklm-briefing.md",
+   "sha256": "ff714ff8a7b3ea9843f71bde30f067dbbc3be470aed66604db69740fbb5e34c2",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/deepgrid-datasheets-engineering-spec.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/deepgrid-datasheets-engineering-spec.md",
+   "sha256": "59f712193e7f0e74dcd9173bfc06e7b28c4ee88717c2c91bc7bc732370312674",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/deepgrid-dg32-ai-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/deepgrid-dg32-ai-architecture.md",
+   "sha256": "54b40968e644857752469d24a3409f62a6f796668bde8030fe6a9bfa5e7c0941",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/deepgrid-dshot-rx-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/deepgrid-dshot-rx-architecture.md",
+   "sha256": "9a5a3e2f16a961ff73522602541cf354fa44a90939f7f35f492791b958b1a956",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/deepgrid-mature-silicon-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/deepgrid-mature-silicon-architecture.md",
+   "sha256": "e92c08a3cd11f50fcb084637e88bab0b10d1c44a881538c3f7a586786ae6393f",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/deepgrid-sdv-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/deepgrid-sdv-architecture.md",
+   "sha256": "a8543e371663e39dec79c2820877be4202b8eec1bf6257635d225f81e5827aeb",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/deepgrid-sku-compendium-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/deepgrid-sku-compendium-architecture.md",
+   "sha256": "225762badd7911ce4bad5c758f82190f8e7f0a186a42c9090f5c4e2ff676d349",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/deepgrid-three-factory-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/deepgrid-three-factory-architecture.md",
+   "sha256": "6181ee237a186bd6ad6938c45ee513952aa63506f7bd4c5c99a1762fe45ad616",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/dg32-2dom-architecture-guide.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/dg32-2dom-architecture-guide.md",
+   "sha256": "72dd3bd1a03ba00f4a8e446019c9d77308580d6b86a6e673d7471dac4ac29779",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/dg32-lite-architecture-guide.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/dg32-lite-architecture-guide.md",
+   "sha256": "44f665a87625de3a0df113b0e0e6e8d16be71736be4aa72ebfd9a60686619890",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-2dom-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-2dom-architecture.md",
+   "sha256": "23e9ba3560cb67740533088db5b5cd441d04229bb01a607000fbe591fc1fe317",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-d100-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-d100-architecture.md",
+   "sha256": "51fab7e268582f4a5bbb7c1f6a4f2c20d06fcfef567c6fc7728554c92e27ff08",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-d100-notebooklm-briefing.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-d100-notebooklm-briefing.md",
+   "sha256": "ff714ff8a7b3ea9843f71bde30f067dbbc3be470aed66604db69740fbb5e34c2",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-datasheets-engineering-spec.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-datasheets-engineering-spec.md",
+   "sha256": "59f712193e7f0e74dcd9173bfc06e7b28c4ee88717c2c91bc7bc732370312674",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-datasheets-qfn64.pdf",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-datasheets-qfn64.pdf",
+   "sha256": "66ab8ba8b5215ee89b33e43f8461ace8fbef7ee5c4e9c19b7fb754ced0d5864f",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-dg32-2dom-preliminary-datasheet.pdf",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-dg32-2dom-preliminary-datasheet.pdf",
+   "sha256": "9d006519a0f27849049e8487b718a0240bde9fa06bbfa2fb47fa7349226dace1",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-dg32-2dom-system-architecture.pdf",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-dg32-2dom-system-architecture.pdf",
+   "sha256": "b8bbd0b5ec8c2288fb7cf785a857f482500e5b1488a440e03de03021fc6a075d",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-dg32-ai-30-use-cases.pdf",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-dg32-ai-30-use-cases.pdf",
+   "sha256": "c15094d0e0f66707cd11a8d0e63fecc3a2d902e0e91d100410653ef8beb7a5d6",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-dg32-ai-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-dg32-ai-architecture.md",
+   "sha256": "54b40968e644857752469d24a3409f62a6f796668bde8030fe6a9bfa5e7c0941",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-dg32-lite-preliminary-datasheet.pdf",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-dg32-lite-preliminary-datasheet.pdf",
+   "sha256": "f63108d98e6687129a8aecd6ff69e85279341e9f075c3660df1044ba4d1d99cf",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-dshot-rx-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-dshot-rx-architecture.md",
+   "sha256": "9a5a3e2f16a961ff73522602541cf354fa44a90939f7f35f492791b958b1a956",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-dshot-rx-block-spec.pdf",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-dshot-rx-block-spec.pdf",
+   "sha256": "0ed3562fe14deec9879781230d7dea109a611031c61a704856f6e0062bb8a672",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-mature-node-silicon-master-whitepaper-v3.pdf",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-mature-node-silicon-master-whitepaper-v3.pdf",
+   "sha256": "06bcc9d93d8c4e1ea18bf4801fa1ce0833049b88df50b28b1d942bfd2c6dd63e",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-mature-silicon-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-mature-silicon-architecture.md",
+   "sha256": "e92c08a3cd11f50fcb084637e88bab0b10d1c44a881538c3f7a586786ae6393f",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-sdv-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-sdv-architecture.md",
+   "sha256": "a8543e371663e39dec79c2820877be4202b8eec1bf6257635d225f81e5827aeb",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-sku-compendium-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-sku-compendium-architecture.md",
+   "sha256": "225762badd7911ce4bad5c758f82190f8e7f0a186a42c9090f5c4e2ff676d349",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-sku-compendium-technical-annex-v3.pdf",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-sku-compendium-technical-annex-v3.pdf",
+   "sha256": "1a61b8d5c17654b9a664b29a6f3b90c964333048ff686386fb0c07cd84f2e5bc",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/public/downloads/docs/deepgrid-three-factory-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/public/downloads/docs/deepgrid-three-factory-architecture.md",
+   "sha256": "6181ee237a186bd6ad6938c45ee513952aa63506f7bd4c5c99a1762fe45ad616",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-architecture/README.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-architecture/README.md",
+   "sha256": "e6a46aedcee4077a7761067729f94a57ef40ab6c50dd261b3ff4450b0d015de5",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-architecture/dg32-2dom-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-architecture/dg32-2dom-architecture.md",
+   "sha256": "72dd3bd1a03ba00f4a8e446019c9d77308580d6b86a6e673d7471dac4ac29779",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-architecture/dg32-2dom/story-architect-pack.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-architecture/dg32-2dom/story-architect-pack.md",
+   "sha256": "d28d23717e6b9fcf479445cebd526280bec1723e7b24e0cc5cb67e2c05f31b53",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-architecture/dg32-lite-architecture.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-architecture/dg32-lite-architecture.md",
+   "sha256": "44f665a87625de3a0df113b0e0e6e8d16be71736be4aa72ebfd9a60686619890",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-architecture/qa/gate-record.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-architecture/qa/gate-record.md",
+   "sha256": "a818a35c09a600da9d9d1284fdea0f970dc8141cb2de560e5cf7a5d9ea0e605b",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-architecture/source-map.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-architecture/source-map.md",
+   "sha256": "b61b8946fedf34e00a2d4d999b7fc8cbe7cd85941e8794917ae7309728764fbd",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-architecture/story-architect-pack.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-architecture/story-architect-pack.md",
+   "sha256": "81aee9b18a1b98fbe5d33ac21ed9764458a2efb36624f445029c08099db18f17",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-datasheets/2dom-datasheet/story-architect-pack.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-datasheets/2dom-datasheet/story-architect-pack.md",
+   "sha256": "6709dbcc29bb64ec5c0391f6349163eca61601462939a8e7762dd8b2687fb755",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-datasheets/README.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-datasheets/README.md",
+   "sha256": "eeb28977b4007b73fbbd70b2a0f74a0b4c78f78caa5209015d3ca022737d65eb",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-datasheets/lite-datasheet/story-architect-pack.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-datasheets/lite-datasheet/story-architect-pack.md",
+   "sha256": "41179546aea87b04b30ed78fc93b46688bf6ad16f1620e9cfae5da37a0c905fa",
+   "read": "graphify native"
+  },
+  {
+   "file": "dr/source/dg32-datasheets/tapein-diagram/story-architect-pack.md",
+   "kind": "dr",
+   "origin": "deepgrid-dr-silicon/source/dg32-datasheets/tapein-diagram/story-architect-pack.md",
+   "sha256": "8f144a011b7429d107e9cd0a5cb647de25a26de9b35dcd04554e41b2e01e9e82",
+   "read": "graphify native"
+  },
+  {
+   "file": "papers/information-memorandum-v2-aug-2026.pdf",
+   "kind": "papers",
+   "origin": "C:/Users/sheke/OneDrive/Desktop/DeepGrid Semi - IM - v2.pdf",
+   "sha256": "3bbc9ee7fc01b1798fa49908f80f0c4367ae3b2bff908f420b7c03005713ae34",
+   "read": "graphify native"
+  },
+  {
+   "file": "papers/bp1a-india-autonomous-trucking-plan.pdf",
+   "kind": "papers",
+   "origin": "C:/Users/sheke/OneDrive/Desktop/DeepGrid_BP1A_India_AutonomousTrucking_Plan (4).pdf",
+   "sha256": "75394f17bdf9fd51f340aa8fd6abfbe0f5128c968b6b195ccb5132a98759829b",
+   "read": "graphify native"
+  },
+  {
+   "file": "papers/bp1b-usa-proposal.pdf",
+   "kind": "papers",
+   "origin": "C:/Users/sheke/OneDrive/Desktop/DeepGrid_BP1B_USA_Proposal_Shravan (4).pdf",
+   "sha256": "6ca7e84833bf7e32f108eb02495c534fa72245106fe498f3fa104ac855ac3e42",
+   "read": "graphify native"
+  },
+  {
+   "file": "papers/deepgrid-brief-shravan-mayookh.pdf",
+   "kind": "papers",
+   "origin": "C:/Users/sheke/OneDrive/Desktop/DeepGrid_Brief_Shravan_Mayookh.pdf",
+   "sha256": "6e12ea8f2131da7dbb9f51c456c924ddc49be71990e00e3a286d63ed1b3e8c7f",
+   "read": "graphify native"
+  },
+  {
+   "file": "office/financial-model-v3-sept-2026.xlsx",
+   "kind": "office",
+   "origin": "/home/sheke/deepgrid-platform-showcase/source/documents/Deepgrid_Semi_Financial_Model_Corrected_v3-sept.xlsx",
+   "sha256": "63b4bd2f8d890b787b047fdca96d4ff9289a0c75be3e1b196208e904e8040145",
+   "read": "graphify native"
+  },
+  {
+   "file": "office/icp-and-gtm-strategy-jul-2026.docx",
+   "kind": "office",
+   "origin": "C:/Users/sheke/Downloads/DeepGrid ICP and GTM Strategy.docx",
+   "sha256": "2e0f04e9ce76ba930fe7ddc8fa8f41c4151b91ad0b43443933bba2b2c76fa6ee",
+   "read": "graphify native"
+  },
+  {
+   "file": "office/business-plan-v2.xlsx",
+   "kind": "office",
+   "origin": "source/documents/DeepGrid_Semi_Business_Plan_v2.xlsx (values; Payroll and Cap Table removed)",
+   "sha256": "1429fc60a601032b5c01335f19df301b58a4f15b2d1abafbbc091470db8de9cb",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/BRIEF.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/BRIEF.md",
+   "sha256": "3e51e2fa750fb6a9fb531c6b827172481837b51c2f132c7ba9462ecc0bf2d545",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/EXA-FINDINGS-DECK-CONTRADICTIONS.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/EXA-FINDINGS-DECK-CONTRADICTIONS.md",
+   "sha256": "b676cd4c16f86bb8c4db9db0c98787bb0a4f7d7b05d8ecdb351df29db4844351",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/RECONCILIATION.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/RECONCILIATION.md",
+   "sha256": "aeed633722fb13827b02328c7a90c08897fea1a34650f08b3697be7526741835",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/TAPEOUT-DECISION-MEMO.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/TAPEOUT-DECISION-MEMO.md",
+   "sha256": "95546365d0efea187efda3ab9281d0c0c50bf71d2fdbdc41182da56837790759",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/accept-case-corrected-note.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/accept-case-corrected-note.md",
+   "sha256": "cac590228b3da295fb3f8d40e57e506f46a9c7c060e2a73b43f97b34426fa86b",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/aptiv-gen6-india.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/aptiv-gen6-india.md",
+   "sha256": "6248f503fdc1847a8c6aa3310f490575d543187e5dfe0804d96fdb9ec26ac98d",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/competitive-evidence-brief.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/competitive-evidence-brief.md",
+   "sha256": "18b8616bdbcfff0e275c6d7c2bf0c993058a171a45e77bff39945e08d13e999c",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/competitive-evidence-data-quality.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/competitive-evidence-data-quality.md",
+   "sha256": "89f69dff99468a9833b583c8500db69eeeab49b4444e7f29cf4c607777ce6cf3",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/competitive-evidence-ledger.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/competitive-evidence-ledger.md",
+   "sha256": "f95283b61b1df3a2c004bdffad428305f02fd404679a0b96205f5211eec28106",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/competitive-evidence-metrics.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/competitive-evidence-metrics.md",
+   "sha256": "ae58fa3b474d9b284f50bf0718875982472ade88073048e4a2b79839bec31fc1",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/competitive-evidence-scoring.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/competitive-evidence-scoring.md",
+   "sha256": "22726b044792120a75faa37c53d395b04823390db5afb2acb778ffa58615d5e4",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/dossier-gap-register.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/dossier-gap-register.md",
+   "sha256": "038b04df3c44b3a3e323f570c2d23117fc1c82d085fcb4e1d7301a9ee75c2651",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/drivebuddyai-expansion.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/drivebuddyai-expansion.md",
+   "sha256": "8210e76ffeffc84bbecde24c8b1733dfd2d3ad25e15c2d5fce1f7730f174e8b9",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/drivebuddyai-ir.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/drivebuddyai-ir.md",
+   "sha256": "9bffed05388a52bdef45001bb461daae9a4aaf2f408e3a11176662c9555e2863",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/gsr-834-862-gazette.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/gsr-834-862-gazette.md",
+   "sha256": "521d2775e3ae5ee0a666416e238ad47b01bfd5eab46725b179b25cde9911dcc2",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/im-review-sources.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/im-review-sources.md",
+   "sha256": "cf3501d929b545f57202df4a7f158b599c6468b01410c1d9b01920d800fef226",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/im-review-stage1-audit.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/im-review-stage1-audit.md",
+   "sha256": "289f81380f951ef52d9667f5d9f707d17a3e2bb5f0cbe23572576b0a5aef5bc2",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/im-review-stage2-gaps.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/im-review-stage2-gaps.md",
+   "sha256": "1465e6862fd74364ec38e26d1d121220fe2d05c164cae8b85be42803a6da1a44",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/india-adas-dates.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/india-adas-dates.md",
+   "sha256": "1b1541a6b82c9f262e6bc4c2f9d214715e98b9b71f6ef2ace86a15d963e083e5",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/model-review-extract.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/model-review-extract.md",
+   "sha256": "e8733f56195e350fcbbe7ffc93f3e0f9846118e34bb220a35967d8413802bb56",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/model-review-findings.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/model-review-findings.md",
+   "sha256": "672ce54259154e0d2be6a0a077b1af7cf0ef13857f61bf329e35f2374c775f23",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/model-review-story-pack.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/model-review-story-pack.md",
+   "sha256": "2158f8e3262f8e2c7f97ae6b227348b41ac4390e12073996ae18f5b5dd5939be",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/source-or-cut-netrasemi-sterling.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/source-or-cut-netrasemi-sterling.md",
+   "sha256": "3c078a93d10a07ccf113c2091406f249159457b08d790ceb26538892f8a39526",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/sterling-minieye-filing.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/sterling-minieye-filing.md",
+   "sha256": "f47e75e70c3683a41d495f359cbe19b2d8ffbec3f2745f4f63688722ca79fcb9",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/stradvision-india-cv.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/stradvision-india-cv.md",
+   "sha256": "8a585a144e51f7fca0e953ec84f691b4960ed46b058b95ef96f9d997a9e082b7",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/zf-india-nomination.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/src/a2ui/data/research/zf-india-nomination.md",
+   "sha256": "b5331cd0a25fd4d355570fd52387da2b3007c1868aefff84c033360ee0dd2d67",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/narration-portfolio-104.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/public/deck_assets/narration-portfolio-104.md",
+   "sha256": "e65b739d967cb5a8d5ff4bb617d4d904125b65e437b2daa22e70c650ae46a112",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/narration-product-lines.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/public/deck_assets/narration-product-lines.md",
+   "sha256": "f1b43372fb1536d6319d7b20dcd03f404f175640c0b373ba5b5eec045ab40a26",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/narration-script.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/public/deck_assets/narration-script.md",
+   "sha256": "16401ac449ada88870b50ae25b12a46123923b93322b872e3e3d2b270062d4dd",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/narration-sku-explainer-87.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/public/deck_assets/narration-sku-explainer-87.md",
+   "sha256": "36d2d5ff86a58bd6edf1216575f66fa4eddf9311240fc0b3fdfbe64c0d22c1ec",
+   "read": "graphify native"
+  },
+  {
+   "file": "markdown/storyboard-sku-explainer.md",
+   "kind": "markdown",
+   "origin": "source/original-platform/public/deck_assets/storyboard-sku-explainer.md",
+   "sha256": "a1e06676003afc23ceb8c03febec25284610de78bcb14b96676241fe5fde883f",
+   "read": "graphify native"
+  },
+  {
+   "file": "converted/product-portfolio-deck-104-slides.md",
+   "kind": "converted",
+   "origin": "source/documents/DeepGrid-Semi-Product-Portfolio-104-Slides-Embedded-reviewed.pptx",
+   "sha256": "5472994a126c74c863e0981b91cc545e9f8d879f11ab3a4a6d284c246cc8df56",
+   "read": "pptx: slide text + speaker notes"
+  },
+  {
+   "file": "converted/information-memorandum-june-2026.md",
+   "kind": "converted",
+   "origin": "original-platform information-memorandum.json (33 pages, RapidOCR)",
+   "sha256": "10fdc9019ed75467aef9cac9cd7c356e55d5bc43c759eeac7de6da0f98fb2d8e",
+   "read": "image-only PDF: OCR text"
+  },
+  {
+   "file": "converted/investor-briefing-jul-2026.md",
+   "kind": "converted",
+   "origin": "C:/Users/sheke/Downloads/DeepGrid_Semi_Investor_Briefing.pdf",
+   "sha256": "a21942039d17288b1dac7498acb18397d7be9218d29d369a323794bf2d4ae7fc",
+   "read": "image-only PDF: OCR text (RapidOCR)"
+  },
+  {
+   "file": "converted/showcase-investment-memorandum.md",
+   "kind": "converted",
+   "origin": "source/showcase-app/app (page content)",
+   "sha256": "805e15e8f0be3babe11683b425450bb19b6bda7058c03178cb306214d835d2dd",
+   "read": "page content as markdown"
+  },
+  {
+   "file": "converted/showcase-product-dossiers.md",
+   "kind": "converted",
+   "origin": "source/showcase-app/app (page content)",
+   "sha256": "bbc9aff69dd5183297772db8e961164e7e3d598bc7f6816cee8ed3614236e7f1",
+   "read": "page content as markdown"
+  },
+  {
+   "file": "converted/showcase-use-cases.md",
+   "kind": "converted",
+   "origin": "source/showcase-app/app (page content)",
+   "sha256": "880917498a738c41eb6bcb1fa80748925208411edc53ab20480466f932b2ddf8",
+   "read": "page content as markdown"
+  }
+ ]
+}

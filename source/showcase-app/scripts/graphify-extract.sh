@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Extracts the knowledge graph from knowledge/corpus/ with graphify, routed through CLIProxyAPI to a
+# Extracts the knowledge graph from knowledge/sources/ (every DeepGrid document: PDFs, office files, markdown) with graphify, routed through CLIProxyAPI to a
 # subscription Gemini model (served by the antigravity provider), never the free AI Studio tier:
 # that tier allows 5 requests a minute, and a 429 there silently leaves files with no nodes.
 #
-#   npm run graph:corpus && npm run graph:extract
+#   npm run graph:sources && npm run graph:extract
 #
 # CLIProxyAPI runs Windows-side, so from WSL it is on the default-gateway IP, which changes on reboot.
 # The key comes from CLIPROXY_API_KEY, else the cliproxyapi entry in ~/.dsh/.credentials.yaml.
@@ -27,7 +27,7 @@ curl -sf -m 60 "http://$GW:8317/v1/chat/completions" -H "Authorization: Bearer $
   -d "{\"model\":\"$MODEL\",\"messages\":[{\"role\":\"user\",\"content\":\"Reply OK\"}]}" >/dev/null \
   || { echo "CLIProxyAPI at $GW:8317 did not serve $MODEL" >&2; exit 1; }
 env -u GEMINI_API_KEY -u GOOGLE_API_KEY OPENAI_BASE_URL="http://$GW:8317/v1" OPENAI_API_KEY="$KEY" OPENAI_MODEL="$MODEL" \
-  graphify extract knowledge/corpus --backend openai --out knowledge --token-budget 6000 --max-concurrency 2 "$@"
+  graphify extract knowledge/sources --backend openai --out knowledge --token-budget 6000 --max-concurrency 2 "$@"
 # name the communities (GRAPH_REPORT.md, graph.html) through the same route
 env -u GEMINI_API_KEY -u GOOGLE_API_KEY OPENAI_BASE_URL="http://$GW:8317/v1" OPENAI_API_KEY="$KEY" OPENAI_MODEL="$MODEL" \
   graphify label knowledge --backend=openai --model="$MODEL" --max-concurrency=1

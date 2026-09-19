@@ -1,5 +1,5 @@
 // Publishes graphify's output (knowledge/graphify-out/) as the Ask DeepGrid knowledge graph at
-// public/knowledge/: graph.html, graph.json and GRAPH_REPORT.md. graphify's page loads vis-network from
+// public/downloads/ (the DG32 site's Architecture Map path): graph.html, graph.json and GRAPH_REPORT.md. graphify's page loads vis-network from
 // unpkg.com; this points it at the copy the site serves itself (scripts/copy-runtime.mjs), and adds
 // focus-by-name so Ask can centre the graph on an answer's entity: ?search=<label> on load, or
 // postMessage({search: '<label>'}) from the embedding page. Run after every graph:extract.
@@ -7,7 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SRC = path.join(ROOT, 'knowledge/graphify-out'), OUT = path.join(ROOT, 'public/knowledge');
+const SRC = path.join(ROOT, 'knowledge/graphify-out'), OUT = path.join(ROOT, 'public/downloads');
 const version = JSON.parse(fs.readFileSync(path.join(ROOT, 'node_modules/vis-network/package.json'), 'utf8')).version;
 let html = fs.readFileSync(path.join(SRC, 'graph.html'), 'utf8');
 const swap = (re, to, what) => {
@@ -35,4 +35,4 @@ fs.mkdirSync(OUT, {recursive: true});
 fs.writeFileSync(path.join(OUT, 'graph.html'), html);
 fs.copyFileSync(path.join(SRC, 'graph.json'), path.join(OUT, 'graph.json'));
 fs.copyFileSync(path.join(SRC, 'GRAPH_REPORT.md'), path.join(OUT, 'GRAPH_REPORT.md'));
-console.log(`published knowledge graph to public/knowledge/ (vis-network ${version} served from the site)`);
+console.log(`published knowledge graph to public/downloads/ (vis-network ${version} served from the site)`);

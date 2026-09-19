@@ -1,0 +1,905 @@
+[
+ {
+  "id": "sc-ad2",
+  "name": "Smart Truck (AD2 kit)",
+  "category": "sku",
+  "docId": "doc7",
+  "tagline": "Forward camera, radar, compute box, driver display and the harness that talks to the vehicle.",
+  "summary": "Forward camera, radar, compute box, driver display and the harness that talks to the vehicle. The biggest single line in the plan and the one the mandate is written for. Forty percent of group revenue from one SKU. That is the concentration to underwrite — also why the portfolio has a demand floor rather than a forecast.",
+  "keyFacts": [
+   "Listed price: ₹2,50,000.",
+   "FY2032 revenue projection: ₹450 Cr (39.9% of the plan) at 89% gross margin.",
+   "First revenue FY2027; volume plan 18,000 @ FY32.",
+   "From sensing to action: Camera and radar watch the forward path and the blind quarters → SoC2 fuses both into one object list carrying range and closing speed → Collision, lane and blind-spot logic decides whether to warn → Driver is warned; where vehicle supports it, brake interface is signalled.",
+   "Key dependency: AIS-mandate compliance, installation channel capacity, and radar verification milestones."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 18",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=ad2"
+   },
+   {
+    "label": "Source slide 18",
+    "target": "slides?slide=18"
+   }
+  ]
+ },
+ {
+  "id": "sc-ad0",
+  "name": "AD0 Smart Mirror",
+  "category": "sku",
+  "docId": "doc7",
+  "tagline": "A replacement rear-view mirror with an integrated display, four body cameras and a wiring loom.",
+  "summary": "A replacement rear-view mirror with an integrated display, four body cameras and a wiring loom. Fitted in an afternoon — the least sophisticated thing we make, and it ships first. Volume ramp of the portfolio: highest unit count and lowest fitment complexity — scales channel reach that harder products inherit.",
+  "keyFacts": [
+   "Listed price: ₹50,000.",
+   "FY2032 revenue projection: ₹270 Cr (23.9% of the plan) at 89% gross margin.",
+   "First revenue FY2027; volume plan 54,000 @ FY32.",
+   "From sensing to action: Four cameras cover the vehicle's blind quarters → SoC2 stitches the views into one 360° surround image → Proximity and motion logic flags anything entering the danger zone → Driver sees the stitched view and hears a directional alert.",
+   "Key dependency: Distribution reach and price holding at ₹50k. Runs on current-generation hardware — not gated on the ASIC."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 8",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=ad0"
+   },
+   {
+    "label": "Source slide 8",
+    "target": "slides?slide=8"
+   }
+  ]
+ },
+ {
+  "id": "sc-taas",
+  "name": "Autonomous TaaS",
+  "category": "sku",
+  "docId": "doc7",
+  "tagline": "Transport-as-a-Service: contracted autonomous operations — DeepGrid provides the vehicle, stack and driver replacement as a metered service.",
+  "summary": "Transport-as-a-Service: contracted autonomous operations — DeepGrid provides the vehicle, stack and driver replacement as a metered service. Highest revenue per unit we sell. Proof that the same silicon running in a kit can run an entire operation.",
+  "keyFacts": [
+   "Listed price: ₹66.00 L.",
+   "FY2032 revenue projection: ₹66 Cr (5.8% of the plan) at 89% gross margin.",
+   "First revenue FY2028; volume plan 100 @ FY32.",
+   "From sensing to action: Route plan set by fleet management system → SoC2 handles full perception and planning stack → Vehicle drives autonomously within geofenced route → Fleet dashboard monitors all units in real time.",
+   "Key dependency: Regulatory clearance for autonomous operation in controlled corridors."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 42",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=taas"
+   },
+   {
+    "label": "Source slide 42",
+    "target": "slides?slide=42"
+   }
+  ]
+ },
+ {
+  "id": "sc-chipset",
+  "name": "Chipset OEM B2B",
+  "category": "architecture",
+  "docId": "doc7",
+  "tagline": "The bare die, in tray or reel, for a customer to place on their own board.",
+  "summary": "The bare die, in tray or reel, for a customer to place on their own board. No enclosure, no cables, no fitting — silicon and a datasheet. Fifty-four crore at ninety-four percent gross margin — the highest in the portfolio. Every rupee arrives without installation capacity or warranty logistics.",
+  "keyFacts": [
+   "Listed price: ₹18,000.",
+   "FY2032 revenue projection: ₹54 Cr (4.8% of the plan) at 94% gross margin.",
+   "First revenue FY2028; volume plan 30,000 @ FY32.",
+   "From sensing to action: Customer's own sensors feed their own board → Our die does the perception compute inside their design → Their software decides what to do with the result → Their product ships with our silicon inside it.",
+   "Key dependency: ASIC tapeout completion and qualification."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 26",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=chipset"
+   },
+   {
+    "label": "Source slide 26",
+    "target": "slides?slide=26"
+   }
+  ]
+ },
+ {
+  "id": "sc-t100",
+  "name": "T100 AI Licence",
+  "category": "architecture",
+  "docId": "doc7",
+  "tagline": "Indian road perception models, toolchain and continuous model updates licensed to third-party compute platforms.",
+  "summary": "Indian road perception models, toolchain and continuous model updates licensed to third-party compute platforms. Pure software revenue at 94% margin. Converts the IP investment in Indian road models into a recurring stream independent of hardware.",
+  "keyFacts": [
+   "Listed price: ₹100.00 L.",
+   "FY2032 revenue projection: ₹50 Cr (4.4% of the plan) at 94% gross margin.",
+   "First revenue FY2029; volume plan 50 @ FY32.",
+   "From sensing to action: Customer integrates perception SDK on their hardware → Models trained on Indian road conditions run inference → Continuous model updates delivered via licence subscription → Customer product ships with DeepGrid perception layer.",
+   "Key dependency: Maturity of the Indian road perception stack — starts FY29."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 36",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=t100"
+   },
+   {
+    "label": "Source slide 36",
+    "target": "slides?slide=36"
+   }
+  ]
+ },
+ {
+  "id": "sc-ad1",
+  "name": "AD1 Indoor L4 Kit",
+  "category": "sku",
+  "docId": "doc7",
+  "tagline": "Self-driving retrofit kit for indoor vehicles: sensor head, compute box and drive-by-wire interface.",
+  "summary": "Self-driving retrofit kit for indoor vehicles: sensor head, compute box and drive-by-wire interface. Fitted to forklifts and tugs a site already owns. Where L4 behaviour ships years before it is legal on a public road — the technical proof point for the road roadmap.",
+  "keyFacts": [
+   "Listed price: ₹1,00,000.",
+   "FY2032 revenue projection: ₹42 Cr (3.7% of the plan) at 89% gross margin.",
+   "First revenue FY2028; volume plan 4,200 @ FY32.",
+   "From sensing to action: Cameras and depth sensing read the aisle, load and people → SoC2 localises the vehicle against a site map it holds onboard → Planner picks a path and a speed for the geofenced route → Drive-by-wire interface issues steer, throttle and brake.",
+   "Key dependency: Site mapping and commissioning throughput — services capacity rather than product."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 12",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=ad1"
+   },
+   {
+    "label": "Source slide 12",
+    "target": "slides?slide=12"
+   }
+  ]
+ },
+ {
+  "id": "sc-a100-4",
+  "name": "A100 Compute Box 4ch PCIe",
+  "category": "architecture",
+  "docId": "doc7",
+  "tagline": "Four-channel PCIe compute card for multi-camera deployments — industrial inspection, security and infrastructure monitoring.",
+  "summary": "Four-channel PCIe compute card for multi-camera deployments — industrial inspection, security and infrastructure monitoring. The highest-capacity compute form factor — serves customers who need multi-camera perception without building their own board.",
+  "keyFacts": [
+   "Listed price: ₹3,00,000.",
+   "FY2032 revenue projection: ₹36 Cr (3.2% of the plan) at 89% gross margin.",
+   "First revenue FY2028; volume plan 1,200 @ FY32.",
+   "From sensing to action: Up to four camera feeds enter via PCIe interface → SoC2 runs parallel perception on all four channels → Object lists and alerts output to host system → Customer software consumes structured perception data.",
+   "Key dependency: ASIC tapeout and PCIe interface validation."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 34",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=a100-4"
+   },
+   {
+    "label": "Source slide 34",
+    "target": "slides?slide=34"
+   }
+  ]
+ },
+ {
+  "id": "sc-dhumr",
+  "name": "Defence D-HUMR",
+  "category": "sku",
+  "docId": "doc7",
+  "tagline": "Defence-grade unmanned ground reconnaissance platform.",
+  "summary": "Defence-grade unmanned ground reconnaissance platform. Hardened compute, encrypted comms and ruggedised sensor suite. Highest price point in the portfolio — opens defence procurement channel and validates ruggedised silicon.",
+  "keyFacts": [
+   "Listed price: ₹20,00,000.",
+   "FY2032 revenue projection: ₹30 Cr (2.7% of the plan) at 68% gross margin.",
+   "First revenue FY2027; volume plan 150 @ FY32.",
+   "From sensing to action: Ruggedised camera and thermal sensors scan terrain → SoC2 runs perception with military-grade encryption → Autonomous navigation in GPS-denied environments → Secure data relay to command post.",
+   "Key dependency: Defence procurement cycle and security clearances."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 56",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=dhumr"
+   },
+   {
+    "label": "Source slide 56",
+    "target": "slides?slide=56"
+   }
+  ]
+ },
+ {
+  "id": "sc-a100-2",
+  "name": "A100 Compute Box 2ch",
+  "category": "architecture",
+  "docId": "doc7",
+  "tagline": "Dual-channel compute board for stereo vision and dual-camera applications.",
+  "summary": "Dual-channel compute board for stereo vision and dual-camera applications. Mid-tier compute module serving stereo vision applications.",
+  "keyFacts": [
+   "Listed price: ₹1,60,000.",
+   "FY2032 revenue projection: ₹28.8 Cr (2.5% of the plan) at 89% gross margin.",
+   "First revenue FY2028; volume plan 1,800 @ FY32.",
+   "From sensing to action: Two camera inputs → Dual-stream perception → Fused output → Host integration.",
+   "Key dependency: ASIC tapeout."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 32",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=a100-2"
+   },
+   {
+    "label": "Source slide 32",
+    "target": "slides?slide=32"
+   }
+  ]
+ },
+ {
+  "id": "sc-a100-1",
+  "name": "A100 Compute Box 1ch M.2",
+  "category": "architecture",
+  "docId": "doc7",
+  "tagline": "Single-channel M.2 module — the smallest configuration the part supports.",
+  "summary": "Single-channel M.2 module — the smallest configuration the part supports. Same die, running less. Entry-level compute module — lowest-cost path to adding DeepGrid perception to an existing product.",
+  "keyFacts": [
+   "Listed price: ₹85,000.",
+   "FY2032 revenue projection: ₹25.5 Cr (2.3% of the plan) at 89% gross margin.",
+   "First revenue FY2028; volume plan 3,000 @ FY32.",
+   "From sensing to action: One camera in → One perception stream out → Standard M.2 interface → Drop-in to existing enclosure.",
+   "Key dependency: ASIC tapeout."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 31",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=a100-1"
+   },
+   {
+    "label": "Source slide 31",
+    "target": "slides?slide=31"
+   }
+  ]
+ },
+ {
+  "id": "sc-agv",
+  "name": "Seaport AGV",
+  "category": "sku",
+  "docId": "doc7",
+  "tagline": "Autonomous container yard vehicle — 7cm open positioning, 22cm under crane.",
+  "summary": "Autonomous container yard vehicle — 7cm open positioning, 22cm under crane. Moves containers between quay crane and yard block. Second-highest revenue per unit after TaaS — validates the silicon in port infrastructure.",
+  "keyFacts": [
+   "Listed price: ₹45,30,000.",
+   "FY2032 revenue projection: ₹22.6 Cr (2.0% of the plan) at 89% gross margin.",
+   "First revenue FY2028; volume plan 50 @ FY32.",
+   "From sensing to action: GPS-RTK and vision provide centimetre-level localisation → SoC2 plans path through dynamic yard traffic → Autonomous steer/throttle/brake in open and under-crane zones → Yard management system dispatches and monitors fleet.",
+   "Key dependency: Port authority partnerships and certification."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 46",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=agv"
+   },
+   {
+    "label": "Source slide 46",
+    "target": "slides?slide=46"
+   }
+  ]
+ },
+ {
+  "id": "sc-d100",
+  "name": "D100 Drone SoC Kit",
+  "category": "sku",
+  "docId": "doc7",
+  "tagline": "Aerial inspection and surveillance compute kit — same SoC2 in a drone-optimised form factor.",
+  "summary": "Aerial inspection and surveillance compute kit — same SoC2 in a drone-optimised form factor. Opens aerial perception as a silicon market — same die, different firmware.",
+  "keyFacts": [
+   "Listed price: ₹5,00,000.",
+   "FY2032 revenue projection: ₹20 Cr (1.8% of the plan) at 68% gross margin.",
+   "First revenue FY2028; volume plan 400 @ FY32.",
+   "From sensing to action: Gimbal camera + thermal sensor → SoC2 runs airborne perception → Object detection and tracking → Telemetry relay to ground station.",
+   "Key dependency: Drone regulation and form-factor development."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 58",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=d100"
+   },
+   {
+    "label": "Source slide 58",
+    "target": "slides?slide=58"
+   }
+  ]
+ },
+ {
+  "id": "sc-thermal",
+  "name": "Thermal Camera Pod",
+  "category": "sku",
+  "docId": "doc7",
+  "tagline": "LWIR thermal camera sensor module for night and monsoon conditions — the perception layer that cameras alone cannot provide.",
+  "summary": "LWIR thermal camera sensor module for night and monsoon conditions — the perception layer that cameras alone cannot provide. The perception layer that enables night and monsoon operation — differentiator for the Smart Truck kit.",
+  "keyFacts": [
+   "Listed price: ₹50,000.",
+   "FY2032 revenue projection: ₹16 Cr (1.4% of the plan) at 50% gross margin.",
+   "First revenue FY2027; volume plan 3,200 @ FY32.",
+   "From sensing to action: LWIR sensor captures thermal scene → SoC2 fuses thermal with visible camera → Enhanced detection in low/no visibility → Alert output to vehicle safety system.",
+   "Key dependency: LWIR sensor sourcing and calibration pipeline."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 60",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=thermal"
+   },
+   {
+    "label": "Source slide 60",
+    "target": "slides?slide=60"
+   }
+  ]
+ },
+ {
+  "id": "sc-h100",
+  "name": "H100 Driver Monitor",
+  "category": "sku",
+  "docId": "doc7",
+  "tagline": "In-cabin driver monitoring unit — drowsiness, distraction and seatbelt detection.",
+  "summary": "In-cabin driver monitoring unit — drowsiness, distraction and seatbelt detection. Mandate-listed safety function. Highest volume sensor SKU — mandate requires it in every commercial vehicle.",
+  "keyFacts": [
+   "Listed price: ₹5,000.",
+   "FY2032 revenue projection: ₹10 Cr (0.9% of the plan) at 50% gross margin.",
+   "First revenue FY2027; volume plan 20,000 @ FY32.",
+   "From sensing to action: IR camera watches driver face → SoC2 runs drowsiness/distraction model → Alert escalation chain triggered → Event log for fleet compliance.",
+   "Key dependency: Mandate enforcement timeline."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 62",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=h100"
+   },
+   {
+    "label": "Source slide 62",
+    "target": "slides?slide=62"
+   }
+  ]
+ },
+ {
+  "id": "sc-radar",
+  "name": "4D Radar Pod",
+  "category": "sku",
+  "docId": "doc7",
+  "tagline": "4D imaging radar module providing range, velocity, azimuth and elevation — the sensor that camera-only ADAS cannot replace.",
+  "summary": "4D imaging radar module providing range, velocity, azimuth and elevation — the sensor that camera-only ADAS cannot replace. Radar matters because closing speed is what a braking decision actually turns on — camera alone cannot measure it.",
+  "keyFacts": [
+   "Listed price: ₹25,000.",
+   "FY2032 revenue projection: ₹7.5 Cr (0.7% of the plan) at 50% gross margin.",
+   "First revenue FY2027; volume plan 3,000 @ FY32.",
+   "From sensing to action: 4D radar scans forward scene → Range + velocity + angle data output → SoC2 fuses radar with camera object list → Closing-speed data enables braking decisions.",
+   "Key dependency: Radar block verification on the ASIC."
+  ],
+  "citation": "DeepGrid Product Portfolio — product dossier, source slide 64",
+  "actions": [
+   {
+    "label": "Open product dossier",
+    "target": "portfolio?product=radar"
+   },
+   {
+    "label": "Source slide 64",
+    "target": "slides?slide=64"
+   }
+  ]
+ },
+ {
+  "id": "sc-soc2",
+  "name": "SoC2 — 28 nm monolithic automotive SoC",
+  "category": "architecture",
+  "docId": "doc7",
+  "tagline": "One 57 mm² die with six compute domains under all fifteen products",
+  "summary": "TSMC 28nm monolithic SoC2. A 57mm² die with six compute domains: A100 neural processing, R100 radar DSP, T100 AI, D100 security, S100 vehicle control and H100 monitoring. 39.3 TOPS is derived architecture arithmetic, not measured silicon performance. Eleven sensor channels have an 8.6 ms fusion design target in a 33.3 ms frame.",
+  "keyFacts": [
+   "Process: TSMC 28 nm, monolithic 57 mm² die.",
+   "Six compute domains: A100, R100, T100, D100, S100, H100.",
+   "39.3 TOPS is derived architecture arithmetic, not measured silicon.",
+   "Eleven sensor channels fused in an 8.6 ms design target within a 33.3 ms frame."
+  ],
+  "citation": "DeepGrid showcase — Technology (silicon architecture)",
+  "actions": [
+   {
+    "label": "Explore the silicon",
+    "target": "silicon"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-the-investment-case",
+  "name": "Why invest in DeepGrid?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "DeepGrid Semi is a fabless semiconductor company building a single 28 nm, six-chiplet automotive SoC that underpins fifteen products across ADAS, defence, and industrial autonomy — all from one tapeout.",
+  "summary": "DeepGrid Semi is a fabless semiconductor company building a single 28 nm, six-chiplet automotive SoC that underpins fifteen products across ADAS, defence, and industrial autonomy — all from one tapeout. India's ADAS mandates on commercial vehicles create a legislated demand pool of roughly one million units a year, and no indigenous silicon exists at this stage to serve it at a price the market can pay.",
+  "keyFacts": [
+   "Tapeout Cost: ~$3.17 M across four gated stages for one ~57 mm² six-chiplet 28 nm SoC — versus ~$18 M if the six chiplets were fabricated as separate dies, a management engineering estimate.",
+   "Revenue Projection: Management projects ₹1,128 Cr by FY2032 per the Investment Memorandum; the investor brief states ₹1,388 Cr by FY32 — both are management projections contingent on this raise.",
+   "Concentration Risk: Two products carry 64% of the ₹1,128 Cr revenue plan — a single certification delay hits ₹720 Cr at once.",
+   "Proof of Execution: A 130 nm tapeout is already done, the perception stack runs at 40 fps on FPGA today, and ₹1.01 Cr is contracted via MCEME — pre-revenue but not pre-product."
+  ],
+  "citation": "Investment Memorandum — One die, fifteen products",
+  "actions": [
+   {
+    "label": "Memorandum · Executive summary",
+    "target": "investment?chapter=summary"
+   },
+   {
+    "label": "Memorandum · Strategy & economics",
+    "target": "investment?chapter=choice"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-the-demand-is-legislated-not-forecast",
+  "name": "Why is the demand real?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "The demand is anchored in gazette-notified law, not market forecasts: MoRTH has mandated AEBS on all N2/N3 commercial vehicles by October 2027 and four further ADAS functions—drowsiness, blind-spot, moving-off, and lane-departure warning—on new models by October 2027 and all models by January 2028.",
+  "summary": "The demand is anchored in gazette-notified law, not market forecasts: MoRTH has mandated AEBS on all N2/N3 commercial vehicles by October 2027 and four further ADAS functions—drowsiness, blind-spot, moving-off, and lane-departure warning—on new models by October 2027 and all models by January 2028. Management sizes the reachable pool at approximately 1.0 million units annually, comprising ~500k new N2/N3 units and a ~500k retrofit pool, and describes this as a regulatory floor, not a forecast.",
+  "keyFacts": [
+   "Mandate Pool: ~1.0M units annually — ~500k new N2/N3 vehicles plus ~500k retrofit — described by management as a regulatory floor, not a forecast.",
+   "Compliance Deadlines: AEBS mandatory on all N2/N3 models by 1 October 2027; drowsiness, blind-spot, moving-off, and lane-departure warning mandatory on all models by 1 January 2028.",
+   "Market Context: India ADAS aftermarket TAM cited at ₹61,000 Cr by 2030, against current ADAS penetration below 5% across 70 million vehicles — the lowest among all major auto markets (management projection).",
+   "AD0 Demand Dispute: Internal documents disagree — Revenue Build calls the ₹270 Cr, 54,000-unit AD0 mirror 'mandate retrofit'; Demand & TAM sheet calls it 'NOT mandated — voluntary buy' — leaving 23.9% of FY2032 projected revenue on an unresolved basis."
+  ],
+  "citation": "Investment Memorandum — The demand is legislated, not forecast",
+  "actions": [
+   {
+    "label": "Memorandum · Business",
+    "target": "investment?chapter=business"
+   },
+   {
+    "label": "Dossier: AD0 Smart Mirror",
+    "target": "portfolio?product=ad0"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-market-size",
+  "name": "How big is the market?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "The India ADAS aftermarket TAM stands at ₹61,000 Cr by 2030, with a mandate-specific SAM of ₹85,000 Cr (5M+ N2/N3 trucks under GSR 184(E)) and a DGrid-addressable mandate-wave opportunity of ₹8,500 Cr.",
+  "summary": "The India ADAS aftermarket TAM stands at ₹61,000 Cr by 2030, with a mandate-specific SAM of ₹85,000 Cr (5M+ N2/N3 trucks under GSR 184(E)) and a DGrid-addressable mandate-wave opportunity of ₹8,500 Cr. The global ADAS market reaches $83.98B by 2027, while India's broader retrofit market across 9 crore vehicles is sized at ₹4,50,000 Cr.",
+  "keyFacts": [
+   "India ADAS Aftermarket TAM: ₹61,000 Cr by 2030, covering 3M+ addressable fleet vehicles under the GSR 184(E) mandate.",
+   "India SAM (Mandated Trucks): ₹85,000 Cr representing 5M+ N2/N3 trucks; DGrid-addressable mandate-wave subset is ₹8,500 Cr.",
+   "Global ADAS Market: $83.98B by 2027 (management reference figure); India ADAS market $2.29B in 2024 growing at 20.6% CAGR to ~$14.9B by 2034 (EMR).",
+   "Management Projection — FY32 Unit Capture: 18,000 AD2 kits, equal to 0.36% of the 1M mandated N2/N3 truck pool, described as a demand floor not a forecast."
+  ],
+  "citation": "Information Memorandum v2 (Aug 2026) — 2 . M A R K E T O P P O R T U N I T Y",
+  "actions": [
+   {
+    "label": "Dossier: Smart Truck (AD2 kit)",
+    "target": "portfolio?product=ad2"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-customers-and-go-to-market",
+  "name": "Who buys, and how does DeepGrid reach them?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "DeepGrid reaches buyers through six distinct procurement routes off a single bill of materials, spanning regulated Tier-1 ADAS suppliers, CV OEMs, government and PSU fleets via GeM, state transport undertakings, and autonomous fleet operators.",
+  "summary": "DeepGrid reaches buyers through six distinct procurement routes off a single bill of materials, spanning regulated Tier-1 ADAS suppliers, CV OEMs, government and PSU fleets via GeM, state transport undertakings, and autonomous fleet operators. The sequencing is deliberate: the GeM/PSU route is transactable today on eligibility alone, while the larger mandate-driven Tier-1 and OEM channels open from 2027 onward as certification milestones are cleared.",
+  "keyFacts": [
+   "GeM Route Timing: UC-06 (Government/PSU kit) is transactable now — the only use case that does not wait for 2027 mandate dates — with the gate being a live GeM listing at ≥50% local content and one Class-I tender bid submitted.",
+   "Smart Truck Concentration: The AD2 Smart Truck kit is management-projected at ₹450 Cr in FY2032, representing 39.9% of the plan at 18,000 units and ₹2,50,000 per unit, making it the single largest SKU and the primary mandate-channel product.",
+   "Tier-1 Partnership Model: Under the indirect channel, DeepGrid licenses its ASIC and perception software to domestic Tier-1 suppliers who handle ECU assembly, validation, and OEM line-fit design-wins with truck makers including Tata Motors, Ashok Leyland, and Mahindra.",
+   "Fleet and Mobility Revenue: The fleet and mobility segment comprises two SKUs — Autonomous TaaS (₹66 Cr, 5.8% of FY2032 plan, first revenue FY2028) and Seaport AGV — with the highest revenue per unit in the portfolio at ₹66 L per TaaS vehicle; these are management projections."
+  ],
+  "citation": "Investment Memorandum — What a customer actually buys, and what Deepgrid is not selling them",
+  "actions": [
+   {
+    "label": "Use case: What a customer actually buys, and what ",
+    "target": "investment?chapter=usecases"
+   },
+   {
+    "label": "Memorandum · Strategy & economics",
+    "target": "investment?chapter=choice"
+   },
+   {
+    "label": "Use case: What Deepgrid sells, and what it does no",
+    "target": "investment?chapter=usecases&usecase="
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-business-model",
+  "name": "How does DeepGrid make money?",
+  "category": "finance",
+  "docId": "doc9",
+  "tagline": "DeepGrid makes money by selling complete, certified autonomy systems built around its own six-chiplet silicon die, with approximately 88% of planned revenue coming from systems and products and roughly 5% from merchant silicon.",
+  "summary": "DeepGrid makes money by selling complete, certified autonomy systems built around its own six-chiplet silicon die, with approximately 88% of planned revenue coming from systems and products and roughly 5% from merchant silicon. Management projects total revenue growing from ₹1.7 Cr in FY2027 to ₹1,128 Cr by FY2032, with Road Autonomy alone carrying ₹762 Cr of that FY2032 figure.",
+  "keyFacts": [
+   "Revenue Range: ₹1.7 Cr in FY2027 growing to ₹1,128 Cr by FY2032 — management projection, built bottom-up as units × price with no target plug.",
+   "Systems Dominance: ~88% of planned revenue is systems and products; ~5% is merchant silicon — the chip creates the cost advantage, systems capture the revenue.",
+   "Largest SKU: Smart Truck AD2 kit at ₹2,50,000 per unit — management projection of ₹450 Cr FY2032 revenue, 39.9% of group plan, 89% gross margin at 18,000 units.",
+   "Customer Growth: 5 distinct accounts in FY2027 scaling to 650 by FY2032, with average revenue per account falling after FY2029 as retrofit and fleet channels broaden the base."
+  ],
+  "citation": "Information Memorandum v2 (Aug 2026) — W H A T D E E P G R I D I S",
+  "actions": [
+   {
+    "label": "Memorandum · Business",
+    "target": "investment?chapter=business"
+   },
+   {
+    "label": "Dossier: Smart Truck (AD2 kit)",
+    "target": "portfolio?product=ad2"
+   },
+   {
+    "label": "Dossier: AD0 Smart Mirror",
+    "target": "portfolio?product=ad0"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-chip-unit-economics",
+  "name": "What are the unit economics of the chip?",
+  "category": "finance",
+  "docId": "doc9",
+  "tagline": "At volume, the SoC2 die costs $3.88 per unit — $2.38 wafer cost plus $1.50 assembly, test and packaging — against an incumbent ADAS SoC cost of $3,000–$8,000, a cost advantage of approximately 774×.",
+  "summary": "At volume, the SoC2 die costs $3.88 per unit — $2.38 wafer cost plus $1.50 assembly, test and packaging — against an incumbent ADAS SoC cost of $3,000–$8,000, a cost advantage of approximately 774×. The chip contribution inside a kit is $22, yielding a gross margin per chip of $18.12, with NRE breakeven at 174,908 chips.",
+  "keyFacts": [
+   "Per-Die Cost at Volume: $3.88 ($2.38 wafer cost per good die + $1.50 assembly, test and packaging), on TSMC 28 nm at $2,400 per wafer — management projection.",
+   "Cost Advantage vs Incumbent: 773.9× cheaper than Mobileye/Nvidia-class ADAS SoCs priced at $3,000–$8,000 — management projection.",
+   "NRE Breakeven: 174,908 chips to recover total program NRE, at a gross margin of $18.12 per chip — management projection.",
+   "OEM B2B Gross Margin: 94% on the bare die at ₹18,000 per unit, 30,000 units projected for FY2032, the highest gross margin in the portfolio — management projection."
+  ],
+  "citation": "Financial Model v3 (Sept 2026) — Sheet: Tapeout Unit Economics",
+  "actions": [
+   {
+    "label": "Dossier: Chipset OEM B2B",
+    "target": "portfolio?product=chipset"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-the-revenue-ramp",
+  "name": "How does revenue grow to FY2032?",
+  "category": "finance",
+  "docId": "doc9",
+  "tagline": "Management projections show group revenue growing from ₹6.0 Cr in FY2027 to ₹1,388 Cr in FY2032, a bottom-up build across six segments.",
+  "summary": "Management projections show group revenue growing from ₹6.0 Cr in FY2027 to ₹1,388 Cr in FY2032, a bottom-up build across six segments. The June 2026 Information Memorandum cited an older ₹1,128 Cr FY32 figure; the working financial model (Business Plan v2.2) supersedes it at ₹1,387.95 Cr.",
+  "keyFacts": [
+   "Group Revenue FY2027→FY2032: ₹6.0 Cr / ₹41.17 Cr / ₹144.73 Cr / ₹351.36 Cr / ₹731.55 Cr / ₹1,387.95 Cr — management projections, volume growth only, prices held flat.",
+   "Largest Single Line: Smart Truck (AD2) — management projection of ₹450 Cr at FY2032, 39.9% of group revenue, 18,000 units at ₹2,50,000 each, 89% gross margin.",
+   "Figure Discrepancy: ₹1,128 Cr (June 2026 Information Memorandum) vs. ₹1,387.95 Cr (Business Plan v2.2 bottom-up model) — the business plan identifies the lower figure as the outdated number.",
+   "Highest-Margin FY2032 Lines: Chipset OEM B2B ₹54 Cr and T100 AI Licence ₹50 Cr, both at 94% gross margin — both fully contingent on ASIC tapeout; T100 has no separately sized demand pool."
+  ],
+  "citation": "Business Plan v2 — Sheet: Revenue Master",
+  "actions": [
+   {
+    "label": "Memorandum · Financials & risks",
+    "target": "investment?chapter=numbers"
+   },
+   {
+    "label": "Dossier: Smart Truck (AD2 kit)",
+    "target": "portfolio?product=ad2"
+   },
+   {
+    "label": "Dossier: AD0 Smart Mirror",
+    "target": "portfolio?product=ad0"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-margins-and-profitability",
+  "name": "When does DeepGrid become profitable, and at what margins?",
+  "category": "finance",
+  "docId": "doc9",
+  "tagline": "Management projects EBITDA turning positive in FY2028 at +₹2.59 Cr, with net income following in FY2029 at +₹19.85 Cr.",
+  "summary": "Management projects EBITDA turning positive in FY2028 at +₹2.59 Cr, with net income following in FY2029 at +₹19.85 Cr. By FY2032, gross margin reaches 88.4% and EBITDA margin is 38.7% — all management projections contingent on the tapeout landing and volume ramps executing as modelled.",
+  "keyFacts": [
+   "EBITDA Breakeven: FY2028 at +₹2.59 Cr — management projection, clearing the break-even gross margin threshold by only 6.3 points per the model review.",
+   "Net Income Positive: FY2029 at +₹19.85 Cr — management projection, one year after EBITDA breakeven.",
+   "Highest-Margin Line: Chipset OEM B2B die at 94% gross margin, generating ₹54.0 Cr at FY2032 — the most profitable revenue in the plan, requiring no integration, certification or installation capacity."
+  ],
+  "citation": "BP1A India Autonomous Trucking Plan — Three things this changes. EBITDA breakeven is FY2028 at +₹2.59 Cr, and net income",
+  "actions": [
+   {
+    "label": "Open slide 33",
+    "target": "slides?slide=33"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-cash-and-runway",
+  "name": "Does the round fund the company to self-sufficiency?",
+  "category": "finance",
+  "docId": "doc9",
+  "tagline": "The financial model's own runway schedule returns a verdict of 'Funded to self-sustaining' on the ₹45 Cr round, with a minimum closing cash balance of ₹10.10 Cr in FY2029 before recovery.",
+  "summary": "The financial model's own runway schedule returns a verdict of 'Funded to self-sustaining' on the ₹45 Cr round, with a minimum closing cash balance of ₹10.10 Cr in FY2029 before recovery. However, the margin of safety is 22% of the round with no contingency line, and the downside cash trough has not been published.",
+  "keyFacts": [
+   "Runway Verdict: 'Funded to self-sustaining' — the model's own label for the base-case cash schedule on the ₹45 Cr round.",
+   "Cash Trough: ₹10.098 Cr closing balance in FY2029 — the minimum point before operating profit drives recovery, a 22% margin of safety with no contingency line.",
+   "Unfunded Exposure: Two cost lines (patent conversion and functional-safety assessor) land in FY2027–28 inside the tapeout draw window and are not in the published use-of-funds — combined, they must come in under roughly ₹10 Cr for the round to hold."
+  ],
+  "citation": "Financial Model v3 (Sept 2026) — Sheet: Cash Flow & Runway",
+  "actions": [
+   {
+    "label": "Memorandum · Strategy & economics",
+    "target": "investment?chapter=choice"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-the-round-and-what-it-funds",
+  "name": "How much is DeepGrid raising, and what does it fund?",
+  "category": "finance",
+  "docId": "doc9",
+  "tagline": "DeepGrid is raising ₹55 Cr of blended capital: ₹45 Cr of equity ($4.79M) at a ₹204 Cr pre-money valuation for 18.07%, plus a ₹10 Cr collateral-free CGTMSE debt facility.",
+  "summary": "DeepGrid is raising ₹55 Cr of blended capital: ₹45 Cr of equity ($4.79M) at a ₹204 Cr pre-money valuation for 18.07%, plus a ₹10 Cr collateral-free CGTMSE debt facility. The equity funds the 28 nm SoC2 tapeout and engineering; the debt facility funds working capital on a non-dilutive basis.",
+  "keyFacts": [
+   "Equity Round: ₹45 Cr ($4.79M) for 18.07% at a ₹204 Cr pre-money valuation — the dilutive portion of the raise.",
+   "Debt Facility: ₹10 Cr CGTMSE-backed collateral-free overdraft at 15% interest, assumed 25% utilisation — non-dilutive, funds working capital only.",
+   "Tapeout Allocation: $3.17M (≈₹29.8 Cr, 54% of total capital) goes to SoC2 NRE and IP across four phased gates, each a point where the next cheque can be withheld.",
+   "Cash Trough: Minimum closing cash balance of ₹10.10 Cr projected in FY2029 on the base case — management projection, no downside trough published."
+  ],
+  "citation": "Investment Memorandum — Released against silicon, not against the forecast",
+  "actions": [
+   {
+    "label": "Memorandum · Financials & risks",
+    "target": "investment?chapter=numbers"
+   },
+   {
+    "label": "Memorandum · Strategy & economics",
+    "target": "investment?chapter=choice"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-valuation-and-terms",
+  "name": "What are the valuation and deal terms?",
+  "category": "finance",
+  "docId": "doc9",
+  "tagline": "The primary equity round is ₹45 Cr for 18.07% at a ₹204 Cr pre-money valuation, alongside a ₹10 Cr collateral-free CGTMSE working-capital facility, totalling ₹55 Cr of blended capital.",
+  "summary": "The primary equity round is ₹45 Cr for 18.07% at a ₹204 Cr pre-money valuation, alongside a ₹10 Cr collateral-free CGTMSE working-capital facility, totalling ₹55 Cr of blended capital. A separate co-founder proposal offers ₹9.40 Cr at a ₹112 Cr pre-money for 7.74% of the Indian parent, diluting to 6.34% once the ₹45 Cr round closes.",
+  "keyFacts": [
+   "Equity Round: ₹45 Cr for 18.07% at ₹204 Cr pre-money, plus a ₹10 Cr collateral-free CGTMSE facility, totalling ₹55 Cr of blended capital.",
+   "NRE Phasing: $3.17M across four gated milestones — $138K shared MPW blocks, $232K full-die MPW, $1.00M backend to GDSII, $1.00M dedicated production mask — per the model's use-of-funds; the die card states $2.42M, a $750K discrepancy flagged in diligence.",
+   "Co-Founder Proposal: ₹9.40 Cr at ₹112 Cr pre-money for 7.74% of the Indian parent, diluting to 6.34% once the ₹45 Cr round closes; at a 6–10× exit the stake is projected at ₹117–196 Cr, described as 8.5–14× the total commitment (management projection).",
+   "Cash Trough: ₹10.098 Cr minimum closing balance on the base-case schedule, with the ₹10 Cr CGTMSE facility undrawn and not included in that figure."
+  ],
+  "citation": "Investment Memorandum — Released against silicon, not against the forecast",
+  "actions": [
+   {
+    "label": "Memorandum · Financials & risks",
+    "target": "investment?chapter=numbers"
+   },
+   {
+    "label": "Memorandum · Strategy & economics",
+    "target": "investment?chapter=choice"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-milestones-the-capital-unlocks",
+  "name": "What milestones will this round deliver?",
+  "category": "finance",
+  "docId": "doc9",
+  "tagline": "The ₹45 Cr equity round is structured to deliver qualified SoC2 silicon by H1 2028, with four gated NRE payments totalling $3.17M and six of nine de-risking milestones already marked complete before the round opens.",
+  "summary": "The ₹45 Cr equity round is structured to deliver qualified SoC2 silicon by H1 2028, with four gated NRE payments totalling $3.17M and six of nine de-risking milestones already marked complete before the round opens. In the near term, the capital funds a GeM listing, three paid pilots with telemetry rights, and a first Class-I government tender bid within 90 days, while 66% of equity is allocated to tapeout NRE and IP.",
+  "keyFacts": [
+   "NRE Structure: $3.17M across four gated payments, from $138K block MPW to $1.00M production mask, each withholdable if the prior gate fails.",
+   "Use of Equity: 66% to tapeout NRE and IP, 16% to 10-FTE engineering team over 18 months, 8% to ARAI/ICAT type approval — management allocation.",
+   "Pre-Round Progress: Six of nine de-risking milestones marked complete before the round opens, including RTL designs tapeout-ready and foundry partners contracted."
+  ],
+  "citation": "Investment Memorandum — Released against silicon, not against the forecast",
+  "actions": [
+   {
+    "label": "Memorandum · Financials & risks",
+    "target": "investment?chapter=numbers"
+   },
+   {
+    "label": "Use case: The sequence, and what capital is explic",
+    "target": "investment?chapter=usecases"
+   },
+   {
+    "label": "Memorandum · Technology",
+    "target": "investment?chapter=technology"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-the-company-and-its-founders",
+  "name": "Who runs DeepGrid?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "DeepGrid Semi is founded and led by Aravind Prasad G, who brings 20 years of experience and multiple prior exits including Evolgence IT Solutions, Deepgrid Datacentre, and Evolgence Energy.",
+  "summary": "DeepGrid Semi is founded and led by Aravind Prasad G, who brings 20 years of experience and multiple prior exits including Evolgence IT Solutions, Deepgrid Datacentre, and Evolgence Energy. Ayaz Khan serves as silicon architecture lead, and R&D operates under named academic advisors from IIT Tirupati, IIT Hyderabad, and IMJ Institute of Research.",
+  "keyFacts": [
+   "Founder & CEO: Aravind Prasad G — 20 years of experience, exits from Evolgence IT Solutions, Deepgrid Datacentre, and Evolgence Energy.",
+   "Silicon Lead: Ayaz Khan — named as silicon architecture lead in the Investment Memorandum.",
+   "Academic Advisors: Three institutions named — IIT Tirupati, IIT Hyderabad (VIGIL lab), and IMJ Institute of Research — though formal engagement status is unconfirmed per the company's own note.",
+   "Incorporation: Telangana, CIN U62099TS2024PTC183631, operating from T-Hub Phase 2, Knowledge City, Hyderabad."
+  ],
+  "citation": "Investment Memorandum — An autonomous systems company that builds its own silicon",
+  "actions": [
+   {
+    "label": "Memorandum · Business",
+    "target": "investment?chapter=business"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-competition",
+  "name": "Who does DeepGrid compete with, and how does it win?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "DeepGrid competes against well-capitalised Western incumbents (Aurora/Kodiak-class platforms) and domestic Indian startups split between software-first players and microcontroller/SoC designers.",
+  "summary": "DeepGrid competes against well-capitalised Western incumbents (Aurora/Kodiak-class platforms) and domestic Indian startups split between software-first players and microcontroller/SoC designers. It wins primarily on price—a single custom combo-die on TSMC 28 nm collapses the compute board BOM far below the $6,000+ Western benchmark—and on being the only Indian startup combining silicon, AI models, and ADAS software in one vertically integrated stack purpose-built for commercial-vehicle mandates.",
+  "keyFacts": [
+   "Western BOM Benchmark: Western incumbents' compute board BOM exceeds $6,000, versus DeepGrid's single-die design targeting a fraction of that cost at TSMC 28 nm — the primary pricing moat.",
+   "Domestic Gap: Domestic software-first rivals lack purpose-built silicon; domestic SoC rivals lack 39.3 TOPS deep-learning acceleration and specialised 77 GHz radar processing required for real-time safety.",
+   "Integration Claim: DeepGrid is, per management, the only Indian startup designing a vertically integrated single-die ADAS combo-die tailored for commercial-vehicle mandates at a disruptive price point.",
+   "Unclaimed Differentiator: No competitor has published a measured nuisance (false-positive) rate per 1,000 km stratified by India-specific scenarios — the metric AIS-162 tests for and DeepGrid's stated competitive wedge."
+  ],
+  "citation": "Investor Briefing (Jul 2026) — p. 8",
+  "actions": [
+   {
+    "label": "Use case: What a customer actually buys, and what ",
+    "target": "investment?chapter=usecases"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-the-investment-risks",
+  "name": "What are the investment risks?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "DeepGrid Semi's own materials surface ten material risks, of which at least five are structural or unfunded rather than speculative.",
+  "summary": "DeepGrid Semi's own materials surface ten material risks, of which at least five are structural or unfunded rather than speculative. The most time-sensitive are a hard March 2027 IP expiry with no budget line, a regulatory timeline that the company's own claim controls prohibit citing, and a tapeout schedule that pushes qualified silicon to H1 2028—after the mandate window the revenue model is built on.",
+  "keyFacts": [
+   "IP Expiry: Fifteen provisional patents expire March 2027—a hard cash call inside the round's first year with no budget line in the use of funds.",
+   "Revenue Concentration: The AD2 truck kit (₹450 Cr, 40%) and AD0 smart mirror (₹270 Cr, 24%) together represent 64% of the FY2032 plan—₹720 Cr exposed to a single certification delay or fitment bottleneck.",
+   "Tapeout NRE Discrepancy: NRE is quoted at $2.42M in the die card and $3.17M in the platform slide and use-of-funds—a $750K gap on the plan's largest single expenditure line.",
+   "Key-Person Exposure: The founder holds 95.6% of shares and is sole commercial accountable across all four business units; the CTO—architect of the matrix ALU and radar RTL—is not yet full-time, with full-time start shown as Q1 FY28."
+  ],
+  "citation": "Investment Memorandum — Ten things to test, and where the documents disagree with each other",
+  "actions": [
+   {
+    "label": "Memorandum · Financials & risks",
+    "target": "investment?chapter=numbers"
+   },
+   {
+    "label": "Memorandum · Strategy & economics",
+    "target": "investment?chapter=choice"
+   },
+   {
+    "label": "Dossier: Smart Truck (AD2 kit)",
+    "target": "portfolio?product=ad2"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-where-the-documents-disagree",
+  "name": "Where do the numbers in the materials conflict?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "At least six figures conflict across the materials, with the most consequential being a ₹259.5 Cr revenue-total discrepancy and a $750K gap in the single largest capital line item.",
+  "summary": "At least six figures conflict across the materials, with the most consequential being a ₹259.5 Cr revenue-total discrepancy and a $750K gap in the single largest capital line item. The model's own Reconciliation tab documents these disagreements explicitly, meaning investors currently hold multiple contradictory documents simultaneously.",
+  "keyFacts": [
+   "Revenue Total Gap: ₹259.5 Cr — the IM slide header shows ₹1,128 Cr while its own tables and the business plan sum to ₹1,387.95 Cr across eleven additional product lines.",
+   "Tapeout NRE Conflict: $2.42M (die card and prior BP-1A) versus $3.17M (platform slide and current model use-of-funds) — a $750K difference in the single largest capital line item.",
+   "Regulatory Timeline Conflict: The memorandum anchors demand to GSR 184(E) from April 2026, a claim the company's own ledger bars as a banned claim, with operative standards dates at 2027–2028 — an eighteen-month revenue shift.",
+   "Cap Table Discrepancy: 102,797 total shares in the current model versus 100,893 shares in the prior BP-1A (and 100,890 in the pricing basis) — a difference of 1,907 shares to reconcile before term sheet."
+  ],
+  "citation": "Research — model review extract — Sheet: Reconciliation  (visible)",
+  "actions": [
+   {
+    "label": "Memorandum · Financials & risks",
+    "target": "investment?chapter=numbers"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-if-the-chip-slips",
+  "name": "What happens if the tapeout or mandate slips?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "A tapeout slip pushes qualified silicon past H1 2028 into a window where the mandate has already closed, while the fixed-cost block — payroll, R&D, the remaining mask commitment — continues running at full rate with no revenue to absorb it.",
+  "summary": "A tapeout slip pushes qualified silicon past H1 2028 into a window where the mandate has already closed, while the fixed-cost block — payroll, R&D, the remaining mask commitment — continues running at full rate with no revenue to absorb it. A mandate slip compounds the problem: at a 70% revenue miss the model still projects roughly ₹339 Cr and claims self-funding, but that scenario is a demand test, not a schedule test, and the schedule case is not modelled anywhere in the published scenarios.",
+  "keyFacts": [
+   "Silicon Window: Qualified silicon lands H1 2028 — after every mandate date — making the next two years an FPGA business, not an ASIC business.",
+   "Tapeout Cost: ₹25 Cr raise explicitly for tapeout and marketing (~$3 million), corroborating the planning-grade ₹20–35 Cr range; timing contingent on the raise closing.",
+   "Fixed-Cost Exposure: Payroll, R&D and the remaining mask commitment run at full rate on a slip because none are a function of revenue — this scenario is not modelled in any published case.",
+   "Kill-Criteria Gap: The playbook contains four hard disqualifiers for customer deals and zero for the company's own ₹25 Cr tapeout bet — no funding, anchor design-in, certification path or merchant-SoC parity test is formally adopted."
+  ],
+  "citation": "Investment Memorandum — The scenario set tests the wrong variable",
+  "actions": [
+   {
+    "label": "Memorandum · Strategy & economics",
+    "target": "investment?chapter=choice"
+   },
+   {
+    "label": "Memorandum · Financials & risks",
+    "target": "investment?chapter=numbers"
+   },
+   {
+    "label": "Memorandum · Executive summary",
+    "target": "investment?chapter=summary"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-the-strategic-choice-run-a-for-b",
+  "name": "What is the recommended strategy?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "The recommended strategy is to lead with government and PSU fleet deployments (Option A) while simultaneously opening a Tier-1 automotive exchange (Option B) in the same month — not sequentially.",
+  "summary": "The recommended strategy is to lead with government and PSU fleet deployments (Option A) while simultaneously opening a Tier-1 automotive exchange (Option B) in the same month — not sequentially. Government units serve as an instrumented sensor network that generates the measured nuisance-rate data required to win Tier-1 design-ins, making the pre-silicon window the foundation of the post-silicon business rather than a holding pattern.",
+  "keyFacts": [
+   "Concurrent Launch: Government fleet deployments (Option A) and Tier-1 exchange (Option B) open in the same month — not sequentially — so telemetry data is available while the Tier-1 evaluation is still live.",
+   "GeM Gate: A live GeM listing with documented local content at or above 50% and one Class-I tender bid submitted with telemetry rights in the draft contract is the proof-of-execution gate for the government lane.",
+   "Defence Lane: D-HUMR is ring-fenced as a separate two-engineer lane; management projects ₹30 Cr revenue at 68% gross margin by FY2032 at 150 units, with first revenue FY2027.",
+   "Patent Deadline: 15 provisional patents carry a March 2027 conversion deadline that is a hard, dated cash call appearing in no use-of-funds allocation line."
+  ],
+  "citation": "Investment Memorandum — Run A for B, not A then B",
+  "actions": [
+   {
+    "label": "Memorandum · Strategy & economics",
+    "target": "investment?chapter=choice"
+   },
+   {
+    "label": "Use case: What a customer actually buys, and what ",
+    "target": "investment?chapter=usecases"
+   },
+   {
+    "label": "Dossier: T100 AI Licence",
+    "target": "portfolio?product=t100"
+   }
+  ]
+ },
+ {
+  "id": "sc-theme-the-us-opportunity",
+  "name": "What is the plan for the United States?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "DeepGrid Semi's US plan is a licensing and stack business — not a box business — structured as a Delaware entity majority-owned by the Indian parent, with an incoming co-founder holding earned equity tranches against named commercial gates.",
+  "summary": "DeepGrid Semi's US plan is a licensing and stack business — not a box business — structured as a Delaware entity majority-owned by the Indian parent, with an incoming co-founder holding earned equity tranches against named commercial gates. The plan carries no US revenue forecast; it begins with three introductions the co-founder must open, and scales to a $25M follow-on round targeted for 2028, gated on India's deployment milestones being met first.",
+  "keyFacts": [
+   "Investment Terms: $1M at ₹112 Cr pre-money in two tranches with a side letter, for approximately 7.7% of the Indian company — separate from any US equity.",
+   "US Entity Structure: Delaware company, Indian parent holds majority and the exclusive US licence; IP itself stays in India — the one guardrail management states it will not move on.",
+   "US Follow-On Target: $25M follow-on round targeted for 2028, gated on Series A and on India fleet deployment delivering field-failure data and manufacturing maturity — a management projection.",
+   "Retrofit Market Size: 3.91M Class 8 trucks in operation in the US as of 2026, against a $906B trucking industry revenue base — the sourced addressable context for the licensing entry."
+  ],
+  "citation": "BP1B USA Proposal — MY PROPOSAL",
+  "actions": []
+ },
+ {
+  "id": "sc-theme-defence-and-robotics",
+  "name": "What is the defence and robotics opportunity?",
+  "category": "strategy",
+  "docId": "doc8",
+  "tagline": "DeepGrid's defence and robotics segment covers five SKUs with a combined FY2032 management projection of ₹83.5 Cr, equal to 7.4% of the total plan.",
+  "summary": "DeepGrid's defence and robotics segment covers five SKUs with a combined FY2032 management projection of ₹83.5 Cr, equal to 7.4% of the total plan. The two defence-facing products are the D-HUMR unmanned ground vehicle at ₹20 L per unit (₹30 Cr FY2032 projection, 68% gross margin, first revenue FY2027) and the D100 Drone SoC Kit at ₹5 L per unit (₹20 Cr FY2032 projection, 68% gross margin, first revenue FY2028), with ₹1 Cr of institutional defence revenue already received on FPGA hardware.",
+  "keyFacts": [
+   "Segment Total: ₹83.5 Cr FY2032 management projection across 5 SKUs, equal to 7.4% of the total portfolio plan.",
+   "D-HUMR Unit Economics: ₹20 L unit price, 150 units at FY2032, ₹30 Cr revenue projection, 68% gross margin — management projection, first revenue FY2027.",
+   "D100 Drone SoC Kit Unit Economics: ₹5 L unit price, 400 units at FY2032, ₹20 Cr revenue projection, 68% gross margin — management projection, first revenue FY2028.",
+   "Existing Revenue: ₹1 Cr institutional defence revenue received on FPGA hardware Q1 2026, with MCEME pipeline of ₹88 L active; IP noted as MCEME-owned."
+  ],
+  "citation": "Product Portfolio Deck (104 slides) — Slide 70",
+  "actions": [
+   {
+    "label": "Open slide 70",
+    "target": "slides?slide=70"
+   },
+   {
+    "label": "Dossier: Defence D-HUMR",
+    "target": "portfolio?product=dhumr"
+   },
+   {
+    "label": "Dossier: D100 Drone SoC Kit",
+    "target": "portfolio?product=d100"
+   }
+  ]
+ }
+]

@@ -1,5 +1,5 @@
 'use client';
-// In-browser semantic search for Ask DeepGrid (adapted from the DG32 site). The question is embedded on the visitor's device with the
+// In-browser semantic search for Ask DeepGrid. The question is embedded on the visitor's device with the
 // same model that embedded the graph at build time (scripts/build-semantic-index.mjs), then compared with
 // every node, chunk and theme. No key, no server, no quota: the model, its runtime and the vectors are
 // all served by the site itself, and nothing loads until someone uses Ask.
@@ -10,7 +10,7 @@ import {semanticRowKey, type SemanticScores} from './graphrag-engine';
 
 type Meta = {model: string; dtype: string; dims: number; scale: number;
   counts: {nodes: number; chunks: number; themes: number; examples?: number}; rowKeySha256: string; modelSha256: string;
-  queryPrefix?: string; exampleTheme?: number[]; themeMin?: number; themeGap?: number; themeLift?: number; floor?: number};
+  queryPrefix?: string; exampleTheme?: number[]; themeMin?: number; themeGap?: number};
 type Extractor = (texts: string[], opts: {pooling: 'mean'; normalize: boolean}) => Promise<{data: Float32Array}>;
 export type Semantic = {scores: (question: string) => Promise<SemanticScores>};
 
@@ -31,7 +31,7 @@ async function cachedBytes(url: string, version: string): Promise<ArrayBuffer> {
   // fragment key would hand back an older version's bytes
   const key = `${url}?v=${encodeURIComponent(version)}`;
   try {
-    const cache = await caches.open('deepgrid-showcase-semantic');
+    const cache = await caches.open('deepgrid-semantic');
     const hit = await cache.match(key);
     if (hit) return hit.arrayBuffer();
     const res = await fetch(url);
@@ -95,7 +95,7 @@ async function load(): Promise<Semantic | null> {
         const ex = block(nodes + chunks + themes, examples, q);
         ex.forEach((v, k) => { const t = exampleTheme[k]; if (v > themeScores[t]) themeScores[t] = v; });
         return {nodes: block(0, nodes, q), chunks: block(nodes, chunks, q), themes: themeScores,
-          themeMin: meta.themeMin, themeGap: meta.themeGap, themeLift: meta.themeLift, floor: meta.floor};
+          themeMin: meta.themeMin, themeGap: meta.themeGap};
       },
     };
   } catch {

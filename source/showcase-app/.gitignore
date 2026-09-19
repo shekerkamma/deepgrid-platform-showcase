@@ -46,3 +46,6 @@ next-env.d.ts
 /knowledge/graphify-out/cache/
 /knowledge/graphify-out/20*/
 /knowledge/graphify-out/.graphify_*
+
+# every DeepGrid document, assembled for graphify (holds confidential originals; knowledge/sources.json is the manifest)
+/knowledge/sources/

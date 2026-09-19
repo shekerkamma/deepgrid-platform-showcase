@@ -1,7 +1,0 @@
-# DeepGrid Semi — sources/research-aptiv-gen6-india
-
-All figures are management projections from DeepGrid's fundraising materials.
-
-## Top Global Commercial Vehicle OEM Chooses Aptiv’s Gen 6 ADAS Platform
-
-Press Release January 06, 2026 Scalable, turn-key solution tailored for India’s traffic and road conditions, delivers safe navigation and cost-effective regulatory compliance. Integrates Aptiv’s latest radar and smart camera—featuring STRADVISION’s AI-based vision technology—with Aptiv’s modular software solutions, all optimized for commercial vehicle applications. SCHAFFHAUSEN, Switzerland — Aptiv PLC (NYSE: APTV), a global industrial technology company, today announced that a leading commercial vehicle OEM (Original Equipment Manufacturer) has selected its Gen 6 Advanced Driver Assistance System (ADAS) to equip its future trucks and buses in India. This agreement marks Aptiv’s first collaboration with an Indian commercial vehicle OEM on ADAS. It comes as the industry prepares for 2027 regulations requiring new trucks and buses to include safety features such as automatic emergency braking, lane departure and blind spot warnings and pedestrian and obstacle detection when starting from a stop. To meet these requirements, commercial vehicle OEMs face unique challenges. They must integrate advanced safety technologies across diverse vehicle types and powertrains, address larger blind spots, and ensure reliability in harsh environments. Validation standards are more demanding than f
