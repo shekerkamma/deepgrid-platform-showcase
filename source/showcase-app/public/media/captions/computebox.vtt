@@ -1,0 +1,22 @@
+WEBVTT
+
+00:00:01.100 --> 00:00:07.100
+11 sensor channels entering one part, and a single perception output leaving it.
+
+00:00:07.100 --> 00:00:16.100
+7 RGB cameras at 8 megapixels over GMSL2, road left and road right, 120-degree side cameras,
+
+00:00:16.100 --> 00:00:20.100
+a dash cam, a driver monitoring camera, and a rear camera.
+
+00:00:20.100 --> 00:00:26.100
+Two thermal cameras beside them, front and rear 4D radar at 77 GHz.
+
+00:00:26.100 --> 00:00:35.100
+Watch them converge on the die, 9 cameras and 2 radars fused into one AD2 perception output in real time.
+
+00:00:35.100 --> 00:00:43.100
+The bar underneath is the whole argument, 8.6 milliseconds consumed out of a 33.3 millisecond frame.
+
+00:00:43.100 --> 00:00:53.100
+74% of every frame is left unused, and that headroom is why one tapeout becomes 15 products rather than 15 programs.

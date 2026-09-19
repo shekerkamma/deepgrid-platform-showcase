@@ -13,15 +13,15 @@ const items = products.map(p => ({
   tagline: first(p.description), summary: `${p.description} ${p.role}`,
   keyFacts: [`Listed price: ${p.price}.`, `FY2032 revenue projection: ${p.revenue} (${p.share} of the plan) at ${p.margin} gross margin.`,
     `First revenue ${p.firstRevenue}; volume plan ${p.units}.`, `From sensing to action: ${p.signalChain.join(' → ')}.`, `Key dependency: ${p.dependsOn}`],
-  citation: `DeepGrid Product Portfolio — product dossier, source slide ${p.slideNum}`,
+  citation: `DeepGrid Product Portfolio, product dossier, source slide ${p.slideNum}`,
   actions: [{label: 'Open product dossier', target: `portfolio?product=${p.id}`}, {label: `Source slide ${p.slideNum}`, target: `slides?slide=${p.slideNum}`}],
 }));
 items.push({
-  id: 'sc-soc2', name: 'SoC2 — 28 nm monolithic automotive SoC', category: 'architecture', docId: 'doc7',
+  id: 'sc-soc2', name: 'SoC2, 28 nm monolithic automotive SoC', category: 'architecture', docId: 'doc7',
   tagline: 'One 57 mm² die with six compute domains under all fifteen products',
   summary: 'TSMC 28nm monolithic SoC2. A 57mm² die with six compute domains: A100 neural processing, R100 radar DSP, T100 AI, D100 security, S100 vehicle control and H100 monitoring. 39.3 TOPS is derived architecture arithmetic, not measured silicon performance. Eleven sensor channels have an 8.6 ms fusion design target in a 33.3 ms frame.',
   keyFacts: ['Process: TSMC 28 nm, monolithic 57 mm² die.', 'Six compute domains: A100, R100, T100, D100, S100, H100.', '39.3 TOPS is derived architecture arithmetic, not measured silicon.', 'Eleven sensor channels fused in an 8.6 ms design target within a 33.3 ms frame.'],
-  citation: 'DeepGrid showcase — Technology (silicon architecture)',
+  citation: 'DeepGrid showcase, Technology (silicon architecture)',
   actions: [{label: 'Explore the silicon', target: 'silicon'}],
 });
 // Doc #8 (memoranda) and #9 (financials): one card per showcase theme, as the DG32 catalog overlaps its themes.
@@ -36,7 +36,7 @@ if (fs.existsSync(themesFile)) for (const t of JSON.parse(fs.readFileSync(themes
   // sharing a theme title would pass off a fallback answer as that curated theme
   items.push({id: `sc-theme-${t.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`, name: t.ask,
     category: docId === 'doc9' ? 'finance' : 'strategy', docId, tagline: first(t.lead), summary: t.lead, keyFacts: t.facts,
-    citation: `${t.docTitle} — ${t.section}`, actions: t.refLinks.map(l => ({label: l.label, target: l.hash}))});
+    citation: `${t.docTitle}, ${t.section}`, actions: t.refLinks.map(l => ({label: l.label, target: l.hash}))});
 }
 fs.writeFileSync(path.join(ROOT, 'app/data/showcase-catalog.json'), JSON.stringify(items, null, 1) + '\n');
 console.log(`showcase catalog: ${items.length} items -> app/data/showcase-catalog.json`);

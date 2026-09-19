@@ -72,6 +72,14 @@ ORIGINALS = {
 }
 
 
+def strip_em_dash(s):
+    """Runs on the serialised JSON, where an em dash is the escape \\u2014 and a newline is \\n."""
+    s = re.sub(r'(\\n) *\\u2014 *', r'\1', s)
+    s = re.sub(r' *\\u2014 *', ', ', s)
+    s = re.sub(r', *,', ',', s)
+    return re.sub(r', *([.;:!?])', r'\1', s)
+
+
 def human(n):
     return f'{n / 1048576:.1f} MB' if n >= 1048576 else f'{max(1, round(n / 1024))} KB'
 
@@ -260,7 +268,9 @@ def main():
            'edges': edges, 'chunks': [dict(c, vector=vectorize(f"{c['docTitle']} {c['section']} {c['text']}")) for c in chunks],
            'vocab': vocab, 'idf': [round(x, 4) for x in idf]}
     dest = ROOT / 'app/data/graphrag-unified-index.json'
-    dest.write_text(json.dumps(out), encoding='utf-8')
+    # Visible copy uses no em dash (scripts/strip-em-dash.mjs): excerpts and descriptions shown in
+    # answers get a comma instead. Tokens are unaffected, so the TF-IDF vectors above still hold.
+    dest.write_text(strip_em_dash(json.dumps(out)), encoding='utf-8')
     print(f"Wrote unified GraphRAG index to {dest} ({round(dest.stat().st_size / 1024, 1)} KB)")
 
 

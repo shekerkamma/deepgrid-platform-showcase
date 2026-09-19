@@ -98,6 +98,7 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
   const [copiedModalSpec, setCopiedModalSpec] = useState<boolean>(false);
   const [dossierLayout, setDossierLayout] = useState<'cards' | 'table'>('cards');
   const [expandedCardIds, setExpandedCardIds] = useState<Set<string>>(new Set());
+  const [showTechnical, setShowTechnical] = useState(false);
 
   const toggleCardExpansion = (id: string) => {
     setExpandedCardIds(prev => {
@@ -186,8 +187,9 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
   // Document filter for quick queries: 2 from each document pillar by default (DG32 #1-#6, showcase #7-#9)
   const filteredPrompts = useMemo(() => {
     if (selectedDocId === 'all') {
+      // investor materials first: this site is read by investors, and the DG32 papers are the depth behind them
       const docIds: ('doc1' | 'doc2' | 'doc3' | 'doc4' | 'doc5' | 'doc6' | 'doc7' | 'doc8' | 'doc9')[] = [
-        'doc1', 'doc2', 'doc3', 'doc4', 'doc5', 'doc6', 'doc7', 'doc8', 'doc9'
+        'doc8', 'doc9', 'doc7', 'doc1', 'doc2', 'doc3', 'doc4', 'doc5', 'doc6'
       ];
       const selected: typeof quickPrompts = [];
       docIds.forEach(dId => {
@@ -324,7 +326,6 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
   return (
     <section className="page-wrap dr-ask-section">
       <SectionHead 
-        tag="04 / ASK DEEPGRID" 
         title="Ask DeepGrid" 
         copy="One place to ask about everything DeepGrid has published: the product portfolio and investment materials on this site, and the DG32 silicon engineering documents. Every answer is grounded in its source document, with the passage it came from."
       />
@@ -373,7 +374,7 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
               className="dr-ask-input"
               value={query}
               onChange={e => handleQuerySelect(e.target.value)}
-              placeholder="Ask about unit economics, supply chain security, 198-day loop, DAP-2020, ASIL-D safety…"
+              placeholder="Ask about the round, the revenue plan, a product or the silicon…"
               aria-label="Search DeepGrid knowledge"
             />
             {query && (
@@ -383,20 +384,38 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
             )}
           </div>
 
-          {/* Quick High-Yield Technical Queries (2 from each PDF document) */}
-          <div className="dr-ask-prompts" style={{marginTop: '10px'}} aria-label="Quick queries">
-            {filteredPrompts.map(p => (
-              <button
-                key={p.id}
-                className={`dr-ask-chip ${query === p.query ? 'active' : ''}`}
-                onClick={() => handleQuerySelect(p.query)}
-                title={p.query}
-              >
-                <span className="dr-ask-chip-doc">{p.docBadge}</span>
-                <span className="dr-ask-chip-text">{p.label}</span>
-              </button>
-            ))}
-          </div>
+          {/* Quick queries: the investor materials (Doc #7 to #9) as one row, the DG32 technical papers
+              (Doc #1 to #6) as a second row behind a toggle, so the first thing an investor sees is theirs. */}
+          {[
+            ['DeepGrid investor materials', filteredPrompts.filter(p => ['doc7', 'doc8', 'doc9'].includes(p.docId))],
+            ['DG32 technical documents', filteredPrompts.filter(p => !['doc7', 'doc8', 'doc9'].includes(p.docId))],
+          ].map(([label, prompts], gi) => (prompts as typeof quickPrompts).length > 0 && (
+            <div className="dr-ask-prompt-group" key={label as string}>
+              <p className="dr-ask-prompt-label">
+                {label as string}
+                {gi === 1 && selectedDocId === 'all' && (
+                  <button className="dr-ask-prompt-more" onClick={() => setShowTechnical(v => !v)} aria-expanded={showTechnical}>
+                    {showTechnical ? 'Hide' : `Show ${(prompts as typeof quickPrompts).length} questions`}
+                  </button>
+                )}
+              </p>
+              {(gi === 0 || showTechnical || selectedDocId !== 'all') && (
+                <div className="dr-ask-prompts" aria-label={label as string}>
+                  {(prompts as typeof quickPrompts).map(p => (
+                    <button
+                      key={p.id}
+                      className={`dr-ask-chip ${query === p.query ? 'active' : ''}`}
+                      onClick={() => handleQuerySelect(p.query)}
+                      title={p.query}
+                    >
+                      <span className="dr-ask-chip-doc">{p.docBadge}</span>
+                      <span className="dr-ask-chip-text">{p.label}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       )}
 

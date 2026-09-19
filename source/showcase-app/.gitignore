@@ -49,3 +49,4 @@ next-env.d.ts
 
 # every DeepGrid document, assembled for graphify (holds confidential originals; knowledge/sources.json is the manifest)
 /knowledge/sources/
+verify-shots/

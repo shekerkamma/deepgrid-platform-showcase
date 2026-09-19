@@ -1,0 +1,1510 @@
+WEBVTT
+
+00:00:00.180 --> 00:00:03.180
+Fifteen products. One chip.
+
+00:00:03.180 --> 00:00:05.180
+This is the long version.
+
+00:00:05.180 --> 00:00:10.180
+Every SKU in the plan, what it physically is, how it runs on shared silicon,
+
+00:00:10.180 --> 00:00:13.180
+who pays for it, and what it contributes.
+
+00:00:13.180 --> 00:00:17.180
+Everything here is a management projection prepared for fundraising.
+
+00:00:17.180 --> 00:00:21.180
+Each product gets the same four slides, in the same order.
+
+00:00:21.180 --> 00:00:27.180
+What it is, how it works, who buys it and why now, and how it fits.
+
+00:00:27.180 --> 00:00:30.180
+Four of them get two more, because a working simulator exists,
+
+00:00:30.180 --> 00:00:33.180
+and you should watch it rather than take our word.
+
+00:00:33.180 --> 00:00:38.180
+Learn the pattern once, and the next eighty slides navigate themselves.
+
+00:00:38.180 --> 00:00:41.180
+The demand is legislated, not forecast.
+
+00:00:41.180 --> 00:00:45.180
+Driver drowsiness, blind spot, and lane departure obligations
+
+00:00:45.180 --> 00:00:49.180
+land on new and existing commercial vehicles, on fixed dates.
+
+00:00:49.180 --> 00:00:52.180
+About a million trucks a year fall in scope.
+
+00:00:52.180 --> 00:00:55.180
+For a fleet operator, the question is not whether to buy,
+
+00:00:55.180 --> 00:00:58.180
+it is whose chip is inside when they do.
+
+00:00:58.180 --> 00:01:03.180
+The whole plan is downstream of one twenty-eight nanometer part,
+
+00:01:03.180 --> 00:01:05.180
+and the program is deliberately gated.
+
+00:01:05.180 --> 00:01:11.180
+Prove the compute and radar blocks first, then the full die, then back-end sign-off.
+
+00:01:11.180 --> 00:01:14.180
+The production mask, the largest single commitment,
+
+00:01:14.180 --> 00:01:17.180
+is only paid for once working silicon exists.
+
+00:01:17.180 --> 00:01:19.180
+Here is the part itself.
+
+00:01:19.180 --> 00:01:26.180
+32,768 multiply accumulate units at 600 megahertz,
+
+00:01:26.180 --> 00:01:29.180
+102 gigabytes a second of memory bandwidth,
+
+00:01:29.180 --> 00:01:34.180
+hardware softmax, and lockstep cores for the automotive safety path.
+
+00:01:34.180 --> 00:01:38.180
+The number that matters most, it fuses eleven sensor channels
+
+00:01:38.180 --> 00:01:42.180
+in 8.6 milliseconds of a 33 millisecond frame.
+
+00:01:42.180 --> 00:01:45.180
+74% of the frame is left unused,
+
+00:01:45.180 --> 00:01:49.180
+and that headroom is why one die becomes fifteen products.
+
+00:01:49.180 --> 00:01:53.180
+All fifteen, ranked by revenue in the final year.
+
+00:01:53.180 --> 00:01:56.180
+Places are held flat across six years,
+
+00:01:56.180 --> 00:01:59.180
+so growth comes from volume, not from price.
+
+00:01:59.180 --> 00:02:02.180
+Note how far the list ranges.
+
+00:02:02.180 --> 00:02:04.180
+50,000 rupees for a mirror unit,
+
+00:02:04.180 --> 00:02:07.180
+18,000 for a bare die,
+
+00:02:07.180 --> 00:02:09.180
+several lakh for a truck kit,
+
+00:02:09.180 --> 00:02:13.180
+same silicon, priced independently by the market it sells into.
+
+00:02:14.180 --> 00:02:17.180
+Road autonomy is two-thirds of the plan,
+
+00:02:17.180 --> 00:02:21.180
+762 crore, three SKUs.
+
+00:02:21.180 --> 00:02:23.180
+This is where the mandate acts,
+
+00:02:23.180 --> 00:02:25.180
+and where the concentration risk sits.
+
+00:02:25.180 --> 00:02:27.180
+Take these three carefully.
+
+00:02:27.180 --> 00:02:30.180
+A replacement rear-view mirror with a display built in,
+
+00:02:30.180 --> 00:02:33.180
+four small body cameras, and a loom.
+
+00:02:33.180 --> 00:02:37.180
+50,000 rupees, fitted in an afternoon.
+
+00:02:37.180 --> 00:02:39.180
+It is the least sophisticated thing we make,
+
+00:02:39.180 --> 00:02:42.180
+and it ships first on current generation hardware.
+
+00:02:42.180 --> 00:02:46.180
+Four cameras cover the quarters a driver cannot see.
+
+00:02:46.180 --> 00:02:49.180
+The chip stitches them into a single surround view,
+
+00:02:49.180 --> 00:02:52.180
+and watches the danger zone for anything entering it.
+
+00:02:52.180 --> 00:02:56.180
+The driver gets a stitched image and a directional chime.
+
+00:02:56.180 --> 00:02:58.180
+No braking, no steering.
+
+00:02:58.180 --> 00:03:01.180
+It informs, and that is the whole product.
+
+00:03:01.180 --> 00:03:04.180
+No mandate applies here, which is exactly the point.
+
+00:03:04.180 --> 00:03:07.180
+It already sells on its own merits.
+
+00:03:07.180 --> 00:03:10.180
+Owners and small fleets buy it as an accessory,
+
+00:03:10.180 --> 00:03:13.180
+through fitment shops and accessory catalogs,
+
+00:03:13.180 --> 00:03:15.180
+for visibility and parking.
+
+00:03:15.180 --> 00:03:18.180
+Demand does not wait for a compliance date.
+
+00:03:18.180 --> 00:03:22.180
+270 crore, 24% of group revenue,
+
+00:03:22.180 --> 00:03:25.180
+at 89% gross margin.
+
+00:03:25.180 --> 00:03:29.180
+It carries the highest unit count of anything in the portfolio,
+
+00:03:29.180 --> 00:03:31.180
+and the lowest fitment complexity.
+
+00:03:31.180 --> 00:03:35.180
+So it builds the channel reach that the harder products inherit later.
+
+00:03:35.180 --> 00:03:39.180
+A self-driving retrofit kit for vehicles that never leave a building.
+
+00:03:39.180 --> 00:03:43.180
+A sensor head, a compute box, and a drive-by-wire interface.
+
+00:03:43.180 --> 00:03:45.180
+One lakh rupees.
+
+00:03:45.180 --> 00:03:48.180
+Fitted to forklifts and tugs a sight already owns.
+
+00:03:48.180 --> 00:03:53.180
+This is the first product where the silicon closes the loop instead of advising.
+
+00:03:53.180 --> 00:03:58.180
+Cameras and depth sensing read the aisle, the load, and the people in it.
+
+00:03:58.180 --> 00:04:01.180
+The chip localizes against a sight map it holds on board.
+
+00:04:01.180 --> 00:04:04.180
+A planner picks a path and a speed,
+
+00:04:04.180 --> 00:04:08.180
+then drive-by-wire actually steers, accelerates, and brakes,
+
+00:04:08.180 --> 00:04:12.180
+the vehicle drives, the driver is not there.
+
+00:04:12.180 --> 00:04:18.180
+Warehouse and industrial operators, direct or through material handling integrators.
+
+00:04:18.180 --> 00:04:21.180
+Inside a private site, no homologation applies,
+
+00:04:21.180 --> 00:04:25.180
+so this is a commercial decision, not a regulatory one,
+
+00:04:25.180 --> 00:04:31.180
+which is why level four behavior ships here years before it is legal on a public road.
+
+00:04:31.180 --> 00:04:35.180
+42 crore, under 4% of revenue,
+
+00:04:35.180 --> 00:04:38.180
+small in the model and large in the argument.
+
+00:04:38.180 --> 00:04:41.180
+It is the technical proof point for the road roadmap,
+
+00:04:41.180 --> 00:04:45.180
+running the same silicon in a place where it is allowed to make the decision.
+
+00:04:45.180 --> 00:04:49.180
+We built a drawable warehouse floor for this.
+
+00:04:49.180 --> 00:04:55.180
+You author the route, place workers, pure vehicles, trolleys, and spills as obstacles,
+
+00:04:55.180 --> 00:04:56.180
+and run it.
+
+00:04:56.180 --> 00:04:58.180
+The alert policy is configurable.
+
+00:04:58.180 --> 00:05:04.180
+Honk, voice, both, silent, because that is a sight decision, not ours.
+
+00:05:04.180 --> 00:05:06.180
+And recovery is explicit.
+
+00:05:06.180 --> 00:05:09.180
+It reroutes after a set stuck time.
+
+00:05:09.180 --> 00:05:11.180
+Here it is, actually running.
+
+00:05:11.180 --> 00:05:16.180
+Inbound put away, then a pick run, then the peak hour floor.
+
+00:05:16.180 --> 00:05:20.180
+Watch the safety ring traveling with the truck and gating at speed.
+
+00:05:20.180 --> 00:05:25.180
+And watch the sensor fusion panel, top right, build the bird's eye view.
+
+00:05:25.180 --> 00:05:29.180
+The third scenario is the one that decides whether a site can run this.
+
+00:05:29.180 --> 00:05:35.180
+The smart truck kit, forward camera, radar, compute box, driver display,
+
+00:05:35.180 --> 00:05:38.180
+and the harness that talks to the vehicle.
+
+00:05:38.180 --> 00:05:40.180
+Two and a half lakh rupees.
+
+00:05:40.180 --> 00:05:45.180
+This is the biggest single line in the plan and the one the mandate is written for.
+
+00:05:45.180 --> 00:05:49.180
+Camera and radar watch the forward path and the blind quarters.
+
+00:05:49.180 --> 00:05:54.180
+The chip fuses both into one object list carrying range and closing speed.
+
+00:05:54.180 --> 00:05:59.180
+Collision, lane, and blind spot logic decide whether to warn.
+
+00:05:59.180 --> 00:06:04.180
+The driver is warned and where the vehicle supports it, the brake interface is signaled.
+
+00:06:04.180 --> 00:06:10.180
+Radar matters here because closing speed is what a braking decision actually turns on.
+
+00:06:10.180 --> 00:06:13.180
+Fleet operators and truck manufacturers.
+
+00:06:13.180 --> 00:06:16.180
+And the decision is compliance led rather than discretionary.
+
+00:06:16.180 --> 00:06:19.180
+Retrofit through installers now.
+
+00:06:19.180 --> 00:06:22.180
+Factory fit is the longer, larger route.
+
+00:06:22.180 --> 00:06:26.180
+The buying question is which supplier on what date?
+
+00:06:26.180 --> 00:06:28.180
+450 crore.
+
+00:06:28.180 --> 00:06:31.180
+40% of group revenue from one SKU.
+
+00:06:31.180 --> 00:06:34.180
+That is the concentration to underwrite.
+
+00:06:34.180 --> 00:06:39.180
+It is also why the portfolio has a demand floor at all rather than a demand forecast.
+
+00:06:39.180 --> 00:06:41.180
+Three road profiles.
+
+00:06:41.180 --> 00:06:48.180
+Market street, single carriageway highway, and a deliberate stress test run against the same perception stack.
+
+00:06:48.180 --> 00:06:50.180
+The vehicle model is real.
+
+00:06:50.180 --> 00:06:56.180
+550 kilograms, 2.1 meter wheelbase, tire friction of 0.75.
+
+00:06:56.180 --> 00:07:01.180
+Steering angle and lateral acceleration are solved, not scripted.
+
+00:07:01.180 --> 00:07:03.180
+Watch the planner view in the center.
+
+00:07:03.180 --> 00:07:08.180
+It redraws from the fused object list, not from an animation path.
+
+00:07:08.180 --> 00:07:13.180
+On the right, the perception rail names what it sees and how far away it is.
+
+00:07:13.180 --> 00:07:17.180
+A motorbike at 26 meters, an auto rickshaw at 38.
+
+00:07:17.180 --> 00:07:22.180
+Three road profiles, one stack, nothing reloaded between them.
+
+00:07:22.180 --> 00:07:27.180
+Before the silicon section, look at what the truck kit actually hands the compute.
+
+00:07:27.180 --> 00:07:29.180
+Seven color cameras.
+
+00:07:29.180 --> 00:07:36.180
+Road left and right, side left and right, a dash cam, a driver monitoring camera, and a rear camera.
+
+00:07:36.180 --> 00:07:39.180
+Two thermal cameras, one in each mirror tower.
+
+00:07:39.180 --> 00:07:43.180
+Radar at both ends for range and relative motion.
+
+00:07:43.180 --> 00:07:50.180
+11 configured inputs arriving at one incab processor and one perception platform leaving it.
+
+00:07:50.180 --> 00:07:56.180
+For the fleet operator, the installation is a single application, not 11 integrations.
+
+00:07:56.180 --> 00:07:58.180
+And here it is moving.
+
+00:07:58.180 --> 00:08:04.180
+Watch the 11 channels converge on the die, and one AD2 stream leave it.
+
+00:08:04.180 --> 00:08:10.180
+The bar underneath is the frame budget, 8.6 milliseconds against 33.3.
+
+00:08:10.180 --> 00:08:13.180
+Treat that as an architecture illustration.
+
+00:08:13.180 --> 00:08:18.180
+The next two slides set out exactly what would have to be measured before it becomes a claim.
+
+00:08:18.180 --> 00:08:20.180
+The 11 are not redundancy.
+
+00:08:20.180 --> 00:08:26.180
+Each tower carries a road camera, a 120 degree side camera, and a thermal camera.
+
+00:08:26.180 --> 00:08:30.180
+So the same quarter is seen three ways in different physics.
+
+00:08:30.180 --> 00:08:35.180
+Radar covers both ends, where cameras are weakest in rain and glare.
+
+00:08:35.180 --> 00:08:41.180
+Inside the cab, the dash cam records, and the driver monitoring camera watches the driver.
+
+00:08:41.180 --> 00:08:43.180
+Different tasks on different data.
+
+00:08:43.180 --> 00:08:49.180
+What stays open is calibration, occlusion, mounting, and the final sensor list.
+
+00:08:49.180 --> 00:08:53.180
+Before we leave the truck kit, look at the sensor layout it actually ships.
+
+00:08:53.180 --> 00:08:57.180
+Two towers retrofit above the existing mirrors.
+
+00:08:57.180 --> 00:09:02.180
+Each with a thermal camera, a road camera, and a 120 degree side camera.
+
+00:09:02.180 --> 00:09:06.180
+Two cameras in the cab, 4D radar, front and rear.
+
+00:09:06.180 --> 00:09:09.180
+Watch the coverage cone sweep and overlap.
+
+00:09:09.180 --> 00:09:14.180
+The claim the layout makes is that no quarter of a heavy truck goes unobserved.
+
+00:09:14.180 --> 00:09:17.180
+This is the discipline that number still needs.
+
+00:09:17.180 --> 00:09:21.180
+33.3 milliseconds is about 30 frames a second.
+
+00:09:21.180 --> 00:09:26.180
+8.6 of them is the processing claim, which leaves roughly 24.7.
+
+00:09:26.180 --> 00:09:30.180
+But that is budget subtraction, not measured headroom.
+
+00:09:30.180 --> 00:09:33.180
+Three things have to be fixed before it is a claim.
+
+00:09:33.180 --> 00:09:38.180
+Which acquisition, inference, and fusion stages sit inside the measurement,
+
+00:09:38.180 --> 00:09:42.180
+the precision and sustained rate, and the worst case rather than the average.
+
+00:09:42.180 --> 00:09:47.180
+The proving is staged because the stages answer different questions.
+
+00:09:47.180 --> 00:09:53.180
+An FPGA demonstration exercises the software, the interfaces, and prototype compute.
+
+00:09:53.180 --> 00:09:59.180
+ASIC verification checks scaled compute, memory, clock, power, and area together.
+
+00:09:59.180 --> 00:10:02.180
+None of which an FPGA can tell you.
+
+00:10:02.180 --> 00:10:07.180
+Vehicle qualification tests thermal behavior, the safety path, and real operating conditions.
+
+00:10:07.180 --> 00:10:12.180
+Confidence should track the evidence at each stage rather than run ahead of it.
+
+00:10:12.180 --> 00:10:15.180
+That staging already has a history.
+
+00:10:15.180 --> 00:10:18.180
+Nine steps, and five of them are silicon.
+
+00:10:18.180 --> 00:10:23.180
+Each rung added one block and then measured the frame rate that followed.
+
+00:10:23.180 --> 00:10:26.180
+Watch the bars fill as it climbs.
+
+00:10:26.180 --> 00:10:29.180
+So C2 is what this raise funds.
+
+00:10:29.180 --> 00:10:35.180
+32,768 multiply accumulates at 600 megahertz.
+
+00:10:35.180 --> 00:10:38.180
+Tapeout in the fourth quarter of 2026.
+
+00:10:38.180 --> 00:10:42.180
+The frame rates are management figures, not third-party benchmarks.
+
+00:10:42.180 --> 00:10:47.180
+Now, the half of the business that sells the chip instead of the vehicle.
+
+00:10:47.180 --> 00:10:53.180
+194 crore across five SKUs, and the highest margins in the plan,
+
+00:10:53.180 --> 00:10:55.180
+because none of these need an installation crew.
+
+00:10:55.180 --> 00:11:01.180
+The bare die, in tray or reel, for a customer to place on their own board.
+
+00:11:01.180 --> 00:11:03.180
+18,000 rupees.
+
+00:11:03.180 --> 00:11:06.180
+No enclosure, no cables, no fitting.
+
+00:11:06.180 --> 00:11:10.180
+We ship silicon and a data sheet, and the customer does the rest.
+
+00:11:10.180 --> 00:11:14.180
+The customer's own sensors feed their own board.
+
+00:11:14.180 --> 00:11:18.180
+Our die does the perception compute inside their design.
+
+00:11:18.180 --> 00:11:21.180
+Their software decides what to do with the result,
+
+00:11:21.180 --> 00:11:24.180
+and their product ships with our silicon inside it.
+
+00:11:24.180 --> 00:11:27.180
+We supply one stage of someone else's chain.
+
+00:11:27.180 --> 00:11:32.180
+Manufacturers who want Indian design silicon and domestic supply,
+
+00:11:32.180 --> 00:11:36.180
+rather than an imported part, and who have the engineering to integrate it,
+
+00:11:36.180 --> 00:11:40.180
+procurement policy is often as decisive as specification here.
+
+00:11:40.180 --> 00:11:46.180
+54 crore at 94% gross margin, the highest in the portfolio.
+
+00:11:46.180 --> 00:11:50.180
+Every rupee here arrives without installation capacity,
+
+00:11:50.180 --> 00:11:53.180
+warranty logistics, or a fitment channel behind it.
+
+00:11:53.180 --> 00:11:56.180
+Now the half of the business that sells the chip itself,
+
+00:11:56.180 --> 00:11:58.180
+and the problem that shapes it,
+
+00:11:58.180 --> 00:12:01.180
+eight processing cores behind one dispatch point.
+
+00:12:01.180 --> 00:12:04.180
+The cores are not the constraint, the queue is.
+
+00:12:04.180 --> 00:12:08.180
+Give each core its own address generation and its own transfers,
+
+00:12:08.180 --> 00:12:10.180
+and they proceed independently,
+
+00:12:10.180 --> 00:12:14.180
+though parallel requests still compete for finite service capacity.
+
+00:12:14.180 --> 00:12:20.180
+The 470 to 85 millisecond figure is a proposal awaiting test bench evidence,
+
+00:12:20.180 --> 00:12:22.180
+and the deck says so on the slide.
+
+00:12:22.180 --> 00:12:25.180
+Watch the two run side by side.
+
+00:12:25.180 --> 00:12:29.180
+On the left, one data engine and seven cores waiting their turn.
+
+00:12:29.180 --> 00:12:33.180
+On the right, the same silicon with an engine per core.
+
+00:12:33.180 --> 00:12:36.180
+The utilization columns are the whole point,
+
+00:12:36.180 --> 00:12:40.180
+short and flat on the left, filled and held on the right.
+
+00:12:40.180 --> 00:12:44.180
+Illustrative dispatch, not a measured application speedup.
+
+00:12:44.180 --> 00:12:48.180
+What actually sits inside one of those local engines?
+
+00:12:48.180 --> 00:12:51.180
+A descriptor names the transfer parameters and the data layout,
+
+00:12:51.180 --> 00:12:54.180
+a three level address engine walks the tensor
+
+00:12:54.180 --> 00:12:57.180
+without asking a central dispatcher for every step,
+
+00:12:57.180 --> 00:13:01.180
+a read FIFO absorbs the gap between when memory serves
+
+00:13:01.180 --> 00:13:03.180
+and when compute consumes.
+
+00:13:03.180 --> 00:13:06.180
+The cost is roughly 600 lookup tables each,
+
+00:13:06.180 --> 00:13:09.180
+about 4,800 for eight,
+
+00:13:09.180 --> 00:13:12.180
+plus arbitration logic and the firmware to drive it.
+
+00:13:12.180 --> 00:13:14.180
+Step back from our own design,
+
+00:13:14.180 --> 00:13:18.180
+and the useful comparison is not who has a DMA,
+
+00:13:18.180 --> 00:13:20.180
+it is who schedules the movement,
+
+00:13:20.180 --> 00:13:24.180
+where the data sits and what has to cross the chip.
+
+00:13:24.180 --> 00:13:27.180
+A shared engine schedules for several cores.
+
+00:13:27.180 --> 00:13:31.180
+Local controllers issue requests nearer the compute they serve,
+
+00:13:31.180 --> 00:13:33.180
+so more data stays local,
+
+00:13:33.180 --> 00:13:37.180
+and then software carries the burden of mapping and coordinating it.
+
+00:13:37.180 --> 00:13:40.180
+The outcome is decided by workload results,
+
+00:13:40.180 --> 00:13:43.180
+compiler mapping and implementation IP,
+
+00:13:43.180 --> 00:13:45.180
+not by the data mover alone.
+
+00:13:45.180 --> 00:13:49.180
+Six chips, six answers to that question.
+
+00:13:49.180 --> 00:13:52.180
+From our own shared DMA arrangement today,
+
+00:13:52.180 --> 00:13:56.180
+through mobilized VLIW cores on a shared level 2 cache
+
+00:13:56.180 --> 00:13:59.180
+and NVIDIA's brute force parallelism,
+
+00:13:59.180 --> 00:14:01.180
+out to Tesla's Dojo,
+
+00:14:01.180 --> 00:14:03.180
+where every core holds private SRAM
+
+00:14:03.180 --> 00:14:06.180
+and the die carries no DRAM at all.
+
+00:14:06.180 --> 00:14:09.180
+Per core DMA against a shared level 2 cache
+
+00:14:09.180 --> 00:14:10.180
+sits in the middle,
+
+00:14:10.180 --> 00:14:13.180
+and that middle is where most of the industry already is.
+
+00:14:13.180 --> 00:14:16.180
+Vendor figures here come from public sources.
+
+00:14:16.180 --> 00:14:18.180
+This is where the eight times figure comes from,
+
+00:14:18.180 --> 00:14:20.180
+stated carefully.
+
+00:14:20.180 --> 00:14:25.180
+64 multiply accumulate positions process the reduction depth across iterations.
+
+00:14:25.180 --> 00:14:30.180
+512 positions express that depth in hardware instead.
+
+00:14:30.180 --> 00:14:33.180
+Compare the same k equals 8 tile at the same precision,
+
+00:14:33.180 --> 00:14:36.180
+and the arithmetic ratio is 8.
+
+00:14:36.180 --> 00:14:38.180
+It is an idealized comparison.
+
+00:14:38.180 --> 00:14:40.180
+Pipeline fill, tensor shapes,
+
+00:14:40.180 --> 00:14:43.180
+data reuse and memory delivery all still apply.
+
+00:14:43.180 --> 00:14:47.180
+And this is what the customer is actually buying, running.
+
+00:14:47.180 --> 00:14:50.180
+On the left, the flat 8x8 matrix,
+
+00:14:50.180 --> 00:14:52.180
+as it works on the FPGA today,
+
+00:14:52.180 --> 00:14:55.180
+64 multiply accumulates a cycle,
+
+00:14:55.180 --> 00:14:58.180
+iterating the reduction in software.
+
+00:14:58.180 --> 00:15:02.180
+On the right, the cube on 28 nanometer silicon,
+
+00:15:02.180 --> 00:15:04.180
+where that reduction becomes hardware depth,
+
+00:15:04.180 --> 00:15:07.180
+and all eight layers fire at once.
+
+00:15:07.180 --> 00:15:09.180
+Watch the tile counters diverge.
+
+00:15:09.180 --> 00:15:12.180
+That gap is the eight times figure,
+
+00:15:12.180 --> 00:15:14.180
+shown rather than claimed.
+
+00:15:14.180 --> 00:15:16.180
+Which is what the section has been building to.
+
+00:15:16.180 --> 00:15:20.180
+More arithmetic increases the demand for data.
+
+00:15:20.180 --> 00:15:21.180
+It does not satisfy it.
+
+00:15:21.180 --> 00:15:25.180
+Independent controllers remove one serialization point,
+
+00:15:25.180 --> 00:15:29.180
+but memory mapping and arbitration still decide which requests complete.
+
+00:15:29.180 --> 00:15:32.180
+Compute geometry, data movement,
+
+00:15:32.180 --> 00:15:36.180
+and physical implementation are one design problem, not three.
+
+00:15:36.180 --> 00:15:38.180
+Measure useful work.
+
+00:15:38.180 --> 00:15:41.180
+Peak tops on its own says nothing about utilization.
+
+00:15:41.180 --> 00:15:44.180
+Follow a single tile end-to-end.
+
+00:15:44.180 --> 00:15:48.180
+External memory feeds the shared on-chip storage.
+
+00:15:48.180 --> 00:15:52.180
+Eight banks serve requests according to mapping and arbitration.
+
+00:15:52.180 --> 00:15:56.180
+56 local movers each supply their own compute cube.
+
+00:15:56.180 --> 00:15:58.180
+The figure quoted here,
+
+00:15:58.180 --> 00:16:01.180
+56 times 512 multiply accumulates,
+
+00:16:01.180 --> 00:16:04.180
+at 600 megahertz times two operations,
+
+00:16:04.180 --> 00:16:06.180
+is an arithmetic peak,
+
+00:16:06.180 --> 00:16:09.180
+and the slide is explicit that it is not a benchmark.
+
+00:16:09.180 --> 00:16:13.180
+And here is the failure mode, with the workload held constant.
+
+00:16:13.180 --> 00:16:17.180
+Spread evenly, 56 requests give seven per bank.
+
+00:16:17.180 --> 00:16:19.180
+Collide them all onto bank zero,
+
+00:16:19.180 --> 00:16:23.180
+and seven banks sit idle while the array stalls.
+
+00:16:23.180 --> 00:16:26.180
+Spread the addresses again, and the capacity returns.
+
+00:16:26.180 --> 00:16:29.180
+What decides which of those you get is tensor layout,
+
+00:16:29.180 --> 00:16:33.180
+address hashing, arbitration, and compiler scheduling.
+
+00:16:33.180 --> 00:16:36.180
+And the request counts here are a controlled illustration,
+
+00:16:36.180 --> 00:16:38.180
+not measured utilization.
+
+00:16:38.180 --> 00:16:40.180
+So the honest close to this section,
+
+00:16:40.180 --> 00:16:44.180
+a production advantage is demonstrated by the whole platform,
+
+00:16:44.180 --> 00:16:46.180
+never by a multiplier count.
+
+00:16:46.180 --> 00:16:50.180
+Freeze the core count, the precision, the clock, and the bandwidth.
+
+00:16:50.180 --> 00:16:55.180
+Then measure sustained throughput and worst-case latency on representative tensors,
+
+00:16:55.180 --> 00:17:00.180
+with power, area, safety architecture, and silicon status recorded beside them.
+
+00:17:00.180 --> 00:17:05.180
+Arithmetic peaks at 600 megahertz are not measured application throughput,
+
+00:17:05.180 --> 00:17:07.180
+and this deck does not offer them as such.
+
+00:17:07.180 --> 00:17:10.180
+The same die on an M.2 module,
+
+00:17:10.180 --> 00:17:13.180
+one camera channel plus the software kit,
+
+00:17:13.180 --> 00:17:17.180
+sized to drop into an enclosure and a sensor the customer already owns.
+
+00:17:17.180 --> 00:17:21.180
+One camera in, one perception stream out,
+
+00:17:21.180 --> 00:17:23.180
+over a standard module interface.
+
+00:17:23.180 --> 00:17:26.180
+It is the smallest configuration the part supports,
+
+00:17:26.180 --> 00:17:30.180
+and the point is that it is the same part, running less.
+
+00:17:30.180 --> 00:17:34.180
+Product teams who want the silicon and the tool chain,
+
+00:17:34.180 --> 00:17:37.180
+but do not want to design a board around a bare die.
+
+00:17:37.180 --> 00:17:43.180
+It converts a semiconductor sale into a module sale for customers without a hardware team.
+
+00:17:43.180 --> 00:17:47.180
+25.5 crore, at 89% margin.
+
+00:17:47.180 --> 00:17:52.180
+Modest on its own, it exists to make the silicon reachable by customers
+
+00:17:52.180 --> 00:17:54.180
+who would otherwise not buy at all.
+
+00:17:54.180 --> 00:17:59.180
+A board-level module with two camera inputs and the software kit,
+
+00:17:59.180 --> 00:18:03.180
+25,000 rupees, the middle rung of the compute box ladder,
+
+00:18:03.180 --> 00:18:06.180
+and the one that sells in the largest numbers of the three.
+
+00:18:06.180 --> 00:18:10.180
+Two channels is where fusion begins to matter.
+
+00:18:10.180 --> 00:18:15.180
+The moment you have to reconcile two views of the same scene into one object list,
+
+00:18:15.180 --> 00:18:20.180
+it is the first configuration that justifies purpose-built transformer hardware
+
+00:18:20.180 --> 00:18:22.180
+over a general purpose processor.
+
+00:18:22.180 --> 00:18:25.180
+Systems that need more than a single view,
+
+00:18:25.180 --> 00:18:27.180
+but not full surround coverage,
+
+00:18:27.180 --> 00:18:29.180
+reversing with side detection,
+
+00:18:29.180 --> 00:18:31.180
+a two-camera inspection rig,
+
+00:18:31.180 --> 00:18:34.180
+a small autonomous platform,
+
+00:18:34.180 --> 00:18:37.180
+buyers who would find a four-channel card wasteful
+
+00:18:37.180 --> 00:18:39.180
+and a single-channel insufficient.
+
+00:18:39.180 --> 00:18:44.180
+28.8 crore, a step on a ladder rather than a destination,
+
+00:18:44.180 --> 00:18:49.180
+but the ladder is what lets one die address several price points at once.
+
+00:18:49.180 --> 00:18:53.180
+A PCIe card carrying the chip with four camera inputs
+
+00:18:53.180 --> 00:18:57.180
+for a host system that provides the enclosure and the power,
+
+00:18:57.180 --> 00:19:02.180
+50,000 rupees, and the largest configuration we sell as a component.
+
+00:19:02.180 --> 00:19:05.180
+Four channels demands the memory bandwidth.
+
+00:19:05.180 --> 00:19:08.180
+The compute geometry was designed around.
+
+00:19:08.180 --> 00:19:13.180
+Each compute cube runs its own local memory access against a banked cache,
+
+00:19:13.180 --> 00:19:17.180
+which is what keeps utilization high instead of starving on a single shared path.
+
+00:19:17.180 --> 00:19:22.180
+This is the configuration that shows why the die is built the way it is.
+
+00:19:22.180 --> 00:19:25.180
+Customers building full surround perception
+
+00:19:25.180 --> 00:19:30.180
+who want the compute inside their own architecture rather than in a box we supply,
+
+00:19:30.180 --> 00:19:33.180
+robotics platforms, industrial vehicles,
+
+00:19:33.180 --> 00:19:38.180
+and anyone who already has a host machine and needs to add sight to it.
+
+00:19:38.180 --> 00:19:42.180
+36 crore, the largest of the three compute boxes.
+
+00:19:42.180 --> 00:19:47.180
+Together, the A100 family is 90 crore of revenue
+
+00:19:47.180 --> 00:19:51.180
+that needs no vehicle, no installer, and no homologation.
+
+00:19:51.180 --> 00:19:56.180
+Not hardware at all, a license to the trained perception models and the tool chain
+
+00:19:56.180 --> 00:20:00.180
+so a customer can run our software on their own platform,
+
+00:20:00.180 --> 00:20:03.180
+priced per deployment with nothing shipped in a box.
+
+00:20:03.180 --> 00:20:08.180
+The models are the accumulated result of running these sensors on Indian roads.
+
+00:20:08.180 --> 00:20:12.180
+A customer licenses that, integrates it, and ships.
+
+00:20:12.180 --> 00:20:16.180
+There is no board, no bill of materials, and nothing to manufacture.
+
+00:20:16.180 --> 00:20:20.180
+Teams that want perception tuned for Indian road conditions
+
+00:20:20.180 --> 00:20:23.180
+the traffic mix, the lane discipline, the light,
+
+00:20:23.180 --> 00:20:28.180
+without spending three years collecting the data to train it themselves.
+
+00:20:28.180 --> 00:20:31.180
+The data set is the product here, not the code.
+
+00:20:31.180 --> 00:20:36.180
+50 crore at 94% margin and it starts later than everything else
+
+00:20:36.180 --> 00:20:42.180
+in the 2029 financial year because a license needs a track record before anyone buys one.
+
+00:20:42.180 --> 00:20:47.180
+It is the only line in the plan with no bill of materials whatsoever.
+
+00:20:47.180 --> 00:20:54.180
+Two SKUs, 89 crore, and the highest revenue per unit anywhere in the portfolio.
+
+00:20:54.180 --> 00:20:59.180
+Here, we stop selling a product and start selling the work the product does.
+
+00:20:59.180 --> 00:21:03.180
+Not a sale, a vehicle we own and operate under contract
+
+00:21:03.180 --> 00:21:07.180
+where the customer pays for the transport rather than the truck.
+
+00:21:07.180 --> 00:21:12.180
+The revenue per unit is the largest in the plan because we are booking the whole job.
+
+00:21:12.180 --> 00:21:16.180
+The vehicle runs the same autonomy stack as the kit we sell.
+
+00:21:16.180 --> 00:21:20.180
+Fleet logic schedules it, routes it, and hands off to a remote operator
+
+00:21:20.180 --> 00:21:24.180
+when the situation exceeds what the vehicle should decide alone.
+
+00:21:24.180 --> 00:21:28.180
+The difference from AD2 is commercial, not technical.
+
+00:21:28.180 --> 00:21:33.180
+Operators comparing cost per ton kilometer against a driven alternative
+
+00:21:33.180 --> 00:21:38.180
+and increasingly comparing against driver availability rather than driver cost
+
+00:21:38.180 --> 00:21:42.180
+because on many routes the constraint is finding a driver at all.
+
+00:21:42.180 --> 00:21:47.180
+66 crore, it is the line that shows what the technology is worth
+
+00:21:47.180 --> 00:21:51.180
+when we capture the operating margin instead of the hardware margin.
+
+00:21:51.180 --> 00:21:55.180
+It also carries operational risk the product lines do not.
+
+00:21:55.180 --> 00:21:58.180
+We own the asset and the uptime.
+
+00:21:58.180 --> 00:22:02.180
+An autonomous container yard vehicle working inside a port perimeter.
+
+00:22:02.180 --> 00:22:05.180
+A controlled site but not an easy one.
+
+00:22:05.180 --> 00:22:08.180
+Heavy equipment overhead, tight lanes between stacks,
+
+00:22:08.180 --> 00:22:11.180
+and real consequences for a positioning error.
+
+00:22:11.180 --> 00:22:17.180
+Under a quay crane, satellite positioning degrades exactly where precision matters most.
+
+00:22:17.180 --> 00:22:23.180
+Sensor fusion on our silicon holds 7 cm in the open and 22 under the crane
+
+00:22:23.180 --> 00:22:25.180
+where satellite alone falls away.
+
+00:22:25.180 --> 00:22:30.180
+That positioning is what makes crane synchronized dispatch possible at all.
+
+00:22:30.180 --> 00:22:36.180
+Terminal operators measured on throughput and labor cost inside a geofenced site.
+
+00:22:36.180 --> 00:22:38.180
+No public road homologation applies,
+
+00:22:38.180 --> 00:22:43.180
+so adoption is limited by operational confidence rather than regulation.
+
+00:22:43.180 --> 00:22:49.180
+22 and a half crore, read its market share differently from the others.
+
+00:22:49.180 --> 00:22:54.180
+The sized pool is total port automation including cranes and software
+
+00:22:54.180 --> 00:22:57.180
+and we sell only the vehicle layer.
+
+00:22:57.180 --> 00:23:03.180
+A working twin of a container terminal built to prove the three things the program asks for.
+
+00:23:03.180 --> 00:23:06.180
+That positioning holds where satellite fails.
+
+00:23:06.180 --> 00:23:08.180
+That routing copes with congestion.
+
+00:23:08.180 --> 00:23:11.180
+And that scheduling collapses crane idle time.
+
+00:23:11.180 --> 00:23:16.180
+It runs in shadow mode first, advising the terminal before it is given control.
+
+00:23:16.180 --> 00:23:21.180
+Quay discharge, then the container canyon, then peak mixed traffic.
+
+00:23:21.180 --> 00:23:26.180
+Watch the two confidence bars diverge as the vehicle enters the canyon.
+
+00:23:26.180 --> 00:23:29.180
+Satellite drops, fusion holds.
+
+00:23:29.180 --> 00:23:32.180
+The trial panel on the right carries the numbers.
+
+00:23:32.180 --> 00:23:38.180
+Seven centimeters open, 22 under crane, 9% error on arrival time.
+
+00:23:38.180 --> 00:23:42.180
+Five SKUs, 83.5 crore.
+
+00:23:42.180 --> 00:23:47.180
+Two purposes, sensors that make the main products work in conditions where cameras fail
+
+00:23:47.180 --> 00:23:52.180
+and robotics platforms that put the same silicon into a second market cycle.
+
+00:23:52.180 --> 00:23:58.180
+A bolt-on long wave infrared pod with its own lens and heater feeding the compute box.
+
+00:23:58.180 --> 00:24:00.180
+40,000 rupees.
+
+00:24:00.180 --> 00:24:04.180
+It is an accessory to the systems above it, not a stand-alone product.
+
+00:24:04.180 --> 00:24:08.180
+It reads emitted heat rather than reflected light.
+
+00:24:08.180 --> 00:24:14.180
+So a person or an animal separates from the background in the dark through glare, dust, and smoke.
+
+00:24:14.180 --> 00:24:18.180
+The chip runs detection on the thermal image alongside the visible one.
+
+00:24:18.180 --> 00:24:22.180
+This is the channel that keeps working when the others stop.
+
+00:24:22.180 --> 00:24:28.180
+Fleets running at night and through the monsoon, where camera-only detection degrades sharply.
+
+00:24:28.180 --> 00:24:36.180
+It is sold as an upgrade to a system already fitted, which makes it a second sale into an existing customer rather than a new acquisition.
+
+00:24:36.180 --> 00:24:40.180
+16 crore at 50% gross margin.
+
+00:24:40.180 --> 00:24:44.180
+Half the group average, because a sensor carries real component cost.
+
+00:24:44.180 --> 00:24:50.180
+Its job is to raise the capability of the products around it, not to carry the plan.
+
+00:24:50.180 --> 00:24:56.180
+A sealed radar pod, mounted forward or on a corner, feeding the same compute box.
+
+00:24:56.180 --> 00:24:58.180
+25,000 rupees.
+
+00:24:58.180 --> 00:25:04.180
+And weatherproof by design because it has to work in the conditions that defeat everything else.
+
+00:25:04.180 --> 00:25:12.180
+It illuminates the scene and reads the returns, and the radar block on the die turns those returns into range, velocity, and angle.
+
+00:25:12.180 --> 00:25:16.180
+Tracks are held across frames, including through rain and dust.
+
+00:25:16.180 --> 00:25:22.180
+Radar supplies closing speed, the one quantity a camera estimates and a radar measures.
+
+00:25:22.180 --> 00:25:30.180
+Operations where weather and dust defeat cameras, and any application where a braking decision has to be defensible afterwards,
+
+00:25:30.180 --> 00:25:36.180
+because a measured closing speed stands up where an estimated one does not.
+
+00:25:36.180 --> 00:25:40.180
+7.5 crore, the smallest line in the plan.
+
+00:25:40.180 --> 00:25:45.180
+It is here because the flagship product needs it, not because it is a business on its own.
+
+00:25:45.180 --> 00:25:50.180
+A wrist-worn band with on-body sensors and a radio link to the vehicle.
+
+00:25:50.180 --> 00:25:52.180
+1500 rupees.
+
+00:25:52.180 --> 00:25:56.180
+It is driver monitoring without a camera pointed at the driver's face.
+
+00:25:56.180 --> 00:25:59.180
+The same obligation answered a different way.
+
+00:25:59.180 --> 00:26:02.180
+The band reads pulse and movement continuously.
+
+00:26:02.180 --> 00:26:06.180
+The vehicle correlates that with how the vehicle is being driven,
+
+00:26:06.180 --> 00:26:09.180
+and fatigue is flagged before it becomes a lane departure.
+
+00:26:09.180 --> 00:26:13.180
+It measures the driver directly, rather than inferring from the road.
+
+00:26:13.180 --> 00:26:20.180
+Fleets meeting driver drowsiness obligations that want a lower intrusion option than an in-cab camera.
+
+00:26:20.180 --> 00:26:25.180
+Driver acceptance is a genuine adoption factor, and a wristband clears it more easily.
+
+00:26:25.180 --> 00:26:28.180
+10 crore at 50% margin.
+
+00:26:28.180 --> 00:26:32.180
+A hedge on how the drowsiness requirement is satisfied in practice,
+
+00:26:32.180 --> 00:26:35.180
+on a portfolio that otherwise answers it with a camera.
+
+00:26:35.180 --> 00:26:40.180
+An unmanned ground vehicle for defense logistics and reconnaissance.
+
+00:26:40.180 --> 00:26:44.180
+It is the only line in the portfolio selling to a government customer,
+
+00:26:44.180 --> 00:26:49.180
+and the only one whose buying cycle is measured in years, rather than quarters.
+
+00:26:49.180 --> 00:26:53.180
+The same fusion stack pointed outward instead of forward.
+
+00:26:53.180 --> 00:27:00.180
+Radar, thermal, and camera tracks along a perimeter are classified individually, then correlated.
+
+00:27:00.180 --> 00:27:07.180
+So a vehicle loitering on an access road and a person approaching the fence stop being two unrelated contacts.
+
+00:27:07.180 --> 00:27:13.180
+Defense procurement. For tasks where sending a vehicle is preferable to sending people.
+
+00:27:13.180 --> 00:27:20.180
+Qualification is long, and the cycles are slow, but once a platform is in, it is very hard to displace.
+
+00:27:20.180 --> 00:27:23.180
+30 crore at 68% margin.
+
+00:27:23.180 --> 00:27:28.180
+Its real value is strategic, a sovereign customer, a separate procurement route,
+
+00:27:28.180 --> 00:27:32.180
+and a use case that does not depend on the automotive mandate at all.
+
+00:27:32.180 --> 00:27:39.180
+A live perimeter console. It correlates a vehicle track with a human track into one threat,
+
+00:27:39.180 --> 00:27:44.180
+escalates it along a timed ladder from loiter to approach to breach risk,
+
+00:27:44.180 --> 00:27:48.180
+and hands the target to ground sensors, a patrol drone or a sea buoy.
+
+00:27:48.180 --> 00:27:51.180
+The feature that matters is the restraint,
+
+00:27:51.180 --> 00:27:54.180
+but nine tracks are held and never escalated,
+
+00:27:54.180 --> 00:27:58.180
+because false alarm rate is what gets a perimeter system switched off.
+
+00:27:58.180 --> 00:28:04.180
+Coordinated intrusion, then perimeter patrol, then a maritime approach.
+
+00:28:04.180 --> 00:28:11.180
+Watch two separate tracks fuse into one threat, and watch the escalation ladder on the right fill in.
+
+00:28:11.180 --> 00:28:16.180
+The operator sees intent forming, rather than an alarm at the breach.
+
+00:28:16.180 --> 00:28:19.180
+The console states its reasoning in words.
+
+00:28:19.180 --> 00:28:24.180
+A flight-capable compute and perception kit sold to airframe builders,
+
+00:28:24.180 --> 00:28:28.180
+it is the smallest and lightest configuration of the same silicon,
+
+00:28:28.180 --> 00:28:31.180
+constrained by weight and power rather than by cost.
+
+00:28:31.180 --> 00:28:36.180
+Cameras and an inertial unit read the scene and the airframe's own motion.
+
+00:28:36.180 --> 00:28:40.180
+The chip holds position and detects obstacles onboard,
+
+00:28:40.180 --> 00:28:44.180
+so the aircraft is not dependent on a radio link to stay safe.
+
+00:28:44.180 --> 00:28:46.180
+The flight controller executes.
+
+00:28:46.180 --> 00:28:50.180
+Airframe builders with onboard autonomy requirements,
+
+00:28:50.180 --> 00:28:56.180
+inspection, survey, and any mission flown where the radio link cannot be relied upon.
+
+00:28:56.180 --> 00:29:01.180
+They buy compute, not aircraft, and they build the rest themselves.
+
+00:29:01.180 --> 00:29:02.180
+Twenty crore.
+
+00:29:02.180 --> 00:29:06.180
+Treat it as optionality rather than base case.
+
+00:29:06.180 --> 00:29:10.180
+The same dye, in a market with a different cycle and different buyers,
+
+00:29:10.180 --> 00:29:13.180
+entered without designing new silicon to get there.
+
+00:29:13.180 --> 00:29:15.180
+Fifteen products explained.
+
+00:29:15.180 --> 00:29:17.180
+Now what they do together?
+
+00:29:17.180 --> 00:29:21.180
+Concentration, timing, where the autonomy actually runs,
+
+00:29:21.180 --> 00:29:26.180
+where the margin is, and how much of each market we are assuming we win.
+
+00:29:26.180 --> 00:29:28.180
+Be clear about this.
+
+00:29:28.180 --> 00:29:31.180
+Two SKUs carry 64%.
+
+00:29:31.180 --> 00:29:36.180
+The truck kit and the smart mirror are the same product family, sold to overlapping buyers.
+
+00:29:36.180 --> 00:29:42.180
+So a certification delay or an installation bottleneck hits 720 crore at once,
+
+00:29:42.180 --> 00:29:45.180
+more than the other 13 SKUs combined.
+
+00:29:45.180 --> 00:29:48.180
+That is the single largest risk in the plan.
+
+00:29:48.180 --> 00:29:54.180
+Six SKUs earn revenue in the 2025 and financial year, nine more in 2028.
+
+00:29:54.180 --> 00:30:01.180
+The 2027 revenue is 1.7 crore across six products on current generation hardware,
+
+00:30:01.180 --> 00:30:02.180
+deliberately small.
+
+00:30:02.180 --> 00:30:06.180
+The ramp switches on when production silicon reaches market,
+
+00:30:06.180 --> 00:30:09.180
+and the license line starts later still.
+
+00:30:09.180 --> 00:30:13.180
+The shape of this plan is gated by the chip, which is what the round funds.
+
+00:30:14.180 --> 00:30:20.180
+86% of revenue runs outdoors, where public road rules and homologation apply.
+
+00:30:20.180 --> 00:30:27.180
+6% runs indoors, geofenced, where Level 4 ships years earlier on identical silicon.
+
+00:30:27.180 --> 00:30:31.180
+8% is pure compute with no vehicle exposure at all.
+
+00:30:31.180 --> 00:30:35.180
+Same chip, three very different regulatory positions.
+
+00:30:35.180 --> 00:30:41.180
+Volume and margin sit in different places, and that is the useful thing on this slide.
+
+00:30:41.180 --> 00:30:46.180
+Systems are 83% of revenue, so group economics tracks systems,
+
+00:30:46.180 --> 00:30:51.180
+but the marginal rupee is worth most in semiconductors at 94%,
+
+00:30:51.180 --> 00:30:54.180
+and those lines need no installation capacity.
+
+00:30:54.180 --> 00:31:00.180
+Growth in the silicon SKUs improves group margin without adding operational load.
+
+00:31:00.180 --> 00:31:04.180
+No skew in this plan assumes we win its market.
+
+00:31:04.180 --> 00:31:08.180
+Every line sits under 2% of its own size demand pool,
+
+00:31:08.180 --> 00:31:12.180
+and most pools are global, while our addressable market is the India slice,
+
+00:31:12.180 --> 00:31:15.180
+so the real share is higher than shown.
+
+00:31:15.180 --> 00:31:17.180
+Read the port line differently.
+
+00:31:17.180 --> 00:31:22.180
+That pool is total port automation, and we sell only the vehicle layer.
+
+00:31:22.180 --> 00:31:26.180
+One more part, and deliberately not the one this raises funds.
+
+00:31:26.180 --> 00:31:33.180
+SOC4A is the far horizon, 1,024 tiles on a 4 nanometer process,
+
+00:31:33.180 --> 00:31:38.180
+four petaflops at FP4, assembled from published silicon-proven blocks
+
+00:31:38.180 --> 00:31:40.180
+from the open pulp platform.
+
+00:31:40.180 --> 00:31:43.180
+It is optionality that sits outside this plan.
+
+00:31:43.180 --> 00:31:45.180
+SOC2 is the business.
+
+00:31:45.180 --> 00:31:48.180
+This is the option the business buys you.
+
+00:31:48.180 --> 00:31:51.180
+Fifteen products, one tapeout.
+
+00:31:51.180 --> 00:31:53.180
+The demand is legislated.
+
+00:31:53.180 --> 00:31:57.180
+The margin sits in silicon that needs no installation capacity,
+
+00:31:57.180 --> 00:32:02.180
+and no line in the plan requires us to win its market.
+
+00:32:02.180 --> 00:32:07.180
+Release the capital against silicon, certification, and paying customers,
+
+00:32:07.180 --> 00:32:09.180
+not against the forecast.
+
+00:32:09.180 --> 00:32:12.180
+The portfolio is not 15 bets.
+
+00:32:12.180 --> 00:32:15.180
+It is one bet, 15 times over.

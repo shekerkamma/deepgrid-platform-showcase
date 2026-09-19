@@ -1,0 +1,49 @@
+WEBVTT
+
+00:00:01.100 --> 00:00:06.100
+This is the indoor autonomy stack running a real warehouse floor.
+
+00:00:06.100 --> 00:00:10.100
+Indoors is where the silicon closes the loop, rather than advising.
+
+00:00:10.100 --> 00:00:14.100
+The vehicle steers, accelerates, and brakes itself.
+
+00:00:14.100 --> 00:00:17.100
+The truck is running an inbound put-away task.
+
+00:00:17.100 --> 00:00:24.100
+A 24-meter LiDAR at 5 Hz and a 57-degree camera fuse into the occupancy view on the right.
+
+00:00:24.100 --> 00:00:27.100
+The red ring traveling with the truck is the safety zone.
+
+00:00:27.100 --> 00:00:30.100
+It is not decoration. It gates the speed.
+
+00:00:30.100 --> 00:00:33.100
+And when a person enters it, the vehicle stops and speaks.
+
+00:00:33.100 --> 00:00:35.100
+You will hear that alert.
+
+00:00:35.100 --> 00:00:38.100
+The alert policy is configurable per site.
+
+00:00:38.100 --> 00:00:44.100
+Horn, voice, both, or silent, because that is an operations decision and not ours to make.
+
+00:00:44.100 --> 00:00:46.100
+Now the pick run.
+
+00:00:46.100 --> 00:00:51.100
+And then the peak hour floor, which is the scenario that decides whether a site can actually run this.
+
+00:00:51.100 --> 00:00:56.100
+Workers, peer vehicles, trolleys, and spills all have to be resolved.
+
+00:00:56.100 --> 00:00:58.100
+And recovery is explicit.
+
+00:00:58.100 --> 00:01:03.100
+The truck reroutes after a set stuck time rather than waiting for someone to notice.

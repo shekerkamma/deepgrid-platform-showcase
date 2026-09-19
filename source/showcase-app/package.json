@@ -19,10 +19,14 @@
     "build:semantic": "node scripts/build-semantic-index.mjs",
     "graph:documents": "uv run --no-project --with rapidocr_onnxruntime==1.4.4 --with python-docx==1.2.0 --with wordninja==2.0.0 python scripts/ingest-documents.py",
     "graph:sources": "uv run --no-project --with openpyxl==3.1.5 python scripts/assemble-sources.py",
-    "graph:themes": "node scripts/build-showcase-themes.mjs"
+    "graph:themes": "node scripts/build-showcase-themes.mjs",
+    "verify": "node scripts/verify-site.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/newsreader": "^5.3.0",
     "@huggingface/transformers": "3.8.1",
     "@shadcn/react": "0.3.0",
     "@types/three": "^0.185.4",
