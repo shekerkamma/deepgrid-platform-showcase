@@ -2596,4 +2596,5 @@ input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-sea
 .dr-ask-dossier strong{font-size:1.05rem;color:#eee6d4}
 .dr-ask-dossier>span:not(.mono){font-size:.86rem;color:#a7b09f;line-height:1.55}
 .dr-ask-dossier .mono{font-size:.7rem;color:var(--copper);letter-spacing:.6px}
+.dr-answer-body{font-size:.68rem;letter-spacing:.8px;text-transform:uppercase;color:#93a582;border:1px solid var(--rule);border-radius:3px;padding:2px 8px}
 }
