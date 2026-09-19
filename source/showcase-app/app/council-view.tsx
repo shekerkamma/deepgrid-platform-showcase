@@ -193,7 +193,7 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
 
           <div className="dr-visual-footer">
             <p className="dr-visual-caption">
-              <strong>Ground Truth Artifact:</strong> {result.visualEvidence.caption}
+              <strong>Figure:</strong> {result.visualEvidence.caption}
             </p>
           </div>
         </section>
