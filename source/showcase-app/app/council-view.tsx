@@ -15,7 +15,7 @@ import {getSemantic} from './data/semantic';
 interface GroundedAnswerViewProps {
   query: string;
   onSelectQuery: (q: string) => void;
-  go: (hash: string) => void;
+  go: (hash: string, label?: string) => void;
 }
 
 const DEFAULT_QUESTION = 'What makes DeepGrid silicon immune to supply chain disruption?';
@@ -55,6 +55,9 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
             <span className="dr-bullet-pulse" />
             <span className="mono dr-domain-tag">{result.domainTag}</span>
           </div>
+          <span className="mono dr-answer-body">
+            {['07', '08', '09'].includes(result.citation.documentNum) ? 'DeepGrid investor materials' : 'DG32 technical documents'}
+          </span>
           <span className="dr-answer-source-ref">
             Grounded in {result.citation.documentTitle}{result.citation.page ? ` (${result.citation.page})` : ''}
           </span>
@@ -98,7 +101,7 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
                 key={idx}
                 type="button"
                 className="dr-ref-link-card"
-                onClick={() => go(link.hash)}
+                onClick={() => go(link.hash, link.label)}
               >
                 <div className="dr-ref-link-top">
                   <strong>{link.label}</strong>
@@ -186,7 +189,7 @@ export default function GroundedAnswerView({query, onSelectQuery, go}: GroundedA
                 <button
                   type="button"
                   className="primary"
-                  onClick={() => go(result.technicalDetails!.deepLink.hash)}
+                  onClick={() => go(result.technicalDetails!.deepLink.hash, result.technicalDetails!.deepLink.label)}
                 >
                   {result.technicalDetails.deepLink.label} <ArrowUpRight size={16} />
                 </button>

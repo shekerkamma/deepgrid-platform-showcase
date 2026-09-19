@@ -221,6 +221,39 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
     }
   };
 
+  // Showcase: this site is the superset, and nothing in the Ask leaves it. The DG32 site's own views (architecture,
+  // control loop, pinout, ...) have no page here, but their content is indexed here, so a link into one asks about
+  // it in place; DG32 "library" opens the document dossiers; this site's views open as usual.
+  const DG32_TOPICS: Record<string, string> = {
+    overview: 'How does 39-cycle hardware lockstep protect against recalls?',
+    family: 'Compare DG32 with STM32G0 in pinout, cost, and latency',
+    architecture: 'What is the exact circuit-code architecture of the DGridRiscV RV32IM processor?',
+    'architecture?chip=lite': 'How does DG32-LITE run AI without a hardware accelerator?',
+    'architecture?chip=2dom': 'How do the 50 MHz core and 114 MHz attention clock domains communicate via CDC bridges?',
+    control: 'What are the cycle costs of an FOC current loop and how much CPU headroom remains at 10 kHz?',
+    loop: 'What are the cycle costs of an FOC current loop and how much CPU headroom remains at 10 kHz?',
+    pinout: 'What is the complete 64-pin QFN pin assignment and packaging specification for DG32?',
+    roadmap: 'What is the 3-phase node roadmap and arithmetic check?',
+  };
+  const askHere = (q: string) => {
+    handleQuerySelect(q);
+    setActiveView('council');
+    requestAnimationFrame(() => document.querySelector('.dr-ask-bar')?.scrollIntoView({behavior: 'smooth', block: 'start'}));
+  };
+  const goLocal = (target: string, label?: string) => {
+    const t = target.replace(/^#/, ''), view = t.split('?')[0];
+    if (view === 'ask') { const q = new URLSearchParams(t.split('?')[1] || '').get('q'); if (q) askHere(q); else setActiveView('council'); return; }
+    if (view === 'library') { setActiveView('cards'); return; }
+    if (DG32_TOPICS[t] || DG32_TOPICS[view]) {
+      // a descriptive link label ("Explore 30 Industrial AI Tasks") says what it is about better than its DG32
+      // page does ('overview' covers many topics); a generic one ("Explore Architecture") uses the page's topic
+      const words = (label || '').replace(/^(explore|inspect|review|view|open)\s+/i, '').split(/\s+/).filter(Boolean);
+      askHere(words.length >= 3 ? label! : (DG32_TOPICS[t] || DG32_TOPICS[view]));
+      return;
+    }
+    go(t);
+  };
+
   // Handle Node Click with Category Auto-Selection
   const handleNodeSelect = (nodeId: string) => {
     setSelectedNodeId(nodeId);
@@ -291,9 +324,9 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
   return (
     <section className="page-wrap dr-ask-section">
       <SectionHead 
-        tag="08 / ASK DEEPGRID" 
-        title="Verified Silicon Intelligence" 
-        copy="Search DeepGrid Semi technology, manufacturing qualifications, sovereign supply chain security, and motor-control silicon architecture. Every answer is grounded in authoritative engineering whitepapers with downloadable primary references."
+        tag="04 / ASK DEEPGRID" 
+        title="Ask DeepGrid" 
+        copy="One place to ask about everything DeepGrid has published: the product portfolio and investment materials on this site, and the DG32 silicon engineering documents. Every answer is grounded in its source document, with the passage it came from."
       />
 
       {/* Top View Selector Strip */}
@@ -323,7 +356,7 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
         </div>
 
         <span className="dr-ask-badge-verified">
-          <ShieldCheck size={14} /> 100% SPEC-VERIFIED
+          <ShieldCheck size={14} /> GROUNDED IN SOURCE DOCUMENTS
         </span>
       </div>
 
@@ -372,7 +405,7 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
         <CouncilView 
           query={query} 
           onSelectQuery={handleQuerySelect} 
-          go={go} 
+          go={goLocal} 
         />
       )}
 
@@ -689,7 +722,7 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
                         <button
                           key={act.target}
                           className="primary"
-                          onClick={() => go(act.target)}
+                          onClick={() => goLocal(act.target, act.label)}
                         >
                           {act.label} <ArrowUpRight size={15} />
                         </button>
@@ -940,7 +973,7 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
                           onClick={() => {
                             setSelectedItem(null);
                             setReadingDocContent(null);
-                            go('library');
+                            goLocal('library');
                           }}
                           title="Open Section 07 Authoritative Design Archive"
                         >
@@ -989,26 +1022,20 @@ export default function AskDeepGrid({go}: {go: (hash: string) => void}) {
       })()}
 
       <div className="dr-links dr-sec-gap" style={{marginTop: '2.5rem'}}>
-        <button className="text-link" onClick={() => go('overview')}>
-          01 / Overview &amp; safety thesis <ArrowUpRight size={16} />
+        <button className="text-link" onClick={() => goLocal('portfolio')}>
+          Product portfolio <ArrowUpRight size={16} />
         </button>
-        <button className="text-link" onClick={() => go('family')}>
-          02 / Product family comparison <ArrowUpRight size={16} />
+        <button className="text-link" onClick={() => goLocal('silicon')}>
+          SoC2 silicon architecture <ArrowUpRight size={16} />
         </button>
-        <button className="text-link" onClick={() => go('architecture')}>
-          03 / Block architecture &amp; 3D die <ArrowUpRight size={16} />
+        <button className="text-link" onClick={() => goLocal('slides')}>
+          104-slide presentation <ArrowUpRight size={16} />
         </button>
-        <button className="text-link" onClick={() => go('control')}>
-          04 / 100 kHz control-loop budget <ArrowUpRight size={16} />
+        <button className="text-link" onClick={() => goLocal('investment')}>
+          Investment &amp; diligence <ArrowUpRight size={16} />
         </button>
-        <button className="text-link" onClick={() => go('pinout')}>
-          05 / QFN-64 pinout &amp; package <ArrowUpRight size={16} />
-        </button>
-        <button className="text-link" onClick={() => go('roadmap')}>
-          06 / Multi-spin roadmap <ArrowUpRight size={16} />
-        </button>
-        <button className="text-link" onClick={() => go('library')}>
-          07 / Authoritative documents &amp; official PDFs <ArrowUpRight size={16} />
+        <button className="text-link" onClick={() => goLocal('library')}>
+          DG32 technical documents &amp; PDFs <ArrowUpRight size={16} />
         </button>
       </div>
     </section>
