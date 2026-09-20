@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input';
 import {
   SectionHead,
   Scene,
+  scenes,
   groups,
   products,
   type Product,
@@ -25,6 +26,25 @@ const lineScene: Record<string, SceneId> = {
   'Silicon & Compute': 'die',
   'Fleet & Mobility': 'port',
   'Sensors & Robotics': 'defence',
+};
+
+// Product-to-scene mapping for card imagery (from product-visual.tsx applications)
+const productScene: Record<string, SceneId> = {
+  ad2: 'truck',
+  ad0: 'truck',
+  ad1: 'warehouse',
+  taas: 'port',
+  agv: 'port',
+  dhumr: 'defence',
+  d100: 'defence',
+  thermal: 'defence',
+  radar: 'truck',
+  h100: 'truck',
+  chipset: 'die',
+  t100: 'die',
+  'a100-4': 'die',
+  'a100-2': 'die',
+  'a100-1': 'die',
 };
 import briefs from '../data/product-briefs.json';
 
@@ -92,6 +112,13 @@ export default function Portfolio({
       ? products.length
       : products.filter((p) => p.category === g).length;
   const total = products.reduce((s, p) => s + p.revenueNum, 0);
+  const productHref = (p: Product) => {
+    const params = new URLSearchParams({ product: p.id });
+    if (category !== 'All products') params.set('category', category);
+    if (query) params.set('q', query);
+    if (layout !== 'cards') params.set('layout', layout);
+    return '#portfolio?' + params;
+  };
   const shareOf = (g: string) =>
     Math.round(
       (products
@@ -218,9 +245,24 @@ export default function Portfolio({
               {visible.map((p) => (
                 <tr key={p.id}>
                   <th scope="row">
-                    <button className="row-link" onClick={() => open(p)}>
+                    <a
+                      className="row-link"
+                      href={productHref(p)}
+                      onClick={(e) => {
+                        if (
+                          e.button !== 0 ||
+                          e.metaKey ||
+                          e.ctrlKey ||
+                          e.shiftKey ||
+                          e.altKey
+                        )
+                          return;
+                        e.preventDefault();
+                        open(p);
+                      }}
+                    >
                       {p.name}
-                    </button>
+                    </a>
                   </th>
                   <td>{p.category}</td>
                   <td className="num">{p.price}</td>
@@ -260,7 +302,7 @@ export default function Portfolio({
                         id={lineScene[g]}
                         sizes="(min-width: 1200px) 1140px, 100vw"
                       />
-                      <figcaption>Concept render</figcaption>
+                      <figcaption>{g} · Application concept</figcaption>
                     </figure>
                   )}
                   <header className="product-line-head">
@@ -284,57 +326,69 @@ export default function Portfolio({
                           }
                         >
                       )[p.id];
+                      const sceneId = productScene[p.id] || 'die';
+                      const mediaParts = [
+                        b?.films.length ? `${b.films.length} film${b.films.length > 1 ? 's' : ''}` : '',
+                        b?.slides.length ? `${b.slides.length} slides` : '',
+                      ].filter(Boolean);
                       return (
-                        <button
+                        <a
                           className="product-card"
                           key={p.id}
-                          onClick={() => open(p)}
+                          href={productHref(p)}
+                          onClick={(e) => {
+                            if (
+                              e.button !== 0 ||
+                              e.metaKey ||
+                              e.ctrlKey ||
+                              e.shiftKey ||
+                              e.altKey
+                            )
+                              return;
+                            e.preventDefault();
+                            open(p);
+                          }}
                         >
-                          <span className="product-meta">
-                            {p.category}
-                            <span className="num">{p.id.toUpperCase()}</span>
-                          </span>
-                          <h3>{p.name}</h3>
-                          <p>{firstSentence(p.description)}</p>
-                          {b?.useCases.length ? (
-                            <p className="card-usecases">
-                              <span>Used for</span>{' '}
-                              {b.useCases.map((u) => u.title).join(' · ')}
-                            </p>
-                          ) : null}
-                          <dl>
-                            <div>
-                              <dt>Listed price</dt>
-                              <dd className="num">{p.price}</dd>
-                            </div>
-                            <div>
-                              <dt>FY2032 revenue</dt>
-                              <dd className="num">{p.revenue}</dd>
-                            </div>
-                            <div>
-                              <dt>Gross margin</dt>
-                              <dd className="num">{p.margin}</dd>
-                            </div>
-                          </dl>
-                          <span className="open-product">
-                            <span>
-                              Open product{' '}
-                              <ArrowRight size={16} aria-hidden="true" />
+                          <figure className="product-card-scene">
+                            <Scene id={sceneId} sizes="(min-width: 900px) 280px, 100vw" />
+                            <figcaption>Application concept</figcaption>
+                          </figure>
+                          <div className="product-card-body">
+                            <span className="product-meta">
+                              {p.category}
+                              <span className="num">{p.id.toUpperCase()}</span>
                             </span>
-                            <span className="card-media num">
-                              {[
-                                b?.films.length
-                                  ? `${b.films.length} film${b.films.length > 1 ? 's' : ''}`
-                                  : '',
-                                b?.slides.length
-                                  ? `${b.slides.length} slides`
-                                  : '',
-                              ]
-                                .filter(Boolean)
-                                .join(' · ')}
+                            <h3>{p.name}</h3>
+                            <p>{firstSentence(p.description)}</p>
+                            {b?.useCases.length && (
+                              <p className="card-usecases">
+                                <span>Used for</span>{' '}
+                                {b.useCases.map((u) => u.title).join(' \u00b7 ')}
+                              </p>
+                            )}
+                            <dl>
+                              <div>
+                                <dt>Listed price</dt>
+                                <dd className="num">{p.price}</dd>
+                              </div>
+                              <div>
+                                <dt>FY2032 revenue</dt>
+                                <dd className="num">{p.revenue}</dd>
+                              </div>
+                              <div>
+                                <dt>Gross margin</dt>
+                                <dd className="num">{p.margin}</dd>
+                              </div>
+                            </dl>
+                            <span className="open-product">
+                              <span>
+                                Open product{' '}
+                                <ArrowRight size={16} aria-hidden="true" />
+                              </span>
+                              <span className="card-media num">{mediaParts.join(' \u00b7 ')}</span>
                             </span>
-                          </span>
-                        </button>
+                          </div>
+                        </a>
                       );
                     })}
                   </div>

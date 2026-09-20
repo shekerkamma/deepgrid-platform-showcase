@@ -230,7 +230,15 @@ export default function GroundedAnswerView({
             </a>
           </div>
 
-          <div className="dr-visual-img-container">
+          <a
+            className="dr-visual-img-container technical-image-link"
+            href={`./${result.visualEvidence.filePath}`}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={
+              'Inspect full-size source figure: ' + result.visualEvidence.title
+            }
+          >
             <img
               src={`./${result.visualEvidence.filePath}`}
               alt={result.visualEvidence.title}
@@ -238,8 +246,10 @@ export default function GroundedAnswerView({
               height={result.visualEvidence.size?.[1] ?? 900}
               className="dr-visual-img"
               loading="lazy"
+              decoding="async"
             />
-          </div>
+            <span>Inspect full-size source figure ↗</span>
+          </a>
 
           <div className="dr-visual-footer">
             <p className="dr-visual-caption">
@@ -250,6 +260,14 @@ export default function GroundedAnswerView({
                 className="dr-visual-source"
                 href={'#' + result.visualEvidence.source.hash}
                 onClick={(e) => {
+                  if (
+                    e.button !== 0 ||
+                    e.metaKey ||
+                    e.ctrlKey ||
+                    e.shiftKey ||
+                    e.altKey
+                  )
+                    return;
                   e.preventDefault();
                   go(result.visualEvidence!.source!.hash);
                 }}

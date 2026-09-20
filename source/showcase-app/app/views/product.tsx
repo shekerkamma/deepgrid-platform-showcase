@@ -11,6 +11,7 @@ import {
 import briefs from '../data/product-briefs.json';
 import stories from '../data/product-stories.json';
 import slideNotes from '../slide-notes.json';
+import { ProductVisual } from '../product-visual';
 import { films as filmList, master, Player, clock } from './films';
 import { chapters as memoChapters } from './investment';
 
@@ -116,6 +117,8 @@ function Anchor({
       className={className}
       href={'#' + link.hash}
       onClick={(e) => {
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+          return;
         e.preventDefault();
         go(link.hash!);
       }}
@@ -271,6 +274,31 @@ export default function ProductPage({
         </dl>
       </header>
 
+      <section
+        className="product-explainer"
+        aria-labelledby="product-path-title"
+      >
+        <ProductVisual product={p} />
+        <div className="product-path">
+          <h2 id="product-path-title">From input to outcome</h2>
+          <p className="product-path-note">
+            Proposed product architecture. The scene illustrates its
+            application, not a shipped kit.
+          </p>
+          <ol>
+            {p.signalChain.map((step, i) => (
+              <li key={step}>
+                <span className="product-path-step num" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <p>{nb(step)}</p>
+              </li>
+            ))}
+          </ol>
+          <Anchor go={go} link={silicon[0]} />
+        </div>
+      </section>
+
       {story && (
         <section className="pp-block pp-case" aria-labelledby="pp-case-title">
           <h2 id="pp-case-title">The case in brief</h2>
@@ -351,13 +379,6 @@ export default function ProductPage({
                   </li>
                 ))}
               </ul>
-              {c.kind === 'how' && (
-                <ol className="pp-steps" aria-label="From sensing to action">
-                  {p.signalChain.map((s) => (
-                    <li key={s}>{s}</li>
-                  ))}
-                </ol>
-              )}
               {c.kind === 'fits' && c.ramp && <Ramp ramp={c.ramp} />}
               {c.kind === 'proof' && films.length > 0 && (
                 <Films films={films} />
@@ -368,6 +389,14 @@ export default function ProductPage({
                     key={n}
                     href={'#slides?slide=' + n}
                     onClick={(e) => {
+                      if (
+                        e.button !== 0 ||
+                        e.metaKey ||
+                        e.ctrlKey ||
+                        e.shiftKey ||
+                        e.altKey
+                      )
+                        return;
                       e.preventDefault();
                       go('slides?slide=' + n);
                     }}
@@ -411,6 +440,14 @@ export default function ProductPage({
                   className="pp-link is-primary"
                   href={`#film?v=master&t=${b.walkthrough}`}
                   onClick={(e) => {
+                    if (
+                      e.button !== 0 ||
+                      e.metaKey ||
+                      e.ctrlKey ||
+                      e.shiftKey ||
+                      e.altKey
+                    )
+                      return;
                     e.preventDefault();
                     go(`film?v=master&t=${b.walkthrough}`);
                   }}
@@ -470,6 +507,14 @@ export default function ProductPage({
                   key={id}
                   href={'#portfolio?product=' + id}
                   onClick={(e) => {
+                    if (
+                      e.button !== 0 ||
+                      e.metaKey ||
+                      e.ctrlKey ||
+                      e.shiftKey ||
+                      e.altKey
+                    )
+                      return;
                     e.preventDefault();
                     go('portfolio?product=' + id);
                   }}
@@ -494,6 +539,14 @@ export default function ProductPage({
           <a
             href={'#portfolio?product=' + prev.id}
             onClick={(e) => {
+              if (
+                e.button !== 0 ||
+                e.metaKey ||
+                e.ctrlKey ||
+                e.shiftKey ||
+                e.altKey
+              )
+                return;
               e.preventDefault();
               go('portfolio?product=' + prev.id);
             }}
@@ -511,6 +564,14 @@ export default function ProductPage({
           <a
             href={'#portfolio?product=' + next.id}
             onClick={(e) => {
+              if (
+                e.button !== 0 ||
+                e.metaKey ||
+                e.ctrlKey ||
+                e.shiftKey ||
+                e.altKey
+              )
+                return;
               e.preventDefault();
               go('portfolio?product=' + next.id);
             }}

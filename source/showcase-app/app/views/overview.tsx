@@ -18,6 +18,7 @@ import {
   bridgeFrom,
   clockEnd,
   proof,
+  proofPlates,
 } from '../data/overview';
 
 // The Overview reads as a memorandum in six chapters: what DeepGrid is, why the demand is law,
@@ -33,12 +34,15 @@ export default function Overview({
   reduced: boolean;
 }) {
   const [domain, setDomain] = useState(0);
+  const [modelMotion, setModelMotion] = useState(true);
   return (
     <>
       <section className="hero ov-hero">
         <img
           className="hero-image"
-          src="./images/semiconductor-hero.png"
+          src="./images/semiconductor-hero-1536.webp"
+          srcSet="./images/semiconductor-hero-768.webp 768w, ./images/semiconductor-hero-1536.webp 1536w"
+          sizes="100vw"
           alt="Rendering of the DeepGrid SoC2 package with six compute domains"
           width={1536}
           height={1024}
@@ -58,15 +62,15 @@ export default function Overview({
             written into law.
           </p>
           <div className="hero-actions">
-            <button className="primary" onClick={() => navigate('investment')}>
+            <a className="primary" href="#investment">
               See the investment case <ArrowUpRight size={18} />
-            </button>
-            <button className="text-button" onClick={() => navigate('film')}>
+            </a>
+            <a className="text-button" href="#film">
               <span className="play-circle">
                 <Play size={12} fill="currentColor" />
               </span>
               Watch the film
-            </button>
+            </a>
           </div>
         </div>
         <p className="image-disclaimer">Architectural rendering</p>
@@ -74,9 +78,10 @@ export default function Overview({
       <dl className="ov-figures">
         {[
           ['15', 'products on one die'],
-          ['28 nm', 'TSMC process'],
-          ['57 mm²', 'die area'],
+          ['28 nm', 'target TSMC process'],
+          ['57 mm²', 'planned die area'],
           ['8.6 ms', 'sensor fusion target'],
+          ['39.3', 'TOPS design target'],
         ].map(([v, l]) => (
           <div key={l}>
             <dt>{l}</dt>
@@ -84,6 +89,19 @@ export default function Overview({
           </div>
         ))}
       </dl>
+      <figure className="ov-die-figure" aria-labelledby="ov-die-fig-title">
+        <img
+          src="./images/scenes/die-1376.webp"
+          srcSet="./images/scenes/die-760.webp 760w, ./images/scenes/die-1376.webp 1376w"
+          sizes="(min-width: 900px) 50vw, 100vw"
+          alt="Concept render of the DeepGrid SoC2 die showing six compute domains"
+          width={1376}
+          height={768}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption id="ov-die-fig-title">SoC2 die concept — six domains, one tapeout</figcaption>
+      </figure>
 
       <section className="ov-chapter ov-where" aria-labelledby="ov-where-title">
         <header className="ov-chapter-head">
@@ -109,6 +127,14 @@ export default function Overview({
                   '#portfolio?category=' + encodeURIComponent(scenes[id].line)
                 }
                 onClick={(e) => {
+                  if (
+                    e.button !== 0 ||
+                    e.metaKey ||
+                    e.ctrlKey ||
+                    e.shiftKey ||
+                    e.altKey
+                  )
+                    return;
                   e.preventDefault();
                   go(
                     'portfolio?category=' + encodeURIComponent(scenes[id].line),
@@ -185,10 +211,26 @@ export default function Overview({
 
       <section className="ov-chapter ov-die" aria-labelledby="ov-die-title">
         <div className="ov-die-stage">
-          <Silicon selected={domain} exploded reduced={reduced} />
+          <Silicon
+            selected={domain}
+            exploded
+            reduced={reduced || !modelMotion}
+          />
           <span className="canvas-caption">
             Drag to rotate. Conceptual layout, not a mask.
           </span>
+          <button
+            className="small-button model-motion-toggle"
+            aria-pressed={!reduced && modelMotion}
+            disabled={reduced}
+            onClick={() => setModelMotion(!modelMotion)}
+          >
+            {reduced
+              ? 'Reduced motion enabled'
+              : modelMotion
+                ? 'Pause model rotation'
+                : 'Resume model rotation'}
+          </button>
         </div>
         <div className="ov-die-copy">
           <header className="ov-chapter-head">
@@ -219,6 +261,14 @@ export default function Overview({
                         key={id}
                         href={'#portfolio?product=' + id}
                         onClick={(e) => {
+                          if (
+                            e.button !== 0 ||
+                            e.metaKey ||
+                            e.ctrlKey ||
+                            e.shiftKey ||
+                            e.altKey
+                          )
+                            return;
                           e.preventDefault();
                           go('portfolio?product=' + id);
                         }}
@@ -264,6 +314,41 @@ export default function Overview({
           Source: Information Memorandum, June 2026, section 8. Management
           figures, not independently verified.
         </p>
+        <p className="visual-status">
+          Visual records below show software simulations and a separate DG32
+          design. They do not verify the hardware performance figures above.
+        </p>
+        <ul className="ov-plates" aria-label="Simulation and design records">
+          {proofPlates.map((p) => {
+            const external = p.href.startsWith('http');
+            return (
+              <li key={p.img}>
+                <a
+                  href={external ? p.href : '#' + p.href}
+                  {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                >
+                  <img
+                    src={'./images/proof/' + p.img + '.webp'}
+                    alt={p.alt}
+                    width={960}
+                    height={540}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <strong>
+                    {p.title}
+                    {external ? (
+                      <ArrowUpRight size={15} aria-hidden="true" />
+                    ) : (
+                      <Play size={14} aria-hidden="true" />
+                    )}
+                  </strong>
+                  <span>{p.note}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </section>
 
       <section className="ov-close" aria-labelledby="ov-close-title">
@@ -298,6 +383,14 @@ export default function Overview({
               key={id}
               href={'#' + id}
               onClick={(e) => {
+                if (
+                  e.button !== 0 ||
+                  e.metaKey ||
+                  e.ctrlKey ||
+                  e.shiftKey ||
+                  e.altKey
+                )
+                  return;
                 e.preventDefault();
                 navigate(id);
               }}

@@ -59,8 +59,12 @@ export default function Home() {
     changeView(v);
   };
   // a product is its own page (#portfolio?product=ad2), so opening one is a navigation the back button undoes
-  const setProduct = (p: Product | null) =>
-    p ? go('portfolio?product=' + p.id) : changeView('portfolio');
+  const setProduct = (p: Product | null) => {
+    if (!p) return changeView('portfolio');
+    const next = new URLSearchParams(params);
+    next.set('product', p.id);
+    go('portfolio?' + next);
+  };
   const setChapter = (id: string) => {
     update({ chapter: id || undefined }, false);
     requestAnimationFrame(() =>
@@ -102,6 +106,8 @@ export default function Home() {
       key={id}
       className={view === id ? 'active' : ''}
       onClick={(e) => {
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)
+          return;
         e.preventDefault();
         navigate(id);
       }}
@@ -117,6 +123,14 @@ export default function Home() {
         className="skip-link"
         href="#main"
         onClick={(e) => {
+          if (
+            e.button !== 0 ||
+            e.metaKey ||
+            e.ctrlKey ||
+            e.shiftKey ||
+            e.altKey
+          )
+            return;
           e.preventDefault();
           document.getElementById('main')?.focus();
           document.getElementById('main')?.scrollIntoView();
@@ -125,13 +139,9 @@ export default function Home() {
         Skip to content
       </a>
       <header className="topbar">
-        <button
-          className="brand"
-          onClick={() => navigate('overview')}
-          aria-label="DeepGrid home"
-        >
+        <a className="brand" href="#overview" aria-label="DeepGrid home">
           <Brand />
-        </button>
+        </a>
         <p className="topline">Pre-Series A · Hyderabad, India</p>
         <button
           className="mobile-menu"
@@ -151,6 +161,14 @@ export default function Home() {
             <a
               href="#overview"
               onClick={(e) => {
+                if (
+                  e.button !== 0 ||
+                  e.metaKey ||
+                  e.ctrlKey ||
+                  e.shiftKey ||
+                  e.altKey
+                )
+                  return;
                 e.preventDefault();
                 navigate('overview');
               }}
@@ -254,6 +272,14 @@ export default function Home() {
               <a
                 href={'#' + navigation[viewIndex - 1][0]}
                 onClick={(e) => {
+                  if (
+                    e.button !== 0 ||
+                    e.metaKey ||
+                    e.ctrlKey ||
+                    e.shiftKey ||
+                    e.altKey
+                  )
+                    return;
                   e.preventDefault();
                   navigate(navigation[viewIndex - 1][0]);
                 }}
@@ -271,6 +297,14 @@ export default function Home() {
               <a
                 href={'#' + navigation[viewIndex + 1][0]}
                 onClick={(e) => {
+                  if (
+                    e.button !== 0 ||
+                    e.metaKey ||
+                    e.ctrlKey ||
+                    e.shiftKey ||
+                    e.altKey
+                  )
+                    return;
                   e.preventDefault();
                   navigate(navigation[viewIndex + 1][0]);
                 }}
@@ -287,19 +321,15 @@ export default function Home() {
       </main>
       <footer className="footer">
         <div className="footer-top">
-          <button
-            className="brand"
-            onClick={() => navigate('overview')}
-            aria-label="DeepGrid home"
-          >
+          <a className="brand" href="#overview" aria-label="DeepGrid home">
             <Brand />
-          </button>
+          </a>
           <p className="footer-line">
             Intelligence, <em>made foundational.</em>
           </p>
-          <button className="text-link" onClick={() => navigate('briefing')}>
+          <a className="text-link" href="#briefing">
             Ask a question <ArrowUpRight size={18} aria-hidden="true" />
-          </button>
+          </a>
         </div>
         <div className="footer-bottom">
           <span>© 2026 DeepGrid Semi Pvt Ltd</span>

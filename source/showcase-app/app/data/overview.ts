@@ -126,3 +126,37 @@ export const proof = [
     note: 'Muse / GSME multi-project wafer, 79-day fab cycle',
   },
 ];
+
+// Evidence plates for "It already runs": frames from DeepGrid's own demonstrator films and the
+// DG32 tape-in record. The films are software simulations and are labelled so; DG32 is a design
+// record, not a measurement of silicon.
+export const proofPlates = [
+  {
+    img: 'ddrive',
+    title: 'D-Drive perception',
+    note: 'Camera, radar and LiDAR fused on a market street. Software demonstrator.',
+    href: 'film?v=ddrive',
+    alt: 'Frame from the D-Drive demonstrator: a car on a road with its planner view and perception panel',
+  },
+  {
+    img: 'sentinel',
+    title: 'Sentinel threat fusion',
+    note: 'Tracks correlated along a perimeter fence. Software demonstrator.',
+    href: 'film?v=sentinel',
+    alt: 'Frame from the Sentinel demonstrator: a perimeter map with sensor coverage cones and active tracks',
+  },
+  {
+    img: 'forklift',
+    title: 'Warehouse autonomy',
+    note: 'LiDAR and camera guiding a forklift down a rack aisle. Software demonstrator.',
+    href: 'film?v=forklift',
+    alt: 'Frame from the forklift demonstrator: an autonomous forklift in a warehouse aisle with a LiDAR overlay',
+  },
+  {
+    img: 'dg32-tapein',
+    title: 'DG32-LITE at 130\u00a0nm',
+    note: 'Separate DG32 programme. Tape-in design record, not evidence of fabricated SoC2 silicon.',
+    href: 'https://shekerkamma.github.io/deepgrid-dr-silicon/',
+    alt: 'DG32-LITE tape-in block diagram: a QFN-64 package outline with a 2.9 by 4.5 mm core block, 44 pads and 18 blocks on the bus',
+  },
+] as const;

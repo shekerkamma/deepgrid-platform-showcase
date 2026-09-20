@@ -96,30 +96,35 @@ export function useReveal(key: string) {
       frame = 0;
       const line = innerHeight * 0.88,
         counts = new Map<Element, number>();
-      pending = pending.filter((el) => {
-        if (!el.isConnected) return false;
-        const r = el.getBoundingClientRect();
-        if (r.top > line) return true;
-        if (r.bottom < 0) {
-          el.classList.add('rv-in', 'rv-done');
+      // Finish every geometry read before changing classes or styles.
+      const measured = pending
+        .filter((el) => el.isConnected)
+        .map((el) => ({ el, rect: el.getBoundingClientRect() }));
+      pending = measured
+        .filter(({ el, rect: r }) => {
+          if (!el.isConnected) return false;
+          if (r.top > line) return true;
+          if (r.bottom < 0) {
+            el.classList.add('rv-in', 'rv-done');
+            return false;
+          }
+          const parent = el.parentElement!,
+            i = counts.get(parent) || 0;
+          counts.set(parent, i + 1);
+          const delay = reduce ? 0 : Math.min(i, 6) * 60;
+          el.style.setProperty('--rv-d', delay + 'ms');
+          el.classList.add('rv-in');
+          // Hand transitions back once the entrance is over, so hover stays fast, and finish any fade
+          // a starved WebGL renderer left parked at currentTime 0: visibility never waits on a frame.
+          timers.push(
+            window.setTimeout(() => {
+              el.classList.add('rv-done');
+              settle(el);
+            }, delay + 700),
+          );
           return false;
-        }
-        const parent = el.parentElement!,
-          i = counts.get(parent) || 0;
-        counts.set(parent, i + 1);
-        const delay = reduce ? 0 : Math.min(i, 6) * 60;
-        el.style.setProperty('--rv-d', delay + 'ms');
-        el.classList.add('rv-in');
-        // Hand transitions back once the entrance is over, so hover stays fast, and finish any fade
-        // a starved WebGL renderer left parked at currentTime 0: visibility never waits on a frame.
-        timers.push(
-          window.setTimeout(() => {
-            el.classList.add('rv-done');
-            settle(el);
-          }, delay + 700),
-        );
-        return false;
-      });
+        })
+        .map(({ el }) => el);
       if (!pending.length) removeEventListener('scroll', onScroll);
     };
     const onScroll = () => {

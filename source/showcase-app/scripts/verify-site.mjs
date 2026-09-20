@@ -303,7 +303,18 @@ for (const { tag, viewport } of [
       chapters: [...document.querySelectorAll('.pp-chapter')].filter(
         (c) => c.querySelectorAll('.pp-pills li').length >= 2,
       ).length,
-      images: document.querySelectorAll('.product-page img').length,
+      // The previous selector rejected every image, although its documented
+      // contract only bans slide screenshots in dossiers. Application concepts
+      // are now required, with a caption and an actual input-to-outcome chain.
+      images: document.querySelectorAll('.product-page img[src*="/slides/"]')
+        .length,
+      context:
+        document.querySelectorAll('.product-context img[alt][width][height]')
+          .length === 1 &&
+        document
+          .querySelector('.product-context figcaption')
+          ?.textContent.includes('Concept render') &&
+        document.querySelectorAll('.product-path li').length === 4,
       labels: [...document.querySelectorAll('.product-page a')].map((a) =>
         (a.querySelector('strong')?.textContent || a.textContent).trim(),
       ),
@@ -320,12 +331,13 @@ for (const { tag, viewport } of [
       m.uses < 2 ||
       m.chapters < 4 ||
       m.images ||
+      !m.context ||
       bare.length ||
       m.dead ||
       m.pager
     )
       fail(
-        `product ${id}: ${m.blocks.slice(0, 2).join(' > ')}; ${m.takeaways} takeaways, ${m.uses} use cases, ${m.chapters} chapters with pills, ${m.images} images, bare [${bare}], ${m.dead} dead links, site pager ${m.pager}`,
+        `product ${id}: ${m.blocks.slice(0, 2).join(' > ')}; ${m.takeaways} takeaways, ${m.uses} use cases, ${m.chapters} chapters with pills, ${m.images} slide images, context ${m.context}, bare [${bare}], ${m.dead} dead links, site pager ${m.pager}`,
       );
   }
   // the walkthrough link lands on the master film at the product's moment

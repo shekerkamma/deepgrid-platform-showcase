@@ -207,6 +207,11 @@ function FilmGroup({
             {f.sub} <span className="num">· {f.length}</span>
           </p>
         </header>
+        <p className="visual-status">
+          {siliconFilms.some((x) => x.id === f.id)
+            ? 'Architecture explanation · not fabricated-silicon footage'
+            : 'Software simulation · not road or site footage'}
+        </p>
         <StoryFilm
           key={f.id}
           film={f}
@@ -255,6 +260,14 @@ export default function Films({
             key={id}
             href={'#' + id}
             onClick={(e) => {
+              if (
+                e.button !== 0 ||
+                e.metaKey ||
+                e.ctrlKey ||
+                e.shiftKey ||
+                e.altKey
+              )
+                return;
               e.preventDefault();
               document.getElementById(id)?.scrollIntoView({
                 behavior: reduced ? 'instant' : 'smooth',

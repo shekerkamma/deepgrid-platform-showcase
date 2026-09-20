@@ -146,6 +146,34 @@ export default function Deck({
           </button>
         ))}
       </nav>
+      <details className="chapter-atlas">
+        <summary>Explore the seven chapters visually</summary>
+        <nav className="chapter-atlas-grid" aria-label="Visual chapter index">
+          {deckChapters.map(([n, title], i) => (
+            <a
+              key={n}
+              href={'#slides?slide=' + n}
+              aria-current={ci === i ? 'location' : undefined}
+            >
+              <img
+                src={'./slides/' + file([2, 8, 26, 32, 64, 75, 98][i]) + '.png'}
+                width={1136}
+                height={635}
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+              <strong>{title}</strong>
+              <span className="num">
+                Slides {n}–
+                {i === deckChapters.length - 1
+                  ? TOTAL
+                  : deckChapters[i + 1][0] - 1}
+              </span>
+            </a>
+          ))}
+        </nav>
+      </details>
       <div className="deck-layout">
         <div className="deck-main">
           <div className="deck-stage" ref={stage}>

@@ -84,6 +84,14 @@ export default function Related({
                   <a
                     href={'#' + l.hash}
                     onClick={(e) => {
+                      if (
+                        e.button !== 0 ||
+                        e.metaKey ||
+                        e.ctrlKey ||
+                        e.shiftKey ||
+                        e.altKey
+                      )
+                        return;
                       e.preventDefault();
                       go(l.hash);
                     }}

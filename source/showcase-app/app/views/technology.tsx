@@ -101,14 +101,23 @@ function Figure({
   const note = figureNotes[id];
   return (
     <figure className="tech-figure">
-      <img
-        src={'./images/' + id + '.webp'}
-        alt={alt}
-        width={size[0]}
-        height={size[1]}
-        loading="lazy"
-        style={{ maxWidth: size[0] }}
-      />
+      <a
+        className="technical-image-link"
+        href={'./images/' + id + '.webp'}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={'Open full-size figure: ' + (note?.title || alt)}
+      >
+        <img
+          src={'./images/' + id + '.webp'}
+          alt={alt}
+          width={size[0]}
+          height={size[1]}
+          loading="lazy"
+          style={{ maxWidth: size[0] }}
+        />
+        <span>Inspect full-size figure ↗</span>
+      </a>
       <figcaption>
         {note ? (
           <>
@@ -131,14 +140,15 @@ function Die({ reduced }: { reduced: boolean }) {
       <div className="stage-top">
         <span className="mono">SoC2 architectural model</span>
         <button
-          aria-pressed={motion}
+          aria-pressed={motion && !reduced}
+          disabled={reduced}
           onClick={() => setMotion(!motion)}
           className="small-button"
         >
-          Motion {motion ? 'on' : 'off'}
+          Motion {motion && !reduced ? 'on' : 'off'}
         </button>
       </div>
-      <Silicon selected={0} exploded={exploded} reduced={!motion} />
+      <Silicon selected={0} exploded={exploded} reduced={reduced || !motion} />
       <div className="stage-bottom">
         <span>Drag to rotate. Conceptual, not a mask layout.</span>
         <button
@@ -168,10 +178,30 @@ function Domains({ go, initial }: { go: Go; initial: string }) {
         {domains.map((x, i) => (
           <button
             key={x.code}
+            id={'domain-tab-' + x.code}
             role="tab"
             aria-selected={domain === i}
             aria-controls="domain-detail"
+            tabIndex={domain === i ? 0 : -1}
             onClick={() => setDomain(i)}
+            onKeyDown={(e) => {
+              const next =
+                e.key === 'Home'
+                  ? 0
+                  : e.key === 'End'
+                    ? domains.length - 1
+                    : e.key === 'ArrowRight' || e.key === 'ArrowDown'
+                      ? (i + 1) % domains.length
+                      : e.key === 'ArrowLeft' || e.key === 'ArrowUp'
+                        ? (i + domains.length - 1) % domains.length
+                        : -1;
+              if (next < 0) return;
+              e.preventDefault();
+              setDomain(next);
+              document
+                .getElementById('domain-tab-' + domains[next].code)
+                ?.focus();
+            }}
           >
             <x.Icon size={16} aria-hidden="true" />
             <span className="num">{x.code}</span>
@@ -179,7 +209,12 @@ function Domains({ go, initial }: { go: Go; initial: string }) {
           </button>
         ))}
       </div>
-      <div id="domain-detail" role="tabpanel" className="domain-detail">
+      <div
+        id="domain-detail"
+        role="tabpanel"
+        aria-labelledby={'domain-tab-' + d.code}
+        className="domain-detail"
+      >
         <p className="num domain-code">
           {d.code} · {d.type}
         </p>
@@ -194,6 +229,14 @@ function Domains({ go, initial }: { go: Go; initial: string }) {
                 <a
                   href={'#portfolio?product=' + id}
                   onClick={(e) => {
+                    if (
+                      e.button !== 0 ||
+                      e.metaKey ||
+                      e.ctrlKey ||
+                      e.shiftKey ||
+                      e.altKey
+                    )
+                      return;
                     e.preventDefault();
                     go('portfolio?product=' + id);
                   }}
@@ -354,6 +397,14 @@ function References({ c, go }: { c: Chapter; go: Go }) {
           key={'s' + n}
           href={'#slides?slide=' + n}
           onClick={(e) => {
+            if (
+              e.button !== 0 ||
+              e.metaKey ||
+              e.ctrlKey ||
+              e.shiftKey ||
+              e.altKey
+            )
+              return;
             e.preventDefault();
             go('slides?slide=' + n);
           }}
@@ -372,6 +423,14 @@ function References({ c, go }: { c: Chapter; go: Go }) {
             key={p.id}
             href={'#' + p.nav}
             onClick={(e) => {
+              if (
+                e.button !== 0 ||
+                e.metaKey ||
+                e.ctrlKey ||
+                e.shiftKey ||
+                e.altKey
+              )
+                return;
               e.preventDefault();
               go(p.nav);
             }}
@@ -431,6 +490,14 @@ export default function Technology({
             key={c.id}
             href={'#tech-' + c.id}
             onClick={(e) => {
+              if (
+                e.button !== 0 ||
+                e.metaKey ||
+                e.ctrlKey ||
+                e.shiftKey ||
+                e.altKey
+              )
+                return;
               e.preventDefault();
               document.getElementById('tech-' + c.id)?.scrollIntoView({
                 behavior: reduced ? 'instant' : 'smooth',
@@ -542,6 +609,14 @@ export default function Technology({
               key={id}
               href={'#' + id}
               onClick={(e) => {
+                if (
+                  e.button !== 0 ||
+                  e.metaKey ||
+                  e.ctrlKey ||
+                  e.shiftKey ||
+                  e.altKey
+                )
+                  return;
                 e.preventDefault();
                 go(id);
               }}

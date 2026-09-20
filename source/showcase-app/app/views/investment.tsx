@@ -191,22 +191,65 @@ export default function Investment({
             withheld if the one before it fails.
           </p>
         </header>
-        <ol className="inv-milestones">
-          {milestones.map((m) => (
-            <li key={m.when}>
-              <p className="num">{m.when}</p>
-              <h3>{m.title}</h3>
-              <ul>
-                {m.items.map((it) => (
-                  <li key={it}>{it}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ol>
+        <figure className="inv-timeline" aria-label="18-month milestone timeline">
+          <ol className="inv-milestones">
+            {milestones.map((m, idx) => (
+              <li key={m.when}>
+                <div className="timeline-marker" aria-hidden="true">
+                  <span className="timeline-dot" />
+                  <span className="timeline-line" />
+                </div>
+                <div className="timeline-content">
+                  <p className="num">{m.when}</p>
+                  <h3>{m.title}</h3>
+                  <ul>
+                    {m.items.map((it) => (
+                      <li key={it}>{it}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </figure>
         <p className="ov-source">
           Source: Information Memorandum, June 2026, section 12.
         </p>
+        <aside
+          className="funding-evidence"
+          aria-labelledby="funding-evidence-title"
+        >
+          <h3 id="funding-evidence-title">
+            Follow the capital to the evidence
+          </h3>
+          <p>
+            Use the design explanation to understand the plan, the
+            demonstrations to inspect behaviour, and the source documents to
+            verify the claims. A simulation does not close a hardware
+            qualification gate.
+          </p>
+          <div>
+            <a href="#silicon?chapter=measured">
+              <strong>Silicon readiness</strong>
+              <span>Prototype, ASIC and integration evidence →</span>
+            </a>
+            <a href="#film">
+              <strong>Demonstrated behaviour</strong>
+              <span>Captioned software simulations →</span>
+            </a>
+            <a
+              href={
+                '#briefing?q=' +
+                encodeURIComponent(
+                  'What evidence supports the SoC2 tapeout milestones?',
+                )
+              }
+            >
+              <strong>Challenge the milestones</strong>
+              <span>Ask against the source documents →</span>
+            </a>
+          </div>
+        </aside>
       </section>
 
       <section className="inv-block inv-risks" aria-labelledby="inv-risk-title">
@@ -371,23 +414,25 @@ function RampChart() {
 // its masthead h1 becomes an h2; a lone dash marking an empty cell becomes an en dash, any other em dash a comma; each film takes the poster and the
 // reviewed captions the Demonstrations page uses; an image never grows past its own width.
 function tidy(html: string) {
-  return html
-    // the page has its own h1; the memorandum's masthead title sits beneath it
-    .replace(/<h1(\b[^>]*)>/g, '<h2$1>')
-    .replace(/<\/h1>/g, '</h2>')
-    .replace(/>\s*&mdash;\s*</g, '>&ndash;<')
-    .replace(/\s*&mdash;\s*/g, ', ')
-    .replace(/,\s*([.;:!?)])/g, '$1')
-    .replace(
-      /(<video\b[^>]*?)poster="[^"]*\/media\/([a-z]+)-poster\.png"([^>]*>)/g,
-      (_, a: string, id: string, b: string) =>
-        `${a}poster="./images/posters/${id}.webp"${b}<track kind="captions" src="./media/captions/${id}.vtt" srclang="en" label="English">`,
-    )
-    .replace(
-      /<img\b([^>]*?)width="(\d+)"/g,
-      (_, a: string, w: string) =>
-        `<img${a}style="max-width:${w}px" width="${w}"`,
-    );
+  return (
+    html
+      // the page has its own h1; the memorandum's masthead title sits beneath it
+      .replace(/<h1(\b[^>]*)>/g, '<h2$1>')
+      .replace(/<\/h1>/g, '</h2>')
+      .replace(/>\s*&mdash;\s*</g, '>&ndash;<')
+      .replace(/\s*&mdash;\s*/g, ', ')
+      .replace(/,\s*([.;:!?)])/g, '$1')
+      .replace(
+        /(<video\b[^>]*?)poster="[^"]*\/media\/([a-z]+)-poster\.png"([^>]*>)/g,
+        (_, a: string, id: string, b: string) =>
+          `${a}poster="./images/posters/${id}.webp"${b}<track kind="captions" src="./media/captions/${id}.vtt" srclang="en" label="English">`,
+      )
+      .replace(
+        /<img\b([^>]*?)width="(\d+)"/g,
+        (_, a: string, w: string) =>
+          `<img${a}style="max-width:${w}px" width="${w}"`,
+      )
+  );
 }
 
 function InvestmentRecord({
