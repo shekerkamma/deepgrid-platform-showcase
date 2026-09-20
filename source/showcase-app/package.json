@@ -7,12 +7,12 @@
   },
   "scripts": {
     "dev": "vinext dev",
-    "build": "node scripts/check-visuals.mjs && node scripts/check-theme-sources.mjs && node scripts/check-tech-story.mjs && node scripts/check-relations.mjs && node scripts/check-storyboards.mjs && node scripts/check-semantic.mjs && node scripts/copy-runtime.mjs && node scripts/build.mjs",
+    "build": "node scripts/check-gate.mjs && node scripts/check-visuals.mjs && node scripts/check-theme-sources.mjs && node scripts/check-tech-story.mjs && node scripts/check-relations.mjs && node scripts/check-storyboards.mjs && node scripts/check-semantic.mjs && node scripts/copy-runtime.mjs && node scripts/build.mjs",
     "start": "wrangler dev --config dist/server/wrangler.json",
     "lint": "oxlint",
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
-    "build:pages": "node scripts/check-visuals.mjs && node scripts/check-theme-sources.mjs && node scripts/check-tech-story.mjs && node scripts/check-relations.mjs && node scripts/check-storyboards.mjs && node scripts/check-semantic.mjs && node scripts/copy-runtime.mjs && node scripts/build.mjs && node scripts/package-pages.mjs",
+    "build:pages": "node scripts/check-gate.mjs && node scripts/check-visuals.mjs && node scripts/check-theme-sources.mjs && node scripts/check-tech-story.mjs && node scripts/check-relations.mjs && node scripts/check-storyboards.mjs && node scripts/check-semantic.mjs && node scripts/copy-runtime.mjs && node scripts/build.mjs && node scripts/package-pages.mjs",
     "check:semantic": "node scripts/check-semantic.mjs",
     "graph:extract": "bash scripts/graphify-extract.sh",
     "graph:index": "node scripts/build-showcase-catalog.mjs && uv run --no-project --with pymupdf python scripts/build-unified-graphrag.py && node scripts/publish-graph.mjs",
@@ -26,7 +26,8 @@
     "graph:images": "uv run --no-project --with pillow python scripts/build-image-manifest.py && uv run --no-project --with pillow --with pyyaml python scripts/describe-images.py && uv run --no-project --with pillow python scripts/build-image-links.py && node scripts/build-image-catalog.mjs",
     "graph:tech": "node scripts/build-tech-story.mjs",
     "graph:relations": "node scripts/build-relations.mjs",
-    "graph:storyboards": "node scripts/build-storyboards.mjs --films"
+    "graph:storyboards": "node scripts/build-storyboards.mjs --films",
+    "check:gate": "node scripts/check-gate.mjs"
   },
   "dependencies": {
     "@base-ui/react": "1.7.0",
