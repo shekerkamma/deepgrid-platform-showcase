@@ -100,7 +100,7 @@ export default function Overview({
           loading="lazy"
           decoding="async"
         />
-        <figcaption id="ov-die-fig-title">SoC2 die concept — six domains, one tapeout</figcaption>
+        <figcaption id="ov-die-fig-title">SoC2 die concept: six domains, one tapeout</figcaption>
       </figure>
 
       <section className="ov-chapter ov-where" aria-labelledby="ov-where-title">
