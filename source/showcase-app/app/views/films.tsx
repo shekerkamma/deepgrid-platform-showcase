@@ -3,7 +3,7 @@ import Related from '../related';
 import { StoryFilm, WalkthroughFilm } from '../storyboard';
 import type { Go } from '../shared';
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Play } from 'lucide-react';
+import { ArrowUpRight, ChevronRight, Play } from 'lucide-react';
 import { SectionHead } from '../shared';
 
 // Videos: the narrated 104-slide walkthrough and six product films. Each film has its own poster
@@ -203,15 +203,16 @@ function FilmGroup({
       >
         <header>
           <h3>{f.title}</h3>
-          <p>
-            {f.sub} <span className="num">· {f.length}</span>
+          <p>{f.sub}</p>
+          <p className="film-meta">
+            <span className="num">{f.length}</span>
+            <span>
+              {siliconFilms.some((x) => x.id === f.id)
+                ? 'Animated architecture, not fabricated-silicon footage'
+                : 'Simulator run, not road or site footage'}
+            </span>
           </p>
         </header>
-        <p className="visual-status">
-          {siliconFilms.some((x) => x.id === f.id)
-            ? 'Architecture explanation · not fabricated-silicon footage'
-            : 'Software simulation · not road or site footage'}
-        </p>
         <StoryFilm
           key={f.id}
           film={f}
@@ -391,11 +392,11 @@ export function Player({
           }}
         >
           <span>
-            <Play size={20} fill="currentColor" aria-hidden="true" />
+            <Play size={16} fill="currentColor" aria-hidden="true" />
           </span>
-          {startAt > 0 && (
-            <em className="film-from num">from {clock(startAt)}</em>
-          )}
+          <em className="num">
+            {startAt > 0 ? `Play from ${clock(startAt)}` : `Play · ${film.length}`}
+          </em>
         </button>
       )}
     </div>
@@ -427,7 +428,10 @@ export function Transcript({ id }: { id: string }) {
       className="transcript"
       onToggle={(e) => setOpen((e.target as HTMLDetailsElement).open)}
     >
-      <summary>Transcript</summary>
+      <summary>
+        <ChevronRight size={16} aria-hidden="true" />
+        Transcript
+      </summary>
       {text ? text.map((p, i) => <p key={i}>{p}</p>) : <p>Loading…</p>}
     </details>
   );
