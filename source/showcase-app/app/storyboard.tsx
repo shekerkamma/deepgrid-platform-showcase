@@ -217,6 +217,7 @@ export function WalkthroughFilm({
       </div>
       <ol
         className="storyboard is-chapters"
+        tabIndex={0}
         aria-label="The walkthrough, chapter by chapter"
       >
         {chapters.map((c, i) => (

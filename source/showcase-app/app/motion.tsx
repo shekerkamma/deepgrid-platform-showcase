@@ -9,14 +9,8 @@ import { useEffect } from 'react';
 
 const REVEAL = [
   '.section-head',
-  '.ov-chapter-head',
-  '.ov-law-row',
-  '.ov-where-card',
   '.product-line-scene',
   '.tech-hero-scene',
-  '.ov-proof>li',
-  '.ov-close',
-  '.ov-die-list>li',
   '.catalog-list>*',
   '.product-line-head',
   '.pp-usecase',

@@ -10,7 +10,7 @@ const committed = fs.readFileSync('app/data/relations.json', 'utf8');
 execFileSync('node', ['scripts/build-relations.mjs'], {stdio: 'ignore'});
 const fresh = fs.readFileSync('app/data/relations.json', 'utf8');
 const fails = [];
-if (fresh !== committed) fails.push('app/data/relations.json is stale: run node scripts/build-relations.mjs and commit it');
+if (fresh.replaceAll('\r\n', '\n') !== committed.replaceAll('\r\n', '\n')) fails.push('app/data/relations.json is stale: run node scripts/build-relations.mjs and commit it');
 const {nodes, edges} = JSON.parse(fresh);
 const kind = k => k.split(':')[0];
 const BARE = /^(read|open|open slide|pdf|download|more|link|source|watch)$/i;
