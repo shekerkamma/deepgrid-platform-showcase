@@ -61,12 +61,22 @@ export default function Investment({
         copy="A pre-Series A raise to take SoC2 from a working FPGA to qualified silicon. Every figure below comes from a document you can download at the end of the page."
       />
 
+      {!report && <nav className="film-navigation investment-nav" aria-label="Investment sections">
+        {[["inv-round-title", "The round"], ["inv-ramp-title", "Revenue ramp"], ["inv-ms-title", "Milestones"], ["inv-risk-title", "Risks"], ["inv-docs-title", "Source documents"]].map(([id, label]) => (
+          <button key={id} onClick={() => {
+            const target = document.getElementById(id);
+            target?.closest('section')?.scrollIntoView({ block: 'start', behavior: 'instant' });
+            target?.focus({ preventScroll: true });
+          }}>{label}</button>
+        ))}
+      </nav>}
+
       <section
         className="inv-block inv-round"
         aria-labelledby="inv-round-title"
       >
         <div className="inv-round-figures">
-          <h2 id="inv-round-title" className="sr-only">
+          <h2 id="inv-round-title" tabIndex={-1} className="sr-only">
             The round
           </h2>
           <dl>
@@ -129,7 +139,7 @@ export default function Investment({
 
       <section className="inv-block" aria-labelledby="inv-ramp-title">
         <header className="inv-head">
-          <h2 id="inv-ramp-title">Revenue ramp, as two documents state it</h2>
+          <h2 id="inv-ramp-title" tabIndex={-1}>Revenue ramp, as two documents state it</h2>
           <p>
             The financial model and the business plan agree on the shape and
             disagree on the size. The site&rsquo;s product figures follow the
@@ -184,7 +194,7 @@ export default function Investment({
 
       <section className="inv-block" aria-labelledby="inv-ms-title">
         <header className="inv-head">
-          <h2 id="inv-ms-title">What the next eighteen months deliver</h2>
+          <h2 id="inv-ms-title" tabIndex={-1}>What the next eighteen months deliver</h2>
           <p>
             The milestones the memorandum commits to after the raise. The
             tapeout money itself is paid in four stages, and each can be
@@ -254,7 +264,7 @@ export default function Investment({
 
       <section className="inv-block inv-risks" aria-labelledby="inv-risk-title">
         <header className="inv-head">
-          <h2 id="inv-risk-title">What diligence should test</h2>
+          <h2 id="inv-risk-title" tabIndex={-1}>What diligence should test</h2>
         </header>
         <ul>
           {risks.map((r) => (
@@ -268,7 +278,7 @@ export default function Investment({
 
       <section className="inv-block" aria-labelledby="inv-docs-title">
         <header className="inv-head">
-          <h2 id="inv-docs-title">The documents behind the figures</h2>
+          <h2 id="inv-docs-title" tabIndex={-1}>The documents behind the figures</h2>
         </header>
         <ul className="inv-docs">
           {documents.map(([file, title, date, type, size]) => (

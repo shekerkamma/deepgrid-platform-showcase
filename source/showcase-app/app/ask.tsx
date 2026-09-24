@@ -338,6 +338,7 @@ export default function AskDeepGrid({go, initialQuery = ''}: {go: (hash: string)
         <div className="dr-ask-view-toggle">
           <button
             className={`dr-ask-toggle-btn ${activeView === 'council' ? 'active' : ''}`}
+            aria-pressed={activeView === 'council'}
             onClick={() => setActiveView('council')}
             title="Direct Grounded Answers with Official Citations"
           >
@@ -345,6 +346,7 @@ export default function AskDeepGrid({go, initialQuery = ''}: {go: (hash: string)
           </button>
           <button
             className={`dr-ask-toggle-btn ${activeView === 'graph' ? 'active' : ''}`}
+            aria-pressed={activeView === 'graph'}
             onClick={() => setActiveView('graph')}
             title="Interactive Silicon Architecture Map"
           >
@@ -352,6 +354,7 @@ export default function AskDeepGrid({go, initialQuery = ''}: {go: (hash: string)
           </button>
           <button
             className={`dr-ask-toggle-btn ${activeView === 'cards' ? 'active' : ''}`}
+            aria-pressed={activeView === 'cards'}
             onClick={() => setActiveView('cards')}
             title="Full Catalog Specification Dossiers"
           >
@@ -377,7 +380,7 @@ export default function AskDeepGrid({go, initialQuery = ''}: {go: (hash: string)
               className="dr-ask-input"
               value={query}
               onChange={e => handleQuerySelect(e.target.value)}
-              placeholder="Ask about the round, the revenue plan, a product or the silicon…"
+              placeholder="Ask a DeepGrid question…"
               aria-label="Search DeepGrid knowledge"
             />
             {query && (

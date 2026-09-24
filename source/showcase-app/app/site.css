@@ -270,8 +270,8 @@ dd {
 
 /* ---------- reveal (DG32 motion.tsx) ---------- */
 .rv-on [data-rv]:not(.rv-in) {
-  opacity: 0;
-  transform: translateY(14px);
+  opacity: 1;
+  transform: translateY(8px);
 }
 .rv-on [data-rv]:not(.rv-done) {
   transition:
@@ -283,7 +283,7 @@ dd {
     transform: none;
   }
   .rv-on [data-rv]:not(.rv-done) {
-    transition: opacity 0.2s linear;
+    transition: none;
   }
 }
 @media print {

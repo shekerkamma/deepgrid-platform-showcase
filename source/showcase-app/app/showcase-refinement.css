@@ -1,0 +1,138 @@
+/* Refinement of the existing Newsreader / evergreen / copper visual system.
+   Scoped to the overview, except for compact shared navigation spacing. */
+.wordmark { letter-spacing: -.03em; }
+.main-nav > a { padding-inline: clamp(.4rem, 1vw, .9rem); }
+.ov-hero { min-height: min(43rem, calc(100svh - 8rem)); }
+.ov-hero .hero-image { width: 67%; object-position: 55% center; opacity: 1; inset: 0 0 0 auto; }
+.ov-hero .hero-copy { padding: 4rem 0; max-width: 42rem; }
+.ov-figures { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.ov-figures > div { padding-block: 1.75rem; }
+.ov-where .ov-chapter-head { max-width: none; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: end; }
+.ov-where .ov-chapter-head h2 { max-width: 18ch; font-size: clamp(2rem, 3.4vw, 3.25rem); margin: 0; }
+.ov-where .ov-chapter-head p { margin: 0; }
+.ov-where-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.ov-where-card a { aspect-ratio: 16 / 10; border-radius: 12px; }
+.ov-where-copy { padding: 1.5rem; }
+.ov-where-copy strong { font-size: clamp(1.5rem, 2.3vw, 2rem); padding-right: 2rem; }
+.ov-where-copy span { max-width: 44ch; padding-right: 1.5rem; min-height: 0; }
+.ov-scene-arrow { position: absolute; top: 1.6rem; right: 1.5rem; color: var(--copper); transition: transform 180ms ease-out; }
+.ov-where-card a:hover .ov-scene-arrow { transform: translate(2px, -2px); }
+.ov-where-card a::after { height: 70%; background: linear-gradient(to top, #0b0e0d 0%, #0b0e0dba 40%, transparent); }
+.ov-law-table { background: var(--surface); padding-inline: 1.5rem; }
+.ov-die-list > li { padding: .85rem .75rem; }
+.ov-die-list > li.is-selected { background: var(--surface-2); }
+.ov-die-list button { min-height: 2.75rem; }
+.ov-die-carries a { color: var(--ink-2); }
+@media (max-width: 899px) {
+  .ov-hero { min-height: 0; }
+  /* Reset legacy top:65px and opacity before composing the mobile hero. */
+  .ov-hero .hero-image { width: 100%; aspect-ratio: 16 / 9; inset: auto; object-position: center; }
+  .ov-hero .hero-shade { height: calc(100vw * 9 / 16); }
+  .ov-hero .hero-copy { max-width: none; margin: -1rem var(--gutter) 0; padding: 0 0 2.5rem; }
+  .ov-hero h1 { font-size: clamp(2.65rem, 7vw, 4.5rem); }
+  .ov-figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ov-figures > div:nth-child(-n + 4) { border-bottom: 1px solid var(--line-soft); }
+  .ov-figures > div:nth-child(5) { padding-left: 0; border-left: 0; grid-column: 1 / -1; }
+  .ov-where .ov-chapter-head { grid-template-columns: 1fr; gap: 1rem; }
+  .ov-law-table { padding-inline: 1rem; }
+  .ov-where-copy { padding: 1.25rem; }
+  .ov-scene-arrow { top: 1.3rem; right: 1.25rem; }
+}
+@media (max-width: 699px) {
+  /* All four application routes are visible in the normal reading direction. */
+  .ov-where-rail { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; grid-auto-columns: auto; overflow: visible; scroll-snap-type: none; margin-right: 0; padding-right: 0; gap: 1rem; }
+  .ov-where-card a { aspect-ratio: 4 / 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ov-scene-arrow, .ov-where-card a:hover .ov-scene-arrow { transition: none; transform: none; }
+}
+/* Whole-showcase refinement: catalog, technology, films, deck, investment and Q&A. */
+.page-wrap > .section-head { padding-block: .5rem 1.25rem; border-bottom: 1px solid var(--line-soft); }
+.page-wrap > .section-head h1 { font-size: clamp(2.3rem, 3.6vw, 3.4rem); }
+.product-grid.catalog-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+.catalog-list > .product-card { padding: 0; overflow: hidden; border-radius: 12px; }
+.product-card-scene { margin: 0; border-radius: 0; }
+.product-card-scene .scene-img { height: auto; aspect-ratio: 16 / 9; }
+.product-card-body { padding: 1.4rem; }
+.product-card-body h3 { font-size: 1.6rem; }
+.product-card-body dd { white-space: nowrap; font-size: .875rem; }
+.product-card-body dl { grid-template-columns: 1.25fr 1fr .8fr; gap: .8rem; }
+.product-line-head { align-items: start; }
+.product-line-head > p { max-width: 72ch; }
+.product-line-scene { aspect-ratio: 4 / 1; }
+.compare-table tbody tr:hover { background: var(--surface-2); }
+.tech-hero-scene .scene-img { aspect-ratio: 3 / 1; }
+.tech-nav, .film-navigation, .investment-nav { gap: .5rem; }
+.tech-nav a, .film-navigation a, .investment-nav button { min-height: 44px; display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 6px; padding: .55rem .85rem; color: var(--ink-2); background: var(--surface); font-size: var(--sc-t-control); }
+.tech-nav a:hover, .investment-nav button:hover { border-color: var(--copper); color: var(--ink); }
+.tech-chapter { border-top: 1px solid var(--line-soft); margin-top: 3.5rem; padding-top: 3.5rem; }
+.tech-chapter .ov-chapter-head h2 { font-size: clamp(1.85rem, 2.7vw, 2.65rem); }
+.tech-detail { background: var(--surface); padding: .75rem 1rem; border-radius: 6px; }
+.tech-detail summary { min-height: 44px; }
+.domain-tabs button[aria-selected='true'] { background: var(--surface-2); box-shadow: inset 0 -2px var(--copper); }
+.film-group { padding-top: 3rem; border-top: 1px solid var(--line-soft); }
+.film-chooser button { border-radius: 8px; }
+.film-chooser button[aria-selected='true'] { background: var(--surface-2); border-color: var(--copper); }
+.sb-lines button { min-height: 36px; }
+.deck-stage { background: #090d0c; }
+.deck-stage img { max-height: 58vh; width: 100%; object-fit: contain; }
+.deck-controls { background: var(--surface); padding: .8rem 1rem; }
+.deck-controls > button { min-width: 44px; min-height: 44px; }
+.deck-chapters button { border-radius: 6px; }
+.deck-index { background: transparent; border: 0; padding: 0 0 0 1.25rem; border-left: 1px solid var(--line-soft); }
+.deck-index-list button { min-height: 44px; padding: .75rem; border-radius: 4px; }
+.deck-index-list button[aria-current='true'] { background: var(--surface-2); color: var(--copper); }
+.investment-nav { margin-bottom: 2rem; }
+.inv-round { border-radius: 12px; }
+.inv-round-figures dl { gap: 2rem; }
+.inv-table tbody th { color: var(--ink); }
+.source-report p, .source-report li { max-width: 76ch; }
+.inv-risks li { padding-block: 1.25rem; }
+.dr-ask-section.page-wrap { max-width: calc(var(--wrap) + 2 * var(--gutter)); padding-inline: var(--gutter); }
+.dr-ask-toggle-btn, .dr-ask-chip { font-family: var(--font-text); min-height: 44px; }
+.dr-ask-view-toggle { gap: .25rem; }
+.dr-ask-toggle-btn.active { background: var(--surface-2); }
+.dr-ask-prompts { gap: .65rem; }
+.dr-ask-chip { padding: .65rem .85rem; }
+.dr-ask-chip-doc { font-family: var(--font-text); }
+.dr-ask-prompt-label { margin-block: 1rem .65rem; }
+.dr-ask-input { font-family: var(--font-text); font-size: 1rem; }
+.dr-answer-card { padding: clamp(1.25rem, 3vw, 2.5rem); box-shadow: none; }
+.dr-answer-lead, .dr-answer-explanation, .dr-answer-facts { max-width: 76ch; }
+.dr-answer-explanation p { font-size: 1rem; line-height: 1.75; }
+.dr-answer-header { flex-wrap: wrap; gap: .75rem; }
+@media (min-width: 1100px) {
+  .film-walkthrough .is-walkthrough { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: start; }
+  .film-walkthrough .is-walkthrough > .film-frame { grid-column: 1; grid-row: 1; }
+  .film-walkthrough .is-walkthrough > .wt-bar { grid-column: 1; grid-row: 2; }
+  .film-walkthrough .is-walkthrough > .is-chapters { grid-column: 2; grid-row: 1 / 4; max-height: 37rem; overflow-y: auto; scrollbar-color: var(--line) var(--canvas); }
+  .film-walkthrough .storyboard.is-chapters > li { grid-template-columns: 3.5rem minmax(0, 1fr); column-gap: .7rem; }
+  .film-walkthrough .storyboard.is-chapters .sb-figs, .film-walkthrough .storyboard.is-chapters .sb-lines { grid-column: 2; grid-row: auto; }
+}
+@media (max-width: 1100px) {
+  .product-grid.catalog-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 899px) {
+  .page-wrap > .section-head { padding-top: .25rem; }
+  .deck-stage img { max-height: none; }
+  .deck-index { padding: 1rem 0 0; border-left: 0; border-top: 1px solid var(--line-soft); }
+  .tech-hero-scene .scene-img { aspect-ratio: 16 / 9; }
+  .dr-ask-view-toggle { width: 100%; }
+  .dr-ask-toggle-btn { justify-content: flex-start; width: 100%; }
+  .dr-ask-chip { width: 100%; justify-content: flex-start; text-align: left; }
+  .dr-ask-chip-text { white-space: normal; }
+  .tech-chapter { margin-top: 2.5rem; padding-top: 2.5rem; }
+}
+@media (max-width: 699px) {
+  .product-grid.catalog-list { grid-template-columns: minmax(0, 1fr); }
+  .product-card-body { padding: 1.25rem; }
+  .product-line-scene { aspect-ratio: 16 / 9; }
+  .product-card-body dl { gap: .75rem; }
+  .page-wrap > .section-head h1 { font-size: 2.2rem; }
+  .film-navigation { flex-wrap: wrap; }
+  .inv-table th:first-child { min-width: 12rem; }
+}
+.catalog-list > .product-card { align-items: stretch; }
+.product-card-scene { width: 100%; }
+.mobile-menu > span { max-width: 10rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 420px) { .mobile-menu > span { max-width: 8.2rem; } }

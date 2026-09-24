@@ -8,6 +8,7 @@ import './ux.css';
 import './use-cases.css';
 import './ask.css';
 import './site.css';
+import './showcase-refinement.css';
 
 const site = 'https://shekerkamma.github.io/deepgrid-platform-showcase/';
 export const metadata: Metadata = {

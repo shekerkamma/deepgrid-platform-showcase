@@ -63,11 +63,11 @@ export default function Overview({
           </p>
           <div className="hero-actions">
             <a className="primary" href="#investment">
-              See the investment case <ArrowUpRight size={18} />
+              See the investment case <ArrowUpRight size={18} aria-hidden="true" />
             </a>
             <a className="text-button" href="#film">
               <span className="play-circle">
-                <Play size={12} fill="currentColor" />
+                <Play size={12} fill="currentColor" aria-hidden="true" />
               </span>
               Watch the film
             </a>
@@ -143,10 +143,11 @@ export default function Overview({
               >
                 <Scene
                   id={id}
-                  sizes="(min-width: 1100px) 26vw, (min-width: 700px) 45vw, 82vw"
+                  sizes="(min-width: 1400px) 620px, (min-width: 700px) 45vw, 90vw"
                 />
                 <span className="ov-where-copy">
                   <strong>{scenes[id].place}</strong>
+                  <ArrowUpRight className="ov-scene-arrow" size={22} aria-hidden="true" />
                   <span>
                     {ids
                       .map((x) => productById(x)?.name)
@@ -165,7 +166,6 @@ export default function Overview({
 
       <section className="ov-chapter ov-law" aria-labelledby="ov-law-title">
         <header className="ov-chapter-head">
-          <p className="kicker">Why now</p>
           <h2 id="ov-law-title">The demand is written into law.</h2>
           <p>
             In November 2025 India made five driver-assistance systems
@@ -243,12 +243,10 @@ export default function Overview({
           </header>
           <ul className="ov-die-list">
             {domains.map((d, i) => (
-              <li key={d.code}>
+              <li key={d.code} className={domain === i ? 'is-selected' : undefined}>
                 <button
                   aria-pressed={domain === i}
                   onClick={() => setDomain(i)}
-                  onMouseEnter={() => setDomain(i)}
-                  onFocus={() => setDomain(i)}
                 >
                   <span className="num">{d.code}</span>
                   <strong>{d.name}</strong>
